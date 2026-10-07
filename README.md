@@ -43,6 +43,7 @@ Windows 试玩版为本机 Unity 6.3 的原生关闭问题加入退出兼容处�
 
 ## 实现企划
 
+- [Agent 持久记忆](docs/agent-memory.md)：后续 agent 必读，记录已确认约束、已修复问题、复验方法和未完成事项；入口规则见 `AGENTS.md`。
 - [自由探索 MVP 方案](docs/mvp-demo.md)：场景、线索、随口提醒、阶段报告、开发批次和验收标准。
 - [第一人称 3D 图文简版](docs/first-person-3d-plan.md)：保留三张低模概念图，明确自由探索与制作范围。
 - [三页图文 PDF](output/pdf/first-person-3d-plan.pdf)：可直接审阅的图文版。
