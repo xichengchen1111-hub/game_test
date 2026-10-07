@@ -1,0 +1,13 @@
+{
+    "realTownMeshes": true,
+    "wallApertureClear": true,
+    "playerContained": true,
+    "duplicateCluesRemoved": true,
+    "secondApertureClear": true,
+    "secondWindowContained": true,
+    "relativeViewportParallax": 0.3124185800552368,
+    "motionFrames": 49,
+    "exteriorWindows": 2,
+    "interiorWindows": 2,
+    "verification": "Player-height native rendering, fixed-orientation lateral CharacterController movement, real town alignment and physical window collision"
+}

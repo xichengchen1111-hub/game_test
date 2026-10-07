@@ -1,0 +1,67 @@
+{
+  "passed": true,
+  "before": {
+    "frames": 26,
+    "duration": 5.671914100646973,
+    "diagnostic_switches_off": true,
+    "surfaces": {
+      "window-return": {
+        "samples": 26,
+        "luminance_range": 0.3065280406862497,
+        "luminance_stddev": 0.14196749309170698,
+        "largest_adjacent_change": 0.30621639961302277
+      },
+      "front-plaster": {
+        "samples": 26,
+        "luminance_range": 0.019267692875862052,
+        "luminance_stddev": 0.00463261349671812,
+        "largest_adjacent_change": 0.015253520196676196
+      },
+      "door-panel": {
+        "samples": 25,
+        "luminance_range": 0.015681044816970822,
+        "luminance_stddev": 0.005056231121803321,
+        "largest_adjacent_change": 0.004755303411185741
+      },
+      "upper-plaster": {
+        "samples": 26,
+        "luminance_range": 0.01967200636267663,
+        "luminance_stddev": 0.005101376006059606,
+        "largest_adjacent_change": 0.00889933166503909
+      }
+    }
+  },
+  "after": {
+    "frames": 86,
+    "duration": 5.018992900848389,
+    "diagnostic_switches_off": true,
+    "surfaces": {
+      "window-return": {
+        "samples": 86,
+        "luminance_range": 0.003921568931639183,
+        "luminance_stddev": 0.0008251388157225257,
+        "largest_adjacent_change": 0.003453159363567826
+      },
+      "front-plaster": {
+        "samples": 86,
+        "luminance_range": 0.020136239159107228,
+        "luminance_stddev": 0.0044168660400863745,
+        "largest_adjacent_change": 0.008714614146947908
+      },
+      "door-panel": {
+        "samples": 77,
+        "luminance_range": 0.016236860965937377,
+        "luminance_stddev": 0.003927203043222797,
+        "largest_adjacent_change": 0.003827190125733619
+      },
+      "upper-plaster": {
+        "samples": 86,
+        "luminance_range": 0.01876159530282029,
+        "luminance_stddev": 0.0044505156052380215,
+        "largest_adjacent_change": 0.005916710120439483
+      }
+    }
+  },
+  "window_luminance_range_reduction": 0.9872064920297026,
+  "scope": "Fixed world-space patches during native player movement and look rotation; visual frame review is also required"
+}

@@ -8,3 +8,14 @@ game/UserSettings/
 builds/
 output/demo/*.log
 output/demo/motion/
+output/demo/window/motion/
+output/demo/window/*.log
+output/demo/lighting/**/*.log
+output/demo/lighting/**/frames/
+output/demo/lighting/recording*.png
+output/demo/layout/motion/
+output/demo/layout/*.log
+output/demo/layout/lighting/**/frames/
+output/demo/layout/lighting/**/*.log
+output/demo/street/motion/
+output/demo/street/*.log

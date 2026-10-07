@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "right_window": {
+    "frames": 83,
+    "duration": 5.164045810699463,
+    "diagnostic_switches_off": true,
+    "surfaces": {
+      "window-return": {
+        "samples": 83,
+        "luminance_range": 0.0031467502549290816,
+        "luminance_stddev": 0.0010387511682505906,
+        "largest_adjacent_change": 0.002930539876222618
+      },
+      "front-plaster": {
+        "samples": 83,
+        "luminance_range": 0.016284365504980136,
+        "luminance_stddev": 0.003901905485497688,
+        "largest_adjacent_change": 0.008496612459421182
+      },
+      "door-panel": {
+        "samples": 79,
+        "luminance_range": 0.016519998203963042,
+        "luminance_stddev": 0.004569400914625642,
+        "largest_adjacent_change": 0.003921569205075505
+      },
+      "upper-plaster": {
+        "samples": 83,
+        "luminance_range": 0.020192862135171852,
+        "luminance_stddev": 0.004520638053333386,
+        "largest_adjacent_change": 0.004481408983468993
+      }
+    }
+  },
+  "scope": "New second window: absolute stability check during native movement with production lighting; no prior right-window baseline existed."
+}

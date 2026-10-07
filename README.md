@@ -8,7 +8,27 @@ Unity 项目在 `game/`，本地 Windows 游戏在 `builds/windows/TownDemo.exe`
 
 WASD 行走，鼠标自由观察，Shift 快走，E 互动，Q 查看怀表，Tab 调查簿，Esc 收起或暂停。靠近右侧钟表铺的门，按 E 进入。所有建筑、家具和人物使用三维几何体与碰撞；招牌与纸面使用可读贴图。
 
+钟表铺内外共用 `game/Assets/Generated/ClockShop.prefab` 和 `ClockShopLayout.asset`：外轮廓 7.4 × 8.2 米，单层房间，3.3 米墙高，中央门两侧各有一扇 2.1 × 1.75 米真窗。门窗的位置、高度、朝向，以及屋顶、家具和人物模型都一致；从街上透过窗户能看到同一套室内模型。外景只保留进门互动，证物与对白在独立室内进行。
+
+窗外直接复用小镇的三维建筑、钟楼、路面和街灯；墙体留出真实窗洞，窗框有厚度，玻璃仅有轻微透明色。玩家走近或横向移动时，窗框和远处街景产生不同视差，街钟也继续使用同一游戏时钟。街景坐标变换由同一布局推导，移除重复的本栋建筑；窗外副本只负责显示，不复制证物交互或碰撞。独立室内仍通过淡黑转场加载。
+
+以后所有可进入建筑都必须保持内外一致。修改共用布局/Prefab 后再生成两个场景；不能在外面添加没有对应室内空间的窗户或楼层。构建前的 `BuildingLayoutChecks` 比较实际场景中的门窗和每个模型的几何、材质及变换，并验证故意错位、缺失和新增的窗户会被拒绝。
+
 `output/demo/` 保存实机截图和行走视频。验证走实际 CharacterController 与射线交互，包括进出房间、记录 E07、静默同行者和新进程读档；这是程序控制的实际运行检查，另需持续真人试玩。当前试玩不自动解题，不限制玩家探索顺序。
+
+窗景专项验证使用 `--review --fresh --review-window --capture-dir "绝对输出目录"`，输出 `layout-exterior.png`、`layout-interior.png`、左右窗近景和 `window-results.json`，检查内外窗数、实际横移视差、两扇窗洞通透、人物不能穿窗，以及之后正常查看证物和返回街道。此次一致性验收保存在 `output/demo/layout/`，含构建检查和新进程读档结果。
+
+运行时附加 `--window-preview` 可直接站在钟表铺内看窗景，仍可自由移动和出门；这个展示入口使用独立存档，不覆盖正常试玩进度。
+
+窗框嵌入窗洞，内侧与墙面留有 5 厘米错位，并突出外侧墙面 3 厘米，边框和横档接缝不再重叠，避免移动或转头时出现共面争抢（z-fighting）。室内两盏带阴影的点光源明确采用 512 像素的阴影面，十二个面可放入 2048 像素图集，消除自动降分辨率提示。
+
+运动闪烁复验使用 `--review --fresh --review-lighting --capture-dir "绝对输出目录"`，通过实际角色控制器往返移动、相机转动和步行起伏捕捉原生画面，记录固定墙面位置的颜色。诊断参数 `--lighting-no-main`、`--lighting-no-local`、`--lighting-no-ao` 仅在该验证模式生效。`tools/check_lighting.py` 对比修复前后的采样；`output/demo/lighting/comparison.json` 和移动视频保存验证结果。验收使用完整的正常灯光与阴影。
+
+附加 `--lighting-window-right` 以镜像移动路线单独复验第二扇窗，两扇窗的原生采样保存在 `output/demo/layout/lighting/`。`--window-preview` 展示入口面向完整的双窗和中央门。
+
+店铺棚架共用生成函数，柱子、横梁和棚顶有实际连接，连接高度从棚底推导。长椅放在车站与旅馆之间的人行道外缘，朝向广场，脚底与路面齐平，旁边保留约 0.95 米通道。窗景专项验收也检查三处棚架的六根柱子，并通过角色控制器走过长椅旁的通道，实机截图与结果在 `output/demo/street/`。
+
+`--street-preview` 可直接站在钟表铺对面查看棚架，随后自由走动；它使用独立展示存档。
 
 重新构建：安装 Unity **6000.3.18f1**，运行 `tools/BuildDemo.ps1`。Blender 源模型在 `assets/source/town-kit.blend`；生成脚本在 `tools/make_kit.py`。Noto Sans SC 字体子集附带 OFL 许可。生成的游戏包、Unity 缓存和日志不纳入 Git。
 

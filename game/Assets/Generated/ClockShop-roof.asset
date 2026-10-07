@@ -6,7 +6,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ClockShop-roof
+  m_Name: 
   serializedVersion: 12
   m_SubMeshes:
   - serializedVersion: 2
@@ -17,8 +17,8 @@ Mesh:
     firstVertex: 0
     vertexCount: 6
     localAABB:
-      m_Center: {x: 0, y: 7.3999996, z: 0}
-      m_Extent: {x: 3.725, y: 0.79999995, z: 3.5}
+      m_Center: {x: 0, y: 4.225, z: 0}
+      m_Extent: {x: 3.925, y: 0.8000001, z: 4.325}
   m_Shapes:
     vertices: []
     shapes: []
@@ -97,7 +97,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 144
-    _typelessdata: 66666ec03333d340000060c0ec4cba3e8bdd583fe546c63e66666e403333d340000060c06b820fbeb9947a3f2cbc183e66666ec03333d34000006040e7c0c53e8e32663f5d7752be66666e403333d3400000604074fe61bf00000000ab85f0be0000000033330341000060c00000000028587ebf1d8be83d00000000333303410000604000000000539079bf2e2c64be
+    _typelessdata: 33337bc033335b4066668ac03dd7b63e0044603f40eea53e33337b4033335b4066668ac07adb08becdcb7b3f6966f83d33337bc033335b4066668a40657fbe3e41a8693f1fe12cbe33337b4033335b4066668a407c1f69bf000000000090d3be00000000cdcca04066668ac00000000081e97ebf049bbc3d00000000cdcca04066668a4000000000d7ba7bbf42403abe
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -151,8 +151,8 @@ Mesh:
       m_BitSize: 0
     m_UVInfo: 0
   m_LocalAABB:
-    m_Center: {x: 0, y: 7.3999996, z: 0}
-    m_Extent: {x: 3.725, y: 0.79999995, z: 3.5}
+    m_Center: {x: 0, y: 4.225, z: 0}
+    m_Extent: {x: 3.925, y: 0.8000001, z: 4.325}
   m_MeshUsageFlags: 0
   m_CookingOptions: 30
   m_BakedConvexCollisionMesh: 

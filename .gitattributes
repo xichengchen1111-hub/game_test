@@ -7,6 +7,7 @@
 
 # Unity serializes empty YAML values with a trailing space.
 game/**/*.unity whitespace=-blank-at-eol
+game/**/*.prefab whitespace=-blank-at-eol
 game/**/*.asset whitespace=-blank-at-eol
 game/**/*.mat whitespace=-blank-at-eol
 game/**/*.meta whitespace=-blank-at-eol

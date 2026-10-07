@@ -1,0 +1,52 @@
+{
+    "building": "ClockShop",
+    "sharedPrefab": "Assets/Generated/ClockShop.prefab",
+    "verification": "Checks loaded scene instances, every mesh/material/transform and named physical openings; three deliberate mismatches are rejected before player build.",
+    "footprint": {
+        "x": 7.400000095367432,
+        "y": 8.199999809265137
+    },
+    "wallHeight": 3.299999952316284,
+    "exteriorWindows": 2,
+    "interiorWindows": 2,
+    "openings": [
+        {
+            "id": "front-left",
+            "kind": 0,
+            "wall": 0,
+            "offset": -2.0,
+            "centreHeight": 1.9500000476837159,
+            "size": {
+                "x": 2.0999999046325685,
+                "y": 1.75
+            }
+        },
+        {
+            "id": "front-door",
+            "kind": 1,
+            "wall": 0,
+            "offset": 0.0,
+            "centreHeight": 1.2000000476837159,
+            "size": {
+                "x": 1.399999976158142,
+                "y": 2.4000000953674318
+            }
+        },
+        {
+            "id": "front-right",
+            "kind": 0,
+            "wall": 0,
+            "offset": 2.0,
+            "centreHeight": 1.9500000476837159,
+            "size": {
+                "x": 2.0999999046325685,
+                "y": 1.75
+            }
+        }
+    ],
+    "geometryIdentical": true,
+    "doorAndSpawnAligned": true,
+    "rejectsMovedWindow": true,
+    "rejectsMissingWindow": true,
+    "rejectsExtraWindow": true
+}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
@@ -13,6 +14,8 @@ using UnityEngine.SceneManagement;
 public static class BuildSlice {
     static Dictionary<string,Material> mats=new Dictionary<string,Material>();
     static Font font;
+    static BuildingLayout shopLayout;
+    const string ShopPrefabPath="Assets/Generated/ClockShop.prefab";
     static string art="Assets/Art/Textures/";
     static Color C(string hex){ColorUtility.TryParseHtmlString(hex,out var c);return c;}
     static Material Mat(string name,string hex,float emission=0,float smoothness=0.15f) {
@@ -78,7 +81,15 @@ public static class BuildSlice {
     static Light Point(string name,Vector3 position,Color color,float intensity,float range,bool shadow=false) {
         var g=new GameObject(name);g.transform.position=position;
         var l=g.AddComponent<Light>();l.type=LightType.Point;l.color=color;l.intensity=intensity;l.range=range;
-        l.shadows=shadow?LightShadows.Soft:LightShadows.None;return l;
+        l.shadows=shadow?LightShadows.Soft:LightShadows.None;
+        if(shadow) {
+            // Two point lights need twelve cube faces. Request 512px per face
+            // explicitly so they fit the 2048px atlas without automatic resizing.
+            var settings=new SerializedObject(l.GetUniversalAdditionalLightData());
+            settings.FindProperty("m_AdditionalLightsShadowResolutionTier").intValue=UniversalAdditionalLightData.AdditionalLightsShadowResolutionTierMedium;
+            settings.ApplyModifiedPropertiesWithoutUndo();
+        }
+        return l;
     }
     static void SetupLight(bool inside) {
         RenderSettings.ambientMode=AmbientMode.Trilight;
@@ -111,9 +122,11 @@ public static class BuildSlice {
         var mesh=new Mesh();
         mesh.vertices=new[]{new Vector3(-width/2,bottom,-depth/2),new Vector3(width/2,bottom,-depth/2),new Vector3(-width/2,bottom,depth/2),new Vector3(width/2,bottom,depth/2),new Vector3(0,bottom+rise,-depth/2),new Vector3(0,bottom+rise,depth/2)};
         mesh.triangles=new[]{0,4,2,2,4,5,1,3,4,3,5,4,0,1,4,2,5,3,0,2,1,1,2,3};mesh.RecalculateNormals();
-        g.AddComponent<MeshFilter>().sharedMesh=mesh;g.AddComponent<MeshRenderer>().sharedMaterial=material;
         string p="Assets/Generated/"+parent.name+"-roof.asset";
-        if(AssetDatabase.LoadAssetAtPath<Mesh>(p))AssetDatabase.DeleteAsset(p);AssetDatabase.CreateAsset(mesh,p);
+        var saved=AssetDatabase.LoadAssetAtPath<Mesh>(p);
+        if(saved){EditorUtility.CopySerialized(mesh,saved);UnityEngine.Object.DestroyImmediate(mesh);mesh=saved;EditorUtility.SetDirty(mesh);}
+        else AssetDatabase.CreateAsset(mesh,p);
+        g.AddComponent<MeshFilter>().sharedMesh=mesh;g.AddComponent<MeshRenderer>().sharedMaterial=material;
     }
     static void Window(Transform p,float x,float y,float z,float width=1.1f,float height=1.55f,bool glow=true) {
         var trim=Mat("WindowTrim","#37323A");var glass=Mat(glow?"WarmWindow":"DarkWindow",glow?"#D4A878":"#3B4962",glow?.6f:0);
@@ -123,21 +136,49 @@ public static class BuildSlice {
         Box("Crossbar",new Vector3(x,y,z-.105f),new Vector3(width,.055f,.035f),trim,p,false);
         Box("Stone sill",new Vector3(x,y-height/2-.13f,z-.08f),new Vector3(width+.28f,.14f,.24f),Mat("Sill","#8A7F77"),p,false);
     }
-    static Transform Building(string name,Vector3 pos,float yaw,float width,float height,string color,string sign=null) {
+    static Transform Building(string name,Vector3 pos,float yaw,float width,float height,string color,string sign=null,bool groundWindows=true) {
         var root=Group(name,pos).transform;root.localRotation=Quaternion.Euler(0,yaw,0);
         Box("Plaster",new Vector3(0,height/2,0),new Vector3(width,height,6.4f),Mat(name+"-plaster",color),root);
         Box("Foundation",new Vector3(0,.22f,-3.25f),new Vector3(width+.3f,.44f,.3f),Mat("Foundation","#5D5A64"),root);
         Box("Cornice",new Vector3(0,height-.1f,-3.22f),new Vector3(width+.4f,.25f,.5f),Mat("Cornice","#736D72"),root,false);
-        for(int floor=0;floor<2;floor++)for(int x=0;x<3;x++)Window(root,(x-1)*width/3.6f,2.0f+floor*2.8f,-3.23f,1.25f,floor==0?1.7f:1.5f,(x+floor)%3!=0);
+        for(int floor=0;floor<2;floor++)for(int x=0;x<3;x++)if(floor>0||groundWindows)Window(root,(x-1)*width/3.6f,2.0f+floor*2.8f,-3.23f,1.25f,floor==0?1.7f:1.5f,(x+floor)%3!=0);
         Roof(root,width+.45f,7,height,1.6f,Mat("Roof","#3B4255"));
         Box("Chimney",new Vector3(width/3,height+1.0f,1.5f),new Vector3(.65f,1.7f,.7f),Mat("Brick","#67565A"),root,false);
         if(sign!=null) {
             Box("Shop sign",new Vector3(0,3.7f,-3.34f),new Vector3(width-.6f,.9f,.16f),Mat("SignWood","#283F40"),root,false);
             Quad("Lettered sign",new Vector3(0,3.7f,-3.435f),new Vector2(width-.7f,.85f),ImageMat("sign-"+sign,sign),root);
-            Box("Awning",new Vector3(0,3.05f,-3.95f),new Vector3(width+.4f,.15f,1.55f),Mat("Awning","#445A54"),root,false);
-            for(int j=-1;j<=1;j+=2)Box("Shop post",new Vector3(j*(width/2+.05f),1.4f,-4.5f),new Vector3(.17f,2.8f,.17f),Mat("DarkTimber","#3B3031"),root);
+            Porch(root,width,-3.2f);
         }
         return root;
+    }
+    static void Porch(Transform building,float width,float frontWall) {
+        var root=Group("Porch",Vector3.zero,building).transform;
+        const float canopyY=3.05f,canopyThickness=.15f,beamHeight=.14f,jointOverlap=.01f;
+        float underside=canopyY-canopyThickness/2;
+        float beamTop=underside+jointOverlap;
+        float beamBottom=beamTop-beamHeight;
+        float postHeight=beamBottom+jointOverlap;
+        float postZ=frontWall-1.3f;
+        var timber=Mat("DarkTimber","#3B3031");
+        Box("Awning",new Vector3(0,canopyY,frontWall-.875f),new Vector3(width+.4f,canopyThickness,1.3f),Mat("Awning","#445A54"),root,false);
+        Box("Canopy support beam",new Vector3(0,(beamTop+beamBottom)/2,postZ),new Vector3(width+.30f,beamHeight,.20f),timber,root,false);
+        for(int side=-1;side<=1;side+=2)
+            Box("Shop post",new Vector3(side*(width/2+.05f),postHeight/2,postZ),new Vector3(.17f,postHeight,.17f),timber,root);
+    }
+    static void FaceBenchTowardSquare(GameObject bench) {
+        // Infer the backrest from the imported geometry rather than assuming an
+        // FBX forward axis. Above seat height, the backrest dominates the depth.
+        float backDepth=0;int vertices=0;
+        foreach(var filter in bench.GetComponentsInChildren<MeshFilter>())
+            foreach(var vertex in filter.sharedMesh.vertices) {
+                var local=bench.transform.InverseTransformPoint(filter.transform.TransformPoint(vertex));
+                if(local.y<.55f)continue;
+                backDepth+=local.z;vertices++;
+            }
+        if(vertices==0||Mathf.Abs(backDepth/vertices)<.05f)throw new Exception("Cannot identify the imported bench backrest");
+        var facing=Group("Seat facing",Vector3.zero,bench.transform).transform;
+        facing.localRotation=Quaternion.Euler(0,backDepth>0?180:0,0);
+        bench.transform.rotation=Quaternion.FromToRotation(facing.forward,Vector3.right);
     }
     static void Dial(Transform parent,Vector3 pos,float size,bool street) {
         var root=Group("Clock dial",pos,parent).transform;
@@ -155,20 +196,17 @@ public static class BuildSlice {
     }
     static void Town() {
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);SetupLight(false);
+        var atmosphere=new HashSet<GameObject>(SceneManager.GetActiveScene().GetRootGameObjects());
         Box("Town ground",new Vector3(0,-.24f,4),new Vector3(55,.4f,65),Mat("Ground","#60637B",0,.38f));
         UnityEngine.Random.InitState(1931);
         for(int z=-20;z<29;z++)for(int x=-6;x<=6;x++) {
             string col=new[]{"#66697F","#717185","#747382","#666B7D","#777482"}[UnityEngine.Random.Range(0,5)];
             Box("Paving stone",new Vector3(x*1.02f+(z%2)*.51f,-.025f,z*1.0f),new Vector3(.99f,.08f,.965f),Mat("Paver"+col.Substring(1),col,0,.45f),null,false);
         }
-        Box("West sidewalk",new Vector3(-7.1f,.03f,2),new Vector3(1.75f,.14f,42),Mat("Sidewalk","#827C85"));
+        var westSidewalk=Box("West sidewalk",new Vector3(-7.1f,.03f,2),new Vector3(1.75f,.14f,42),Mat("Sidewalk","#827C85"));
         Box("East sidewalk",new Vector3(7.1f,.03f,2),new Vector3(1.75f,.14f,42),Mat("Sidewalk","#827C85"));
         var station=Building("Station",new Vector3(-9.2f,0,1),-90,8,6.5f,"#B3A89A","SignStation.png");
-        var shop=Building("ClockShop",new Vector3(9,0,1),90,7,6.6f,"#9C8580","SignClock.png");
-        var door=Box("Shop entrance",new Vector3(0,1.25f,-3.28f),new Vector3(1.4f,2.5f,.16f),Mat("Door","#413832"),shop);
-        Quad("Shop door glazing",new Vector3(0,1.65f,-3.38f),new Vector2(1.08f,1.15f),ImageMat("DoorWindow","DoorWindow.png"),shop);
-        Box("Door handle",new Vector3(.48f,1.04f,-3.42f),new Vector3(.065f,.35f,.07f),Mat("Brass","#B68C4B"),shop,false);
-        var portal=door.AddComponent<ScenePortal>();portal.title="进入钟表铺";portal.destination="ClockShop";portal.entryPosition=new Vector3(0,.03f,-2.2f);portal.entryYaw=0;
+        var shop=InstantiateShop(false);
         Building("GuestHouse",new Vector3(-10,0,14),-90,8,7.5f,"#929396","SignInn.png");
         Building("Home",new Vector3(10.2f,0,15),90,7.4f,6.3f,"#B1A398");
         Building("BackRow",new Vector3(0,0,28),0,12,7,"#84899B");
@@ -186,7 +224,8 @@ public static class BuildSlice {
         var plaque=Box("Clock observation",new Vector3(0,1.3f,8.77f),new Vector3(.9f,.44f,.05f),Mat("SignWood","#283F40"));
         var clock=plaque.AddComponent<Interactable>();clock.title="街钟";clock.evidenceId="E06";clock.source="广场的公共街钟";clock.body="广场上的钟，钟表铺的匠人负责维护。\n\n钟面可以直接观察，怀表在你身上。";
         foreach(float x in new[]{-5.7f,5.7f})foreach(float z in new[]{-8f,6f,19f})Lantern(new Vector3(x,0,z));
-        var bench=Model("Bench",new Vector3(-2.8f,.03f,8));bench.transform.rotation=Quaternion.Euler(0,15,0);Collider(bench,new Vector3(0,.45f,0),new Vector3(2,.9f,.75f));
+        var bench=Model("Bench",new Vector3(-7.55f,westSidewalk.GetComponent<Renderer>().bounds.max.y,7.5f));
+        FaceBenchTowardSquare(bench);Collider(bench,new Vector3(0,.45f,0),new Vector3(2,.9f,.75f));
         var cart=Model("MilkCart",new Vector3(6.35f,.10f,-5.4f),-90);Collider(cart,new Vector3(0,.6f,0),new Vector3(1.6f,1.15f,.9f));
         var boy=Model("Clockmaker",new Vector3(6.15f,.1f,-4.2f),-85);boy.transform.localScale=Vector3.one*.88f;
         Collider(boy,new Vector3(0,.8f,0),new Vector3(.65f,1.65f,.55f));boy.AddComponent<AmbientMotion>();
@@ -199,30 +238,127 @@ public static class BuildSlice {
         Box("South town boundary",new Vector3(0,1,-23),new Vector3(55,3,.6f),Mat("Boundary","#64677B"));
         Box("West town boundary",new Vector3(-17,1,2),new Vector3(.6f,3,60),Mat("Boundary","#64677B"));
         Box("East town boundary",new Vector3(17,1,2),new Vector3(.6f,3,60),Mat("Boundary","#64677B"));
+        TrimStreetFloor(shop.transform);
+        var geometry=Group("Town geometry",Vector3.zero);
+        foreach(var root in SceneManager.GetActiveScene().GetRootGameObjects())
+            if(root!=geometry&&!atmosphere.Contains(root))root.transform.SetParent(geometry.transform,true);
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene(),"Assets/Scenes/Town.unity");
     }
-    static void Shop() {
-        EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);SetupLight(true);
+    static void SharedShell(Transform building,Material wallMaterial) {
+        foreach(BuildingWall side in Enum.GetValues(typeof(BuildingWall))) {
+            var wall=Group("Wall "+side,shopLayout.WallCentre(side),building).transform;
+            wall.localRotation=shopLayout.WallRotation(side);
+            float cursor=-shopLayout.WallSpan(side)/2,end=-cursor;
+            foreach(var opening in shopLayout.openings.Where(o=>o.wall==side).OrderBy(o=>o.offset)) {
+                float left=opening.offset-opening.size.x/2,right=opening.offset+opening.size.x/2;
+                float bottom=opening.centreHeight-opening.size.y/2,top=opening.centreHeight+opening.size.y/2;
+                WallPiece(wall,cursor,left,0,shopLayout.wallHeight,wallMaterial,"Pier");
+                WallPiece(wall,left,right,0,bottom,wallMaterial,"Below "+opening.id);
+                WallPiece(wall,left,right,top,shopLayout.wallHeight,wallMaterial,"Above "+opening.id);
+                cursor=right;
+            }
+            WallPiece(wall,cursor,end,0,shopLayout.wallHeight,wallMaterial,"Pier");
+        }
+    }
+    static void WallPiece(Transform wall,float left,float right,float bottom,float top,Material material,string name) {
+        if(right-left<.001f||top-bottom<.001f)return;
+        Box(name,new Vector3((left+right)/2,(bottom+top)/2,0),new Vector3(right-left,top-bottom,shopLayout.wallThickness),material,wall);
+    }
+    static void TrimStreetFloor(Transform shop) {
+        // Carve the actual shop footprint out of paving and the sidewalk in the
+        // source town, so both scenes show the same street outside the windows.
+        var floor=shop.Find("Interior floor").GetComponent<Renderer>().bounds;
+        foreach(var tile in SceneManager.GetActiveScene().GetRootGameObjects()) {
+            if(tile.name!="Paving stone"&&tile.name!="East sidewalk")continue;
+            var b=tile.GetComponent<Renderer>().bounds;
+            if(b.max.x<=floor.min.x||b.min.x>=floor.max.x||b.max.z<=floor.min.z||b.min.z>=floor.max.z)continue;
+            float middleLeft=Mathf.Max(b.min.x,floor.min.x),middleRight=Mathf.Min(b.max.x,floor.max.x);
+            FloorPiece(tile,b.min.x,Mathf.Min(b.max.x,floor.min.x),b.min.z,b.max.z);
+            FloorPiece(tile,Mathf.Max(b.min.x,floor.max.x),b.max.x,b.min.z,b.max.z);
+            FloorPiece(tile,middleLeft,middleRight,b.min.z,Mathf.Min(b.max.z,floor.min.z));
+            FloorPiece(tile,middleLeft,middleRight,Mathf.Max(b.min.z,floor.max.z),b.max.z);
+            UnityEngine.Object.DestroyImmediate(tile);
+        }
+    }
+    static void FloorPiece(GameObject source,float x0,float x1,float z0,float z1) {
+        if(x1-x0<.001f||z1-z0<.001f)return;
+        var tile=UnityEngine.Object.Instantiate(source);tile.name=source.name;
+        tile.transform.position=new Vector3((x0+x1)/2,source.transform.position.y,(z0+z1)/2);
+        tile.transform.localScale=new Vector3(x1-x0,source.transform.localScale.y,z1-z0);
+    }
+    static void WindowStreet() {
+        // Reuse the saved town meshes, rather than maintaining a second invented street.
+        // The building layout defines the complete town/interior coordinate transform.
+        var interior=SceneManager.GetActiveScene();
+        var town=EditorSceneManager.OpenScene("Assets/Scenes/Town.unity",OpenSceneMode.Additive);
+        var source=Array.Find(town.GetRootGameObjects(),g=>g.name=="Town geometry");
+        if(!source)throw new Exception("Town geometry missing for real window view");
+        SceneManager.SetActiveScene(interior);
+        var street=UnityEngine.Object.Instantiate(source);street.name="Window street geometry";
+        SceneManager.MoveGameObjectToScene(street,interior);
+        EditorSceneManager.CloseScene(town,true);
+        var ownShop=street.transform.Find("ClockShop");
+        if(!ownShop)throw new Exception("Shared shop missing from town");
+        // The interior already contains the entire same prefab, including its roof
+        // and canopy. Remove the copy completely, avoiding duplicate surfaces.
+        UnityEngine.Object.DestroyImmediate(ownShop.gameObject);
+        foreach(var component in street.GetComponentsInChildren<Interactable>())UnityEngine.Object.DestroyImmediate(component);
+        foreach(var component in street.GetComponentsInChildren<Collider>())UnityEngine.Object.DestroyImmediate(component);
+        var rotation=Quaternion.Inverse(shopLayout.TownRotation);
+        street.transform.SetPositionAndRotation(rotation*-shopLayout.townPosition,rotation);
+    }
+    static void ClearWindow(Transform parent,float width,float height) {
+        var wood=Mat("WindowTrim","#37323A");
+        // Let the timber overlap the aperture by 5 cm. Its inner faces must not
+        // coincide with the plaster returns: those coplanar faces flicker on movement.
+        float innerWidth=width-.10f,innerHeight=height-.10f;
+        // Protrude beyond both wall faces, including the exterior face now visible
+        // on the shared prefab; the previous 24 cm frame was coplanar outside.
+        float frameDepth=shopLayout.wallThickness+.10f;
+        for(int side=-1;side<=1;side+=2) {
+            Box("Window jamb",new Vector3(side*width/2,0,0),new Vector3(.10f,height+.10f,frameDepth),wood,parent,false);
+            Box("Window rail",new Vector3(0,side*height/2,0),new Vector3(innerWidth,.10f,frameDepth),wood,parent,false);
+            Box("Window transom",new Vector3(side*(innerWidth+.06f)/4,.12f,0),new Vector3((innerWidth-.06f)/2,.055f,.12f),wood,parent,false);
+        }
+        Box("Window mullion",Vector3.zero,new Vector3(.06f,innerHeight,.12f),wood,parent,false);
+        Box("Stone sill",new Vector3(0,-height/2-.07f,.07f),new Vector3(width+.32f,.12f,.42f),Mat("Sill","#8A7F77"),parent,false);
+        string path="Assets/Generated/Materials/ClearWindowGlass.mat";
+        var glass=AssetDatabase.LoadAssetAtPath<Material>(path);
+        if(!glass){glass=new Material(Shader.Find("WrongDate/ClearGlass"));AssetDatabase.CreateAsset(glass,path);}
+        glass.SetColor("_Tint",new Color(.55f,.68f,.78f,.055f));EditorUtility.SetDirty(glass);
+        Quad("Transparent window glass",new Vector3(0,0,-.025f),new Vector2(width,height),glass,parent);
+        // Keep the player inside without intercepting ordinary inspection rays.
+        var blocker=Group("Window safety collision",Vector3.zero,parent);blocker.layer=2;
+        Collider(blocker,Vector3.zero,new Vector3(width,height,.08f));
+    }
+    static void ClockShopPrefab() {
+        EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
+        var root=Group("ClockShop",Vector3.zero);
+        var instance=root.AddComponent<BuildingInstance>();instance.layout=shopLayout;instance.interior=true;
         var timber=Mat("ShopWood","#7F573C");var wall=Mat("InteriorPlaster","#A09992");var panel=Mat("Wainscot","#5D4A42");
-        Box("Interior floor",new Vector3(0,-.17f,0),new Vector3(7.2f,.3f,8.2f),timber);
+        Box("Interior floor",new Vector3(0,-.17f,0),new Vector3(shopLayout.footprint.x,.3f,shopLayout.footprint.y),timber);
         for(int i=0;i<18;i++)for(int j=0;j<4;j++)Box("Floor board",new Vector3(-3.35f+i*.39f,-.006f,-3+j*2.03f),new Vector3(.37f,.025f,2f),Mat("Floor"+(i+j)%3,new[]{"#845D45","#90684B","#78563F"}[(i+j)%3]),null,false);
-        Box("Back wall",new Vector3(0,1.65f,4),new Vector3(7.2f,3.3f,.2f),wall);
-        Box("Left wall",new Vector3(-3.6f,1.65f,0),new Vector3(.2f,3.3f,8.2f),wall);
-        Box("Right wall",new Vector3(3.6f,1.65f,0),new Vector3(.2f,3.3f,8.2f),wall);
-        Box("Front wall",new Vector3(0,1.65f,-4),new Vector3(7.2f,3.3f,.2f),wall);
-        Box("Ceiling",new Vector3(0,3.35f,0),new Vector3(7.2f,.15f,8.2f),Mat("Ceiling","#776A63"));
-        Box("Back panel",new Vector3(0,.58f,3.87f),new Vector3(7.1f,1.15f,.06f),panel,null,false);
-        Box("Left panel",new Vector3(-3.47f,.58f,0),new Vector3(.06f,1.15f,8f),panel,null,false);
-        Box("Right panel",new Vector3(3.47f,.58f,0),new Vector3(.06f,1.15f,8f),panel,null,false);
-        var entry=Box("Return door",new Vector3(0,1.2f,-3.86f),new Vector3(1.4f,2.4f,.08f),Mat("Door","#413832"));
-        Box("Return handle",new Vector3(.5f,1.02f,-3.78f),new Vector3(.065f,.35f,.07f),Mat("Brass","#B68C4B"),null,false);
-        var exit=entry.AddComponent<ScenePortal>();exit.title="回到小镇";exit.destination="Town";exit.entryYaw=-90;
-        var window=Group("Window recess",new Vector3(-3.47f,1.95f,-.5f)).transform;window.localRotation=Quaternion.Euler(0,-90,0);
-        Window(window,0,0,0,2.5f,1.75f,true);
-        Quad("Dusk seen through window",new Vector3(0,0,-.13f),new Vector2(2.35f,1.60f),ImageMat("WindowTown","WindowTown.png"),window);
-        Box("Window upright",new Vector3(0,0,-.17f),new Vector3(.07f,1.73f,.035f),panel,window,false);
-        Box("Window crosspiece",new Vector3(0,0,-.17f),new Vector3(2.45f,.07f,.035f),panel,window,false);
-        Point("Cool window light",new Vector3(-2.8f,2.2f,-.6f),C("#8DAAD5"),1.4f,5.5f);
+        SharedShell(root.transform,wall);
+        Box("Ceiling",new Vector3(0,shopLayout.wallHeight+.05f,0),new Vector3(shopLayout.footprint.x,.15f,shopLayout.footprint.y),Mat("Ceiling","#776A63"));
+        Box("Back panel",new Vector3(0,.58f,shopLayout.WallCentre(BuildingWall.Back).z-.13f),new Vector3(shopLayout.footprint.x-.3f,1.15f,.06f),panel,null,false);
+        for(int side=-1;side<=1;side+=2)Box(side<0?"Left panel":"Right panel",new Vector3(side*(shopLayout.footprint.x/2-.23f),.58f,0),new Vector3(.06f,1.15f,shopLayout.footprint.y-.4f),panel,null,false);
+        foreach(var opening in shopLayout.openings) {
+            var frame=Group("Opening "+opening.id,shopLayout.OpeningCentre(opening),root.transform).transform;
+            frame.localRotation=shopLayout.WallRotation(opening.wall);
+            var marker=frame.gameObject.AddComponent<BuildingOpeningMarker>();marker.openingId=opening.id;marker.kind=opening.kind;marker.apertureSize=opening.size;
+            if(opening.kind==OpeningKind.Window) {
+                ClearWindow(frame,opening.size.x,opening.size.y);
+                Point("Cool window light",frame.position+frame.forward*.73f+Vector3.up*.15f,C("#8DAAD5"),.9f,4.5f);
+            } else {
+                var entry=Box("Shop door",Vector3.zero,new Vector3(opening.size.x,opening.size.y,.16f),Mat("Door","#413832"),frame);
+                for(int side=-1;side<=1;side+=2) {
+                    Box("Door handle",new Vector3(.5f,1.02f-opening.centreHeight,side*.13f),new Vector3(.065f,.35f,.07f),Mat("Brass","#B68C4B"),frame,false);
+                    var pane=Quad("Door glazing",new Vector3(0,1.65f-opening.centreHeight,side*.09f),new Vector2(1.08f,1.15f),ImageMat("DoorWindow","DoorWindow.png"),frame);
+                    if(side>0)pane.transform.localRotation=Quaternion.Euler(0,180,0);
+                }
+                var exit=entry.AddComponent<ScenePortal>();exit.title="回到小镇";exit.destination="Town";exit.entryYaw=-shopLayout.townYaw;
+            }
+        }
         var desk=Model("Desk",new Vector3(0,0,1.35f));Collider(desk,new Vector3(0,.44f,0),new Vector3(1.85f,.88f,.85f));
         var npc=Model("Clockmaker",new Vector3(.65f,0,2.65f),180);Collider(npc,new Vector3(0,.85f,0),new Vector3(.64f,1.7f,.55f));npc.AddComponent<AmbientMotion>();
         var talk=npc.AddComponent<Interactable>();talk.title="钟表匠";talk.source="钟表铺，柜台交谈";talk.body="“钟表坏了就放在柜台。老物件，慢慢修。”\n\n“想看什么，你自己看看。”";
@@ -242,7 +378,7 @@ public static class BuildSlice {
             Box("Display shelf",new Vector3(3.28f,.8f+i*.6f,1.15f),new Vector3(.45f,.09f,3.2f),timber);
             for(int j=0;j<5;j++)Box("Clock case or book",new Vector3(3.28f,1.01f+i*.6f,-.05f+j*.55f),new Vector3(.22f,.32f,.30f),Mat("Shelf"+(i+j)%3,new[]{"#53645C","#9B8060","#473F3F"}[(i+j)%3]),null,false);
         }
-        Model("Plant",new Vector3(-2.9f,0,-2.8f));
+        Model("Plant",new Vector3(-3f,0,-.5f));
         Box("Left worktable",new Vector3(-2.05f,.73f,2.4f),new Vector3(1.7f,.13f,.8f),timber);
         for(int i=-1;i<=1;i+=2)Box("Worktable leg",new Vector3(-2.05f+i*.65f,.34f,2.4f),new Vector3(.12f,.7f,.55f),panel);
         for(int i=0;i<5;i++)Cylinder("Brass wheel",new Vector3(-2.5f+i*.23f,.85f,2.35f),new Vector3(.18f,.018f,.18f),Mat("Brass","#B68C4B"));
@@ -253,11 +389,41 @@ public static class BuildSlice {
         Point("Desk task light",new Vector3(-.55f,1.26f,1.43f),C("#FFBB77"),2.8f,3.4f,true);
         Cylinder("Ceiling lamp",new Vector3(0,2.8f,-.8f),new Vector3(.52f,.08f,.52f),Mat("LampJade","#53665B"));
         Point("Warm ceiling pool",new Vector3(0,2.65f,-.8f),C("#FFC58C"),3.4f,7,true);
+        float front=shopLayout.WallCentre(BuildingWall.Front).z;
+        float roofBase=shopLayout.wallHeight+.125f;
+        Roof(root.transform,shopLayout.footprint.x+.45f,shopLayout.footprint.y+.45f,roofBase,shopLayout.roofRise,Mat("Roof","#3B4255"));
+        Box("Cornice",new Vector3(0,shopLayout.wallHeight+.02f,front-.12f),new Vector3(shopLayout.footprint.x+.4f,.25f,.5f),Mat("Cornice","#736D72"),root.transform,false);
+        Box("Chimney",new Vector3(shopLayout.footprint.x/3,roofBase+1,1.5f),new Vector3(.65f,1.7f,.7f),Mat("Brick","#67565A"),root.transform,false);
+        Box("Shop sign",new Vector3(0,3.7f,front-.14f),new Vector3(shopLayout.footprint.x-.6f,.9f,.16f),Mat("SignWood","#283F40"),root.transform,false);
+        Quad("Lettered sign",new Vector3(0,3.7f,front-.235f),new Vector2(shopLayout.footprint.x-.7f,.85f),ImageMat("sign-SignClock.png","SignClock.png"),root.transform);
+        Porch(root.transform,shopLayout.footprint.x,front);
+        foreach(var child in SceneManager.GetActiveScene().GetRootGameObjects())
+            if(child!=root)child.transform.SetParent(root.transform,false);
+        PrefabUtility.SaveAsPrefabAsset(root,ShopPrefabPath);
+    }
+    static BuildingInstance InstantiateShop(bool inside) {
+        var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(ShopPrefabPath);
+        var instance=((GameObject)PrefabUtility.InstantiatePrefab(prefab)).GetComponent<BuildingInstance>();
+        instance.interior=inside;
+        if(!inside) {
+            instance.transform.SetPositionAndRotation(shopLayout.townPosition,shopLayout.TownRotation);
+            var portal=instance.Opening(shopLayout.entranceId).GetComponentInChildren<ScenePortal>();
+            portal.title="进入钟表铺";portal.destination="ClockShop";portal.entryPosition=shopLayout.interiorSpawn;portal.entryYaw=0;
+            foreach(var interaction in instance.GetComponentsInChildren<Interactable>())
+                if(interaction!=portal)UnityEngine.Object.DestroyImmediate(interaction);
+        }
+        return instance;
+    }
+    static void Shop() {
+        EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);SetupLight(true);
+        InstantiateShop(true);WindowStreet();
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene(),"Assets/Scenes/ClockShop.unity");
     }
     static void Systems() {
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
         var app=new GameObject("Persistent systems").AddComponent<DemoApp>();app.font=font;app.dialTexture=AssetDatabase.LoadAssetAtPath<Texture2D>(art+"WatchFace.png");
+        var renderer=AssetDatabase.LoadAssetAtPath<UniversalRendererData>("Assets/Settings/PC_Renderer.asset");
+        app.reviewAmbientOcclusion=renderer.rendererFeatures.Find(f=>f is ScreenSpaceAmbientOcclusion);
         app.gameObject.AddComponent<TownSound>();
         var player=new GameObject("First person");player.transform.SetParent(app.transform);
         var cc=player.AddComponent<CharacterController>();cc.height=1.78f;cc.radius=.25f;cc.center=new Vector3(0,.9f,0);cc.stepOffset=.24f;cc.skinWidth=.03f;
@@ -282,7 +448,11 @@ public static class BuildSlice {
         PlayerSettings.resizableWindow=true;PlayerSettings.runInBackground=true;PlayerSettings.colorSpace=ColorSpace.Linear;
         PlayerSettings.SplashScreen.show=false;PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
         PlayerSettings.SetGraphicsAPIs(BuildTarget.StandaloneWindows64,new[]{GraphicsDeviceType.Direct3D11});
-        Town();Shop();Systems();AssetDatabase.SaveAssets();
+        string layoutPath="Assets/Generated/ClockShopLayout.asset";
+        shopLayout=AssetDatabase.LoadAssetAtPath<BuildingLayout>(layoutPath);
+        if(!shopLayout){shopLayout=ScriptableObject.CreateInstance<BuildingLayout>();AssetDatabase.CreateAsset(shopLayout,layoutPath);}
+        BuildingLayoutChecks.ValidateDefinition(shopLayout);
+        ClockShopPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);Systems();AssetDatabase.SaveAssets();
         string[] scenes={"Assets/Scenes/Systems.unity","Assets/Scenes/Town.unity","Assets/Scenes/ClockShop.unity"};
         EditorBuildSettings.scenes=Array.ConvertAll(scenes,p=>new EditorBuildSettingsScene(p,true));
         string output=Path.GetFullPath("../builds/windows/TownDemo.exe");Directory.CreateDirectory(Path.GetDirectoryName(output));

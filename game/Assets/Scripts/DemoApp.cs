@@ -25,6 +25,7 @@ public class DemoApp : MonoBehaviour {
     public PlayerMotor player;
     public Font font;
     public Texture2D dialTexture;
+    public UnityEngine.Rendering.Universal.ScriptableRendererFeature reviewAmbientOcclusion;
     public SliceSave state = new SliceSave();
     public bool Review { get; private set; }
     public float Minutes => 17*60+55+Time.time/60f;
@@ -42,8 +43,13 @@ public class DemoApp : MonoBehaviour {
     Texture2D solid, circle;
     float W,H;
     int selectedEntry;
-    bool recordWalk,recordingWalk;
+    bool recordWalk,recordingWalk,reviewWindow,recordingWindow,previewWindow,previewStreet,reviewLighting,recordingLighting,lightingRight;
     int motionFrames;
+    int windowFrames;
+    int exteriorWindowCount;
+    int lightingFrames;
+    float lightingStart,lightingYaw,lightingPitch;
+    List<LightingSample> lightingSamples=new List<LightingSample>();
 
     void Awake() {
         if (Instance) { Destroy(gameObject); return; }
@@ -52,9 +58,14 @@ public class DemoApp : MonoBehaviour {
         Application.targetFrameRate=60;
         var args=Environment.GetCommandLineArgs();
         Review=Array.IndexOf(args,"--review")>=0;
+        previewWindow=!Review&&Array.IndexOf(args,"--window-preview")>=0;
+        previewStreet=!Review&&!previewWindow&&Array.IndexOf(args,"--street-preview")>=0;
         recordWalk=Array.IndexOf(args,"--record")>=0;
+        reviewWindow=Array.IndexOf(args,"--review-window")>=0;
+        reviewLighting=Review&&Array.IndexOf(args,"--review-lighting")>=0;
+        lightingRight=reviewLighting&&Array.IndexOf(args,"--lighting-window-right")>=0;
         Silent=Review || Array.IndexOf(args,"--silent")>=0;
-        savePath=Path.Combine(Application.persistentDataPath,Review?"review-save.json":"slice-save.json");
+        savePath=Path.Combine(Application.persistentDataPath,Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":"slice-save.json");
         int c=Array.IndexOf(args,"--capture-dir");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -64,6 +75,9 @@ public class DemoApp : MonoBehaviour {
         }
         if (state==null || state.entries==null) state=new SliceSave();
         if (state.scene!="Town" && state.scene!="ClockShop") state.scene="Town";
+        if(previewWindow){state.scene="ClockShop";state.x=0;state.y=.03f;state.z=-.6f;opening=false;}
+        if(previewStreet){state.scene="Town";state.x=0;state.y=.03f;state.z=1;opening=false;}
+        if(reviewLighting){state.scene="ClockShop";state.x=lightingRight?.4f:-.4f;state.y=.03f;state.z=-.8f;}
         Cursor.lockState=CursorLockMode.None; Cursor.visible=true;
         StartCoroutine(InitialScene(args));
     }
@@ -72,14 +86,17 @@ public class DemoApp : MonoBehaviour {
         CurrentScene=state.scene;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentScene));
         player.Place(new Vector3(state.x,state.y,state.z),state.yaw);
-        player.Aim(CurrentScene=="Town"?new Vector3(0,3.1f,9):new Vector3(0,1.4f,1.5f));
+        player.Aim(previewWindow?FindFirstObjectByType<BuildingInstance>().layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f:CurrentScene=="Town"?new Vector3(0,3.1f,9):new Vector3(0,1.4f,1.5f));
+        if(previewStreet){var layout=FindFirstObjectByType<BuildingInstance>().layout;player.Aim(layout.ToTown(layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f));}
         sceneReady=true;
         location=CurrentScene=="Town"?"青川 · 小镇广场":"青川 · 钟表铺";
         locationAge=Time.time;
         yield return FadeTo(0,0.9f);
+        if(previewWindow||previewStreet)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--verify-save")>=0) StartCoroutine(VerifySaved());
+            if(reviewLighting)StartCoroutine(ReviewLighting(args));
+            else if(Array.IndexOf(args,"--verify-save")>=0) StartCoroutine(VerifySaved());
             else StartCoroutine(ReviewRun());
         }
     }
@@ -294,11 +311,11 @@ public class DemoApp : MonoBehaviour {
         yield return new WaitForSeconds(0.2f);
         Debug.Log("Captured runtime frame: "+name);
     }
-    IEnumerator WalkTo(Vector3 target) {
+    IEnumerator WalkTo(Vector3 target,float speedFactor=1) {
         Debug.Log("Review walking: "+player.transform.position+" -> "+target+" blocked="+Blocked+" motor="+player.enabled);
         float until=Time.time+20;
         while(Vector3.Distance(new Vector3(player.transform.position.x,0,player.transform.position.z),new Vector3(target.x,0,target.z))>0.10f&&Time.time<until) {
-            Vector3 d=target-player.transform.position;d.y=0;player.scriptedDirection=d.normalized;yield return null;
+            Vector3 d=target-player.transform.position;d.y=0;player.scriptedDirection=d.normalized*speedFactor;yield return null;
         }
         player.scriptedDirection=Vector3.zero;
         if(Time.time>=until) throw new Exception("Review movement blocked before "+target+" at "+player.transform.position+" blocked="+Blocked+" direction="+player.scriptedDirection);
@@ -308,6 +325,20 @@ public class DemoApp : MonoBehaviour {
         yield return Capture("town");watch=true;yield return Capture("town-watch");watch=false;
         if(recordWalk){recordingWalk=true;StartCoroutine(RecordWalk());}
         yield return WalkTo(new Vector3(0,0,-5));
+        if(reviewWindow) {
+            yield return ReviewStreet();
+            yield return WalkTo(new Vector3(0,0,1));
+            var building=FindFirstObjectByType<BuildingInstance>();
+            exteriorWindowCount=0;
+            foreach(var marker in building.GetComponentsInChildren<BuildingOpeningMarker>()) {
+                if(marker.kind==OpeningKind.Window)exteriorWindowCount++;
+                var opening=building.layout.Opening(marker.openingId);
+                if(Vector3.Distance(marker.transform.position,building.layout.ToTown(building.layout.OpeningCentre(opening)))>.001f)
+                    throw new Exception("Exterior opening is not aligned with its shared layout: "+marker.openingId);
+            }
+            player.Aim(building.layout.ToTown(building.layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f));
+            yield return new WaitForSeconds(.3f);yield return Capture("layout-exterior");
+        }
         yield return WalkTo(new Vector3(3.7f,0,1));
         recordingWalk=false;
         player.Aim(new Vector3(5.8f,1.2f,1));yield return null;
@@ -315,6 +346,7 @@ public class DemoApp : MonoBehaviour {
         yield return new WaitForSeconds(1.8f);
         if(CurrentScene!="ClockShop") throw new Exception("Shop transition failed");
         yield return Capture("clock-shop");
+        if(reviewWindow)yield return ReviewWindow();
         yield return WalkTo(new Vector3(0,0,-0.1f));
         var notice=GameObject.Find("RepairNotice");player.Aim(notice.transform.position);yield return null;
         if(!TryInteract()||!inspected||inspected.evidenceId!="E07") throw new Exception("Notice cannot be inspected normally");
@@ -346,6 +378,170 @@ public class DemoApp : MonoBehaviour {
         File.WriteAllText(Path.Combine(captures,"save-relaunch.txt"),"PASS: fresh process restored E07, Town scene and return position.\n");
         Debug.Log("SLICE_SAVE_RELAUNCH_PASS");Application.Quit();
     }
+    IEnumerator ReviewStreet() {
+        var town=GameObject.Find("Town geometry").transform;
+        int porches=0,posts=0;
+        foreach(var porch in town.GetComponentsInChildren<Transform>()) {
+            if(porch.name!="Porch")continue;
+            var canopy=porch.Find("Awning").GetComponent<Renderer>().bounds;
+            var beam=porch.Find("Canopy support beam").GetComponent<Renderer>().bounds;
+            if(beam.max.y<canopy.min.y-.001f)throw new Exception("Canopy beam is disconnected: "+porch.parent.name);
+            foreach(Transform child in porch) {
+                if(child.name!="Shop post")continue;
+                var post=child.GetComponent<Renderer>().bounds;
+                var joint=new Vector3(post.center.x,(post.max.y+beam.min.y)/2,post.center.z);
+                if(post.max.y<beam.min.y-.001f||!beam.Contains(joint))throw new Exception("Canopy post is disconnected: "+porch.parent.name);
+                posts++;
+            }
+            porches++;
+        }
+        if(porches!=3||posts!=6)throw new Exception("Unexpected number of street canopy supports");
+        var bench=town.Find("Bench");
+        var sidewalk=town.Find("West sidewalk").GetComponent<Renderer>().bounds;
+        var renderers=bench.GetComponentsInChildren<Renderer>();var bounds=renderers[0].bounds;
+        foreach(var renderer in renderers)bounds.Encapsulate(renderer.bounds);
+        float walkway=sidewalk.max.x-bench.GetComponent<BoxCollider>().bounds.max.x;
+        if(walkway<.8f||Mathf.Abs(bounds.min.y-sidewalk.max.y)>.015f)throw new Exception("Bench blocks the footpath or does not rest on it");
+        if(Vector3.Dot(bench.Find("Seat facing").forward,Vector3.right)<.99f)throw new Exception("Bench faces away from the square");
+        yield return WalkTo(new Vector3(0,0,5.8f));
+        yield return WalkTo(new Vector3(-5,0,7.5f));
+        player.Aim(bench.position+Vector3.up*.5f);yield return new WaitForSeconds(.3f);yield return Capture("bench-placement");
+        // Walk the remaining sidewalk beside the full length of the bench.
+        yield return WalkTo(new Vector3(-6.65f,0,6.4f));
+        yield return WalkTo(new Vector3(-6.65f,0,8.6f));
+        yield return WalkTo(new Vector3(-5,0,8.6f));
+        yield return WalkTo(new Vector3(0,0,1));
+        player.Aim(new Vector3(5.72f,1.7f,1));yield return new WaitForSeconds(.3f);yield return Capture("canopy-front");
+        yield return WalkTo(new Vector3(2.9f,0,4.4f));
+        player.Aim(new Vector3(4.42f,2.88f,4.75f));yield return new WaitForSeconds(.3f);yield return Capture("canopy-joint");
+        yield return WalkTo(new Vector3(0,0,1));
+        File.WriteAllText(Path.Combine(captures,"street-results.json"),JsonUtility.ToJson(new StreetResult{
+            connectedPorches=porches,connectedPosts=posts,sidewalkClearance=walkway,benchGrounded=true,benchFacesSquare=true,
+            sidewalkWalkPassed=true,verification="Actual rendered player-height views, native renderer bounds and CharacterController walk along the bench-side footpath"
+        },true));
+        Debug.Log("STREET_REVIEW_PASS: connected posts="+posts+" sidewalk clearance="+walkway);
+    }
+    IEnumerator ReviewWindow() {
+        var street=GameObject.Find("Window street geometry");
+        var building=FindFirstObjectByType<BuildingInstance>();
+        var layout=building.layout;
+        var frame=building.Opening("front-left").gameObject;
+        var rightFrame=building.Opening("front-right");
+        int interiorWindows=0;
+        foreach(var marker in building.GetComponentsInChildren<BuildingOpeningMarker>())if(marker.kind==OpeningKind.Window)interiorWindows++;
+        if(exteriorWindowCount!=2||interiorWindows!=exteriorWindowCount)throw new Exception("Interior/exterior window counts differ");
+        if(!street||!frame||GameObject.Find("Dusk seen through window"))throw new Exception("Real window geometry missing or image still present");
+        if(street.GetComponentsInChildren<Interactable>().Length!=0)throw new Exception("Exterior preview must not duplicate clue interactions");
+        var tower=street.transform.Find("Town clock");
+        var station=street.transform.Find("Station");
+        if(!tower||!station||Vector3.Distance(frame.transform.position,station.position)<10)throw new Exception("Window street has no real depth");
+        if(Vector3.Distance(tower.position,layout.ToInterior(new Vector3(0,0,10)))>.01f)throw new Exception("Window street is not aligned with the town");
+        yield return WalkTo(new Vector3(0,0,-.6f));
+        player.Aim(layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f);yield return new WaitForSeconds(.3f);yield return Capture("layout-interior");
+        yield return WalkTo(new Vector3(-.4f,0,-.8f));
+        player.Aim(new Vector3(-2,1.95f,-4.4f));yield return new WaitForSeconds(.3f);yield return Capture("window-room");
+        yield return WalkTo(new Vector3(-1.35f,0,-3));
+        player.Aim(new Vector3(-4.8f,2.25f,-11));yield return new WaitForSeconds(.3f);
+        var nearPoint=frame.transform.position;
+        var farPoint=tower.TransformPoint(new Vector3(0,6.35f,0));
+        var nearFirst=player.eye.WorldToViewportPoint(nearPoint);
+        var farFirst=player.eye.WorldToViewportPoint(farPoint);
+        yield return Capture("window-right");
+        recordingWindow=true;StartCoroutine(RecordWindow());
+        yield return new WaitForSeconds(.45f);
+        // Keep orientation fixed: differences in near/far displacement are camera parallax.
+        yield return WalkTo(new Vector3(-2.25f,0,-3),.18f);
+        yield return new WaitForSeconds(.45f);
+        recordingWindow=false;yield return new WaitForSeconds(.3f);
+        var nearSecond=player.eye.WorldToViewportPoint(nearPoint);
+        var farSecond=player.eye.WorldToViewportPoint(farPoint);
+        float parallax=Mathf.Abs((nearSecond.x-farSecond.x)-(nearFirst.x-farFirst.x));
+        if(parallax<.08f)throw new Exception("Near window and distant clock tower lack expected parallax: "+parallax);
+        yield return Capture("window-left");
+        // The wall hole admits the view; the sill/glass still keeps the controller inside.
+        player.scriptedDirection=Vector3.back;yield return new WaitForSeconds(.8f);player.scriptedDirection=Vector3.zero;
+        if(player.transform.position.z < -3.76f||player.transform.position.z > -3.3f)throw new Exception("Window collision does not stop the player at the sill");
+        var eye=player.eye.transform.position;
+        if(Physics.Raycast(eye,(frame.transform.position-eye).normalized,Vector3.Distance(eye,frame.transform.position)))throw new Exception("Opaque wall still blocks the aperture");
+        player.Aim(farPoint);yield return new WaitForSeconds(.3f);yield return Capture("window-near");
+        yield return WalkTo(new Vector3(-2.25f,0,-3));
+        yield return WalkTo(new Vector3(rightFrame.transform.position.x,0,-3));
+        player.Aim(rightFrame.transform.position-rightFrame.transform.forward*.5f);
+        yield return new WaitForSeconds(.3f);yield return Capture("window-second");
+        player.scriptedDirection=Vector3.back;yield return new WaitForSeconds(.8f);player.scriptedDirection=Vector3.zero;
+        if(player.transform.position.z < -3.76f||player.transform.position.z > -3.3f)throw new Exception("Second window collision does not contain the player");
+        var rightEye=player.eye.transform.position;
+        if(Physics.Raycast(rightEye,(rightFrame.transform.position-rightEye).normalized,Vector3.Distance(rightEye,rightFrame.transform.position)))throw new Exception("Opaque wall blocks the second aperture");
+        yield return Capture("window-second-near");
+        File.WriteAllText(Path.Combine(captures,"window-results.json"),JsonUtility.ToJson(new WindowResult{
+            realTownMeshes=true,wallApertureClear=true,playerContained=true,duplicateCluesRemoved=true,
+            exteriorWindows=exteriorWindowCount,interiorWindows=interiorWindows,secondApertureClear=true,secondWindowContained=true,
+            relativeViewportParallax=parallax,motionFrames=windowFrames,
+            verification="Player-height native rendering, fixed-orientation lateral CharacterController movement, real town alignment and physical window collision"
+        },true));
+        Debug.Log("WINDOW_REVIEW_PASS: relative viewport parallax="+parallax);
+        yield return WalkTo(new Vector3(rightFrame.transform.position.x,0,-3));
+    }
+    IEnumerator RecordWindow() {
+        string folder=Path.Combine(captures,"motion");Directory.CreateDirectory(folder);
+        while(recordingWindow) {
+            yield return new WaitForEndOfFrame();
+            ScreenCapture.CaptureScreenshot(Path.Combine(folder,"window"+(windowFrames++).ToString("D4")+".png"));
+            yield return new WaitForSeconds(.05f);
+        }
+    }
+    IEnumerator ReviewLighting(string[] args) {
+        bool noMain=Array.IndexOf(args,"--lighting-no-main")>=0;
+        bool noLocal=Array.IndexOf(args,"--lighting-no-local")>=0;
+        bool noAO=Array.IndexOf(args,"--lighting-no-ao")>=0;
+        foreach(var light in FindObjectsByType<Light>(FindObjectsSortMode.None))
+            if(light.type==LightType.Directional?noMain:noLocal)light.shadows=LightShadows.None;
+        if(noAO&&reviewAmbientOcclusion)reviewAmbientOcclusion.SetActive(false);
+        float side=lightingRight?-1:1;
+        player.Aim(new Vector3(-2*side,1.95f,-4.4f));yield return new WaitForSeconds(.5f);
+        lightingYaw=player.transform.eulerAngles.y;lightingPitch=player.pitch;lightingStart=Time.time;
+        recordingLighting=true;StartCoroutine(RecordLighting());
+        yield return new WaitForSeconds(.45f);
+        for(int i=0;i<2;i++) {
+            yield return WalkTo(new Vector3(-1.2f*side,0,-1.4f),.35f);
+            yield return WalkTo(new Vector3(-.4f*side,0,-.8f),.35f);
+        }
+        yield return new WaitForSeconds(.45f);recordingLighting=false;
+        yield return new WaitForSeconds(.2f);
+        File.WriteAllText(Path.Combine(captures,"lighting-results.json"),JsonUtility.ToJson(new LightingResult{
+            mainShadowsDisabled=noMain,localShadowsDisabled=noLocal,ambientOcclusionDisabled=noAO,rightWindow=lightingRight,
+            renderedFrames=lightingFrames,duration=Time.time-lightingStart,samples=lightingSamples,
+            verification="Native player frames during actual CharacterController walking, head bob and camera rotation; projected matte surface colour samples"
+        },true));
+        Debug.Log("LIGHTING_REVIEW_PASS: frames="+lightingFrames);Application.Quit();
+    }
+    IEnumerator RecordLighting() {
+        string folder=Path.Combine(captures,"frames");Directory.CreateDirectory(folder);
+        // Sample the matte lower door panel on its actual face. A point in front
+        // of the patterned glazing changes sampled UVs as the camera moves.
+        var door=FindFirstObjectByType<BuildingInstance>().Opening("front-door");
+        var doorSurface=door.transform.position+door.transform.forward*.082f;
+        doorSurface.y=.8f;
+        var points=new[]{new Vector3(-3.049f,1.85f,-3.98f),new Vector3(-.82f,1.8f,-3.89f),doorSurface,new Vector3(-2,3.06f,-3.89f)};
+        if(lightingRight)for(int i=0;i<points.Length;i++)points[i].x=-points[i].x;
+        var names=new[]{"window-return","front-plaster","door-panel","upper-plaster"};
+        while(recordingLighting) {
+            float age=Time.time-lightingStart;
+            player.transform.rotation=Quaternion.Euler(0,lightingYaw+Mathf.Sin(age*6)*3,0);
+            player.pitch=lightingPitch+Mathf.Sin(age*5)*1.5f;
+            yield return new WaitForEndOfFrame();
+            var frame=ScreenCapture.CaptureScreenshotAsTexture();
+            for(int i=0;i<points.Length;i++) {
+                var p=player.eye.WorldToViewportPoint(points[i]);
+                if(p.z<=0||p.x<.02f||p.x>.98f||p.y<.02f||p.y>.98f)continue;
+                Color colour=Color.black;int x=Mathf.RoundToInt(p.x*(frame.width-1)),y=Mathf.RoundToInt(p.y*(frame.height-1));
+                for(int dx=-1;dx<=1;dx++)for(int dy=-1;dy<=1;dy++)colour+=frame.GetPixel(x+dx,y+dy)/9;
+                lightingSamples.Add(new LightingSample{frame=lightingFrames,time=age,surface=names[i],r=colour.r,g=colour.g,b=colour.b});
+            }
+            File.WriteAllBytes(Path.Combine(folder,"frame"+(lightingFrames++).ToString("D4")+".png"),frame.EncodeToPNG());
+            Destroy(frame);yield return new WaitForSeconds(.04f);
+        }
+    }
     IEnumerator RecordWalk() {
         string folder=Path.Combine(captures,"motion");Directory.CreateDirectory(folder);
         while(recordingWalk) {
@@ -355,4 +551,8 @@ public class DemoApp : MonoBehaviour {
         }
     }
     [Serializable] class ReviewResult {public bool evidenceRecorded,doorRoundTrip,characterControllerWalk,companionSilent; public int renderedFrames,motionFrames; public string verification;}
+    [Serializable] class StreetResult {public int connectedPorches,connectedPosts;public float sidewalkClearance;public bool benchGrounded,benchFacesSquare,sidewalkWalkPassed;public string verification;}
+    [Serializable] class WindowResult {public bool realTownMeshes,wallApertureClear,playerContained,duplicateCluesRemoved,secondApertureClear,secondWindowContained;public float relativeViewportParallax;public int motionFrames,exteriorWindows,interiorWindows;public string verification;}
+    [Serializable] class LightingSample {public int frame;public float time;public string surface;public float r,g,b;}
+    [Serializable] class LightingResult {public bool mainShadowsDisabled,localShadowsDisabled,ambientOcclusionDisabled,rightWindow;public int renderedFrames;public float duration;public List<LightingSample> samples;public string verification;}
 }
