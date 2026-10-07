@@ -1,0 +1,4 @@
+interface:
+  display_name: "错日证词：Unity 开发"
+  short_description: "Build first-person scenes, clue interactions and saves"
+  default_prompt: "Use $wrong-date-unity to implement the next MVP development batch."

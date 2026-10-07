@@ -1,0 +1,211 @@
+{
+  "palette": {
+    "wood": "#8C5835",
+    "darkwood": "#382218",
+    "brass": "#C89E4B",
+    "iron": "#2B2E33",
+    "glass_glow": "#FFAA33",
+    "skin": "#D49D78",
+    "coat": "#2B363F",
+    "trousers": "#1D2228",
+    "cream": "#E8DFC8",
+    "jade": "#467A65"
+  },
+  "export_settings": {
+    "axis_forward": "-Z",
+    "axis_up": "Y",
+    "use_selection": true,
+    "add_leaf_bones": false
+  },
+  "assets": [
+    {
+      "name": "Lantern",
+      "root": "Lantern",
+      "mesh": "Lantern_Mesh",
+      "file": "Models/Lantern.fbx",
+      "materials": [
+        "iron",
+        "brass",
+        "glass_glow"
+      ],
+      "dimensions_m": [
+        0.44,
+        0.44,
+        3.5
+      ],
+      "vertices": 125,
+      "polygons": 95
+    },
+    {
+      "name": "Bench",
+      "root": "Bench",
+      "mesh": "Bench_Mesh",
+      "file": "Models/Bench.fbx",
+      "materials": [
+        "darkwood",
+        "iron"
+      ],
+      "dimensions_m": [
+        1.9,
+        0.458,
+        0.86
+      ],
+      "vertices": 144,
+      "polygons": 108
+    },
+    {
+      "name": "MilkCart",
+      "root": "MilkCart",
+      "mesh": "MilkCart_Mesh",
+      "file": "Models/MilkCart.fbx",
+      "materials": [
+        "wood",
+        "darkwood",
+        "iron",
+        "cream"
+      ],
+      "dimensions_m": [
+        1.35,
+        0.75,
+        1.0
+      ],
+      "vertices": 544,
+      "polygons": 346
+    },
+    {
+      "name": "Clockmaker",
+      "root": "Clockmaker",
+      "mesh": "Clockmaker_Mesh",
+      "file": "Models/Clockmaker.fbx",
+      "materials": [
+        "trousers",
+        "darkwood",
+        "cream",
+        "coat",
+        "skin"
+      ],
+      "dimensions_m": [
+        0.59,
+        0.265,
+        1.72
+      ],
+      "vertices": 288,
+      "polygons": 194
+    },
+    {
+      "name": "Desk",
+      "root": "Desk",
+      "mesh": "Desk_Mesh",
+      "file": "Models/Desk.fbx",
+      "materials": [
+        "wood",
+        "darkwood",
+        "brass"
+      ],
+      "dimensions_m": [
+        1.8,
+        0.8,
+        0.86
+      ],
+      "vertices": 144,
+      "polygons": 108
+    },
+    {
+      "name": "Plant",
+      "root": "Plant",
+      "mesh": "Plant_Mesh",
+      "file": "Models/Plant.fbx",
+      "materials": [
+        "wood",
+        "darkwood",
+        "jade"
+      ],
+      "dimensions_m": [
+        0.504,
+        0.5,
+        0.7
+      ],
+      "vertices": 168,
+      "polygons": 118
+    }
+  ],
+  "files": [
+    "kit.blend",
+    "preview.png",
+    "manifest.json",
+    "Models/Lantern.fbx",
+    "Models/Bench.fbx",
+    "Models/MilkCart.fbx",
+    "Models/Clockmaker.fbx",
+    "Models/Desk.fbx",
+    "Models/Plant.fbx"
+  ],
+  "verification": {
+    "Lantern": {
+      "root_at_origin": true,
+      "dimensions": [
+        0.44,
+        0.44,
+        3.5
+      ],
+      "positive_dimensions": true,
+      "vertices": 125,
+      "polygons": 95
+    },
+    "Bench": {
+      "root_at_origin": true,
+      "dimensions": [
+        1.9,
+        0.458,
+        0.86
+      ],
+      "positive_dimensions": true,
+      "vertices": 144,
+      "polygons": 108
+    },
+    "MilkCart": {
+      "root_at_origin": true,
+      "dimensions": [
+        1.35,
+        0.75,
+        1.0
+      ],
+      "positive_dimensions": true,
+      "vertices": 544,
+      "polygons": 346
+    },
+    "Clockmaker": {
+      "root_at_origin": true,
+      "dimensions": [
+        0.59,
+        0.265,
+        1.72
+      ],
+      "positive_dimensions": true,
+      "vertices": 288,
+      "polygons": 194
+    },
+    "Desk": {
+      "root_at_origin": true,
+      "dimensions": [
+        1.8,
+        0.8,
+        0.86
+      ],
+      "positive_dimensions": true,
+      "vertices": 144,
+      "polygons": 108
+    },
+    "Plant": {
+      "root_at_origin": true,
+      "dimensions": [
+        0.504,
+        0.5,
+        0.7
+      ],
+      "positive_dimensions": true,
+      "vertices": 168,
+      "polygons": 118
+    }
+  }
+}

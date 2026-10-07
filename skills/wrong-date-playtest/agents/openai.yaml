@@ -1,0 +1,4 @@
+interface:
+  display_name: "错日证词：自由探索试玩"
+  short_description: "Verify visit orders, persistence and rendered gameplay"
+  default_prompt: "Use $wrong-date-playtest to verify the current MVP build and report observed results."

@@ -1,0 +1,18 @@
+{
+  "driver": "Windows Computer Use: real click, Q, Tab, Esc, mouse drag and W input",
+  "startButton": true,
+  "watchKey": true,
+  "journalKey": true,
+  "mouseLook": true,
+  "keyboardWalk": true,
+  "saveAndQuitClean": true,
+  "savedPlayerPosition": [
+    0.0348113514482975,
+    -0.020000170916318893,
+    -11.977063179016113
+  ],
+  "previousObservedYaw": 56.6200065612793,
+  "verification": "Agent-operated actual Windows player; not a blind human playtest",
+  "exitCompatibility": "Windows player saves, waits for the input event to finish, then terminates only its current process; Editor keeps normal quitting.",
+  "exitRegression": "Actual mouse drag, W movement, Esc, and Save and Exit repeated on final build: no crash or hanging player."
+}

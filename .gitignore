@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+game/Library/
+game/Temp/
+game/Logs/
+game/obj/
+game/UserSettings/
+builds/
+output/demo/*.log
+output/demo/motion/

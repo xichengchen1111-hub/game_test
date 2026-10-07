@@ -1,0 +1,4 @@
+interface:
+  display_name: "错日证词：剧情与线索"
+  short_description: "Check this mystery's dates, evidence and free exploration"
+  default_prompt: "Use $wrong-date-narrative to review the MVP evidence and investigation progression."

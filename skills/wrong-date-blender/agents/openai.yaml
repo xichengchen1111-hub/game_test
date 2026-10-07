@@ -1,0 +1,4 @@
+interface:
+  display_name: "错日证词：Blender 低模资产"
+  short_description: "Make reusable low-poly props and period scene modules"
+  default_prompt: "Use $wrong-date-blender to create and verify the MVP's next modular asset set."

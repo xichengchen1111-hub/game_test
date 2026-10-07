@@ -1,0 +1,1 @@
+PASS: fresh process restored E07, Town scene and return position.
