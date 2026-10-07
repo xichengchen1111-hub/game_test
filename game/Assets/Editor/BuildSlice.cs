@@ -77,6 +77,7 @@ public static class BuildSlice {
         }
         return obj;
     }
+    static GameObject Milkboy(Vector3 pos,float yaw=0) => MilkboyAsset.Create(pos,yaw);
     static void Collider(GameObject obj,Vector3 center,Vector3 size) {var c=obj.AddComponent<BoxCollider>();c.center=center;c.size=size;}
     static Light Point(string name,Vector3 position,Color color,float intensity,float range,bool shadow=false) {
         var g=new GameObject(name);g.transform.position=position;
@@ -227,8 +228,8 @@ public static class BuildSlice {
         var bench=Model("Bench",new Vector3(-7.55f,westSidewalk.GetComponent<Renderer>().bounds.max.y,7.5f));
         FaceBenchTowardSquare(bench);Collider(bench,new Vector3(0,.45f,0),new Vector3(2,.9f,.75f));
         var cart=Model("MilkCart",new Vector3(6.35f,.10f,-5.4f),-90);Collider(cart,new Vector3(0,.6f,0),new Vector3(1.6f,1.15f,.9f));
-        var boy=Model("Clockmaker",new Vector3(6.15f,.1f,-4.2f),-85);boy.transform.localScale=Vector3.one*.88f;
-        Collider(boy,new Vector3(0,.8f,0),new Vector3(.65f,1.65f,.55f));boy.AddComponent<AmbientMotion>();
+        var boy=Milkboy(new Vector3(6.48f,.1f,-4.2f),95);boy.transform.localScale=Vector3.one*.88f;
+        Collider(boy,new Vector3(0,.8f,0),new Vector3(.65f,1.65f,.55f));
         var milk=boy.AddComponent<Interactable>();milk.title="送奶少年";milk.evidenceId="E04";milk.source="送奶少年，广场初访";milk.body="“我没戴表。那天抬头看了一眼街钟，像是六点二十五。”\n\n“奶送到她手里，我才走。”";
         for(int i=0;i<4;i++)Model("Plant",new Vector3(i%2==0?-6.5f:6.5f,.12f,i<2?-1.8f:11.5f));
         for(int i=0;i<9;i++) {
@@ -435,6 +436,20 @@ public static class BuildSlice {
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene(),"Assets/Scenes/Systems.unity");
     }
     public static void Build() {
+        BuildFor(BuildTarget.StandaloneWindows64,"../builds/windows/TownDemo.exe",new[]{GraphicsDeviceType.Direct3D11},null);
+    }
+    public static void BuildMac() {
+        BuildFor(BuildTarget.StandaloneOSX,"../builds/macos-arm64/TownDemo.app",new[]{GraphicsDeviceType.Metal},1);
+    }
+    public static void BuildMilkboyMacCopy() {
+        string originalCompany=PlayerSettings.companyName;
+        try {
+            BuildFor(BuildTarget.StandaloneOSX,"../builds/macos-arm64/TownDemo-Milkboy-Rebuilt.app",new[]{GraphicsDeviceType.Metal},1,"Qingchuan Milkboy Rebuilt");
+        } finally {
+            PlayerSettings.companyName=originalCompany;
+        }
+    }
+    static void BuildFor(BuildTarget target,string relativeOutput,GraphicsDeviceType[] graphicsApis,int? architecture,string companyOverride=null) {
         Directory.CreateDirectory("Assets/Generated/Materials");Directory.CreateDirectory("Assets/Scenes");AssetDatabase.Refresh();
         font=AssetDatabase.LoadAssetAtPath<Font>("Assets/Art/Fonts/TownSans.ttf");if(!font)throw new Exception("Font not imported");
         var ids=AssetDatabase.FindAssets("t:UniversalRenderPipelineAsset");
@@ -443,11 +458,12 @@ public static class BuildSlice {
         if(!pipe) throw new Exception("Desktop URP pipeline not present");
         GraphicsSettings.defaultRenderPipeline=pipe;QualitySettings.renderPipeline=pipe;pipe.supportsHDR=true;pipe.msaaSampleCount=4;pipe.shadowDistance=55;
         pipe.mainLightShadowmapResolution=2048;EditorUtility.SetDirty(pipe);
-        PlayerSettings.companyName="Qingchuan Studio";PlayerSettings.productName="错日证词 · 暮色小镇";
+        PlayerSettings.companyName=String.IsNullOrEmpty(companyOverride)?"Qingchuan Studio":companyOverride;PlayerSettings.productName="错日证词 · 暮色小镇";
         PlayerSettings.defaultScreenWidth=1600;PlayerSettings.defaultScreenHeight=900;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
         PlayerSettings.resizableWindow=true;PlayerSettings.runInBackground=true;PlayerSettings.colorSpace=ColorSpace.Linear;
         PlayerSettings.SplashScreen.show=false;PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
-        PlayerSettings.SetGraphicsAPIs(BuildTarget.StandaloneWindows64,new[]{GraphicsDeviceType.Direct3D11});
+        if(architecture.HasValue)PlayerSettings.SetArchitecture(NamedBuildTarget.Standalone,architecture.Value);
+        PlayerSettings.SetGraphicsAPIs(target,graphicsApis);
         string layoutPath="Assets/Generated/ClockShopLayout.asset";
         shopLayout=AssetDatabase.LoadAssetAtPath<BuildingLayout>(layoutPath);
         if(!shopLayout){shopLayout=ScriptableObject.CreateInstance<BuildingLayout>();AssetDatabase.CreateAsset(shopLayout,layoutPath);}
@@ -455,8 +471,8 @@ public static class BuildSlice {
         ClockShopPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);Systems();AssetDatabase.SaveAssets();
         string[] scenes={"Assets/Scenes/Systems.unity","Assets/Scenes/Town.unity","Assets/Scenes/ClockShop.unity"};
         EditorBuildSettings.scenes=Array.ConvertAll(scenes,p=>new EditorBuildSettingsScene(p,true));
-        string output=Path.GetFullPath("../builds/windows/TownDemo.exe");Directory.CreateDirectory(Path.GetDirectoryName(output));
-        var report=BuildPipeline.BuildPlayer(scenes,output,BuildTarget.StandaloneWindows64,BuildOptions.None);
+        string output=Path.GetFullPath(relativeOutput);Directory.CreateDirectory(Path.GetDirectoryName(output));
+        var report=BuildPipeline.BuildPlayer(scenes,output,target,BuildOptions.None);
         if(report.summary.result!=BuildResult.Succeeded)throw new Exception("Player build failed: "+report.summary.result);
         Debug.Log("SLICE_BUILD_PASS: "+output+" bytes="+report.summary.totalSize);
     }

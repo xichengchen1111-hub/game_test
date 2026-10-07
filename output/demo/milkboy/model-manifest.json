@@ -1,0 +1,16 @@
+{
+  "source": "Toon Boy",
+  "author": "silentsheri",
+  "url": "https://sketchfab.com/3d-models/toon-boy-bffaf3a444e64ed0aa012e0cf43cf8c3",
+  "license": "CC-BY-4.0",
+  "bones": 47,
+  "meshes": 57,
+  "vertices": 116434,
+  "height_m": 1.52,
+  "changes": [
+    "removed glasses and hoodie",
+    "new tailored uniform, delivery cap, satchel",
+    "blond hair, blue irises",
+    "new articulated skeleton, curled fingers and guarded pose"
+  ]
+}

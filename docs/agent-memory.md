@@ -15,7 +15,7 @@
 | 事项 | 必须遵守 |
 | --- | --- |
 | 游戏空间 | 第一人称、完整可行走的三维空间。小镇是 3D 地图；进屋淡黑转场，室内是独立完整 scene。横版、固定机位和静态图片不能代替游戏空间。 |
-| 画风与成本 | 简化低模、宽色块、无复杂五官；灰蓝/紫灰暗部、暖黄室内光。参考图的生活感通过招牌、窗光和少量日用品表达；不以复杂写实建模作为验收目标。1931 年道具保持时代一致。 |
+| 画风与成本 | 环境保留简化低模、宽色块、灰蓝/紫灰暗部和暖黄室内光，1931 年道具保持时代一致。2026-10-08 用户明确提高送奶少年的精度要求：用真实儿童基础网格和骨骼，细化金发蓝眼、脸、手、帽子与制服布料；旧的“无复杂五官”要求不再适用于该角色。 |
 | 探索顺序 | 玩家自由选择线路。完整 MVP 的三个室内从开局开放；当前切片的钟表铺也从开局开放。不能把企划精简误做成强制单线任务。 |
 | 同行者 | 只偶尔随口提醒，不承担律师、带路、审批、解锁证物或自动解题的职责。完全静默也不影响核心调查。 |
 | 推理 | 证物使用稳定 ID；开发合同 `mvp-evidence.json` 的隐藏事实与推理答案不能直接写到物件 UI。当前钟差不能单独证明案发时钟差，未验票不能单独证明没有离镇，疑点不能自动变成定罪。 |
@@ -24,6 +24,23 @@
 | 命名与提交 | 新建分支、提交、PR、worktree、任务、产物名称遵守根目录命名规则。提交前检查文件范围；构建包、缓存、原始逐帧数据和临时日志不入 Git。 |
 
 ## 问题记录与防复发规则
+
+### NPC-01：送奶少年改用完整儿童网格（已接入，待用户美术反馈）
+
+- **用户要求**：原先方块帽冠/袖子和球体手部被用户否决。改找相似儿童基础模型，完成金发蓝眼、浅色老式送奶制服、圆帽、领结、皮挎包；双手握住肩带，呈现被问责时的紧张姿态。钟表匠独立保留。
+- **资源决定（2026-10-08）**：指定的 Menglow 资源需购买，用户明确放弃该方案。采用 silentsheri 的免费 `Toon Boy`（Sketchfab ID `bffaf3a444e64ed0aa012e0cf43cf8c3`），页面及下载窗口明确为 CC BY，允许修改与商用，须署名。作者原始 FBX/纹理保存在 `assets/source/milkboy/vendor/`；授权及改动说明在相邻 `LICENSE.txt` 和随游戏分发的 `Assets/StreamingAssets/ThirdPartyNotices.txt`。不要删除署名或误称完全原创人物。
+- **制作实现**：当前 Mac 已安装并验证 Blender **4.5.9 LTS**。`tools/build_milkboy.py` 从完整儿童脸/手网格生成制服、软帽冠、弧形帽檐、袖口、皮包与肩带；补建 47 根骨骼及权重，使用连续弯曲变形制作握带的静态休止姿态。生成 `assets/source/milkboy/Milkboy.blend`（两张使用中的皮肤纹理已打包）和 `game/Assets/Art/Milkboy/Milkboy.fbx`。这是偏卡通的儿童角色；尚无口型、表情动画或完整走跑动画。
+- **Unity 接入**：`MilkboyAsset.Create` 按材质名指定 URP 皮肤纹理、棉布织纹/法线、皮革、金发和蓝眼。依据实际帽檐方向校正导入朝向；角色根朝向 `95°`，比例 `.88`，在东侧人行道 `(6.48, .1, -4.2)`，避免旧位置脚伸出路缘。去掉会让脚底上下浮动的整体 AmbientMotion。保留 E04、对白和简单碰撞。源模型导入休止高度约 `1.5053 m`，场景缩放后约 `1.325 m`。
+- **本轮纠正**：原始脸部颈底边缘收进衣领；帽檐/虹膜前向法线正确。第一次运行中虹膜被背面剔除，现已在源网格中反转绕序并重新验证。脚底落点用实际休止顶点计算，不用会膨胀的 SkinnedMeshRenderer bounds。Unity 的默认 BakeMesh 在这个 FBX 层级下产生百倍尺度，已移除该定位方法。不能恢复旧方块拼人作为精细版，不能拿骨骼数/顶点数代替美术评审。
+- **实机证据**：Unity `6000.3.18f1` Mac/Metal 构建通过 `MILKBOY_IMPORT_PASS`、`BUILDING_LAYOUT_PASS`、`SLICE_BUILD_PASS`。独立运行 `--review --fresh --review-milkboy` 通过真实角色控制器走近以及 E04 射线交互；脸、手、全身和侧面截图在 `output/demo/milkboy/`。特写使用受控相机并隐藏 HUD，场景灯光/材质未改；这不是手动键鼠或陌生玩家盲测。`source-results.json` 记录重新打开可编辑源文件的检查，`runtime-results.json` 记录交互结果。
+- **交付**：`builds/macos-arm64/TownDemo-Milkboy-Rebuilt.app`，桌面副本 `错日证词-送奶少年重制版.app`，独立 company name 为 `Qingchuan Milkboy Rebuilt`。旧桌面版本和正常存档保留；新包不复用旧的越界位置。用户于 2026-10-08 要求将本轮改动提交并推送至 GitHub。上传授权不等于完整玩法或美术验收通过。
+- **生成范围**：Town 与 ClockShop 的窗外小镇副本都需要保留新版角色生成差异。ClockShop prefab 本体、Systems 与 Paper 的无关 ID/序列化噪音可恢复构建前内容；不要把含新窗外角色的 ClockShop 场景误当作全无关改动恢复。
+
+### SAVE-02：创建独立 Mac 副本以排除旧位置存档
+
+- **用户反馈**：Mac 游戏持续卡在地图边界外，希望复制一份重新下载。
+- **处理**：首次复制只改了 bundle identifier；Unity 6.3 的 macOS Player 存档路径为 `~/Library/Application Support/unity.<company name>.<product name>`，所以仅改 bundle ID 并不隔离。最新副本使用独立 company name `Qingchuan Milkboy Detail`，生成独立存档目录，且构建结束会恢复项目原 company name。
+- **产物与限制**：首次桌面副本 `错日证词-新副本.app` 和第二份 `错日证词-新副本-金发男孩.app` 保留；旧版 `错日证词-送奶少年精细版-最终.app` 使用 `Qingchuan Milkboy Detail`。最新模型改为 `错日证词-送奶少年重制版.app`，使用 `Qingchuan Milkboy Rebuilt`；旧副本均保留。新版本已通过自动控制的走近少年与对话，长时间自由探索的边界情况仍待用户确认。
 
 ### SPACE-01：窗外只有贴图，没有真实空间感（已修复）
 
@@ -78,11 +95,12 @@
 ### PLATFORM-01：MacBook 能否运行（用户已实测确认能运行）
 
 - **最新用户证据**：2026-10-07，用户明确反馈“mac能跑了，我试过了”。当前状态更新为：**Mac 已由用户实机确认可以运行**。这条反馈覆盖此前“Mac 尚未验证”的记录；后续 agent 必须保留这一结果。
-- **仓库构建入口事实**：本次检查 `BuildSlice.Build` 仍使用 `BuildTarget.StandaloneWindows64`、Mono 和 Direct3D 11，脚本产物仍为 `builds/windows/TownDemo.exe`。它只说明仓库当前自动构建入口的目标，不能据此否定用户已在 Mac 成功运行的反馈，也不能推断用户实际使用了哪种运行方式。
-- **尚未记录的细节**：Mac 型号/芯片、macOS 版本、被测包或提交、启动方式与详细测试范围尚未提供。不得臆测是原生 `.app`、Editor 或兼容环境；用户确认可运行，不自动等于全部光影、帧率、门口转场和重启存档专项都已通过。
-- **后续开发**：沿用并保持用户已确认的 Mac 可运行状态。需要复现、分发或扩展自动构建时，先确认实际已成功运行的产物与方式，再补相应构建入口和复验；保留跨平台存档及非 Windows 退出路径，不能只改文件扩展名。
+- **本机 Mac 构建复验**：2026-10-07，以 `e594c35` 的游戏源和本地 Mac 构建改动运行 Unity `6000.3.18f1`。`BuildDemoMac.sh` 生成 `builds/macos-arm64/TownDemo.app`；日志包含 `BUILDING_LAYOUT_PASS` 与 `SLICE_BUILD_PASS`，`lipo -archs` 显示 `arm64 x86_64`，应用实际启动到标题画面。标题画面之后的操作、转场、存档及性能未由本轮验证。构建器、说明和文档记忆改动尚未推送。
+- **构建入口**：`BuildSlice.Build` 与 `tools/BuildDemo.ps1` 继续构建 Windows `TownDemo.exe`、Direct3D 11；本地新增 `BuildSlice.BuildMac` 与 `tools/BuildDemoMac.sh`，使用 macOS、Metal，产出 universal app。运行需 Unity `6000.3.18f1`；可通过 `UNITY_EDITOR` 指定编辑器路径。
+- **尚未记录的用户测试细节**：用户独立实测所用的 Mac 型号/芯片、macOS 版本、包或提交、启动方式与详细范围仍未知；不能把它与本机本轮构建混为一谈。应用启动到菜单不自动证明完整玩法、帧率、门口转场或读档专项通过。
+- **后续开发**：保留上述用户实测反馈与本机构建结果；提交 Mac 构建入口时仍须按目标设备复验。保留跨平台存档及非 Windows 退出路径，不能只改文件扩展名。
 - **兼容依据**：本次查询的 [Unity 6.3 官方系统要求](https://docs.unity.com/en-us/engine/6000.3/manual/get-started/install-and-upgrade/getting-started-installing-unity/system-requirements) 支持 Apple Silicon 和满足要求的 x64/Metal Mac，Player 最低 macOS 12。正式制作时按实际 Unity 版本重新核对，并区分 Editor 与 Player 的要求。
-- **禁止误报**：不能再写“Mac 不能跑”或“Mac 从未实测”；也不能把用户反馈说成 agent 自行完成的 Mac 验收，给未知型号承诺帧率，或声称仓库已有可重复的原生 Mac 打包流水线。
+- **禁止误报**：不能再写“Mac 不能跑”或“Mac 从未实测”；也不能把用户反馈说成 agent 自行完成的 Mac 验收，给未知型号承诺帧率，或把仅到标题画面的本机验证说成完整玩法验收。
 
 ### WORKFLOW-01：生成资产、版本和技能更新不能凭假设（持续规则）
 

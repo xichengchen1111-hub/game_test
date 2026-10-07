@@ -33,7 +33,7 @@ public class DemoApp : MonoBehaviour {
     public string CurrentScene { get; private set; } = "Town";
     public bool Silent;
     bool opening=true, transitioning, journal, paused, watch;
-    bool quitting;
+    bool quitting,reviewPortrait;
     bool sceneReady;
     float fade=1, locationAge, remarkUntil;
     string location="青川 · 小镇广场", remark="";
@@ -95,7 +95,8 @@ public class DemoApp : MonoBehaviour {
         if(previewWindow||previewStreet)CursorMode();
         if (Review) {
             opening=false;
-            if(reviewLighting)StartCoroutine(ReviewLighting(args));
+            if(Array.IndexOf(args,"--review-milkboy")>=0)StartCoroutine(ReviewMilkboy());
+            else if(reviewLighting)StartCoroutine(ReviewLighting(args));
             else if(Array.IndexOf(args,"--verify-save")>=0) StartCoroutine(VerifySaved());
             else StartCoroutine(ReviewRun());
         }
@@ -223,6 +224,7 @@ public class DemoApp : MonoBehaviour {
     }
     void Panel(Rect r) { Box(r,new Color(0.055f,0.10f,0.13f,0.97f)); Box(new Rect(r.x,r.y,r.width,2),new Color(0.68f,0.5f,0.3f)); }
     void OnGUI() {
+        if(reviewPortrait)return;
         Styles(); float scale=Mathf.Min(Screen.width/1600f,Screen.height/900f);
         W=Screen.width/scale;H=Screen.height/scale;
         GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
@@ -319,6 +321,36 @@ public class DemoApp : MonoBehaviour {
         }
         player.scriptedDirection=Vector3.zero;
         if(Time.time>=until) throw new Exception("Review movement blocked before "+target+" at "+player.transform.position+" blocked="+Blocked+" direction="+player.scriptedDirection);
+    }
+    IEnumerator ReviewMilkboy() {
+        yield return new WaitForSeconds(1);
+        var boy=GameObject.Find("Milkboy");
+        if(!boy)throw new Exception("Milkboy is missing from Town.");
+        Vector3 origin=boy.transform.position,front=-boy.transform.forward,right=boy.transform.right;
+        // Reach the NPC from the square with the real motor and interaction ray.
+        yield return WalkTo(new Vector3(3.8f,0,-4.1f));
+        player.Aim(origin+Vector3.up*.94f);
+        yield return new WaitForSeconds(.3f);yield return Capture("unity-player-view");
+        if(!TryInteract()||!inspected||inspected.evidenceId!="E04")throw new Exception("Milkboy interaction ray failed.");
+        yield return Capture("unity-dialogue");CloseInspect();
+        // Controlled detail viewpoints; lighting and materials stay as in the playable town.
+        player.enabled=false;reviewPortrait=true;
+        var eye=player.eye;float originalFov=eye.fieldOfView;eye.nearClipPlane=.04f;
+        void Frame(Vector3 position,Vector3 target,float fov) {
+            eye.transform.position=position;eye.transform.LookAt(target);eye.fieldOfView=fov;
+        }
+        Frame(origin+front*2.45f+right*.60f+Vector3.up*1.05f,origin+Vector3.up*.70f,36);
+        yield return new WaitForSeconds(.25f);yield return Capture("unity-full");
+        Frame(origin+front*.94f+right*.19f+Vector3.up*1.22f,origin+Vector3.up*1.14f,33);
+        yield return new WaitForSeconds(.25f);yield return Capture("unity-face");
+        Frame(origin+front*.77f+right*.10f+Vector3.up*.94f,origin+front*.10f+Vector3.up*.84f,29);
+        yield return new WaitForSeconds(.25f);yield return Capture("unity-hands");
+        Frame(origin+front*.42f+right*.62f+Vector3.up*1.16f,origin+Vector3.up*1.02f,54);
+        yield return new WaitForSeconds(.25f);yield return Capture("unity-side");
+        eye.fieldOfView=originalFov;player.enabled=true;
+        File.WriteAllText(Path.Combine(captures,"runtime-results.json"),"{\"passed\":true,\"npc\":\"E04\",\"realMotorAndRaycast\":true,\"detailViews\":\"controlled camera, unchanged town lighting\"}");
+        Debug.Log("MILKBOY_REVIEW_PASS: real movement, E04 raycast, full/face/hands/side frames");
+        Application.Quit();
     }
     IEnumerator ReviewRun() {
         yield return new WaitForSeconds(2);

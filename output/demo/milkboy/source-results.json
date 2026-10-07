@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "blender": "4.5.9 LTS",
+  "bones": 47,
+  "meshes": 57,
+  "packedTextures": [
+    "Body3_1_TXTR.jpeg",
+    "el.jpeg"
+  ],
+  "checks": [
+    "reopened editable source",
+    "named head/hands/cap/strap meshes and vertex groups",
+    "unit rig scale",
+    "no missing used image files"
+  ]
+}

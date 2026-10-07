@@ -1,0 +1,14 @@
+{
+  "unity": "6000.3.18f1",
+  "platform": "macOS Metal",
+  "architectures": [
+    "arm64",
+    "x86_64"
+  ],
+  "checks": [
+    "MILKBOY_IMPORT_PASS: child height=1.505281 renderers=57 forward=local-Z source=silentsheri/ToonBoy",
+    "BUILDING_LAYOUT_PASS: shared prefab, identical geometry and openings; rejected moved/missing/extra windows",
+    "SLICE_BUILD_PASS: /Users/wulizhi/Documents/GitHub/game_test/builds/macos-arm64/TownDemo-Milkboy-Rebuilt.app bytes=139698381"
+  ],
+  "app": "builds/macos-arm64/TownDemo-Milkboy-Rebuilt.app"
+}

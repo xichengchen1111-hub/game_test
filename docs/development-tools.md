@@ -29,12 +29,12 @@ python skills/wrong-date-narrative/scripts/validate_story.py docs/mvp-evidence.j
 
 ## 已有技能与应用
 
-当前会话已有 `imagegen`、`pdf`、`skill-creator` 和 `skill-installer`，无需重复安装。Windows `computer-use` 的 `sky` 接口可对实际游戏窗口截图、点击和发送按键，用来检查玩家入口与操作；浏览器 CUA 仍只支持浏览器。Unity 场景与 Blender 资产优先通过各自 CLI 和脚本制作，不假定存在编辑器专用控制 API。
+当前会话已有 `imagegen`、`pdf`、`skill-creator` 和 `skill-installer`，无需重复安装。Windows `computer-use` 的 `sky` 接口可对实际游戏窗口截图、点击和发送按键，用来检查玩家入口与操作；当前 Mac 的统一 Computer 工具也可控制原生应用。Unity 场景与 Blender 资产优先通过各自 CLI 和脚本制作，不假定存在编辑器专用控制 API。
 
 | 应用 | 本机确认 | 开发用途 |
 | --- | --- | --- |
-| Unity Editor | `6000.3.18f1`，已完成小镇/钟表铺的 10% 切片、URP 配置、Windows 构建与专项实机验收；用户已实机确认 Mac 能运行，具体运行方式待记录；完整 MVP 尚未完成，详见 [Agent 记忆](agent-memory.md) | Editor 脚本生成场景、测试、Windows 构建与实机截图 |
-| Blender | `5.2.0 LTS`，CLI 已返回版本 | Python 生成低模模块，保存 `.blend`，导出 FBX |
+| Unity Editor | `6000.3.18f1`，已完成小镇/钟表铺的 10% 切片、URP 配置、Windows 构建与专项实机验收；用户已实机确认 Mac 能运行，本机另已构建并启动 universal `TownDemo.app` 到标题画面；完整 MVP 尚未完成，详见 [Agent 记忆](agent-memory.md) | Editor 脚本生成场景、测试、Windows 与 macOS 构建及实机截图 |
+| Blender | 当前 Mac：`4.5.9 LTS`，CLI 已返回版本 | Python 生成低模模块，保存 `.blend`，导出 FBX |
 | ImageGen | 内置工具已可用，现有三张概念图已生成 | 风格、纹理和装饰图；证物字样另行精确排版 |
 | Python 与 Git | 当前环境已可用 | 线索数据校验、文档生成、技能安装和版本管理 |
 | agy | 本轮检查返回 `SUCCESS`，主代理已复核 | 流程草稿和批量工作；不替代最终剧情与试玩判断 |
@@ -45,6 +45,6 @@ python skills/wrong-date-narrative/scripts/validate_story.py docs/mvp-evidence.j
 
 - [技能结构与加载方式](https://learn.chatgpt.com/docs/build-skills)：用短说明和可选脚本组织技能；新技能可自动发现，未刷新时重启。
 - [Unity Editor CLI](https://docs.unity3d.com/6000.3/Documentation/Manual/EditorCommandLineArguments.html)：静态 Editor 方法、项目路径与日志参数。
-- Blender CLI 以本机 `blender.exe --help` 与版本输出为当前验证依据；实际操作符应在对应版本中再核对。
+- Blender CLI 以本机 Blender 的 `--help` 与版本输出为当前验证依据；实际操作符应在对应版本中再核对。
 
 [MVP 方案](mvp-demo.md) · [三页图文简版](first-person-3d-plan.md)

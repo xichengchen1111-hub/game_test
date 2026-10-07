@@ -1,0 +1,14 @@
+Third-party character attribution
+
+“Toon Boy” by silentsheri
+https://sketchfab.com/3d-models/toon-boy-bffaf3a444e64ed0aa012e0cf43cf8c3
+Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).
+https://creativecommons.org/licenses/by/4.0/
+
+Modified for Wrong Date Testimony (错日证词), October 2026:
+Removed glasses and hoodie; new delivery uniform, cap and leather satchel;
+blond hair, blue eyes, new skeleton and hand/finger posing; materials adapted for Unity.
+The author does not endorse this game or these modifications.
+
+Original source and supplied textures are retained under assets/source/milkboy/vendor.
+Keep this notice when redistributing the character, source files or game containing it.
