@@ -33,7 +33,7 @@ python skills/wrong-date-narrative/scripts/validate_story.py docs/mvp-evidence.j
 
 | 应用 | 本机确认 | 开发用途 |
 | --- | --- | --- |
-| Unity Editor | `6000.3.18f1`，已完成小镇/钟表铺的 10% 切片、URP 配置、Windows 构建与专项实机验收；完整 MVP 与 Mac 尚未完成，详见 [Agent 记忆](agent-memory.md) | Editor 脚本生成场景、测试、Windows 构建与实机截图 |
+| Unity Editor | `6000.3.18f1`，已完成小镇/钟表铺的 10% 切片、URP 配置、Windows 构建与专项实机验收；用户已实机确认 Mac 能运行，具体运行方式待记录；完整 MVP 尚未完成，详见 [Agent 记忆](agent-memory.md) | Editor 脚本生成场景、测试、Windows 构建与实机截图 |
 | Blender | `5.2.0 LTS`，CLI 已返回版本 | Python 生成低模模块，保存 `.blend`，导出 FBX |
 | ImageGen | 内置工具已可用，现有三张概念图已生成 | 风格、纹理和装饰图；证物字样另行精确排版 |
 | Python 与 Git | 当前环境已可用 | 线索数据校验、文档生成、技能安装和版本管理 |
