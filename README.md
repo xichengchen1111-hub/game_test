@@ -8,3 +8,8 @@
 - `错日证词_修订稿.docx`：可继续编辑的源文档。
 
 本项目为尚在开发中的虚构悬疑游戏企划。
+
+## 实现企划
+
+- [第一人称 3D 精简企划](docs/first-person-3d-plan.md)：低模 Demo 图、场景范围、推理交互，以及 Skills 和应用工作流。
+- [三页图文 PDF](output/pdf/first-person-3d-plan.pdf)：可直接审阅的图文版。
