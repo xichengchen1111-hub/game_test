@@ -1,6 +1,7 @@
 *.pdf binary
 *.png binary
 *.fbx binary
+*.glb binary
 *.blend binary
 *.ttf binary
 *.mp4 binary
@@ -11,4 +12,5 @@ game/**/*.prefab whitespace=-blank-at-eol
 game/**/*.asset whitespace=-blank-at-eol
 game/**/*.mat whitespace=-blank-at-eol
 game/**/*.meta whitespace=-blank-at-eol
+game/**/*.controller whitespace=-blank-at-eol
 game/Assets/Art/Fonts/OFL.txt whitespace=-blank-at-eol

@@ -1,5 +1,13 @@
 Third-party character attribution
 
+Current milk-delivery boy: The Little Messenger, user-supplied Meshy asset archive
+Meshy_AI_The_Little_Messenger_biped.zip, supplied October 8, 2026.
+The archive contains six skinned GLB animations and no license document.
+Provenance and original asset hashes: assets/source/milkboy/meshy/import-results.json.
+The CC BY attribution below applies to the retained legacy Toon Boy assets only;
+it does not describe or grant a license for the current Meshy model.
+
+Legacy character source (retained for reference):
 “Toon Boy” by silentsheri
 https://sketchfab.com/3d-models/toon-boy-bffaf3a444e64ed0aa012e0cf43cf8c3
 Licensed under Creative Commons Attribution 4.0 International (CC BY 4.0).

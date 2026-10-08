@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.unity.modules.animation": "1.0.0",
     "com.unity.render-pipelines.universal": "17.0.1",
     "com.unity.test-framework": "1.4.2",
     "com.unity.modules.audio": "1.0.0",

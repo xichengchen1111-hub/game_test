@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-08",
+  "baseCommit": "fc72ff2",
+  "platform": "Windows x64 / D3D11",
+  "unity": "6000.3.18f1",
+  "blender": "5.2.0 LTS",
+  "buildPassed": true,
+  "meshBones": 66,
+  "importedAnimations": 6,
+  "sourceMeshVertices": 13212,
+  "activeIdle": "Short_Breathe_and_Look_Around",
+  "e04": {
+    "passed": true,
+    "npc": "E04",
+    "source": "user-supplied Meshy messenger",
+    "realMotorAndRaycast": true,
+    "loopingIdle": true,
+    "stationaryRoot": true,
+    "headMotionDegrees": 23.6164,
+    "detailViews": "controlled camera, unchanged town lighting"
+  },
+  "buildingAndWindowRegressionPassed": true,
+  "nonBlackRuntimeCaptures": 7,
+  "visualReview": "Agent inspected native full, face, hand/cuff/bag, side close-up, player-height and dialogue captures, plus Blender full side view. Detail cameras are controlled. No blind human test.",
+  "texturePackingMaxError8bit": {
+    "metallic": 0,
+    "smoothness": 0
+  },
+  "macNewAssetTested": false,
+  "normalSaveModifiedByReview": false,
+  "limits": [
+    "Only the existing 10% town/clock-shop slice was tested.",
+    "Other five animation clips retained but not used as NPC walking behavior.",
+    "Hidden-window black captures were rejected; only the visible-player run is included."
+  ],
+  "windowRegressionBuildScope": "Window/E07/door regression ran before only review-camera framing adjustments; no gameplay, model, material or layout edits followed.",
+  "playerSha256": "5cf8283e7cb3761b6fcbba8e2c9f36a298a75883cc65ca7719b008f3a7aa231e",
+  "modelFbxSha256": "ea61d852b94a941fa885cbf91226140aeb35251b0291dc46c565083bb8c69fd2"
+}

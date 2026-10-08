@@ -34,9 +34,9 @@ WASD 行走，鼠标自由观察，Shift 快走，E 互动，Q 查看怀表，Ta
 
 重新构建：安装 Unity **6000.3.18f1**，Windows 运行 `tools/BuildDemo.ps1`；Apple Silicon Mac 运行 `tools/BuildDemoMac.sh`，输出到 `builds/macos-arm64/TownDemo.app`。Blender 源模型在 `assets/source/town-kit.blend`；生成脚本在 `tools/make_kit.py`。Noto Sans SC 字体子集附带 OFL 许可。生成的游戏包、Unity 缓存和日志不纳入 Git。
 
-送奶少年已替换为金发蓝眼儿童模型，使用浅色送奶制服、圆帽、皮挎包和双手握肩带的姿态。可编辑文件在 `assets/source/milkboy/Milkboy.blend`，Unity 导入位于 `game/Assets/Art/Milkboy/`；Blender 4.5.9 LTS 运行 `tools/build_milkboy.py` 可重新生成。基础模型为 silentsheri 的 [Toon Boy](https://sketchfab.com/3d-models/toon-boy-bffaf3a444e64ed0aa012e0cf43cf8c3)，遵循 [CC BY 4.0 署名说明](assets/source/milkboy/LICENSE.txt)。
+送奶少年已按用户 2026-10-08 提供的 Meshy `The Little Messenger` 压缩包替换，保留原始模型、服装和贴图，默认循环呼吸并环顾，另外五段动画保留供后续使用。可编辑源为 `assets/source/milkboy/meshy/Messenger.blend`，Unity 导入位于 `game/Assets/Art/MilkboyMeshy/`。本轮使用 Blender **5.2.0 LTS**；运行 `blender --background --python-exit-code 1 --python tools/import_meshy_milkboy.py -- --archive "原始压缩包路径" --root "仓库路径"` 可重新导入，再按上方入口构建。旧 Toon Boy 源文件和 [CC BY 4.0 署名说明](assets/source/milkboy/LICENSE.txt) 保留用于旧版追溯；其许可不适用于新模型。
 
-本轮 Mac 构建和 E04 对话检查结果保存在 [output/demo/milkboy](output/demo/milkboy)。其中 `unity-*` 是实际游戏画面，`model-*` 是 Blender 建模预览；特写采用受控机位，不能替代完整自由探索验收。
+新模型的 Windows 构建、循环待机、E04 走近对话及钟表铺回归检查保存在 [output/demo/milkboy-meshy](output/demo/milkboy-meshy)。其中 `unity-*` 是实际游戏画面，`model-*` 是 Blender 建模预览；特写采用受控机位。附加 `--milkboy-preview` 可直接站在男孩前面自由试玩，使用独立展示存档。新模型尚未在 Mac 重建实测；旧版的 Mac 构建和 E04 检查仍保留在 [output/demo/milkboy](output/demo/milkboy)，用户此前确认 Mac 能运行的结论不变。
 
 Windows 试玩版为本机 Unity 6.3 的原生关闭问题加入退出兼容处理：先保存，再结束自身进程。编辑器保持默认退出行为；升级引擎后需复核并移除这个临时处理。
 

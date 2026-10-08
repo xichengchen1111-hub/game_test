@@ -1,0 +1,79 @@
+{
+  "blender": "5.2.0 LTS",
+  "archive": "Meshy_AI_The_Little_Messenger_biped.zip",
+  "archiveSha256": "03b68d1bd8fcdfdd6e878aa02495bb06fce0b3253ec463ac493d6c84ffd4cdd6",
+  "provenance": "User-supplied Meshy asset; no license document in archive",
+  "animations": [
+    {
+      "entry": "Meshy_AI_The_Little_Messenger_biped/Meshy_AI_The_Little_Messenger_biped_Animation_Short_Breathe_and_Look_Around_withSkin.glb",
+      "sha256": "39710fa6fdbc139ec847689412752f231c79e3004b631046f594664486551d8d",
+      "action": "Short_Breathe_and_Look_Around",
+      "frames": [
+        0.0,
+        235.0
+      ]
+    },
+    {
+      "entry": "Meshy_AI_The_Little_Messenger_biped/Meshy_AI_The_Little_Messenger_biped_Animation_Long_Breathe_and_Look_Around_withSkin.glb",
+      "sha256": "36cfaf7cf4eceee50cae7324216f08bce60d65d68aa2006d6d5611d11f2b4a12",
+      "action": "Long_Breathe_and_Look_Around",
+      "frames": [
+        0.0,
+        338.75
+      ]
+    },
+    {
+      "entry": "Meshy_AI_The_Little_Messenger_biped/Meshy_AI_The_Little_Messenger_biped_Animation_Look_Around_Dumbfounded_withSkin.glb",
+      "sha256": "c9c83d5d2d22671c0cfc4040e83c96010a48ee8aa226865852d2417e20c88cec",
+      "action": "Look_Around_Dumbfounded",
+      "frames": [
+        0.0,
+        190.0
+      ]
+    },
+    {
+      "entry": "Meshy_AI_The_Little_Messenger_biped/Meshy_AI_The_Little_Messenger_biped_Animation_Running_withSkin.glb",
+      "sha256": "8271f1de61cd51b3a9096fbfed6f94a6a7a129f8f64d83bfed64f2199c9f88b9",
+      "action": "Running",
+      "frames": [
+        0.0,
+        20.0
+      ]
+    },
+    {
+      "entry": "Meshy_AI_The_Little_Messenger_biped/Meshy_AI_The_Little_Messenger_biped_Animation_Walking_withSkin.glb",
+      "sha256": "2b7b9d2286e1ca284c94468d8506396d1782a7923ce588d7ab8b785ea9449110",
+      "action": "Walking",
+      "frames": [
+        0.0,
+        31.249998092651367
+      ]
+    },
+    {
+      "entry": "Meshy_AI_The_Little_Messenger_biped/Meshy_AI_The_Little_Messenger_biped_Animation_walking_2_withSkin.glb",
+      "sha256": "479d754c7b2bb5e370982fa0aa8b32d7799535be38dad51e2d7ddb733f44e8de",
+      "action": "walking_2",
+      "frames": [
+        0.0,
+        36.25
+      ]
+    }
+  ],
+  "skinnedMeshes": 1,
+  "vertices": 13212,
+  "packedMaps": 3,
+  "boundsMin": [
+    -0.3166145086288452,
+    -0.31344133615493774,
+    -0.02548096887767315
+  ],
+  "boundsMax": [
+    0.2996251881122589,
+    0.13876602053642273,
+    1.619838833808899
+  ],
+  "fps": 30,
+  "texturePacking": "URP RGB=glTF B (metallic), alpha=1-glTF G (roughness)",
+  "unityRuntimeChecked": false,
+  "bones": 66
+}

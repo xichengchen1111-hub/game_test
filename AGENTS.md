@@ -2,7 +2,7 @@
 
 - At the start of every session, read `docs/agent-memory.md` before planning or editing, then read the current MVP and relevant skill. It records accepted decisions, incident causes, fixes, reproduction commands, verification evidence and unfinished work. Preserve its regression rules. After a relevant change, update the affected entry with the actual result and evidence; never turn an untested plan into a completed fact. The human user's newest instruction still takes precedence.
 - This repository is the active `game_test` project. Follow the human user's newest instructions before any document or skill.
-- At the start of each new task in this repository, fetch `origin/main` through authenticated GitHub Desktop and summarize the commits and notable file changes since the local `main` before starting the requested work. If `main` is behind and the working tree is clean, fast-forward it. If local changes exist, preserve them before syncing and reapply them afterward; never discard user work, and report any conflict before overwriting files. Do not commit or push the sync or local work unless the user asks.
+- Use command-line Git for all repository operations, including fetch, pull, commit and push; do not open GitHub Desktop (user instruction, 2026-10-08). At the start of each new task, fetch `origin/main` and summarize the commits and notable file changes since the local `main` before starting the requested work. If `main` is behind and the working tree is clean, fast-forward it. If local changes exist, preserve them before syncing and reapply them afterward; never discard user work, and report any conflict before overwriting files. Do not commit or push the sync or local work unless the user asks.
 - `docs/mvp-demo.md` defines the current first-person, freely explored MVP. The original Chinese DOCX/PDF supplies story background; older third-person or fixed-route wording does not override the current MVP.
 - In the complete MVP all three interiors are initially accessible. The current user-requested 10% visual slice implements the town and clock shop; its shop is freely accessible from the beginning. The companion makes optional ambient remarks; its dialogue, occupation and location never gate clues, doors or deductions.
 - Concepts in `docs/concepts/` are generated style references. The playable Unity project is in `game/`; actual runtime captures and the walking clip are in `output/demo/`, and the local Windows player is in `builds/windows/` (ignored by Git).
@@ -14,7 +14,13 @@
 
 ## 送奶男孩造型与制作约定
 
-2026-10-08 根据用户要求整理；当前重制实现为提交 `f57cec1`。以下是后续制作需要延续的造型方向，用户的新要求优先。实现已接入游戏，不等于用户已认可全部美术细节。
+2026-10-08 用户最新指定 `Meshy_AI_The_Little_Messenger_biped.zip` 替换送奶少年。当前资源以这个压缩包中的模型、服装、面部、贴图及骨骼为准，不能再为了下表旧造型而改回 Toon Boy 或强行重做金发、蓝眼、握肩带。只替换外观及待机动画，保留 E04 证言、碰撞和现有切片点位；这不是第四版地图迁移。
+
+- 当前管线：`tools/import_meshy_milkboy.py` → `assets/source/milkboy/meshy/Messenger.blend` 与 `game/Assets/Art/MilkboyMeshy/` → `MilkboyAsset.Create`。完整保留六段动画，默认循环 `Short_Breathe_and_Look_Around`，关闭根运动；不以角色整体上下漂浮冒充呼吸。
+- 保留原始 GLB、三张原始纹理及来源摘要；压缩包没有授权文件，不得套用旧 Toon Boy 的 CC BY 许可或虚构 Meshy 授权。旧模型和原署名作为历史源保留。
+- 每次替换后检查真实 Unity 全身、脸、侧面、脚底及动画，并走近触发 E04；同时重新生成 Town 与 ClockShop 的窗外副本。当前结果和平台范围见 [NPC-02](docs/agent-memory.md#npc-02meshy-送奶少年替换)。
+
+以下为 `f57cec1` 的历史造型记录，仅用于旧版本追溯；最新用户资源选择优先。接入成功不等于用户已认可美术效果。
 
 | 部位 | 造型要求 |
 | --- | --- |

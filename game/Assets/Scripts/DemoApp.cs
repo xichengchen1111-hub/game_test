@@ -43,7 +43,7 @@ public class DemoApp : MonoBehaviour {
     Texture2D solid, circle;
     float W,H;
     int selectedEntry;
-    bool recordWalk,recordingWalk,reviewWindow,recordingWindow,previewWindow,previewStreet,reviewLighting,recordingLighting,lightingRight;
+    bool recordWalk,recordingWalk,reviewWindow,recordingWindow,previewWindow,previewStreet,previewMilkboy,reviewLighting,recordingLighting,lightingRight;
     int motionFrames;
     int windowFrames;
     int exteriorWindowCount;
@@ -60,12 +60,13 @@ public class DemoApp : MonoBehaviour {
         Review=Array.IndexOf(args,"--review")>=0;
         previewWindow=!Review&&Array.IndexOf(args,"--window-preview")>=0;
         previewStreet=!Review&&!previewWindow&&Array.IndexOf(args,"--street-preview")>=0;
+        previewMilkboy=!Review&&!previewWindow&&!previewStreet&&Array.IndexOf(args,"--milkboy-preview")>=0;
         recordWalk=Array.IndexOf(args,"--record")>=0;
         reviewWindow=Array.IndexOf(args,"--review-window")>=0;
         reviewLighting=Review&&Array.IndexOf(args,"--review-lighting")>=0;
         lightingRight=reviewLighting&&Array.IndexOf(args,"--lighting-window-right")>=0;
         Silent=Review || Array.IndexOf(args,"--silent")>=0;
-        savePath=Path.Combine(Application.persistentDataPath,Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":"slice-save.json");
+        savePath=Path.Combine(Application.persistentDataPath,Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":"slice-save.json");
         int c=Array.IndexOf(args,"--capture-dir");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -77,6 +78,7 @@ public class DemoApp : MonoBehaviour {
         if (state.scene!="Town" && state.scene!="ClockShop") state.scene="Town";
         if(previewWindow){state.scene="ClockShop";state.x=0;state.y=.03f;state.z=-.6f;opening=false;}
         if(previewStreet){state.scene="Town";state.x=0;state.y=.03f;state.z=1;opening=false;}
+        if(previewMilkboy){state.scene="Town";state.x=3.8f;state.y=.03f;state.z=-4.1f;opening=false;}
         if(reviewLighting){state.scene="ClockShop";state.x=lightingRight?.4f:-.4f;state.y=.03f;state.z=-.8f;}
         Cursor.lockState=CursorLockMode.None; Cursor.visible=true;
         StartCoroutine(InitialScene(args));
@@ -88,11 +90,12 @@ public class DemoApp : MonoBehaviour {
         player.Place(new Vector3(state.x,state.y,state.z),state.yaw);
         player.Aim(previewWindow?FindFirstObjectByType<BuildingInstance>().layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f:CurrentScene=="Town"?new Vector3(0,3.1f,9):new Vector3(0,1.4f,1.5f));
         if(previewStreet){var layout=FindFirstObjectByType<BuildingInstance>().layout;player.Aim(layout.ToTown(layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f));}
+        if(previewMilkboy)player.Aim(GameObject.Find("Milkboy").transform.position+Vector3.up*.94f);
         sceneReady=true;
         location=CurrentScene=="Town"?"青川 · 小镇广场":"青川 · 钟表铺";
         locationAge=Time.time;
         yield return FadeTo(0,0.9f);
-        if(previewWindow||previewStreet)CursorMode();
+        if(previewWindow||previewStreet||previewMilkboy)CursorMode();
         if (Review) {
             opening=false;
             if(Array.IndexOf(args,"--review-milkboy")>=0)StartCoroutine(ReviewMilkboy());
@@ -341,15 +344,30 @@ public class DemoApp : MonoBehaviour {
         }
         Frame(origin+front*2.45f+right*.60f+Vector3.up*1.05f,origin+Vector3.up*.70f,36);
         yield return new WaitForSeconds(.25f);yield return Capture("unity-full");
+        var animator=boy.GetComponentInChildren<Animator>();
+        if(!animator||!animator.GetCurrentAnimatorStateInfo(0).loop||animator.applyRootMotion)
+            throw new Exception("Milkboy must have a looping, in-place idle.");
+        var head=Array.Find(boy.GetComponentsInChildren<Transform>(),t=>t.name.Replace(':','_')=="mixamorig_Head");
+        if(!head)throw new Exception("Milkboy animated head bone is missing.");
+        var headRotation=head.localRotation;float startTime=animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        yield return new WaitForSeconds(1.2f);yield return Capture("unity-idle-later");
+        float headMotion=Quaternion.Angle(headRotation,head.localRotation);
+        float timeAdvance=animator.GetCurrentAnimatorStateInfo(0).normalizedTime-startTime;
+        if(headMotion<.05f||timeAdvance<=0||Vector3.Distance(origin,boy.transform.position)>.001f)
+            throw new Exception("Milkboy idle is static or moves the actor root.");
         Frame(origin+front*.94f+right*.19f+Vector3.up*1.22f,origin+Vector3.up*1.14f,33);
         yield return new WaitForSeconds(.25f);yield return Capture("unity-face");
-        Frame(origin+front*.77f+right*.10f+Vector3.up*.94f,origin+front*.10f+Vector3.up*.84f,29);
+        var leftHand=Array.Find(boy.GetComponentsInChildren<Transform>(),t=>t.name.Replace(':','_')=="mixamorig_LeftHand");
+        var rightHand=Array.Find(boy.GetComponentsInChildren<Transform>(),t=>t.name.Replace(':','_')=="mixamorig_RightHand");
+        if(!leftHand||!rightHand)throw new Exception("Milkboy hand bones are missing.");
+        var handCentre=(leftHand.position+rightHand.position)*.5f;
+        Frame(handCentre+front*1.05f+right*.08f+Vector3.up*.04f,handCentre,44);
         yield return new WaitForSeconds(.25f);yield return Capture("unity-hands");
         Frame(origin+front*.42f+right*.62f+Vector3.up*1.16f,origin+Vector3.up*1.02f,54);
         yield return new WaitForSeconds(.25f);yield return Capture("unity-side");
         eye.fieldOfView=originalFov;player.enabled=true;
-        File.WriteAllText(Path.Combine(captures,"runtime-results.json"),"{\"passed\":true,\"npc\":\"E04\",\"realMotorAndRaycast\":true,\"detailViews\":\"controlled camera, unchanged town lighting\"}");
-        Debug.Log("MILKBOY_REVIEW_PASS: real movement, E04 raycast, full/face/hands/side frames");
+        File.WriteAllText(Path.Combine(captures,"runtime-results.json"),"{\"passed\":true,\"npc\":\"E04\",\"source\":\"user-supplied Meshy messenger\",\"realMotorAndRaycast\":true,\"loopingIdle\":true,\"stationaryRoot\":true,\"headMotionDegrees\":"+headMotion.ToString("F4",System.Globalization.CultureInfo.InvariantCulture)+",\"detailViews\":\"controlled camera, unchanged town lighting\"}");
+        Debug.Log("MILKBOY_REVIEW_PASS: real movement, E04 raycast, looping animated idle, full/face/hands/side frames");
         Application.Quit();
     }
     IEnumerator ReviewRun() {
