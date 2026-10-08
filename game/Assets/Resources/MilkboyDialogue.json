@@ -1,0 +1,43 @@
+{
+  "first": "greeting",
+  "revisit": "topics",
+  "evidence": {
+    "id": "E04",
+    "title": "送奶证言",
+    "source": "送奶少年，谈及一月二十日的派送",
+    "body": "“那天是我送的。您太太出来接了奶，我交到她手里才走。”\n\n“六点二十五。”\n\n“我抬头看过广场上的大钟。我没有手表，送奶的时候就看那个。”"
+  },
+  "nodes": [
+    {"id":"greeting","speaker":"送奶少年","text":"您是住在［街名］［门牌号］的［姓氏］先生吧？","next":"condolence"},
+    {"id":"condolence","speaker":"送奶少年","text":"您太太的事……我听说了。我很抱歉。","greeted":true,
+      "choices":[
+        {"text":"谢谢你。我想问问二十号送奶的事。","target":"delivery","topic":"milkboy.delivery"},
+        {"text":"你平时常见到她吗？","target":"daily","topic":"milkboy.daily"},
+        {"text":"这两次签收之间是她家吗？","target":"signatures","topic":"milkboy.signatures","requiresEvidence":"E05"},
+        {"text":"谢谢。今天先不说这些了。","target":"goodbye"}
+      ]
+    },
+    {"id":"topics","speaker":"送奶少年","text":"先生，您还想问些什么？",
+      "choices":[
+        {"text":"我想问问二十号送奶的事。","target":"delivery","topic":"milkboy.delivery"},
+        {"text":"你平时常见到她吗？","target":"daily","topic":"milkboy.daily"},
+        {"text":"她那天跟你说了什么？","target":"gloves","topic":"milkboy.gloves","requiresEvidence":"E04"},
+        {"text":"送完我家，你接着去了哪一家？","target":"route","topic":"milkboy.route","requiresEvidence":"E04"},
+        {"text":"这两次签收之间是她家吗？","target":"signatures","topic":"milkboy.signatures","requiresEvidence":"E05"},
+        {"text":"先说到这里，谢谢你。","target":"goodbye"}
+      ]
+    },
+    {"id":"delivery","speaker":"送奶少年","text":"那天是我送的。您太太出来接了奶，我交到她手里才走。","next":"ask_time"},
+    {"id":"ask_time","speaker":"你","text":"那时候大概几点？","next":"time"},
+    {"id":"time","speaker":"送奶少年","text":"六点二十五。","next":"ask_clock"},
+    {"id":"ask_clock","speaker":"你","text":"你怎么记得这么清楚？","next":"clock"},
+    {"id":"clock","speaker":"送奶少年","text":"我抬头看过广场上的大钟。我没有手表，送奶的时候就看那个。","grantEvidence":"E04","next":"topics"},
+    {"id":"daily","speaker":"送奶少年","text":"嗯，给您家送奶的时候，常常是她来接。","next":"awkward"},
+    {"id":"awkward","speaker":"送奶少年","text":"她有时候说话挺凶的……对不起，我不是说她不好。","next":"reassure"},
+    {"id":"reassure","speaker":"你","text":"没关系。说你记得的就好。","next":"gloves"},
+    {"id":"gloves","speaker":"送奶少年","text":"那天她还说，我怎么又把手套弄丢了。可那天她没有骂我。","next":"topics"},
+    {"id":"route","speaker":"送奶少年","text":"下一户就在派送簿上，先生。我是照着簿子挨家送的。","next":"topics"},
+    {"id":"signatures","speaker":"送奶少年","text":"嗯，先送前面那一户，再送您家，然后是后面那一户。","next":"topics"},
+    {"id":"goodbye","speaker":"送奶少年","text":"好，先生。您以后想问，再来找我就行。"}
+  ]
+}

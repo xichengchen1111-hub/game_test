@@ -26,6 +26,25 @@
 
 ## 问题记录与防复发规则
 
+### MILKSHOP-01：1931 牛奶店接入送奶男孩身后
+
+- **用户要求（2026-10-08）**：把此前制作的牛奶店直接放入游戏、位于当前送奶男孩身后、大小合适且不能与其他建筑碰撞。保留木质墙体、奶牛黑白花纹、大奶牛形招牌、`milk` 字样和实体木门。用户此次指向当前可玩游戏；本轮没有迁移第四版全镇图，也没有变更 B04 平面方案或人物剧情路线。
+- **资源和来源**：可编辑源、贴图和重建脚本在 `assets/source/milkshop/`；Unity FBX、URP 材质及带 12 个简化碰撞体的 Prefab 在 `game/Assets/Art/MilkShop1931/`。参照图片构建几何，招牌图由图像生成工具制作，不能称为实际 Meshy 推理。左右木门可独立编辑，当前固定左开右闭；没有新增开关门交互或剧情证物。店内与外观共用一个实际模型，直接行走进入，无另建室内场景。
+- **放置来源**：`MilkShopAsset.Create` 由 `BuildSlice.Town` 调用；根位置 `(11.45, -0.04, -7.35)`、Y 朝向 90°、比例 `0.9`，店面朝街。男孩、奶车及原 E04 交互保持原位。原模型占地 7.2×5.8m，场景占地 6.48×5.22m；包含招牌的高度约 7.07m。完整 renderer 水平边界与最近建筑间隔 `0.7844975m`，这是保守外包围盒间隔，不等同于全段通道净宽。构建检查既有 7 栋建筑间隔、男孩身后关系、人行道/边界、基础高度及碰撞体数，日志为 `MILKSHOP_PLACEMENT_PASS`。位置和路径标记保存在 `MilkShopPlacement`。
+- **实际验收**：Unity `6000.3.18f1`、Mac/Metal，可见 3024×1898 运行。`--review --fresh --review-milkshop` 用实际 CharacterController 走近男孩并射线触发 E04、进出牛奶店、往返走通与钟表铺之间的小巷，结果为 `MILKSHOP_REVIEW_PASS`。截图和 JSON 在 `output/demo/milkshop/`；概览使用受控高位相机，其他店门/店内/男孩/小巷截图来自玩家高度。这是自动实机验证，不是手动键鼠或陌生玩家盲测。
+- **既有建筑回归**：`Town` 几何继续由 `WindowStreet` 同源复制到钟表铺窗景，副本去除交互与碰撞。`BuildingLayoutChecks` 通过；`--review --fresh --review-window` 通过 `STREET_REVIEW_PASS`、`WINDOW_REVIEW_PASS`、`SLICE_REVIEW_PASS`，两窗通透/碰撞、E07、钟表铺门口往返均通过，窗景视差约 `0.35805`。精简结果与实机图在 `output/demo/milkshop/window-regression/`，27 张运动原始帧移到忽略的 `builds/milkshop-integration/window-motion/`。保留一同生成的 ClockShop Prefab 与场景，不能只恢复旧 Prefab 而破坏新 fileID 引用。
+- **交付与范围**：重建当前唯一 Mac 入口 `builds/macos-current/错日证词-新版.app`，桌面同名链接指向它；Info.plist 和实际 review 日志确认应用标识/数据目录为 `com.qingchuanstudio.wrongdatetest.currentmac`，沿用 SAVE-04 防越界措施。日志在忽略的 `builds/milkshop-integration/`。本轮未构建 Windows，未验收完整全镇剧情。平面数据未改；现有 `tools/check_town_map.py` 只读检查通过 70 宅地、20 角色、17 路线和 6 顺序，不能把该数据检查说成完整三维地图已实现。
+- **工作区保护**：从本机 `main=123aeeb` 的现有工作区接入；命令行 fetch 因当前 HTTPS 无可用凭据失败，不能声称核实了远端最新状态。构建前已有修改备份在 `builds/milkshop-integration/preexisting/`。保留用户原修改，本轮未提交或推送。
+- **收尾核对**：牛奶店验收结束后不带 review/fresh 参数正常启动，`normal-startup.log` 确认使用 `com.qingchuanstudio.wrongdatetest.currentmac/slice-save.json`。同时检测到另一任务正在接入少年新版对话（`DemoApp.Dialogue.cs` 等），这些晚于本轮打包的改动已保留，未重建覆盖它的工作；上面的 E04 记录对应本轮已测二进制，不能沿用为新版多分支对话的验收。
+
+### MILKSHOP-02：牛奶店玻璃不透明，无法看到外面（已修复）
+
+- **用户反馈与原因（2026-10-08）**：用户要求按 AGENTS.md 的内外共用真实空间约定，让牛奶店窗户能看到室外。原 FBX 已有两侧真实窗洞和木窗框，但 `OldWindow.mat` 使用不透明 URP Lit，alpha=1、写入深度，原来的进店/通道验收漏掉了逐窗视觉检查。
+- **最终实现**：`MilkShopAsset.Create` 维护既有共享 `OldWindow.mat` 的 GUID，改用已验证的 `WrongDate/ClearGlass`，透明队列 3000、淡色 alpha=0.055、双面、关闭深度写入。只改变这份玻璃材质，木窗框仍使用不透明木材；既有两侧墙体/窗洞、12 个碰撞体、门口、建筑位置和大小保持一致。牛奶店同场景内外与 `WindowStreet` 中的副本共同引用该材质，没有新增照片窗景或另造室外。北窗实际朝钟表铺外墙，南窗朝室外空地与边界，不能把真实邻房遮挡误判为玻璃不透明或用假街景遮盖。
+- **构建防回退**：生成器断言 Windows renderer 确实引用这份透明玻璃。重新生成 FBX/场景后不能恢复旧不透明窗片；查看室外的要求适用于新增建筑，不能只引用钟表铺旧验收就认定新建筑已通过。
+- **实际验收**：Unity 6000.3.18f1、Mac/Metal，`BuildFreshMac` 构建通过原建筑统一检查及放置检查。可见 1600×900 玩家以 `--review --fresh --review-milkshop-windows` 运行，`MILKSHOP_WINDOWS_REVIEW_PASS`，退出码 0。真实控制器走入店内，依次观察两窗、固定朝向横移、向窗行走确认无法穿出，再从门返回街上；外侧特写使用受控相机。已目视检查两侧内外截图，南窗可见室外地面/围墙/天空，北窗可见相邻钟表铺的实体外墙，外看内能透过玻璃看见柜台/奶瓶。图片与报告在 `output/demo/milkshop/windows/`，日志在忽略的 `builds/milkshop-windows/`。自动行走不是陌生玩家盲测。
+- **回归与交付**：再次运行 `--review --fresh --review-window`，`STREET_REVIEW_PASS`、`WINDOW_REVIEW_PASS`、`SLICE_REVIEW_PASS` 且退出码 0，钟表铺两窗与门口往返、E07 仍正常，视差约 0.31247；结果在 `builds/milkshop-windows/clockshop-regression/`。更新现有 `builds/macos-current/错日证词-新版.app`，Info.plist/实际 review 日志确认原应用标识，继续使用同一桌面入口，未改变正常存档逻辑；本轮没有 Windows 构建，未提交推送。保留同时接入的少年对话和数字键修正。
+
 ### UI-01：怀表指针在缩放界面中画到表盘外（已修复）
 
 - **用户反馈与复现**：2026-10-08，“怀表时间怎么没了”。计时数据仍存在；旧 `DemoApp.DrawHand` 在缩放过的 `GUI.matrix` 上调用 `GUIUtility.RotateAroundPivot`，旋转轴偏离表盘。1280×720 原生截图中指针出现在怀表左侧；1600×900 的缩放恰好为 1，旧版此分辨率看似正常。该绘制逻辑并非 NPC-02 新增，不能把它归因为模型替换。
@@ -160,6 +179,19 @@
 - 本轮四个技能已安装/更新；另一台机器须自行安装。根据任务选 `wrong-date-narrative`、`wrong-date-unity`、`wrong-date-blender`、`wrong-date-playtest`，不要把“技能已安装”当作程序或平台已测试。
 - `.gitattributes` 已将 `.unity/.prefab/.asset/.mat/.meta` 的空 YAML 值行尾空格排除于空白检查；这是 Unity 序列化格式。不要因此忽略 C#/Python/Markdown 的真正空白错误。
 
+### MAP-01：第一镇区按剧本与行程重排（第三稿，未实现）
+
+- **用户纠正（2026-10-08）**：第二稿情夫工坊过于靠近案发住宅，且擅加茶餐馆、裁缝铺等无关地点；必须按剧本地点和凶手步行时间设计。第二稿为被否决的历史草案，不能继续作为当前图。
+- **依据**：读取原DOCX第三节完整时间线、第五节A–M、第七节NPC；使用 `skills/wrong-date-narrative/SKILL.md`。邻居不记得争吵具体时间、情夫案发日在邻市等用户修订优先。所有新坐标/尺寸/中间到达分钟为规划，不伪装成原稿事实。
+- **当前产物**：[具名地图](concepts/town-plan-story-v3.png)、[作者路线图](concepts/town-route-review-v3.png)、[地点与时间预算](town-layout-plan.md)、[数据](town-layout-data.json)。SVG和PNG由 `tools/render_town_plan.py` 同源生成；Markdown保留独立剧情解释与生成数据表。33处建筑含17处剧情相关地点与居民A–P；删除无依据商铺，补棋社/城南店铺/破灯/候车点。教堂仅为原稿店主口供中的背景；父亲住所为会面布置建议。
+- **逐栋尺寸标注（2026-10-08）**：用户认可第三稿布局后要求每栋长宽直接标在图上；基础图和作者路线图均在33栋名称下增加「东西长 × 南北宽（m）」，与原坐标数据一致，指主体外墙、不含院落；未调整地点、建筑尺寸或路程。
+- **电话亭漏标修正（2026-10-08）**：用户指出电话亭缺失；原图仅把名称并入邮局，实际2×2米亭体过小且无独立标牌。现邮局单独命名，公共电话亭作为独立设施写入布局数据，位置(45,-15)、尺寸2×2米，在基础图和作者图用独立名称/尺寸/引线及定位圈标清；说明表同步拆分。保留原位置与19日路线，数量为33栋建筑加1亭。
+- **坐标替代v2**：钟楼(0,0)，车站(360,70)，车站路Z=40；住宅(-40,-90)，邻居(-70,-90)，情夫修车铺(-250,75)，医院(145,-155)。情夫修车铺到住宅公开道路393米；本镇工坊不是邻市凯恩车间。
+- **时间预算**：住宅去站581米，近路返家568米，合计1149米；1.2m/s+2分钟停留约17分58秒，可放入17:35—17:55。1.1m/s余约半分钟；1.0m/s不成立。18:15→候车点→18:35旅馆移动约7.2分钟。18:35—20:40缺失行踪不得编成两小时旅馆不在场。19日问路/电话/棋社独立核算，不移植至20日。
+- **视线**：邻居东窗对住宅西侧门；送奶停步点(-54,-90)留至钟楼视廊。邻居未连续监看，不用视野盲区强行抹掉门口可见性；二维视线不等于3D钟面可读。禁止把东侧路命名“东街”，以免毁掉不存在东街的线索。
+- **验证边界**：已生成并目视核对两张坐标图；33座建筑无互相重叠/路权冲突，所列路线无穿楼，车站路水平，检查记录见 `town-layout-checks.json`；已计算步行时间窗口；旧MVP证据合同静态检查仍通过10证物、6访问顺序。此轮没有Unity构建或实机走路，不宣称游戏内可行性已验证。原DOCX/PDF未改，待补行踪和异地交通细节已写进说明。
+- **防复发**：每处剧情地点必须有源章节或明确的新规划标记；先验证时间锚点和沿路长度，再加视觉细节。尺寸更改重算所有受影响路线。基础图与作者路线图分开，路线和推理不能直接加入玩家提示。未来实现还须同时迁移路网/门窗/出生点/边界，内外共用建筑源。
+
 ## 可复现验收入口
 
 从仓库根目录执行。先确认已有 Unity/玩家进程，避免同项目并发构建和同一 review 存档的并发写入。以下是现有入口，不代表本记忆文件创建时又重新运行了游戏。
@@ -214,3 +246,51 @@ python tools/check_lighting.py output/demo/lighting/before/lighting-results.json
 - **验证**：70宅地、209树、20角色组、17条本镇候选/实际事件路线重新计算；本镇去站返家639.15m、8.88分钟，20分钟中11.12分钟尚未分配，不能写成确凿停留。两签收户间纯步行2.86分钟；全部6种调查顺序5.86–6.18分钟（仅室外2.5m/s）。基础几何无错误，指定邻居窗对返家最后一段44/44采样被建筑遮挡；不是全镇无人目击。
 - **复验**：`python3 tools/check_town_map.py`，网页交互使用`tools/check_town_map_ui.cjs`；详见README。不得直接改生成数据而遗漏源文件与其他导出物。
 - **限制与后续**：19日车程/班次/返程，电话与棋社所属城镇，20日晚间离馆后行程，异地情夫交通，室内、3D视线、车道净空均未完全验证。材料副本来源渠道为提案。未更新Unity，不把旧构建当新地图验收。
+
+
+### PLATFORM-02：123aeeb 的本机 Mac 构建与运行核对（2026-10-08）
+
+- 用户要求将最新同步版本构建为 Mac 应用。基于 `123aeeb`，Unity `6000.3.18f1` 执行 `bash tools/BuildDemoMac.sh`，生成 `builds/macos-arm64/TownDemo.app`；`lipo -archs` 确认为 `x86_64 arm64` 通用应用，使用 Metal。旧 `TownDemo.app` 保留为 `TownDemo-before-123aeeb.app`，其他旧包与正常存档未删除。
+- 构建通过 `MILKBOY_IMPORT_PASS`、`WATCHMAKER_IMPORT_PASS`、`STREET_SURFACE_BUILD_PASS`、`BUILDING_LAYOUT_PASS`、`SLICE_BUILD_PASS`。日志在 `builds/macos-arm64/build.log`。构建生成的五份场景/Prefab/材质差异已备份至 `builds/macos-123aeeb/generated-backup/` 并恢复构建前内容；原有未提交改动保留。
+- 本机可见玩家以 `--review --fresh --review-roads --review-window --review-watchmaker` 在1600×900运行，进程退出码0；道路、街面、钟表匠、窗景与基础切片均PASS。实际控制器行走、对话射线、坐姿循环、E07、调查簿及店门往返通过；证据在 `builds/macos-123aeeb/runtime/`，已查看街景及坐姿截图。
+- 单独运行 `--review --fresh --review-milkboy`，退出码0且 `MILKBOY_REVIEW_PASS`，证据在相邻 `milkboy/`，已查看全身截图。上述输入为自动驱动，不是手动或陌生玩家盲测。
+- 1280×720运行 `--review --fresh --review-watch`，时间推进、共享时钟与开关检查PASS，原生 `watch-720/watch-later.png` 目视可见两根正确位置的指针；但 `tools/check_watch.py` 的固定暗色阈值检测两针均0/20，`pixel-results.json` 为false。保留失败结果，未修改阈值；Mac像素检测差异尚待单独定位，不得声称该自动检查通过。
+- 本次未重跑完整MVP六顺序、磁盘重启或长时间性能验收，未在Intel实机测试。命令行远端复查因HTTPS凭据不可用失败，使用上一轮刚经认证同步的123aeeb；未提交、推送本轮记录。
+
+
+### SAVE-03：最新Mac版因掉出地图改用独立新存档
+
+2026-10-08 用户报告刚打开的TownDemo卡Bug掉悬崖，明确要求删除该应用、重新制作并以后只使用新版。新增 `BuildSlice.BuildFreshMac`，输出 `builds/macos-current/错日证词-新版.app`，company name为 `Qingchuan Fresh 20261008`；桌面同名符号链接为固定入口。旧 `builds/macos-arm64/TownDemo.app` 已移至废纸篓，旧存档及其他历史包保留。构建通过SLICE_BUILD_PASS，新应用独立review通过真实控制器行走、E07、门口往返，退出码0，证据见 `builds/macos-current/review/` 与 `review.log`。未定位越界根因，不能宣称根本修复；正常启动不带review参数，使用新的正常存档。用户已有未提交修改保留，本轮未提交推送。
+
+
+### SAVE-04：纠正公司名隔离误判，修复边界与坏坐标（2026-10-08）
+
+- 用户录屏显示所谓新版仍在空旷地图外。检查实际Info.plist发现仍为 `com.Unity-Technologies.com.unity.template.urp-blank`，正常存档实际位于同名Application Support目录，坐标(-10.6898,-7210.034,37.444)，已有E04/E07。SAVE-03所称公司名已隔离是错误判断；SAVE-02的历史路径结论不能套用于此构建。之前review使用独立测试存档，掩盖了正常启动读坏存档的问题。原坏存档保留。
+- 修复：`BuildFreshMac`明确设置 `com.qingchuanstudio.wrongdatetest.currentmac` 应用标识；实际Info.plist和运行日志均确认此ID和相应新目录。`DemoApp`在载入后校验有限数值及当前切片范围，异常时仅重置位置，保留证物；LateUpdate恢复掉落者，Save不再持久化坏位置。`BuildSlice.Town`补北侧z=32边界，阻止从地面北端走出。当前小镇有效范围与旧切片墙对应，未来全镇迁移必须修改该范围。
+- 验证：Unity6000.3.18f1、Mac/Metal构建通过SLICE_BUILD_PASS和BUILDING_LAYOUT_PASS。将实际旧坏存档复制到新版review-save.json，不用--fresh；运行 `--review --review-position`，日志证实读取新目录、恢复原坏坐标、模拟下落恢复、阻止存入坏坐标、保留证物数量及真实控制器撞北墙，POSITION_REVIEW_PASS且退出码0。证据在 `builds/macos-current/position-review/` 与position-review.log。
+- 正常从桌面入口启动（无review参数），SAVE_LOCATION指向新版slice-save.json；运行日志记录E04、Town→ClockShop，正常存档位置(0.896,约0,0.356)位于钟表铺且保留E04。未改用户这一轮的正常进度或强制退出。原录屏首帧核对为空旷天际画面；窗口读取工具对正常窗口给出停滞菜单画面，因此不把该截图当作完整正常玩法证据，正常流程以实际日志和存档为证。
+- 此轮修复不是完整全地图/长时间碰撞验收；未在Intel实机验证，未提交推送。桌面入口和应用路径保持不变。
+
+### UI-02：送奶少年固定分支对话与底部电影字幕界面（2026-10-08）
+
+- **用户决定**：三款交互小样中选第二款「电影字幕」，随后认可先认人/慰问、再问送奶或聊日常的短文案，并要求接入游戏。当前只改送奶少年；钟表匠和证物继续使用原查看界面。主角姓氏、正式街名与门牌未定，首版临时开场（已由UI-03取代）为「您是那家的男主人吧？平时是我给您家送奶。」再说「您太太的事……我听说了。我很抱歉。」；不显示占位符，不虚构东街或姓名。
+- **实现入口**：文本/分支集中在 `game/Assets/Resources/MilkboyDialogue.json`，`DialogueScript` 验证节点与引用，`DemoApp.Dialogue.cs` 管理底部渐变、左侧原话、右侧完整选项、数字键/鼠标整行点击选项、H本次交谈回看、Esc关闭。`Inspect` 对E04进入对话；生成源 `BuildSlice.Town` 也从同份数据取证言，不能只改单张场景。交谈阻断移动和视角，隐藏怀表/环境插话，退出恢复光标与行走。回看时不绘制底层按钮，避免点击穿透。
+- **剧情与保存**：先说亲手交奶、再说18:25及街钟来源，最后一行显示时才获得E04；只打招呼、日常分支或中途退出不提前获证。保留妻子提醒手套和少年说话拘谨的日常细节，不宣告钟快30分钟或案情答案。E04稳定ID、去重、原有证物保留；新字段 `milkboyGreeted` / `dialogueTopics` 兼容缺字段的旧存档，记住重逢/已问；对白可重复。E05问题每次打开按现有证物重算；本切片尚无E05实物，专项测试临时注入后移除，不能称为已制作派送簿。
+- **实际验收**：Unity6000.3.18f1、Mac/Metal，`BuildSlice.BuildFreshMac` 构建通过 `BUILDING_LAYOUT_PASS` / `SLICE_BUILD_PASS`；实际Info.plist为 `com.qingchuanstudio.wrongdatetest.currentmac`，可执行文件为x86_64+arm64。最终1280×720与1920×1080分别运行 `--review --fresh --review-dialogue`，均退出0且 `DIALOGUE_REVIEW_PASS`。通过真实控制器走近/射线、问候/日常/证言/后续/告别、退出重问、证言不提前授予与不重复、回看隔离、退出恢复行走、E05条件变化。已目视核对两档原生画面；修正720p回看返回按钮换行及渐变分界。
+- **读档与回归**：独立新进程 `--review --verify-dialogue-save`（不加fresh）通过 `DIALOGUE_SAVE_RELAUNCH_PASS`，恢复E04、已问、首次问候状态及后续选项。上述均使用独立 `dialogue-review-save.json`，不改正常进度。最终 `--review --fresh --review-window` 通过 `STREET_REVIEW_PASS` / `WINDOW_REVIEW_PASS` / `SLICE_REVIEW_PASS`，E07、调查簿、钟表铺往返正常。精简图与报告在 `output/demo/dialogue/`，完整构建/运行日志在忽略的 `builds/dialogue-integration/`。
+- **范围与限制**：以上是可见玩家中的程序驱动验收，对话使用与UI共用的处理函数，未宣称物理键鼠或陌生玩家盲测。原生窗口工具仍把当前应用误解析到旧模板标识，无法完成物理键鼠专项；未借旧截图声称通过。未做Intel实机、完整MVP六顺序或性能验收。命令行fetch因HTTPS凭据不可用失败，继续基于此前同步的123aeeb并保留本地奶店等其他改动；未提交推送。桌面「错日证词-新版.app」继续指向唯一当前Mac入口。
+
+- **选项操作简化（用户后续要求）**：移除方向键选择和Enter确认选项，也移除默认第一项高亮；只用对应数字键（含小键盘）或鼠标整行点击，底部提示按当前选项数显示。无选项时继续对白仍可点按钮或按Enter/空格，H/Esc保持原行为。重新构建当前Mac入口通过SLICE_BUILD_PASS，720p可见玩家以 `--review --fresh --review-dialogue` 通过DIALOGUE_REVIEW_PASS且退出0，已目视核对新提示与整行排版；源代码核对选择分支没有方向键/Enter入口。日志和原生画面在 `builds/dialogue-number-input/`；属于自动流程检查，未新增物理键鼠验收。远端fetch仍因凭据不可用失败，本轮未提交推送。
+
+- **底栏精简（用户截图修订）**：用户要求不显示「已问过」，问过和未问的选项保持同一文字宽度、色彩和样式；仅保留所有选项通用的鼠标悬停反馈。`DrawDialogue` 不再读取已问状态来排版；内部记录和重复问话逻辑保留。无选项时原话从半宽扩展到整条底栏（只预留小箭头边距），删掉大块「继续」按钮和底部继续文字，右下角显示可点击的小下箭头；箭头以两条线绘制，避免字体缺字，并保留现有Enter/空格推进。告别最后一句也由该箭头结束，Esc仍可直接退出。
+- **本次复验**：等待同项目已有奶店窗户构建结束后，再用BuildFreshMac更新同一Mac入口；BUILDING_LAYOUT_PASS、SLICE_BUILD_PASS及Info.plist应用标识核对通过。1280×720与1920×1080分别运行现有 `--review --fresh --review-dialogue`，均DIALOGUE_REVIEW_PASS、退出0，已查看完整宽栏、小箭头和重复问话后的无标记选项。新证据为 `output/demo/dialogue/wide-panel/`，完整日志在 `builds/dialogue-wide-panel/`；为自动处理函数/真实角色射线验证，不声称物理点击箭头或盲测。未改变正文/证物合同或用户存档，不重跑无关的完整MVP验收。远端fetch仍被HTTPS凭据缺失阻塞，未提交推送。
+
+### UI-03：缩小透明底栏、右下半区推进与恢复原定开场（2026-10-08）
+
+- **用户反馈/原因**：截图中的五行选项和高不透明渐变遮住近半屏，箭头点击范围太小；存档已标记 `milkboyGreeted` 导致一上来就说重逢对白，且此前擅自将用户指定的地址/姓氏开场替换成了泛称。用户要求更小更透明、重新设计、点右下半区推进，并恢复原句；本条取代UI-02的旧外观与临时开场约定。
+- **当前外观**：`DemoApp.Dialogue.cs` 底栏最大渐变alpha由0.97降至0.58，渐变顶部延伸由160改28逻辑像素；无选项约底部19%，五/六项约24%。去掉长分隔线及大面板，名字配细金色短线、正文加细阴影；有选项时右侧两列按横向顺序编号，无选项仍横向铺开。选项只用数字或鼠标整行点击，所有选项同样式，继续不显示「已问过」。修正720p慰问句的末尾句号单独换行。
+- **推进与隔离**：无选项时监听右下象限的鼠标左键抬起（GUI坐标x>=W/2,y>=H/2），箭头只绘制提示。`AdvanceDialogueAt` 排除回看/退出按钮区域、选项状态和回看状态；OnGUI先让具体按钮消费事件，并使用本帧原始选项状态，避免选择选项后同一次点击再跳过一句。Enter/空格等已有无选项推进保持；H/Esc及移动暂停/恢复保持。
+- **开场修复**：按用户原文恢复「您是住在［街名］［门牌号］的［姓氏］先生吧？」与「您太太的事……我听说了。我很抱歉。」。具体地址/姓氏未提供，先保留用户给出的占位，不再擅自换句。新增存档字段 `milkboyGreetingRevision`，当前版本2；缺字段或旧版本时下次交谈从两句开场开始，显示慰问后记录版本，之后仍可直接回访。旧bool保留兼容，证物及进度不重置；后续正式更改开场需相应维护版本。
+- **实际检查**：Mac/Metal、Unity6000.3.18f1当前入口BuildFreshMac通过BUILDING_LAYOUT_PASS与SLICE_BUILD_PASS。剧情合同静态验证通过。现有对话专项增加旧greeted=true/revision=0状态、保留既有E07、准确开场文字、远离箭头的右下点可推进、左下/右上不推进、底部按钮与选项不误推进等检查；720p/1080p初版全流程均PASS。最后调整左侧文本宽度后，720p重新全流程PASS，1080p独立进程不加fresh读档PASS（保留新版开场版本、E04和回访选项），目视核对最终图。均为真实角色/射线加共用处理函数的自动验收，未声称物理鼠标盲测；没有重测无关完整MVP。
+- **交付与边界**：精简证据在 `output/demo/dialogue/compact/`，日志在忽略的 `builds/dialogue-compact/`。复验使用独立dialogue-review-save.json。更新正常窗口前备份已有正常存档到normal-save-before-restart.json，并只终止已核实的旧游戏进程以载入新程序；不删除正常存档。远端fetch仍因HTTPS凭据不可用失败，保留其他本地奶店改动，未提交推送。
+- **统一规范（用户后续要求）**：用户要求将当前版本上传，并在根目录 `AGENTS.md` 明确今后全部 NPC 对话 UI 遵循本条当前效果。已添加“全部 NPC 对话 UI 统一规范”，涵盖低遮挡底部渐变、文字与双列选项、数字键／鼠标整行选择、已问同样式、右下象限推进及输入隔离；新增或修改对话时复用现有实现。此要求不代表钟表匠已经迁移，也不改变证物查看界面。本次整理未修改已验收的对话代码，沿用上面的最终720p流程与1080p独立读档证据。

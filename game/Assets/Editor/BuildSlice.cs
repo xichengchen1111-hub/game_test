@@ -225,13 +225,16 @@ public static class BuildSlice {
         var cart=Model("MilkCart",new Vector3(6.35f,.10f,-5.4f),-90);Collider(cart,new Vector3(0,.6f,0),new Vector3(1.6f,1.15f,.9f));
         var boy=Milkboy(new Vector3(6.48f,.1f,-4.2f),95);boy.transform.localScale=Vector3.one*.88f;
         Collider(boy,new Vector3(0,.8f,0),new Vector3(.65f,1.65f,.55f));
-        var milk=boy.AddComponent<Interactable>();milk.title="送奶少年";milk.evidenceId="E04";milk.source="送奶少年，广场初访";milk.body="“我没戴表。那天抬头看了一眼街钟，像是六点二十五。”\n\n“奶送到她手里，我才走。”";
+        var testimony=DialogueScript.Load("MilkboyDialogue").evidence;
+        var milk=boy.AddComponent<Interactable>();milk.title="送奶少年";milk.evidenceId=testimony.id;milk.source=testimony.source;milk.body=testimony.body;
+        MilkShopAsset.Create(boy);
         for(int i=0;i<4;i++)Model("Plant",new Vector3(i%2==0?-6.5f:6.5f,.12f,i<2?-1.8f:11.5f));
         for(int i=0;i<9;i++) {
             var shrub=GameObject.CreatePrimitive(PrimitiveType.Sphere);shrub.name="Clipped shrub";shrub.transform.position=new Vector3(Mathf.Cos(i*.7f)*2.3f,.48f,10+Mathf.Sin(i*.7f)*2.3f);
             shrub.transform.localScale=new Vector3(1.05f,.9f,1.05f);shrub.GetComponent<Renderer>().sharedMaterial=Mat("Foliage","#58685F");UnityEngine.Object.DestroyImmediate(shrub.GetComponent<Collider>());
         }
         Box("South town boundary",new Vector3(0,1,-23),new Vector3(55,3,.6f),Mat("Boundary","#64677B"));
+        Box("North town boundary",new Vector3(0,1,32),new Vector3(55,3,.6f),Mat("Boundary","#64677B"));
         Box("West town boundary",new Vector3(-17,1,2),new Vector3(.6f,3,60),Mat("Boundary","#64677B"));
         Box("East town boundary",new Vector3(17,1,2),new Vector3(.6f,3,60),Mat("Boundary","#64677B"));
         var geometry=Group("Town geometry",Vector3.zero);
@@ -434,6 +437,18 @@ public static class BuildSlice {
     }
     public static void BuildMac() {
         BuildFor(BuildTarget.StandaloneOSX,"../builds/macos-arm64/TownDemo.app",new[]{GraphicsDeviceType.Metal},1);
+    }
+    public static void BuildFreshMac() {
+        string originalCompany=PlayerSettings.companyName;
+        string originalIdentifier=PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Standalone);
+        try {
+            PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Standalone,"com.qingchuanstudio.wrongdatetest.currentmac");
+            BuildFor(BuildTarget.StandaloneOSX,"../builds/macos-current/错日证词-新版.app",new[]{GraphicsDeviceType.Metal},1,"Qingchuan Fresh 20261008");
+        } finally {
+            PlayerSettings.companyName=originalCompany;
+            PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Standalone,originalIdentifier);
+            AssetDatabase.SaveAssets();
+        }
     }
     public static void BuildMilkboyMacCopy() {
         string originalCompany=PlayerSettings.companyName;

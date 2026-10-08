@@ -1,0 +1,6 @@
+{
+    "passed": true,
+    "width": 1280,
+    "height": 720,
+    "verification": "Mac rendered player; actual controller/raycast; conversation actions use shared handlers, not physical keyboard. Conditional E05 supplied only in isolated test. Not a blind playthrough."
+}

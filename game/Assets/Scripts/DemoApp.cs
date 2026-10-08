@@ -12,9 +12,12 @@ using UnityEngine.SceneManagement;
     public float returnX=3.7f,returnY=0.05f,returnZ=1;
     public List<NotebookEntry> entries = new List<NotebookEntry>();
     public bool remarkSeen;
+    public bool milkboyGreeted;
+    public int milkboyGreetingRevision;
+    public List<string> dialogueTopics = new List<string>();
 }
 
-public class DemoApp : MonoBehaviour {
+public partial class DemoApp : MonoBehaviour {
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
     [System.Runtime.InteropServices.DllImport("kernel32.dll")]
     static extern IntPtr GetCurrentProcess();
@@ -29,7 +32,7 @@ public class DemoApp : MonoBehaviour {
     public SliceSave state = new SliceSave();
     public bool Review { get; private set; }
     public float Minutes => 17*60+55+Time.time/60f;
-    public bool Blocked => opening || transitioning || inspected || journal || paused;
+    public bool Blocked => opening || transitioning || inspected || journal || paused || DialogueOpen;
     public string CurrentScene { get; private set; } = "Town";
     public bool Silent;
     bool opening=true, transitioning, journal, paused, watch;
@@ -68,15 +71,18 @@ public class DemoApp : MonoBehaviour {
         reviewLighting=Review&&Array.IndexOf(args,"--review-lighting")>=0;
         lightingRight=reviewLighting&&Array.IndexOf(args,"--lighting-window-right")>=0;
         Silent=Review || Array.IndexOf(args,"--silent")>=0;
-        savePath=Path.Combine(Application.persistentDataPath,Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
+        bool dialogueReview=Review&&(Array.IndexOf(args,"--review-dialogue")>=0||Array.IndexOf(args,"--verify-dialogue-save")>=0);
+        savePath=Path.Combine(Application.persistentDataPath,dialogueReview?"dialogue-review-save.json":Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
         int c=Array.IndexOf(args,"--capture-dir");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
+        Debug.Log("SAVE_LOCATION: "+savePath);
         if (File.Exists(savePath) && Array.IndexOf(args,"--fresh")<0) {
             try { state=JsonUtility.FromJson<SliceSave>(File.ReadAllText(savePath)); }
             catch (Exception e) { Debug.LogWarning("Save could not be read: "+e.Message); }
         }
         if (state==null || state.entries==null) state=new SliceSave();
+        if(state.dialogueTopics==null)state.dialogueTopics=new List<string>();
         if (state.scene!="Town" && state.scene!="ClockShop") state.scene="Town";
         if(previewWindow){state.scene="ClockShop";state.x=0;state.y=.03f;state.z=-.6f;opening=false;}
         if(previewStreet){state.scene="Town";state.x=0;state.y=.03f;state.z=1;opening=false;}
@@ -90,7 +96,12 @@ public class DemoApp : MonoBehaviour {
         yield return SceneManager.LoadSceneAsync(state.scene,LoadSceneMode.Additive);
         CurrentScene=state.scene;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentScene));
-        player.Place(new Vector3(state.x,state.y,state.z),state.yaw);
+        var savedPosition=new Vector3(state.x,state.y,state.z);
+        if(!SafePosition(savedPosition)) {
+            Debug.LogWarning("Recovered invalid saved position: "+savedPosition);
+            savedPosition=SafeSpawn();
+        }
+        player.Place(savedPosition,float.IsNaN(state.yaw)||float.IsInfinity(state.yaw)?0:state.yaw);
         player.Aim(previewWindow?FindFirstObjectByType<BuildingInstance>().layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f:CurrentScene=="Town"?new Vector3(0,3.1f,9):new Vector3(0,1.4f,1.5f));
         if(previewStreet){var layout=FindFirstObjectByType<BuildingInstance>().layout;player.Aim(layout.ToTown(layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f));}
         if(previewMilkboy)player.Aim(GameObject.Find("Milkboy").transform.position+Vector3.up*.94f);
@@ -102,7 +113,12 @@ public class DemoApp : MonoBehaviour {
         if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--review-watch")>=0)StartCoroutine(ReviewWatch());
+            if(Array.IndexOf(args,"--review-dialogue")>=0)StartCoroutine(ReviewDialogue());
+            else if(Array.IndexOf(args,"--verify-dialogue-save")>=0)StartCoroutine(VerifyDialogueSave());
+            else if(Array.IndexOf(args,"--review-milkshop-windows")>=0)StartCoroutine(ReviewMilkShopWindows());
+            else if(Array.IndexOf(args,"--review-milkshop")>=0)StartCoroutine(ReviewMilkShop());
+            else if(Array.IndexOf(args,"--review-position")>=0)StartCoroutine(ReviewPosition());
+            else if(Array.IndexOf(args,"--review-watch")>=0)StartCoroutine(ReviewWatch());
             else if(Array.IndexOf(args,"--review-milkboy")>=0)StartCoroutine(ReviewMilkboy());
             else if(reviewLighting)StartCoroutine(ReviewLighting(args));
             else if(Array.IndexOf(args,"--verify-save")>=0) StartCoroutine(VerifySaved());
@@ -112,6 +128,7 @@ public class DemoApp : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.F12)) StartCoroutine(Capture("manual-"+DateTime.Now.ToString("HHmmss")));
         if (transitioning) return;
+        if(DialogueOpen) { UpdateDialogueInput(); focus=null; return; }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if(inspected) CloseInspect();
             else if(journal) journal=false;
@@ -137,6 +154,7 @@ public class DemoApp : MonoBehaviour {
         return false;
     }
     public void Inspect(Interactable item) {
+        if(item.evidenceId=="E04") { OpenMilkboyDialogue(); return; }
         inspected=item; CursorMode();
         if(!string.IsNullOrEmpty(item.evidenceId) && !state.entries.Exists(e=>e.id==item.evidenceId)) {
             state.entries.Add(new NotebookEntry{id=item.evidenceId,title=item.title,body=item.body,source=item.source});
@@ -145,6 +163,7 @@ public class DemoApp : MonoBehaviour {
         }
     }
     void CloseInspect() {
+        if(DialogueOpen) { CloseDialogue(); return; }
         if(inspected && inspected.evidenceId=="E07" && !state.remarkSeen && !Silent) {
             state.remarkSeen=true; remark="同行者  /  老街的事，店里总会留些纸。"; remarkUntil=Time.time+5;
         }
@@ -180,12 +199,31 @@ public class DemoApp : MonoBehaviour {
     public void Save() {
         if(!player||!sceneReady) return;
         state.scene=CurrentScene;
-        var p=player.transform.position; state.x=p.x;state.y=p.y;state.z=p.z;state.yaw=player.transform.eulerAngles.y;
+        var p=player.transform.position;
+        if(!SafePosition(p))p=SafeSpawn();
+        state.x=p.x;state.y=p.y;state.z=p.z;state.yaw=player.transform.eulerAngles.y;
         string temporary=savePath+".tmp";
         File.WriteAllText(temporary,JsonUtility.ToJson(state,true));
         File.Copy(temporary,savePath,true); File.Delete(temporary);
     }
     void OnApplicationQuit() { Save(); }
+    Vector3 SafeSpawn() {
+        if(CurrentScene=="ClockShop")return FindFirstObjectByType<BuildingInstance>().layout.interiorSpawn;
+        return new Vector3(0,.05f,-12);
+    }
+    bool SafePosition(Vector3 p) {
+        if(float.IsNaN(p.x)||float.IsNaN(p.y)||float.IsNaN(p.z)||float.IsInfinity(p.x)||float.IsInfinity(p.y)||float.IsInfinity(p.z))return false;
+        if(p.y < -1 || p.y > 4)return false;
+        if(CurrentScene=="Town")return p.x > -16.7f && p.x < 16.7f && p.z > -22.7f && p.z < 31.7f;
+        var layout=FindFirstObjectByType<BuildingInstance>().layout;
+        return Mathf.Abs(p.x)<layout.footprint.x/2 && Mathf.Abs(p.z)<layout.footprint.y/2;
+    }
+    void LateUpdate() {
+        if(!sceneReady||transitioning||!player||SafePosition(player.transform.position))return;
+        Debug.LogWarning("Recovered out-of-bounds player: "+player.transform.position);
+        player.Place(SafeSpawn(),0);
+        Save();
+    }
     void OnDestroy() { Application.wantsToQuit-=WantsToQuit; }
     bool WantsToQuit() {
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
@@ -254,11 +292,12 @@ public class DemoApp : MonoBehaviour {
                 GUI.color=new Color(1,0.95f,0.85f,0.8f);GUI.DrawTexture(new Rect(W/2-3,H/2-3,6,6),circle);GUI.color=Color.white;
                 if(focus) {
                     Rect p=new Rect(W/2-170,H/2+38,340,43);Box(p,new Color(0.04f,0.08f,0.11f,0.87f));
-                    Label(p,"E   "+(focus is ScenePortal?focus.title:"查看 · "+focus.title),button);
+                    Label(p,"E   "+(focus is ScenePortal?focus.title:focus.evidenceId=="E04"?"交谈 · "+focus.title:"查看 · "+focus.title),button);
                 }
                 Label(new Rect(36,H-50,W-72,30),"WASD 行走    鼠标 观察    Shift 快走    E 互动    Q 怀表    Tab 调查簿    Esc 暂停",small);
             }
-            if(watch&&!inspected&&!journal&&!paused) DrawWatch();
+            if(watch&&!inspected&&!journal&&!paused&&!DialogueOpen) DrawWatch();
+            if(DialogueOpen) DrawDialogue();
             if(inspected) DrawInspection(inspected.title,inspected.body,inspected.source,inspected.illustration);
             if(journal) DrawJournal();
             if(paused) {
@@ -267,7 +306,7 @@ public class DemoApp : MonoBehaviour {
                 if(Button(new Rect(W/2-180,H/2-50,360,55),"继续漫步")){paused=false;CursorMode();}
                 if(Button(new Rect(W/2-180,H/2+30,360,55),"保存并退出"))RequestQuit();
             }
-            if(!Silent&&Time.time<remarkUntil&&!inspected&&!journal) {
+            if(!Silent&&Time.time<remarkUntil&&!inspected&&!journal&&!DialogueOpen) {
                 Rect r=new Rect(36,H-135,580,57);Box(r,new Color(0.05f,0.10f,0.13f,0.9f));Label(new Rect(r.x+16,r.y+14,r.width-32,40),remark,small);
             }
         }
@@ -335,6 +374,29 @@ public class DemoApp : MonoBehaviour {
         player.scriptedDirection=Vector3.zero;
         if(Time.time>=until) throw new Exception("Review movement blocked before "+target+" at "+player.transform.position+" blocked="+Blocked+" direction="+player.scriptedDirection);
     }
+    IEnumerator ReviewPosition() {
+        yield return new WaitForSeconds(.5f);
+        if(!SafePosition(player.transform.position))throw new Exception("Invalid save was not recovered");
+        int entries=state.entries.Count;
+        player.Place(new Vector3(-10.69f,-7210.03f,37.44f),0);
+        Save();
+        var saved=JsonUtility.FromJson<SliceSave>(File.ReadAllText(savePath));
+        if(!SafePosition(new Vector3(saved.x,saved.y,saved.z))||saved.entries.Count!=entries)throw new Exception("Unsafe save or lost evidence");
+        yield return null;yield return null;
+        if(!SafePosition(player.transform.position))throw new Exception("Fall recovery failed");
+        player.Place(new Vector3(8.5f,.1f,30),0);
+        scriptedNorthStart=player.transform.position.z;
+        player.scriptedDirection=Vector3.forward;
+        yield return new WaitForSeconds(2);
+        player.scriptedDirection=Vector3.zero;
+        if(player.transform.position.z<scriptedNorthStart+.3f||player.transform.position.z>31.7f)throw new Exception("North boundary did not stop walking");
+        yield return Capture("north-boundary");
+        player.Place(SafeSpawn(),0);Save();
+        yield return Capture("safe-spawn");
+        Debug.Log("POSITION_REVIEW_PASS: invalid save, runtime fall, safe save, evidence retention and north collision");
+        Application.Quit();
+    }
+    float scriptedNorthStart;
     IEnumerator ReviewWatch() {
         yield return new WaitForSeconds(1);
         if(!dialTexture)throw new Exception("Pocket-watch face texture is missing.");
@@ -368,6 +430,44 @@ public class DemoApp : MonoBehaviour {
         public bool timeAdvanced,sharedClockHandsAligned,toggleClosed;
         public string verification;
     }
+    IEnumerator ReviewMilkShop() {
+        yield return new WaitForSeconds(1);
+        var shop=GameObject.Find("MilkShop");var boy=GameObject.Find("Milkboy");
+        if(!shop||!boy)throw new Exception("Milk shop or milkboy missing");
+        var placement=shop.GetComponent<MilkShopPlacement>();
+        if(!placement||placement.minimumBuildingGap<.55f)throw new Exception("Milk shop spacing validation is missing");
+        // Start in the square, reach the unchanged witness and use the actual interaction ray.
+        yield return WalkTo(new Vector3(3.8f,.1f,-4.1f));
+        player.Aim(boy.transform.position+Vector3.up*.94f);
+        yield return Capture("milkshop-behind-boy");
+        if(!TryInteract()||!DialogueOpen)throw new Exception("Milkboy dialogue interaction was obstructed by the milk shop");
+        yield return Capture("milkboy-dialogue");CloseInspect();
+        // Take the southern approach to avoid the boy and cart, then walk through the real doorway.
+        yield return WalkTo(new Vector3(4.9f,.1f,-8.0f));
+        yield return WalkTo(placement.outside);
+        player.Aim(placement.inside+Vector3.up*1.0f);yield return Capture("milkshop-doorway");
+        yield return WalkTo(placement.inside);
+        player.Aim(shop.transform.TransformPoint(new Vector3(0,1.35f,1.05f)));yield return Capture("milkshop-inside");
+        yield return WalkTo(placement.outside);
+        // Walk the alley between the unchanged clock shop and the new milk shop.
+        yield return WalkTo(new Vector3(7.3f,.1f,-5.0f));
+        yield return WalkTo(placement.northPassageStart);
+        yield return WalkTo(placement.northPassageEnd);
+        player.Aim(new Vector3(11.5f,1.6f,-3.7f));yield return Capture("milkshop-building-gap");
+        // Player-height street view plus controlled overview, using the actual town lighting.
+        yield return WalkTo(placement.northPassageStart);
+        yield return WalkTo(new Vector3(7.3f,.1f,-5.0f));
+        yield return WalkTo(new Vector3(7.3f,.1f,-8.0f));
+        yield return WalkTo(new Vector3(4.8f,.1f,-8.8f));
+        player.Aim(shop.transform.position+Vector3.up*2.8f);yield return Capture("milkshop-street-view");
+        player.enabled=false;reviewPortrait=true;
+        var eye=player.eye;eye.transform.position=new Vector3(1.0f,8.8f,-13.3f);eye.transform.LookAt(new Vector3(10,2.4f,-4.5f));eye.fieldOfView=62;
+        yield return Capture("milkshop-overview");
+        reviewPortrait=false;player.enabled=true;
+        File.WriteAllText(Path.Combine(captures,"milkshop-results.json"),"{\"passed\":true,\"E04Raycast\":true,\"doorwayRoundTrip\":true,\"northAlleyWalk\":true,\"scale\":0.9,\"minimumBuildingGap\":"+placement.minimumBuildingGap.ToString("F3",System.Globalization.CultureInfo.InvariantCulture)+",\"verification\":\"actual controller and interaction ray; overview uses controlled camera; existing slice, not full fourth-map migration\"}");
+        Debug.Log("MILKSHOP_REVIEW_PASS: E04, doorway round trip, alley walking and rendered placement");
+        Application.Quit();
+    }
     IEnumerator ReviewMilkboy() {
         yield return new WaitForSeconds(1);
         var boy=GameObject.Find("Milkboy");
@@ -377,7 +477,7 @@ public class DemoApp : MonoBehaviour {
         yield return WalkTo(new Vector3(3.8f,0,-4.1f));
         player.Aim(origin+Vector3.up*.94f);
         yield return new WaitForSeconds(.3f);yield return Capture("unity-player-view");
-        if(!TryInteract()||!inspected||inspected.evidenceId!="E04")throw new Exception("Milkboy interaction ray failed.");
+        if(!TryInteract()||!DialogueOpen)throw new Exception("Milkboy interaction ray failed.");
         yield return Capture("unity-dialogue");CloseInspect();
         // Controlled detail viewpoints; lighting and materials stay as in the playable town.
         player.enabled=false;reviewPortrait=true;

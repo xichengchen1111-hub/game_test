@@ -1,0 +1,7 @@
+Mode: built-in image_gen, transparent_background=true
+Reference: source/reference-1931.png
+
+Extract and recreate ONLY the large wooden Holstein cow-shaped rooftop sign from the reference image as a clean standalone game texture asset. The house, sky, sign poles and everything else must be completely removed. Match this exact cow design: full side-on body facing right, face turns toward viewer, black and cream cow patches, small horns, pink nose, pink udder, four legs, tail on left. Flatten its slight perspective to a straight orthographic frontal view of the wooden cutout sign. Fill the frame with the complete cow silhouette, no cropped horns or tail or feet, tiny padding. Hand-painted 1931 rustic sign on horizontal timber planks with believable wood grain and subtle paint wear. Keep illustration attractive and recognizable. Even diffuse neutral lighting with NO cast shadows, NO ground, NO perspective thickness, NO supporting beams. Need genuinely transparent alpha background, not a white/black/checkerboard backdrop. No text. This will be used as the face texture of an extruded three-dimensional wooden sign mesh.
+
+Saved final texture: textures/cow-sign.png
+Alpha channel verified; used to trace an extruded mesh outline.

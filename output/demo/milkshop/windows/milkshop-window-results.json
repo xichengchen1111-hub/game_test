@@ -1,0 +1,1 @@
+{"passed":true,"transparentSharedMaterial":true,"bothWindowCollisions":true,"bothInteriorViews":true,"doorwayRoundTrip":true,"actualController":true,"verification":"Visible Mac player; actual controller walks to each window and presses against existing side-wall collision; exterior closeups use controlled camera, same geometry and town lighting."}

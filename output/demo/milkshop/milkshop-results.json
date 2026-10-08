@@ -1,0 +1,1 @@
+{"passed":true,"E04Raycast":true,"doorwayRoundTrip":true,"northAlleyWalk":true,"scale":0.9,"minimumBuildingGap":0.784,"verification":"actual controller and interaction ray; overview uses controlled camera; existing slice, not full fourth-map migration"}
