@@ -355,7 +355,7 @@ public static class BuildSlice {
             }
         }
         var desk=Model("Desk",new Vector3(0,0,1.35f));Collider(desk,new Vector3(0,.44f,0),new Vector3(1.85f,.88f,.85f));
-        var npc=Model("Clockmaker",new Vector3(.65f,0,2.65f),180);Collider(npc,new Vector3(0,.85f,0),new Vector3(.64f,1.7f,.55f));npc.AddComponent<AmbientMotion>();
+        var npc=WatchmakerAsset.Create(new Vector3(.65f,0,2.65f));
         var talk=npc.AddComponent<Interactable>();talk.title="钟表匠";talk.source="钟表铺，柜台交谈";talk.body="“钟表坏了就放在柜台。老物件，慢慢修。”\n\n“想看什么，你自己看看。”";
         var notice=Box("RepairNotice",new Vector3(.45f,.91f,1.23f),new Vector3(.53f,.018f,.38f),Mat("Paper","#D5C19C"));
         var page=Quad("Notice ink",Vector3.zero,new Vector2(.52f,.37f),ImageMat("NoticePaper","Notice.png",true),notice.transform);

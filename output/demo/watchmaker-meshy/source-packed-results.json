@@ -1,0 +1,32 @@
+{
+  "packedTextures": [
+    {
+      "name": "normal",
+      "path": "//Normal.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packedMatchesOriginal": true
+    },
+    {
+      "name": "texture_0",
+      "path": "//BaseColor.png",
+      "size": [
+        2048,
+        2048
+      ],
+      "packedMatchesOriginal": true
+    },
+    {
+      "name": "texture_0_metallic_roughness",
+      "path": "//MetallicRoughness.png",
+      "size": [
+        4096,
+        4096
+      ],
+      "packedMatchesOriginal": true
+    }
+  ],
+  "sourceReopened": true
+}

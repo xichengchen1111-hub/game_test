@@ -61,6 +61,19 @@ public static class BuildingLayoutChecks {
             var mb=room.transform.worldToLocalMatrix*b.transform.localToWorldMatrix;
             for(int i=0;i<16;i++)Require(Mathf.Abs(ma[i]-mb[i])<.001f,"different physical geometry: "+pair.Key);
         }
+        var townSkins=town.GetComponentsInChildren<SkinnedMeshRenderer>().ToDictionary(r=>Path(r.transform,town.transform));
+        var roomSkins=room.GetComponentsInChildren<SkinnedMeshRenderer>().ToDictionary(r=>Path(r.transform,room.transform));
+        Require(townSkins.Count==roomSkins.Count,"animated character counts differ");
+        foreach(var pair in townSkins) {
+            Require(roomSkins.TryGetValue(pair.Key,out var b),"missing interior character: "+pair.Key);
+            var a=pair.Value;
+            Require(a.sharedMesh==b.sharedMesh&&a.sharedMaterials.SequenceEqual(b.sharedMaterials),"different character mesh/material: "+pair.Key);
+            var ma=town.transform.worldToLocalMatrix*a.transform.localToWorldMatrix;
+            var mb=room.transform.worldToLocalMatrix*b.transform.localToWorldMatrix;
+            for(int i=0;i<16;i++)Require(Mathf.Abs(ma[i]-mb[i])<.001f,"different character transform: "+pair.Key);
+            var aa=a.GetComponentInParent<Animator>();var ab=b.GetComponentInParent<Animator>();
+            Require(aa&&ab&&aa.runtimeAnimatorController==ab.runtimeAnimatorController&&!aa.applyRootMotion&&!ab.applyRootMotion,"different character animation: "+pair.Key);
+        }
     }
     static void CheckPair(BuildingInstance town,BuildingInstance room,BuildingLayout layout,GameObject prefab) {
         CheckInstance(town,layout);CheckInstance(room,layout);

@@ -1,6 +1,6 @@
 # Agent 持久记忆：错日证词
 
-最后核对：2026-10-08。NPC-02 的 Meshy 送奶少年替换已随 `9fc7aec` 推送；本轮提交包含 UI-01 怀表指针修复、ROAD-01 街面升级和 ROAD-02 人行道色差修正，用户于 2026-10-08 要求提交推送，实际上传版本以 Git 历史和远端为准。历史 Windows 验收基线为 `e594c3501aec1532f3ee3a656c1c0cd6c0bc94cc`，用户认可后要求推送；用户随后实测确认 Mac 能运行，详见 PLATFORM-01。本文记录决定、实际问题与修复，供其他机器和后续 agent 接续；不得把历史验收直接当作新改动的验收。
+最后核对：2026-10-08。NPC-02 送奶少年已随 `9fc7aec` 推送，UI-01 怀表、ROAD-01 街面和 ROAD-02 色差修正已随 `66fbd4c` 推送；本轮提交包含 NPC-03 的 Meshy 坐姿钟表匠与木椅，用户于 2026-10-08 要求提交推送，实际上传版本以 Git 历史和远端为准。历史 Windows 验收基线为 `e594c3501aec1532f3ee3a656c1c0cd6c0bc94cc`，用户认可后要求推送；用户随后实测确认 Mac 能运行，详见 PLATFORM-01。本文记录决定、实际问题与修复，供其他机器和后续 agent 接续；不得把历史验收直接当作新改动的验收。
 
 ## 进入项目时必须执行
 
@@ -16,7 +16,7 @@
 | 事项 | 必须遵守 |
 | --- | --- |
 | 游戏空间 | 第一人称、完整可行走的三维空间。小镇是 3D 地图；进屋淡黑转场，室内是独立完整 scene。横版、固定机位和静态图片不能代替游戏空间。 |
-| 画风与成本 | 环境保留简化低模、宽色块、灰蓝/紫灰暗部和暖黄室内光，1931 年道具保持时代一致。送奶少年以用户最新提供的 Meshy 压缩包为准，保留完整脸、手、服装及贴图；此前 Toon Boy 的具体外观与握带静态姿态不再约束新资源，不能退回原始方块人物。 |
+| 画风与成本 | 环境保留简化低模、宽色块、灰蓝/紫灰暗部和暖黄室内光，1931 年道具保持时代一致。送奶少年、钟表铺老板以各自用户提供的 Meshy 包为准，保留完整人物及贴图；老板全程坐着并配木椅。旧人物的具体外观、握带姿态及方块造型不再约束这些新资源。 |
 | 探索顺序 | 玩家自由选择线路。完整 MVP 的三个室内从开局开放；当前切片的钟表铺也从开局开放。不能把企划精简误做成强制单线任务。 |
 | 同行者 | 只偶尔随口提醒，不承担律师、带路、审批、解锁证物或自动解题的职责。完全静默也不影响核心调查。 |
 | 推理 | 证物使用稳定 ID；开发合同 `mvp-evidence.json` 的隐藏事实与推理答案不能直接写到物件 UI。当前钟差不能单独证明案发时钟差，未验票不能单独证明没有离镇，疑点不能自动变成定罪。 |
@@ -50,6 +50,17 @@
 - **用户反馈与原因**：ROAD-01 首轮截图中，设施带沿边界整条变暗。`StreetSurfaces.Build` 曾给设施带另建 `StreetServiceFlags`，BaseColor 约为相邻旗石的 0.8 倍，光滑度也不同；这是材质分区造成的生硬色带，不能解释成自然光影。
 - **修复与防复发**：设施带与步行面共用同一个 `StreetFlags` Material，保持相同世界米数 UV、法线与光滑度。设施带是空间分配，不靠给相邻连续石板整条调暗来表达。自然灯光和单块石材变化保留；以后分段/裁切铺装仍需检查接缝两侧的实际材质与 UV，不能仅看各自颜色配置。
 - **最新证据**：`output/demo/roads/unified-paving/` 为当前画面，父目录 ROAD-01 截图/视频保留为色带修正前记录。Windows/D3D11、1600×900 重新构建并运行 `--review --fresh --review-roads`，通过 `ROAD_REVIEW_PASS` 和 `SLICE_REVIEW_PASS`；查看了路面总览、路缘近景及人行道，色带消除，路缘通行与店门往返正常。生成后的 Town/ClockShop 均不再引用旧深色 Material；前一轮已通过两窗回归，此次没有重新做两窗运动专项。自动输入，不是人手盲测；未重建 Mac。
+
+### NPC-03：钟表铺老板使用 Meshy 坐姿动画并配木椅
+
+- **用户要求与来源**：2026-10-08，指定 `Meshy_AI_The_Watchmaker_s_Focu_biped.zip` 作为表店老板，全程坐着并配椅子。包 SHA256 为 `4ffd02fc63a719095c2c9220f39f82878ea883a7faacf6d4a879706832691e06`；原坐姿 GLB、原始纹理及三动作来源摘要在 `assets/source/watchmaker/meshy/`。无授权文件，不能继承旧 Toon Boy 或其他模型许可。
+- **可重建管线**：Blender 5.2.0 LTS，`tools/import_meshy_watchmaker.py --archive 包路径 --root 仓库` 保留一套 16,276 顶点、37 骨骼、三张纹理和坐/走/跑三动作；`Watchmaker.blend` 纹理打包且相对路径可移植。坐姿源为 30fps 下 0–286.25 帧，检查 296 个时间样本，另对 10 个含精确首尾的时间点量测实际支持面。`source-packed-results.json` 确认重新打开后每张打包纹理与原 PNG 字节相同；URP RGB=原 B 金属度、A=1−原 G 粗糙度，逐像素误差为 0。原始粗糙度图为 4096px，Unity 导入上限 2048，不删除原始源图。
+- **接入与坐姿**：`WatchmakerAsset.Create` 取代 `BuildSlice.ClockShopPrefab` 中旧 `Model("Clockmaker")`；保留已有交谈和 E07。休止成人高度归一化为 1.72m；只播放 `WatchmakerSeated.controller` 的单一 `Seated` 状态，引用 `Sit_Cross_Legged`，Unity 长约 9.533 秒，循环、关闭根运动、无状态跳转，生成 Prefab 前采样坐姿，禁止站姿闪现和 `AmbientMotion` 漂浮。走跑保留为资源，不进入本切片行为。点位仍为旧视觉切片室内 `(0.65,0,2.65)`，这不是第四版全镇迁移。
+- **椅子与贴合**：`tools/build_watchmaker_chair.py` 生成可编辑 `assets/source/watchmaker/chair/WatchmakerChair.blend` 和 Unity FBX；简化木架、软坐垫、四腿及横撑，20 部件、480 顶点。椅面高 0.40m，髋骨比支持面高约 0.284m。10 个源网格样本变换后支持面高约 0.399–0.403m，低侧鞋底高约 0.019–0.020m；实际侧/背画面已查看。这是所选源坐姿的采样贴合，不是通用衣料碰撞系统；改动作、比例后重新量，不能把骨骼高度当成鞋底或臀部表面。
+- **朝向故障与防复发**：静态椅子 FBX 和动画角色导入轴不同，最初靠背挡在前面；随后直接 `FromToRotation` 处理完全相反方向，产生绕 X 轴翻转，导致椅面变为负高度。最终根据实际 `Back top rail` 与 `ChairSeat` 的位置求水平朝向，使用 `SignedAngle(..., Vector3.up)` 加 `AngleAxis(..., Vector3.up)`，只绕 Y 旋转。构建和运行都要求椅面高度正确、靠背在老板身后；不能恢复猜 yaw 或无旋转轴约束的 180° 对齐。失败截图与日志仅留在忽略的 `builds/review/watchmaker/`，交付证据均来自修正后的运行。
+- **室内外统一**：老板和椅子都属于共用 `ClockShop.prefab`，Town 与独立 ClockShop 同步生成。`BuildingLayoutChecks.CompareGeometry` 在原静态网格核对之外，新增 SkinnedMeshRenderer 的网格、材质、变换、控制器与根运动核对；保留移动/缺失/多余窗户的拒绝检查。不能只恢复旧 Prefab 而留下引用新 fileID 的场景。
+- **实际验收**：Unity 6000.3.18f1、Windows/D3D11、1600×900。构建通过 `WATCHMAKER_IMPORT_PASS`、`BUILDING_LAYOUT_PASS`、`SLICE_BUILD_PASS`；可见玩家以 `--review --fresh --review-window --review-watchmaker --record-watchmaker` 运行，通过 `WATCHMAKER_REVIEW_PASS`、`STREET_REVIEW_PASS`、`WINDOW_REVIEW_PASS`、`SLICE_REVIEW_PASS`。真实控制器进店、柜台前射线交谈、整个坐姿循环采样 593 帧（约 1.037 圈），角色根移动 0，髋骨上下范围约 3.9mm，头骨运动约 1.09°。检查两窗横移/碰撞、E07、调查簿和正确门口返回。证据在 `output/demo/watchmaker-meshy/`，`seated-loop.mp4` 由 99 张原生截图按 10fps 编码，编码率不是实测游戏 FPS。
+- **交付与限制**：当前 Windows 玩家为 `builds/windows/TownDemo.exe`；`--watchmaker-preview` 直接面对老板，使用独立 `watchmaker-preview-save.json`，不改正常进度。画面是原生实机；交互为自动控制，特写为受控机位，不是手动或陌生玩家盲测。未在 Mac 重建本次资源，保留用户此前 Mac 能运行的确认；未重跑完整 MVP 六顺序或磁盘重启专项。Antigravity 在 scratch 提供导入初稿和源分析，CLI 15 分钟打印超时仅返回部分回复；主 agent 复核并修正分数帧采样，完成最终导入、椅子、接入和实机验收。用户于 2026-10-08 授权提交推送此轮，上传状态以远端 Git 记录为准。
 
 ### NPC-02：Meshy 送奶少年替换
 

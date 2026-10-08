@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-08",
+  "unity": "6000.3.18f1",
+  "blender": "5.2.0 LTS",
+  "platform": "Windows/D3D11",
+  "resolution": [
+    1600,
+    900
+  ],
+  "buildMarkers": [
+    "WATCHMAKER_IMPORT_PASS",
+    "BUILDING_LAYOUT_PASS",
+    "SLICE_BUILD_PASS"
+  ],
+  "runtimeMarkers": [
+    "WATCHMAKER_REVIEW_PASS",
+    "STREET_REVIEW_PASS",
+    "WINDOW_REVIEW_PASS",
+    "SLICE_REVIEW_PASS"
+  ],
+  "command": "--review --fresh --review-window --review-watchmaker --record-watchmaker -screen-fullscreen 0 -screen-width 1600 -screen-height 900",
+  "character": {
+    "source": "Meshy_AI_The_Watchmaker_s_Focu_biped.zip",
+    "archiveSha256": "4ffd02fc63a719095c2c9220f39f82878ea883a7faacf6d4a879706832691e06",
+    "vertices": 16276,
+    "bones": 37,
+    "retainedAnimations": [
+      "Sit_Cross_Legged",
+      "Running",
+      "Walking"
+    ],
+    "activeClip": "Sit_Cross_Legged",
+    "controllerStates": [
+      "Seated"
+    ],
+    "transitions": 0,
+    "rootMotion": false,
+    "wholeBodyBobbing": false,
+    "restHeightMetres": 1.72,
+    "unityClipSeconds": 9.533334
+  },
+  "chair": {
+    "editableSource": "assets/source/watchmaker/chair/WatchmakerChair.blend",
+    "seatTopMetres": 0.4,
+    "vertices": 480,
+    "parts": 20,
+    "backBehindOwnerVerified": true,
+    "derivedSourceSupportHeightRangeMetres": [
+      0.39898604620047695,
+      0.4031624094920898
+    ],
+    "derivedSourceLowSoleHeightRangeMetres": [
+      0.019121221135220356,
+      0.019853002868316066
+    ],
+    "measurementScope": "10 source-mesh samples including exact source start/end; transformed from measured pose to fitted Unity placement. Runtime bone checks and native side/back views supplement this, not exhaustive cloth collision."
+  },
+  "materials": {
+    "packedMetallicRgbMaxPixelError": 0,
+    "packedSmoothnessAlphaMaxPixelError": 0,
+    "packedSourceMapsReopenedAndByteMatched": true
+  },
+  "runtime": {
+    "passed": true,
+    "realMotorAndDialogueRay": true,
+    "loopingSeatedAnimation": true,
+    "rootStationary": true,
+    "chairSeatTop": 0.40000003576278687,
+    "minFootBoneHeight": 0.15214934945106506,
+    "maxRootMotion": 0.0,
+    "headMotionDegrees": 1.0864131450653076,
+    "observedLoops": 1.0368977785110474,
+    "hipMotion": {
+      "x": 0.0012853145599365234,
+      "y": 0.003900766372680664,
+      "z": 0.004197120666503906
+    },
+    "samples": 593,
+    "animationFrames": 99,
+    "verification": "Native Windows player, automatic controller/raycast interaction; full supplied sitting cycle sampled. Portraits use controlled cameras with unchanged shop lighting. Bone heights supplement visual seat/sole inspection."
+  },
+  "buildingGeometry": "Both scenes instantiate the same prefab; mesh/material/transforms and animated renderer/controller are compared; moved/missing/extra windows rejected.",
+  "visualReviewByAgent": [
+    "Full seated model, face, side and chair back inspected in native frames",
+    "Backrest behind owner, seat supporting the apron/pelvis, shoes above floor",
+    "No image editing or substitute concept art"
+  ],
+  "video": {
+    "file": "seated-loop.mp4",
+    "nativeSampledFrames": 99,
+    "encodedFps": 10,
+    "note": "Sampled native animation at controlled camera; encoded rate is not measured gameplay FPS."
+  },
+  "scope": "Owner appearance, sitting loop and matching chair; existing dialogue, E07, door return, two windows and street regressions passed. Legacy visual slice, no full-town map migration.",
+  "limitations": [
+    "Automatic player movement and interaction, not manual keyboard or blind playtest",
+    "Portraits use controlled cameras with unchanged shop lighting",
+    "Mac not rebuilt in this task; previous user confirmation that Mac works remains valid",
+    "No full-MVP six-order or disk-relaunch retest"
+  ],
+  "draftAssistance": "Antigravity prepared import draft and source analysis in scratch; CLI print timeout returned partial response. Parent audited and corrected fractional sampling, generated final assets, built, visually reviewed and verified the native game.",
+  "nativeFrames": [
+    {
+      "file": "unity-chair-back.png",
+      "size": [
+        1600,
+        900
+      ],
+      "sha256": "b1f44c017b86cf13a5aff7c12629b8e43d59d4f9614c86b26b1d84c630413176"
+    },
+    {
+      "file": "unity-chair-side.png",
+      "size": [
+        1600,
+        900
+      ],
+      "sha256": "7bb8e75b81a395fcfba8b3304d5bbb5d72f9bf8087b25f8dacc2aeb87d4e1888"
+    },
+    {
+      "file": "unity-dialogue.png",
+      "size": [
+        1600,
+        900
+      ],
+      "sha256": "e832db1f35f2f5af90f8594145249146a9ba1a627a6c66ebe01c60da089056c8"
+    },
+    {
+      "file": "unity-face.png",
+      "size": [
+        1600,
+        900
+      ],
+      "sha256": "8839f24a0b60baaabb8322db1b59037c997cc27907c4785c571b83c287df8f0a"
+    },
+    {
+      "file": "unity-player-view.png",
+      "size": [
+        1600,
+        900
+      ],
+      "sha256": "0fb38ca362ad9985cc978b966d6fec7b28da1c3f3a49bb5636ba63123bc0d8a2"
+    },
+    {
+      "file": "unity-seated-full.png",
+      "size": [
+        1600,
+        900
+      ],
+      "sha256": "447c79250cc5c74cb1e68aa2b484bce39c8a93fd4c873ede9df5afb835cf2956"
+    },
+    {
+      "file": "unity-seated-later.png",
+      "size": [
+        1600,
+        900
+      ],
+      "sha256": "db6fc99127434bd1ab8e1764439250b23a1357def72b6a1b3f7b96fe8e78ebc9"
+    }
+  ]
+}

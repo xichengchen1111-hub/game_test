@@ -1,0 +1,19 @@
+{
+    "passed": true,
+    "realMotorAndDialogueRay": true,
+    "loopingSeatedAnimation": true,
+    "rootStationary": true,
+    "chairSeatTop": 0.40000003576278689,
+    "minFootBoneHeight": 0.15214934945106507,
+    "maxRootMotion": 0.0,
+    "headMotionDegrees": 1.0864131450653077,
+    "observedLoops": 1.0368977785110474,
+    "hipMotion": {
+        "x": 0.0012853145599365235,
+        "y": 0.003900766372680664,
+        "z": 0.004197120666503906
+    },
+    "samples": 593,
+    "animationFrames": 99,
+    "verification": "Native Windows player, automatic controller/raycast interaction; full supplied sitting cycle sampled. Portraits use controlled cameras with unchanged shop lighting. Bone heights supplement visual seat/sole inspection."
+}

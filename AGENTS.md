@@ -39,6 +39,13 @@
 - 基础模型为 silentsheri 的 `Toon Boy`，按 CC BY 4.0 使用。保留 `assets/source/milkboy/LICENSE.txt` 和 `game/Assets/StreamingAssets/ThirdPartyNotices.txt` 中的署名、来源及修改说明。
 - 视觉核对资料：`output/demo/milkboy/model-*.png` 是 Blender 预览，`unity-*.png` 是实际游戏画面；特写使用受控机位，不能称为玩家盲测。新增修改要重新核对对应画面，不把旧截图当作新版本通过的证据。
 
+## 钟表铺老板坐姿约定（2026-10-08）
+
+- 用户指定 `Meshy_AI_The_Watchmaker_s_Focu_biped.zip` 替换店内老板，全程坐着。保留包中的人物、服装、面部、贴图和骨骼；控制器只循环 `Sit_Cross_Legged`，不切换走跑，不用 `AmbientMotion` 整体漂浮冒充动画。三段原动作保存在可编辑源与 FBX 中。
+- 生成源为 `tools/import_meshy_watchmaker.py` 与 `tools/build_watchmaker_chair.py`；源资产位于 `assets/source/watchmaker/`，Unity 接入为 `WatchmakerAsset.Create`。椅子和老板一起放进共用 `ClockShop.prefab`，保持街上透窗陈设与独立室内一致。不要分别修改两张场景。
+- 椅子为简化木架软坐垫款，按实际坐姿承重点对齐；当前成人休止高度 1.72m，椅面 0.40m，髋骨到支撑面的距离约 0.284m。改比例或动作后必须重新量承重点、鞋底、椅背、柜台间距和碰撞，不直接沿用数值。
+- 保留老板的既有交谈与 E07 通知，替换造型不改变调查进程。验收要看实际坐姿循环、侧面/背面落座、真实交谈射线、E07 和门口往返；来源与实际结果见记忆 NPC-03。压缩包无授权文件，不能套用旧人物许可。
+
 ## 当前地图坐标与改图必验（2026-10-08）
 
 - 后续所有场景、建筑、道路、人行道、院落、门窗、树木、角色点位和剧情动线制作，统一依据 [`docs/maps/town-current/plan-data.json`](docs/maps/town-current/plan-data.json)。先读该目录 README 与 `actor-audit.json`。钟楼中心为 (0,0)，单位米，东 +X、北 +Z；建筑轮廓、宅地与门口是不同数据，不能互相代替。当前第四版取代先前各版（包括其他目录同名“第三版”）、旧截图和Unity旧点位，后者只作历史参考。用户最新修改优先，需同步更新基准。

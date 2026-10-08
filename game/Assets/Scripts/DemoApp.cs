@@ -44,7 +44,7 @@ public class DemoApp : MonoBehaviour {
     float W,H;
     float watchRenderedMinutes;
     int selectedEntry;
-    bool recordWalk,recordingWalk,reviewWindow,recordingWindow,previewWindow,previewStreet,previewMilkboy,reviewLighting,recordingLighting,lightingRight;
+    bool recordWalk,recordingWalk,reviewWindow,recordingWindow,previewWindow,previewStreet,previewMilkboy,previewWatchmaker,reviewLighting,recordingLighting,lightingRight;
     int motionFrames;
     int windowFrames;
     int exteriorWindowCount;
@@ -62,12 +62,13 @@ public class DemoApp : MonoBehaviour {
         previewWindow=!Review&&Array.IndexOf(args,"--window-preview")>=0;
         previewStreet=!Review&&!previewWindow&&Array.IndexOf(args,"--street-preview")>=0;
         previewMilkboy=!Review&&!previewWindow&&!previewStreet&&Array.IndexOf(args,"--milkboy-preview")>=0;
+        previewWatchmaker=!Review&&!previewWindow&&!previewStreet&&!previewMilkboy&&Array.IndexOf(args,"--watchmaker-preview")>=0;
         recordWalk=Array.IndexOf(args,"--record")>=0;
         reviewWindow=Array.IndexOf(args,"--review-window")>=0;
         reviewLighting=Review&&Array.IndexOf(args,"--review-lighting")>=0;
         lightingRight=reviewLighting&&Array.IndexOf(args,"--lighting-window-right")>=0;
         Silent=Review || Array.IndexOf(args,"--silent")>=0;
-        savePath=Path.Combine(Application.persistentDataPath,Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":"slice-save.json");
+        savePath=Path.Combine(Application.persistentDataPath,Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
         int c=Array.IndexOf(args,"--capture-dir");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -80,6 +81,7 @@ public class DemoApp : MonoBehaviour {
         if(previewWindow){state.scene="ClockShop";state.x=0;state.y=.03f;state.z=-.6f;opening=false;}
         if(previewStreet){state.scene="Town";state.x=0;state.y=.03f;state.z=1;opening=false;}
         if(previewMilkboy){state.scene="Town";state.x=3.8f;state.y=.03f;state.z=-4.1f;opening=false;}
+        if(previewWatchmaker){state.scene="ClockShop";state.x=.2f;state.y=.03f;state.z=-.1f;opening=false;}
         if(reviewLighting){state.scene="ClockShop";state.x=lightingRight?.4f:-.4f;state.y=.03f;state.z=-.8f;}
         Cursor.lockState=CursorLockMode.None; Cursor.visible=true;
         StartCoroutine(InitialScene(args));
@@ -92,11 +94,12 @@ public class DemoApp : MonoBehaviour {
         player.Aim(previewWindow?FindFirstObjectByType<BuildingInstance>().layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f:CurrentScene=="Town"?new Vector3(0,3.1f,9):new Vector3(0,1.4f,1.5f));
         if(previewStreet){var layout=FindFirstObjectByType<BuildingInstance>().layout;player.Aim(layout.ToTown(layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f));}
         if(previewMilkboy)player.Aim(GameObject.Find("Milkboy").transform.position+Vector3.up*.94f);
+        if(previewWatchmaker)player.Aim(GameObject.Find("Clockmaker").transform.position+Vector3.up*1.1f);
         sceneReady=true;
         location=CurrentScene=="Town"?"青川 · 小镇广场":"青川 · 钟表铺";
         locationAge=Time.time;
         yield return FadeTo(0,0.9f);
-        if(previewWindow||previewStreet||previewMilkboy)CursorMode();
+        if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
             opening=false;
             if(Array.IndexOf(args,"--review-watch")>=0)StartCoroutine(ReviewWatch());
@@ -410,6 +413,87 @@ public class DemoApp : MonoBehaviour {
         Debug.Log("MILKBOY_REVIEW_PASS: real movement, E04 raycast, looping animated idle, full/face/hands/side frames");
         Application.Quit();
     }
+    IEnumerator ReviewWatchmaker() {
+        yield return WalkTo(new Vector3(.2f,0,-.1f));
+        var owner=GameObject.Find("Clockmaker");
+        if(!owner||owner.GetComponent<AmbientMotion>())throw new Exception("Seated watchmaker is missing or has whole-body bobbing.");
+        var origin=owner.transform.position;
+        var animator=owner.GetComponentInChildren<Animator>();
+        var bones=owner.GetComponentsInChildren<Transform>();
+        Transform Bone(string name)=>Array.Find(bones,t=>t.name.Replace(':','_')==name);
+        var hips=Bone("mixamorig_Hips");var head=Bone("mixamorig_Head");
+        var leftFoot=Bone("mixamorig_LeftFoot");var rightFoot=Bone("mixamorig_RightFoot");
+        if(!animator||!hips||!head||!leftFoot||!rightFoot||animator.applyRootMotion||!animator.GetCurrentAnimatorStateInfo(0).loop)
+            throw new Exception("Watchmaker requires a real looping seated skeleton with no root motion.");
+        var playing=animator.GetCurrentAnimatorClipInfo(0);
+        if(playing.Length!=1||!playing[0].clip.name.Contains("Sit_Cross_Legged"))throw new Exception("Watchmaker is playing a non-seated clip.");
+        var chair=owner.transform.Find("Watchmaker chair");
+        if(!chair||!chair.GetComponent<Collider>())throw new Exception("Watchmaker chair has no physical support/collision.");
+        var seat=Array.Find(chair.GetComponentsInChildren<Transform>(),t=>t.name=="ChairSeat");
+        if(!seat)throw new Exception("Chair seat mesh is missing.");
+        float seatTop=seat.GetComponent<Renderer>().bounds.max.y;
+        if(Mathf.Abs(seatTop-.40f)>.015f)throw new Exception("Chair import height is incorrect: "+seatTop);
+        var back=Array.Find(chair.GetComponentsInChildren<Transform>(),t=>t.name=="Back top rail");
+        if(!back||Vector3.Dot(back.position-seat.position,owner.transform.forward)<.2f)
+            throw new Exception("Chair backrest must be behind the seated owner.");
+        player.Aim(head.position+Vector3.up*.12f);
+        yield return new WaitForSeconds(.3f);yield return Capture("unity-player-view");
+        if(!TryInteract()||inspected!=owner.GetComponent<Interactable>())throw new Exception("Watchmaker cannot be spoken to over the counter.");
+        yield return Capture("unity-dialogue");CloseInspect();
+        player.enabled=false;reviewPortrait=true;
+        var eye=player.eye;float originalFov=eye.fieldOfView;
+        void Frame(Vector3 position,Vector3 target,float fov) {
+            eye.transform.position=position;eye.transform.LookAt(target);eye.fieldOfView=fov;
+        }
+        Frame(origin+new Vector3(1.25f,1.03f,-1.55f),origin+Vector3.up*.70f,50);
+        yield return new WaitForSeconds(.3f);yield return Capture("unity-seated-full");
+        var minHip=hips.position;var maxHip=hips.position;
+        var firstHead=head.localRotation;float maxHeadMotion=0,minFoot=float.PositiveInfinity,maxRootMotion=0;
+        float start=Time.time,startNormalized=animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        float duration=playing[0].clip.length+.35f;int samples=0,animationFrames=0;
+        bool record=Array.IndexOf(Environment.GetCommandLineArgs(),"--record-watchmaker")>=0;
+        string motionFolder=Path.Combine(captures,"seated-motion");
+        if(record)Directory.CreateDirectory(motionFolder);
+        float captureAt=Time.time;
+        while(Time.time-start<duration) {
+            minHip=Vector3.Min(minHip,hips.position);maxHip=Vector3.Max(maxHip,hips.position);
+            maxHeadMotion=Mathf.Max(maxHeadMotion,Quaternion.Angle(firstHead,head.localRotation));
+            minFoot=Mathf.Min(minFoot,leftFoot.position.y,rightFoot.position.y);
+            maxRootMotion=Mathf.Max(maxRootMotion,Vector3.Distance(origin,owner.transform.position));
+            if(hips.position.y>seatTop+.32f||hips.position.y<seatTop+.10f)throw new Exception("Watchmaker stood up or lost the seat.");
+            if(record&&Time.time>=captureAt) {
+                ScreenCapture.CaptureScreenshot(Path.Combine(motionFolder,"frame"+(animationFrames++).ToString("D4")+".png"));
+                captureAt=Time.time+.1f;
+            }
+            samples++;yield return null;
+        }
+        float loops=animator.GetCurrentAnimatorStateInfo(0).normalizedTime-startNormalized;
+        if(maxRootMotion>.001f||maxHeadMotion<.05f||maxHip.y-minHip.y>.035f||minFoot<.10f||loops<1)
+            throw new Exception("Seated loop is static, drifting, standing or below the floor: hip="+(maxHip-minHip)+" foot="+minFoot+" loops="+loops);
+        yield return Capture("unity-seated-later");
+        Frame(origin+new Vector3(1.8f,1.02f,.15f),origin+Vector3.up*.70f,54);
+        yield return new WaitForSeconds(.3f);yield return Capture("unity-chair-side");
+        Frame(origin+new Vector3(.7f,.95f,1.05f),origin+new Vector3(0,.61f,.08f),49);
+        yield return new WaitForSeconds(.3f);yield return Capture("unity-chair-back");
+        Frame(head.position+new Vector3(.40f,.22f,-1.02f),head.position+Vector3.up*.11f,36);
+        yield return new WaitForSeconds(.3f);yield return Capture("unity-face");
+        eye.fieldOfView=originalFov;reviewPortrait=false;player.enabled=true;
+        player.Place(new Vector3(.2f,.03f,-.1f),0);player.Aim(owner.transform.position+Vector3.up*1.1f);
+        File.WriteAllText(Path.Combine(captures,"watchmaker-results.json"),JsonUtility.ToJson(new WatchmakerReviewResult {
+            passed=true,realMotorAndDialogueRay=true,loopingSeatedAnimation=true,rootStationary=true,
+            chairSeatTop=seatTop,minFootBoneHeight=minFoot,maxRootMotion=maxRootMotion,
+            hipMotion=maxHip-minHip,headMotionDegrees=maxHeadMotion,observedLoops=loops,samples=samples,animationFrames=animationFrames,
+            verification="Native Windows player, automatic controller/raycast interaction; full supplied sitting cycle sampled. Portraits use controlled cameras with unchanged shop lighting. Bone heights supplement visual seat/sole inspection."
+        },true));
+        Debug.Log("WATCHMAKER_REVIEW_PASS: dialogue ray, full seated loop, stationary root, chair and side/back/face captures");
+    }
+    [Serializable] class WatchmakerReviewResult {
+        public bool passed,realMotorAndDialogueRay,loopingSeatedAnimation,rootStationary;
+        public float chairSeatTop,minFootBoneHeight,maxRootMotion,headMotionDegrees,observedLoops;
+        public Vector3 hipMotion;
+        public int samples,animationFrames;
+        public string verification;
+    }
     IEnumerator ReviewRun() {
         yield return new WaitForSeconds(2);
         yield return Capture("town");watch=true;yield return Capture("town-watch");watch=false;
@@ -437,6 +521,7 @@ public class DemoApp : MonoBehaviour {
         yield return new WaitForSeconds(1.8f);
         if(CurrentScene!="ClockShop") throw new Exception("Shop transition failed");
         yield return Capture("clock-shop");
+        if(Array.IndexOf(Environment.GetCommandLineArgs(),"--review-watchmaker")>=0)yield return ReviewWatchmaker();
         if(reviewWindow)yield return ReviewWindow();
         yield return WalkTo(new Vector3(0,0,-0.1f));
         var notice=GameObject.Find("RepairNotice");player.Aim(notice.transform.position);yield return null;

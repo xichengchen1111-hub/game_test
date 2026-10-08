@@ -1,0 +1,25 @@
+{
+  "blender": "5.2.0 LTS",
+  "units": "metres",
+  "front": "Blender -Y; Unity yaw derived from imported back rail",
+  "parts": 20,
+  "vertices": 480,
+  "boundsMin": [
+    -0.30000001192092896,
+    -0.29499998688697815,
+    0.0
+  ],
+  "boundsMax": [
+    0.30000001192092896,
+    0.3174999952316284,
+    0.9800000190734863
+  ],
+  "seatTop": 0.4,
+  "materials": [
+    "ChairLeather",
+    "ChairWood"
+  ],
+  "provenance": "Original procedural low-poly wooden side chair; no external textures",
+  "sourceReopened": true,
+  "unityRuntimeChecked": false
+}
