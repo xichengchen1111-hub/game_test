@@ -1,0 +1,22 @@
+{
+  "passed": false,
+  "resolution": [
+    1280,
+    720
+  ],
+  "image": "town-watch.png",
+  "hands": {
+    "hour": {
+      "darkSamples": 0,
+      "samples": 20,
+      "inkFraction": 0.0
+    },
+    "minute": {
+      "darkSamples": 0,
+      "samples": 20,
+      "inkFraction": 0.0
+    }
+  },
+  "toggleMeanRgbChange8bit": null,
+  "verification": "Samples ink in actual native-rendered PNGs along expected shared-time hand directions; no screenshot editing."
+}

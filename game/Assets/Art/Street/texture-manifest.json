@@ -1,0 +1,75 @@
+{
+  "generator": "make_street_textures.py",
+  "seed": 1931,
+  "size": 1024,
+  "era": "1931 fictional town; historical stone-street material references",
+  "source": "Original procedural textures; Antigravity draft reviewed and integrated locally",
+  "surfaceWeather": "Restrained dampness is an art proposal, not an asserted historical rain event",
+  "color_conventions": {
+    "Base": "sRGB 24-bit RGB, diffuse albedo without baked lighting, shadows, or road paint",
+    "Normal": "Linear 24-bit RGB tangent-space (+X right, +Y bitangent green up, +Z normal out), normalized [0..255]",
+    "Mask": "Linear 32-bit RGBA (R: 0 / Metallic=0, G: 255 / AO=1.0, B: 0 / Detail=0, A: Smoothness linear [0.0..1.0] -> [0..255])",
+    "Height": "Linear 8-bit grayscale [0..255], displacement / height relative field"
+  },
+  "textures": {
+    "RoadSetts": {
+      "tile_metres": 4.0,
+      "description": "Grey granite dressed paving blocks (~0.25m x 0.16m, 16x24 courses with 50% staggered running bond)",
+      "files": {
+        "base": "RoadSetts_Base.png",
+        "normal": "RoadSetts_Normal.png",
+        "mask": "RoadSetts_Mask.png",
+        "height": "RoadSetts_Height.png"
+      },
+      "parameters": {
+        "block_dimensions_metres": [
+          0.25,
+          0.1667
+        ],
+        "grid_columns": 16,
+        "grid_rows": 24,
+        "joint_width_mm": 10,
+        "bevel_width_mm": 14,
+        "smoothness_base": 0.2,
+        "smoothness_damp_max": 0.55
+      }
+    },
+    "FootwayFlags": {
+      "tile_metres": 4.0,
+      "description": "Warm greige sandstone flagstones (~0.8m x 0.6m, 5x6 courses with 50% staggered running bond)",
+      "files": {
+        "base": "FootwayFlags_Base.png",
+        "normal": "FootwayFlags_Normal.png",
+        "mask": "FootwayFlags_Mask.png",
+        "height": "FootwayFlags_Height.png"
+      },
+      "parameters": {
+        "flag_dimensions_metres": [
+          0.8,
+          0.6667
+        ],
+        "grid_columns": 5,
+        "grid_rows": 6,
+        "joint_width_mm": 8,
+        "bevel_width_mm": 16,
+        "smoothness_base": 0.2,
+        "smoothness_damp_max": 0.55
+      }
+    },
+    "KerbStone": {
+      "tile_metres": 2.0,
+      "description": "Continuous dressed grey stone grain without grid for kerb edges and curbing",
+      "files": {
+        "base": "KerbStone_Base.png",
+        "normal": "KerbStone_Normal.png",
+        "mask": "KerbStone_Mask.png",
+        "height": "KerbStone_Height.png"
+      },
+      "parameters": {
+        "grid": "none",
+        "smoothness_base": 0.2,
+        "smoothness_damp_max": 0.55
+      }
+    }
+  }
+}

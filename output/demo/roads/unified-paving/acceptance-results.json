@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-08",
+  "platform": "Windows / D3D11",
+  "resolution": [
+    1600,
+    900
+  ],
+  "cause": "Furniture strip had a darker base tint and different smoothness from the adjacent flagstone surface.",
+  "fix": "Same StreetFlags Material and world-distance UVs across the entire footway.",
+  "oldMaterialReferencedByTownOrWindowScene": false,
+  "nativeViewsReviewed": [
+    "town.png",
+    "kerb-and-drain.png",
+    "west-footway.png"
+  ],
+  "runtimeSignals": [
+    "ROAD_REVIEW_PASS",
+    "SLICE_REVIEW_PASS"
+  ],
+  "previousRoadEvidence": "Parent folder is the first road pass before this material correction.",
+  "limitations": "Automated controller input, no Mac rebuild, no new two-window motion pass for this material-only change."
+}

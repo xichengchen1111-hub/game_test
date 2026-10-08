@@ -1,0 +1,9 @@
+{
+    "connectedPorches": 3,
+    "connectedPosts": 6,
+    "sidewalkClearance": 0.9499998092651367,
+    "benchGrounded": true,
+    "benchFacesSquare": true,
+    "sidewalkWalkPassed": true,
+    "verification": "Actual rendered player-height views, native renderer bounds and CharacterController walk along the bench-side footpath"
+}

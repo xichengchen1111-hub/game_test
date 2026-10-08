@@ -42,6 +42,7 @@ public class DemoApp : MonoBehaviour {
     GUIStyle text, small, title, button, large, italic;
     Texture2D solid, circle;
     float W,H;
+    float watchRenderedMinutes;
     int selectedEntry;
     bool recordWalk,recordingWalk,reviewWindow,recordingWindow,previewWindow,previewStreet,previewMilkboy,reviewLighting,recordingLighting,lightingRight;
     int motionFrames;
@@ -98,7 +99,8 @@ public class DemoApp : MonoBehaviour {
         if(previewWindow||previewStreet||previewMilkboy)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--review-milkboy")>=0)StartCoroutine(ReviewMilkboy());
+            if(Array.IndexOf(args,"--review-watch")>=0)StartCoroutine(ReviewWatch());
+            else if(Array.IndexOf(args,"--review-milkboy")>=0)StartCoroutine(ReviewMilkboy());
             else if(reviewLighting)StartCoroutine(ReviewLighting(args));
             else if(Array.IndexOf(args,"--verify-save")>=0) StartCoroutine(VerifySaved());
             else StartCoroutine(ReviewRun());
@@ -115,13 +117,14 @@ public class DemoApp : MonoBehaviour {
         }
         if (!opening && !inspected && !paused) {
             if(Input.GetKeyDown(KeyCode.Tab)) { journal=!journal; selectedEntry=0; CursorMode(); }
-            if(Input.GetKeyDown(KeyCode.Q) && !journal) watch=!watch;
+            if(Input.GetKeyDown(KeyCode.Q) && !journal) ToggleWatch();
         }
         focus=null;
         if(!Blocked && Physics.Raycast(player.eye.transform.position,player.eye.transform.forward,out var hit,3f)) focus=hit.collider.GetComponentInParent<Interactable>();
         if(!Blocked && Input.GetKeyDown(KeyCode.E)) TryInteract();
     }
     void CursorMode() { bool free=Blocked || Review; Cursor.lockState=free?CursorLockMode.None:CursorLockMode.Locked; Cursor.visible=free; }
+    void ToggleWatch() { watch=!watch; }
     public bool TryInteract() {
         if(Blocked) return false;
         if(Physics.Raycast(player.eye.transform.position,player.eye.transform.forward,out var hit,3f)) {
@@ -275,13 +278,17 @@ public class DemoApp : MonoBehaviour {
         GUI.color=new Color(0.12f,0.09f,0.07f,0.8f);GUI.DrawTexture(new Rect(x+10,y+15,size,size),circle);
         GUI.color=new Color(0.62f,0.44f,0.22f);GUI.DrawTexture(new Rect(x,y,size,size),circle);
         GUI.color=Color.white;if(dialTexture)GUI.DrawTexture(new Rect(x+15,y+15,size-30,size-30),dialTexture);
-        Vector2 center=new Vector2(x+size/2,y+size/2);DrawHand(center,Minutes%720*0.5f,56,5);DrawHand(center,Minutes%60*6f,80,3);
+        float minutes=Minutes;
+        if(Event.current.type==EventType.Repaint)watchRenderedMinutes=minutes;
+        Vector2 center=new Vector2(x+size/2,y+size/2);DrawHand(center,minutes%720*0.5f,56,5);DrawHand(center,minutes%60*6f,80,3);
         GUI.color=new Color(0.2f,0.16f,0.13f);GUI.DrawTexture(new Rect(center.x-5,center.y-5,10,10),circle);GUI.color=Color.white;
         Label(new Rect(x+20,y+size+14,230,30),"怀表 · 你的随身物件",small);
     }
     void DrawHand(Vector2 center,float angle,float length,float width) {
-        var previous=GUI.matrix;GUIUtility.RotateAroundPivot(angle,center);
-        Box(new Rect(center.x-width/2,center.y-length,width,length),new Color(0.14f,0.12f,0.12f));GUI.matrix=previous;
+        var previous=GUI.matrix;
+        // Keep the pivot in logical watch coordinates, then apply the HUD scale once.
+        GUI.matrix=previous*Matrix4x4.TRS(new Vector3(center.x,center.y,0),Quaternion.Euler(0,0,angle),Vector3.one);
+        Box(new Rect(-width/2,-length,width,length),new Color(0.14f,0.12f,0.12f));GUI.matrix=previous;
     }
     void DrawInspection(string name,string body,string source,Texture2D image) {
         Box(new Rect(0,0,W,H),new Color(0.015f,0.03f,0.04f,0.62f));
@@ -324,6 +331,39 @@ public class DemoApp : MonoBehaviour {
         }
         player.scriptedDirection=Vector3.zero;
         if(Time.time>=until) throw new Exception("Review movement blocked before "+target+" at "+player.transform.position+" blocked="+Blocked+" direction="+player.scriptedDirection);
+    }
+    IEnumerator ReviewWatch() {
+        yield return new WaitForSeconds(1);
+        if(!dialTexture)throw new Exception("Pocket-watch face texture is missing.");
+        ToggleWatch();
+        yield return Capture("watch-open");
+        float first=watchRenderedMinutes;
+        yield return new WaitForSeconds(1.1f);
+        yield return Capture("watch-later");
+        if(watchRenderedMinutes<=first)throw new Exception("Pocket-watch time is not advancing.");
+        foreach(var dial in FindObjectsByType<ClockDial>(FindObjectsSortMode.None)) {
+            float expected=-((Minutes+(dial.streetClock?30:0))%60)*6;
+            if(Mathf.Abs(Mathf.DeltaAngle(dial.minuteHand.localEulerAngles.z,expected))>.5f)
+                throw new Exception("Scene clock no longer matches shared game time.");
+        }
+        float scale=Mathf.Min(Screen.width/1600f,Screen.height/900f);
+        var result=new WatchReviewResult{width=Screen.width,height=Screen.height,hudScale=scale,
+            centerX=157*scale,centerY=Screen.height-215*scale,minutes=watchRenderedMinutes,
+            timeAdvanced=true,sharedClockHandsAligned=true,
+            verification="Native rendered HUD; same Q toggle handler, keyboard hardware bypassed. Hand visibility requires screenshot pixel checks."};
+        ToggleWatch();
+        if(watch)throw new Exception("Pocket-watch toggle did not close.");
+        yield return Capture("watch-closed");
+        result.toggleClosed=true;
+        File.WriteAllText(Path.Combine(captures,"watch-results.json"),JsonUtility.ToJson(result,true));
+        Debug.Log("WATCH_REVIEW_PASS: "+Screen.width+"x"+Screen.height+" toggle, advancing time and shared clocks; inspect rendered hands");
+        Application.Quit();
+    }
+    [Serializable] class WatchReviewResult {
+        public int width,height;
+        public float hudScale,centerX,centerY,minutes;
+        public bool timeAdvanced,sharedClockHandsAligned,toggleClosed;
+        public string verification;
     }
     IEnumerator ReviewMilkboy() {
         yield return new WaitForSeconds(1);
@@ -375,6 +415,7 @@ public class DemoApp : MonoBehaviour {
         yield return Capture("town");watch=true;yield return Capture("town-watch");watch=false;
         if(recordWalk){recordingWalk=true;StartCoroutine(RecordWalk());}
         yield return WalkTo(new Vector3(0,0,-5));
+        if(Array.IndexOf(Environment.GetCommandLineArgs(),"--review-roads")>=0)yield return ReviewRoads();
         if(reviewWindow) {
             yield return ReviewStreet();
             yield return WalkTo(new Vector3(0,0,1));
@@ -447,10 +488,14 @@ public class DemoApp : MonoBehaviour {
         }
         if(porches!=3||posts!=6)throw new Exception("Unexpected number of street canopy supports");
         var bench=town.Find("Bench");
-        var sidewalk=town.Find("West sidewalk").GetComponent<Renderer>().bounds;
+        var surfaces=town.Find("Street surfaces");
+        var streetLayout=surfaces.GetComponent<StreetSurfaceLayout>();
+        var sidewalk=surfaces.Find("West sidewalk").GetComponent<Renderer>().bounds;
         var renderers=bench.GetComponentsInChildren<Renderer>();var bounds=renderers[0].bounds;
         foreach(var renderer in renderers)bounds.Encapsulate(renderer.bounds);
-        float walkway=sidewalk.max.x-bench.GetComponent<BoxCollider>().bounds.max.x;
+        // The mesh widens south of the square. Measure the path at the bench,
+        // rather than using the bounds of that wider, distant portion.
+        float walkway=-streetLayout.FootwayInnerEdge(bench.position.z)-bench.GetComponent<BoxCollider>().bounds.max.x;
         if(walkway<.8f||Mathf.Abs(bounds.min.y-sidewalk.max.y)>.015f)throw new Exception("Bench blocks the footpath or does not rest on it");
         if(Vector3.Dot(bench.Find("Seat facing").forward,Vector3.right)<.99f)throw new Exception("Bench faces away from the square");
         yield return WalkTo(new Vector3(0,0,5.8f));
@@ -470,6 +515,47 @@ public class DemoApp : MonoBehaviour {
             sidewalkWalkPassed=true,verification="Actual rendered player-height views, native renderer bounds and CharacterController walk along the bench-side footpath"
         },true));
         Debug.Log("STREET_REVIEW_PASS: connected posts="+posts+" sidewalk clearance="+walkway);
+    }
+    IEnumerator ReviewRoads() {
+        var root=GameObject.Find("Street surfaces");
+        if(!root)throw new Exception("Street surface kit missing.");
+        var layout=root.GetComponent<StreetSurfaceLayout>();
+        if(layout.carriageway!=6||layout.clearFootway!=2||layout.furnitureStrip!=1)
+            throw new Exception("Street dimensions differ from R01 profile.");
+        float Ground(float x,float z) {
+            if(!Physics.Raycast(new Vector3(x,1,z),Vector3.down,out var hit,2))throw new Exception("Street has no ground: "+x+","+z);
+            return hit.point.y;
+        }
+        float crown=Ground(0,-10),edge=Ground(2.70f,-10),footway=Ground(4.1f,-10);
+        if(crown-edge<.03f||Mathf.Abs(footway-.1f)>.01f)throw new Exception("Road crown or raised footway is missing.");
+        foreach(var mesh in root.GetComponentsInChildren<MeshRenderer>()) {
+            if(mesh.name.Contains("iron"))continue;
+            if(!mesh.sharedMaterial.GetTexture("_BaseMap")||!mesh.sharedMaterial.GetTexture("_BumpMap")||!mesh.sharedMaterial.GetTexture("_MetallicGlossMap"))
+                throw new Exception("Street surface material lacks authored maps: "+mesh.name);
+        }
+        player.Aim(new Vector3(0,.1f,8));yield return new WaitForSeconds(.3f);yield return Capture("road-approach");
+        yield return WalkTo(new Vector3(-2.15f,0,-6));
+        player.Aim(new Vector3(-3.05f,-.015f,-5.6f));yield return new WaitForSeconds(.3f);yield return Capture("kerb-and-drain");
+        yield return WalkTo(new Vector3(-4.1f,0,-6));
+        if(Mathf.Abs(player.transform.position.y-footway)>.09f)throw new Exception("Controller cannot step onto footway.");
+        player.Aim(new Vector3(-4.1f,.5f,3));yield return new WaitForSeconds(.3f);yield return Capture("west-footway");
+        yield return WalkTo(new Vector3(-4.1f,0,0));
+        player.Aim(new Vector3(0,3.1f,10));yield return new WaitForSeconds(.3f);yield return Capture("street-lamps");
+        yield return WalkTo(new Vector3(4.1f,0,0));
+        yield return WalkTo(new Vector3(4.1f,0,-6));
+        player.Aim(new Vector3(5.1f,.3f,-.5f));yield return new WaitForSeconds(.3f);yield return Capture("east-footway");
+        yield return WalkTo(new Vector3(0,0,-5));
+        File.WriteAllText(Path.Combine(captures,"road-results.json"),JsonUtility.ToJson(new RoadResult{
+            carriageway=layout.carriageway,clearFootway=layout.clearFootway,furnitureStrip=layout.furnitureStrip,
+            crownHeight=crown,edgeHeight=edge,footwayHeight=footway,actualControllerKerbCrossing=true,bothFootwaysWalked=true,
+            verification="Native visible Windows player, original dusk lighting; actual CharacterController movement and ground raycasts, automatic input. R01 profile shown in legacy visual slice, not the full fourth-map town."
+        },true));
+        Debug.Log("ROAD_REVIEW_PASS: crowned road, raised footways, grounded surfaces and real controller crossings");
+    }
+    [Serializable] class RoadResult {
+        public float carriageway,clearFootway,furnitureStrip,crownHeight,edgeHeight,footwayHeight;
+        public bool actualControllerKerbCrossing,bothFootwaysWalked;
+        public string verification;
     }
     IEnumerator ReviewWindow() {
         var street=GameObject.Find("Window street geometry");

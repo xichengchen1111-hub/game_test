@@ -1,0 +1,9 @@
+{
+    "evidenceRecorded": true,
+    "doorRoundTrip": true,
+    "characterControllerWalk": true,
+    "companionSilent": true,
+    "renderedFrames": 6,
+    "motionFrames": 179,
+    "verification": "Scripted movement through the actual controller and raycast interaction; not a blind human playthrough"
+}

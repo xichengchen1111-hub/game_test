@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "resolution": [
+    1600,
+    900
+  ],
+  "image": "watch-later.png",
+  "hands": {
+    "hour": {
+      "darkSamples": 20,
+      "samples": 20,
+      "inkFraction": 1.0
+    },
+    "minute": {
+      "darkSamples": 20,
+      "samples": 20,
+      "inkFraction": 1.0
+    }
+  },
+  "toggleMeanRgbChange8bit": 127.91666666666667,
+  "verification": "Samples ink in actual native-rendered PNGs along expected shared-time hand directions; no screenshot editing."
+}

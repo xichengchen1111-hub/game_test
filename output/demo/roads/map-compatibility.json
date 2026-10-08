@@ -1,0 +1,20 @@
+{
+  "geometryAndNarrative": "PASS",
+  "sourceMapModified": false,
+  "properties": 70,
+  "actors": 20,
+  "routes": 17,
+  "sixInvestigationOrders": true,
+  "semanticExportsMatch": true,
+  "byteDifferencesFromLineEndings": [
+    "building-schedule.csv",
+    "actor-routes.csv",
+    "building-parts.csv",
+    "trees.csv",
+    "roads.csv",
+    "openings.csv"
+  ],
+  "canonicalCli": "Failed raw-byte export freshness comparison on this Windows checkout; not reported as canonical CLI PASS. Temporary regeneration passes original geometry/narrative assertions and all exports match after newline normalization.",
+  "normalCliEncoding": "Windows GBK default first failed; validation rerun with PYTHONUTF8=1.",
+  "verificationMetadata": "Source/contract/checker raw-byte hashes are platform-sensitive; original verification.json not overwritten."
+}

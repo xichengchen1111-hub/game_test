@@ -1,0 +1,47 @@
+{
+  "date": "2026-10-08",
+  "platform": "Windows / Direct3D11",
+  "unity": "6000.3.18f1",
+  "baseCommit": "9fc7aecd290b61f905adb2184b99dd871d5abe68",
+  "resolution": [
+    1600,
+    900
+  ],
+  "buildSignals": [
+    "STREET_SURFACE_BUILD_PASS",
+    "BUILDING_LAYOUT_PASS",
+    "SLICE_BUILD_PASS"
+  ],
+  "runtimeSignals": [
+    "ROAD_REVIEW_PASS",
+    "STREET_REVIEW_PASS",
+    "WINDOW_REVIEW_PASS",
+    "SLICE_REVIEW_PASS"
+  ],
+  "roadProfile": {
+    "carriageway": 6.0,
+    "clearFootway": 2.0,
+    "furnitureStrip": 1.0,
+    "crownHeight": 0.02500000223517418,
+    "edgeHeight": -0.019669119268655777,
+    "footwayHeight": 0.10000000149011612,
+    "actualControllerKerbCrossing": true,
+    "bothFootwaysWalked": true,
+    "verification": "Native visible Windows player, original dusk lighting; actual CharacterController movement and ground raycasts, automatic input. R01 profile shown in legacy visual slice, not the full fourth-map town."
+  },
+  "benchClearanceMetres": 0.9499998092651367,
+  "nativeRoadMotionFrames": 179,
+  "nativeWindowMotionFrames": 50,
+  "motionPlaybackFps": 5,
+  "mapPlacement": "Legacy playable visual slice; R01 dimension profile read from canonical fourth map. No complete-town migration.",
+  "lighting": "Normal production dusk scene, lantern pools intensity14 range7.2, no disabling shadow/AO; 128px one-time reflection capture.",
+  "historicalReference": "https://historicengland.org.uk/listing/the-list/list-entry/1393770",
+  "artSource": "Original procedural textures. Antigravity draft reviewed and adjusted locally; no downloaded image assets.",
+  "verification": "Native unedited PNGs and real controller/raycast actions with automated inputs; not keyboard hardware or blind-player verification.",
+  "limitations": [
+    "Mac not rebuilt in this change.",
+    "Two-metre footway is a kit profile, not verified continuous swept clearance at every legacy porch.",
+    "Motion sampling does not measure game FPS or establish absence of every lighting artifact.",
+    "Canonical raw-byte map freshness check has Windows newline/hash differences; see map-compatibility.json."
+  ]
+}

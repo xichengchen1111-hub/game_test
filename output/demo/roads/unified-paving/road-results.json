@@ -1,0 +1,11 @@
+{
+    "carriageway": 6.0,
+    "clearFootway": 2.0,
+    "furnitureStrip": 1.0,
+    "crownHeight": 0.02500000223517418,
+    "edgeHeight": -0.019669119268655778,
+    "footwayHeight": 0.10000000149011612,
+    "actualControllerKerbCrossing": true,
+    "bothFootwaysWalked": true,
+    "verification": "Native visible Windows player, original dusk lighting; actual CharacterController movement and ground raycasts, automatic input. R01 profile shown in legacy visual slice, not the full fourth-map town."
+}

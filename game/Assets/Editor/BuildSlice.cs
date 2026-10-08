@@ -193,21 +193,15 @@ public static class BuildSlice {
     }
     static void Lantern(Vector3 pos) {
         var lamp=Model("Lantern",pos);Collider(lamp,new Vector3(0,1.4f,0),new Vector3(.24f,2.8f,.24f));
-        Point("Lantern pool",pos+Vector3.up*2.95f,C("#FFBD78"),3.1f,6.3f);
+        Point("Lantern pool",pos+Vector3.up*2.95f,C("#FFBD78"),14f,7.2f);
     }
     static void Town() {
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);SetupLight(false);
         var atmosphere=new HashSet<GameObject>(SceneManager.GetActiveScene().GetRootGameObjects());
         Box("Town ground",new Vector3(0,-.24f,4),new Vector3(55,.4f,65),Mat("Ground","#60637B",0,.38f));
-        UnityEngine.Random.InitState(1931);
-        for(int z=-20;z<29;z++)for(int x=-6;x<=6;x++) {
-            string col=new[]{"#66697F","#717185","#747382","#666B7D","#777482"}[UnityEngine.Random.Range(0,5)];
-            Box("Paving stone",new Vector3(x*1.02f+(z%2)*.51f,-.025f,z*1.0f),new Vector3(.99f,.08f,.965f),Mat("Paver"+col.Substring(1),col,0,.45f),null,false);
-        }
-        var westSidewalk=Box("West sidewalk",new Vector3(-7.1f,.03f,2),new Vector3(1.75f,.14f,42),Mat("Sidewalk","#827C85"));
-        Box("East sidewalk",new Vector3(7.1f,.03f,2),new Vector3(1.75f,.14f,42),Mat("Sidewalk","#827C85"));
         var station=Building("Station",new Vector3(-9.2f,0,1),-90,8,6.5f,"#B3A89A","SignStation.png");
         var shop=InstantiateShop(false);
+        var westSidewalk=StreetSurfaces.Build(shop.transform);
         Building("GuestHouse",new Vector3(-10,0,14),-90,8,7.5f,"#929396","SignInn.png");
         Building("Home",new Vector3(10.2f,0,15),90,7.4f,6.3f,"#B1A398");
         Building("BackRow",new Vector3(0,0,28),0,12,7,"#84899B");
@@ -224,7 +218,8 @@ public static class BuildSlice {
         Point("Tower dial warm light",new Vector3(0,6.3f,8.2f),C("#E5BA7C"),1.2f,3);
         var plaque=Box("Clock observation",new Vector3(0,1.3f,8.77f),new Vector3(.9f,.44f,.05f),Mat("SignWood","#283F40"));
         var clock=plaque.AddComponent<Interactable>();clock.title="街钟";clock.evidenceId="E06";clock.source="广场的公共街钟";clock.body="广场上的钟，钟表铺的匠人负责维护。\n\n钟面可以直接观察，怀表在你身上。";
-        foreach(float x in new[]{-5.7f,5.7f})foreach(float z in new[]{-8f,6f,19f})Lantern(new Vector3(x,0,z));
+        foreach(int lanternSide in new[]{-1,1})foreach(float z in new[]{-8f,6f,19f})
+            Lantern(new Vector3(lanternSide*(z<6.5f?3.62f:5.7f),.1f,z));
         var bench=Model("Bench",new Vector3(-7.55f,westSidewalk.GetComponent<Renderer>().bounds.max.y,7.5f));
         FaceBenchTowardSquare(bench);Collider(bench,new Vector3(0,.45f,0),new Vector3(2,.9f,.75f));
         var cart=Model("MilkCart",new Vector3(6.35f,.10f,-5.4f),-90);Collider(cart,new Vector3(0,.6f,0),new Vector3(1.6f,1.15f,.9f));
@@ -239,7 +234,6 @@ public static class BuildSlice {
         Box("South town boundary",new Vector3(0,1,-23),new Vector3(55,3,.6f),Mat("Boundary","#64677B"));
         Box("West town boundary",new Vector3(-17,1,2),new Vector3(.6f,3,60),Mat("Boundary","#64677B"));
         Box("East town boundary",new Vector3(17,1,2),new Vector3(.6f,3,60),Mat("Boundary","#64677B"));
-        TrimStreetFloor(shop.transform);
         var geometry=Group("Town geometry",Vector3.zero);
         foreach(var root in SceneManager.GetActiveScene().GetRootGameObjects())
             if(root!=geometry&&!atmosphere.Contains(root))root.transform.SetParent(geometry.transform,true);

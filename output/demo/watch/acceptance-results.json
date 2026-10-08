@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-08",
+  "platform": "Windows / Direct3D 11",
+  "unity": "6000.3.18f1",
+  "baseCommit": "9fc7aecd290b61f905adb2184b99dd871d5abe68",
+  "testedLocalChanges": [
+    "game/Assets/Scripts/DemoApp.cs"
+  ],
+  "cases": [
+    {
+      "case": "720p",
+      "resolution": [
+        1280,
+        720
+      ],
+      "runtimePassed": true,
+      "renderedHandsPassed": true,
+      "runtimeReport": "720p/watch-results.json",
+      "pixelReport": "720p/pixel-results.json"
+    },
+    {
+      "case": "900p",
+      "resolution": [
+        1600,
+        900
+      ],
+      "runtimePassed": true,
+      "renderedHandsPassed": true,
+      "runtimeReport": "900p/watch-results.json",
+      "pixelReport": "900p/pixel-results.json"
+    },
+    {
+      "case": "1080p",
+      "resolution": [
+        1920,
+        1080
+      ],
+      "runtimePassed": true,
+      "renderedHandsPassed": true,
+      "runtimeReport": "1080p/watch-results.json",
+      "pixelReport": "1080p/pixel-results.json"
+    }
+  ],
+  "historicalBaseline": {
+    "source": "builds/review/meshy/window/town-watch.png",
+    "preservedAs": "before-720p.png",
+    "note": "Historical native screenshot at approximately 17:55; sampled using current 720p center/scale/time metadata, not a newly executed old binary.",
+    "hourDarkSamples": 0,
+    "minuteDarkSamples": 0
+  },
+  "limitations": [
+    "Native visible players and captured PNGs, no screenshot editing.",
+    "Automatic review shares Q toggle handler but bypasses physical keyboard.",
+    "No Mac rebuild or complete MVP playthrough in this watch fix."
+  ]
+}

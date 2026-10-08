@@ -1,0 +1,12 @@
+{
+    "width": 1280,
+    "height": 720,
+    "hudScale": 0.800000011920929,
+    "centerX": 125.5999984741211,
+    "centerY": 548.0,
+    "minutes": 1075.04345703125,
+    "timeAdvanced": true,
+    "sharedClockHandsAligned": true,
+    "toggleClosed": true,
+    "verification": "Native rendered HUD; same Q toggle handler, keyboard hardware bypassed. Hand visibility requires screenshot pixel checks."
+}

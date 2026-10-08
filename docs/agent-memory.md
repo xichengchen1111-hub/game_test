@@ -1,6 +1,6 @@
 # Agent 持久记忆：错日证词
 
-最后核对：2026-10-08。最新实现为 NPC-02 的 Meshy 送奶少年替换（基于 `fc72ff2`；提交记录见本文 Git 历史），用户已要求先拉取最新改动再推送这一版。历史 Windows 验收基线为 `e594c3501aec1532f3ee3a656c1c0cd6c0bc94cc`，用户认可后要求推送；用户随后实测确认 Mac 能运行，详见 PLATFORM-01。本文记录决定、实际问题与修复，供其他机器和后续 agent 接续；不得把历史验收直接当作新改动的验收。
+最后核对：2026-10-08。NPC-02 的 Meshy 送奶少年替换已随 `9fc7aec` 推送；本轮提交包含 UI-01 怀表指针修复、ROAD-01 街面升级和 ROAD-02 人行道色差修正，用户于 2026-10-08 要求提交推送，实际上传版本以 Git 历史和远端为准。历史 Windows 验收基线为 `e594c3501aec1532f3ee3a656c1c0cd6c0bc94cc`，用户认可后要求推送；用户随后实测确认 Mac 能运行，详见 PLATFORM-01。本文记录决定、实际问题与修复，供其他机器和后续 agent 接续；不得把历史验收直接当作新改动的验收。
 
 ## 进入项目时必须执行
 
@@ -25,6 +25,31 @@
 | 命名与提交 | 新建分支、提交、PR、worktree、任务、产物名称遵守根目录命名规则。提交前检查文件范围；构建包、缓存、原始逐帧数据和临时日志不入 Git。 |
 
 ## 问题记录与防复发规则
+
+### UI-01：怀表指针在缩放界面中画到表盘外（已修复）
+
+- **用户反馈与复现**：2026-10-08，“怀表时间怎么没了”。计时数据仍存在；旧 `DemoApp.DrawHand` 在缩放过的 `GUI.matrix` 上调用 `GUIUtility.RotateAroundPivot`，旋转轴偏离表盘。1280×720 原生截图中指针出现在怀表左侧；1600×900 的缩放恰好为 1，旧版此分辨率看似正常。该绘制逻辑并非 NPC-02 新增，不能把它归因为模型替换。
+- **最终实现**：指针矩形以表心为局部原点，通过 `previous * Matrix4x4.TRS(center, rotation, Vector3.one)` 合成一次外层 HUD 缩放。时、分针读取同一帧的 `Minutes`；保留街钟快 30 分钟的既有逻辑，不增加自动推理或数字答案。
+- **防复发**：带缩放的 IMGUI 内绘制旋转元素，明确局部坐标和外层缩放的合成顺序；不能恢复旧的 `RotateAroundPivot` 用法，不能只验 1600×900。怀表显示/隐藏应与 Q 共用 `ToggleWatch`。
+- **实际验收**：Unity 6000.3.18f1、Windows/D3D11 构建通过；1280×720、1600×900、1920×1080 各自可见玩家运行 `--review --fresh --review-watch -screen-fullscreen 0 -screen-width 宽 -screen-height 高 --capture-dir "绝对输出目录"`，日志均为 `WATCH_REVIEW_PASS`。检查时间推进、街钟共用时间和开关；`python tools/check_watch.py "输出目录/watch-results.json" --output "输出目录/pixel-results.json"` 对实际 PNG 检查两根指针与关闭画面，三档分辨率每根指针均 20/20 采样命中。历史 720p 截图对照为两根均 0/20；历史对照使用约 17:55 的现有截图，并非新跑旧二进制。
+- **证据与限制**：精简证据在 `output/demo/watch/`。自动 review 调用与 Q 相同的开关函数，绕过物理键盘；原生截图已人工查看，不能称为人手键鼠盲测。可见玩家截图，禁止以隐藏窗口产生的黑帧证明通过。本轮未在 Mac 重建实测，也未重跑完整玩法；用户此前 Mac 能运行的确认仍有效。复验使用独立 review 存档，不删除正常进度。
+
+### ROAD-01：1931 年街面、人行道与灯下氛围
+
+- **用户要求与年代依据**：按故事背景制作准确、有氛围、好看的马路和人行道。剧本明确为 1931 年 1 月，未指定现实国家；保留虚构青川镇。采用小块花岗石车行面、较大暖灰砂岩旗石人行道和石路缘，材料构成参考 [Historic England 的历史街道实物记录](https://historicengland.org.uk/listing/the-list/list-entry/1393770)，不能据此把剧情所在地改成英国。潮湿表面是美术提案，不是新确定的案发日雨情或证据。
+- **源文件与尺度**：`tools/make_street_textures.py` 生成 `game/Assets/Art/Street/` 三套 1024px 周期纹理及 manifest：车行石约 0.25×0.167m、旗石约 0.8×0.667m；Base 为 sRGB，Normal/Mask 为线性，Mask 的 R=0 金属、A=光滑度。`StreetSurfaces.cs` 生成可重建的低模 mesh，保留 mesh 资产 GUID，按世界米数铺 UV；划分围绕室内地板的街面时不能拉伸纹理或留下重叠顶面。高度图是制作源，不额外启用运行时位移。
+- **实际几何**：道路套件从当前地图读取 R01 的 6m 车行面、2m 人行道、1m 设施带设计值。道路中部高 0.025m，靠沟边约 −0.020m；沟宽 0.28m，路缘宽 0.22m、顶高 0.10m，旗石顶高 0.10m。路缘有实体侧面、18mm 倒角及接缝；6 处铁沟盖有真实槽条。通往钟楼广场的石坡将车行面接到广场，角色可以跨路缘。这里是旧视觉切片内的路面套件展示，**没有迁移第四版全镇位置或改变平面图**；2m 是套件设计值，不代表已证明旧切片所有棚柱附近都有连续 2m 净空。
+- **灯光与通行**：近街灯位于 x=±3.62，广场段仍为 ±5.7，脚底高 0.10m。灯池 intensity=14、range=7.2，保留冷色暮光与暖光层次，不新增带阴影点灯。街面使用三线性 mipmap、8倍各向异性过滤；128px 环境反射探针只在初次启用时捕获一次，不每帧重绘。长椅未移动；`StreetSurfaceLayout.FootwayInnerEdge` 按长椅所在广场段测量通道，不能用南部较宽 mesh 的整体 bounds 虚增净空。
+- **室内外共用**：`BuildSlice.Town → StreetSurfaces.Build` 先生成实际小镇街面，再由既有 `WindowStreet` 复制同一几何并变换坐标、删除本栋副本及副本碰撞/交互。不要另做室内窗景路面。新路面在生成时按钟表铺实际地板 footprint 裁切；旧 `TrimStreetFloor` 不再是本轮街面入口。Prefab/场景构建 ID 会共同更新，不能只恢复旧 Prefab 而留下引用新 fileID 的场景。
+- **真实验收**：Windows/D3D11、Unity 6000.3.18f1，最终构建通过 `STREET_SURFACE_BUILD_PASS`、`BUILDING_LAYOUT_PASS`、`SLICE_BUILD_PASS`；可见玩家以 `--review --fresh --review-roads --review-window --record` 运行，1600×900 下通过 `ROAD_REVIEW_PASS`、`STREET_REVIEW_PASS`、`WINDOW_REVIEW_PASS`、`SLICE_REVIEW_PASS`。真实控制器跨路缘并走两侧人行道，长椅旁约 0.95m 通道实际走过；两窗/碰撞/E07/店门往返正常，窗景视差约 0.31266。原生截图和精简报告在 `output/demo/roads/`；道路运动样本由 179 张原生帧按约 5fps 编码，另有 50 张窗景运动帧留在忽略的构建目录。采样频率不是游戏 FPS；不是物理键鼠或陌生玩家盲测，也没有证明全场所有光照均无闪烁。当前怀表截图已复核两根指针可见。
+- **平面验证的 Windows 限制**：原 `tools/check_town_map.py` 在默认 GBK 下先发生解码错误，设 `PYTHONUTF8=1` 后仍因 CSV 换行和原始字节哈希报告过期。未覆盖原地图；在独立临时副本执行原检查与重新生成，70宅地、20角色、17路线、6顺序及剧情断言通过，所有导出内容归一化换行后相同。详见 `map-compatibility.json`；不能将此写成原仓库 CLI 原始字节检查通过。后续需单独处理检查器的跨平台换行/哈希可移植性。
+- **协作与范围**：Antigravity 在 scratch 起草纹理脚本；首轮因工具权限未产出，隔离目录重试后返回 SUCCESS，主 agent 阅读代码、查看纹理、减弱缝色并接入实机。可编辑来源为 Python/C# 生成源与命名 mesh 资产；本轮不新增复杂建模。未重新构建 Mac，保留用户此前 Mac 能运行的确认；完整全镇/完整 MVP、连续净宽与目标设备性能仍不在本次验收范围。
+
+### ROAD-02：人行道出现笔直的明显色差（已修复）
+
+- **用户反馈与原因**：ROAD-01 首轮截图中，设施带沿边界整条变暗。`StreetSurfaces.Build` 曾给设施带另建 `StreetServiceFlags`，BaseColor 约为相邻旗石的 0.8 倍，光滑度也不同；这是材质分区造成的生硬色带，不能解释成自然光影。
+- **修复与防复发**：设施带与步行面共用同一个 `StreetFlags` Material，保持相同世界米数 UV、法线与光滑度。设施带是空间分配，不靠给相邻连续石板整条调暗来表达。自然灯光和单块石材变化保留；以后分段/裁切铺装仍需检查接缝两侧的实际材质与 UV，不能仅看各自颜色配置。
+- **最新证据**：`output/demo/roads/unified-paving/` 为当前画面，父目录 ROAD-01 截图/视频保留为色带修正前记录。Windows/D3D11、1600×900 重新构建并运行 `--review --fresh --review-roads`，通过 `ROAD_REVIEW_PASS` 和 `SLICE_REVIEW_PASS`；查看了路面总览、路缘近景及人行道，色带消除，路缘通行与店门往返正常。生成后的 Town/ClockShop 均不再引用旧深色 Material；前一轮已通过两窗回归，此次没有重新做两窗运动专项。自动输入，不是人手盲测；未重建 Mac。
 
 ### NPC-02：Meshy 送奶少年替换
 
