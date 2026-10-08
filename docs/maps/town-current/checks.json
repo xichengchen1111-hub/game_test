@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "properties": 70,
+  "namedPlaces": 17,
+  "trees": 209,
+  "checks": [
+    "parcel boundaries and non-overlap",
+    "building parts do not overlap",
+    "doors lie on actual footprint edges",
+    "path centerlines outside building interiors at 0.25m intervals",
+    "road width components"
+  ],
+  "errors": [],
+  "limitations": [
+    "Design plan only; not a building regulation audit",
+    "No Unity changes or 3D sightline validation",
+    "Path width clearances at gates, furniture and vegetation still require detailed review",
+    "All previous route times invalidated by relocation"
+  ]
+}

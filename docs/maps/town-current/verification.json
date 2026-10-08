@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "version": 4,
+  "sourceHashes": {
+    "build_plan.py": "23cc057a0748f560d23981946500e14a91aa8940f0ba4e2d82ac872aba5c0410",
+    "story_layout.py": "17595a115ff1c4eb4c15294418b0d5e160b750ddd7eca57f5be8ff484a0a2875",
+    "check_plan.py": "d8a1fb021582600dd1e3cf7024a21ffcd254b382d3833c3e02b6f7291097481a",
+    "audit_actors.py": "56e5503f03fad2c7f7e170f28092ca306575a218469248fcec22527405f2b4b5",
+    "export_plan.py": "cedab489109cce85e240bb9cdeefda17e932c5a64afa926006af166a171780d7",
+    "make_viewer.py": "bf566475a8db8583e802f781754bee3a50de5c0448a2f727b97c7712fcde12d3",
+    "make_actor_view.py": "5e560ad0259b68d624f72cef6c1f7fe96415740962e3b8ef31c664a10efce3e1",
+    "viewer.js": "13d5e7b4ae16bbf272a1cd42109da3af25446ef22da922668452b3443302c360",
+    "actors.js": "40d3cbc9bd23c28522e99ba83bab73ef1859193746ed7dc167210c1cd537b2f9",
+    "style.css": "633f7b3de81fc7b6d0646fdc7a32fa65dc1cd58dfb49da4603f8e878d33199bf",
+    "actors.css": "d685311c4f40819be9a2885ba4dff20df0a79aaff50c109a89c3379a4371870d"
+  },
+  "contractHash": "018859ac1afe7deb8bbe65989515e708754b80ecfa44926dc6b8ce0b4dba2eaa",
+  "checkerHash": "adca2b83a05c90432177675a71126c7d237c4a04b1212338a85d213158702dcf",
+  "properties": 70,
+  "trees": 209,
+  "actors": 20,
+  "routes": 17,
+  "summary": {
+    "roundTripMetres": 639.15,
+    "roundTripWalkMinutes": 8.88,
+    "unallocatedWithin20": 11.12,
+    "eveningToInnWalkMinutes": 6.11,
+    "eveningWaitBudget": 13.89,
+    "milkWalkMinutes": 2.86,
+    "milkServiceBudgetWithin10": 7.14,
+    "homeAroundMetres": 40.0,
+    "investigationGameMinutes": [
+      5.86,
+      6.18
+    ]
+  },
+  "storyValidation": {
+    "evidence_cards": 10,
+    "core_deductions": [
+      "D02",
+      "D03"
+    ],
+    "visit_orders_checked": [
+      "station -> clock_shop -> home",
+      "station -> home -> clock_shop",
+      "clock_shop -> station -> home",
+      "clock_shop -> home -> station",
+      "home -> station -> clock_shop",
+      "home -> clock_shop -> station"
+    ],
+    "verification_scope": "Design data only; no runtime input, visuals, saves or puzzle fairness checked"
+  },
+  "limitations": [
+    "Design plan only; not a building regulation audit",
+    "No Unity changes or 3D sightline validation",
+    "Path width clearances at gates, furniture and vegetation still require detailed review",
+    "All previous route times invalidated by relocation",
+    "Public road centerlines, not pedestrian swept width",
+    "No other-town route or train timetable",
+    "Positive time budgets are unallocated, not proven activity"
+  ]
+}

@@ -32,3 +32,12 @@
 - 可编辑模型：`assets/source/milkboy/Milkboy.blend`；生成脚本：`tools/build_milkboy.py`；Unity 模型／材质：`game/Assets/Art/Milkboy/`；接入入口：`game/Assets/Editor/MilkboyAsset.cs` 与 `BuildSlice.Milkboy`。当前工具版本和故障记录见 [Agent 记忆的 NPC-01](docs/agent-memory.md)。
 - 基础模型为 silentsheri 的 `Toon Boy`，按 CC BY 4.0 使用。保留 `assets/source/milkboy/LICENSE.txt` 和 `game/Assets/StreamingAssets/ThirdPartyNotices.txt` 中的署名、来源及修改说明。
 - 视觉核对资料：`output/demo/milkboy/model-*.png` 是 Blender 预览，`unity-*.png` 是实际游戏画面；特写使用受控机位，不能称为玩家盲测。新增修改要重新核对对应画面，不把旧截图当作新版本通过的证据。
+
+## 当前地图坐标与改图必验（2026-10-08）
+
+- 后续所有场景、建筑、道路、人行道、院落、门窗、树木、角色点位和剧情动线制作，统一依据 [`docs/maps/town-current/plan-data.json`](docs/maps/town-current/plan-data.json)。先读该目录 README 与 `actor-audit.json`。钟楼中心为 (0,0)，单位米，东 +X、北 +Z；建筑轮廓、宅地与门口是不同数据，不能互相代替。当前第四版取代先前各版（包括其他目录同名“第三版”）、旧截图和Unity旧点位，后者只作历史参考。用户最新修改优先，需同步更新基准。
+- 坐标数据由同目录 `build_plan.py` 与 `story_layout.py` 生成。改源文件后运行仓库根目录 `python3 tools/check_town_map.py --write`，再运行 `python3 tools/check_town_map.py`。必须同步提交JSON、SVG、HTML、CSV、Tiled和检查结果，不许只移动截图、场景或单份导出数据；检查失败必须修复，不能降低阈值来凑剧情。
+- 每次地图修改都要重新跑全部角色的路线核对：公共路网与对应宅地出入口的连通、建筑/宅地重叠、门位、穿楼、道路宽度构成、距离和时长、送奶签收窗口、邻居观察窗与返家入口，以及全部6种自由调查访问顺序。打开 `index.html` 和 `actors.html` 检查改动区域，逐角色/路线播放，并检查17:53—17:58同屏。可用 `tools/check_town_map_ui.cjs` 复验网页交互（需Playwright），检查报告须标明局限，不能沿用旧截图或旧通过结果。
+- 必须区分真实事件、人物陈述、未实施计划、设计提案与未知。已确认：19日真实乘列车去另一镇问路；20日挪用19日的跨镇行程。另一镇不制图，禁止在本镇补“问路点/坏灯点”或把本镇B14/B15当外镇证人场景；跨镇距离、时刻表、返程未知时保持未知。电话和棋社所属城镇待确认，不播放成既定历史路线。20日未验票不能否定19日乘车。
+- 核对必须包含每个有姓名或叙事作用的角色；没有路线依据的角色记录“未知/定点/镇外”，不得为凑完整性编造通勤、不在场证明或连续目击。地图可达性不证明路线确实发生。更新证据合同后另跑 `python3 skills/wrong-date-narrative/scripts/validate_story.py docs/mvp-evidence.json`。
+- 当前仅为平面设计基准，未迁移Unity。实际接入后还须测试内外共用坐标、碰撞、门窗、钟面可读性、完整3D视线、车辆占道/转弯与实机行走；平面中心线、静态图和数据PASS不能代替这些验收。记录未解决的剧情时间空白，不宣称全部角色已完全合理。

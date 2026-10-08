@@ -4,50 +4,300 @@
   "title": "错日证词 MVP",
   "scene_visit_order": "free",
   "scenes": [
-    {"id": "town", "initially_accessible": true},
-    {"id": "station", "initially_accessible": true},
-    {"id": "clock_shop", "initially_accessible": true},
-    {"id": "home", "initially_accessible": true}
+    {
+      "id": "town",
+      "initially_accessible": true
+    },
+    {
+      "id": "station",
+      "initially_accessible": true
+    },
+    {
+      "id": "clock_shop",
+      "initially_accessible": true
+    },
+    {
+      "id": "home",
+      "initially_accessible": true
+    }
   ],
-  "companion": {"role": "optional_ambient", "gates_progress": false},
+  "companion": {
+    "role": "optional_ambient",
+    "gates_progress": false
+  },
   "timeline": [
-    {"id": "route_query", "at": "1931-01-19T17:20:00", "description": "丈夫在南区问东街；坏灯与白布尚在"},
-    {"id": "appointment_call", "at": "1931-01-19T18:35:00", "description": "公共电话预约次日见面"},
-    {"id": "appointment_received", "at": "1931-01-19T19:10:00", "description": "棋社收预约信"},
-    {"id": "lamp_repaired", "at": "1931-01-20T12:00:00", "description": "南区街灯修好，白布拆除"},
-    {"id": "station_visit", "at": "1931-01-20T17:40:00", "description": "丈夫约17:35离家后在车站短暂露面；未证明此后不返家"},
-    {"id": "delivery_before", "at": "1931-01-20T17:50:00", "description": "上一户以自己的钟记录签收"},
-    {"id": "milk_delivery", "at": "1931-01-20T17:55:00", "reported_clock": "18:25", "clock_offset_minutes": 30, "description": "送奶少年见到妻子活着"},
-    {"id": "delivery_after", "at": "1931-01-20T18:00:00", "description": "下一户以自己的钟记录签收"}
+    {
+      "id": "route_query",
+      "at": "1931-01-19T17:20:00",
+      "description": "丈夫19日真实从本镇车站乘车到另一镇，在该镇南区问不存在的东街；坏灯与白布尚在",
+      "location_scope": "other_town"
+    },
+    {
+      "id": "appointment_call",
+      "at": "1931-01-19T18:35:00",
+      "description": "公共电话预约次日见面",
+      "location_scope": "unconfirmed_town"
+    },
+    {
+      "id": "appointment_received",
+      "at": "1931-01-19T19:10:00",
+      "description": "棋社收预约信",
+      "location_scope": "unconfirmed_town"
+    },
+    {
+      "id": "lamp_repaired",
+      "at": "1931-01-20T12:00:00",
+      "description": "另一镇问路场景的街灯修好，白布拆除",
+      "location_scope": "other_town"
+    },
+    {
+      "id": "station_visit",
+      "at": "1931-01-20T17:40:00",
+      "description": "丈夫约17:35离家后在车站短暂露面；未证明此后不返家"
+    },
+    {
+      "id": "delivery_before",
+      "at": "1931-01-20T17:50:00",
+      "description": "上一户以自己的钟记录签收"
+    },
+    {
+      "id": "milk_delivery",
+      "at": "1931-01-20T17:55:00",
+      "reported_clock": "18:25",
+      "clock_offset_minutes": 30,
+      "description": "送奶少年见到妻子活着"
+    },
+    {
+      "id": "delivery_after",
+      "at": "1931-01-20T18:00:00",
+      "description": "下一户以自己的钟记录签收"
+    }
   ],
   "evidence": [
-    {"id": "E01", "label": "案卷摘要", "scene": "town", "source": "已获许可的警方材料副本，含丈夫陈述与残信照片", "admissible": true, "requires": [], "fact": "丈夫把问路放在1月20日，并用车票和送奶时刻支持行程"},
-    {"id": "E02", "label": "完整车票", "scene": "home", "source": "住宅书桌", "admissible": true, "requires": [], "fact": "1月20日车票没有验票孔；仅证明持票"},
-    {"id": "E03", "label": "已验车票", "scene": "station", "source": "售票员提供的同线路废票及验票规则", "admissible": true, "requires": [], "fact": "正常检票会留下齿孔"},
-    {"id": "E04", "label": "送奶证言", "scene": "town", "source": "送奶少年的可重复对话", "admissible": true, "requires": [], "fact": "时刻18:25来自街钟，少年没有自己的表"},
-    {"id": "E05", "label": "派送簿", "scene": "town", "source": "送奶车上的原簿，含两户独立签收记录", "admissible": true, "requires": [], "fact": "1月20日妻子家送奶位于17:50和18:00两次签收之间"},
-    {"id": "E06", "label": "双钟观察", "scene": "town", "source": "同一时刻查看玩家怀表与街钟", "admissible": true, "requires": [], "fact": "当前街钟比怀表快约30分钟；历史偏差还须用派送簿交叉核实"},
-    {"id": "E07", "label": "修灯通知", "scene": "clock_shop", "source": "柜台存放的镇务维修通知", "admissible": true, "requires": [], "fact": "南区坏灯于1月20日中午修好，白布当时拆下"},
-    {"id": "E08", "label": "巡警原簿副本", "scene": "station", "source": "车站巡警值班桌上已获许可查阅的原簿副本", "admissible": true, "requires": [], "fact": "问东街的原记录明确归在1月19日17:20；与丈夫陈述日期不同"},
-    {"id": "E09", "label": "残信裁余片", "scene": "home", "source": "住宅抽屉，与案卷残信照片对照", "admissible": true, "requires": [], "fact": "裁余片可以与现场残信拼合；支持布置现场的疑问，不能独自定罪", "proposed_addition": true},
-    {"id": "E10", "label": "家书", "scene": "home", "source": "书桌上的病房来信", "admissible": true, "requires": [], "fact": "妻子曾给孩子带苹果；保留死者的生活与情感", "proposed_addition": true}
+    {
+      "id": "E01",
+      "label": "案卷摘要",
+      "scene": "town",
+      "source": "已获许可的警方材料副本，含丈夫陈述与残信照片",
+      "admissible": true,
+      "requires": [],
+      "fact": "丈夫把19日真实乘车到另一镇问路的行程放进1月20日陈述，并用20日车票和送奶时刻支持行程"
+    },
+    {
+      "id": "E02",
+      "label": "完整车票",
+      "scene": "home",
+      "source": "住宅书桌",
+      "admissible": true,
+      "requires": [],
+      "fact": "1月20日车票没有验票孔；仅证明持票，不能否定19日实际乘车"
+    },
+    {
+      "id": "E03",
+      "label": "已验车票",
+      "scene": "station",
+      "source": "售票员提供的同线路废票及验票规则",
+      "admissible": true,
+      "requires": [],
+      "fact": "正常检票会留下齿孔"
+    },
+    {
+      "id": "E04",
+      "label": "送奶证言",
+      "scene": "town",
+      "source": "送奶少年的可重复对话",
+      "admissible": true,
+      "requires": [],
+      "fact": "时刻18:25来自街钟，少年没有自己的表"
+    },
+    {
+      "id": "E05",
+      "label": "派送簿",
+      "scene": "town",
+      "source": "送奶车上的原簿，含两户独立签收记录",
+      "admissible": true,
+      "requires": [],
+      "fact": "1月20日妻子家送奶位于17:50和18:00两次签收之间"
+    },
+    {
+      "id": "E06",
+      "label": "双钟观察",
+      "scene": "town",
+      "source": "同一时刻查看玩家怀表与街钟",
+      "admissible": true,
+      "requires": [],
+      "fact": "当前街钟比怀表快约30分钟；历史偏差还须用派送簿交叉核实"
+    },
+    {
+      "id": "E07",
+      "label": "修灯通知",
+      "scene": "clock_shop",
+      "source": "钟表铺柜台可查阅的另一镇镇务维修通知副本（移交渠道为设计提案）",
+      "admissible": true,
+      "requires": [],
+      "fact": "另一镇问路地点的坏灯于1月20日中午修好，白布当时拆下"
+    },
+    {
+      "id": "E08",
+      "label": "巡警原簿副本",
+      "scene": "station",
+      "source": "本镇车站资料桌上获准查阅的另一镇巡警原簿副本（调取渠道为设计提案）",
+      "admissible": true,
+      "requires": [],
+      "fact": "另一镇问东街的原记录明确归在1月19日17:20；与丈夫挪到20日的陈述不同"
+    },
+    {
+      "id": "E09",
+      "label": "残信裁余片",
+      "scene": "home",
+      "source": "住宅抽屉，与案卷残信照片对照",
+      "admissible": true,
+      "requires": [],
+      "fact": "裁余片可以与现场残信拼合；支持布置现场的疑问，不能独自定罪",
+      "proposed_addition": true
+    },
+    {
+      "id": "E10",
+      "label": "家书",
+      "scene": "home",
+      "source": "书桌上的病房来信",
+      "admissible": true,
+      "requires": [],
+      "fact": "妻子曾给孩子带苹果；保留死者的生活与情感",
+      "proposed_addition": true
+    }
   ],
   "montage": [
-    {"id": "M01", "event": "route_query", "admissible": false},
-    {"id": "M02", "event": "appointment_received", "admissible": false},
-    {"id": "M03", "event": "milk_delivery", "admissible": false},
-    {"id": "M04", "event": "station_visit", "admissible": false}
+    {
+      "id": "M01",
+      "event": "route_query",
+      "admissible": false
+    },
+    {
+      "id": "M02",
+      "event": "appointment_received",
+      "admissible": false
+    },
+    {
+      "id": "M03",
+      "event": "milk_delivery",
+      "admissible": false
+    },
+    {
+      "id": "M04",
+      "event": "station_visit",
+      "admissible": false
+    }
   ],
   "deductions": [
-    {"id": "D01", "label": "车票不足以证明乘车", "required_evidence": ["E01", "E02", "E03"], "core": false, "conclusion_kind": "alibi_contradiction"},
-    {"id": "D02", "label": "送奶证词的时刻需要校正", "required_evidence": ["E01", "E04", "E05"], "supporting_evidence": ["E06"], "core": true, "conclusion_kind": "time_contradiction"},
-    {"id": "D03", "label": "问路被移到错误日期", "required_evidence": ["E01", "E08"], "supporting_evidence": ["E07"], "core": true, "conclusion_kind": "date_contradiction"},
-    {"id": "D04", "label": "原主可能参与剪裁现场材料", "required_evidence": ["E01", "E09"], "core": false, "conclusion_kind": "staging_question"}
+    {
+      "id": "D01",
+      "label": "车票不足以证明乘车",
+      "required_evidence": [
+        "E01",
+        "E02",
+        "E03"
+      ],
+      "core": false,
+      "conclusion_kind": "alibi_contradiction"
+    },
+    {
+      "id": "D02",
+      "label": "送奶证词的时刻需要校正",
+      "required_evidence": [
+        "E01",
+        "E04",
+        "E05"
+      ],
+      "supporting_evidence": [
+        "E06"
+      ],
+      "core": true,
+      "conclusion_kind": "time_contradiction"
+    },
+    {
+      "id": "D03",
+      "label": "问路被移到错误日期",
+      "required_evidence": [
+        "E01",
+        "E08"
+      ],
+      "supporting_evidence": [
+        "E07"
+      ],
+      "core": true,
+      "conclusion_kind": "date_contradiction"
+    },
+    {
+      "id": "D04",
+      "label": "原主可能参与剪裁现场材料",
+      "required_evidence": [
+        "E01",
+        "E09"
+      ],
+      "core": false,
+      "conclusion_kind": "staging_question"
+    }
   ],
   "dialogue": [
-    {"id": "Q01", "npc": "milk_boy", "scene": "town", "requires": ["E05"], "question": "这两次签收之间是她家吗？"},
-    {"id": "Q02", "npc": "station_clerk", "scene": "station", "requires": ["E02"], "question": "这张票验过了吗？"},
-    {"id": "Q03", "npc": "clockmaker", "scene": "clock_shop", "requires": ["E08"], "question": "问路记录里那盏灯是什么时候修好的？"}
+    {
+      "id": "Q01",
+      "npc": "milk_boy",
+      "scene": "town",
+      "requires": [
+        "E05"
+      ],
+      "question": "这两次签收之间是她家吗？"
+    },
+    {
+      "id": "Q02",
+      "npc": "station_clerk",
+      "scene": "station",
+      "requires": [
+        "E02"
+      ],
+      "question": "这张票验过了吗？"
+    },
+    {
+      "id": "Q03",
+      "npc": "clockmaker",
+      "scene": "clock_shop",
+      "requires": [
+        "E08"
+      ],
+      "question": "问路记录里那盏灯是什么时候修好的？"
+    }
   ],
-  "report": {"core_deductions": ["D02", "D03"], "requires_player_submission": true, "allow_partial_report": true, "allow_continue_after_report": true}
+  "report": {
+    "core_deductions": [
+      "D02",
+      "D03"
+    ],
+    "requires_player_submission": true,
+    "allow_partial_report": true,
+    "allow_continue_after_report": true
+  },
+  "geography_revision": {
+    "confirmed_by": "用户 2026-10-08",
+    "actual_trip": {
+      "date": "1931-01-19",
+      "origin": "本镇车站",
+      "mode": "列车",
+      "destination": "另一镇",
+      "purpose": "问路",
+      "departure_time": null,
+      "travel_minutes": null,
+      "return_time": null
+    },
+    "false_claim": {
+      "date": "1931-01-20",
+      "description": "把前一天真实跨镇行程挪入案发日陈述"
+    },
+    "map_scope": "只制作本镇；另一镇无坐标或路网",
+    "unresolved": [
+      "19日通话与棋社所属城镇",
+      "跨镇班次与返程",
+      "售票员19日在另一镇相遇的交通安排"
+    ]
+  }
 }
