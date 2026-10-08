@@ -16,7 +16,7 @@ MonoBehaviour:
   footprint: {x: 7.4, y: 8.2}
   wallHeight: 3.3
   wallThickness: 0.2
-  roofRise: 1.6
+  roofRise: 0.18
   townPosition: {x: 9.72, y: 0, z: 1}
   townYaw: 90
   interiorSpawn: {x: 0, y: 0.03, z: -2.2}
@@ -26,17 +26,23 @@ MonoBehaviour:
     kind: 0
     wall: 0
     offset: -2
-    centreHeight: 1.95
-    size: {x: 2.1, y: 1.75}
+    centreHeight: 1.85
+    size: {x: 2.1, y: 2.2}
   - id: front-door
     kind: 1
     wall: 0
     offset: 0
-    centreHeight: 1.2
-    size: {x: 1.4, y: 2.4}
+    centreHeight: 1.45
+    size: {x: 1.4, y: 2.9}
   - id: front-right
     kind: 0
     wall: 0
     offset: 2
-    centreHeight: 1.95
-    size: {x: 2.1, y: 1.75}
+    centreHeight: 1.85
+    size: {x: 2.1, y: 2.2}
+  - id: rear-door
+    kind: 1
+    wall: 1
+    offset: 0
+    centreHeight: 1.2
+    size: {x: 1.1, y: 2.4}

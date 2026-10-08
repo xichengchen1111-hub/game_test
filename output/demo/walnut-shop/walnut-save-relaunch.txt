@@ -1,0 +1,1 @@
+PASS: independent process restored Town world-space interior position, E07, open door and open drawer.

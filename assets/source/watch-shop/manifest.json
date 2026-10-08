@@ -1,0 +1,35 @@
+{
+  "blender": "5.2.0 LTS",
+  "sourceReopened": true,
+  "parts": 57,
+  "vertices": 138248,
+  "boundsMin": [
+    -3.809999942779541,
+    -3.998000383377075,
+    -4.76837158203125e-07
+  ],
+  "boundsMax": [
+    3.809999942779541,
+    5.069738388061523,
+    4.109738826751709
+  ],
+  "modules": [
+    "Module_Facade",
+    "Module_OakFloor",
+    "Module_InteriorJoinery",
+    "Module_LeftCabinet",
+    "VitrineLeftHinge",
+    "Module_RightCabinet",
+    "VitrineRightHinge",
+    "Module_WindowDisplay-1",
+    "Module_WindowDisplay1",
+    "Module_RepairBay",
+    "PartsDrawer",
+    "Module_SoftFurnishings",
+    "FrontMarker",
+    "EastMarker",
+    "WorkbenchSeatMarker"
+  ],
+  "provenance": "Original procedural geometry. No external asset textures. Selected user concept as style reference.",
+  "unityRuntimeChecked": false
+}

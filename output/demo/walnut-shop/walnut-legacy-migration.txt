@@ -1,0 +1,1 @@
+PASS: actual legacy ClockShop-local disk save loaded, mapped to Town and resaved; E04/E07, dialogue topic/revision and remark preserved.

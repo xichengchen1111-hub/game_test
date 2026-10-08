@@ -15,10 +15,10 @@
             "kind": 0,
             "wall": 0,
             "offset": -2.0,
-            "centreHeight": 1.9500000476837159,
+            "centreHeight": 1.850000023841858,
             "size": {
                 "x": 2.0999999046325685,
-                "y": 1.75
+                "y": 2.200000047683716
             }
         },
         {
@@ -26,10 +26,10 @@
             "kind": 1,
             "wall": 0,
             "offset": 0.0,
-            "centreHeight": 1.2000000476837159,
+            "centreHeight": 1.4500000476837159,
             "size": {
                 "x": 1.399999976158142,
-                "y": 2.4000000953674318
+                "y": 2.9000000953674318
             }
         },
         {
@@ -37,15 +37,26 @@
             "kind": 0,
             "wall": 0,
             "offset": 2.0,
-            "centreHeight": 1.9500000476837159,
+            "centreHeight": 1.850000023841858,
             "size": {
                 "x": 2.0999999046325685,
-                "y": 1.75
+                "y": 2.200000047683716
+            }
+        },
+        {
+            "id": "rear-door",
+            "kind": 1,
+            "wall": 1,
+            "offset": 0.0,
+            "centreHeight": 1.2000000476837159,
+            "size": {
+                "x": 1.100000023841858,
+                "y": 2.4000000953674318
             }
         }
     ],
     "geometryIdentical": true,
-    "doorAndSpawnAligned": true,
+    "physicalDoorsAligned": true,
     "rejectsMovedWindow": true,
     "rejectsMissingWindow": true,
     "rejectsExtraWindow": true

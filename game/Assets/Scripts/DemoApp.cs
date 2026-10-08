@@ -15,6 +15,8 @@ using UnityEngine.SceneManagement;
     public bool milkboyGreeted;
     public int milkboyGreetingRevision;
     public List<string> dialogueTopics = new List<string>();
+    public List<string> openFixtures = new List<string>();
+    public int worldRevision;
 }
 
 public partial class DemoApp : MonoBehaviour {
@@ -34,6 +36,8 @@ public partial class DemoApp : MonoBehaviour {
     public float Minutes => 17*60+55+Time.time/60f;
     public bool Blocked => opening || transitioning || inspected || journal || paused || DialogueOpen;
     public string CurrentScene { get; private set; } = "Town";
+    public bool IsInsideShop { get; private set; }
+    BuildingInstance seamlessShop;
     public bool Silent;
     bool opening=true, transitioning, journal, paused, watch;
     bool quitting,reviewPortrait;
@@ -72,7 +76,8 @@ public partial class DemoApp : MonoBehaviour {
         lightingRight=reviewLighting&&Array.IndexOf(args,"--lighting-window-right")>=0;
         Silent=Review || Array.IndexOf(args,"--silent")>=0;
         bool dialogueReview=Review&&(Array.IndexOf(args,"--review-dialogue")>=0||Array.IndexOf(args,"--verify-dialogue-save")>=0);
-        savePath=Path.Combine(Application.persistentDataPath,dialogueReview?"dialogue-review-save.json":Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
+        bool migrationReview=Review&&Array.IndexOf(args,"--verify-walnut-migration")>=0;
+        savePath=Path.Combine(Application.persistentDataPath,migrationReview?"walnut-migration-save.json":dialogueReview?"dialogue-review-save.json":Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
         int c=Array.IndexOf(args,"--capture-dir");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -83,6 +88,7 @@ public partial class DemoApp : MonoBehaviour {
         }
         if (state==null || state.entries==null) state=new SliceSave();
         if(state.dialogueTopics==null)state.dialogueTopics=new List<string>();
+        if(state.openFixtures==null)state.openFixtures=new List<string>();
         if (state.scene!="Town" && state.scene!="ClockShop") state.scene="Town";
         if(previewWindow){state.scene="ClockShop";state.x=0;state.y=.03f;state.z=-.6f;opening=false;}
         if(previewStreet){state.scene="Town";state.x=0;state.y=.03f;state.z=1;opening=false;}
@@ -93,8 +99,16 @@ public partial class DemoApp : MonoBehaviour {
         StartCoroutine(InitialScene(args));
     }
     IEnumerator InitialScene(string[] args) {
-        yield return SceneManager.LoadSceneAsync(state.scene,LoadSceneMode.Additive);
-        CurrentScene=state.scene;
+        bool legacyRoom=state.scene=="ClockShop";
+        yield return SceneManager.LoadSceneAsync("Town",LoadSceneMode.Additive);
+        seamlessShop=FindFirstObjectByType<BuildingInstance>();
+        if(legacyRoom) {
+            var mapped=seamlessShop.layout.ToTown(new Vector3(state.x,state.y,state.z));
+            state.x=mapped.x;state.y=mapped.y;state.z=mapped.z;state.yaw+=seamlessShop.layout.townYaw;
+            Debug.Log("SEAMLESS_SAVE_MIGRATED: interior-local position to Town world coordinates; evidence/dialogue preserved");
+        }
+        state.scene="Town";state.worldRevision=2;
+        CurrentScene="Town";
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentScene));
         var savedPosition=new Vector3(state.x,state.y,state.z);
         if(!SafePosition(savedPosition)) {
@@ -102,7 +116,7 @@ public partial class DemoApp : MonoBehaviour {
             savedPosition=SafeSpawn();
         }
         player.Place(savedPosition,float.IsNaN(state.yaw)||float.IsInfinity(state.yaw)?0:state.yaw);
-        player.Aim(previewWindow?FindFirstObjectByType<BuildingInstance>().layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f:CurrentScene=="Town"?new Vector3(0,3.1f,9):new Vector3(0,1.4f,1.5f));
+        player.Aim(previewWindow?seamlessShop.layout.ToTown(seamlessShop.layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f):new Vector3(0,3.1f,9));
         if(previewStreet){var layout=FindFirstObjectByType<BuildingInstance>().layout;player.Aim(layout.ToTown(layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f));}
         if(previewMilkboy)player.Aim(GameObject.Find("Milkboy").transform.position+Vector3.up*.94f);
         if(previewWatchmaker)player.Aim(GameObject.Find("Clockmaker").transform.position+Vector3.up*1.1f);
@@ -113,7 +127,10 @@ public partial class DemoApp : MonoBehaviour {
         if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--review-dialogue")>=0)StartCoroutine(ReviewDialogue());
+            if(Array.IndexOf(args,"--review-walnut-shop")>=0)StartCoroutine(ReviewWalnutShop());
+            else if(Array.IndexOf(args,"--verify-walnut-save")>=0)StartCoroutine(VerifyWalnutSave());
+            else if(Array.IndexOf(args,"--verify-walnut-migration")>=0)StartCoroutine(VerifyWalnutMigration());
+            else if(Array.IndexOf(args,"--review-dialogue")>=0)StartCoroutine(ReviewDialogue());
             else if(Array.IndexOf(args,"--verify-dialogue-save")>=0)StartCoroutine(VerifyDialogueSave());
             else if(Array.IndexOf(args,"--review-milkshop-windows")>=0)StartCoroutine(ReviewMilkShopWindows());
             else if(Array.IndexOf(args,"--review-milkshop")>=0)StartCoroutine(ReviewMilkShop());
@@ -122,10 +139,15 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--review-milkboy")>=0)StartCoroutine(ReviewMilkboy());
             else if(reviewLighting)StartCoroutine(ReviewLighting(args));
             else if(Array.IndexOf(args,"--verify-save")>=0) StartCoroutine(VerifySaved());
-            else StartCoroutine(ReviewRun());
+            else StartCoroutine(ReviewWalnutShop());
         }
     }
     void Update() {
+        if(sceneReady&&seamlessShop) {
+            var p=seamlessShop.transform.InverseTransformPoint(player.transform.position);
+            bool inside=Mathf.Abs(p.x)<seamlessShop.layout.footprint.x/2&&Mathf.Abs(p.z)<seamlessShop.layout.footprint.y/2;
+            if(inside!=IsInsideShop){IsInsideShop=inside;location=inside?"青川 · 钟表铺":"青川 · 小镇广场";locationAge=Time.time;Save();}
+        }
         if (Input.GetKeyDown(KeyCode.F12)) StartCoroutine(Capture("manual-"+DateTime.Now.ToString("HHmmss")));
         if (transitioning) return;
         if(DialogueOpen) { UpdateDialogueInput(); focus=null; return; }
@@ -149,12 +171,15 @@ public partial class DemoApp : MonoBehaviour {
         if(Blocked) return false;
         if(Physics.Raycast(player.eye.transform.position,player.eye.transform.forward,out var hit,3f)) {
             var item=hit.collider.GetComponentInParent<Interactable>();
+            if(Review)Debug.Log("INTERACTION_RAY: hit="+hit.collider.name+" distance="+hit.distance+" item="+(item?item.title:"none")+" eye="+player.eye.transform.position+" direction="+player.eye.transform.forward);
             if(item) { item.Use(); return true; }
         }
+        else if(Review)Debug.Log("INTERACTION_RAY: no hit eye="+player.eye.transform.position+" direction="+player.eye.transform.forward);
         return false;
     }
     public void Inspect(Interactable item) {
         if(item.evidenceId=="E04") { OpenMilkboyDialogue(); return; }
+        if(item.title=="钟表匠") { OpenWatchmakerDialogue(); return; }
         inspected=item; CursorMode();
         if(!string.IsNullOrEmpty(item.evidenceId) && !state.entries.Exists(e=>e.id==item.evidenceId)) {
             state.entries.Add(new NotebookEntry{id=item.evidenceId,title=item.title,body=item.body,source=item.source});
@@ -292,7 +317,7 @@ public partial class DemoApp : MonoBehaviour {
                 GUI.color=new Color(1,0.95f,0.85f,0.8f);GUI.DrawTexture(new Rect(W/2-3,H/2-3,6,6),circle);GUI.color=Color.white;
                 if(focus) {
                     Rect p=new Rect(W/2-170,H/2+38,340,43);Box(p,new Color(0.04f,0.08f,0.11f,0.87f));
-                    Label(p,"E   "+(focus is ScenePortal?focus.title:focus.evidenceId=="E04"?"交谈 · "+focus.title:"查看 · "+focus.title),button);
+                    Label(p,"E   "+(focus is ScenePortal||focus is ShopMechanism?focus.title:focus.evidenceId=="E04"||focus.title=="钟表匠"?"交谈 · "+focus.title:"查看 · "+focus.title),button);
                 }
                 Label(new Rect(36,H-50,W-72,30),"WASD 行走    鼠标 观察    Shift 快走    E 互动    Q 怀表    Tab 调查簿    Esc 暂停",small);
             }

@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-08",
+  "syncedBase": "cd991ce",
+  "unity": "6000.3.18f1",
+  "blender": "5.2.0 LTS",
+  "platform": "WindowsPlayer / Direct3D 11",
+  "checks": {
+    "build.log": "SLICE_BUILD_PASS",
+    "accepted-player.log": "WALNUT_REVIEW_PASS",
+    "accepted-relaunch-player.log": "WALNUT_SAVE_RELAUNCH_PASS",
+    "migration-player.log": "WALNUT_LEGACY_MIGRATION_PASS",
+    "dialogue-player.log": "DIALOGUE_REVIEW_PASS",
+    "dialogue-relaunch-player.log": "DIALOGUE_SAVE_RELAUNCH_PASS",
+    "milkshop-regression-player.log": "MILKSHOP_WINDOWS_REVIEW_PASS"
+  },
+  "finalShopCaptureResolution": [
+    1920,
+    1080
+  ],
+  "dialogueRegressionResolution": [
+    1280,
+    720
+  ],
+  "milkshopWindowRegression": true,
+  "normalSaveModified": false,
+  "macRevalidated": false,
+  "physicalKeyboardOrBlindPlaytest": false,
+  "hashes": {
+    "game/Assets/Art/WalnutShop/WalnutShop.fbx": "d467fb4b3d58b2381d3fa5fbee41cf224e51da40d52f4a6c122af1e84bda3083",
+    "assets/source/watch-shop/WalnutShop.blend": "69b96bcdf26a7d8ea71a08e5e66325d19863e5f32a85938195cb220bdbc0d430",
+    "builds/windows/TownDemo.exe": "5cf8283e7cb3761b6fcbba8e2c9f36a298a75883cc65ca7719b008f3a7aa231e"
+  }
+}

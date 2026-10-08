@@ -9,6 +9,8 @@ Locate the active repo and read `docs/mvp-demo.md`. Inspect the existing three `
 
 ## Asset choices
 
+- For the selected A / Walnut Heritage watch shop (2026-10-08), use `assets/source/watch-shop/reference-walnut.png` and the original editable joinery kit, not the earlier primitive shop. Keep dark green paneled frontage, walnut cabinets, clear glazing, warm light and the locked seated owner. Preserve named door / vitrine / drawer pivots and explicit surface UVs. Runtime shell and doors come from BuildSlice.Walnut; ArchitectureReference in the complete .blend is excluded from FBX to avoid duplicate walls. Circular shop dials use HeritageDial geometry, never opaque square dial backgrounds.
+
 - Keep broad flat color, gray-blue/purple shadows and warm window/interior light. Reuse a small wall, door, window, floor, desk and cabinet kit across scenes. Prefer silhouette, palette and authored surface decoration over extra geometry.
 - Most simplified NPCs share a body and, when animation is introduced, one basic rig. The milk-delivery child uses the user's latest supplied `Meshy_AI_The_Little_Messenger_biped.zip` (2026-10-08); preserve its mesh, face, clothing, textures, weights and six supplied actions. Its looping short-breath/look-around idle supersedes the previous Toon Boy blond/blue-eye/strap-gripping requirements. Keep E04 and the clockmaker independent. Start with idle and talk motion; do not add facial rigs, hair simulation or elaborate locomotion to meet this MVP.
 - Preserve 1931 prop context while carrying over the reference images' lived-in warmth. Modern neon signs and electronics from the reference do not automatically belong in the setting.

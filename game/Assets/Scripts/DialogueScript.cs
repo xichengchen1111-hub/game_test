@@ -25,7 +25,7 @@ using UnityEngine;
     }
     public void Validate() {
         index=new Dictionary<string,DialogueNode>();
-        if(nodes==null||evidence==null||evidence.id!="E04")throw new InvalidOperationException("Invalid milkboy dialogue data");
+        if(nodes==null)throw new InvalidOperationException("Missing dialogue nodes");
         foreach(var node in nodes) {
             if(string.IsNullOrEmpty(node.id)||index.ContainsKey(node.id)||string.IsNullOrEmpty(node.text))
                 throw new InvalidOperationException("Missing or duplicate dialogue node: "+node.id);
@@ -34,7 +34,7 @@ using UnityEngine;
         Get(first); Get(revisit);
         foreach(var node in nodes) {
             if(!string.IsNullOrEmpty(node.next))Get(node.next);
-            if(!string.IsNullOrEmpty(node.grantEvidence)&&node.grantEvidence!=evidence.id)
+            if(!string.IsNullOrEmpty(node.grantEvidence)&&(evidence==null||node.grantEvidence!=evidence.id))
                 throw new InvalidOperationException("Unknown dialogue evidence: "+node.grantEvidence);
             if(node.choices==null)continue;
             foreach(var choice in node.choices) {

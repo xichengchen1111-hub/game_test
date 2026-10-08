@@ -15,12 +15,17 @@ public partial class DemoApp {
     bool DialogueOpen => dialogueNode!=null;
 
     void OpenMilkboyDialogue() {
-        if(milkboyScript==null)milkboyScript=DialogueScript.Load("MilkboyDialogue");
+        milkboyScript=DialogueScript.Load("MilkboyDialogue");
         dialogueHistory.Clear(); dialogueHistoryOpen=false;
         player.scriptedDirection=Vector3.zero;
         VisitDialogue(state.milkboyGreetingRevision>=MilkboyGreetingRevision?milkboyScript.revisit:milkboyScript.first);
         CursorMode();
         Debug.Log("DIALOGUE_OPEN: milkboy");
+    }
+    void OpenWatchmakerDialogue() {
+        milkboyScript=DialogueScript.Load("WatchmakerDialogue");
+        dialogueHistory.Clear();dialogueHistoryOpen=false;player.scriptedDirection=Vector3.zero;
+        VisitDialogue(milkboyScript.first);CursorMode();Debug.Log("DIALOGUE_OPEN: watchmaker");
     }
     void VisitDialogue(string id) {
         dialogueNode=milkboyScript.Get(id);

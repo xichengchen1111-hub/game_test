@@ -82,10 +82,15 @@ public static class BuildingLayoutChecks {
         Require(Vector3.Distance(town.transform.position,layout.townPosition)<.001f&&Quaternion.Angle(town.transform.rotation,layout.TownRotation)<.01f,"town building transform differs from layout");
         Require(Vector3.Distance(room.transform.position,Vector3.zero)<.001f&&Quaternion.Angle(room.transform.rotation,Quaternion.identity)<.01f,"interior building must retain local coordinates");
         CompareGeometry(town,room);
-        var entry=town.Opening(layout.entranceId).GetComponentInChildren<ScenePortal>();
-        var exit=room.Opening(layout.entranceId).GetComponentInChildren<ScenePortal>();
-        Require(entry&&exit&&entry.destination=="ClockShop"&&exit.destination=="Town"&&Vector3.Distance(entry.entryPosition,layout.interiorSpawn)<.001f,"door transition/spawn differs from physical layout");
-        Require(town.GetComponentsInChildren<Interactable>().Length==1,"exterior room preview exposes duplicate clue interactions");
+        Require(town.GetComponentsInChildren<ScenePortal>().Length==0&&room.GetComponentsInChildren<ScenePortal>().Length==0,"seamless shop must not contain loading portals");
+        foreach(var opening in layout.openings.Where(o=>o.kind==OpeningKind.Door)) {
+            var entry=town.Opening(opening.id).GetComponentInChildren<ShopMechanism>();
+            var exit=room.Opening(opening.id).GetComponentInChildren<ShopMechanism>();
+            Require(entry&&exit&&entry.protectPlayer&&exit.protectPlayer&&entry.GetComponent<BoxCollider>()&&entry.fixtureId==exit.fixtureId,"physical hinged door differs: "+opening.id);
+        }
+        Require(town.GetComponentsInChildren<Interactable>().Count(i=>i.evidenceId=="E07")==1,"Town must contain exactly one inspectable E07");
+        foreach(var pane in town.GetComponentsInChildren<MeshRenderer>().Where(r=>r.name=="Transparent window glass"||r.name=="Transparent door glass"))
+            Require(pane.sharedMaterial.shader.name=="WrongDate/ClearGlass"&&pane.sharedMaterial.renderQueue==3000,"opaque shop glazing");
     }
     static void RejectMutation(Action mutate,Action restore,Action validate) {
         bool rejected=false;
@@ -118,11 +123,11 @@ public static class BuildingLayoutChecks {
                 building=layout.buildingId,sharedPrefab=prefabPath,footprint=layout.footprint,wallHeight=layout.wallHeight,
                 exteriorWindows=town.GetComponentsInChildren<BuildingOpeningMarker>().Count(m=>m.kind==OpeningKind.Window),
                 interiorWindows=room.GetComponentsInChildren<BuildingOpeningMarker>().Count(m=>m.kind==OpeningKind.Window),
-                openings=layout.openings,geometryIdentical=true,doorAndSpawnAligned=true,
+                openings=layout.openings,geometryIdentical=true,physicalDoorsAligned=true,
                 rejectsMovedWindow=true,rejectsMissingWindow=true,rejectsExtraWindow=true,
                 verification="Checks loaded scene instances, every mesh/material/transform and named physical openings; three deliberate mismatches are rejected before player build."
             },true));
-            Debug.Log("BUILDING_LAYOUT_PASS: shared prefab, identical geometry and openings; rejected moved/missing/extra windows");
+            Debug.Log("BUILDING_LAYOUT_PASS: shared prefab, identical geometry/openings, physical doors and clear glass; rejected moved/missing/extra windows");
         } finally {EditorSceneManager.CloseScene(townScene,true);SceneManager.SetActiveScene(roomScene);}
     }
     [Serializable] class Result {
@@ -131,6 +136,6 @@ public static class BuildingLayoutChecks {
         public float wallHeight;
         public int exteriorWindows,interiorWindows;
         public BuildingOpening[] openings;
-        public bool geometryIdentical,doorAndSpawnAligned,rejectsMovedWindow,rejectsMissingWindow,rejectsExtraWindow;
+        public bool geometryIdentical,physicalDoorsAligned,rejectsMovedWindow,rejectsMissingWindow,rejectsExtraWindow;
     }
 }

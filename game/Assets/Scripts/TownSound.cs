@@ -30,8 +30,8 @@ public class TownSound : MonoBehaviour {
     }
     void Update() {
         var app=DemoApp.Instance;if(!app||!details)return;
-        ambience.volume=app.CurrentScene=="Town"?.32f:.06f;
-        if(app.CurrentScene=="ClockShop"&&Time.time>=nextTick){nextTick=Time.time+.85f;details.PlayOneShot(tick,.4f);}
+        ambience.volume=app.IsInsideShop?.06f:.32f;
+        if(app.IsInsideShop&&Time.time>=nextTick){nextTick=Time.time+.85f;details.PlayOneShot(tick,.4f);}
         if(!app.Blocked&&app.player.GetComponent<CharacterController>().velocity.sqrMagnitude>.1f&&Time.time>=nextStep) {
             nextStep=Time.time+.44f;details.PlayOneShot(step,.6f);
         }

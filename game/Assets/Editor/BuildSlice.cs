@@ -11,7 +11,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
-public static class BuildSlice {
+public static partial class BuildSlice {
     static Dictionary<string,Material> mats=new Dictionary<string,Material>();
     static Font font;
     static BuildingLayout shopLayout;
@@ -306,7 +306,7 @@ public static class BuildSlice {
         street.transform.SetPositionAndRotation(rotation*-shopLayout.townPosition,rotation);
     }
     static void ClearWindow(Transform parent,float width,float height) {
-        var wood=Mat("WindowTrim","#37323A");
+        var wood=ShopMaterial("ShopGreen");
         // Let the timber overlap the aperture by 5 cm. Its inner faces must not
         // coincide with the plaster returns: those coplanar faces flicker on movement.
         float innerWidth=width-.10f,innerHeight=height-.10f;
@@ -316,9 +316,8 @@ public static class BuildSlice {
         for(int side=-1;side<=1;side+=2) {
             Box("Window jamb",new Vector3(side*width/2,0,0),new Vector3(.10f,height+.10f,frameDepth),wood,parent,false);
             Box("Window rail",new Vector3(0,side*height/2,0),new Vector3(innerWidth,.10f,frameDepth),wood,parent,false);
-            Box("Window transom",new Vector3(side*(innerWidth+.06f)/4,.12f,0),new Vector3((innerWidth-.06f)/2,.055f,.12f),wood,parent,false);
         }
-        Box("Window mullion",Vector3.zero,new Vector3(.06f,innerHeight,.12f),wood,parent,false);
+        Box("Window transom",new Vector3(0,height/2-.34f,0),new Vector3(innerWidth,.045f,.12f),wood,parent,false);
         Box("Stone sill",new Vector3(0,-height/2-.07f,.07f),new Vector3(width+.32f,.12f,.42f),Mat("Sill","#8A7F77"),parent,false);
         string path="Assets/Generated/Materials/ClearWindowGlass.mat";
         var glass=AssetDatabase.LoadAssetAtPath<Material>(path);
@@ -329,86 +328,12 @@ public static class BuildSlice {
         var blocker=Group("Window safety collision",Vector3.zero,parent);blocker.layer=2;
         Collider(blocker,Vector3.zero,new Vector3(width,height,.08f));
     }
-    static void ClockShopPrefab() {
-        EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
-        var root=Group("ClockShop",Vector3.zero);
-        var instance=root.AddComponent<BuildingInstance>();instance.layout=shopLayout;instance.interior=true;
-        var timber=Mat("ShopWood","#7F573C");var wall=Mat("InteriorPlaster","#A09992");var panel=Mat("Wainscot","#5D4A42");
-        Box("Interior floor",new Vector3(0,-.17f,0),new Vector3(shopLayout.footprint.x,.3f,shopLayout.footprint.y),timber);
-        for(int i=0;i<18;i++)for(int j=0;j<4;j++)Box("Floor board",new Vector3(-3.35f+i*.39f,-.006f,-3+j*2.03f),new Vector3(.37f,.025f,2f),Mat("Floor"+(i+j)%3,new[]{"#845D45","#90684B","#78563F"}[(i+j)%3]),null,false);
-        SharedShell(root.transform,wall);
-        Box("Ceiling",new Vector3(0,shopLayout.wallHeight+.05f,0),new Vector3(shopLayout.footprint.x,.15f,shopLayout.footprint.y),Mat("Ceiling","#776A63"));
-        Box("Back panel",new Vector3(0,.58f,shopLayout.WallCentre(BuildingWall.Back).z-.13f),new Vector3(shopLayout.footprint.x-.3f,1.15f,.06f),panel,null,false);
-        for(int side=-1;side<=1;side+=2)Box(side<0?"Left panel":"Right panel",new Vector3(side*(shopLayout.footprint.x/2-.23f),.58f,0),new Vector3(.06f,1.15f,shopLayout.footprint.y-.4f),panel,null,false);
-        foreach(var opening in shopLayout.openings) {
-            var frame=Group("Opening "+opening.id,shopLayout.OpeningCentre(opening),root.transform).transform;
-            frame.localRotation=shopLayout.WallRotation(opening.wall);
-            var marker=frame.gameObject.AddComponent<BuildingOpeningMarker>();marker.openingId=opening.id;marker.kind=opening.kind;marker.apertureSize=opening.size;
-            if(opening.kind==OpeningKind.Window) {
-                ClearWindow(frame,opening.size.x,opening.size.y);
-                Point("Cool window light",frame.position+frame.forward*.73f+Vector3.up*.15f,C("#8DAAD5"),.9f,4.5f);
-            } else {
-                var entry=Box("Shop door",Vector3.zero,new Vector3(opening.size.x,opening.size.y,.16f),Mat("Door","#413832"),frame);
-                for(int side=-1;side<=1;side+=2) {
-                    Box("Door handle",new Vector3(.5f,1.02f-opening.centreHeight,side*.13f),new Vector3(.065f,.35f,.07f),Mat("Brass","#B68C4B"),frame,false);
-                    var pane=Quad("Door glazing",new Vector3(0,1.65f-opening.centreHeight,side*.09f),new Vector2(1.08f,1.15f),ImageMat("DoorWindow","DoorWindow.png"),frame);
-                    if(side>0)pane.transform.localRotation=Quaternion.Euler(0,180,0);
-                }
-                var exit=entry.AddComponent<ScenePortal>();exit.title="回到小镇";exit.destination="Town";exit.entryYaw=-shopLayout.townYaw;
-            }
-        }
-        var desk=Model("Desk",new Vector3(0,0,1.35f));Collider(desk,new Vector3(0,.44f,0),new Vector3(1.85f,.88f,.85f));
-        var npc=WatchmakerAsset.Create(new Vector3(.65f,0,2.65f));
-        var talk=npc.AddComponent<Interactable>();talk.title="钟表匠";talk.source="钟表铺，柜台交谈";talk.body="“钟表坏了就放在柜台。老物件，慢慢修。”\n\n“想看什么，你自己看看。”";
-        var notice=Box("RepairNotice",new Vector3(.45f,.91f,1.23f),new Vector3(.53f,.018f,.38f),Mat("Paper","#D5C19C"));
-        var page=Quad("Notice ink",Vector3.zero,new Vector2(.52f,.37f),ImageMat("NoticePaper","Notice.png",true),notice.transform);
-        page.transform.localScale=new Vector3(.52f/.53f,.37f/.38f,1);page.transform.localPosition=new Vector3(0,.55f,0);page.transform.localRotation=Quaternion.Euler(90,0,0);
-        var clue=notice.AddComponent<Interactable>();clue.title="修灯通知";clue.evidenceId="E07";clue.source="镇务维修通知，钟表铺柜台";clue.illustration=AssetDatabase.LoadAssetAtPath<Texture2D>(art+"Notice.png");
-        clue.body="镇务维修通知\n\n1931 年 1 月 20 日 · 中午十二时\n\n南区街灯已修复，灯柱上的白布于修复后拆下。\n\n修灯工签记：已完工。";
-        for(int i=0;i<4;i++) {
-            float x=-2.4f+i*1.25f;
-            Box("Wall clock case",new Vector3(x,2.13f,3.80f),new Vector3(.94f,1.35f,.18f),timber,null,false);
-            var dial=Group("Wall clock "+i,new Vector3(x,2.35f,3.68f)).transform;Dial(dial,Vector3.zero,.7f,false);
-            Box("Pendulum window",new Vector3(x,1.68f,3.68f),new Vector3(.35f,.42f,.05f),Mat("ClockInk","#302B31"),null,false);
-            Cylinder("Pendulum bob",new Vector3(x,1.60f,3.60f),new Vector3(.13f,.025f,.13f),Mat("Brass","#B68C4B")).transform.rotation=Quaternion.Euler(90,0,0);
-        }
-        for(int i=0;i<3;i++) {
-            Box("Display shelf",new Vector3(3.28f,.8f+i*.6f,1.15f),new Vector3(.45f,.09f,3.2f),timber);
-            for(int j=0;j<5;j++)Box("Clock case or book",new Vector3(3.28f,1.01f+i*.6f,-.05f+j*.55f),new Vector3(.22f,.32f,.30f),Mat("Shelf"+(i+j)%3,new[]{"#53645C","#9B8060","#473F3F"}[(i+j)%3]),null,false);
-        }
-        Model("Plant",new Vector3(-3f,0,-.5f));
-        Box("Left worktable",new Vector3(-2.05f,.73f,2.4f),new Vector3(1.7f,.13f,.8f),timber);
-        for(int i=-1;i<=1;i+=2)Box("Worktable leg",new Vector3(-2.05f+i*.65f,.34f,2.4f),new Vector3(.12f,.7f,.55f),panel);
-        for(int i=0;i<5;i++)Cylinder("Brass wheel",new Vector3(-2.5f+i*.23f,.85f,2.35f),new Vector3(.18f,.018f,.18f),Mat("Brass","#B68C4B"));
-        Cylinder("Lamp foot",new Vector3(-.55f,.94f,1.43f),new Vector3(.25f,.025f,.25f),Mat("Brass","#B68C4B"));
-        Box("Desk lamp stem",new Vector3(-.55f,1.19f,1.43f),new Vector3(.035f,.5f,.035f),Mat("Brass","#B68C4B"),null,false);
-        Box("Desk lamp shade",new Vector3(-.55f,1.46f,1.43f),new Vector3(.43f,.15f,.3f),Mat("LampJade","#53665B"),null,false);
-        Box("Desk lamp glass",new Vector3(-.55f,1.38f,1.43f),new Vector3(.35f,.018f,.23f),Mat("LampGlow","#FFBB73",2),null,false);
-        Point("Desk task light",new Vector3(-.55f,1.26f,1.43f),C("#FFBB77"),2.8f,3.4f,true);
-        Cylinder("Ceiling lamp",new Vector3(0,2.8f,-.8f),new Vector3(.52f,.08f,.52f),Mat("LampJade","#53665B"));
-        Point("Warm ceiling pool",new Vector3(0,2.65f,-.8f),C("#FFC58C"),3.4f,7,true);
-        float front=shopLayout.WallCentre(BuildingWall.Front).z;
-        float roofBase=shopLayout.wallHeight+.125f;
-        Roof(root.transform,shopLayout.footprint.x+.45f,shopLayout.footprint.y+.45f,roofBase,shopLayout.roofRise,Mat("Roof","#3B4255"));
-        Box("Cornice",new Vector3(0,shopLayout.wallHeight+.02f,front-.12f),new Vector3(shopLayout.footprint.x+.4f,.25f,.5f),Mat("Cornice","#736D72"),root.transform,false);
-        Box("Chimney",new Vector3(shopLayout.footprint.x/3,roofBase+1,1.5f),new Vector3(.65f,1.7f,.7f),Mat("Brick","#67565A"),root.transform,false);
-        Box("Shop sign",new Vector3(0,3.7f,front-.14f),new Vector3(shopLayout.footprint.x-.6f,.9f,.16f),Mat("SignWood","#283F40"),root.transform,false);
-        Quad("Lettered sign",new Vector3(0,3.7f,front-.235f),new Vector2(shopLayout.footprint.x-.7f,.85f),ImageMat("sign-SignClock.png","SignClock.png"),root.transform);
-        Porch(root.transform,shopLayout.footprint.x,front);
-        foreach(var child in SceneManager.GetActiveScene().GetRootGameObjects())
-            if(child!=root)child.transform.SetParent(root.transform,false);
-        PrefabUtility.SaveAsPrefabAsset(root,ShopPrefabPath);
-    }
     static BuildingInstance InstantiateShop(bool inside) {
         var prefab=AssetDatabase.LoadAssetAtPath<GameObject>(ShopPrefabPath);
         var instance=((GameObject)PrefabUtility.InstantiatePrefab(prefab)).GetComponent<BuildingInstance>();
         instance.interior=inside;
         if(!inside) {
             instance.transform.SetPositionAndRotation(shopLayout.townPosition,shopLayout.TownRotation);
-            var portal=instance.Opening(shopLayout.entranceId).GetComponentInChildren<ScenePortal>();
-            portal.title="进入钟表铺";portal.destination="ClockShop";portal.entryPosition=shopLayout.interiorSpawn;portal.entryYaw=0;
-            foreach(var interaction in instance.GetComponentsInChildren<Interactable>())
-                if(interaction!=portal)UnityEngine.Object.DestroyImmediate(interaction);
         }
         return instance;
     }
@@ -424,6 +349,9 @@ public static class BuildSlice {
         app.reviewAmbientOcclusion=renderer.rendererFeatures.Find(f=>f is ScreenSpaceAmbientOcclusion);
         app.gameObject.AddComponent<TownSound>();
         var player=new GameObject("First person");player.transform.SetParent(app.transform);
+        // Looking down at a nearby handle must not hit our own shoulder capsule.
+        // Ignore Raycast still participates in physical collision / door sweep checks.
+        player.layer=2;
         var cc=player.AddComponent<CharacterController>();cc.height=1.78f;cc.radius=.25f;cc.center=new Vector3(0,.9f,0);cc.stepOffset=.24f;cc.skinWidth=.03f;
         var eye=new GameObject("Player eye");eye.transform.SetParent(player.transform,false);eye.transform.localPosition=new Vector3(0,1.66f,0);eye.tag="MainCamera";
         var camera=eye.AddComponent<Camera>();camera.nearClipPlane=.08f;camera.farClipPlane=160;camera.fieldOfView=66;camera.allowHDR=true;
@@ -476,8 +404,9 @@ public static class BuildSlice {
         string layoutPath="Assets/Generated/ClockShopLayout.asset";
         shopLayout=AssetDatabase.LoadAssetAtPath<BuildingLayout>(layoutPath);
         if(!shopLayout){shopLayout=ScriptableObject.CreateInstance<BuildingLayout>();AssetDatabase.CreateAsset(shopLayout,layoutPath);}
+        ConfigureWalnutLayout();
         BuildingLayoutChecks.ValidateDefinition(shopLayout);
-        ClockShopPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);Systems();AssetDatabase.SaveAssets();
+        WalnutShopPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);Systems();AssetDatabase.SaveAssets();
         string[] scenes={"Assets/Scenes/Systems.unity","Assets/Scenes/Town.unity","Assets/Scenes/ClockShop.unity"};
         EditorBuildSettings.scenes=Array.ConvertAll(scenes,p=>new EditorBuildSettingsScene(p,true));
         string output=Path.GetFullPath(relativeOutput);Directory.CreateDirectory(Path.GetDirectoryName(output));

@@ -105,7 +105,7 @@ public partial class DemoApp {
         Save();
         File.WriteAllText(Path.Combine(captures,"dialogue-results.json"),JsonUtility.ToJson(new DialogueReviewResult {
             passed=true,width=Screen.width,height=Screen.height,
-            verification="Mac rendered player; actual controller/raycast; conversation actions use shared handlers, not physical keyboard. Conditional E05 supplied only in isolated test. Not a blind playthrough."
+            verification=Application.platform+" rendered player; actual controller/raycast; conversation actions use shared handlers, not physical keyboard. Conditional E05 supplied only in isolated test. Not a blind playthrough."
         },true));
         Debug.Log("DIALOGUE_REVIEW_PASS: greeting, all branches, interruption, repeat, evidence timing, history, movement, current-evidence questions, save");
         Application.Quit();

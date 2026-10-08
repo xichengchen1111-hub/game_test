@@ -41,8 +41,10 @@
 
 ## 钟表铺老板坐姿约定（2026-10-08）
 
+- 用户后续选定 A / WALNUT HERITAGE 概念，要求精细外观和内部、可开关实体门、透明玻璃、直接行走进出。钟表铺改为 Town 中同一座可进入建筑，废止该店黑屏转场与独立室内加载；其他未制作室内不在此次改动范围。老板仍锁定。旧 ClockShop 场景仅保留布局一致性检查/历史兼容，不作为新运行入口；旧室内存档加载时映射到 Town 世界坐标，保留证物与对话进度。
+
 - 用户指定 `Meshy_AI_The_Watchmaker_s_Focu_biped.zip` 替换店内老板，全程坐着。保留包中的人物、服装、面部、贴图和骨骼；控制器只循环 `Sit_Cross_Legged`，不切换走跑，不用 `AmbientMotion` 整体漂浮冒充动画。三段原动作保存在可编辑源与 FBX 中。
-- 生成源为 `tools/import_meshy_watchmaker.py` 与 `tools/build_watchmaker_chair.py`；源资产位于 `assets/source/watchmaker/`，Unity 接入为 `WatchmakerAsset.Create`。椅子和老板一起放进共用 `ClockShop.prefab`，保持街上透窗陈设与独立室内一致。不要分别修改两张场景。
+- 生成源为 `tools/import_meshy_watchmaker.py` 与 `tools/build_watchmaker_chair.py`；源资产位于 `assets/source/watchmaker/`，Unity 接入为 `WatchmakerAsset.Create`。椅子和老板一起放进共用 `ClockShop.prefab`；最新钟表铺在 Town 同一建筑内直接进出，透窗看到同一位老板。不要分别修改两张场景。
 - 椅子为简化木架软坐垫款，按实际坐姿承重点对齐；当前成人休止高度 1.72m，椅面 0.40m，髋骨到支撑面的距离约 0.284m。改比例或动作后必须重新量承重点、鞋底、椅背、柜台间距和碰撞，不直接沿用数值。
 - 保留老板的既有交谈与 E07 通知，替换造型不改变调查进程。验收要看实际坐姿循环、侧面/背面落座、真实交谈射线、E07 和门口往返；来源与实际结果见记忆 NPC-03。压缩包无授权文件，不能套用旧人物许可。
 

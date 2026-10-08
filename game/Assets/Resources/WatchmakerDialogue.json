@@ -1,0 +1,8 @@
+{
+  "first": "greeting",
+  "revisit": "greeting",
+  "nodes": [
+    {"id":"greeting","speaker":"钟表匠","text":"钟表坏了就放在柜台。老物件，慢慢修。","next":"invitation"},
+    {"id":"invitation","speaker":"钟表匠","text":"想看什么，你自己看看。"}
+  ]
+}
