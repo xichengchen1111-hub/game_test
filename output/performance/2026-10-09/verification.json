@@ -1,0 +1,20 @@
+{
+  "baselineCommit": "aed8b2827f45525c3e04e766db1be9ed82005049",
+  "unity": "6000.3.18f1",
+  "manifestUrp": "17.0.1",
+  "resolvedUrp": "17.3.0",
+  "releasePlayerMeasured": true,
+  "renderApi": "Direct3D11",
+  "screen": [
+    1920,
+    1080
+  ],
+  "totalSampledFrames": 33917,
+  "normalSaveSha256Before": "6DF4360A22901A5076831437CD721370F5DBE94CAF9F915DE57740A18E32E53A",
+  "normalSaveSha256After": "6DF4360A22901A5076831437CD721370F5DBE94CAF9F915DE57740A18E32E53A",
+  "normalSaveUnchanged": true,
+  "temporaryUnityScriptsRemoved": true,
+  "productionGameSourceChanged": false,
+  "scope": "Current Town only. Controlled native release Player, not physical input. No low-end or Mac hardware run, no cold-start, long-session or multi-house capacity test. Candidate low profile is an experiment; no production quality menu added.",
+  "rawFrameSha256": "669955cc2af04eb6e48acdda5544ef89b529318c27db8653a873253aa90b90bd"
+}

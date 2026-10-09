@@ -1,0 +1,1759 @@
+{
+  "unity": "6000.3.18f1",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "cpu": "Intel(R) Core(TM) Ultra 9 285H",
+  "api": "Direct3D11",
+  "utc": "2026-10-09T02:39:32.8040765Z",
+  "method": "Uncapped visible release player, 3 repeats x 5 seconds per fixed view after 2 seconds warmup. FrameTimingStats enabled only for this research build. No screenshots during sampled intervals. Controlled camera placement and scripted CharacterController movement; no physical input. No low-end hardware emulation. GPU/CPU timing -1 when unavailable. ProfilerRecorder missing counters -1. No content duplication stress used.",
+  "ramMiB": 32189,
+  "vramMiB": 7810,
+  "width": 1920,
+  "height": 1080,
+  "startTextureBytes": 62402330,
+  "endTextureBytes": 63450905,
+  "normalSaveBytesBefore": 829,
+  "normalSaveBytesAfter": 829,
+  "rawSha256": "669955cc2af04eb6e48acdda5544ef89b529318c27db8653a873253aa90b90bd",
+  "aggregation": "Nearest-rank percentiles; pooled repeats. FPS=1000/mean elapsed ms. Missing counters are null, not zero. Main Thread and CPU frame timings can include waits. Instrumentation allocates sample objects; GC is not attributed to game code.",
+  "textureMemoryMiB": {
+    "start": 59.511,
+    "end": 60.511,
+    "scope": "Texture.currentTextureMemory; excludes render textures and some internally-created resources. Not total VRAM or process RAM."
+  },
+  "repeats": [
+    {
+      "name": "current-exterior",
+      "repeat": 1,
+      "samples": 1469,
+      "meanFps": 293.62,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 1469,
+        "p50": 3.3999,
+        "p95": 3.9308,
+        "p99": 4.3053,
+        "max": 5.341298580169678
+      },
+      "gpuMs": {
+        "availableSamples": 1437,
+        "p50": 3.2947,
+        "p95": 3.5236,
+        "p99": 3.639,
+        "max": 3.9915521144866943
+      },
+      "cpuMs": {
+        "availableSamples": 1469,
+        "p50": 3.401,
+        "p95": 3.9412,
+        "p99": 4.3345,
+        "max": 5.3607001304626465
+      },
+      "mainMs": {
+        "availableSamples": 1469,
+        "p50": 3.398,
+        "p95": 3.9368,
+        "p99": 4.3272,
+        "max": 5.354400157928467
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 1469,
+        "p50": 1163,
+        "p95": 1163,
+        "p99": 1163,
+        "max": 1163
+      },
+      "setPass": {
+        "availableSamples": 1469,
+        "p50": 81,
+        "p95": 81,
+        "p99": 81,
+        "max": 81
+      },
+      "triangles": {
+        "availableSamples": 1469,
+        "p50": 2795545,
+        "p95": 2795545,
+        "p99": 2795545,
+        "max": 2795545
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 1469,
+        "p50": 142741218,
+        "p95": 143289874,
+        "p99": 143614784,
+        "max": 143709884
+      }
+    },
+    {
+      "name": "current-exterior",
+      "repeat": 2,
+      "samples": 1474,
+      "meanFps": 294.76,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 1474,
+        "p50": 3.3815,
+        "p95": 3.8897,
+        "p99": 4.2127,
+        "max": 5.305697441101074
+      },
+      "gpuMs": {
+        "availableSamples": 1445,
+        "p50": 3.295,
+        "p95": 3.4565,
+        "p99": 3.6239,
+        "max": 3.921152114868164
+      },
+      "cpuMs": {
+        "availableSamples": 1474,
+        "p50": 3.383,
+        "p95": 3.9034,
+        "p99": 4.1919,
+        "max": 5.314599990844727
+      },
+      "mainMs": {
+        "availableSamples": 1474,
+        "p50": 3.3794,
+        "p95": 3.904,
+        "p99": 4.1947,
+        "max": 5.3109002113342285
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 1474,
+        "p50": 1163,
+        "p95": 1164,
+        "p99": 1164,
+        "max": 1164
+      },
+      "setPass": {
+        "availableSamples": 1474,
+        "p50": 81,
+        "p95": 82,
+        "p99": 82,
+        "max": 82
+      },
+      "triangles": {
+        "availableSamples": 1474,
+        "p50": 2795545,
+        "p95": 2805878,
+        "p99": 2805878,
+        "max": 2805878
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 1474,
+        "p50": 143091343,
+        "p95": 143613138,
+        "p99": 143791706,
+        "max": 144059583
+      }
+    },
+    {
+      "name": "current-exterior",
+      "repeat": 3,
+      "samples": 1461,
+      "meanFps": 292.14,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 1461,
+        "p50": 3.4038,
+        "p95": 3.9189,
+        "p99": 4.315,
+        "max": 5.150496006011963
+      },
+      "gpuMs": {
+        "availableSamples": 1443,
+        "p50": 3.3057,
+        "p95": 3.4742,
+        "p99": 3.6703,
+        "max": 4.181759834289551
+      },
+      "cpuMs": {
+        "availableSamples": 1461,
+        "p50": 3.4012,
+        "p95": 3.9257,
+        "p99": 4.2969,
+        "max": 5.160900115966797
+      },
+      "mainMs": {
+        "availableSamples": 1461,
+        "p50": 3.3961,
+        "p95": 3.9202,
+        "p99": 4.2934,
+        "max": 5.156799793243408
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 1461,
+        "p50": 1163,
+        "p95": 1164,
+        "p99": 1164,
+        "max": 1164
+      },
+      "setPass": {
+        "availableSamples": 1461,
+        "p50": 81,
+        "p95": 82,
+        "p99": 82,
+        "max": 82
+      },
+      "triangles": {
+        "availableSamples": 1461,
+        "p50": 2795545,
+        "p95": 2805878,
+        "p99": 2805878,
+        "max": 2805878
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 1461,
+        "p50": 143151036,
+        "p95": 143762769,
+        "p99": 143967872,
+        "max": 144301044
+      }
+    },
+    {
+      "name": "current-through-window",
+      "repeat": 1,
+      "samples": 1371,
+      "meanFps": 274.04,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 1371,
+        "p50": 3.6519,
+        "p95": 3.9752,
+        "p99": 4.2175,
+        "max": 5.213704586029053
+      },
+      "gpuMs": {
+        "availableSamples": 1368,
+        "p50": 3.5791,
+        "p95": 3.6595,
+        "p99": 3.7448,
+        "max": 3.8399999141693115
+      },
+      "cpuMs": {
+        "availableSamples": 1371,
+        "p50": 3.6522,
+        "p95": 3.9858,
+        "p99": 4.2667,
+        "max": 5.223599910736084
+      },
+      "mainMs": {
+        "availableSamples": 1371,
+        "p50": 3.6483,
+        "p95": 3.9808,
+        "p99": 4.2558,
+        "max": 5.215099811553955
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 1371,
+        "p50": 857,
+        "p95": 857,
+        "p99": 857,
+        "max": 857
+      },
+      "setPass": {
+        "availableSamples": 1371,
+        "p50": 68,
+        "p95": 68,
+        "p99": 68,
+        "max": 68
+      },
+      "triangles": {
+        "availableSamples": 1371,
+        "p50": 2422227,
+        "p95": 2422227,
+        "p99": 2422227,
+        "max": 2422227
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 1371,
+        "p50": 142307846,
+        "p95": 143078779,
+        "p99": 143264803,
+        "max": 143481894
+      }
+    },
+    {
+      "name": "current-through-window",
+      "repeat": 2,
+      "samples": 1362,
+      "meanFps": 272.36,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 1362,
+        "p50": 3.6681,
+        "p95": 4.0773,
+        "p99": 4.5028,
+        "max": 5.599503993988037
+      },
+      "gpuMs": {
+        "availableSamples": 1359,
+        "p50": 3.5937,
+        "p95": 3.6726,
+        "p99": 3.7412,
+        "max": 5.635839939117432
+      },
+      "cpuMs": {
+        "availableSamples": 1362,
+        "p50": 3.6652,
+        "p95": 4.0914,
+        "p99": 4.5458,
+        "max": 5.591000080108643
+      },
+      "mainMs": {
+        "availableSamples": 1362,
+        "p50": 3.6609,
+        "p95": 4.0877,
+        "p99": 4.5426,
+        "max": 5.586400032043457
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 1362,
+        "p50": 857,
+        "p95": 857,
+        "p99": 857,
+        "max": 857
+      },
+      "setPass": {
+        "availableSamples": 1362,
+        "p50": 68,
+        "p95": 68,
+        "p99": 68,
+        "max": 68
+      },
+      "triangles": {
+        "availableSamples": 1362,
+        "p50": 2422227,
+        "p95": 2422227,
+        "p99": 2422227,
+        "max": 2422227
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 1362,
+        "p50": 142656672,
+        "p95": 143289888,
+        "p99": 143449526,
+        "max": 143638045
+      }
+    },
+    {
+      "name": "current-through-window",
+      "repeat": 3,
+      "samples": 1361,
+      "meanFps": 272.01,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 1361,
+        "p50": 3.683,
+        "p95": 4.0741,
+        "p99": 4.3393,
+        "max": 5.573398590087891
+      },
+      "gpuMs": {
+        "availableSamples": 1360,
+        "p50": 3.606,
+        "p95": 3.6803,
+        "p99": 3.7627,
+        "max": 3.9930880069732666
+      },
+      "cpuMs": {
+        "availableSamples": 1361,
+        "p50": 3.6886,
+        "p95": 4.0771,
+        "p99": 4.3471,
+        "max": 5.5782999992370605
+      },
+      "mainMs": {
+        "availableSamples": 1361,
+        "p50": 3.6831,
+        "p95": 4.0704,
+        "p99": 4.3416,
+        "max": 5.574900150299072
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 1361,
+        "p50": 857,
+        "p95": 857,
+        "p99": 857,
+        "max": 857
+      },
+      "setPass": {
+        "availableSamples": 1361,
+        "p50": 68,
+        "p95": 68,
+        "p99": 68,
+        "max": 68
+      },
+      "triangles": {
+        "availableSamples": 1361,
+        "p50": 2422227,
+        "p95": 2422227,
+        "p99": 2422227,
+        "max": 2422227
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 1361,
+        "p50": 142742027,
+        "p95": 143259224,
+        "p99": 143416203,
+        "max": 143658640
+      }
+    },
+    {
+      "name": "current-interior",
+      "repeat": 1,
+      "samples": 1227,
+      "meanFps": 245.25,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 1227,
+        "p50": 4.0717,
+        "p95": 4.4558,
+        "p99": 4.8239,
+        "max": 5.073802471160889
+      },
+      "gpuMs": {
+        "availableSamples": 1227,
+        "p50": 4.0046,
+        "p95": 4.1073,
+        "p99": 4.1943,
+        "max": 4.279808044433594
+      },
+      "cpuMs": {
+        "availableSamples": 1227,
+        "p50": 4.0751,
+        "p95": 4.4608,
+        "p99": 4.8579,
+        "max": 5.129300117492676
+      },
+      "mainMs": {
+        "availableSamples": 1227,
+        "p50": 4.0708,
+        "p95": 4.4547,
+        "p99": 4.8517,
+        "max": 5.123799800872803
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 1227,
+        "p50": 665,
+        "p95": 665,
+        "p99": 665,
+        "max": 665
+      },
+      "setPass": {
+        "availableSamples": 1227,
+        "p50": 66,
+        "p95": 66,
+        "p99": 66,
+        "max": 66
+      },
+      "triangles": {
+        "availableSamples": 1227,
+        "p50": 2329751,
+        "p95": 2329751,
+        "p99": 2329751,
+        "max": 2329751
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 1227,
+        "p50": 142593886,
+        "p95": 143195648,
+        "p99": 143327118,
+        "max": 143537102
+      }
+    },
+    {
+      "name": "current-interior",
+      "repeat": 2,
+      "samples": 1229,
+      "meanFps": 245.73,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 1229,
+        "p50": 4.0676,
+        "p95": 4.4249,
+        "p99": 4.7197,
+        "max": 5.468700408935547
+      },
+      "gpuMs": {
+        "availableSamples": 1229,
+        "p50": 4.0031,
+        "p95": 4.087,
+        "p99": 4.1746,
+        "max": 4.261119842529297
+      },
+      "cpuMs": {
+        "availableSamples": 1229,
+        "p50": 4.0691,
+        "p95": 4.425,
+        "p99": 4.7117,
+        "max": 5.4583001136779785
+      },
+      "mainMs": {
+        "availableSamples": 1229,
+        "p50": 4.0631,
+        "p95": 4.4172,
+        "p99": 4.7072,
+        "max": 5.453800201416016
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 1229,
+        "p50": 665,
+        "p95": 665,
+        "p99": 665,
+        "max": 665
+      },
+      "setPass": {
+        "availableSamples": 1229,
+        "p50": 66,
+        "p95": 66,
+        "p99": 66,
+        "max": 66
+      },
+      "triangles": {
+        "availableSamples": 1229,
+        "p50": 2329751,
+        "p95": 2329751,
+        "p99": 2329751,
+        "max": 2329751
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 1229,
+        "p50": 142625284,
+        "p95": 143565802,
+        "p99": 143726687,
+        "max": 143920317
+      }
+    },
+    {
+      "name": "current-interior",
+      "repeat": 3,
+      "samples": 1226,
+      "meanFps": 245.09,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 1226,
+        "p50": 4.0626,
+        "p95": 4.5409,
+        "p99": 4.9221,
+        "max": 5.781299591064453
+      },
+      "gpuMs": {
+        "availableSamples": 1226,
+        "p50": 4.0074,
+        "p95": 4.1016,
+        "p99": 4.1923,
+        "max": 4.271103858947754
+      },
+      "cpuMs": {
+        "availableSamples": 1226,
+        "p50": 4.0663,
+        "p95": 4.5465,
+        "p99": 4.9251,
+        "max": 5.791399955749512
+      },
+      "mainMs": {
+        "availableSamples": 1226,
+        "p50": 4.0613,
+        "p95": 4.5399,
+        "p99": 4.9218,
+        "max": 5.787499904632568
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 1226,
+        "p50": 665,
+        "p95": 665,
+        "p99": 665,
+        "max": 665
+      },
+      "setPass": {
+        "availableSamples": 1226,
+        "p50": 66,
+        "p95": 66,
+        "p99": 66,
+        "max": 66
+      },
+      "triangles": {
+        "availableSamples": 1226,
+        "p50": 2329751,
+        "p95": 2329751,
+        "p99": 2329751,
+        "max": 2329751
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 1226,
+        "p50": 142788214,
+        "p95": 143476303,
+        "p99": 143578500,
+        "max": 143685117
+      }
+    },
+    {
+      "name": "candidate-low-interior",
+      "repeat": 1,
+      "samples": 2564,
+      "meanFps": 512.66,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 2564,
+        "p50": 1.9793,
+        "p95": 2.6854,
+        "p99": 3.1805,
+        "max": 4.066305160522461
+      },
+      "gpuMs": {
+        "availableSamples": 1607,
+        "p50": 0.779,
+        "p95": 1.0092,
+        "p99": 1.0437,
+        "max": 1.2715519666671753
+      },
+      "cpuMs": {
+        "availableSamples": 2564,
+        "p50": 1.9783,
+        "p95": 2.6875,
+        "p99": 3.2274,
+        "max": 4.116399765014648
+      },
+      "mainMs": {
+        "availableSamples": 2564,
+        "p50": 1.975,
+        "p95": 2.6825,
+        "p99": 3.2212,
+        "max": 4.108500003814697
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 2564,
+        "p50": 212,
+        "p95": 212,
+        "p99": 212,
+        "max": 212
+      },
+      "setPass": {
+        "availableSamples": 2564,
+        "p50": 39,
+        "p95": 39,
+        "p99": 39,
+        "max": 39
+      },
+      "triangles": {
+        "availableSamples": 2564,
+        "p50": 520515,
+        "p95": 520515,
+        "p99": 520515,
+        "max": 520515
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 2564,
+        "p50": 142967516,
+        "p95": 144060302,
+        "p99": 144325572,
+        "max": 144611913
+      }
+    },
+    {
+      "name": "candidate-low-interior",
+      "repeat": 2,
+      "samples": 2380,
+      "meanFps": 475.9,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 2380,
+        "p50": 2.1103,
+        "p95": 2.7573,
+        "p99": 3.6319,
+        "max": 4.640100479125977
+      },
+      "gpuMs": {
+        "availableSamples": 1443,
+        "p50": 0.7534,
+        "p95": 0.9526,
+        "p99": 1.0836,
+        "max": 1.2518399953842163
+      },
+      "cpuMs": {
+        "availableSamples": 2380,
+        "p50": 2.1055,
+        "p95": 2.7707,
+        "p99": 3.5239,
+        "max": 4.65880012512207
+      },
+      "mainMs": {
+        "availableSamples": 2380,
+        "p50": 2.1013,
+        "p95": 2.7671,
+        "p99": 3.5199,
+        "max": 4.654099941253662
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 2380,
+        "p50": 212,
+        "p95": 212,
+        "p99": 212,
+        "max": 212
+      },
+      "setPass": {
+        "availableSamples": 2380,
+        "p50": 39,
+        "p95": 39,
+        "p99": 39,
+        "max": 39
+      },
+      "triangles": {
+        "availableSamples": 2380,
+        "p50": 520515,
+        "p95": 520515,
+        "p99": 520515,
+        "max": 520515
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 2380,
+        "p50": 143082480,
+        "p95": 144203081,
+        "p99": 144481494,
+        "max": 144800156
+      }
+    },
+    {
+      "name": "candidate-low-interior",
+      "repeat": 3,
+      "samples": 2316,
+      "meanFps": 463.1,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 2316,
+        "p50": 2.1516,
+        "p95": 2.8082,
+        "p99": 3.3298,
+        "max": 4.985799312591553
+      },
+      "gpuMs": {
+        "availableSamples": 1414,
+        "p50": 0.7631,
+        "p95": 0.8468,
+        "p99": 0.9828,
+        "max": 1.1435519456863403
+      },
+      "cpuMs": {
+        "availableSamples": 2316,
+        "p50": 2.1505,
+        "p95": 2.8082,
+        "p99": 3.3609,
+        "max": 4.989799976348877
+      },
+      "mainMs": {
+        "availableSamples": 2316,
+        "p50": 2.1474,
+        "p95": 2.8095,
+        "p99": 3.3576,
+        "max": 4.986000061035156
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 2316,
+        "p50": 212,
+        "p95": 212,
+        "p99": 212,
+        "max": 212
+      },
+      "setPass": {
+        "availableSamples": 2316,
+        "p50": 39,
+        "p95": 39,
+        "p99": 39,
+        "max": 39
+      },
+      "triangles": {
+        "availableSamples": 2316,
+        "p50": 520515,
+        "p95": 520515,
+        "p99": 520515,
+        "max": 520515
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 2316,
+        "p50": 143252054,
+        "p95": 144343760,
+        "p99": 144638289,
+        "max": 144992246
+      }
+    },
+    {
+      "name": "candidate-low-exterior",
+      "repeat": 1,
+      "samples": 2303,
+      "meanFps": 460.51,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 2303,
+        "p50": 2.1774,
+        "p95": 2.8826,
+        "p99": 3.4696,
+        "max": 4.445202827453613
+      },
+      "gpuMs": {
+        "availableSamples": 1298,
+        "p50": 0.7099,
+        "p95": 0.8515,
+        "p99": 1.0488,
+        "max": 1.3271039724349976
+      },
+      "cpuMs": {
+        "availableSamples": 2303,
+        "p50": 2.1758,
+        "p95": 2.9007,
+        "p99": 3.4614,
+        "max": 4.471099853515625
+      },
+      "mainMs": {
+        "availableSamples": 2303,
+        "p50": 2.1709,
+        "p95": 2.8935,
+        "p99": 3.4567,
+        "max": 4.464000225067139
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 2303,
+        "p50": 392,
+        "p95": 392,
+        "p99": 392,
+        "max": 392
+      },
+      "setPass": {
+        "availableSamples": 2303,
+        "p50": 46,
+        "p95": 46,
+        "p99": 46,
+        "max": 46
+      },
+      "triangles": {
+        "availableSamples": 2303,
+        "p50": 690621,
+        "p95": 690621,
+        "p99": 690621,
+        "max": 690621
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 2303,
+        "p50": 145002105,
+        "p95": 145804295,
+        "p99": 146131007,
+        "max": 146364304
+      }
+    },
+    {
+      "name": "candidate-low-exterior",
+      "repeat": 2,
+      "samples": 2397,
+      "meanFps": 479.37,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 2397,
+        "p50": 2.081,
+        "p95": 2.7623,
+        "p99": 3.2118,
+        "max": 4.324801921844482
+      },
+      "gpuMs": {
+        "availableSamples": 1357,
+        "p50": 0.7173,
+        "p95": 0.8097,
+        "p99": 0.93,
+        "max": 1.0815999507904053
+      },
+      "cpuMs": {
+        "availableSamples": 2397,
+        "p50": 2.0778,
+        "p95": 2.773,
+        "p99": 3.2198,
+        "max": 4.349899768829346
+      },
+      "mainMs": {
+        "availableSamples": 2397,
+        "p50": 2.075,
+        "p95": 2.7713,
+        "p99": 3.2167,
+        "max": 4.343699932098389
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 2397,
+        "p50": 392,
+        "p95": 392,
+        "p99": 392,
+        "max": 392
+      },
+      "setPass": {
+        "availableSamples": 2397,
+        "p50": 46,
+        "p95": 46,
+        "p99": 46,
+        "max": 46
+      },
+      "triangles": {
+        "availableSamples": 2397,
+        "p50": 690621,
+        "p95": 690621,
+        "p99": 690621,
+        "max": 690621
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 2397,
+        "p50": 145289930,
+        "p95": 146228293,
+        "p99": 146511720,
+        "max": 146846983
+      }
+    },
+    {
+      "name": "candidate-low-exterior",
+      "repeat": 3,
+      "samples": 2392,
+      "meanFps": 478.36,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 2392,
+        "p50": 2.0976,
+        "p95": 2.7958,
+        "p99": 3.4498,
+        "max": 4.475397109985352
+      },
+      "gpuMs": {
+        "availableSamples": 1363,
+        "p50": 0.7237,
+        "p95": 0.8701,
+        "p99": 1.0586,
+        "max": 1.2019200325012207
+      },
+      "cpuMs": {
+        "availableSamples": 2392,
+        "p50": 2.0944,
+        "p95": 2.804,
+        "p99": 3.461,
+        "max": 4.52209997177124
+      },
+      "mainMs": {
+        "availableSamples": 2392,
+        "p50": 2.0906,
+        "p95": 2.798,
+        "p99": 3.454,
+        "max": 4.513000011444092
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 2392,
+        "p50": 392,
+        "p95": 392,
+        "p99": 392,
+        "max": 392
+      },
+      "setPass": {
+        "availableSamples": 2392,
+        "p50": 46,
+        "p95": 46,
+        "p99": 46,
+        "max": 46
+      },
+      "triangles": {
+        "availableSamples": 2392,
+        "p50": 690621,
+        "p95": 690621,
+        "p99": 690621,
+        "max": 690621
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 2392,
+        "p50": 145614130,
+        "p95": 146522258,
+        "p99": 146796802,
+        "max": 147111512
+      }
+    },
+    {
+      "name": "candidate-low-door-roundtrips",
+      "repeat": 1,
+      "samples": 7385,
+      "meanFps": 493.8,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 7385,
+        "p50": 2.0349,
+        "p95": 2.6856,
+        "p99": 3.2847,
+        "max": 17.34659767150879
+      },
+      "gpuMs": {
+        "availableSamples": 4399,
+        "p50": 0.8284,
+        "p95": 1.0747,
+        "p99": 1.1392,
+        "max": 1.2712960243225098
+      },
+      "cpuMs": {
+        "availableSamples": 7385,
+        "p50": 2.0354,
+        "p95": 2.6933,
+        "p99": 3.2944,
+        "max": 17.329500198364258
+      },
+      "mainMs": {
+        "availableSamples": 7385,
+        "p50": 2.0316,
+        "p95": 2.689,
+        "p99": 3.2893,
+        "max": 17.324800491333008
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 7385,
+        "p50": 296,
+        "p95": 324,
+        "p99": 333,
+        "max": 392
+      },
+      "setPass": {
+        "availableSamples": 7385,
+        "p50": 40,
+        "p95": 43,
+        "p99": 43,
+        "max": 46
+      },
+      "triangles": {
+        "availableSamples": 7385,
+        "p50": 582907,
+        "p95": 602389,
+        "p99": 613839,
+        "max": 690621
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 7385,
+        "p50": 145925648,
+        "p95": 146961317,
+        "p99": 147371309,
+        "max": 147802873
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "name": "current-exterior",
+      "samples": 4404,
+      "meanFps": 293.51,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 4404,
+        "p50": 3.394,
+        "p95": 3.9107,
+        "p99": 4.2814,
+        "max": 5.341298580169678
+      },
+      "gpuMs": {
+        "availableSamples": 4325,
+        "p50": 3.2991,
+        "p95": 3.499,
+        "p99": 3.6406,
+        "max": 4.181759834289551
+      },
+      "cpuMs": {
+        "availableSamples": 4404,
+        "p50": 3.3944,
+        "p95": 3.9184,
+        "p99": 4.2982,
+        "max": 5.3607001304626465
+      },
+      "mainMs": {
+        "availableSamples": 4404,
+        "p50": 3.3905,
+        "p95": 3.9149,
+        "p99": 4.2934,
+        "max": 5.354400157928467
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 4404,
+        "p50": 1163,
+        "p95": 1164,
+        "p99": 1164,
+        "max": 1164
+      },
+      "setPass": {
+        "availableSamples": 4404,
+        "p50": 81,
+        "p95": 82,
+        "p99": 82,
+        "max": 82
+      },
+      "triangles": {
+        "availableSamples": 4404,
+        "p50": 2795545,
+        "p95": 2805878,
+        "p99": 2805878,
+        "max": 2805878
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 4404,
+        "p50": 142973844,
+        "p95": 143621720,
+        "p99": 143852126,
+        "max": 144301044
+      }
+    },
+    {
+      "name": "current-through-window",
+      "samples": 4094,
+      "meanFps": 272.8,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 4094,
+        "p50": 3.668,
+        "p95": 4.0526,
+        "p99": 4.3393,
+        "max": 5.599503993988037
+      },
+      "gpuMs": {
+        "availableSamples": 4087,
+        "p50": 3.593,
+        "p95": 3.6726,
+        "p99": 3.7537,
+        "max": 5.635839939117432
+      },
+      "cpuMs": {
+        "availableSamples": 4094,
+        "p50": 3.6674,
+        "p95": 4.0642,
+        "p99": 4.3893,
+        "max": 5.591000080108643
+      },
+      "mainMs": {
+        "availableSamples": 4094,
+        "p50": 3.6622,
+        "p95": 4.058,
+        "p99": 4.386,
+        "max": 5.586400032043457
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 4094,
+        "p50": 857,
+        "p95": 857,
+        "p99": 857,
+        "max": 857
+      },
+      "setPass": {
+        "availableSamples": 4094,
+        "p50": 68,
+        "p95": 68,
+        "p99": 68,
+        "max": 68
+      },
+      "triangles": {
+        "availableSamples": 4094,
+        "p50": 2422227,
+        "p95": 2422227,
+        "p99": 2422227,
+        "max": 2422227
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 4094,
+        "p50": 142546671,
+        "p95": 143240366,
+        "p99": 143417435,
+        "max": 143658640
+      }
+    },
+    {
+      "name": "current-interior",
+      "samples": 3682,
+      "meanFps": 245.36,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 3682,
+        "p50": 4.0675,
+        "p95": 4.4646,
+        "p99": 4.809,
+        "max": 5.781299591064453
+      },
+      "gpuMs": {
+        "availableSamples": 3682,
+        "p50": 4.0054,
+        "p95": 4.098,
+        "p99": 4.1871,
+        "max": 4.279808044433594
+      },
+      "cpuMs": {
+        "availableSamples": 3682,
+        "p50": 4.0703,
+        "p95": 4.4757,
+        "p99": 4.8138,
+        "max": 5.791399955749512
+      },
+      "mainMs": {
+        "availableSamples": 3682,
+        "p50": 4.0652,
+        "p95": 4.4703,
+        "p99": 4.8085,
+        "max": 5.787499904632568
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 3682,
+        "p50": 665,
+        "p95": 665,
+        "p99": 665,
+        "max": 665
+      },
+      "setPass": {
+        "availableSamples": 3682,
+        "p50": 66,
+        "p95": 66,
+        "p99": 66,
+        "max": 66
+      },
+      "triangles": {
+        "availableSamples": 3682,
+        "p50": 2329751,
+        "p95": 2329751,
+        "p99": 2329751,
+        "max": 2329751
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 3682,
+        "p50": 142645560,
+        "p95": 143459945,
+        "p99": 143671103,
+        "max": 143920317
+      }
+    },
+    {
+      "name": "candidate-low-interior",
+      "samples": 7260,
+      "meanFps": 483.89,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 7260,
+        "p50": 2.0779,
+        "p95": 2.7535,
+        "p99": 3.3251,
+        "max": 4.985799312591553
+      },
+      "gpuMs": {
+        "availableSamples": 4464,
+        "p50": 0.7654,
+        "p95": 0.9871,
+        "p99": 1.045,
+        "max": 1.2715519666671753
+      },
+      "cpuMs": {
+        "availableSamples": 7260,
+        "p50": 2.0775,
+        "p95": 2.7548,
+        "p99": 3.3534,
+        "max": 4.989799976348877
+      },
+      "mainMs": {
+        "availableSamples": 7260,
+        "p50": 2.074,
+        "p95": 2.7527,
+        "p99": 3.3474,
+        "max": 4.986000061035156
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 7260,
+        "p50": 212,
+        "p95": 212,
+        "p99": 212,
+        "max": 212
+      },
+      "setPass": {
+        "availableSamples": 7260,
+        "p50": 39,
+        "p95": 39,
+        "p99": 39,
+        "max": 39
+      },
+      "triangles": {
+        "availableSamples": 7260,
+        "p50": 520515,
+        "p95": 520515,
+        "p99": 520515,
+        "max": 520515
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 7260,
+        "p50": 143092005,
+        "p95": 144205504,
+        "p99": 144504951,
+        "max": 144992246
+      }
+    },
+    {
+      "name": "candidate-low-exterior",
+      "samples": 7092,
+      "meanFps": 472.75,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 7092,
+        "p50": 2.1154,
+        "p95": 2.8193,
+        "p99": 3.3878,
+        "max": 4.475397109985352
+      },
+      "gpuMs": {
+        "availableSamples": 4018,
+        "p50": 0.7176,
+        "p95": 0.8474,
+        "p99": 1.0271,
+        "max": 1.3271039724349976
+      },
+      "cpuMs": {
+        "availableSamples": 7092,
+        "p50": 2.1149,
+        "p95": 2.8297,
+        "p99": 3.4209,
+        "max": 4.52209997177124
+      },
+      "mainMs": {
+        "availableSamples": 7092,
+        "p50": 2.1125,
+        "p95": 2.8255,
+        "p99": 3.4136,
+        "max": 4.513000011444092
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 7092,
+        "p50": 392,
+        "p95": 392,
+        "p99": 392,
+        "max": 392
+      },
+      "setPass": {
+        "availableSamples": 7092,
+        "p50": 46,
+        "p95": 46,
+        "p99": 46,
+        "max": 46
+      },
+      "triangles": {
+        "availableSamples": 7092,
+        "p50": 690621,
+        "p95": 690621,
+        "p99": 690621,
+        "max": 690621
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 7092,
+        "p50": 145302840,
+        "p95": 146300485,
+        "p99": 146647967,
+        "max": 147111512
+      }
+    },
+    {
+      "name": "candidate-low-door-roundtrips",
+      "samples": 7385,
+      "meanFps": 493.8,
+      "over33_33ms": 0,
+      "over50ms": 0,
+      "over100ms": 0,
+      "frameMs": {
+        "availableSamples": 7385,
+        "p50": 2.0349,
+        "p95": 2.6856,
+        "p99": 3.2847,
+        "max": 17.34659767150879
+      },
+      "gpuMs": {
+        "availableSamples": 4399,
+        "p50": 0.8284,
+        "p95": 1.0747,
+        "p99": 1.1392,
+        "max": 1.2712960243225098
+      },
+      "cpuMs": {
+        "availableSamples": 7385,
+        "p50": 2.0354,
+        "p95": 2.6933,
+        "p99": 3.2944,
+        "max": 17.329500198364258
+      },
+      "mainMs": {
+        "availableSamples": 7385,
+        "p50": 2.0316,
+        "p95": 2.689,
+        "p99": 3.2893,
+        "max": 17.324800491333008
+      },
+      "renderMs": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "drawCalls": {
+        "availableSamples": 7385,
+        "p50": 296,
+        "p95": 324,
+        "p99": 333,
+        "max": 392
+      },
+      "setPass": {
+        "availableSamples": 7385,
+        "p50": 40,
+        "p95": 43,
+        "p99": 43,
+        "max": 46
+      },
+      "triangles": {
+        "availableSamples": 7385,
+        "p50": 582907,
+        "p95": 602389,
+        "p99": 613839,
+        "max": 690621
+      },
+      "gcBytes": {
+        "availableSamples": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "totalUsedBytes": {
+        "availableSamples": 7385,
+        "p50": 145925648,
+        "p95": 146961317,
+        "p99": 147371309,
+        "max": 147802873
+      }
+    }
+  ]
+}
