@@ -1,0 +1,111 @@
+{
+  "status": "verified and deployed",
+  "evidence": "output/demo/clocktower-quality/",
+  "interior_textures_px": 1024,
+  "features": [
+    "stronger metre-scale masonry normals",
+    "oak grain and height-fading relief beneath powder",
+    "metallic/smoothness variation and fine normal maps on bronze and iron",
+    "machine room local 256px reflection probe rendered once on awake",
+    "one machine service light with soft shadows",
+    "4K four-cascade main shadows",
+    "high-quality SMAA",
+    "less bloom, modest contrast, anisotropic filtering",
+    "fine frosted-glass surface grain"
+  ],
+  "geometry_or_gameplay_changed": false,
+  "final_shadow_allocation_rechecked": [
+    "shop",
+    "middle-save",
+    "tower-1080"
+  ],
+  "runtime_suites": [
+    {
+      "suite": "time",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 19.9,
+      "marker": "TIME_REVIEW_PASS"
+    },
+    {
+      "suite": "time-relaunch",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.3,
+      "marker": "TIME_SAVE_RELAUNCH_PASS"
+    },
+    {
+      "suite": "tower-relaunch",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 61.6,
+      "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+    },
+    {
+      "suite": "tower-720",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 117.9,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    },
+    {
+      "suite": "shop",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 54.6,
+      "marker": "WALNUT_REVIEW_PASS"
+    },
+    {
+      "suite": "middle-save",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.7,
+      "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+    },
+    {
+      "suite": "tower-1080",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 117.9,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    }
+  ],
+  "frame_timing": {
+    "time": {
+      "frames": 912,
+      "meanMs": 16.831371583436663,
+      "medianMs": 16.667417526245117,
+      "p95Ms": 17.57383155822754,
+      "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+    },
+    "tower-relaunch": {
+      "frames": 3409,
+      "meanMs": 16.84446297743762,
+      "medianMs": 16.668041229248047,
+      "p95Ms": 17.57712745666504,
+      "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+    },
+    "tower-720": {
+      "frames": 6752,
+      "meanMs": 16.841940788578647,
+      "medianMs": 16.66775131225586,
+      "p95Ms": 17.573497772216797,
+      "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+    },
+    "shop": {
+      "frames": 2967,
+      "meanMs": 16.9026005535685,
+      "medianMs": 16.66933822631836,
+      "p95Ms": 17.57782745361328,
+      "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+    },
+    "tower-1080": {
+      "frames": 6764,
+      "meanMs": 16.82696540534743,
+      "medianMs": 16.667247772216797,
+      "p95Ms": 17.421541213989258,
+      "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+    }
+  },
+  "limits": "Local Mac rendered review timing includes screenshots/UI; not a formal GPU or long-duration performance benchmark."
+}

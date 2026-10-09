@@ -9,7 +9,7 @@ using L = ClockTowerInteriorLayout;
 public static class ClockTowerAtmosphere {
     const string Art = "Assets/Art/ClockTowerInterior/Atmosphere";
     // One millimetre into the 6mm-offset wall lining avoids floating thread ends.
-    const float WallAnchor = L.InteriorWidth / 2 - .005f;
+    const float WallAnchor = L.ChamberInteriorWidth / 2 - .005f;
 
     public static void Build(Transform kit) {
         Directory.CreateDirectory(Art);
@@ -29,7 +29,7 @@ public static class ClockTowerAtmosphere {
             Vector3 rail = L.Polar(angle,1.35f,top+.93f);
             Vector3 lower = L.Polar(angle,1.35f,top+.35f);
             Vector3 direction = L.Polar(angle,1,0);
-            float wallRadius = WallAnchor / Mathf.Max(Mathf.Abs(direction.x),Mathf.Abs(direction.z));
+            float wallRadius = ((top+.88f>=L.MachineFloor ? L.ChamberInteriorWidth : L.InteriorWidth)/2-.005f) / Mathf.Max(Mathf.Abs(direction.x),Mathf.Abs(direction.z));
             Vector3 wall = L.Polar(angle,wallRadius,top+.88f);
             MakeWeb("Upper baluster outside web " + step,webs,silk,rail,wall,lower,step*271,.55f);
         }

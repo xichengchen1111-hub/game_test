@@ -86,7 +86,7 @@ checks = {
     "stair_inside_shared_shell": c["OuterRadius"] * 2 <= c["InteriorWidth"] - .20,
     "walking_grade_below_45_degrees": maximum_grade < 45,
     "door_clears_capsule": c["DoorWidth"] > .25 * 2 + .03 * 2 and c["DoorHeight"] > 1.78,
-    "mechanism_standing_space_clears_capsule": abs(-.64 - -1.045) >= .25 + .03,
+    "mechanism_standing_space_clears_capsule": abs(-.64 - (c["MechanismX"] + .22)) >= .25 + .03,
     "machine_room_above_player_height": c["InnerWallHeight"] - c["MachineFloor"] > 2.25,
 }
 assert all(checks.values()), checks

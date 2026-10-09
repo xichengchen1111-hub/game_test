@@ -1,0 +1,12 @@
+{
+  "scope": "Separate source review of the material/rendering-only changes; not a blind playthrough",
+  "clock_and_adjustment_logic_changed": false,
+  "clue_text_or_dependencies_changed": false,
+  "collision_and_building_geometry_changed": false,
+  "dust_trail_count": 87,
+  "dust_height_gradient_retained": true,
+  "digital_time_hud_added": false,
+  "normal_save_preserved": true,
+  "review_only_frame_logging": "Enabled only with --review and --capture-dir; no timing HUD in normal play",
+  "limits": "Focused rendered player checks and screenshot inspection; no Intel hardware or long-duration benchmark."
+}

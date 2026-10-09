@@ -23,9 +23,11 @@ HEIGHT=layout_number('ExteriorHeight',20.0)
 GEAR_FLOOR=layout_number('MachineFloor',15.0)
 GROUND=layout_number('GroundFloor',.12)
 MIDDLE_FLOOR=layout_number('MiddleFloor',8.530435)
-WALL_TOP=layout_number('InnerWallHeight',18.3)
-CLOCK_Z=layout_number('DialHeight',16.72)
-DIAL_DIAMETER=layout_number('DialDiameter',2.2)
+WALL_TOP=layout_number('InnerWallHeight',18.5)
+CLOCK_Z=layout_number('DialHeight',16.7)
+DIAL_DIAMETER=layout_number('DialDiameter',3.4)
+CHAMBER=layout_number('ChamberExteriorWidth',4.8)
+DIAL_PLANE=layout_number('DialPlaneDistance',2.46)
 RING_INNER=DIAL_DIAMETER/2+.005
 SRC=REPO/'assets/source/clocktower/exterior'
 OUT=REPO/'game/Assets/Art/ClockTower1931'
@@ -63,6 +65,11 @@ def texture_pair(prefix,kind):
         cloud=.018*large+.009*noise
         col=np.stack([.84+cloud,.791+cloud,.691+cloud],2)
         height=.01*noise+.025*large;strength=1.2
+    elif kind=='oak':
+        grain=np.sin(xx*.092+np.sin(yy*.009)*2)+.34*np.sin(xx*.31+np.sin(yy*.017))
+        variation=.025*grain+.012*noise+.01*large
+        col=np.stack([.29+variation,.205+variation*.8,.134+variation*.5],2)
+        height=.045*grain+.008*noise;strength=1.1
     else:
         grain=np.sin(xx*.058+np.sin(yy*.023)*4)+.3*np.sin(xx*.19+yy*.02)
         variation=.020*large+.012*grain+.012*noise
@@ -73,7 +80,7 @@ def texture_pair(prefix,kind):
     normal/=np.linalg.norm(normal,axis=2,keepdims=True);png(prefix+'-Normal.png',normal*.5+.5)
     tex_manifest[prefix]={'base_color':prefix+'-BaseColor.png','normal':prefix+'-Normal.png','tile_metres':1.44 if kind=='brick' else 1.0}
 
-for p,k in [('IvoryBrick','brick'),('CreamStone','stone'),('Slate','slate')]:texture_pair(p,k)
+for p,k in [('IvoryBrick','brick'),('CreamStone','stone'),('Slate','slate'),('DarkOak','oak')]:texture_pair(p,k)
 
 def material(name,color,rough=.8,metal=0,tex=None):
     m=bpy.data.materials.new(name);m.use_nodes=True;m.diffuse_color=(*color,1)
@@ -89,7 +96,7 @@ brick=material('Tower_IvoryBrick',(.79,.745,.652),.85,tex='IvoryBrick')
 stone=material('Tower_CreamStone',(.84,.791,.691),.75,tex='CreamStone')
 slate=material('Tower_Slate',(.215,.249,.282),.72,tex='Slate')
 lead=material('Tower_Lead',(.185,.20,.208),.58,.42)
-oak=material('Tower_DarkOak',(.115,.083,.052),.8)
+oak=material('Tower_DarkOak',(.115,.083,.052),.8,tex='DarkOak')
 recess=material('Tower_Recess',(.032,.029,.025),.96)
 bronze=material('Tower_Bronze',(.26,.207,.126),.46,.65)
 
@@ -189,11 +196,28 @@ def ventilation(side,base,width=.67,height=.87):
     fbox('Louvre sill',side,0,base-.035,1.88,width+.31,.115,.25,stone,.008)
     fbox('Vent arch keystone',side,0,zspring+rx+.08,1.914,.14,.21,.15,stone,.009)
 
+def clock_panel(side):
+    # A genuine circular aperture through the exported masonry, matching Unity.
+    half=CHAMBER/2;bottom=GEAR_FLOOR-CLOCK_Z;top=WALL_TOP-CLOCK_Z;r=DIAL_DIAMETER/2
+    angles=sorted(set([i*math.pi/64 for i in range(128)]+[math.atan2(y,x)%(2*math.pi) for x in (-half,half) for y in (bottom,top)]))
+    vs=[];fs=[]
+    def points(a,d):
+        x,y=math.cos(a),math.sin(a)
+        outer=min(half/max(abs(x),1e-8),(top if y>=0 else -bottom)/max(abs(y),1e-8))
+        return pnt(side,x*r,CLOCK_Z+y*r,d),pnt(side,x*outer,CLOCK_Z+y*outer,d)
+    for i,a in enumerate(angles):
+        b=angles[(i+1)%len(angles)]
+        ai,ae=points(a,half-.026);bi,be=points(b,half-.026)
+        ao,afe=points(a,half+.006);bo,bfe=points(b,half+.006)
+        n=len(vs);vs.extend([ai,ae,bi,be,ao,afe,bo,bfe])
+        fs.extend([tuple(n+j for j in f) for f in [(0,2,3,1),(4,5,7,6),(0,4,6,2),(1,3,7,5)]])
+    mesh('Clock chamber masonry with real circular opening',vs,fs,brick)
+
 for s in range(4):
     if s==0:
-        for u in [-1.175,1.175]:fbox('Limewashed entrance pier',s,u,WALL_TOP/2,1.798,1.25,WALL_TOP,.032,brick,0)
-        fbox('Limewashed entrance lintel',s,0,(WALL_TOP+2.27)/2,1.798,1.10,WALL_TOP-2.27,.032,brick,0)
-    else:fbox('Limewashed facade',s,0,WALL_TOP/2,1.798,3.6,WALL_TOP,.032,brick,0)
+        for u in [-1.175,1.175]:fbox('Limewashed entrance pier',s,u,GEAR_FLOOR/2,1.798,1.25,GEAR_FLOOR,.032,brick,0)
+        fbox('Limewashed entrance lintel',s,0,(GEAR_FLOOR+2.27)/2,1.798,1.10,GEAR_FLOOR-2.27,.032,brick,0)
+    else:fbox('Limewashed facade',s,0,GEAR_FLOOR/2,1.798,3.6,GEAR_FLOOR,.032,brick,0)
     intervals=[(-1.94,-.57),(.57,1.94)] if s==0 else [(-1.94,1.94)]
     for lo,hi in intervals:
         for z,h,d,dep in [(.12,.24,1.86,.15),(.335,.19,1.846,.12),(.465,.07,1.84,.15),(.535,.07,1.81,.12),(.584,.028,1.83,.13)]:
@@ -220,34 +244,27 @@ for s in range(4):
         for u in [-.79,.79]:fbox('Ventilation panel fine vertical bead',s,u,(base+top)/2,1.823,.032,top-base,.030,stone,.003)
         for z in [base,top]:fbox('Ventilation panel fine horizontal bead',s,0,z,1.823,1.61,.032,.030,stone,.003)
         rosette(s,0,top-.32,1.858,.105)
-    # Enlarged four-face clock chamber at the third level.
-    for u in [-1.59,1.59]:
-        for row in range(math.ceil((WALL_TOP-GEAR_FLOOR)/.266)):
-            fbox('Clock chamber corner ashlar',s,u,GEAR_FLOOR+.14+row*.266,1.83,.40,.258,.092,stone,.010)
-    panel_h=2.89
-    for u in [-1.415,1.415]:fbox('Clock panel raised edge',s,u,CLOCK_Z,1.827,.044,panel_h,.048,stone,.005)
-    for z in [CLOCK_Z-panel_h/2,CLOCK_Z+panel_h/2]:fbox('Clock panel raised edge',s,0,z,1.827,2.87,.040,.048,stone,.005)
-    ring('Clock carved limestone surround',s,0,CLOCK_Z,[(r+.30,d) for r,d in [(.805,1.818),(.805,1.909),(.825,1.935),(.866,1.940),(.888,1.916),(.909,1.925),(.931,1.903),(.96,1.899),(.981,1.865),(.98,1.818)]],stone,112)
-    ring('Clock slender bronze bead',s,0,CLOCK_Z,[(r+.30,d) for r,d in [(.814,1.925),(.818,1.944),(.830,1.944),(.834,1.925)]],bronze,112)
-    for u in [-1.16,1.16]:
-        for z in [CLOCK_Z-1.16,CLOCK_Z+1.16]:rosette(s,u,z,1.857,.10)
-    for sign in [-1,1]:
-        for zsgn in [-1,1]:
-            leaf('Clock spandrel foliage',s,sign*1.22,CLOCK_Z+zsgn*1.01,1.856,.18,.082,sign*zsgn*.55)
-            leaf('Clock spandrel foliage',s,sign*1.01,CLOCK_Z+zsgn*1.22,1.856,.18,.082,sign*zsgn*1.01)
-    for row in range(9):
-        u=-1.49+row*.373;fbox('Eave modillion',s,u,WALL_TOP-.08,1.855,.15,.19,.22,stone,.014)
-        fbox('Modillion capital',s,u,WALL_TOP,1.872,.20,.055,.23,stone,.005)
-    for u in [-1.62,1.62]:
-        fbox('Acanthus capital block',s,u,WALL_TOP-.31,1.873,.38,.43,.16,stone,.018)
-        for dx,angle in [(-.10,-.25),(0,0),(.10,.25)]:leaf('Acanthus capital leaf',s,u+dx,WALL_TOP-.29,1.962,.32,.15,angle)
-        for sign in [-1,1]:
-            pts=[]
-            for j in range(26):
-                a=j/25*math.pi*2;r=.066*(1-j/32);pts.append(pnt(s,u+sign*.115+sign*r*math.cos(a),WALL_TOP-.23+r*math.sin(a),1.980))
-            path('Carved volute',pts,.013,stone)
-    for dz,h,w,d,depth in [(.005,.10,3.89,1.82,.17),(.09,.065,4.02,1.86,.21),(.149,.05,4.10,1.90,.21)]:
-        fbox('Crowning moulding',s,0,WALL_TOP+dz,d,w,h,depth,stone,.009)
+    # The projecting timber clock chamber encloses the real wider machine floor.
+    half=CHAMBER/2
+    clock_panel(s)
+    for z,h,w,d in [(GEAR_FLOOR-.16,.24,CHAMBER+.10,half),(GEAR_FLOOR-.31,.095,CHAMBER+.22,half+.04),(WALL_TOP-.06,.20,CHAMBER+.16,half+.025)]:
+        fbox('Projecting carved oak beam',s,0,z,d,w,h,.26,oak,.013)
+        fbox('Oak moulded catching edge',s,0,z+h*.35,d+.14,w+.04,.026,.035,oak,.004)
+    for u in [-half+.16,half-.16]:
+        fbox('Clock chamber corner post',s,u,(GEAR_FLOOR+WALL_TOP)/2,half+.025,.25,WALL_TOP-GEAR_FLOOR,.26,oak,.012)
+        fbox('Corner post foot block',s,u,GEAR_FLOOR+.09,half+.04,.34,.25,.32,oak,.010)
+        # Real cantilever and diagonal strut, anchored into the narrower stone shaft.
+        beam('Oak cantilever bracket',pnt(s,u*.72,GEAR_FLOOR-.21,1.70),pnt(s,u,GEAR_FLOOR-.21,half+.08),.19,.19,oak)
+        beam('Swept oak support strut',pnt(s,u*.72,GEAR_FLOOR-1.02,1.78),pnt(s,u,GEAR_FLOOR-.34,half),.16,.19,oak)
+        fbox('Stone bracket bearing',s,u*.72,GEAR_FLOOR-.98,1.84,.28,.36,.19,stone,.008)
+        for z in [GEAR_FLOOR+.18,WALL_TOP-.20]:
+            ring('Forged post bolt',s,u,z,[(.035,half+.165),(.035,half+.186),(.002,half+.19)],lead,16)
+    # The dial sits proud of its wall. Its 3.4m face is kept clear of timber trim.
+    ring('Turned oak clock surround',s,0,CLOCK_Z,[(RING_INNER, DIAL_PLANE-.02),(RING_INNER,DIAL_PLANE+.035),(RING_INNER+.055,DIAL_PLANE+.063),(RING_INNER+.105,DIAL_PLANE+.035),(RING_INNER+.13,DIAL_PLANE-.035),(RING_INNER+.13,half-.02)],oak,144)
+    ring('Clock bronze moulded bezel',s,0,CLOCK_Z,[(RING_INNER+.005,DIAL_PLANE+.03),(RING_INNER+.012,DIAL_PLANE+.075),(RING_INNER+.047,DIAL_PLANE+.075),(RING_INNER+.055,DIAL_PLANE+.03)],bronze,144)
+    for u in [-half+.25,half-.25]:
+        for z in [GEAR_FLOOR+.30,WALL_TOP-.29]:
+            fbox('Panel corner iron fixing',s,u,z,half+.16,.065,.065,.018,lead,.005)
 
 # Door opening: square live leaf below an arched stationary tympanum.
 for u in [-.642,.642]:
@@ -263,29 +280,36 @@ mesh('Stationary oak tympanum above door',verts,[tuple(range(len(verts)))],oak)
 fbox('Entrance arch keystone',0,0,2.73,1.943,.18,.29,.17,stone,.012)
 leaf('Entrance keystone leaf',0,0,2.75,2.037,.22,.12)
 
-# Real four-sided pitched slate roof. Each slate is a solid overlapping plate.
-roof_eave=WALL_TOP+.195;roof_peak=HEIGHT-.32;roof_half=2.065;rows=12
-for s in range(4):
-    mesh('Watertight roof underlay', [pnt(s,-roof_half,roof_eave,roof_half),pnt(s,roof_half,roof_eave,roof_half),(0,0,roof_peak)],[(0,1,2)],lead)
-    for row in range(rows):
-        t0=row/rows;t1=min(1,(row+1.08)/rows);d0=roof_half*(1-t0);d1=roof_half*(1-t1)
-        z0=roof_eave+(roof_peak-roof_eave)*t0+.010;z1=roof_eave+(roof_peak-roof_eave)*t1+.010
-        count=max(1,round(d0*2/.29))
-        for k in range(count):
-            a=-1+2*k/count;b=-1+2*(k+1)/count;gap=.008
-            lo=a*d0+gap;hi=b*d0-gap;li=a*d1+gap*.45;ri=b*d1-gap*.45
-            if d1<.001:li=ri=0
-            vv=[pnt(s,lo,z0,d0+.013),pnt(s,hi,z0,d0+.013),pnt(s,ri,z1,d1),pnt(s,li,z1,d1)]
-            vv+= [(x,y,z-.022) for x,y,z in vv]
-            o=mesh('Individual overlapping slate',vv,[(0,1,2,3),(7,6,5,4),(0,4,5,1),(1,5,6,2),(2,6,7,3),(3,7,4,0)],slate,.002)
-            # Different sampling of a single tile material avoids repeated stripes.
-            layer=o.data.uv_layers.active;offset=random.random()*7
-            for v in layer.data:v.uv.x+=offset;v.uv.y+=offset*.43
-    path('Rolled lead eave gutter',[pnt(s,-roof_half-.025,roof_eave-.003,roof_half+.018),pnt(s,roof_half+.025,roof_eave-.003,roof_half+.018)],.024,lead)
+# Four timber gables over a sealed hipped under-roof. Gables meet at the
+# central ridge; solid slate plates and a backing roof leave no sky cracks.
+roof_eave=WALL_TOP+.05;roof_peak=HEIGHT-.17;roof_half=CHAMBER/2+.22
+for side in range(4):
+    mesh('Sealed hipped roof underlay',[pnt(side,-roof_half,roof_eave,roof_half),pnt(side,roof_half,roof_eave,roof_half),(0,0,roof_peak)],[(0,1,2)],slate)
+    path('Rolled lead eave gutter',[pnt(side,-roof_half,roof_eave-.04,roof_half),pnt(side,roof_half,roof_eave-.04,roof_half)],.025,lead)
+    # A centered gable projects beyond each wall, with secondary eaves to either side.
+    gh=1.72;gd=roof_half+.06
+    mesh('Solid closed gable oak backing',[pnt(side,-gh,roof_eave,gd-.075),pnt(side,gh,roof_eave,gd-.075),pnt(side,0,roof_peak,gd-.075)],[(0,1,2)],oak)
     for sign in [-1,1]:
-        a=Vector(pnt(s,sign*roof_half,roof_eave+.032,roof_half));b=Vector((0,0,roof_peak+.023))
-        for j in range(9):
-            st=a.lerp(b,j/9);en=a.lerp(b,min(1,(j+1.04)/9));beam('Lapped lead hip cap',st,en,.087,.045,lead)
+        beam('Gable carved bargeboard',pnt(side,sign*(gh+.10),roof_eave-.10,gd),pnt(side,0,roof_peak+.01,gd),.17,.17,oak)
+        beam('Gable inner bead',pnt(side,sign*(gh-.09),roof_eave+.01,gd+.075),pnt(side,0,roof_peak-.13,gd+.075),.034,.04,stone)
+        # A slope from the front gable to the crossing central roof, with overlap.
+        for row in range(8):
+            t0=row/8;t1=min(1,(row+1.10)/8)
+            u0=sign*gh*(1-t0);u1=sign*gh*(1-t1)
+            z0=roof_eave+(roof_peak-roof_eave)*t0+.025;z1=roof_eave+(roof_peak-roof_eave)*t1+.025
+            for col in range(9):
+                d0=gd-col*gd/9;d1=gd-(col+1)*gd/9-.013
+                vv=[pnt(side,u0,z0,d0),pnt(side,u0,z0,d1),pnt(side,u1,z1,d1),pnt(side,u1,z1,d0)]
+                vv += [(x,y,z-.025) for x,y,z in vv]
+                mesh('Gable overlapping slate',vv,[(0,1,2,3),(7,6,5,4),(0,4,5,1),(1,5,6,2),(2,6,7,3),(3,7,4,0)],slate,.002)
+    beam('Gable king post',pnt(side,0,roof_eave,gd+.02),pnt(side,0,roof_peak-.10,gd+.02),.12,.13,oak)
+    beam('Gable tie beam',pnt(side,-gh,roof_eave+.07,gd),pnt(side,gh,roof_eave+.07,gd),.14,.17,oak)
+    # Closed decorative louvres do not imply an extra floor or an open window.
+    for sign in [-1,1]:
+        fbox('Gable dark louvre backing',side,sign*.45,roof_eave+.36,gd-.048,.43,.46,.022,recess,.003)
+        for row in range(5):
+            fbox('Gable narrow closed oak louvre',side,sign*.45,roof_eave+.16+row*.088,gd-.011,.43,.035,.065,oak,.003)
+    path('Gable ridge lead cap',[pnt(side,0,roof_peak+.029,gd+.02),(0,0,roof_peak+.029)],.033,lead)
 
 def lathe(name,profile,mat,n=32):
     vs=[(r*math.cos(j*math.pi*2/n),r*math.sin(j*math.pi*2/n),z) for z,r in profile for j in range(n)]
@@ -316,7 +340,7 @@ for name,objects in parts.items():
 root=bpy.data.objects.new('ClockTower1931',None);asset.objects.link(root)
 for o in list(asset.objects):
     if o!=root:o.parent=root
-for name,pos in [('FrontMarker',(0,-1.8,.12)),('EastMarker',(1.8,0,.12)),('DoorHeadMarker',(0,-1.8,2.27)),('MiddleFloorMarker',(0,0,MIDDLE_FLOOR)),('GearFloorMarker',(0,0,GEAR_FLOOR)),('ClockCentreFront',(0,-1.86,CLOCK_Z)),('RoofPeakMarker',(0,0,HEIGHT))]:
+for name,pos in [('FrontMarker',(0,-1.8,.12)),('EastMarker',(1.8,0,.12)),('DoorHeadMarker',(0,-1.8,2.27)),('MiddleFloorMarker',(0,0,MIDDLE_FLOOR)),('GearFloorMarker',(0,0,GEAR_FLOOR)),('ClockCentreFront',(0,-DIAL_PLANE,CLOCK_Z)),('ChamberEastMarker',(CHAMBER/2,0,GEAR_FLOOR)),('RoofPeakMarker',(0,0,HEIGHT))]:
     o=bpy.data.objects.new(name,None);asset.objects.link(o);o.parent=root;o.location=pos;o.empty_display_size=.1
 
 bpy.ops.object.select_all(action='DESELECT')
@@ -327,7 +351,7 @@ shutil.copy2(OUT/'ClockTower1931.fbx',SRC/'ClockTower1931.fbx')
 visual=[o for o in asset.objects if o.type=='MESH'];bounds=[o.matrix_world@Vector(v) for o in visual for v in o.bound_box]
 tris=0
 for o in visual:o.data.calc_loop_triangles();tris+=len(o.data.loop_triangles)
-manifest={'asset':'ClockTower1931','construction':'Reference-guided authored editable 3D reconstruction; no external Meshy upload or neural inference.','reference':'../reference-approved-v3.png','blender_version':bpy.app.version_string,'units':'metres','blender_axes':{'right':'+X','up':'+Z','door_front':'-Y'},'fbx_export':{'axis_forward':'-Z','axis_up':'Y','apply_unit_scale':True,'scale':1},'markers_blender':{o.name:list(o.location) for o in asset.objects if o.type=='EMPTY' and o!=root},'bounds_blender_min':[min(v[i] for v in bounds) for i in range(3)],'bounds_blender_max':[max(v[i] for v in bounds) for i in range(3)],'footprint_physical_m':[3.6,3.6],'interior_clear_width_m':3.05,'height_m':HEIGHT,'clear_door':{'width':1.10,'bottom':.12,'top':2.27,'face':-1.8},'clock_centres_height':CLOCK_Z,'clock_unity_plane_distance':1.86,'ring_clear_diameter':RING_INNER*2,'dial_diameter':DIAL_DIAMETER,'gear_floor_height':GEAR_FLOOR,'middle_floor_height':MIDDLE_FLOOR,'inner_wall_top':WALL_TOP,'levels':3,'shared_layout_source':'game/Assets/Scripts/ClockTowerInteriorLayout.cs','renderers':len(visual),'triangles':tris,'material_names':list(materials),'textures':tex_manifest,'ventilation':'Eight solid-backed closed arched louvre panels, one per face on each lower shaft level; not transparent windows or extra playable rooms.','unity_supplies':['shared interior shell and all collision','animated wooden door below clear head','four deterministic clock dials and dynamic hands','wall plaque and readable history text'],'review_only':'Preview dials, hands, plaque and door illustrate the Unity overlays and are excluded from FBX.','authored_interpretations':['back and hidden side continue matching four-face clock architecture','user-requested 20m three-level revision with unchanged 3.6m width and human-scale door','three facade levels follow ground, intermediate deck and machinery deck; physical brick UV scale unchanged','vent panels closed against shared interior envelope']}
+manifest={'asset':'ClockTower1931','construction':'Reference-guided authored editable 3D reconstruction; no external Meshy upload or neural inference.','reference':'../reference-timber-gable.jpg','blender_version':bpy.app.version_string,'units':'metres','blender_axes':{'right':'+X','up':'+Z','door_front':'-Y'},'fbx_export':{'axis_forward':'-Z','axis_up':'Y','apply_unit_scale':True,'scale':1},'markers_blender':{o.name:list(o.location) for o in asset.objects if o.type=='EMPTY' and o!=root},'bounds_blender_min':[min(v[i] for v in bounds) for i in range(3)],'bounds_blender_max':[max(v[i] for v in bounds) for i in range(3)],'footprint_physical_m':[3.6,3.6],'interior_clear_width_m':3.05,'height_m':HEIGHT,'clear_door':{'width':1.10,'bottom':.12,'top':2.27,'face':-1.8},'clock_centres_height':CLOCK_Z,'clock_unity_plane_distance':DIAL_PLANE,'chamber_outer_width_m':CHAMBER,'chamber_inner_width_m':4.25,'ring_clear_diameter':RING_INNER*2,'dial_diameter':DIAL_DIAMETER,'gear_floor_height':GEAR_FLOOR,'middle_floor_height':MIDDLE_FLOOR,'inner_wall_top':WALL_TOP,'levels':3,'shared_layout_source':'game/Assets/Scripts/ClockTowerInteriorLayout.cs','renderers':len(visual),'triangles':tris,'material_names':list(materials),'textures':tex_manifest,'ventilation':'Eight solid-backed closed arched louvre panels, one per face on each lower shaft level; not transparent windows or extra playable rooms.','clock_apertures':{'count':4,'diameter_m':DIAL_DIAMETER,'glazing':'Live Unity frosted opal shader, solid Roman numerals and shared physical hands'},'unity_supplies':['shared interior shell and all collision','animated wooden door below clear head','four live frosted glass apertures, solid metal Roman numerals and dynamic physical hands','wall plaque and readable history text'],'review_only':'Preview-only historical face texture approximates exterior appearance; actual Unity supplies live frosted glass, solid numerals and hands. All review overlays are excluded from FBX.','authored_interpretations':['back and hidden side continue matching four-face clock architecture','20m three-level tower: 3.6m shaft, 4.8m projecting timber chamber and four gabled roofs; same human-scale door','three facade levels follow ground, intermediate deck and machinery deck; physical brick UV scale unchanged','vent panels closed against shared interior envelope']}
 (SRC/'manifest.json').write_text(json.dumps(manifest,indent=2));(OUT/'manifest.json').write_text(json.dumps(manifest,indent=2))
 
 # Review-only overlays use existing deterministic game textures, never generated text.
@@ -340,14 +364,14 @@ def image_material(name,path):
 dialmat=image_material('REVIEW_GameDial',REPO/'game/Assets/Art/Textures/TowerDial.png')
 historymat=image_material('REVIEW_GameHistory',REPO/'game/Assets/Art/Textures/TowerHistory.png')
 def disc(s):
-    vs=[pnt(s,0,CLOCK_Z,1.86)]+[pnt(s,DIAL_DIAMETER/2*math.cos(j*2*math.pi/112),CLOCK_Z+DIAL_DIAMETER/2*math.sin(j*2*math.pi/112),1.86) for j in range(112)]
+    vs=[pnt(s,0,CLOCK_Z,DIAL_PLANE)]+[pnt(s,DIAL_DIAMETER/2*math.cos(j*2*math.pi/112),CLOCK_Z+DIAL_DIAMETER/2*math.sin(j*2*math.pi/112),DIAL_PLANE) for j in range(112)]
     o=mesh('REVIEW clock face supplied by Unity',vs,[(0,j+1,(j+1)%112+1) for j in range(112)],dialmat);review_mesh(o)
     layer=o.data.uv_layers.active
     for po in o.data.polygons:
         for li in po.loop_indices:
             i=o.data.loops[li].vertex_index
             layer.data[li].uv=(.5,.5) if i==0 else (.5+.5*math.cos((i-1)*2*math.pi/112),.5+.5*math.sin((i-1)*2*math.pi/112))
-    for length,angle,w,d in [(.86,60,.022,1.90),(.58,-65,.032,1.92)]:
+    for length,angle,w,d in [(DIAL_DIAMETER*.39,60,.045,DIAL_PLANE+.04),(DIAL_DIAMETER*.26,-65,.070,DIAL_PLANE+.06)]:
         t=math.radians(angle);a=pnt(s,0,CLOCK_Z,d);b=pnt(s,length*math.sin(t),CLOCK_Z+length*math.cos(t),d);review_mesh(beam('REVIEW dynamic clock hand supplied by Unity',a,b,w,.01,lead))
 for s in range(4):disc(s)
 review_mesh(fbox('REVIEW Unity door',0,0,1.17,1.798,1.04,2.10,.09,oak,.010))
@@ -372,6 +396,6 @@ scene.render.resolution_x=1100;scene.render.resolution_y=1400;scene.render.resol
 def camera(pos,target,lens):cam.location=pos;cam.rotation_euler=(Vector(target)-cam.location).to_track_quat('-Z','Y').to_euler();cd.lens=lens
 camera((18,-29,18),(0,0,10),48)
 bpy.ops.wm.save_as_mainfile(filepath=str(SRC/'ClockTower1931.blend'))
-for name,pos,target,lens in [('model-front',(18,-29,18),(0,0,10),48),('model-back',(-18,29,18),(0,0,10),48),('model-detail',(5.3,-7.4,17.7),(0,0,16.8),47),('model-entrance',(3.5,-5.8,2.1),(0,-1.4,1.62),45)]:
+for name,pos,target,lens in [('model-front',(18,-29,18),(0,0,10),48),('model-back',(-18,29,18),(0,0,10),48),('model-detail',(7.2,-10.5,18),(0,0,17.3),47),('model-entrance',(3.5,-5.8,2.1),(0,-1.4,1.62),45)]:
     camera(pos,target,lens);scene.render.filepath=str(PRE/(name+'.png'));bpy.ops.render.render(write_still=True)
 print('CLOCKTOWER_EXTERIOR_EXPORT_PASS',json.dumps(manifest))

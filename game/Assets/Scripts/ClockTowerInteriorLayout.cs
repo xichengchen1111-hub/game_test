@@ -7,9 +7,13 @@ public sealed class ClockTowerInteriorLayout : MonoBehaviour {
     public const float ExteriorWidth = 3.6f;
     public const float InteriorWidth = 3.05f;
     public const float ExteriorHeight = 20f;
-    public const float InnerWallHeight = 18.3f;
-    public const float DialHeight = 16.72f;
-    public const float DialDiameter = 2.20f;
+    public const float InnerWallHeight = 18.5f;
+    public const float DialHeight = 16.7f;
+    public const float DialDiameter = 3.40f;
+    public const float ChamberExteriorWidth = 4.8f;
+    public const float ChamberInteriorWidth = 4.25f;
+    public const float MechanismX = -1.72f;
+    public const float DialPlaneDistance = 2.46f;
     public const float GroundFloor = .12f;
     public const float MiddleFloor = 8.530435f;
     public const float MachineFloor = 15f;
@@ -51,7 +55,7 @@ public sealed class ClockTowerInteriorLayout : MonoBehaviour {
     [Tooltip("Local-space feet positions. These are review targets, never teleport destinations.")]
     public Vector3[] ascendingPath;
     public Vector3 machineStandingPoint = new Vector3(-.64f, MachineFloor, 0);
-    public Vector3 mechanismLookPoint = new Vector3(-1.06f, MachineFloor + 1.05f, 0);
+    public Vector3 mechanismLookPoint = new Vector3(MechanismX + .21f, MachineFloor + 1.05f, 0);
     public Vector3 footprintLookPoint;
     public Vector3 middleStandingPoint;
     public Vector3 middleLookPoint;
@@ -105,7 +109,7 @@ public sealed class ClockTowerInteriorLayout : MonoBehaviour {
             Polar(StartAngle - 3, WalkingRadius, GroundFloor)
         };
         machineStandingPoint = new Vector3(-.64f, MachineFloor, 0);
-        mechanismLookPoint = new Vector3(-1.06f, MachineFloor + 1.05f, 0);
+        mechanismLookPoint = new Vector3(MechanismX + .21f, MachineFloor + 1.05f, 0);
         middleStandingPoint = Polar(MiddleEndAngle + 45f, .67f, MiddleFloor);
         middleLookPoint = new Vector3(.55f, MiddleFloor + .25f, -.65f);
         for (int i = 0; i < StepCount; i++) {

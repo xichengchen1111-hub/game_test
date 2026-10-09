@@ -1,0 +1,134 @@
+{
+  "build": "Unity 6000.3.18f1, Mac Metal, BuildSlice.BuildFreshMac",
+  "model": "Blender 4.5.9 LTS; reopened source and FBX roundtrip passed",
+  "tests": [
+    {
+      "suite": "time",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 19.8,
+      "marker": "TIME_REVIEW_PASS"
+    },
+    {
+      "suite": "time-relaunch",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.5,
+      "marker": "TIME_SAVE_RELAUNCH_PASS"
+    },
+    {
+      "suite": "tower-1080",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 91.9,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    },
+    {
+      "suite": "tower-relaunch",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 58.5,
+      "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+    },
+    {
+      "suite": "tower-720",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 91.2,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    },
+    {
+      "suite": "shop",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 54.0,
+      "marker": "WALNUT_REVIEW_PASS"
+    },
+    {
+      "suite": "middle-save",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.8,
+      "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+    }
+  ],
+  "package": {
+    "package": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/map-publish/builds/macos-current/错日证词-Mac-钟楼调时.zip",
+    "bytes": 94757525,
+    "sha256": "56ca305162c8a9814deb80c647c5eadba626ffaf003a0201c6bdeb1306134ee0",
+    "architectures": "x86_64 arm64",
+    "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+    "signatureValid": true,
+    "zipIntegrity": true
+  },
+  "deployment": {
+    "updatedApp": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/错日证词-新版.app",
+    "backup": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/backup-before-clocktower-adjustment-20261009-175138",
+    "desktopEntry": "/Users/wulizhi/Desktop/错日证词-新版.app",
+    "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+    "normalSaveUnchanged": true,
+    "normalSaveSHA256": "201b517dbcba2b7dcadb776427530cc62c53517ae3d4c69bcf93513857a9fcda",
+    "tests": [
+      {
+        "suite": "time",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 19.8,
+        "marker": "TIME_REVIEW_PASS"
+      },
+      {
+        "suite": "time-relaunch",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 3.5,
+        "marker": "TIME_SAVE_RELAUNCH_PASS"
+      },
+      {
+        "suite": "tower-1080",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 91.9,
+        "marker": "CLOCKTOWER_REVIEW_PASS"
+      },
+      {
+        "suite": "tower-relaunch",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 58.5,
+        "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+      },
+      {
+        "suite": "tower-720",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 91.2,
+        "marker": "CLOCKTOWER_REVIEW_PASS"
+      },
+      {
+        "suite": "shop",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 54.0,
+        "marker": "WALNUT_REVIEW_PASS"
+      },
+      {
+        "suite": "middle-save",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 3.8,
+        "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+      }
+    ]
+  },
+  "normalLaunchObserved": "Normal title menu observed through native app screenshot; saved tower doorway position retained",
+  "normalSaveUnchangedAfterLaunch": true,
+  "verificationScope": "Rendered player, actual CharacterController/raycasts; review calls the same adjustment handler as keyboard/mouse UI. Not physical-input or blind-player acceptance. Time/time-relaunch checks preceded final review-only JSON tolerance fix; gameplay code unchanged. No Intel hardware test.",
+  "visualReview": [
+    "1080p and 720p street clock/watch comparison",
+    "projecting gable chamber",
+    "five-button panel at both resolutions",
+    "wider upper-floor path and reachable machine",
+    "relaunch reset then ground comparison",
+    "upper webs and preserved dusty trail"
+  ]
+}

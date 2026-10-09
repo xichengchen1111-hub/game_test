@@ -1,0 +1,9 @@
+{
+  "package": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/map-publish/builds/macos-current/错日证词-Mac-磨砂钟盘.zip",
+  "bytes": 95571405,
+  "sha256": "69de0c96bc06a7f88c41ebebf2208ebb2c9a5a2ffea3f7e3dace794e53d24ad8",
+  "architectures": "x86_64 arm64",
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "signatureValid": true,
+  "zipIntegrity": true
+}

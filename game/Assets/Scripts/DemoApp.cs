@@ -19,6 +19,7 @@ using UnityEngine.SceneManagement;
     public int worldRevision;
     public int gameClockRevision;
     public int towerLayoutRevision;
+    public int towerAdjustmentMinutes;
     public double elapsedGameMinutes;
 }
 
@@ -168,6 +169,7 @@ public partial class DemoApp : MonoBehaviour {
     }
     void Update() {
         UpdateGameClock();
+        TickTowerAdjustment();
         if(sceneReady&&seamlessShop) {
             var p=seamlessShop.transform.InverseTransformPoint(player.transform.position);
             bool inside=Mathf.Abs(p.x)<seamlessShop.layout.footprint.x/2&&Mathf.Abs(p.z)<seamlessShop.layout.footprint.y/2;
@@ -186,6 +188,7 @@ public partial class DemoApp : MonoBehaviour {
             if(Input.GetKeyDown(KeyCode.Tab)) { journal=!journal; selectedEntry=0; CursorMode(); }
             if(Input.GetKeyDown(KeyCode.Q) && !journal) ToggleWatch();
         }
+        if(inspected is ClockTowerAdjustment) { UpdateTowerAdjustmentInput(); focus=null; return; }
         focus=null;
         if(!Blocked && Physics.Raycast(player.eye.transform.position,player.eye.transform.forward,out var hit,3f)) focus=hit.collider.GetComponentInParent<Interactable>();
         if(!Blocked && Input.GetKeyDown(KeyCode.E)) TryInteract();
@@ -205,7 +208,7 @@ public partial class DemoApp : MonoBehaviour {
     public void Inspect(Interactable item) {
         if(item.evidenceId=="E04") { OpenMilkboyDialogue(); return; }
         if(item.title=="钟表匠") { OpenWatchmakerDialogue(); return; }
-        inspected=item; CursorMode();
+        inspected=item; towerAdjustmentFeedback=""; CursorMode();
         if(!string.IsNullOrEmpty(item.evidenceId) && !state.entries.Exists(e=>e.id==item.evidenceId)) {
             state.entries.Add(new NotebookEntry{id=item.evidenceId,title=item.title,body=item.body,source=item.source});
             Debug.Log("Recorded evidence: "+item.evidenceId);
@@ -354,7 +357,8 @@ public partial class DemoApp : MonoBehaviour {
             }
             if(watch&&!inspected&&!journal&&!paused&&!DialogueOpen) DrawWatch();
             if(DialogueOpen) DrawDialogue();
-            if(inspected) DrawInspection(inspected.title,inspected.body,inspected.source,inspected.illustration);
+            if(inspected is ClockTowerAdjustment) DrawTowerAdjustment();
+            else if(inspected) DrawInspection(inspected.title,inspected.body,inspected.source,inspected.illustration);
             if(journal) DrawJournal();
             if(paused) {
                 Box(new Rect(0,0,W,H),new Color(0,0,0,0.42f));Panel(new Rect(W/2-230,H/2-180,460,360));

@@ -1,0 +1,62 @@
+{
+  "updatedApp": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/错日证词-新版.app",
+  "backup": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/backup-before-clocktower-quality-20261009-190125",
+  "desktopEntry": "/Users/wulizhi/Desktop/错日证词-新版.app",
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "normalSaveUnchanged": true,
+  "normalSaveSHA256": "35f27eca266062b74d8bb62ae9923214617167839af82e289f456df4f65738c9",
+  "tests": [
+    {
+      "suite": "time",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 19.9,
+      "marker": "TIME_REVIEW_PASS"
+    },
+    {
+      "suite": "time-relaunch",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.3,
+      "marker": "TIME_SAVE_RELAUNCH_PASS"
+    },
+    {
+      "suite": "tower-relaunch",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 61.6,
+      "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+    },
+    {
+      "suite": "tower-720",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 117.9,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    },
+    {
+      "suite": "shop",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 54.6,
+      "marker": "WALNUT_REVIEW_PASS"
+    },
+    {
+      "suite": "middle-save",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.7,
+      "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+    },
+    {
+      "suite": "tower-1080",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 117.9,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    }
+  ],
+  "normalLaunchLogVerified": true,
+  "normalSaveUnchangedAfterLaunch": true,
+  "nativeWindowObservation": "Blocked by macOS locked screen; no claim of visual confirmation of normal title menu. Rendered review screenshots verified separately."
+}

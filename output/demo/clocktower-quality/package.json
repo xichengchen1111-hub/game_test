@@ -1,0 +1,9 @@
+{
+  "package": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/map-publish/builds/macos-current/错日证词-Mac-材质增强.zip",
+  "bytes": 108808167,
+  "sha256": "d8f3f49230917133d1ae69bf6885fc328f6895d3895ac15181369b74cab7c8bf",
+  "architectures": "x86_64 arm64",
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "signatureValid": true,
+  "zipIntegrity": true
+}

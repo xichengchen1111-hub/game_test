@@ -11,17 +11,18 @@
       "Tower_Recess",
       "Tower_Slate"
     ],
-    "triangles": 230159,
+    "triangles": 221323,
     "bounds_min": [
-      -2.1069998741149902,
-      -2.1069998741149902,
+      -2.772000312805176,
+      -2.772000312805176,
       0.0
     ],
     "bounds_max": [
-      2.1069998741149902,
-      2.1069998741149902,
+      2.772000312805176,
+      2.772000312805176,
       20.0
     ],
+    "clock_aperture_clearance_rays": 36,
     "door_clearance_rays": 30,
     "door_width_tested": 1.02,
     "door_height_tested": 2.06,
@@ -33,7 +34,7 @@
     "explicit_uvs": true,
     "no_zero_area_faces": true,
     "review_geometry_separate": true,
-    "clock_ring_measured_clear_diameter": 2.2099985743521526,
+    "clock_ring_measured_clear_diameter": 3.409996027311307,
     "three_level_heights": [
       0.12,
       8.530435,
@@ -71,8 +72,8 @@
       ],
       "ClockCentreFront": [
         0.0,
-        -1.859997272491455,
-        16.719999313354492
+        -2.4599974155426025,
+        16.700000762939453
       ],
       "RoofPeakMarker": [
         0.0,

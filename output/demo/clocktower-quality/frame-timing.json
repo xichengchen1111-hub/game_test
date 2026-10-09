@@ -1,0 +1,37 @@
+{
+  "time": {
+    "frames": 912,
+    "meanMs": 16.831371583436663,
+    "medianMs": 16.667417526245117,
+    "p95Ms": 17.57383155822754,
+    "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+  },
+  "tower-relaunch": {
+    "frames": 3409,
+    "meanMs": 16.84446297743762,
+    "medianMs": 16.668041229248047,
+    "p95Ms": 17.57712745666504,
+    "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+  },
+  "tower-720": {
+    "frames": 6752,
+    "meanMs": 16.841940788578647,
+    "medianMs": 16.66775131225586,
+    "p95Ms": 17.573497772216797,
+    "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+  },
+  "shop": {
+    "frames": 2967,
+    "meanMs": 16.9026005535685,
+    "medianMs": 16.66933822631836,
+    "p95Ms": 17.57782745361328,
+    "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+  },
+  "tower-1080": {
+    "frames": 6764,
+    "meanMs": 16.82696540534743,
+    "medianMs": 16.667247772216797,
+    "p95Ms": 17.421541213989258,
+    "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+  }
+}

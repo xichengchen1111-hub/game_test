@@ -28,6 +28,7 @@ public class ClockTowerInstance : MonoBehaviour {
     }
     public bool ContainsUpperWalkPosition(Vector3 world) {
         var p=transform.InverseTransformPoint(world);
-        return Mathf.Abs(p.x)<InnerWidth/2 && Mathf.Abs(p.z)<InnerWidth/2 && p.y>=-.3f && p.y<=ClockTowerInteriorLayout.MachineFloor+.30f;
+        float width=p.y>=ClockTowerInteriorLayout.MachineFloor-.05f ? ClockTowerInteriorLayout.ChamberInteriorWidth : InnerWidth;
+        return Mathf.Abs(p.x)<width/2 && Mathf.Abs(p.z)<width/2 && p.y>=-.3f && p.y<=ClockTowerInteriorLayout.MachineFloor+.30f;
     }
 }

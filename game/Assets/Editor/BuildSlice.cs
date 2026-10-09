@@ -112,8 +112,8 @@ public static partial class BuildSlice {
         if(!profile){profile=ScriptableObject.CreateInstance<VolumeProfile>();AssetDatabase.CreateAsset(profile,path);}
         volume.sharedProfile=profile;
         if(!profile.TryGet<Tonemapping>(out var tonemap))tonemap=profile.Add<Tonemapping>();tonemap.mode.Override(TonemappingMode.ACES);
-        if(!profile.TryGet<Bloom>(out var bloom))bloom=profile.Add<Bloom>();bloom.intensity.Override(.25f);bloom.threshold.Override(1f);bloom.scatter.Override(.55f);
-        if(!profile.TryGet<ColorAdjustments>(out var color))color=profile.Add<ColorAdjustments>();color.postExposure.Override(inside?.45f:.2f);color.saturation.Override(-8);
+        if(!profile.TryGet<Bloom>(out var bloom))bloom=profile.Add<Bloom>();bloom.intensity.Override(.18f);bloom.threshold.Override(1f);bloom.scatter.Override(.55f);
+        if(!profile.TryGet<ColorAdjustments>(out var color))color=profile.Add<ColorAdjustments>();color.postExposure.Override(inside?.45f:.2f);color.saturation.Override(-6);color.contrast.Override(5);
         if(!profile.TryGet<Vignette>(out var vignette))vignette=profile.Add<Vignette>();vignette.intensity.Override(.18f);vignette.smoothness.Override(.65f);
         foreach(var component in profile.components) if(!AssetDatabase.Contains(component))AssetDatabase.AddObjectToAsset(component,profile);
         EditorUtility.SetDirty(profile);
@@ -345,7 +345,7 @@ public static partial class BuildSlice {
         var cc=player.AddComponent<CharacterController>();cc.height=1.78f;cc.radius=.25f;cc.center=new Vector3(0,.9f,0);cc.stepOffset=.24f;cc.skinWidth=.03f;
         var eye=new GameObject("Player eye");eye.transform.SetParent(player.transform,false);eye.transform.localPosition=new Vector3(0,1.66f,0);eye.tag="MainCamera";
         var camera=eye.AddComponent<Camera>();camera.nearClipPlane=.08f;camera.farClipPlane=160;camera.fieldOfView=66;camera.allowHDR=true;
-        var extra=camera.GetUniversalAdditionalCameraData();extra.renderPostProcessing=true;extra.antialiasing=AntialiasingMode.FastApproximateAntialiasing;
+        var extra=camera.GetUniversalAdditionalCameraData();extra.renderPostProcessing=true;extra.antialiasing=AntialiasingMode.SubpixelMorphologicalAntiAliasing;extra.antialiasingQuality=AntialiasingQuality.High;
         eye.AddComponent<AudioListener>();
         var motor=player.AddComponent<PlayerMotor>();motor.eye=camera;app.player=motor;
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene(),"Assets/Scenes/Systems.unity");
@@ -384,7 +384,7 @@ public static partial class BuildSlice {
         var pipe=AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>("Assets/Settings/PC_RPAsset.asset");
         if(!pipe) throw new Exception("Desktop URP pipeline not present");
         GraphicsSettings.defaultRenderPipeline=pipe;QualitySettings.renderPipeline=pipe;pipe.supportsHDR=true;pipe.msaaSampleCount=4;pipe.shadowDistance=55;
-        pipe.mainLightShadowmapResolution=2048;EditorUtility.SetDirty(pipe);
+        pipe.mainLightShadowmapResolution=4096;pipe.shadowCascadeCount=4;QualitySettings.anisotropicFiltering=AnisotropicFiltering.ForceEnable;EditorUtility.SetDirty(pipe);
         PlayerSettings.companyName=String.IsNullOrEmpty(companyOverride)?"Qingchuan Studio":companyOverride;PlayerSettings.productName="错日证词 · 暮色小镇";
         PlayerSettings.defaultScreenWidth=1600;PlayerSettings.defaultScreenHeight=900;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
         PlayerSettings.resizableWindow=true;PlayerSettings.runInBackground=true;PlayerSettings.colorSpace=ColorSpace.Linear;

@@ -41,7 +41,7 @@ public static partial class BuildSlice {
         for(int face=0;face<4;face++) {
             var mount=Group("Tower dial "+face,new Vector3(0,T.DialHeight,0),root.transform).transform;
             mount.localRotation=Quaternion.Euler(0,face*90,0);
-            TowerDial(mount,new Vector3(0,0,-1.86f),T.DialDiameter);
+            TowerDial(mount,new Vector3(0,0,-T.DialPlaneDistance),T.DialDiameter);
         }
         PrefabUtility.SaveAsPrefabAsset(root,TowerPrefabPath);
         UnityEngine.Object.DestroyImmediate(root);
@@ -49,7 +49,7 @@ public static partial class BuildSlice {
     }
 
     static void TowerPhysicalShell(Transform root,bool preview) {
-        float wallHeight=T.InnerWallHeight;
+        float wallHeight=T.MachineFloor;
         float half=ClockTowerInstance.OuterWidth/2,thickness=(ClockTowerInstance.OuterWidth-ClockTowerInstance.InnerWidth)/2;
         var wall=Mat("TowerInnerLimewash","#C8C1AF",0,.12f);
         // Interior lining doubles as declared collision. No separate room scene.
@@ -61,7 +61,8 @@ public static partial class BuildSlice {
             Box("Tower entrance pier",new Vector3(s*(ClockTowerInstance.DoorWidth/2+pier/2),wallHeight/2,-half+thickness/2),new Vector3(pier,wallHeight,thickness),wall,root);
         float lintelBottom=ClockTowerInstance.DoorFloor+ClockTowerInstance.DoorHeight;
         Box("Tower entrance lintel",new Vector3(0,(wallHeight+lintelBottom)/2,-half+thickness/2),new Vector3(ClockTowerInstance.DoorWidth,wallHeight-lintelBottom,thickness),wall,root);
-        Box("Tower roof underside",new Vector3(0,wallHeight,0),new Vector3(3.05f,.12f,3.05f),wall,root);
+        ClockTowerGlazing.BuildShell(root,wall);
+        Box("Tower roof underside",new Vector3(0,T.InnerWallHeight,0),new Vector3(T.ChamberInteriorWidth,.12f,T.ChamberInteriorWidth),wall,root);
         Box("Tower entrance threshold",new Vector3(0,.06f,-1.72f),new Vector3(1.10f,.12f,.70f),Mat("TowerThreshold","#AEA99A"),root);
         if(preview) {
             Roof(root,3.8f,3.8f,wallHeight,T.ExteriorHeight-wallHeight,Mat("TowerPreviewRoof","#59606B"));
@@ -71,17 +72,13 @@ public static partial class BuildSlice {
 
     static void TowerDial(Transform parent,Vector3 position,float diameter) {
         var face=Group("Clock dial",position,parent).transform;
-        var material=ImageMat("TowerRomanDial","TowerDial.png",true);
-        material.SetFloat("_AlphaClip",1);material.SetFloat("_Cutoff",.5f);
-        material.EnableKeyword("_ALPHATEST_ON");material.SetOverrideTag("RenderType","TransparentCutout");material.renderQueue=2450;
-        EditorUtility.SetDirty(material);
-        Quad("Ivory Roman numeral dial",Vector3.zero,new Vector2(diameter,diameter),material,face);
         var dial=face.gameObject.AddComponent<ClockDial>();dial.streetClock=true;
         dial.minuteHand=Group("Minute",new Vector3(0,0,-.028f),face).transform;
         dial.hourHand=Group("Hour",new Vector3(0,0,-.040f),face).transform;
         var ink=Mat("TowerDialInk","#303534",0,.28f);
-        Box("Long minute hand",new Vector3(0,diameter*.17f,0),new Vector3(diameter*.019f,diameter*.40f,.014f),ink,dial.minuteHand,false).isStatic=false;
-        Box("Short hour hand",new Vector3(0,diameter*.11f,0),new Vector3(diameter*.032f,diameter*.28f,.016f),ink,dial.hourHand,false).isStatic=false;
+        ClockTowerGlazing.BuildDial(face,diameter,ink);
+        Box("Long minute hand",new Vector3(0,diameter*.17f,0),new Vector3(diameter*.023f,diameter*.40f,.025f),ink,dial.minuteHand,false).isStatic=false;
+        Box("Short hour hand",new Vector3(0,diameter*.11f,0),new Vector3(diameter*.034f,diameter*.28f,.027f),ink,dial.hourHand,false).isStatic=false;
         var hub=Cylinder("Clock hand spindle",new Vector3(0,0,-.058f),new Vector3(.070f,.013f,.070f),ink,face);
         hub.transform.localRotation=Quaternion.Euler(90,0,0);
     }

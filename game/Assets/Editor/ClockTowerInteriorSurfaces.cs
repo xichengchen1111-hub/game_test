@@ -19,12 +19,12 @@ public static class ClockTowerInteriorSurfaces {
         Directory.CreateDirectory(Root + "/SurfaceTextures");
         Directory.CreateDirectory(Root + "/Materials");
         AssetDatabase.Refresh();
-        MakeMasonry("Limestone", 4, 4, 1.52f, .72f, .006f, C("#C3B8A1"), C("#8D887A"), .0025f);
-        MakeMasonry("WornPaving", 2, 4, 1.16f, 1.52f, .009f, C("#A39780"), C("#666458"), .0035f);
+        MakeMasonry("Limestone", 4, 4, 1.52f, .72f, .006f, C("#C3B8A1"), C("#8D887A"), .0040f);
+        MakeMasonry("WornPaving", 2, 4, 1.16f, 1.52f, .009f, C("#A39780"), C("#666458"), .0050f);
         Wall = Mat("Tower inner limestone bricks", Color.white, .12f);
-        TextureMaterial(Wall, "Limestone", .62f);
+        TextureMaterial(Wall, "Limestone", 1.0f);
         Floor = Mat("Tower ground worn stone slabs", Color.white, .09f);
-        TextureMaterial(Floor, "WornPaving", .72f);
+        TextureMaterial(Floor, "WornPaving", 1.05f);
         Treads = new Material[BandCount]; Prints = new Material[BandCount]; Ridges = new Material[BandCount];
         var grain = AssetDatabase.LoadAssetAtPath<Texture2D>(Root + "/DustyOak.png");
         var transfer = AssetDatabase.LoadAssetAtPath<Texture2D>(Root + "/DisplacedDust.png");
@@ -67,7 +67,7 @@ public static class ClockTowerInteriorSurfaces {
 
     static void MakeMasonry(string name, int columns, int rows, float metresX, float metresY,
         float jointWidth, Color faceColor, Color mortarColor, float relief) {
-        const int size = 512;
+        const int size = 1024;
         var colors = new Color[size * size]; var heights = new float[size * size];
         for (int y = 0; y < size; y++) for (int x = 0; x < size; x++) {
             float v = (y + .5f) / size, u = (x + .5f) / size;
@@ -108,13 +108,13 @@ public static class ClockTowerInteriorSurfaces {
         importer.textureType = normal ? TextureImporterType.NormalMap : TextureImporterType.Default;
         importer.sRGBTexture = !normal; importer.wrapMode = TextureWrapMode.Repeat;
         importer.mipmapEnabled = true; importer.filterMode = FilterMode.Trilinear; importer.anisoLevel = 8;
-        importer.maxTextureSize = size; importer.SaveAndReimport();
+        importer.textureCompression = TextureImporterCompression.Uncompressed; importer.maxTextureSize = size; importer.SaveAndReimport();
     }
 
     public static void BuildInnerWalls(Transform parent) {
         // Render-only surfaces 6mm in front of the existing shared inner shell.
         // Door opening and all original collision are untouched.
-        float h = L.InteriorWidth / 2 - .006f, bottom = L.GroundFloor, top = L.InnerWallHeight - .062f;
+        float h = L.InteriorWidth / 2 - .006f, bottom = L.GroundFloor, top = L.MachineFloor;
         var vertices = new List<Vector3>(); var uvs = new List<Vector2>(); var triangles = new List<int>();
         void Face(Vector3 a, Vector3 b, Vector3 c, Vector3 d, Vector3 inward) {
             int n = vertices.Count; vertices.Add(a); vertices.Add(b); vertices.Add(c); vertices.Add(d);
@@ -131,6 +131,7 @@ public static class ClockTowerInteriorSurfaces {
         Face(new Vector3(-h,bottom,-h),new Vector3(-doorHalf,bottom,-h),new Vector3(-doorHalf,top,-h),new Vector3(-h,top,-h),Vector3.forward);
         Face(new Vector3(doorHalf,bottom,-h),new Vector3(h,bottom,-h),new Vector3(h,top,-h),new Vector3(doorHalf,top,-h),Vector3.forward);
         Face(new Vector3(-doorHalf,doorTop,-h),new Vector3(doorHalf,doorTop,-h),new Vector3(doorHalf,top,-h),new Vector3(-doorHalf,top,-h),Vector3.forward);
+        ClockTowerGlazing.BuildLinings(parent,Wall);
         var mesh = new Mesh { name = "Metre scale limestone interior wall lining" };
         mesh.SetVertices(vertices); mesh.SetUVs(0, uvs); mesh.SetTriangles(triangles, 0);
         mesh.RecalculateNormals(); mesh.RecalculateBounds(); mesh.RecalculateTangents();

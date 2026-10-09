@@ -314,8 +314,8 @@
       "full_town_map_migrated": false
     },
     "appearance": {
-      "exterior_pipeline": "沿用牛奶店的本地参考图重建方式：依据已认可第三版概念，在 Blender 中制作几何与纹理，保留可编辑 .blend，再导出 FBX 接入 Unity 的同一建筑",
-      "style": "约20米高、三层体量的精致古老欧式钟楼；保持3.6米塔身外宽、浅色外墙涂装均匀且保养良好，保留正常尺度砖砌纹理",
+      "exterior_pipeline": "沿用牛奶店的本地参考图重建方式：依据已认可第三版概念，在 Blender 中制作几何与纹理，保留可编辑 .blend，再导出 FBX 接入 Unity 的同一建筑，最新顶部采用用户Timber Gable参考",
+      "style": "约20米高、三层体量的精致古老欧式钟楼；保持3.6米塔身外宽、浅色外墙涂装均匀且保养良好，保留正常尺度砖砌纹理；顶部为4.8米宽外挑木构钟室、托架与四向山墙瓦顶，四面钟盘直径3.4米",
       "plaque": {
         "mount": "固定在钟楼墙面",
         "fictional_lore": true,
@@ -330,7 +330,7 @@
       "entry": "可开关实体门，Town 同一建筑内直接步行进出",
       "shared_exterior_interior_layout": true,
       "staircase": "可实际上下、经中层平台到达15米机房的螺旋阶梯；积灰且有较清晰鞋底和鞋跟印，脚印随新梯生成",
-      "mechanism": "传统机芯按新布局置于15米平台，玩家可走到旁边辨认齿轮、传动轴和机架",
+      "mechanism": "传统机芯按新布局置于15米平台，玩家可走到旁边辨认齿轮、传动轴和机架；机架靠加宽机房西墙，E打开−60/−30/+30/+60分钟与Reset五个相对调时操作",
       "gear_rotation_required": false,
       "progression_gate": false,
       "stair_segments": {
@@ -367,11 +367,34 @@
         "inspection"
       ],
       "pocket_watch_alone_pauses_time": false,
-      "save_value": "累计游戏分钟，显示时按一日取模",
+      "save_value": "累计游戏分钟及独立towerAdjustmentMinutes；钟盘显示按一日循环，复位只将调整量清零",
       "legacy_missing_time": "从 17:55 初始化，保留证物、位置及对话进度",
       "offline_time_advance": false,
       "historical_testimony_and_documents": "原有日期与18:25等时刻不随探索时钟变化",
-      "day_night_npc_schedules_in_scope": false
+      "day_night_npc_schedules_in_scope": false,
+      "tower_offset_semantics": "Default/reset offset; interactive adjustment adds independently of pocket-watch time",
+      "tower_adjustment": {
+        "controls_minutes": [
+          -60,
+          -30,
+          30,
+          60
+        ],
+        "fifth_control": "Reset to pocket watch +30 minutes",
+        "interaction": "E at reachable physical gear frame; mouse buttons or 1–5; Esc closes",
+        "save_field": "towerAdjustmentMinutes",
+        "relative_cumulative": true,
+        "legacy_default": 0,
+        "does_not_change_watch_or_history": true,
+        "does_not_grant_evidence": true,
+        "no_absolute_digital_time_or_default_offset_label": true,
+        "winding_seconds": 3,
+        "gear_motion": "accelerate, several turns, decelerate to normal; negative adjustments reverse drive",
+        "all_controls_locked_during_winding": true,
+        "reopen_does_not_bypass_lock": true,
+        "hands_follow_winding_continuously": true,
+        "interrupted_animation_save": "Chosen final offset commits immediately; next launch restores completed setting; watch untouched"
+      }
     },
     "private_truth": {
       "player_visible": false,
@@ -446,12 +469,15 @@
       "ground_floor": 0.12,
       "middle_floor": 8.530435,
       "machine_floor": 15.0,
-      "inner_wall_height": 18.3,
-      "dial_center_height": 16.72,
-      "dial_diameter": 2.2,
+      "inner_wall_height": 18.5,
+      "dial_center_height": 16.7,
+      "dial_diameter": 3.4,
       "door_width": 1.1,
       "door_height": 2.15,
-      "physical_brick_scale_preserved": true
+      "physical_brick_scale_preserved": true,
+      "upper_chamber_exterior_width": 4.8,
+      "upper_chamber_interior_width": 4.25,
+      "dial_plane_distance": 2.46
     },
     "save_migration": {
       "from_height_m": 9.5,
@@ -565,6 +591,168 @@
         "检查6处蛛网锚点、通道净空与最多32粒浮尘，无遮挡且无新增碰撞",
         "真实控制器复走门/上下梯/平台/机房，并核对原存档、Q表和双钟规则"
       ]
+    },
+    "timber_gable_revision": {
+      "status": "passed and deployed to original desktop app; normal save unchanged after normal launch",
+      "reference": "assets/source/clocktower/reference-timber-gable.jpg",
+      "height_m": 20,
+      "dial_diameter_m": 3.4,
+      "projecting_chamber_width_m": 4.8,
+      "interior_width_m": 4.25,
+      "real_upper_floor_expanded": true,
+      "four_matching_gables": true,
+      "evidence": "output/demo/clocktower-adjustment/",
+      "runtime_suites": [
+        "time",
+        "time-relaunch",
+        "tower-1080",
+        "tower-relaunch",
+        "tower-720",
+        "shop",
+        "middle-save"
+      ],
+      "same_footprint_count": 87,
+      "all_five_controls_and_day_wrap": true,
+      "persistent_offset_and_reset_relaunch": true,
+      "actual_expanded_upper_floor_walk": true,
+      "normal_launch": true,
+      "normal_save_unchanged": true,
+      "fairness_review": "output/demo/clocktower-adjustment/fairness-review.json",
+      "verification_limits": "Script-driven visible player and native launch observation; no physical-input/Intel-hardware/blind-player acceptance"
+    },
+    "frosted_clock_revision": {
+      "status": "passed and deployed to original desktop app",
+      "physical_apertures": 4,
+      "dial_diameter_m": 3.4,
+      "same_hands_visible_inside_and_out": true,
+      "roman_numerals": "actual solid metal geometry, mirrored naturally when seen from rear",
+      "glass": "milky scene-colour diffusion and blur of current camera view, not reference-picture backdrop",
+      "panel_alpha": 0.38,
+      "winding_seconds": 3,
+      "all_controls_locked_until_normal_speed": true,
+      "runtime_evidence": "output/demo/clocktower-glass/",
+      "runtime_suites": [
+        "time",
+        "time-relaunch",
+        "tower-1080",
+        "tower-relaunch",
+        "tower-720",
+        "shop",
+        "middle-save"
+      ],
+      "save_unchanged": true,
+      "limits": "Rendered script-driven real controller and shared action handlers; no physical-input, Intel-hardware or blind playthrough acceptance."
+    },
+    "material_quality_revision": {
+      "status": "verified and deployed",
+      "evidence": "output/demo/clocktower-quality/",
+      "interior_textures_px": 1024,
+      "features": [
+        "stronger metre-scale masonry normals",
+        "oak grain and height-fading relief beneath powder",
+        "metallic/smoothness variation and fine normal maps on bronze and iron",
+        "machine room local 256px reflection probe rendered once on awake",
+        "one machine service light with soft shadows",
+        "4K four-cascade main shadows",
+        "high-quality SMAA",
+        "less bloom, modest contrast, anisotropic filtering",
+        "fine frosted-glass surface grain"
+      ],
+      "geometry_or_gameplay_changed": false,
+      "final_shadow_allocation_rechecked": [
+        "shop",
+        "middle-save",
+        "tower-1080"
+      ],
+      "runtime_suites": [
+        {
+          "suite": "time",
+          "exitCode": 0,
+          "passed": true,
+          "seconds": 19.9,
+          "marker": "TIME_REVIEW_PASS"
+        },
+        {
+          "suite": "time-relaunch",
+          "exitCode": 0,
+          "passed": true,
+          "seconds": 3.3,
+          "marker": "TIME_SAVE_RELAUNCH_PASS"
+        },
+        {
+          "suite": "tower-relaunch",
+          "exitCode": 0,
+          "passed": true,
+          "seconds": 61.6,
+          "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+        },
+        {
+          "suite": "tower-720",
+          "exitCode": 0,
+          "passed": true,
+          "seconds": 117.9,
+          "marker": "CLOCKTOWER_REVIEW_PASS"
+        },
+        {
+          "suite": "shop",
+          "exitCode": 0,
+          "passed": true,
+          "seconds": 54.6,
+          "marker": "WALNUT_REVIEW_PASS"
+        },
+        {
+          "suite": "middle-save",
+          "exitCode": 0,
+          "passed": true,
+          "seconds": 3.7,
+          "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+        },
+        {
+          "suite": "tower-1080",
+          "exitCode": 0,
+          "passed": true,
+          "seconds": 117.9,
+          "marker": "CLOCKTOWER_REVIEW_PASS"
+        }
+      ],
+      "frame_timing": {
+        "time": {
+          "frames": 912,
+          "meanMs": 16.831371583436663,
+          "medianMs": 16.667417526245117,
+          "p95Ms": 17.57383155822754,
+          "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+        },
+        "tower-relaunch": {
+          "frames": 3409,
+          "meanMs": 16.84446297743762,
+          "medianMs": 16.668041229248047,
+          "p95Ms": 17.57712745666504,
+          "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+        },
+        "tower-720": {
+          "frames": 6752,
+          "meanMs": 16.841940788578647,
+          "medianMs": 16.66775131225586,
+          "p95Ms": 17.573497772216797,
+          "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+        },
+        "shop": {
+          "frames": 2967,
+          "meanMs": 16.9026005535685,
+          "medianMs": 16.66933822631836,
+          "p95Ms": 17.57782745361328,
+          "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+        },
+        "tower-1080": {
+          "frames": 6764,
+          "meanMs": 16.82696540534743,
+          "medianMs": 16.667247772216797,
+          "p95Ms": 17.421541213989258,
+          "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+        }
+      },
+      "limits": "Local Mac rendered review timing includes screenshots/UI; not a formal GPU or long-duration performance benchmark."
     }
   }
 }

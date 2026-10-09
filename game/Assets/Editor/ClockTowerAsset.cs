@@ -15,6 +15,10 @@ public static class ClockTowerAsset {
             importer.materialImportMode=ModelImporterMaterialImportMode.ImportStandard;importer.isReadable=true;
             importer.importCameras=false;importer.importLights=false;importer.importAnimation=false;importer.SaveAndReimport();
         }
+        // Prepare textures before instantiation: first-time normal-map imports can
+        // refresh prefab instances and discard an already-applied axis correction.
+        string[] materialNames={"Tower_IvoryBrick","Tower_CreamStone","Tower_Slate","Tower_Lead","Tower_DarkOak","Tower_Recess","Tower_Bronze"};
+        var prepared=materialNames.ToDictionary(n=>n,n=>MaterialFor(n));
         var visual=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(ModelPath));
         visual.name="Reference-model ivory clock tower";visual.transform.SetParent(parent,false);
         var markers=visual.GetComponentsInChildren<Transform>();
@@ -26,7 +30,7 @@ public static class ClockTowerAsset {
            Vector3.Distance(parent.InverseTransformPoint(east.position),new Vector3(1.8f,.12f,0))>.01f)
             throw new InvalidOperationException("Clock tower FBX axes or metre scale mismatch: front="+front.position.ToString("F4")+" east="+east.position.ToString("F4"));
         foreach(var renderer in visual.GetComponentsInChildren<MeshRenderer>())
-            renderer.sharedMaterials=renderer.sharedMaterials.Select(m=>MaterialFor(m.name)).ToArray();
+            renderer.sharedMaterials=renderer.sharedMaterials.Select(m=>prepared[m.name.Split('.')[0]]).ToArray();
         foreach(var collider in visual.GetComponentsInChildren<Collider>())UnityEngine.Object.DestroyImmediate(collider);
         var bounds=MilkShopAsset.BoundsOf(visual);
         if(Mathf.Abs(bounds.size.y-ClockTowerInstance.Height)>.10f||Mathf.Abs(bounds.min.y)>.02f)
@@ -36,6 +40,11 @@ public static class ClockTowerAsset {
             if(Mathf.Abs(parent.InverseTransformPoint(marker.position).y-entry.Item2)>.015f)
                 throw new InvalidOperationException("Tower exterior/interior height mismatch: "+entry.Item1);
         }
+        var dial=parent.InverseTransformPoint(markers.Single(t=>t.name=="ClockCentreFront").position);
+        var chamber=parent.InverseTransformPoint(markers.Single(t=>t.name=="ChamberEastMarker").position);
+        if(Mathf.Abs(dial.z+ClockTowerInteriorLayout.DialPlaneDistance)>.01f ||
+            Mathf.Abs(chamber.x-ClockTowerInteriorLayout.ChamberExteriorWidth/2)>.01f)
+            throw new InvalidOperationException("Projecting chamber or dial depth differs from shared physical layout: dial="+dial.ToString("F5")+" chamber="+chamber.ToString("F5"));
         CheckDoorway(visual,parent);
         Debug.Log("CLOCKTOWER_EXTERIOR_PASS: local reference reconstruction; metre scale; front/east markers; actual empty doorway; "+visual.GetComponentsInChildren<MeshRenderer>().Length+" material groups");
         return visual;
@@ -63,7 +72,7 @@ public static class ClockTowerAsset {
                 normalImporter.textureType=TextureImporterType.NormalMap;normalImporter.SaveAndReimport();
             }
             mat.SetTexture("_BumpMap",AssetDatabase.LoadAssetAtPath<Texture2D>(normalPath));
-            mat.SetFloat("_BumpScale",.6f);mat.EnableKeyword("_NORMALMAP");
+            mat.SetFloat("_BumpScale",.95f);mat.EnableKeyword("_NORMALMAP");
         } else mat.DisableKeyword("_NORMALMAP");
         EditorUtility.SetDirty(mat);return mat;
     }
@@ -75,6 +84,13 @@ public static class ClockTowerAsset {
         }).ToArray();
         Physics.SyncTransforms();
         try {
+            for(int side=0;side<4;side++)foreach(float x in new[]{-.8f,0,.8f})foreach(float y in new[]{-.8f,0,.8f}) {
+                var q=Quaternion.Euler(0,side*90,0);
+                var start=new Vector3(0,ClockTowerInteriorLayout.DialHeight,0)+q*new Vector3(x,y,-2.0f);
+                var ray=new Ray(parent.TransformPoint(start),parent.TransformDirection(q*Vector3.back));
+                foreach(var collider in temporary)if(collider.Raycast(ray,out RaycastHit hit,.60f))
+                    throw new InvalidOperationException("Visible exterior blocks clock glazing aperture: side="+side+" sample="+new Vector2(x,y)+" mesh="+hit.collider.name);
+            }
             foreach(float x in new[]{-.48f,0,.48f})foreach(float y in new[]{.15f,1.1f,2.23f}) {
                 var ray=new Ray(parent.TransformPoint(new Vector3(x,y,-2.3f)),parent.TransformDirection(Vector3.forward));
                 foreach(var collider in temporary)if(collider.Raycast(ray,out RaycastHit hit,.82f))

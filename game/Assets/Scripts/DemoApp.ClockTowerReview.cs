@@ -81,7 +81,7 @@ public partial class DemoApp {
             "Atmospheric dust must stay sparse and local to the tower");
         NeedTower(dust.GetComponent<ParticleSystemRenderer>()&&dust.GetComponent<ParticleSystemRenderer>().enabled,"Upper dust renderer is disabled");
         // A genuine view from the reached machine floor, not a detached camera.
-        player.Aim(tower.LocalToWorld(new Vector3(1.15f,17.2f,1.2f)));
+        player.Aim(tower.LocalToWorld(new Vector3(T.ChamberInteriorWidth/2-.2f,17.2f,T.ChamberInteriorWidth/2-.25f)));
         yield return new WaitForSeconds(.4f);
         yield return Capture("tower-upper-corner-cobwebs");
         var before=new ParticleSystem.Particle[dust.main.maxParticles];
@@ -110,7 +110,7 @@ public partial class DemoApp {
         yield return WalkTo(new Vector3(5,.1f,-7));
         player.Aim(tower.LocalToWorld(new Vector3(0,T.ExteriorHeight*.47f,0)));yield return Capture("tower-exterior-corner");
         yield return WalkTo(new Vector3(0,.1f,-1.5f));
-        player.Aim(tower.LocalToWorld(new Vector3(0,T.DialHeight,-1.86f)));
+        player.Aim(tower.LocalToWorld(new Vector3(0,T.DialHeight,-T.DialPlaneDistance)));
         ToggleWatch();yield return new WaitForSeconds(.4f);yield return Capture("tower-watch-comparison");
         yield return new WaitForEndOfFrame();RequireSharedDialHands();
         var dials=tower.GetComponentsInChildren<ClockDial>();var handsBefore=dials.Select(d=>d.minuteHand.localRotation).ToArray();
@@ -180,19 +180,103 @@ public partial class DemoApp {
         NeedTower(Quaternion.Angle(rotation,moving[0].gears[0].localRotation)>.1f,"Gear mechanism does not visibly turn");
         player.Aim(tower.LocalToWorld(new Vector3(-.73f,T.MachineFloor+.03f,.68f)));yield return Capture("tower-upper-stone-floor");
         yield return ReviewTowerAtmosphere(tower,atmosphere);
+        yield return ReviewClockGlazing(tower);
+        yield return ReviewTowerAdjustments(tower,layout);
+        // Walk into the projecting part of the new physical chamber and back.
+        foreach(var point in new[]{new Vector3(-1.05f,T.MachineFloor,.60f),new Vector3(-1.20f,T.MachineFloor,1.12f),new Vector3(-1.70f,T.MachineFloor,1.12f)})
+            yield return TowerWalk(tower.LocalToWorld(point));
+        NeedTower(SafePosition(player.transform.position),"Wider upper floor is not valid for saves");
+        player.Aim(tower.LocalToWorld(layout.mechanismLookPoint));yield return Capture("tower-expanded-chamber");
+        player.Aim(tower.LocalToWorld(new Vector3(-T.DialPlaneDistance,16.1f,0)));yield return Capture("tower-glass-oblique");
+        yield return TowerWalk(tower.LocalToWorld(new Vector3(-1.20f,T.MachineFloor,1.12f)));
+        yield return TowerWalk(tower.LocalToWorld(new Vector3(-1.05f,T.MachineFloor,.60f)));
+        yield return TowerWalk(tower.LocalToWorld(layout.machineStandingPoint));
         Save();NeedTower(state.y>T.MachineFloor-.2f&&state.openFixtures.Contains("clocktower-door"),"Upper-floor save/door state was not preserved");
         File.WriteAllText(Path.Combine(captures,"clocktower-results.json"),JsonUtility.ToJson(new TowerResult{passed=true,referenceExterior=tower.referenceExteriorImported,
             towerHeight=T.ExteriorHeight,middleFloor=T.MiddleFloor,machineFloor=T.MachineFloor,realStairWaypoints=path.Length,footprints=layout.footprintCount,continuousTown=true,closedDoorBlocks=true,fourMovingDials=true,upperFloorSave=true,
-            atmosphere=atmosphere,
+            atmosphere=atmosphere,liveFrostedApertures=4,windingLocksControls=true,sharedInteriorExteriorHands=true,adjustmentControls=5,adjustedOffsetSaved=TowerClockOffsetMinutes,dialDiameter=T.DialDiameter,chamberInteriorWidth=T.ChamberInteriorWidth,
             verification="Actual CharacterController walked from town through the door up every spiral-stair waypoint. Lower/middle/upper close-ups retain the same stair azimuth and ordinary eye height; material-gradient checks supplement visual inspection. Live dust is sampled twice without forcing emission or simulation. Controlled review, not physical keyboard input or blind playtest. Exterior is locally reconstructed from the approved illustration, following the milk-shop workflow."},true));
         Debug.Log("CLOCKTOWER_REVIEW_PASS");Application.Quit();
+    }
+    IEnumerator ReviewWinding(ClockTowerInstance tower,bool extended=false) {
+        NeedTower(TowerAdjustmentBusy,"Adjustment did not start winding");
+        var motion=tower.GetComponentInChildren<ClockTowerGearMotion>();
+        double travel=motion.PrimaryTravelDegrees,target=state.towerAdjustmentMinutes;
+        for(int key=0;key<5;key++)ApplyTowerAdjustment(key);
+        NeedTower(state.towerAdjustmentMinutes==target,"Another control bypassed winding lock");
+        if(extended) {
+            CloseInspect();player.Aim(tower.LocalToWorld(tower.GetComponent<ClockTowerInteriorLayout>().mechanismLookPoint));
+            NeedTower(TryInteract()&&TowerAdjustmentOpen,"Cannot reopen winding panel");
+            ApplyTowerAdjustment(4);NeedTower(state.towerAdjustmentMinutes==target,"Reopening bypassed winding lock");
+            paused=true;float frozen=towerWindingAge;double angle=motion.PrimaryTravelDegrees;
+            yield return new WaitForSecondsRealtime(.2f);
+            NeedTower(towerWindingAge==frozen&&motion.PrimaryTravelDegrees==angle,"Pause did not freeze winding");paused=false;
+        }
+        float deadline=Time.realtimeSinceStartup+5;bool captured=false;double peak=0;
+        while(TowerAdjustmentBusy&&Time.realtimeSinceStartup<deadline) {
+            peak=Math.Max(peak,Math.Abs(TowerWindingSpeedFactor));
+            yield return new WaitForEndOfFrame();RequireSharedDialHands();
+            if(extended&&!captured&&towerWindingAge>.6f){captured=true;yield return Capture("tower-adjustment-winding");}
+        }
+        NeedTower(!TowerAdjustmentBusy&&TowerWindingSpeedFactor==1,"Winding never returned to normal speed");
+        NeedTower(peak>100&&motion.PrimaryTravelDegrees-travel>720,"Gears did not accelerate through several turns");
+        NeedTower(TowerClockOffsetMinutes==GameClock.TowerOffsetMinutes+state.towerAdjustmentMinutes,"Hands did not reach the requested time");
+        yield return new WaitForEndOfFrame();RequireSharedDialHands();
+    }
+    IEnumerator ReviewClockGlazing(ClockTowerInstance tower) {
+        var windows=tower.GetComponentsInChildren<ClockTowerDialWindow>();
+        NeedTower(windows.Length==4,"Four physical glazed clock openings required");
+        foreach(var window in windows) {
+            NeedTower(window.Dial&&window.Dial.hourHand&&window.Dial.minuteHand&&window.safety,
+                "Interior and exterior must share physical clock hands and safe glazing");
+            NeedTower(window.glazing.sharedMaterial.shader.name=="WrongDate/FrostedClockGlass"&&window.glazing.sharedMaterial.shader.isSupported,
+                "Live scene-sampling glass shader is unavailable");
+        }
+        player.Aim(tower.LocalToWorld(new Vector3(-T.DialPlaneDistance,T.DialHeight,0)));
+        yield return Capture("tower-interior-frosted-clock");
+        yield return new WaitForEndOfFrame();RequireSharedDialHands();
+        Debug.Log("CLOCKTOWER_GLAZING_PASS: four real openings, live scene glass, shared physical hands");
+    }
+    IEnumerator ReviewTowerAdjustments(ClockTowerInstance tower,T layout) {
+        player.Aim(tower.LocalToWorld(layout.mechanismLookPoint));yield return null;
+        int evidenceCount=state.entries.Count;
+        NeedTower(TryInteract()&&inspected is ClockTowerAdjustment,"Ordinary E ray cannot reach the mechanical adjustment");
+        NeedTower(Blocked&&GameTimePaused,"Adjustment UI must suspend movement/look like other inspections");
+        yield return Capture("tower-adjustment-controls");
+        double watchBefore=ElapsedGameMinutes;
+        int[] expected={-60,-90,-60,0,0};
+        for(int i=0;i<5;i++) {
+            ApplyTowerAdjustment(i);yield return ReviewWinding(tower,i==0);
+            NeedTower(state.towerAdjustmentMinutes==expected[i],"Wrong relative adjustment for control "+i);
+            NeedTower(ElapsedGameMinutes==watchBefore&&state.entries.Count==evidenceCount,"Adjustment changed watch time or granted evidence");
+        }
+        // Boundary fixtures exercise real controls on either side of a day wrap.
+        state.towerAdjustmentMinutes=1410;ApplyTowerAdjustment(3);yield return ReviewWinding(tower);
+        NeedTower(state.towerAdjustmentMinutes==30,"Positive day wrap failed");
+        state.towerAdjustmentMinutes=-1410;ApplyTowerAdjustment(0);yield return ReviewWinding(tower);
+        NeedTower(state.towerAdjustmentMinutes==-30,"Negative day wrap failed");
+        ApplyTowerAdjustment(4);yield return ReviewWinding(tower);
+        NeedTower(TowerClockOffsetMinutes==30,"Reset failed after positive/negative wraps");
+        ApplyTowerAdjustment(3);yield return ReviewWinding(tower);
+        NeedTower(TowerClockOffsetMinutes==90,"One +1-hour turn must add to the original offset");
+        var disk=JsonUtility.FromJson<SliceSave>(File.ReadAllText(savePath));
+        NeedTower(disk.towerAdjustmentMinutes==60&&Math.Abs(disk.elapsedGameMinutes-watchBefore)<1e-9,"Adjustment did not persist independently of watch time: offset="+disk.towerAdjustmentMinutes+" elapsed="+disk.elapsedGameMinutes.ToString("R")+" expected="+watchBefore.ToString("R"));
+        yield return Capture("tower-adjustment-applied");CloseInspect();
+        NeedTower(!Blocked,"Closing adjustment UI failed to restore walking");
+        Debug.Log("CLOCKTOWER_ADJUSTMENT_PASS: five controls, three-second multi-turn acceleration/deceleration, all controls locked, pause/reopen, +/- day wrap, unchanged watch/evidence, four shared hands, disk write, close restores movement");
     }
     IEnumerator VerifyClockTowerSave() {
         yield return new WaitForSeconds(.8f);
         var tower=FindFirstObjectByType<ClockTowerInstance>();var layout=tower.GetComponent<ClockTowerInteriorLayout>();var door=Mechanism("clocktower-door");
         NeedTower(CurrentScene=="Town"&&player.transform.position.y>T.MachineFloor-.2f&&SafePosition(player.transform.position),"Independent process failed to restore machine-floor save");
         NeedTower(state.entries.Any(e=>e.id=="E06")&&door.IsOpen,"Tower evidence/door state not restored");
+        NeedTower(state.towerAdjustmentMinutes==60&&TowerClockOffsetMinutes==90,"Adjusted tower offset did not persist across process relaunch");
         player.Aim(tower.LocalToWorld(layout.mechanismLookPoint));yield return Capture("tower-upper-floor-reloaded");
+        NeedTower(TryInteract()&&inspected is ClockTowerAdjustment,"Reloaded machine cannot be interacted with");
+        double watchBeforeReset=ElapsedGameMinutes;
+        ApplyTowerAdjustment(4);yield return ReviewWinding(tower);
+        NeedTower(TowerClockOffsetMinutes==30&&ElapsedGameMinutes==watchBeforeReset,"Reset must restore watch +30 without changing the watch");
+        yield return Capture("tower-reset-after-reload");CloseInspect();
         var path=layout.WorldAscendingPath();
         for(int i=path.Length-1;i>=0;i--)yield return TowerWalk(path[i]);
         yield return WalkTo(new Vector3(0,.1f,6.8f));
@@ -201,7 +285,12 @@ public partial class DemoApp {
         NeedTower(player.transform.position.y<.3f,"Actual descending route failed");
         NeedTower(!SafePosition(new Vector3(5,T.MachineFloor,10))&&!SafePosition(new Vector3(0,T.ExteriorHeight+1,10)),"Upper-floor exception weakened town fall/height recovery");
         yield return Capture("tower-exit-after-descent");
-        File.WriteAllText(Path.Combine(captures,"clocktower-save-relaunch.txt"),"PASS: separate process restored upper-floor position/E06/door; actual controller descended every stair and left the building; door closed from outside.\n");
+        yield return WalkTo(new Vector3(0,.1f,-1.5f));
+        player.Aim(tower.LocalToWorld(new Vector3(0,T.DialHeight,-T.DialPlaneDistance)));
+        ToggleWatch();yield return Capture("tower-reset-ground-comparison");
+        yield return new WaitForEndOfFrame();RequireSharedDialHands();
+        NeedTower(TowerClockOffsetMinutes==30,"Reset clock drifted after descent");
+        File.WriteAllText(Path.Combine(captures,"clocktower-save-relaunch.txt"),"PASS: separate process restored upper-floor position/E06/door/adjusted +90-minute offset; ordinary E interaction reset all four dials to watch +30, watch unchanged; actual controller descended every stair and left the building; door closed from outside.\n");
         Debug.Log("CLOCKTOWER_SAVE_RELAUNCH_PASS");Application.Quit();
     }
     IEnumerator VerifyClockTowerMigration() {
@@ -241,7 +330,10 @@ public partial class DemoApp {
     [Serializable] class TowerResult {
         public bool passed,referenceExterior,continuousTown,closedDoorBlocks,fourMovingDials,upperFloorSave;
         public int realStairWaypoints,footprints;
-        public float towerHeight,middleFloor,machineFloor;
+        public float towerHeight,middleFloor,machineFloor,dialDiameter,chamberInteriorWidth;
+        public int adjustmentControls,liveFrostedApertures;
+        public bool windingLocksControls,sharedInteriorExteriorHands;
+        public double adjustedOffsetSaved;
         public TowerAtmosphereResult atmosphere;
         public string verification;
     }

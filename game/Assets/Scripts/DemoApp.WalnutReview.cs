@@ -44,9 +44,16 @@ public partial class DemoApp {
             var rotation=player.transform.rotation;float pitchBefore=player.pitch;
             var near=player.eye.WorldToViewportPoint(marker.transform.position);
             var far=player.eye.WorldToViewportPoint(GameObject.Find("Town clock").transform.position+Vector3.up*3);
-            yield return WalkTo(W(side*.72f+.28f,0,-2.15f),.45f);
+            var parallaxStart=player.eye.transform.position;
+            var lateral=player.eye.transform.right;lateral.y=0;lateral.Normalize();
+            yield return WalkTo(player.transform.position+lateral*.40f,.45f);
+            // Use a true lateral baseline from the reached position, avoiding
+            // the old target tolerance introducing motion toward the window.
+            yield return new WaitForEndOfFrame();
+            NeedShop(Vector3.Distance(parallaxStart,player.eye.transform.position)>.20f,"Window check did not physically move sideways");
             var nearAfter=player.eye.WorldToViewportPoint(marker.transform.position);
             var farAfter=player.eye.WorldToViewportPoint(GameObject.Find("Town clock").transform.position+Vector3.up*3);
+            Debug.Log("WINDOW_PARALLAX: "+marker.openingId+" travel="+Vector3.Distance(parallaxStart,player.eye.transform.position)+" delta="+Mathf.Abs((nearAfter.x-near.x)-(farAfter.x-far.x)));
             NeedShop(Mathf.Abs((nearAfter.x-near.x)-(farAfter.x-far.x))>.001f,"Window has no real near/far parallax");
             yield return Capture("unity-"+marker.openingId+"-shifted");
             NeedShop(Quaternion.Angle(rotation,player.transform.rotation)<.01f&&Mathf.Abs(pitchBefore-player.pitch)<.01f,"Parallax check changed view direction");

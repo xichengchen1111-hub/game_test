@@ -17,7 +17,9 @@
     "imageConditionedInferenceExecuted": false,
     "priorImage3DResearch": "Retain prior distinction between neural image-conditioned inference and authored reference reconstruction; accepting the current tower does not imply neural inference was performed.",
     "formalReplacementPendingDesktopDeployment": false,
-    "latestInteriorRequest": "保持已交付20米塔及其行走结构，添加墙地砖石纹理、下淡上厚积灰，同87脚印越上越清晰但不增密，顶层与上段扶手6处蛛网和最多32粒少量浮尘"
+    "latestInteriorRequest": "保持已交付20米塔及其行走结构，添加墙地砖石纹理、下淡上厚积灰，同87脚印越上越清晰但不增密，顶层与上段扶手6处蛛网和最多32粒少量浮尘",
+    "latestClockChamberRequest": "依用户Timber Gable参考图扩大四面钟盘至3.4米，4.8米外挑木构钟室对应4.25米净宽真实机房；机芯五项相对调时及复位，持久保存，默认/复位为怀表+30分钟",
+    "latestClockGlassRequest": "四面真实圆形开口、乳白磨砂外景与同一组内外钟针；更透明调时UI；每次齿轮快转几圈后降速，期间全部调时锁定。参考用户本次四张截图。"
   },
   "historicalMeshyAttempt": {
     "referenceUploaded": false,
@@ -32,11 +34,11 @@
     "script": "../../../tools/clocktower/build_exterior.py",
     "externalInferenceUsed": false,
     "historical9_5mRuntimeEvidence": "../../../output/demo/clocktower/",
-    "currentRuntimeEvidence": "../../../output/demo/clocktower-20m/",
+    "currentRuntimeEvidence": "../../../output/demo/clocktower-quality/",
     "staticInspection": "exterior/verification/inspection-results.json",
-    "runtimeStatus": "12 visible-player suites passed for the 20m revision. Final review-camera-only build and middle-save rerun passed; geometry and controller unchanged. Desktop app backed up, replaced, and opened at normal menu with normal save unchanged.",
-    "sourceSha256": "759815ba68b3331d418075d9e547c70c5cbf69679aba1346daa91661af3d7dcb",
-    "fbxSha256": "d863ab75a0aadd77c2affec74e94c173c4b90cf7e6b5c1c973697757297406c3"
+    "runtimeStatus": "Seven rendered-player suites passed; real apertures, shared hands, multi-turn winding/lock/pause/reopen/wrap/relaunch/reset verified; 720p/1080p reviewed; desktop app updated with normal save preserved.",
+    "sourceSha256": "9392aaeaabba32d2356e60042c058d88d3d86fcd70031ba6d3ddd4c56d836875",
+    "fbxSha256": "df913eb91776955123289d53f016b8d33b216a7457e0e699d7bfdfcc4c256e6f"
   },
   "heightRevision": {
     "height_m": 20.0,
@@ -66,7 +68,7 @@
     "formalMacBuildComplete": true,
     "staticLayoutChecksPassed": 18,
     "meshGroups": 7,
-    "triangles": 230159,
+    "triangles": 221323,
     "footprintCount": 87,
     "runtimeVerification": {
       "suiteCount": 12,
@@ -145,5 +147,152 @@
     "desktopDeploymentStatus": "deployed_and_opened_normal_menu_with_save_unchanged",
     "runtimeEvidence": "../../../output/demo/clocktower-interior/",
     "fairness": "Decoration does not identify a visitor, date or time; no new evidence card, hint, clock rule or access gate. Dust increasing with height is this tower’s art direction, not a general scientific law."
+  },
+  "timberGableRevision": {
+    "reference": "reference-timber-gable.jpg",
+    "referenceSha256": "d21224e463f749f19fc40b8c31274c311e62dca010cdf9dc76e0c7eb59bfa520",
+    "dialDiameter": 3.4,
+    "chamberOuterWidth": 4.8,
+    "chamberInnerWidth": 4.25,
+    "dialHeight": 16.7,
+    "chamberCeilingHeight": 18.5,
+    "height": 20,
+    "geometryOrigin": "Local authored Blender reconstruction, user-provided visual reference; no external inference or upload",
+    "gearRootLocalX": -1.72,
+    "verification": "../../../output/demo/clocktower-adjustment/"
+  },
+  "frostedClockRevision": {
+    "status": "passed and deployed to original desktop app",
+    "physical_apertures": 4,
+    "dial_diameter_m": 3.4,
+    "same_hands_visible_inside_and_out": true,
+    "roman_numerals": "actual solid metal geometry, mirrored naturally when seen from rear",
+    "glass": "milky scene-colour diffusion and blur of current camera view, not reference-picture backdrop",
+    "panel_alpha": 0.38,
+    "winding_seconds": 3,
+    "all_controls_locked_until_normal_speed": true,
+    "runtime_evidence": "output/demo/clocktower-glass/",
+    "runtime_suites": [
+      "time",
+      "time-relaunch",
+      "tower-1080",
+      "tower-relaunch",
+      "tower-720",
+      "shop",
+      "middle-save"
+    ],
+    "save_unchanged": true,
+    "limits": "Rendered script-driven real controller and shared action handlers; no physical-input, Intel-hardware or blind playthrough acceptance."
+  },
+  "materialQualityRevision": {
+    "status": "verified and deployed",
+    "evidence": "output/demo/clocktower-quality/",
+    "interior_textures_px": 1024,
+    "features": [
+      "stronger metre-scale masonry normals",
+      "oak grain and height-fading relief beneath powder",
+      "metallic/smoothness variation and fine normal maps on bronze and iron",
+      "machine room local 256px reflection probe rendered once on awake",
+      "one machine service light with soft shadows",
+      "4K four-cascade main shadows",
+      "high-quality SMAA",
+      "less bloom, modest contrast, anisotropic filtering",
+      "fine frosted-glass surface grain"
+    ],
+    "geometry_or_gameplay_changed": false,
+    "final_shadow_allocation_rechecked": [
+      "shop",
+      "middle-save",
+      "tower-1080"
+    ],
+    "runtime_suites": [
+      {
+        "suite": "time",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 19.9,
+        "marker": "TIME_REVIEW_PASS"
+      },
+      {
+        "suite": "time-relaunch",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 3.3,
+        "marker": "TIME_SAVE_RELAUNCH_PASS"
+      },
+      {
+        "suite": "tower-relaunch",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 61.6,
+        "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+      },
+      {
+        "suite": "tower-720",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 117.9,
+        "marker": "CLOCKTOWER_REVIEW_PASS"
+      },
+      {
+        "suite": "shop",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 54.6,
+        "marker": "WALNUT_REVIEW_PASS"
+      },
+      {
+        "suite": "middle-save",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 3.7,
+        "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+      },
+      {
+        "suite": "tower-1080",
+        "exitCode": 0,
+        "passed": true,
+        "seconds": 117.9,
+        "marker": "CLOCKTOWER_REVIEW_PASS"
+      }
+    ],
+    "frame_timing": {
+      "time": {
+        "frames": 912,
+        "meanMs": 16.831371583436663,
+        "medianMs": 16.667417526245117,
+        "p95Ms": 17.57383155822754,
+        "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+      },
+      "tower-relaunch": {
+        "frames": 3409,
+        "meanMs": 16.84446297743762,
+        "medianMs": 16.668041229248047,
+        "p95Ms": 17.57712745666504,
+        "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+      },
+      "tower-720": {
+        "frames": 6752,
+        "meanMs": 16.841940788578647,
+        "medianMs": 16.66775131225586,
+        "p95Ms": 17.573497772216797,
+        "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+      },
+      "shop": {
+        "frames": 2967,
+        "meanMs": 16.9026005535685,
+        "medianMs": 16.66933822631836,
+        "p95Ms": 17.57782745361328,
+        "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+      },
+      "tower-1080": {
+        "frames": 6764,
+        "meanMs": 16.82696540534743,
+        "medianMs": 16.667247772216797,
+        "p95Ms": 17.421541213989258,
+        "scope": "Rendered review after three seconds, includes capture stalls and UI; local Mac only, not a GPU benchmark or long-duration performance acceptance."
+      }
+    },
+    "limits": "Local Mac rendered review timing includes screenshots/UI; not a formal GPU or long-duration performance benchmark."
   }
 }

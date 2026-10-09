@@ -36,6 +36,7 @@ public static class ClockTowerInterior {
         BuildMechanism(kit, layout);
         BuildLighting(kit);
         ClockTowerAtmosphere.Build(kit);
+        ClockTowerMaterialFinish.Apply(kit);
         EditorUtility.SetDirty(layout);
         AssetDatabase.SaveAssets();
         Debug.Log($"CLOCK_TOWER_INTERIOR_BUILD_PASS: segments={L.StepCount}; lowerRise={L.Riser:F5}; upperRise={L.UpperRiser:F5}; " +
@@ -210,7 +211,7 @@ public static class ClockTowerInterior {
         var floor = new Geometry();
         string label = final ? "Machine room" : "Middle landing";
         float openingStart = endAngle - L.OpenHeadroomSteps * L.StepAngle;
-        float half = L.InteriorWidth / 2;
+        float half = (final ? L.ChamberInteriorWidth : L.InteriorWidth) / 2;
         // The same 90-degree west landing is shared by both real upper floors.
         for (int i = 0; i < 180; i++) {
             float a0 = openingStart + i * 2, a1 = a0 + 2;
@@ -285,7 +286,7 @@ public static class ClockTowerInterior {
 
     static void BuildMechanism(Transform kit, L layout) {
         Transform root = Group("Traditional turret clock movement", kit);
-        root.localPosition = new Vector3(-1.265f, L.MachineFloor, 0);
+        root.localPosition = new Vector3(L.MechanismX, L.MachineFloor, 0);
         root.localRotation = Quaternion.Euler(0, 90, 0);
         layout.machinery = root;
         var frame = new Geometry();
@@ -298,6 +299,7 @@ public static class ClockTowerInterior {
         frame.Box(new Vector3(0, .52f, -.08f), new Vector3(1.19f, .06f, .27f));
         frame.Tube(new Vector3(-.62f, .43f, -.10f), new Vector3(.62f, 1.52f, -.10f), .025f, 8);
         Create("Cast iron frame and splayed feet", frame, iron, root, false);
+        root.gameObject.AddComponent<ClockTowerAdjustment>().title = "钟塔机芯";
         var guard = root.gameObject.AddComponent<BoxCollider>();
         guard.center = new Vector3(0, .79f, -.01f); guard.size = new Vector3(1.34f, 1.58f, .46f);
         var axles = new Geometry();
@@ -386,10 +388,10 @@ public static class ClockTowerInterior {
             lampGlass.Tube(point + new Vector3(.22f, -.16f, 0), point + new Vector3(.22f, -.035f, 0), .047f, 12);
         }
         float machineY = L.MachineFloor + 2.10f;
-        AddLight("Warm machine room service lamp", new Vector3(-1.11f, machineY, -.88f), new Color(1, .82f, .62f), 4.4f, 3.3f, kit);
+        AddLight("Warm machine room service lamp", new Vector3(-L.ChamberInteriorWidth/2 + .415f, machineY, -.88f), new Color(1, .82f, .62f), 4.4f, 3.3f, kit);
         AddLight("Cool light from middle floor opening", new Vector3(.96f, L.MiddleFloor + 1.35f, .60f),
             new Color(.64f, .71f, .86f), 1.10f, 2.8f, kit);
-        var machineBracket = new Vector3(-1.30f, machineY, -.88f);
+        var machineBracket = new Vector3(-L.ChamberInteriorWidth/2 + .225f, machineY, -.88f);
         fittings.Box(machineBracket, new Vector3(.18f, .28f, .13f));
         fittings.Tube(machineBracket, machineBracket + new Vector3(.22f, -.08f, 0), .024f, 8);
         lampGlass.Tube(machineBracket + new Vector3(.22f, -.16f, 0), machineBracket + new Vector3(.22f, -.035f, 0), .047f, 12);

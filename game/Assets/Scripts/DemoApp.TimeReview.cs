@@ -58,7 +58,7 @@ public partial class DemoApp {
         int towerDials = 0;
         foreach (var dial in dials) {
             RequireTime(dial.minuteHand && dial.hourHand, "Both physical clock hands must exist");
-            float displayed = Minutes + (dial.streetClock ? (float)GameClock.TowerOffsetMinutes : 0);
+            float displayed = Minutes + (dial.streetClock ? (float)TowerClockOffsetMinutes : 0);
             RequireTime(Mathf.Abs(Mathf.DeltaAngle(dial.minuteHand.localEulerAngles.z, -(displayed % 60) * 6)) < .03f,
                 "Physical minute hand does not match the shared game clock");
             RequireTime(Mathf.Abs(Mathf.DeltaAngle(dial.hourHand.localEulerAngles.z, -(displayed % 720) * .5f)) < .03f,

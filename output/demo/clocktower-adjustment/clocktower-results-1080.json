@@ -1,0 +1,31 @@
+{
+    "passed": true,
+    "referenceExterior": true,
+    "continuousTown": true,
+    "closedDoorBlocks": true,
+    "fourMovingDials": true,
+    "upperFloorSave": true,
+    "realStairWaypoints": 101,
+    "footprints": 87,
+    "towerHeight": 20.0,
+    "middleFloor": 8.530434608459473,
+    "machineFloor": 15.0,
+    "dialDiameter": 3.4000000953674318,
+    "chamberInteriorWidth": 4.25,
+    "adjustmentControls": 5,
+    "adjustedOffsetSaved": 90.0,
+    "atmosphere": {
+        "gradedDustSurfaces": true,
+        "upperCobwebs": true,
+        "liveDriftingDust": true,
+        "dustBands": 8,
+        "particlesBefore": 20,
+        "particlesAfter": 20,
+        "movingParticles": 19,
+        "lowerPrintContrast": 0.007460564374923706,
+        "upperPrintContrast": 0.16291767358779908,
+        "lowerPrintCutoff": 0.6006250381469727,
+        "upperPrintCutoff": 0.4300000071525574
+    },
+    "verification": "Actual CharacterController walked from town through the door up every spiral-stair waypoint. Lower/middle/upper close-ups retain the same stair azimuth and ordinary eye height; material-gradient checks supplement visual inspection. Live dust is sampled twice without forcing emission or simulation. Controlled review, not physical keyboard input or blind playtest. Exterior is locally reconstructed from the approved illustration, following the milk-shop workflow."
+}

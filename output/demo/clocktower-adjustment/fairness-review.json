@@ -1,0 +1,21 @@
+{
+  "scope": "Separate source-based puzzle fairness review, not a blind playthrough",
+  "reviewed": [
+    "DemoApp.TowerAdjustment.cs",
+    "ClockDial.cs",
+    "DemoApp.cs",
+    "docs/mvp-evidence.json"
+  ],
+  "findings": {
+    "five_relative_controls_only": true,
+    "reset_returns_default_without_displaying_default_difference": true,
+    "no_digital_or_persistent_time_hud": true,
+    "watch_is_shared_reference_and_never_adjusted": true,
+    "no_new_evidence_granted_by_mechanism": true,
+    "historical_testimony_remains_fixed": true,
+    "player_adjusted_reading_cannot_establish_prior_clock_offset": true,
+    "existing_E01_E04_E05_requirements_retained": true,
+    "door_and_mechanism_not_progression_gated": true
+  },
+  "limits": "Discoverability for an unfamiliar player and full six-order MVP inference were not tested in this visual slice. Reachability and persistence are checked separately in the rendered player suites."
+}

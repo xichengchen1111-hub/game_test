@@ -1,7 +1,7 @@
 {
   "asset": "ClockTower1931",
   "construction": "Reference-guided authored editable 3D reconstruction; no external Meshy upload or neural inference.",
-  "reference": "../reference-approved-v3.png",
+  "reference": "../reference-timber-gable.jpg",
   "blender_version": "4.5.9 LTS",
   "units": "metres",
   "blender_axes": {
@@ -43,8 +43,13 @@
     ],
     "ClockCentreFront": [
       0.0,
-      -1.8600000143051147,
-      16.719999313354492
+      -2.4600000381469727,
+      16.700000762939453
+    ],
+    "ChamberEastMarker": [
+      2.4000000953674316,
+      0.0,
+      15.0
     ],
     "RoofPeakMarker": [
       0.0,
@@ -53,13 +58,13 @@
     ]
   },
   "bounds_blender_min": [
-    -2.1069998741149902,
-    -2.1069998741149902,
+    -2.772000312805176,
+    -2.772000312805176,
     0.0
   ],
   "bounds_blender_max": [
-    2.1069998741149902,
-    2.1069998741149902,
+    2.772000312805176,
+    2.772000312805176,
     20.0
   ],
   "footprint_physical_m": [
@@ -74,17 +79,19 @@
     "top": 2.27,
     "face": -1.8
   },
-  "clock_centres_height": 16.72,
-  "clock_unity_plane_distance": 1.86,
-  "ring_clear_diameter": 2.21,
-  "dial_diameter": 2.2,
+  "clock_centres_height": 16.7,
+  "clock_unity_plane_distance": 2.46,
+  "chamber_outer_width_m": 4.8,
+  "chamber_inner_width_m": 4.25,
+  "ring_clear_diameter": 3.4099999999999997,
+  "dial_diameter": 3.4,
   "gear_floor_height": 15.0,
   "middle_floor_height": 8.530435,
-  "inner_wall_top": 18.3,
+  "inner_wall_top": 18.5,
   "levels": 3,
   "shared_layout_source": "game/Assets/Scripts/ClockTowerInteriorLayout.cs",
   "renderers": 7,
-  "triangles": 230159,
+  "triangles": 221323,
   "material_names": [
     "Tower_IvoryBrick",
     "Tower_CreamStone",
@@ -109,19 +116,29 @@
       "base_color": "Slate-BaseColor.png",
       "normal": "Slate-Normal.png",
       "tile_metres": 1.0
+    },
+    "DarkOak": {
+      "base_color": "DarkOak-BaseColor.png",
+      "normal": "DarkOak-Normal.png",
+      "tile_metres": 1.0
     }
   },
   "ventilation": "Eight solid-backed closed arched louvre panels, one per face on each lower shaft level; not transparent windows or extra playable rooms.",
+  "clock_apertures": {
+    "count": 4,
+    "diameter_m": 3.4,
+    "glazing": "Live Unity frosted opal shader, solid Roman numerals and shared physical hands"
+  },
   "unity_supplies": [
     "shared interior shell and all collision",
     "animated wooden door below clear head",
-    "four deterministic clock dials and dynamic hands",
+    "four live frosted glass apertures, solid metal Roman numerals and dynamic physical hands",
     "wall plaque and readable history text"
   ],
-  "review_only": "Preview dials, hands, plaque and door illustrate the Unity overlays and are excluded from FBX.",
+  "review_only": "Preview-only historical face texture approximates exterior appearance; actual Unity supplies live frosted glass, solid numerals and hands. All review overlays are excluded from FBX.",
   "authored_interpretations": [
     "back and hidden side continue matching four-face clock architecture",
-    "user-requested 20m three-level revision with unchanged 3.6m width and human-scale door",
+    "20m three-level tower: 3.6m shaft, 4.8m projecting timber chamber and four gabled roofs; same human-scale door",
     "three facade levels follow ground, intermediate deck and machinery deck; physical brick UV scale unchanged",
     "vent panels closed against shared interior envelope"
   ]
