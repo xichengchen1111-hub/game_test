@@ -1,0 +1,34 @@
+[
+  {
+    "resolution": "1080",
+    "side": "north",
+    "frames": 13,
+    "metres": 0.9379520416259766,
+    "luminanceRange": 0.029846400022506714,
+    "clip": "output\\demo\\weather\\1080\\rain-window-north.mp4"
+  },
+  {
+    "resolution": "1080",
+    "side": "south",
+    "frames": 13,
+    "metres": 0.937718391418457,
+    "luminanceRange": 0.030382782220840454,
+    "clip": "output\\demo\\weather\\1080\\rain-window-south.mp4"
+  },
+  {
+    "resolution": "720",
+    "side": "north",
+    "frames": 13,
+    "metres": 0.937565803527832,
+    "luminanceRange": 0.031555235385894775,
+    "clip": "output\\demo\\weather\\720\\rain-window-north.mp4"
+  },
+  {
+    "resolution": "720",
+    "side": "south",
+    "frames": 13,
+    "metres": 0.9378633499145508,
+    "luminanceRange": 0.032262444496154785,
+    "clip": "output\\demo\\weather\\720\\rain-window-south.mp4"
+  }
+]

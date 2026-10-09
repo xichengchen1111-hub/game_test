@@ -1,0 +1,9 @@
+{
+  "officialSource": "https://github.com/google/fonts/tree/main/ofl/notosanssc",
+  "sourceSha256": "a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da",
+  "subsetSha256": "22d883c30ec53688d5c13fffec00178c3761bf70bc8320c5ce54893d2e7d1b02",
+  "retainedPreviousGlyphs": true,
+  "glyphCount": 652,
+  "requiredMilkGlyphsPresent": true,
+  "license": "game/Assets/Art/Fonts/OFL.txt"
+}

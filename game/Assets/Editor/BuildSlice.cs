@@ -74,6 +74,7 @@ public static partial class BuildSlice {
                 list[i]=Mat("kit-"+key,hex,key=="glass_glow"?2f:0);
             }
             r.sharedMaterials=list;
+            r.gameObject.isStatic=true;
         }
         return obj;
     }
@@ -99,13 +100,15 @@ public static partial class BuildSlice {
         RenderSettings.ambientGroundColor=C(inside?"#4B3730":"#4C4555");
         RenderSettings.ambientIntensity=1;
         RenderSettings.fog=!inside;RenderSettings.fogMode=FogMode.Exponential;RenderSettings.fogDensity=.012f;RenderSettings.fogColor=C("#646B8B");
-        var sun=new GameObject("Dusk light").AddComponent<Light>();sun.type=LightType.Directional;
+        var sun=new GameObject("Sun and moon").AddComponent<Light>();sun.type=LightType.Directional;
         sun.transform.rotation=Quaternion.Euler(35,-32,0);sun.color=C("#B4BBDD");sun.intensity=inside?.25f:1.15f;sun.shadows=LightShadows.Soft;
         RenderSettings.sun=sun;
         var sky=AssetDatabase.LoadAssetAtPath<Material>("Assets/Generated/Materials/DuskSky.mat");
         if(!sky){sky=new Material(Shader.Find("WrongDate/DuskSky"));AssetDatabase.CreateAsset(sky,"Assets/Generated/Materials/DuskSky.mat");}
         sky.SetColor("_Top",new Color(.24f,.26f,.37f));sky.SetColor("_Middle",new Color(.42f,.4f,.48f));sky.SetColor("_Bottom",new Color(.7f,.5f,.38f));EditorUtility.SetDirty(sky);
         RenderSettings.skybox=sky;
+        var cycle=sun.gameObject.AddComponent<DayNightCycle>();cycle.celestialLight=sun;cycle.skyTemplate=sky;
+        WeatherAuthoring.Sky(sun.gameObject,sky);
         var volume=new GameObject("Atmosphere").AddComponent<Volume>();volume.isGlobal=true;
         string path="Assets/Generated/"+(inside?"Interior":"Town")+"Volume.asset";
         var profile=AssetDatabase.LoadAssetAtPath<VolumeProfile>(path);
@@ -119,20 +122,28 @@ public static partial class BuildSlice {
         EditorUtility.SetDirty(profile);
     }
     static void Roof(Transform parent,float width,float depth,float bottom,float rise,Material material) {
-        var g=new GameObject("Pitched roof");g.transform.SetParent(parent,false);
+        var g=new GameObject("Pitched roof");g.transform.SetParent(parent,false);g.isStatic=true;
         var mesh=new Mesh();
         mesh.vertices=new[]{new Vector3(-width/2,bottom,-depth/2),new Vector3(width/2,bottom,-depth/2),new Vector3(-width/2,bottom,depth/2),new Vector3(width/2,bottom,depth/2),new Vector3(0,bottom+rise,-depth/2),new Vector3(0,bottom+rise,depth/2)};
-        mesh.triangles=new[]{0,4,2,2,4,5,1,3,4,3,5,4,0,1,4,2,5,3,0,2,1,1,2,3};mesh.RecalculateNormals();
+        // The original template wound every face inward. Use outward, flat-shaded faces.
+        var points=mesh.vertices;var triangles=new[]{0,2,4,2,5,4,1,4,3,3,4,5,0,4,1,2,3,5,0,1,2,1,3,2};
+        var vertices=new Vector3[triangles.Length];var uv=new Vector2[vertices.Length];
+        for(int i=0;i<vertices.Length;i++){vertices[i]=points[triangles[i]];uv[i]=new Vector2(vertices[i].x,vertices[i].z)/4;triangles[i]=i;}
+        mesh.vertices=vertices;mesh.uv=uv;mesh.triangles=triangles;mesh.RecalculateNormals();mesh.RecalculateTangents();
         string p="Assets/Generated/"+parent.name+"-roof.asset";
         var saved=AssetDatabase.LoadAssetAtPath<Mesh>(p);
         if(saved){EditorUtility.CopySerialized(mesh,saved);UnityEngine.Object.DestroyImmediate(mesh);mesh=saved;EditorUtility.SetDirty(mesh);}
         else AssetDatabase.CreateAsset(mesh,p);
-        g.AddComponent<MeshFilter>().sharedMesh=mesh;g.AddComponent<MeshRenderer>().sharedMaterial=material;
+        g.AddComponent<MeshFilter>().sharedMesh=mesh;g.AddComponent<MeshRenderer>().sharedMaterial=material;g.AddComponent<MeshCollider>().sharedMesh=mesh;
     }
     static void Window(Transform p,float x,float y,float z,float width=1.1f,float height=1.55f,bool glow=true) {
         var trim=Mat("WindowTrim","#37323A");var glass=Mat(glow?"WarmWindow":"DarkWindow",glow?"#D4A878":"#3B4962",glow?.6f:0);
         Box("Window frame",new Vector3(x,y,z),new Vector3(width+.16f,height+.16f,.12f),trim,p,false);
-        Box("Glass",new Vector3(x,y,z-.07f),new Vector3(width,height,.045f),glass,p,false);
+        var pane=Box("Glass",new Vector3(x,y,z-.07f),new Vector3(width,height,.045f),glass,p,false);
+        if(glow) {
+            var lighting=pane.AddComponent<DayNightLamp>();lighting.role=DayNightLamp.Role.Exterior;
+            lighting.glowingSurfaces=new[]{pane.GetComponent<Renderer>()};lighting.darkenWindowWhenOff=true;
+        }
         Box("Mullion",new Vector3(x,y,z-.105f),new Vector3(.055f,height,.035f),trim,p,false);
         Box("Crossbar",new Vector3(x,y,z-.105f),new Vector3(width,.055f,.035f),trim,p,false);
         Box("Stone sill",new Vector3(x,y-height/2-.13f,z-.08f),new Vector3(width+.28f,.14f,.24f),Mat("Sill","#8A7F77"),p,false);
@@ -144,6 +155,7 @@ public static partial class BuildSlice {
         Box("Cornice",new Vector3(0,height-.1f,-3.22f),new Vector3(width+.4f,.25f,.5f),Mat("Cornice","#736D72"),root,false);
         for(int floor=0;floor<2;floor++)for(int x=0;x<3;x++)if(floor>0||groundWindows)Window(root,(x-1)*width/3.6f,2.0f+floor*2.8f,-3.23f,1.25f,floor==0?1.7f:1.5f,(x+floor)%3!=0);
         Roof(root,width+.45f,7,height,1.6f,Mat("Roof","#3B4255"));
+        WeatherAuthoring.Shelter(root.gameObject,new Vector2(width+.45f,7),height,1.6f);
         Box("Chimney",new Vector3(width/3,height+1.0f,1.5f),new Vector3(.65f,1.7f,.7f),Mat("Brick","#67565A"),root,false);
         if(sign!=null) {
             Box("Shop sign",new Vector3(0,3.7f,-3.34f),new Vector3(width-.6f,.9f,.16f),Mat("SignWood","#283F40"),root,false);
@@ -162,6 +174,7 @@ public static partial class BuildSlice {
         float postZ=frontWall-1.3f;
         var timber=Mat("DarkTimber","#3B3031");
         Box("Awning",new Vector3(0,canopyY,frontWall-.875f),new Vector3(width+.4f,canopyThickness,1.3f),Mat("Awning","#445A54"),root,false);
+        WeatherAuthoring.Shelter(root.gameObject,new Vector2(width+.4f,1.3f),canopyY+canopyThickness*.5f,0,new Vector2(0,frontWall-.875f));
         Box("Canopy support beam",new Vector3(0,(beamTop+beamBottom)/2,postZ),new Vector3(width+.30f,beamHeight,.20f),timber,root,false);
         for(int side=-1;side<=1;side+=2)
             Box("Shop post",new Vector3(side*(width/2+.05f),postHeight/2,postZ),new Vector3(.17f,postHeight,.17f),timber,root);
@@ -193,45 +206,10 @@ public static partial class BuildSlice {
     }
     static void Lantern(Vector3 pos) {
         var lamp=Model("Lantern",pos);Collider(lamp,new Vector3(0,1.4f,0),new Vector3(.24f,2.8f,.24f));
-        Point("Lantern pool",pos+Vector3.up*2.95f,C("#FFBD78"),14f,7.2f);
+        var pool=Point("Lantern pool",pos+Vector3.up*2.95f,C("#FFBD78"),14f,7.2f);
+        DayNightLighting.Bind(pool,DayNightLamp.Role.Exterior,.85f,DayNightLighting.Glowing(lamp.transform));
     }
-    static void Town() {
-        EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);SetupLight(false);
-        var atmosphere=new HashSet<GameObject>(SceneManager.GetActiveScene().GetRootGameObjects());
-        Box("Town ground",new Vector3(0,-.24f,4),new Vector3(55,.4f,65),Mat("Ground","#60637B",0,.38f));
-        var station=Building("Station",new Vector3(-9.2f,0,1),-90,8,6.5f,"#B3A89A","SignStation.png");
-        var shop=InstantiateShop(false);
-        var westSidewalk=StreetSurfaces.Build(shop.transform);
-        Building("GuestHouse",new Vector3(-10,0,14),-90,8,7.5f,"#929396","SignInn.png");
-        Building("Home",new Vector3(10.2f,0,15),90,7.4f,6.3f,"#B1A398");
-        Building("BackRow",new Vector3(0,0,28),0,12,7,"#84899B");
-        Building("EastBackground",new Vector3(17,0,31),0,10,9,"#787D96");
-        Building("WestBackground",new Vector3(-17,0,30),0,10,8,"#8A8B9A");
-        InstantiateClockTower();
-        foreach(int lanternSide in new[]{-1,1})foreach(float z in new[]{-8f,6f,19f})
-            Lantern(new Vector3(lanternSide*(z<6.5f?3.62f:5.7f),.1f,z));
-        var bench=Model("Bench",new Vector3(-7.55f,westSidewalk.GetComponent<Renderer>().bounds.max.y,7.5f));
-        FaceBenchTowardSquare(bench);Collider(bench,new Vector3(0,.45f,0),new Vector3(2,.9f,.75f));
-        var cart=Model("MilkCart",new Vector3(6.35f,.10f,-5.4f),-90);Collider(cart,new Vector3(0,.6f,0),new Vector3(1.6f,1.15f,.9f));
-        var boy=Milkboy(new Vector3(6.48f,.1f,-4.2f),95);boy.transform.localScale=Vector3.one*.88f;
-        Collider(boy,new Vector3(0,.8f,0),new Vector3(.65f,1.65f,.55f));
-        var testimony=DialogueScript.Load("MilkboyDialogue").evidence;
-        var milk=boy.AddComponent<Interactable>();milk.title="送奶少年";milk.evidenceId=testimony.id;milk.source=testimony.source;milk.body=testimony.body;
-        MilkShopAsset.Create(boy);
-        for(int i=0;i<4;i++)Model("Plant",new Vector3(i%2==0?-6.5f:6.5f,.12f,i<2?-1.8f:11.5f));
-        for(int i=0;i<7;i++) {
-            var shrub=GameObject.CreatePrimitive(PrimitiveType.Sphere);shrub.name="Clipped shrub";shrub.transform.position=new Vector3(Mathf.Cos(i*Mathf.PI/6)*2.8f,.48f,10+Mathf.Sin(i*Mathf.PI/6)*2.8f);
-            shrub.transform.localScale=new Vector3(1.05f,.9f,1.05f);shrub.GetComponent<Renderer>().sharedMaterial=Mat("Foliage","#58685F");UnityEngine.Object.DestroyImmediate(shrub.GetComponent<Collider>());
-        }
-        Box("South town boundary",new Vector3(0,1,-23),new Vector3(55,3,.6f),Mat("Boundary","#64677B"));
-        Box("North town boundary",new Vector3(0,1,32),new Vector3(55,3,.6f),Mat("Boundary","#64677B"));
-        Box("West town boundary",new Vector3(-17,1,2),new Vector3(.6f,3,60),Mat("Boundary","#64677B"));
-        Box("East town boundary",new Vector3(17,1,2),new Vector3(.6f,3,60),Mat("Boundary","#64677B"));
-        var geometry=Group("Town geometry",Vector3.zero);
-        foreach(var root in SceneManager.GetActiveScene().GetRootGameObjects())
-            if(root!=geometry&&!atmosphere.Contains(root))root.transform.SetParent(geometry.transform,true);
-        EditorSceneManager.SaveScene(SceneManager.GetActiveScene(),"Assets/Scenes/Town.unity");
-    }
+    static void Town() { FullMapTown(); }
     static void SharedShell(Transform building,Material wallMaterial) {
         foreach(BuildingWall side in Enum.GetValues(typeof(BuildingWall))) {
             var wall=Group("Wall "+side,shopLayout.WallCentre(side),building).transform;
@@ -344,7 +322,7 @@ public static partial class BuildSlice {
         player.layer=2;
         var cc=player.AddComponent<CharacterController>();cc.height=1.78f;cc.radius=.25f;cc.center=new Vector3(0,.9f,0);cc.stepOffset=.24f;cc.skinWidth=.03f;
         var eye=new GameObject("Player eye");eye.transform.SetParent(player.transform,false);eye.transform.localPosition=new Vector3(0,1.66f,0);eye.tag="MainCamera";
-        var camera=eye.AddComponent<Camera>();camera.nearClipPlane=.08f;camera.farClipPlane=160;camera.fieldOfView=66;camera.allowHDR=true;
+        var camera=eye.AddComponent<Camera>();camera.nearClipPlane=.08f;camera.farClipPlane=360;camera.fieldOfView=66;camera.allowHDR=true;
         var extra=camera.GetUniversalAdditionalCameraData();extra.renderPostProcessing=true;extra.antialiasing=AntialiasingMode.SubpixelMorphologicalAntiAliasing;extra.antialiasingQuality=AntialiasingQuality.High;
         eye.AddComponent<AudioListener>();
         var motor=player.AddComponent<PlayerMotor>();motor.eye=camera;app.player=motor;

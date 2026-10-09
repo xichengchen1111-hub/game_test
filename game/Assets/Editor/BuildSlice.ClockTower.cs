@@ -32,10 +32,12 @@ public static partial class BuildSlice {
         if(!model&&!towerInteriorDevelopmentPreview)
             throw new InvalidOperationException("The approved local reference exterior must be built before delivery.");
         var root=Group("Town clock",Vector3.zero);
+        WeatherAuthoring.Shelter(root,new Vector2(6,6),ClockTowerInstance.Height);
         var instance=root.AddComponent<ClockTowerInstance>();instance.referenceExteriorImported=model;
         if(model)ClockTowerAsset.Create(root.transform);
         TowerPhysicalShell(root.transform,!model);
         ClockTowerInterior.Build(root.transform);
+        ClockTowerSurfaceChecks.Repair(root.transform);
         TowerDoor(root.transform);
         TowerWallPlaque(root.transform);
         for(int face=0;face<4;face++) {
@@ -109,6 +111,6 @@ public static partial class BuildSlice {
 
     static GameObject InstantiateClockTower() {
         var root=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(TowerPrefabPath));
-        root.name="Town clock";root.transform.position=new Vector3(0,0,10);return root;
+        root.name="Town clock";root.transform.position=Vector3.zero;return root;
     }
 }

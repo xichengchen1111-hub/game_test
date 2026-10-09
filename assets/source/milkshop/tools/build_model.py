@@ -1,7 +1,7 @@
 """Rebuild the approved 1931 milk-shop concept as editable metre-scale geometry.
 Blender 4.5 LTS --background --python-exit-code 1 --python tools/build_model.py
 """
-import bpy, bmesh, math, json, random
+import bpy, bmesh, math, json, random, sys
 from pathlib import Path
 from mathutils import Vector
 from mathutils.geometry import tessellate_polygon
@@ -114,19 +114,19 @@ for sy in [-1,1]:
         mesh=bpy.data.meshes.new('GableBoards');mesh.from_pydata(vs,[],fs);mesh.update();o=bpy.data.objects.new('GableBoard',mesh);asset.objects.link(o);o.data.materials.append(cow);groups.setdefault('Shell',[]).append(o);uv_world(o);bevel(o)
 for x in [-3.63,3.63]:
     for y in [front,back]:box('CornerPost',(x,y,1.72),(.19,.24,3.15),pale,'Trim')
-for x in [-1.31,1.31]:box('DoorJamb',(x,front-.06,1.53),(.16,.27,2.74),pale,'Trim')
-box('DoorLintel',(0,front-.06,2.82),(2.80,.28,.18),pale,'Trim')
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from door_joinery import build_door_frame
+build_door_frame(box,pale,front)
 box('Threshold',(0,front-.20,.16),(2.75,.65,.12),wood,'Trim')
 box('EntryStep',(0,front-.62,.06),(3.1,.55,.12),wood,'Trim')
-# Window holes and inset muntins, visible consistently from inside/outside.
-for sx in [-1,1]:
-    for y in [-.67,.87]:box('WindowFrame',(sx*3.69,y,1.74),(.22,.14,1.40),pale,'Windows')
-    for z in [1.04,2.44]:box('WindowFrame',(sx*3.69,.10,z),(.25,1.66,.14),pale,'Windows')
-    box('WindowSill',(sx*3.72,.10,1.01),(.38,1.78,.11),pale,'Windows')
-    for y in [-.29,.49]:
-        for z in [1.40,2.08]:box('SmallOldGlassPane',(sx*3.615,y,z),(.024,.67,.58),glass,'Windows',False)
-    box('WindowMullion',(sx*3.71,.1,1.74),(.14,.055,1.29),pale,'Windows')
-    box('WindowCrossbar',(sx*3.71,.1,1.74),(.14,1.40,.055),pale,'Windows')
+# Same joinery function used by the focused repair of the saved source.
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from window_joinery import build_windows
+def pane(name,x,y,z,width,height,m,group):
+    vs=[(x,y-width/2,z-height/2),(x,y+width/2,z-height/2),(x,y+width/2,z+height/2),(x,y-width/2,z+height/2)]
+    mesh=bpy.data.meshes.new(name);mesh.from_pydata(vs,[],[(0,1,2,3)]);mesh.update()
+    o=bpy.data.objects.new(name,mesh);asset.objects.link(o);o.data.materials.append(m);groups.setdefault(group,[]).append(o);uv_world(o);return o
+build_windows(box,pane,pale,glass)
 # Wooden double doors, assembled then parented to hinge origins.
 door_groups=[]
 for side in ['Left','Right']:

@@ -1,0 +1,21 @@
+{
+    "actualController": true,
+    "metres": 0.9487233757972717,
+    "frames": 13,
+    "luminance": [
+        0.42419180274009707,
+        0.4158380329608917,
+        0.4181120693683624,
+        0.40953800082206728,
+        0.4019539952278137,
+        0.40480098128318789,
+        0.40045881271362307,
+        0.39657339453697207,
+        0.37257617712020876,
+        0.35807302594184878,
+        0.34129583835601809,
+        0.34125977754592898,
+        0.34298643469810488
+    ],
+    "verification": "Normal AO/shadows; real upper-platform lateral CharacterController motion. 10 Hz samples are not game FPS. Moving lighting can change luminance; inspect frames, do not infer no flicker from a scalar threshold."
+}

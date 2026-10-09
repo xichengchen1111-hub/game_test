@@ -1,0 +1,22 @@
+[
+  {
+    "side": -1,
+    "actualController": true,
+    "movementMetres": 0.9377193450927734,
+    "samples": 13,
+    "luminanceRange": 0.031213074922561646,
+    "luminanceMin": 0.4395168423652649,
+    "luminanceMax": 0.47072991728782654,
+    "verification": "Actual controller lateral motion with normal lighting, shadows and AO; samples at 10 Hz are not the game FPS. Patch follows the same opaque jamb face in world coordinates."
+  },
+  {
+    "side": 1,
+    "actualController": true,
+    "movementMetres": 0.9378271102905273,
+    "samples": 13,
+    "luminanceRange": 0.030902475118637085,
+    "luminanceMin": 0.4375707805156708,
+    "luminanceMax": 0.46847325563430786,
+    "verification": "Actual controller lateral motion with normal lighting, shadows and AO; samples at 10 Hz are not the game FPS. Patch follows the same opaque jamb face in world coordinates."
+  }
+]

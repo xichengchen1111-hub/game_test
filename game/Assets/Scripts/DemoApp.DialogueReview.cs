@@ -22,6 +22,22 @@ public partial class DemoApp {
             AdvanceDialogue();yield return null;
         }
     }
+    IEnumerator ApproachReviewMilkboy() {
+        var boy=GameObject.Find("Milkboy");
+        RequireDialogue(boy,"Relocated milkboy must exist");
+        // The imported head-front bone is normalized to root -Z by MilkboyAsset.
+        var bones=boy.GetComponentsInChildren<Transform>();
+        var head=Array.Find(bones,t=>t.name.Replace(':','_')=="mixamorig_Head");
+        var headFront=Array.Find(bones,t=>t.name=="headfront");
+        RequireDialogue(head&&headFront,"Milkboy facing bones must exist");
+        Vector3 face=headFront.position-head.position;face.y=0;face.Normalize();
+        RequireDialogue(Vector3.Dot(face,Vector3.forward)>.9f,"Milkboy must face the accessible northern street");
+        Vector3 front=boy.transform.position+face*2.1f;
+        front.y=.1f;
+        player.Place(front+face*1.1f,0);
+        yield return WalkTo(front);
+        player.Aim(boy.transform.position+Vector3.up*.94f);yield return null;
+    }
     IEnumerator ReviewDialogue() {
         yield return new WaitForSeconds(.5f);
         RequireDialogue(CurrentScene=="Town","Dialogue review must start in Town");
@@ -30,9 +46,7 @@ public partial class DemoApp {
         state.milkboyGreeted=true;state.milkboyGreetingRevision=0;
         var retained=new NotebookEntry{id="E07",title="retained test entry"};
         state.entries.Add(retained);
-        yield return WalkTo(new Vector3(3.8f,0,-4.1f));
-        var boy=GameObject.Find("Milkboy");
-        player.Aim(boy.transform.position+Vector3.up*.94f);yield return null;
+        yield return ApproachReviewMilkboy();
         RequireDialogue(TryInteract()&&DialogueOpen,"Real interaction ray must open dialogue");
         RequireDialogue(dialogueNode.id=="greeting"&&!state.entries.Exists(e=>e.id=="E04"),"Greeting cannot grant testimony");
         RequireDialogue(dialogueNode.text=="您是住在［街名］［门牌号］的［姓氏］先生吧？"&&state.entries.Contains(retained),"Old greeting flag must not hide revised opening or remove evidence");
@@ -115,8 +129,7 @@ public partial class DemoApp {
         RequireDialogue(state.milkboyGreeted&&state.dialogueTopics.Contains("milkboy.daily")&&state.dialogueTopics.Contains("milkboy.delivery"),"Disk relaunch must preserve greeting and asked topics");
         RequireDialogue(state.milkboyGreetingRevision==MilkboyGreetingRevision,"Disk relaunch must preserve revised opening state");
         RequireDialogue(state.entries.FindAll(e=>e.id=="E04").Count==1,"Disk relaunch must preserve E04");
-        yield return WalkTo(new Vector3(3.8f,0,-4.1f));
-        player.Aim(GameObject.Find("Milkboy").transform.position+Vector3.up*.94f);yield return null;
+        yield return ApproachReviewMilkboy();
         RequireDialogue(TryInteract()&&DialogueOpen&&dialogueNode.id=="topics","Disk relaunch must reopen repeat dialogue");
         RequireDialogue(dialogueChoices.Exists(c=>c.topic=="milkboy.gloves"),"Disk relaunch must restore evidence follow-ups");
         yield return Capture("dialogue-reloaded");CloseDialogue();

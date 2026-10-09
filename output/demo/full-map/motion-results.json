@@ -1,0 +1,82 @@
+[
+  {
+    "case": "milk-720",
+    "surface": "window-motion-north",
+    "frames": 13,
+    "metres": 0.9407720565795898,
+    "luminanceRange": 0.027674823999404907,
+    "clip": "output/demo/full-map/milk-720/window-motion-north.mp4"
+  },
+  {
+    "case": "milk-720",
+    "surface": "window-motion-south",
+    "frames": 13,
+    "metres": 0.9380016326904297,
+    "luminanceRange": 0.027041256427764893,
+    "clip": "output/demo/full-map/milk-720/window-motion-south.mp4"
+  },
+  {
+    "case": "tower-night",
+    "surface": "tower-motion-floor",
+    "frames": 13,
+    "metres": 0.9487233757972717,
+    "luminanceRange": 0.08293202519416809,
+    "clip": "output/demo/full-map/tower-night/tower-motion-floor.mp4"
+  },
+  {
+    "case": "tower-night",
+    "surface": "tower-motion-wall",
+    "frames": 13,
+    "metres": 0.9377197027206421,
+    "luminanceRange": 0.01790878176689148,
+    "clip": "output/demo/full-map/tower-night/tower-motion-wall.mp4"
+  },
+  {
+    "case": "tower-720",
+    "surface": "tower-motion-floor",
+    "frames": 13,
+    "metres": 0.944094181060791,
+    "luminanceRange": 0.17634882777929306,
+    "clip": "output/demo/full-map/tower-720/tower-motion-floor.mp4"
+  },
+  {
+    "case": "tower-720",
+    "surface": "tower-motion-wall",
+    "frames": 13,
+    "metres": 0.9375633597373962,
+    "luminanceRange": 0.0005815476179122925,
+    "clip": "output/demo/full-map/tower-720/tower-motion-wall.mp4"
+  },
+  {
+    "case": "milk-720",
+    "surface": "door-motion-left",
+    "frames": 13,
+    "metres": 0.9383697509765625,
+    "luminanceRange": 0.05464380979537964,
+    "clip": "output/demo/full-map/milk-720/door-motion-left.mp4"
+  },
+  {
+    "case": "milk-720",
+    "surface": "door-motion-right",
+    "frames": 13,
+    "metres": 0.9382171630859375,
+    "luminanceRange": 0.06685420870780945,
+    "clip": "output/demo/full-map/milk-720/door-motion-right.mp4"
+  },
+  {
+    "case": "milk-1080",
+    "surface": "door-motion-left",
+    "frames": 13,
+    "metres": 0.947265625,
+    "luminanceRange": 0.22365514934062958,
+    "clip": "output/demo/full-map/milk-1080/door-motion-left.mp4"
+  },
+  {
+    "case": "milk-1080",
+    "surface": "door-motion-right",
+    "frames": 13,
+    "metres": 0.939666748046875,
+    "luminanceRange": 0.24351786077022552,
+    "clip": "output/demo/full-map/milk-1080/door-motion-right.mp4"
+  }
+]

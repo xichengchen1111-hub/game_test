@@ -1,0 +1,21 @@
+{
+    "actualController": true,
+    "side": -1,
+    "movementMetres": 0.9383697509765625,
+    "framePatchLuminance": [
+        0.36313632130622866,
+        0.31115323305130007,
+        0.31097349524497988,
+        0.34453195333480837,
+        0.34440383315086367,
+        0.3445529043674469,
+        0.34507834911346438,
+        0.3454347252845764,
+        0.36482781171798708,
+        0.36514922976493838,
+        0.36478391289711,
+        0.365568071603775,
+        0.3656173050403595
+    ],
+    "verification": "Real inside-door lateral controller motion, normal AO/shadows. Jamb and lintel use butt joinery and clear the wall's inner face. 10 Hz capture samples are not FPS; inspect the corner frames."
+}

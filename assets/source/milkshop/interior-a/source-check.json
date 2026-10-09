@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "reopenedBlend": true,
+  "meshes": 10,
+  "uvAndMaterials": true,
+  "unitScale": 1,
+  "namedBookLampBellParts": true,
+  "referenceExcludedFromFbx": true
+}

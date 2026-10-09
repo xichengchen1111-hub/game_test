@@ -1,0 +1,57 @@
+{
+  "asset": "MilkShopInteriorA",
+  "units": "metres",
+  "blender": "5.2.0 LTS",
+  "triangles": 7208,
+  "meshes": 10,
+  "parts": [
+    "Pendant_Left",
+    "Pendant_Right",
+    "OrderBook",
+    "ReadingLamp",
+    "ReadingBulb",
+    "LampSwitch",
+    "ServiceBell",
+    "CounterDetails",
+    "BottleTag",
+    "InteriorDecor"
+  ],
+  "materials": [
+    "Milk_Enamel",
+    "Milk_Brass",
+    "Milk_Iron",
+    "Milk_Linen",
+    "Milk_Walnut",
+    "Milk_Ink",
+    "Milk_Bulb",
+    "Milk_Leaf"
+  ],
+  "boundsMin": [
+    -1.3109999895095825,
+    -1.8550000190734863,
+    0.20200002193450928
+  ],
+  "boundsMax": [
+    3.489000082015991,
+    2.7899999618530273,
+    4.293728828430176
+  ],
+  "originalBlendSha256": "af48d6a80a62bf279dbcd4603860df8978c62dfc190bc9c9a85a66b5f003ee75",
+  "originalFbxSha256": "3e3851e4fa8e9b41c597d31a12de94426e67698657cb696b21df4453badf3f48",
+  "realLights": 3,
+  "newRealtimeShadows": 0,
+  "orders": [
+    {
+      "date": "1931-01-19",
+      "shop": "钟表铺",
+      "bottles": 2,
+      "delivered": true
+    },
+    {
+      "date": "1931-01-20",
+      "shop": "旅馆",
+      "bottles": 3,
+      "delivered": true
+    }
+  ]
+}

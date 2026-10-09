@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 [Serializable] public class NotebookEntry { public string id,title,body,source; }
 [Serializable] public class SliceSave {
     public string scene="Town";
-    public float x=0,y=0.05f,z=-12,yaw=0;
+    public float x=0,y=0.12f,z=-10,yaw=0;
     public float returnX=3.7f,returnY=0.05f,returnZ=1;
     public List<NotebookEntry> entries = new List<NotebookEntry>();
     public bool remarkSeen;
@@ -21,6 +21,7 @@ using UnityEngine.SceneManagement;
     public int towerLayoutRevision;
     public int towerAdjustmentMinutes;
     public double elapsedGameMinutes;
+    public string milkOrderDate;
 }
 
 public partial class DemoApp : MonoBehaviour {
@@ -38,10 +39,12 @@ public partial class DemoApp : MonoBehaviour {
     public SliceSave state = new SliceSave();
     public bool Review { get; private set; }
     public float Minutes => (float)gameClock.MinutesOfDay;
-    public bool Blocked => opening || transitioning || inspected || journal || paused || DialogueOpen;
+    public bool Blocked => opening || transitioning || inspected || journal || paused || DialogueOpen || MilkOrdersOpen;
     public string CurrentScene { get; private set; } = "Town";
     public bool IsInsideShop { get; private set; }
     BuildingInstance seamlessShop;
+    Transform milkShopRoot;
+    bool insideMilkShop;
     public bool Silent;
     bool opening=true, transitioning, journal, paused, watch;
     bool quitting,reviewPortrait;
@@ -86,7 +89,11 @@ public partial class DemoApp : MonoBehaviour {
         bool timeReview=Review&&(Array.IndexOf(args,"--review-time")>=0||Array.IndexOf(args,"--verify-time-save")>=0);
         bool towerMigrationReview=Review&&(Array.IndexOf(args,"--verify-clocktower-migration")>=0||Array.IndexOf(args,"--verify-clocktower-middle-save")>=0);
         bool towerReview=Review&&(Array.IndexOf(args,"--review-clocktower")>=0||Array.IndexOf(args,"--verify-clocktower-save")>=0);
-        savePath=Path.Combine(Application.persistentDataPath,towerMigrationReview?"clocktower-migration-save.json":towerReview?"clocktower-review-save.json":timeReview?"time-review-save.json":migrationReview?"walnut-migration-save.json":dialogueReview?"dialogue-review-save.json":Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
+        bool milkInteriorReview=Review&&(Array.IndexOf(args,"--review-milk-interior-a")>=0||Array.IndexOf(args,"--verify-milk-interior-save")>=0);
+        bool dayNightReview=Review&&(Array.IndexOf(args,"--review-day-night")>=0||Array.IndexOf(args,"--verify-day-night-save")>=0);
+        bool weatherReview=Review&&(Array.IndexOf(args,"--review-weather")>=0||Array.IndexOf(args,"--verify-weather-save")>=0);
+        bool fullMapReview=Review&&(Array.IndexOf(args,"--review-full-map")>=0||Array.IndexOf(args,"--verify-full-map-save")>=0);
+        savePath=Path.Combine(Application.persistentDataPath,fullMapReview?"full-map-review-save.json":weatherReview?"weather-review-save.json":dayNightReview?"day-night-review-save.json":milkInteriorReview?"milk-interior-review-save.json":towerMigrationReview?"clocktower-migration-save.json":towerReview?"clocktower-review-save.json":timeReview?"time-review-save.json":migrationReview?"walnut-migration-save.json":dialogueReview?"dialogue-review-save.json":Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
         int c=Array.IndexOf(args,"--capture-dir");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -112,15 +119,17 @@ public partial class DemoApp : MonoBehaviour {
         bool legacyRoom=state.scene=="ClockShop";
         yield return SceneManager.LoadSceneAsync("Town",LoadSceneMode.Additive);
         seamlessShop=FindFirstObjectByType<BuildingInstance>();
+        milkShopRoot=GameObject.Find("MilkShop")?.transform;
         if(legacyRoom) {
             var mapped=seamlessShop.layout.ToTown(new Vector3(state.x,state.y,state.z));
             state.x=mapped.x;state.y=mapped.y;state.z=mapped.z;state.yaw+=seamlessShop.layout.townYaw;
             Debug.Log("SEAMLESS_SAVE_MIGRATED: interior-local position to Town world coordinates; evidence/dialogue preserved");
         }
-        state.scene="Town";state.worldRevision=2;
+        state.scene="Town";
         CurrentScene="Town";
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentScene));
         var savedPosition=new Vector3(state.x,state.y,state.z);
+        MigrateTownPosition(ref savedPosition,legacyRoom);
         if(state.towerLayoutRevision<1&&!legacyRoom) {
             var tower=FindFirstObjectByType<ClockTowerInstance>();
             if(tower&&tower.TryMigrateLegacyPosition(savedPosition,out var migrated)) {
@@ -135,7 +144,7 @@ public partial class DemoApp : MonoBehaviour {
             savedPosition=SafeSpawn();
         }
         player.Place(savedPosition,float.IsNaN(state.yaw)||float.IsInfinity(state.yaw)?0:state.yaw);
-        player.Aim(previewWindow?seamlessShop.layout.ToTown(seamlessShop.layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f):new Vector3(0,3.1f,9));
+        player.Aim(previewWindow?seamlessShop.layout.ToTown(seamlessShop.layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f):new Vector3(0,ClockTowerInteriorLayout.DialHeight,-ClockTowerInteriorLayout.DialPlaneDistance));
         if(previewStreet){var layout=FindFirstObjectByType<BuildingInstance>().layout;player.Aim(layout.ToTown(layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f));}
         if(previewMilkboy)player.Aim(GameObject.Find("Milkboy").transform.position+Vector3.up*.94f);
         if(previewWatchmaker)player.Aim(GameObject.Find("Clockmaker").transform.position+Vector3.up*1.1f);
@@ -146,7 +155,15 @@ public partial class DemoApp : MonoBehaviour {
         if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--review-clocktower")>=0)StartCoroutine(ReviewClockTower());
+            if(Array.IndexOf(args,"--review-full-map")>=0)StartCoroutine(ReviewFullMap());
+            else if(Array.IndexOf(args,"--verify-full-map-save")>=0)StartCoroutine(VerifyFullMapSave());
+            else if(Array.IndexOf(args,"--review-weather")>=0)StartCoroutine(ReviewWeather());
+            else if(Array.IndexOf(args,"--verify-weather-save")>=0)StartCoroutine(VerifyWeatherSave());
+            else if(Array.IndexOf(args,"--review-day-night")>=0)StartCoroutine(ReviewDayNight());
+            else if(Array.IndexOf(args,"--verify-day-night-save")>=0)StartCoroutine(VerifyDayNightSave());
+            else if(Array.IndexOf(args,"--review-milk-interior-a")>=0)StartCoroutine(ReviewMilkInteriorA());
+            else if(Array.IndexOf(args,"--verify-milk-interior-save")>=0)StartCoroutine(VerifyMilkInteriorSave());
+            else if(Array.IndexOf(args,"--review-clocktower")>=0)StartCoroutine(ReviewClockTower());
             else if(Array.IndexOf(args,"--verify-clocktower-save")>=0)StartCoroutine(VerifyClockTowerSave());
             else if(Array.IndexOf(args,"--verify-clocktower-migration")>=0)StartCoroutine(VerifyClockTowerMigration());
             else if(Array.IndexOf(args,"--verify-clocktower-middle-save")>=0)StartCoroutine(VerifyClockTowerMiddleSave());
@@ -168,15 +185,19 @@ public partial class DemoApp : MonoBehaviour {
         }
     }
     void Update() {
+        UpdateMapLocation();
         UpdateGameClock();
         TickTowerAdjustment();
         if(sceneReady&&seamlessShop) {
             var p=seamlessShop.transform.InverseTransformPoint(player.transform.position);
             bool inside=Mathf.Abs(p.x)<seamlessShop.layout.footprint.x/2&&Mathf.Abs(p.z)<seamlessShop.layout.footprint.y/2;
-            if(inside!=IsInsideShop){IsInsideShop=inside;location=inside?"青川 · 钟表铺":"青川 · 小镇广场";locationAge=Time.time;Save();}
+            var milk=milkShopRoot?milkShopRoot.InverseTransformPoint(player.transform.position):new Vector3(99,99,99);
+            bool inMilk=Mathf.Abs(milk.x)<3.6f&&Mathf.Abs(milk.z)<2.9f&&milk.y<3.18f;
+            if(inside!=IsInsideShop||inMilk!=insideMilkShop){IsInsideShop=inside;insideMilkShop=inMilk;location=inside?"青川 · 钟表铺":inMilk?"青川 · 牛奶屋":"青川 · 小镇广场";locationAge=Time.time;Save();}
         }
         if (Input.GetKeyDown(KeyCode.F12)) StartCoroutine(Capture("manual-"+DateTime.Now.ToString("HHmmss")));
         if (transitioning) return;
+        if(MilkOrdersOpen) { UpdateMilkOrderInput(); focus=null; return; }
         if(DialogueOpen) { UpdateDialogueInput(); focus=null; return; }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if(inspected) CloseInspect();
@@ -264,7 +285,7 @@ public partial class DemoApp : MonoBehaviour {
     void OnApplicationQuit() { Save(); }
     Vector3 SafeSpawn() {
         if(CurrentScene=="ClockShop")return FindFirstObjectByType<BuildingInstance>().layout.interiorSpawn;
-        return new Vector3(0,.05f,-12);
+        return TownPlan.Spawn;
     }
     bool SafePosition(Vector3 p) {
         if(float.IsNaN(p.x)||float.IsNaN(p.y)||float.IsNaN(p.z)||float.IsInfinity(p.x)||float.IsInfinity(p.y)||float.IsInfinity(p.z))return false;
@@ -273,7 +294,7 @@ public partial class DemoApp : MonoBehaviour {
             var tower=CurrentScene=="Town"?FindFirstObjectByType<ClockTowerInstance>():null;
             if(!tower||!tower.ContainsUpperWalkPosition(p))return false;
         }
-        if(CurrentScene=="Town")return p.x > -16.7f && p.x < 16.7f && p.z > -22.7f && p.z < 31.7f;
+        if(CurrentScene=="Town"){var b=TownPlan.Current.bounds;return p.x>b[0]+.3f&&p.x<b[1]-.3f&&p.z>b[2]+.3f&&p.z<b[3]-.3f;}
         var layout=FindFirstObjectByType<BuildingInstance>().layout;
         return Mathf.Abs(p.x)<layout.footprint.x/2 && Mathf.Abs(p.z)<layout.footprint.y/2;
     }
@@ -351,14 +372,15 @@ public partial class DemoApp : MonoBehaviour {
                 GUI.color=new Color(1,0.95f,0.85f,0.8f);GUI.DrawTexture(new Rect(W/2-3,H/2-3,6,6),circle);GUI.color=Color.white;
                 if(focus) {
                     Rect p=new Rect(W/2-170,H/2+38,340,43);Box(p,new Color(0.04f,0.08f,0.11f,0.87f));
-                    Label(p,"E   "+(focus is ScenePortal||focus is ShopMechanism?focus.title:focus.evidenceId=="E04"||focus.title=="钟表匠"?"交谈 · "+focus.title:"查看 · "+focus.title),button);
+                    Label(p,"E   "+(focus is ScenePortal||focus is ShopMechanism||focus is MilkShopFixture?focus.title:focus.evidenceId=="E04"||focus.title=="钟表匠"?"交谈 · "+focus.title:"查看 · "+focus.title),button);
                 }
                 Label(new Rect(36,H-50,W-72,30),"WASD 行走    鼠标 观察    Shift 快走    E 互动    Q 怀表    Tab 调查簿    Esc 暂停",small);
             }
-            if(watch&&!inspected&&!journal&&!paused&&!DialogueOpen) DrawWatch();
+            if(watch&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen) DrawWatch();
             if(DialogueOpen) DrawDialogue();
             if(inspected is ClockTowerAdjustment) DrawTowerAdjustment();
             else if(inspected) DrawInspection(inspected.title,inspected.body,inspected.source,inspected.illustration);
+            if(MilkOrdersOpen) DrawMilkOrders();
             if(journal) DrawJournal();
             if(paused) {
                 Box(new Rect(0,0,W,H),new Color(0,0,0,0.42f));Panel(new Rect(W/2-230,H/2-180,460,360));
@@ -366,7 +388,7 @@ public partial class DemoApp : MonoBehaviour {
                 if(Button(new Rect(W/2-180,H/2-50,360,55),"继续漫步")){paused=false;CursorMode();}
                 if(Button(new Rect(W/2-180,H/2+30,360,55),"保存并退出"))RequestQuit();
             }
-            if(!Silent&&Time.time<remarkUntil&&!inspected&&!journal&&!DialogueOpen) {
+            if(!Silent&&Time.time<remarkUntil&&!inspected&&!journal&&!DialogueOpen&&!MilkOrdersOpen) {
                 Rect r=new Rect(36,H-135,580,57);Box(r,new Color(0.05f,0.10f,0.13f,0.9f));Label(new Rect(r.x+16,r.y+14,r.width-32,40),remark,small);
             }
         }
@@ -400,7 +422,7 @@ public partial class DemoApp : MonoBehaviour {
         Box(new Rect(p.x+42,p.y+144,1036,1),new Color(0.29f,0.37f,0.37f));
         if(image) {GUI.DrawTexture(new Rect(p.x+42,p.y+172,460,340),image,ScaleMode.ScaleToFit);Label(new Rect(p.x+550,p.y+180,500,300),body,text);}
         else Label(new Rect(p.x+48,p.y+182,1010,310),body,text);
-        Label(new Rect(p.x+42,p.y+550,550,32),inspected&&!string.IsNullOrEmpty(inspected.evidenceId)?"已记入调查簿，可随时再次查看。":"可随时再次交谈。",small);
+        Label(new Rect(p.x+42,p.y+550,550,32),inspected&&!string.IsNullOrEmpty(inspected.evidenceId)?"已记入调查簿，可随时再次查看。":"可随时再次查看。",small);
         if(Button(new Rect(p.x+865,p.y+532,210,52),"收起  ·  Esc")) { CloseInspect(); }
     }
     void DrawJournal() {

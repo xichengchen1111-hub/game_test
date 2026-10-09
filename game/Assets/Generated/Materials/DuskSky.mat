@@ -22,12 +22,29 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: ef16208ca6e0aa34c8e3c9e59af27112, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _Coverage: 0.46
+    - _Darkness: 0.12
+    - _Haze: 0
+    - _MoonVisibility: 0
+    - _Night: 0
+    - _SunVisibility: 0
+    - _Twilight: 1
     m_Colors:
     - _Bottom: {r: 0.7, g: 0.5, b: 0.38, a: 1}
+    - _CloudColor: {r: 0.42999998, g: 0.38999996, b: 0.52, a: 1}
+    - _CloudOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _CloudShade: {r: 0.47999996, g: 0.56, b: 0.65999997, a: 1}
+    - _HighCloudOffset: {r: 0, g: 0, b: 0, a: 0}
     - _Middle: {r: 0.42, g: 0.4, b: 0.48, a: 1}
+    - _MoonDirection: {r: -1, g: 0, b: 0, a: 0}
+    - _SunDirection: {r: 1, g: 0, b: 0, a: 0}
     - _Top: {r: 0.24, g: 0.26, b: 0.37, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

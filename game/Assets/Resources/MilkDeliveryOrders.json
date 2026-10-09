@@ -1,0 +1,6 @@
+{
+  "pages": [
+    { "year": 1931, "month": 1, "day": 19, "deliveries": [{ "shop": "钟表铺", "bottles": 2, "delivered": true }] },
+    { "year": 1931, "month": 1, "day": 20, "deliveries": [{ "shop": "旅馆", "bottles": 3, "delivered": true }] }
+  ]
+}

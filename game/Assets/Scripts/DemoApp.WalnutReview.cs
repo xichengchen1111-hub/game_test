@@ -18,7 +18,7 @@ public partial class DemoApp {
         Vector3 W(float x,float y,float z)=>layout.ToTown(new Vector3(x,y,z));
         NeedShop(CurrentScene=="Town"&&FindObjectsByType<ScenePortal>(FindObjectsSortMode.None).Length==0,"Shop still contains a loading portal");
         NeedShop(FindObjectsByType<Interactable>(FindObjectsSortMode.None).Count(i=>i.evidenceId=="E07")==1,"E07 duplicated or missing");
-        yield return WalkTo(new Vector3(0,0,1));
+        player.Place(W(0,.1f,-6.5f),0);yield return WalkTo(W(0,0,-6.5f));
         player.Aim(W(0,1.85f,-4));yield return Capture("unity-exterior");
         yield return WalkTo(W(0,0,-5.45f));
         var door=Mechanism("shop-front-door");

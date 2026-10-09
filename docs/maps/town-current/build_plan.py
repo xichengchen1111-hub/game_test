@@ -20,7 +20,8 @@ def plot(a,b,c,d,side='S',kind='shop',bid=None,name=None,variant=0):
   bw=pw-4;x+=2 if a in [-94,-17] else -2
  if kind=='garden':bw=min(16 if bid=='B12' else 13,pw-6)
  bw=round(bw,2);dep=min((10+variant%3) if kind in ['garden','semi','terrace'] else (11+variant%4),pd-12)
- if bid=='B02':bw=8.2;dep=7.4
+ # The finished shop's local facade faces south: preserve its authored dimensions.
+ if bid=='B02':bw=7.4;dep=8.2
  if kind=='civic':bw=pw-6;dep=13
  if kind=='work':bw=pw-7;dep=12
  z=(c+front+dep/2) if side=='S' else (d-front-dep/2)
@@ -44,7 +45,7 @@ def plot(a,b,c,d,side='S',kind='shop',bid=None,name=None,variant=0):
  for off in [-bw*.3,bw*.3]:windows.append([round(x+off,2),door[1],1.4,'首层前窗'])
  rearDoor=[round(x+(bw*.18*(1 if variant%2==0 else -1) if wing else 0),3),round(z+(dep/2 if side=='S' else -dep/2),3)]
  bld=dict(id=bid,name=name or names.get(bid,f'住户 {bid}'),kind=kind,type=typ,plot=box(a,b,c,d),parts=parts,front=side,storeys=floors,door=door,rearDoor=rearDoor,gate=gate,backgate=backgate,windows=windows,frontSetback=front,yard=yard,status='既有剧情地点；位置与宅地为本轮提案' if bid in names else '生活背景补充；不新增线索',note='前门接人行道；后院有独立后勤入口。')
- if bid=='B02':bld['note']='沿用原钟表铺 8.2×7.4m 世界占地；新增的是宅地与庭院规划，未修改原游戏。'
+ if bid=='B02':bld['note']='沿用完成模型的南向门面与7.4×8.2m占地；门口保持(-35,27.7)，主体中心据此校准。'
  B.append(bld)
  Paths.append(dict(owner=bid,points=[door,gate],width=1.4,kind='front'))
  # side service path on garden plots, or through house to private rear garden on terraces.
@@ -88,7 +89,7 @@ B.append(dict(id='B01',name='钟楼',kind='civic',type='广场独立地标',plot
 roads=[dict(id='R01',name='车站路',points=[[-166,20],[224,20]],width=12,lane=6,walk=2,strip=1),dict(id='R02',name='住宅街',points=[[-165,-75],[224,-75]],width=12,lane=5,walk=2,strip=1.5),dict(id='R03',name='南街',points=[[-163,-122],[222,-122]],width=10,lane=5,walk=1.5,strip=1),dict(id='R04',name='西巷',points=[[-120,-139],[-120,96]],width=10,lane=4,walk=2,strip=1),dict(id='R05',name='中街',points=[[30,-140],[30,96]],width=10,lane=4,walk=2,strip=1),dict(id='R06',name='站西路',points=[[135,-140],[135,71]],width=10,lane=4,walk=2,strip=1),dict(id='A01',name='北后巷',points=[[-164,69],[134,69]],width=3,lane=0,walk=3,strip=0),dict(id='A02',name='住宅后巷',points=[[-164,-30],[135,-30]],width=3,lane=0,walk=3,strip=0),dict(id='A03',name='南园巷',points=[[-163,-117],[223,-117]],width=3,lane=0,walk=3,strip=0),dict(id='A04',name='广场步巷',points=[[0,-13.5],[0,-30]],width=3,lane=0,walk=3,strip=0),dict(id='A05',name='北园路',points=[[-165,91],[135,91]],width=6,lane=3,walk=1.5,strip=0)]
 # Roadside trees in planting strips, not in clear walking bands. Gaps at intersections.
 for road in roads[:3]:
- z=road['points'][0][1];offset=road['width']/2-road['strip']/2
+ z=road['points'][0][1];offset=road['lane']/2+road['strip']/2
  for x in range(-156,220,14):
   if min(abs(x-v) for v in [-120,30,135])<8:continue
   if road['id']=='R01' and -17<x<25:continue
@@ -96,7 +97,7 @@ for road in roads[:3]:
 for x in [-120,30,135]:
  for z in range(-106,63,17):
   if min(abs(z-v) for v in [-122,-75,-30,20,69])<8:continue
-  Trees.append(dict(x=x+4.5,z=z,r=2.1,kind='行道树',owner='纵街'))
+  Trees.append(dict(x=x+2.5,z=z,r=2.1,kind='行道树',owner='纵街'))
 land=[dict(name='北侧果园',rect=box(-164,-50,96,118),kind='orchard'),dict(name='北园菜地',rect=box(-44,23,96,118),kind='allotment'),dict(name='农地／镇缘',rect=box(36,130,96,118),kind='field'),dict(name='铁路用地',rect=box(145,227,63,78),kind='rail'),dict(name='候车绿地',rect=box(190,223,-27,13),kind='park'),dict(name='居民菜园',rect=box(145,216,-67,-34),kind='allotment'),dict(name='西侧果园',rect=box(-164,-127,73,86),kind='orchard'),dict(name='共享晾晒院',rect=box(-114,24,73,86),kind='court'),dict(name='修理棚与堆场',rect=box(36,129,73,86),kind='workyard'),dict(name='南部农田',rect=box(-165,224,-150,-130),kind='field')]
 for space in land:
  x,z,w,d=space['rect']

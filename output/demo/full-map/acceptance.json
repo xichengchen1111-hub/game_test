@@ -1,0 +1,295 @@
+{
+  "passed": true,
+  "unity": "6000.3.18f1",
+  "urp": "17.0.1",
+  "hardware": "RTX 5060 Laptop / Windows D3D11",
+  "finalAssemblySha256": "382C16AC99B26F0455BE57FF585EE2C9E97B1CA8FDA39A33656FB9584662CC40",
+  "buildBytes": 296586408,
+  "source": "c1ef6c5953c618703d8077d2ec24d523c1a84d16cdbb37df6f533e6b67244574",
+  "checks": [
+    {
+      "passed": true,
+      "name": "map-1080",
+      "exitCode": 0,
+      "assemblySha256": "E0EF109C68467EBA6F83024372A1DC103D450B3667FD8D4EAA9012EF0390C385",
+      "log": "builds/review/full-map/map-1080.log",
+      "captures": "output/demo/full-map/map-1080",
+      "seconds": 810.19,
+      "logSha256": "B955E13ECF7242085B4D9ABB9DBC44AA71FCCA55D1168C59FF7A9CFF6A482770"
+    },
+    {
+      "seconds": 5.39,
+      "exitCode": 0,
+      "passed": true,
+      "assemblySha256": "382C16AC99B26F0455BE57FF585EE2C9E97B1CA8FDA39A33656FB9584662CC40",
+      "name": "map-relaunch",
+      "captures": "output/demo/full-map/map-relaunch",
+      "log": "builds/review/full-map/map-relaunch.log",
+      "logSha256": "C5BE9497AB516BA99D011D1B081B14AE9E4460B2B64CA2D5D1D035382633C815"
+    },
+    {
+      "seconds": 27.55,
+      "exitCode": 0,
+      "passed": true,
+      "assemblySha256": "382C16AC99B26F0455BE57FF585EE2C9E97B1CA8FDA39A33656FB9584662CC40",
+      "name": "milk-720",
+      "captures": "output/demo/full-map/milk-720",
+      "log": "builds/review/full-map/milk-720.log",
+      "logSha256": "B3962F0CD3BC277F8F4D76B3F2CF57C411DB054978D36C81256136FA6F2AA31F"
+    },
+    {
+      "seconds": 5.9,
+      "exitCode": 0,
+      "passed": true,
+      "assemblySha256": "382C16AC99B26F0455BE57FF585EE2C9E97B1CA8FDA39A33656FB9584662CC40",
+      "name": "milk-relaunch",
+      "captures": "output/demo/full-map/milk-relaunch",
+      "log": "builds/review/full-map/milk-relaunch.log",
+      "logSha256": "BE8DFC7BD0790D1491F5D93C0EFAD0D34689C1F7382434F4E185E2B9B6534D9C"
+    },
+    {
+      "passed": true,
+      "name": "weather-1080",
+      "exitCode": 0,
+      "assemblySha256": "E0EF109C68467EBA6F83024372A1DC103D450B3667FD8D4EAA9012EF0390C385",
+      "log": "builds/review/full-map/weather-1080.log",
+      "captures": "output/demo/full-map/weather-1080",
+      "seconds": 18.8,
+      "logSha256": "6489E196E1309694186FEDBC2F321D10358C315AC63DFA640B4AB90C452A672D"
+    },
+    {
+      "passed": true,
+      "name": "weather-720",
+      "exitCode": 0,
+      "assemblySha256": "E0EF109C68467EBA6F83024372A1DC103D450B3667FD8D4EAA9012EF0390C385",
+      "log": "builds/review/full-map/weather-720.log",
+      "captures": "output/demo/full-map/weather-720",
+      "seconds": 18.88,
+      "logSha256": "1EB0320389CC783238DAB97DF36D3336D9D6EC60AFB16C09613AE70954ED3808"
+    },
+    {
+      "passed": true,
+      "name": "weather-relaunch",
+      "exitCode": 0,
+      "assemblySha256": "E0EF109C68467EBA6F83024372A1DC103D450B3667FD8D4EAA9012EF0390C385",
+      "log": "builds/review/full-map/weather-relaunch.log",
+      "captures": "output/demo/full-map/weather-relaunch",
+      "seconds": 2.38,
+      "logSha256": "2A82341DDD0621E728187EAE0A54B44B6DE101B8EBC792D1F7E0DFEB191471A3"
+    },
+    {
+      "passed": true,
+      "name": "day-720",
+      "exitCode": 0,
+      "assemblySha256": "65E8BFE2A1979E56E357F84A3CFF1F427C5BB089344D944919D8F6086D223CF1",
+      "log": "builds/review/full-map/day-720.log",
+      "captures": "output/demo/full-map/day-720",
+      "seconds": 26.6,
+      "logSha256": "E7C06DCC73F07340484F22CB628C5246679A31D9A3ABE842A7BFB98D481B0E54"
+    },
+    {
+      "passed": true,
+      "name": "day-1080",
+      "exitCode": 0,
+      "assemblySha256": "65E8BFE2A1979E56E357F84A3CFF1F427C5BB089344D944919D8F6086D223CF1",
+      "log": "builds/review/full-map/day-1080.log",
+      "captures": "output/demo/full-map/day-1080",
+      "seconds": 26.51,
+      "logSha256": "981AE49C1E66F2A810F2D6FF7840ABA15147B6D5BC2B9B0924760FD3D32C46D2"
+    },
+    {
+      "passed": true,
+      "name": "day-relaunch",
+      "exitCode": 0,
+      "assemblySha256": "65E8BFE2A1979E56E357F84A3CFF1F427C5BB089344D944919D8F6086D223CF1",
+      "log": "builds/review/full-map/day-relaunch.log",
+      "captures": "output/demo/full-map/day-relaunch",
+      "seconds": 2.42,
+      "logSha256": "6D091D2AE1915645A275697A19288AFFF3F031C738C60986A3380FA81B870A16"
+    },
+    {
+      "passed": true,
+      "name": "dialogue-720",
+      "exitCode": 0,
+      "assemblySha256": "EB0B05C53E1F7A46F3F1C771993A046CAA87BCEE2EEF0B1A192AB598A8431F14",
+      "log": "builds/review/full-map/dialogue-720.log",
+      "captures": "output/demo/full-map/dialogue-720",
+      "seconds": 5.47,
+      "logSha256": "9FAB975BE15F785DC084E58E487E673655BBE99D44593CD5C2B8CB74DD45EF0E"
+    },
+    {
+      "passed": true,
+      "name": "dialogue-relaunch",
+      "exitCode": 0,
+      "assemblySha256": "EB0B05C53E1F7A46F3F1C771993A046CAA87BCEE2EEF0B1A192AB598A8431F14",
+      "log": "builds/review/full-map/dialogue-relaunch.log",
+      "captures": "output/demo/full-map/dialogue-relaunch",
+      "seconds": 3.47,
+      "logSha256": "26E7592615159AD48BD8315BC2C3B8364FD83227C5B7BAD56ECEAA10C02146F7"
+    },
+    {
+      "passed": true,
+      "name": "time",
+      "exitCode": 0,
+      "assemblySha256": "65E8BFE2A1979E56E357F84A3CFF1F427C5BB089344D944919D8F6086D223CF1",
+      "log": "builds/review/full-map/time.log",
+      "captures": "output/demo/full-map/time",
+      "seconds": 19.49,
+      "logSha256": "3750CC5F31031CF034527BC644584925492FA8E8FECE0FB6751A2DC0597E858E"
+    },
+    {
+      "passed": true,
+      "name": "time-relaunch",
+      "exitCode": 0,
+      "assemblySha256": "65E8BFE2A1979E56E357F84A3CFF1F427C5BB089344D944919D8F6086D223CF1",
+      "log": "builds/review/full-map/time-relaunch.log",
+      "captures": "output/demo/full-map/time-relaunch",
+      "seconds": 3.55,
+      "logSha256": "5BEA03E8C871B29913E782DE61DAD3746ADEC181C11D4AD8843DA2BE1DDDEBB6"
+    },
+    {
+      "passed": true,
+      "name": "tower-night",
+      "exitCode": 0,
+      "assemblySha256": "EB0B05C53E1F7A46F3F1C771993A046CAA87BCEE2EEF0B1A192AB598A8431F14",
+      "log": "builds/review/full-map/tower-night.log",
+      "captures": "output/demo/full-map/tower-night",
+      "seconds": 126.59,
+      "logSha256": "2E360B19C3BDD3AD1B59AA8852609A69D36192F818D105F51EC5880FA2E6B6B5"
+    },
+    {
+      "passed": true,
+      "name": "tower-relaunch",
+      "exitCode": 0,
+      "assemblySha256": "EB0B05C53E1F7A46F3F1C771993A046CAA87BCEE2EEF0B1A192AB598A8431F14",
+      "log": "builds/review/full-map/tower-relaunch.log",
+      "captures": "output/demo/full-map/tower-relaunch",
+      "seconds": 61.73,
+      "logSha256": "2DE15E11D42E0AEF677C6F477D730828A5421C497FDF57AE37F823EE1D2D5636"
+    },
+    {
+      "passed": true,
+      "name": "shop-720",
+      "exitCode": 0,
+      "assemblySha256": "65E8BFE2A1979E56E357F84A3CFF1F427C5BB089344D944919D8F6086D223CF1",
+      "log": "builds/review/full-map/shop-720.log",
+      "captures": "output/demo/full-map/shop-720",
+      "seconds": 49.99,
+      "logSha256": "39A8BF15428AAB9110C6145DCEF8F68CECC4BCEDB76841F40F4F7BF39C2351B6"
+    },
+    {
+      "passed": true,
+      "name": "shop-relaunch",
+      "exitCode": 0,
+      "assemblySha256": "65E8BFE2A1979E56E357F84A3CFF1F427C5BB089344D944919D8F6086D223CF1",
+      "log": "builds/review/full-map/shop-relaunch.log",
+      "captures": "output/demo/full-map/shop-relaunch",
+      "seconds": 4.76,
+      "logSha256": "2F3CCF22467C3C11668469146A497B78C5A8E137495A7C07B835F635D68E2E62"
+    },
+    {
+      "seconds": 22.76,
+      "exitCode": 0,
+      "passed": true,
+      "assemblySha256": "382C16AC99B26F0455BE57FF585EE2C9E97B1CA8FDA39A33656FB9584662CC40",
+      "name": "milk-1080",
+      "captures": "output/demo/full-map/milk-1080",
+      "log": "builds/review/full-map/milk-1080.log",
+      "logSha256": "D0AD0B342DE833ED48188436361476A9816887329BF0A62215E1547CE3746316"
+    },
+    {
+      "seconds": 5.48,
+      "exitCode": 0,
+      "passed": true,
+      "assemblySha256": "382C16AC99B26F0455BE57FF585EE2C9E97B1CA8FDA39A33656FB9584662CC40",
+      "name": "milk-1080-relaunch",
+      "captures": "output/demo/full-map/milk-1080-relaunch",
+      "log": "builds/review/full-map/milk-1080-relaunch.log",
+      "logSha256": "45ACBEE2056EBD6695577B184514938FA9BD6492A4C748A6C5EE847E869580BD"
+    },
+    {
+      "passed": true,
+      "name": "tower-720",
+      "exitCode": 0,
+      "assemblySha256": "EB0B05C53E1F7A46F3F1C771993A046CAA87BCEE2EEF0B1A192AB598A8431F14",
+      "log": "builds/review/full-map/tower-720.log",
+      "captures": "output/demo/full-map/tower-720",
+      "seconds": 126.75,
+      "logSha256": "F42FBF39F01B004A3A9D66964B85532082CCCB6BD238D2E6C06DDFDD527B0B7B"
+    },
+    {
+      "passed": true,
+      "name": "tower-720-relaunch",
+      "exitCode": 0,
+      "assemblySha256": "EB0B05C53E1F7A46F3F1C771993A046CAA87BCEE2EEF0B1A192AB598A8431F14",
+      "log": "builds/review/full-map/tower-720-relaunch.log",
+      "captures": "output/demo/full-map/tower-720-relaunch",
+      "seconds": 61.86,
+      "logSha256": "23240B4BCF13D1E8A85F9FC424FD7E38BC8FC96036FDBEC6A2E70D8582F90C9D"
+    }
+  ],
+  "normalSaveUnchanged": true,
+  "normalSaveSha256": "FDE6BCE28F10294A989DC5052A88111F08855E624BC756BEFD3A1BB326B58839",
+  "phases": "Map/environment checked before focused test-staging repairs. Day/shop/time/dairy repeated after staging fix. Tower visual-cap removal and imported NPC-facing checks repeated on cap-fix assembly. The final dairy door-joinery fix repeated both resolutions, window motion, doorway/interactions and separate milk/full-map reloads on the final assembly. Earlier unchanged tests retain their exact assembly hashes.",
+  "scope": "Six exterior visit orders on real clear footways; station/home interiors, historical NPC schedules and vehicle turns unimplemented. Scripted native controller and normal interaction rays; no physical keyboard, blind playtest, Mac validation or low-end FPS measurement.",
+  "imageHandling": "Actual full frames resized and labeled without recoloring or AI editing. Motion clips sampled at 10 Hz, not game FPS.",
+  "comparisonSources": [
+    "map-1080/full-town-overview.png",
+    "map-1080/station-road-night.png",
+    "shop-720/unity-exterior.png",
+    "milk-1080/milk-a-interior.png",
+    "tower-night/tower-upper-stone-floor.png",
+    "dialogue-720/dialogue-greeting.png"
+  ],
+  "towerSurfaceSeparation": {
+    "passed": true,
+    "collisionUnchanged": true,
+    "removedTriangles": 24,
+    "overlappingTriangles": 24,
+    "remainingTriangles": 0,
+    "surfaces": [
+      "Exterior_IvoryBrick: 12",
+      "Tower west inner wall: 2",
+      "Tower east inner wall: 2",
+      "Tower north inner wall: 2",
+      "Tower entrance pier: 2",
+      "Tower entrance pier: 2",
+      "Tower entrance lintel: 2"
+    ]
+  },
+  "milkDoorJoinery": {
+    "passed": true,
+    "reopened": true,
+    "settings": {
+      "insideProjectionM": 0.08,
+      "buttGapM": 0.003,
+      "lintelBottomM": 2.73,
+      "jambTopM": 2.727
+    },
+    "unchangedNonTrimMeshes": {
+      "Shell": "05ce6ffcd04943835dd8ff161f770277ee45190f8a39c754cd40a45a0be67c86",
+      "Interior": "d2a4eeb59f3dcf53ebca7b9e076a79e6eff6fb1d7791aa2a3a996b359945d305",
+      "Door_Left": "fed9facc685f5af73e4aeaf788f5613a4636f7c05fac4ba5a1da1d373b30da5c",
+      "Door_Right": "426ebcbbf640a1dbf9de352d43ad20b1e9e4bb9d4369a60c690b255326c3dd7d",
+      "Roof": "5abe56c3aa450cd877068c44d53a6e7993df3dfda2c4290148df0d496424c546",
+      "MilkSign": "c528122c5ffbeb57284ac061e9f558d9541d4277fc8cd18a305bbf9685fbf756",
+      "CowSign": "f7c8e9dbcb5b7d6987589a73aa89b231bb14d39e39dc2438a9dfec996b305d8d",
+      "Props": "a49bd8c9d233959e1e8fa7a6ff4f643c12c0d703df067516fddc4873b14a4d7b",
+      "Lamp": "e0fd7a7e15a17a6bb2f2140b70743656db15288b5f4711edc8254a2eba2744fa",
+      "Planters": "d6d8c7fb06eca425b22fe615ae1f9582491166464c91540be756419b1fe69cd9",
+      "COL_Floor": "a4e5cb64fff5573150cee899ecde8deb0ee8ec454b25ff9ab3d59764af734635",
+      "COL_Back": "6c986c91a091759fc5c4ae7c5e7d8fb5dba02df916bcbbf34a31a8fca401c02c",
+      "COL_Left": "5326b87f7a74f8b6c649255626fb05619e8fa1034d8c525bf262a66a08f738a9",
+      "COL_Right": "5326b87f7a74f8b6c649255626fb05619e8fa1034d8c525bf262a66a08f738a9",
+      "COL_FrontLeft": "3163c657e65ebacc569cbd866e0d93ab0a15b469e4a96a115fb12dc3556f69f0",
+      "COL_FrontRight": "3163c657e65ebacc569cbd866e0d93ab0a15b469e4a96a115fb12dc3556f69f0",
+      "COL_Lintel": "f25b93bbbe83405296acabec6083b4e504c42db86edb77a8d75b03e29fdc454c",
+      "COL_Counter": "b48c02cf6eff9054c26e55bc072cff6001f2b75d452813afbc693a31a7b179d0",
+      "Windows": "12ac23838a6677d98e4e5e9c0a5a052c4a0cee7b3dbff1b3db59903cfcd9a829"
+    },
+    "unchangedOtherTrimFaces": "cb59c1044a3ae48aa119e4e9d0e398d5670e0af1990fdc8490d37a735c0ea3f0",
+    "oldSourceSha256": "af48d6a80a62bf279dbcd4603860df8978c62dfc190bc9c9a85a66b5f003ee75",
+    "newSourceSha256": "22748874fb6ee053ef48be01159298c618f5f3584331c6cc98b1a9d8a6929234",
+    "originalOpeningAndCollisionUnchanged": true
+  }
+}

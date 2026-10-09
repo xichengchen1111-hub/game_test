@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 
 // Meter-scaled, editable mesh generation. Top surfaces have world-distance UVs;
 // splitting a footway around a building never stretches its paving texture.
-public static class StreetSurfaces {
+public static partial class StreetSurfaces {
     const string TextureRoot="Assets/Art/Street/";
     const string MeshRoot="Assets/Generated/Street/";
     const float KerbWidth=.22f,GutterWidth=.28f,OuterEdge=7.975f;
@@ -21,6 +21,11 @@ public static class StreetSurfaces {
         public void Triangle(Vector3 a,Vector3 b,Vector3 c) {
             int n=vertices.Count;vertices.AddRange(new[]{a,b,c});
             foreach(var p in new[]{a,b,c})uv.Add(new Vector2(p.x,p.y)/2);
+            indices.AddRange(new[]{n,n+1,n+2});
+        }
+        public void SurfaceTriangle(Vector3 a,Vector3 b,Vector3 c) {
+            int n=vertices.Count;vertices.AddRange(new[]{a,b,c});
+            foreach(var p in new[]{a,b,c})uv.Add(new Vector2(p.x,p.z)/4);
             indices.AddRange(new[]{n,n+1,n+2});
         }
         public void Face(Vector3 a,Vector3 b,Vector3 c,Vector3 d,float tile=4) {

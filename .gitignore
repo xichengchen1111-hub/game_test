@@ -8,6 +8,8 @@ game/UserSettings/
 builds/
 # Local Blender backups and verbose clock-tower verification logs.
 assets/source/clocktower/**/*.blend[0-9]
+assets/source/milkshop/interior-a/*.blend[0-9]
+assets/source/milkshop/*.blend[0-9]
 assets/source/clocktower/**/*.log
 output/demo/clocktower*/**/*.log
 output/demo/*.log
@@ -23,3 +25,27 @@ output/demo/layout/lighting/**/frames/
 output/demo/layout/lighting/**/*.log
 output/demo/street/motion/
 output/demo/street/*.log
+output/demo/day-night/**/window-motion-*/*.png
+output/demo/day-night/regression/
+output/demo/weather/**/window-motion-*/*.png
+output/demo/weather/regression/
+
+# Keep compact map acceptance images and videos; raw motion samples stay local.
+output/demo/full-map/**/window-motion-*/*.png
+output/demo/full-map/**/tower-motion-*/*.png
+output/demo/full-map/**/door-motion-*/*.png
+
+# Keep summaries/videos and selected native frames; bulk review captures stay local.
+output/demo/day-night/**/*.png
+output/demo/weather/**/*.png
+output/demo/milkshop-interior-a/**/*.png
+!output/demo/milkshop-interior-a/1080/milk-a-interior.png
+!output/demo/milkshop-interior-a/1080/milk-a-orders-jan19.png
+!output/demo/milkshop-interior-a/1080/milk-a-orders-jan20.png
+output/demo/full-map/**/*.png
+!output/demo/full-map/map-1080/full-town-overview.png
+!output/demo/full-map/map-1080/station-road-night.png
+!output/demo/full-map/shop-720/unity-exterior.png
+!output/demo/full-map/milk-1080/milk-a-interior.png
+!output/demo/full-map/tower-night/tower-upper-stone-floor.png
+!output/demo/full-map/dialogue-720/dialogue-greeting.png

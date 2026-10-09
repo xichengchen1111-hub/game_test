@@ -1,0 +1,1 @@
+PASS: separate process restored upper-floor position/E06/door/adjusted +90-minute offset; ordinary E interaction reset all four dials to watch +30, watch unchanged; actual controller descended every stair and left the building; door closed from outside.

@@ -112,6 +112,8 @@ public static partial class BuildSlice {
         SharedShell(root.transform,ShopMaterial("ShopIvory"));
         Box("Ceiling",new Vector3(0,3.37f,0),new Vector3(7.4f,.14f,8.2f),ShopMaterial("ShopIvory"),root.transform);
         Roof(root.transform,7.65f,8.45f,3.45f,.18f,Mat("HeritageRoof","#3F494A"));
+        WeatherAuthoring.Shelter(root,new Vector2(7.65f,8.45f),3.45f,.18f);
+        WeatherAuthoring.Shelter(root,new Vector2(7.55f,.94f),3.20f,0,new Vector2(0,-4.50f));
         var kit=WalnutVisual(root.transform);
         foreach(var opening in shopLayout.openings) {
             var frame=Group("Opening "+opening.id,shopLayout.OpeningCentre(opening),root.transform).transform;
@@ -149,15 +151,22 @@ public static partial class BuildSlice {
             var pendant=Cylinder("Pendant shade",new Vector3(side*1.75f,2.9f,-.5f),new Vector3(.50f,.065f,.50f),ShopMaterial("ShopBrass"),root.transform);
             Box("Pendant cord",new Vector3(side*1.75f,3.15f,-.5f),new Vector3(.016f,.42f,.016f),ShopMaterial("ShopIron"),root.transform,false);
             var pool=Point("Warm pendant pool",new Vector3(side*1.75f,2.76f,-.5f),C("#FFC386"),8f,5.7f,true);pool.transform.SetParent(root.transform,true);
+            DayNightLighting.Bind(pool,DayNightLamp.Role.Interior,.85f,side<0?DayNightLighting.ModuleGlow(root.transform,"Module_SoftFurnishings"):new Renderer[0]);
             var facade=Point("Facade sconce pool",new Vector3(side*2.6f,3.45f,-4.65f),C("#FFD4A0"),3,3.5f);facade.transform.SetParent(root.transform,true);
+            DayNightLighting.Bind(facade,DayNightLamp.Role.Exterior,.85f,side<0?DayNightLighting.ModuleGlow(root.transform,"Module_Facade"):new Renderer[0]);
         }
         var task=Point("Repair task light",new Vector3(2.65f,1.35f,1.9f),C("#FFD296"),2.5f,2.3f);task.transform.SetParent(root.transform,true);
+        DayNightLighting.Bind(task,DayNightLamp.Role.Interior,.30f,DayNightLighting.ModuleGlow(root.transform,"Module_RepairBay"));
         var rear=Point("Rear ambient pool",new Vector3(0,2.75f,2.6f),C("#FFD19B"),5.2f,4.4f);rear.transform.SetParent(root.transform,true);
+        DayNightLighting.Bind(rear,DayNightLamp.Role.Interior,.45f);
         PrefabUtility.SaveAsPrefabAsset(root,ShopPrefabPath);
         Debug.Log("WALNUT_SHOP_ASSET_PASS: calibrated FBX, two transparent windows, two physical doors, owner and evidence");
     }
     static void ConfigureWalnutLayout() {
-        // Same world footprint and slice location; this is not a town-map relocation.
+        var map=TownPlan.Current.Building("B02");
+        shopLayout.footprint=new Vector2(7.4f,8.2f);
+        shopLayout.townPosition=new Vector3(map.parts[0].rect[0],0,map.parts[0].rect[1]);
+        shopLayout.townYaw=TownPlan.Yaw(map.front);
         shopLayout.wallHeight=3.3f;shopLayout.roofRise=.18f;
         shopLayout.openings=new[]{
             new BuildingOpening{id="front-left",kind=OpeningKind.Window,wall=BuildingWall.Front,offset=-2,centreHeight=1.85f,size=new Vector2(2.1f,2.2f)},

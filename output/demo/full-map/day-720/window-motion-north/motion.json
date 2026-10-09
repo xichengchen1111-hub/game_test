@@ -1,0 +1,21 @@
+{
+    "actualController": true,
+    "side": -1,
+    "movementMetres": 0.9375643730163574,
+    "framePatchLuminance": [
+        0.38945305347442629,
+        0.38484400510787966,
+        0.3815469443798065,
+        0.3775493800640106,
+        0.37595611810684206,
+        0.37411895394325259,
+        0.3743613064289093,
+        0.37655162811279299,
+        0.3793218731880188,
+        0.3825991451740265,
+        0.3863869607448578,
+        0.39002761244773867,
+        0.39328455924987795
+    ],
+    "verification": "Actual controller lateral motion with normal lighting, shadows and AO; samples at 10 Hz are not the game FPS. Patch follows the same opaque jamb face in world coordinates."
+}

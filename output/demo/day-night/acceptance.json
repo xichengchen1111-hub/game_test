@@ -1,0 +1,87 @@
+{
+  "unity": "6000.3.18f1",
+  "graphics": "Windows D3D11, NVIDIA GeForce RTX 5060 Laptop GPU",
+  "passed": true,
+  "checks": [
+    {
+      "log": "builds/review/day-night/day-1080.log",
+      "passed": true,
+      "seconds": 42.89,
+      "name": "day-1080",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/day-720.log",
+      "passed": true,
+      "seconds": 42.55,
+      "name": "day-720",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/day-relaunch.log",
+      "passed": true,
+      "seconds": 2.46,
+      "name": "day-relaunch",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/milk.log",
+      "passed": true,
+      "seconds": 21.83,
+      "name": "milk",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/milk-relaunch.log",
+      "passed": true,
+      "seconds": 4.6,
+      "name": "milk-relaunch",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/time.log",
+      "passed": true,
+      "seconds": 19.56,
+      "name": "time",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/time-relaunch.log",
+      "passed": true,
+      "seconds": 3.57,
+      "name": "time-relaunch",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/tower.log",
+      "passed": true,
+      "seconds": 85.0,
+      "name": "tower",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/tower-night.log",
+      "passed": true,
+      "seconds": 84.96,
+      "name": "tower-night",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/tower-relaunch.log",
+      "passed": true,
+      "seconds": 54.99,
+      "name": "tower-relaunch",
+      "exitCode": 0
+    },
+    {
+      "log": "builds/review/day-night/shop.log",
+      "passed": true,
+      "seconds": 54.15,
+      "name": "shop",
+      "exitCode": 0
+    }
+  ],
+  "assemblySHA256": "117acca5c19f8ee7422dec3ce76ef175e8a3677155d6a48d358ce5bee8225544",
+  "sourceClock": "GameClock: 17:55 initial, 10 game minutes per 7 real seconds, tower offset +30 minutes",
+  "verification": "Normal rendered player with AO and shadows. Scripted controller/rays and explicit review-only time staging. Not physical keyboard/mouse, blind playtest, low-end hardware or Mac validation."
+}

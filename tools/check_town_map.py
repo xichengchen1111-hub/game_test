@@ -40,9 +40,9 @@ def main():
         tmp=Path(name)
         for n in SOURCES:shutil.copy2(MAP/n,tmp/n)
         for script in ['build_plan.py','check_plan.py','audit_actors.py','export_plan.py','make_viewer.py','make_actor_view.py']:
-            subprocess.run([sys.executable,str(tmp/script)],check=True,stdout=subprocess.PIPE,text=True)
+            subprocess.run([sys.executable,'-X','utf8',str(tmp/script)],check=True,stdout=subprocess.PIPE,text=True,encoding='utf-8')
         d=json.loads((tmp/'plan-data.json').read_text());a=json.loads((tmp/'actor-audit.json').read_text());c=json.loads((tmp/'checks.json').read_text());validate(d,a,c)
-        result=subprocess.run([sys.executable,str(ROOT/'skills/wrong-date-narrative/scripts/validate_story.py'),str(ROOT/'docs/mvp-evidence.json')],check=True,capture_output=True,text=True)
+        result=subprocess.run([sys.executable,'-X','utf8',str(ROOT/'skills/wrong-date-narrative/scripts/validate_story.py'),str(ROOT/'docs/mvp-evidence.json')],check=True,capture_output=True,text=True,encoding='utf-8')
         story=json.loads(result.stdout)
         report=dict(status='PASS',version=d['version'],sourceHashes={n:hashlib.sha256((MAP/n).read_bytes()).hexdigest() for n in SOURCES},contractHash=hashlib.sha256((ROOT/'docs/mvp-evidence.json').read_bytes()).hexdigest(),checkerHash=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),properties=len(d['buildings']),trees=len(d['trees']),actors=len(a['actors']),routes=len(a['routes']),summary=a['summary'],storyValidation=story,limitations=c['limitations']+['Public road centerlines, not pedestrian swept width','No other-town route or train timetable','Positive time budgets are unallocated, not proven activity'])
         (tmp/'verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')

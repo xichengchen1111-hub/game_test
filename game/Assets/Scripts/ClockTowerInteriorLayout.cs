@@ -30,7 +30,7 @@ public sealed class ClockTowerInteriorLayout : MonoBehaviour {
     public const float TreadThickness = .11f;
     public const float StartAngle = -90f;
     public const int OpenHeadroomSteps = 15;
-    public static readonly Vector3 TownPosition = new Vector3(0, 0, 10);
+    public static readonly Vector3 TownPosition = Vector3.zero;
     public static float Riser => (MiddleFloor - GroundFloor) / MiddleStepCount;
     public static float UpperRiser => (MachineFloor - MiddleFloor) / (StepCount - MiddleStepCount - MiddleLandingSegments);
     public static float MaximumRiser => Mathf.Max(Riser, UpperRiser);

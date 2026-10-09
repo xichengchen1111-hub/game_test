@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-09",
+  "status": "A_implemented_runtime_verified",
+  "baseCommit": "0535556",
+  "userRequest": "牛奶屋增加好看的灯与室内氛围、可交互内容；柜台放订单，让玩家查看几月几号送了哪一家店。当前只出设计图。",
+  "method": "Built-in image_gen: three independent concept boards; C had one targeted header correction.",
+  "files": [
+    {
+      "title": "A / 奶白暖灯",
+      "file": "a-enamel-warm.png"
+    },
+    {
+      "title": "B / 墨绿工坊",
+      "file": "b-green-workshop.png"
+    },
+    {
+      "title": "C / 铜灯暮色",
+      "file": "c-amber-lantern.png"
+    }
+  ],
+  "references": {
+    "currentInterior": "output/demo/milkshop/milkshop-inside.png",
+    "currentExterior": "output/demo/milkshop/milkshop-overview.png",
+    "actualWindow": "output/demo/milkshop/windows/window-south-inside.png",
+    "architectureSource": "assets/source/milkshop/tools/build_model.py",
+    "originalStory": {
+      "file": "错日证词_修订稿.docx",
+      "paragraph": 91,
+      "text": "送奶站是小作坊室内箱庭，有空奶罐、派送本；派送本按送达先后记行程，妻子家前后两户有接收签名。"
+    },
+    "currentStory": "docs/mvp-demo.md",
+    "currentEvidence": "docs/mvp-evidence.json:E04/E05/E06",
+    "currentDialogue": "game/Assets/Resources/MilkboyDialogue.json"
+  },
+  "proposedOrderRecord": {
+    "placement": "既有后柜台朝玩家的前沿，独立矮阅读架；不被奶瓶、秤或台灯挡住。所有方案的主交互。",
+    "object": "送奶订单簿/送奶记录；日期分页与月份索引；可从柜台客侧查看。",
+    "flow": [
+      "靠近柜台，E查看订单",
+      "展开纸面查看，放大阅读",
+      "按月份与上一日/下一日翻页",
+      "读取当日多条送达记录；Esc退出"
+    ],
+    "fields": [
+      "配送日期（年/月/日）",
+      "送达店家",
+      "数量",
+      "送达确认"
+    ],
+    "semantics": "订单需区分预订和实际送达；设计图右下为有已送确认的送奶记录示意，不能把只有预订的单据写成实际送达。",
+    "records": "用户2026-10-09确认：1931-01-19钟表铺2瓶、1931-01-20旅馆3瓶，均已送，作为日常背景记录。",
+    "history": "历史纸面日期与条目固定，不随当前游戏时钟或跨日自动改写。",
+    "relationToE05": "作为用户新提议的柜台送奶记录设计，不自动授予E05、不迁移送奶车上的原簿、不把店家样例替换成妻子家前后两户。若后续决定将柜台材料接入E05，必须另明确原件/副本来源、两户签收及独立时间依据并同步合同。",
+    "playerText": "只显示物件来源与原始记录；不输出时钟偏差、真实送奶时刻、身份/日期推理答案或开发标签。",
+    "runtimeTypography": "正式条目由数据与确定性中文排版生成，不使用生成图片中的字作为证物纹理。"
+  },
+  "secondaryInteractions": [
+    {
+      "object": "台灯拉绳或开关",
+      "action": "开关阅读灯",
+      "narrative": "日常互动，无证物或解锁作用"
+    },
+    {
+      "object": "奶瓶与纸签",
+      "action": "近看瓶签和容器",
+      "narrative": "日常器物，不推断额外案情"
+    },
+    {
+      "object": "空奶罐与回收箱",
+      "action": "查看空瓶/空罐陈设",
+      "narrative": "呼应原稿送奶作坊，无新增核心证物"
+    },
+    {
+      "object": "柜台服务铃",
+      "action": "按响短铃声",
+      "narrative": "可选互动；不自动召唤NPC、给提示或解锁"
+    }
+  ],
+  "variants": [
+    {
+      "key": "A",
+      "lighting": "两只奶白搪瓷吊灯＋奶白罩铜台灯",
+      "mood": "最温暖亲切，与现有黑白牛奶屋和钟表屋相容",
+      "recommended": true
+    },
+    {
+      "key": "B",
+      "lighting": "墨绿搪瓷吊灯＋绿玻璃阅读台灯＋小壁灯",
+      "mood": "日常派送工坊，记录区更有工作感"
+    },
+    {
+      "key": "C",
+      "lighting": "铜制磨砂玻璃吊灯＋两只小壁灯＋低矮铜台灯",
+      "mood": "黄铜暖光与蓝灰窗光，暮色氛围更强"
+    }
+  ],
+  "implementationConstraints": [
+    "保留同一建筑的室内/外、既有单层体量、店面奶牛花纹、大奶牛招牌、milk字样、两侧透明窗与实际窗外景物。",
+    "图片为造型/气氛提案，图中窗框高度、柜量、灯距和装饰不得直接作为施工尺寸；仍以已有共用源的7.2×5.8m、柜台/门窗尺寸为准。",
+    "主要通道净空与纸面可读性优先，灯、订单架、奶罐不挡入口/窗户/玩家站位。",
+    "低配优先：拟以少数真实灯光实现，其他灯壳/发光和烘焙辅助；避免多盏实时阴影叠加。尚未做光照成本实测。",
+    "不新增会提供另一准确时间依据的店内工作挂钟；原稿挂钟提及不覆盖最新塔钟/Q怀表比较规则。",
+    "保留E04/既有送奶少年与正常存档；不把纸面设计稿或外观图当成已实现交互。"
+  ],
+  "review": {
+    "inspected": [
+      "A",
+      "B",
+      "C final"
+    ],
+    "verified": "三组图均有室内、灯具、柜台物件和订单页；可见暖光/蓝灰窗光、黑白木墙、单后柜台、两侧窗；订单示意字段和两条样例可读。",
+    "limitations": "生成板视角间有道具/架子细节变化，窗比例比原模型夸张，须在实际建模时校准。未修改模型/Unity/证物合同，未进行灯光或玩法验收。",
+    "revision": "C初稿多出国家标签，内置image_gen定向修图去除，仅保留青川镇和1931年1月。"
+  },
+  "selected": "A",
+  "promptSet": "generation-prompts.json",
+  "cHeaderCorrectionPrompt": "Edit this concept sheet with ONE precise correction only: in the small top-right header, remove the unrequested country designation '中国'. Replace that header with the exact text '《错日证词》 · 青川镇 · 1931年1月'. Keep the large title C / 铜灯暮色, all four panels, lighting, furniture, bottles, order-book contents, mock-data note, paper colors, image dimensions and every other detail identical. Do not regenerate the interior or add content.",
+  "selectionDate": "2026-10-09",
+  "userImplementationRequest": "做A款式，牛奶屋大体不用改动就是内部细节改动。",
+  "implementation": {
+    "editableSource": "assets/source/milkshop/interior-a/MilkShopInteriorA.blend",
+    "unitySource": "game/Assets/Editor/MilkShopInteriorAsset.cs",
+    "records": "game/Assets/Resources/MilkDeliveryOrders.json",
+    "verification": "output/demo/milkshop-interior-a/README.md"
+  }
+}

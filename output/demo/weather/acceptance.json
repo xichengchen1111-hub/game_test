@@ -1,0 +1,97 @@
+{
+  "passed": true,
+  "unity": "6000.3.18f1",
+  "urp": "17.0.1",
+  "hardware": "NVIDIA GeForce RTX 5060 Laptop GPU / Windows D3D11",
+  "assemblySha256": "ff0c6e14d487508817f91eaf54d209defc7fff9c08ab5f6be6dd9796e9b48fa8",
+  "checks": [
+    {
+      "seconds": 21.99,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\weather-1080.log",
+      "passed": true,
+      "exitCode": 0,
+      "name": "weather-1080"
+    },
+    {
+      "seconds": 21.84,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\weather-720.log",
+      "passed": true,
+      "exitCode": 0,
+      "name": "weather-720"
+    },
+    {
+      "seconds": 2.38,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\weather-relaunch.log",
+      "passed": true,
+      "exitCode": 0,
+      "name": "weather-relaunch"
+    },
+    {
+      "seconds": 42.44,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\day.log",
+      "passed": true,
+      "exitCode": 0,
+      "name": "day"
+    },
+    {
+      "seconds": 2.39,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\day-relaunch.log",
+      "passed": true,
+      "exitCode": 0,
+      "name": "day-relaunch"
+    },
+    {
+      "seconds": 21.81,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\milk.log",
+      "passed": true,
+      "exitCode": 0,
+      "name": "milk"
+    },
+    {
+      "seconds": 19.44,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\time.log",
+      "passed": true,
+      "exitCode": 0,
+      "name": "time"
+    },
+    {
+      "seconds": 85.02,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\tower-night.log",
+      "passed": true,
+      "exitCode": 0,
+      "name": "tower-night"
+    },
+    {
+      "seconds": 54.11,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\shop.log",
+      "passed": true,
+      "exitCode": 0,
+      "name": "shop"
+    },
+    {
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\milk-relaunch.log",
+      "exitCode": 0,
+      "seconds": 4.79,
+      "name": "milk-relaunch",
+      "passed": true
+    },
+    {
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\time-relaunch.log",
+      "exitCode": 0,
+      "seconds": 3.55,
+      "name": "time-relaunch",
+      "passed": true
+    },
+    {
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\weather\\tower-relaunch.log",
+      "exitCode": 0,
+      "seconds": 54.94,
+      "name": "tower-relaunch",
+      "passed": true
+    }
+  ],
+  "normalSaveUnchanged": true,
+  "normalSaveSha256": "FDE6BCE28F10294A989DC5052A88111F08855E624BC756BEFD3A1BB326B58839",
+  "scope": "Rendered native Windows player, ordinary interaction rays and scripted CharacterController; isolated time/weather staging. No physical keyboard/mouse input or low-end FPS benchmark.",
+  "imageHandling": "Comparison resizes full actual frames and adds labels; no recoloring or AI editing. Motion clips use 10 Hz capture sampling, not game FPS."
+}

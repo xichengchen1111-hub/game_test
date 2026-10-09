@@ -1,0 +1,1 @@
+PASS: separate process restored interior position, elapsed clock, lamp off and selected Jan19 page; normal ray reopened ledger; controller walked out.

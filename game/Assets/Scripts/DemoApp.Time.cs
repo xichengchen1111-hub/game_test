@@ -10,7 +10,7 @@ public partial class DemoApp {
     bool clockSaveLoadedAtStartup;
 
     public double ElapsedGameMinutes => gameClock.ElapsedGameMinutes;
-    public bool GameTimePaused => !sceneReady || Blocked;
+    public bool GameTimePaused => !sceneReady || Blocked || (Review && dayNightReviewFrozen);
 
     static double ReadElapsedGameMinutes(SliceSave saved) =>
         saved.gameClockRevision > 0 && GameClock.ValidElapsed(saved.elapsedGameMinutes) ? saved.elapsedGameMinutes : 0;

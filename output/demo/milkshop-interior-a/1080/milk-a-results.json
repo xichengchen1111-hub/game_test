@@ -1,0 +1,14 @@
+{
+    "passed": true,
+    "continuousEntry": true,
+    "actualRayAllFiveObjects": true,
+    "orderDatesAndQuantities": true,
+    "timeAndMovementPaused": true,
+    "noEvidenceGranted": true,
+    "bothWindowCollisions": true,
+    "lampPersistence": true,
+    "originalShellUnchanged": true,
+    "width": 1920,
+    "height": 1080,
+    "verification": "Rendered Windows D3D11 player; scripted CharacterController and normal TryInteract rays. Page navigation invokes the same UI handlers. Not physical keyboard input or blind playtest."
+}

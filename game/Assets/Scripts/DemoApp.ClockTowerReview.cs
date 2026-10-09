@@ -97,6 +97,10 @@ public partial class DemoApp {
         result.upperCobwebs=true;result.liveDriftingDust=true;result.particlesBefore=firstCount;result.particlesAfter=secondCount;result.movingParticles=moved;
     }
     IEnumerator ReviewClockTower() {
+        if(Review&&Array.IndexOf(Environment.GetCommandLineArgs(),"--night-illumination")>=0) {
+            gameClock=new GameClock(GameClock.WrapMinutes(-GameClock.InitialMinutes));
+            DayNightCycle.Instance.Apply(Minutes);
+        }
         yield return new WaitForSeconds(.7f);
         var tower=FindFirstObjectByType<ClockTowerInstance>();var layout=tower.GetComponent<ClockTowerInteriorLayout>();
         NeedTower(tower&&layout&&layout.staircaseCollider&&layout.platformCollider,"Missing shared tower/physical stairs");
@@ -105,11 +109,11 @@ public partial class DemoApp {
         int scenes=SceneManager.sceneCount,instanceId=tower.GetInstanceID();
         NeedTower(FindObjectsByType<ClockDial>(FindObjectsSortMode.None).All(d=>d.streetClock),"Another accurate world clock bypasses Q pocket watch");
         NeedTower(tower.GetComponentsInChildren<ClockDial>().Length==4,"Tower needs four synchronized clock faces");
-        yield return WalkTo(new Vector3(0,.1f,-9f));
+        yield return WalkTo(new Vector3(0,.1f,-19f));
         player.Aim(tower.LocalToWorld(new Vector3(0,T.ExteriorHeight*.47f,0)));yield return Capture("tower-exterior-front");
-        yield return WalkTo(new Vector3(5,.1f,-7));
+        yield return WalkTo(new Vector3(5,.1f,-17));
         player.Aim(tower.LocalToWorld(new Vector3(0,T.ExteriorHeight*.47f,0)));yield return Capture("tower-exterior-corner");
-        yield return WalkTo(new Vector3(0,.1f,-1.5f));
+        yield return WalkTo(new Vector3(0,.1f,-11.5f));
         player.Aim(tower.LocalToWorld(new Vector3(0,T.DialHeight,-T.DialPlaneDistance)));
         ToggleWatch();yield return new WaitForSeconds(.4f);yield return Capture("tower-watch-comparison");
         yield return new WaitForEndOfFrame();RequireSharedDialHands();
@@ -119,7 +123,7 @@ public partial class DemoApp {
         for(int i=0;i<dials.Length;i++)NeedTower(Quaternion.Angle(handsBefore[i],dials[i].minuteHand.localRotation)>55,"A physical tower minute hand stopped moving");
         NeedTower(Mathf.Abs(Mathf.Repeat(Minutes-before,1440)-10)<.8f,"Q view does not continue advancing at the configured ratio");
         ToggleWatch();
-        yield return WalkTo(new Vector3(0,.1f,6.8f));
+        yield return WalkTo(new Vector3(0,.1f,-3.2f));
         var plaque=tower.GetComponentsInChildren<Interactable>().Single(i=>i.evidenceId=="E06");
         player.Aim(plaque.transform.position);yield return null;
         NeedTower(TryInteract()&&inspected&&inspected.evidenceId=="E06","Wall plaque cannot be read with ordinary interaction ray");
@@ -127,9 +131,9 @@ public partial class DemoApp {
         var door=Mechanism("clocktower-door");
         if(door.IsOpen){door.Use();yield return new WaitForSeconds(.9f);}
         player.scriptedDirection=Vector3.forward;yield return new WaitForSeconds(.75f);player.scriptedDirection=Vector3.zero;
-        NeedTower(player.transform.position.z<8.0f,"Closed tower door does not block player");
+        NeedTower(tower.transform.InverseTransformPoint(player.transform.position).z<-2.0f,"Closed tower door does not block player");
         // Back away from the outward-swinging leaf before opening it.
-        yield return WalkTo(new Vector3(0,.1f,6.8f));player.Aim(door.GetComponent<BoxCollider>().bounds.center);yield return null;
+        yield return WalkTo(new Vector3(0,.1f,-3.2f));player.Aim(door.GetComponent<BoxCollider>().bounds.center);yield return null;
         NeedTower(TryInteract()&&door.IsOpen&&!door.LastUseBlocked,"Tower door ray or safe outward swing failed");
         yield return new WaitForSeconds(.9f);yield return Capture("tower-door-open");
         var path=layout.WorldAscendingPath();
@@ -191,6 +195,7 @@ public partial class DemoApp {
         yield return TowerWalk(tower.LocalToWorld(new Vector3(-1.20f,T.MachineFloor,1.12f)));
         yield return TowerWalk(tower.LocalToWorld(new Vector3(-1.05f,T.MachineFloor,.60f)));
         yield return TowerWalk(tower.LocalToWorld(layout.machineStandingPoint));
+        if(Array.IndexOf(Environment.GetCommandLineArgs(),"--record-tower-surfaces")>=0)yield return ReviewTowerSurfaceMotion(tower);
         Save();NeedTower(state.y>T.MachineFloor-.2f&&state.openFixtures.Contains("clocktower-door"),"Upper-floor save/door state was not preserved");
         File.WriteAllText(Path.Combine(captures,"clocktower-results.json"),JsonUtility.ToJson(new TowerResult{passed=true,referenceExterior=tower.referenceExteriorImported,
             towerHeight=T.ExteriorHeight,middleFloor=T.MiddleFloor,machineFloor=T.MachineFloor,realStairWaypoints=path.Length,footprints=layout.footprintCount,continuousTown=true,closedDoorBlocks=true,fourMovingDials=true,upperFloorSave=true,
@@ -279,13 +284,13 @@ public partial class DemoApp {
         yield return Capture("tower-reset-after-reload");CloseInspect();
         var path=layout.WorldAscendingPath();
         for(int i=path.Length-1;i>=0;i--)yield return TowerWalk(path[i]);
-        yield return WalkTo(new Vector3(0,.1f,6.8f));
+        yield return WalkTo(new Vector3(0,.1f,-3.2f));
         player.Aim(door.GetComponent<BoxCollider>().bounds.center);yield return null;
         NeedTower(TryInteract()&&!door.IsOpen,"Door cannot close after descending and leaving tower");yield return new WaitForSeconds(.9f);
         NeedTower(player.transform.position.y<.3f,"Actual descending route failed");
         NeedTower(!SafePosition(new Vector3(5,T.MachineFloor,10))&&!SafePosition(new Vector3(0,T.ExteriorHeight+1,10)),"Upper-floor exception weakened town fall/height recovery");
         yield return Capture("tower-exit-after-descent");
-        yield return WalkTo(new Vector3(0,.1f,-1.5f));
+        yield return WalkTo(new Vector3(0,.1f,-11.5f));
         player.Aim(tower.LocalToWorld(new Vector3(0,T.DialHeight,-T.DialPlaneDistance)));
         ToggleWatch();yield return Capture("tower-reset-ground-comparison");
         yield return new WaitForEndOfFrame();RequireSharedDialHands();

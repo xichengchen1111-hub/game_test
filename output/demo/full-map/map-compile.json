@@ -1,0 +1,12 @@
+{
+  "source": "c1ef6c5953c618703d8077d2ec24d523c1a84d16cdbb37df6f533e6b67244574",
+  "buildings": 70,
+  "trees": 217,
+  "roads": 11,
+  "surfaceChunks": 147,
+  "surfaceTriangles": 1618,
+  "lanterns": 123,
+  "disjointSurfaceAreaError": 0.0,
+  "milkPlacement": "Existing house retained at scale .9 inside B04 production parcel; remaining production floor is placeholder yard",
+  "scope": "Map compilation and planar surface partition. Native Unity collision and rendering require player acceptance."
+}

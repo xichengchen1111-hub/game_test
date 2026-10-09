@@ -1,0 +1,57 @@
+{
+  "build": "Unity 6000.3.18f1 Windows x64 D3D11",
+  "finalBuildSha256": "5cf8283e7cb3761b6fcbba8e2c9f36a298a75883cc65ca7719b008f3a7aa231e",
+  "finalMilkReviews": [
+    {
+      "passed": true,
+      "name": "milk-final-1080",
+      "exitCode": 0,
+      "seconds": 22.53,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\milk-interior-a\\milk-final-1080.log"
+    },
+    {
+      "passed": true,
+      "name": "milk-final-720",
+      "exitCode": 0,
+      "seconds": 22.02,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\milk-interior-a\\milk-final-720.log"
+    },
+    {
+      "passed": true,
+      "name": "milk-final-relaunch",
+      "exitCode": 0,
+      "seconds": 4.74,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\milk-interior-a\\milk-final-relaunch.log"
+    }
+  ],
+  "sharedStateBeforeWindowGeometryOnlyChange": [
+    {
+      "exitCode": 0,
+      "passed": true,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\milk-interior-a\\time-regression.log",
+      "seconds": 15.77,
+      "name": "time-regression"
+    },
+    {
+      "exitCode": 0,
+      "passed": true,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\milk-interior-a\\time-relaunch.log",
+      "seconds": 4.44,
+      "name": "time-relaunch"
+    },
+    {
+      "exitCode": 0,
+      "passed": true,
+      "log": "D:\\AllPersonalProjects\\Chenchengame\\game_test\\builds\\review\\milk-interior-a\\shop-regression.log",
+      "seconds": 54.22,
+      "name": "shop-regression"
+    }
+  ],
+  "windowMotion": "window-motion-results.json",
+  "sourceRepair": "assets/source/milkshop/verification/window-joinery-repair.json",
+  "normalSaveIsolation": "save-isolation.json",
+  "limitations": [
+    "Scripted player/controller/UI handlers; not physical keyboard/mouse or blind playtest",
+    "No physical low-end FPS benchmark or Mac rebuild"
+  ]
+}

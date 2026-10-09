@@ -376,21 +376,23 @@ public static class ClockTowerInterior {
     static void BuildLighting(Transform kit) {
         var fittings = new Geometry();
         var lampGlass = new Geometry();
+        var warmLights = new List<Light>();
         float[] serviceSegments = { 5, 25, 50, 74 };
         for (int i = 0; i < serviceSegments.Length; i++) {
             float y = L.PositionHeight(serviceSegments[i]) + 2.0f;
             float z = i % 2 == 0 ? -.93f : .93f;
-            AddLight("Warm stair service lamp " + i, new Vector3(-1.10f, y, z),
-                new Color(1, .81f, .60f), 4.2f, 3.5f, kit);
+            warmLights.Add(AddLight("Warm stair service lamp " + i, new Vector3(-1.10f, y, z),
+                new Color(1, .81f, .60f), 4.2f, 3.5f, kit));
             Vector3 point = new Vector3(-1.30f, y, z);
             fittings.Box(point, new Vector3(.18f, .28f, .13f));
             fittings.Tube(point, point + new Vector3(.22f, -.08f, 0), .024f, 8);
             lampGlass.Tube(point + new Vector3(.22f, -.16f, 0), point + new Vector3(.22f, -.035f, 0), .047f, 12);
         }
         float machineY = L.MachineFloor + 2.10f;
-        AddLight("Warm machine room service lamp", new Vector3(-L.ChamberInteriorWidth/2 + .415f, machineY, -.88f), new Color(1, .82f, .62f), 4.4f, 3.3f, kit);
-        AddLight("Cool light from middle floor opening", new Vector3(.96f, L.MiddleFloor + 1.35f, .60f),
+        warmLights.Add(AddLight("Warm machine room service lamp", new Vector3(-L.ChamberInteriorWidth/2 + .415f, machineY, -.88f), new Color(1, .82f, .62f), 4.4f, 3.3f, kit));
+        var natural=AddLight("Cool light from middle floor opening", new Vector3(.96f, L.MiddleFloor + 1.35f, .60f),
             new Color(.64f, .71f, .86f), 1.10f, 2.8f, kit);
+        DayNightLighting.Bind(natural,DayNightLamp.Role.WindowDaylight);
         var machineBracket = new Vector3(-L.ChamberInteriorWidth/2 + .225f, machineY, -.88f);
         fittings.Box(machineBracket, new Vector3(.18f, .28f, .13f));
         fittings.Tube(machineBracket, machineBracket + new Vector3(.22f, -.08f, 0), .024f, 8);
@@ -399,13 +401,15 @@ public static class ClockTowerInterior {
         var glow = Material("Tower service lamp warm glass", "#DCC59A", 0, .28f);
         glow.EnableKeyword("_EMISSION"); glow.SetColor("_EmissionColor", new Color(1, .69f, .33f) * 1.9f);
         EditorUtility.SetDirty(glow);
-        Create("Small amber maintenance lamp glass", lampGlass, glow, kit, false);
+        var bulb=Create("Small amber maintenance lamp glass", lampGlass, glow, kit, false).GetComponent<Renderer>();
+        for(int i=0;i<warmLights.Count;i++)DayNightLighting.Bind(warmLights[i],DayNightLamp.Role.Interior,.08f,i==0?new[]{bulb}:new Renderer[0]);
     }
 
-    static void AddLight(string name, Vector3 position, Color color, float intensity, float range, Transform parent) {
+    static Light AddLight(string name, Vector3 position, Color color, float intensity, float range, Transform parent) {
         var light = Group(name, parent).gameObject.AddComponent<Light>();
         light.transform.localPosition = position; light.type = LightType.Point;
         light.color = color; light.intensity = intensity; light.range = range; light.shadows = LightShadows.None;
+        return light;
     }
 
     static void Shoe(Geometry sole, Geometry ridge, Vector3 centre, float direction, bool left, float scale) {

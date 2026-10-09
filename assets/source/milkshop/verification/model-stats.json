@@ -1,0 +1,17 @@
+{
+  "asset": "MilkShop1931",
+  "footprint_m": [
+    7.2,
+    5.8
+  ],
+  "visual_meshes": 12,
+  "units": "metres",
+  "triangles": 52396,
+  "windowRepair": "5cm return overlap, 7cm depth clearance, butt crossbars, one surface per glass pane",
+  "doorFrameRepair": {
+    "insideProjectionM": 0.08,
+    "buttGapM": 0.003,
+    "lintelBottomM": 2.73,
+    "jambTopM": 2.727
+  }
+}

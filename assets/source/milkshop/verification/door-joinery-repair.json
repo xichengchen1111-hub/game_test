@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "reopened": true,
+  "settings": {
+    "insideProjectionM": 0.08,
+    "buttGapM": 0.003,
+    "lintelBottomM": 2.73,
+    "jambTopM": 2.727
+  },
+  "unchangedNonTrimMeshes": {
+    "Shell": "05ce6ffcd04943835dd8ff161f770277ee45190f8a39c754cd40a45a0be67c86",
+    "Interior": "d2a4eeb59f3dcf53ebca7b9e076a79e6eff6fb1d7791aa2a3a996b359945d305",
+    "Door_Left": "fed9facc685f5af73e4aeaf788f5613a4636f7c05fac4ba5a1da1d373b30da5c",
+    "Door_Right": "426ebcbbf640a1dbf9de352d43ad20b1e9e4bb9d4369a60c690b255326c3dd7d",
+    "Roof": "5abe56c3aa450cd877068c44d53a6e7993df3dfda2c4290148df0d496424c546",
+    "MilkSign": "c528122c5ffbeb57284ac061e9f558d9541d4277fc8cd18a305bbf9685fbf756",
+    "CowSign": "f7c8e9dbcb5b7d6987589a73aa89b231bb14d39e39dc2438a9dfec996b305d8d",
+    "Props": "a49bd8c9d233959e1e8fa7a6ff4f643c12c0d703df067516fddc4873b14a4d7b",
+    "Lamp": "e0fd7a7e15a17a6bb2f2140b70743656db15288b5f4711edc8254a2eba2744fa",
+    "Planters": "d6d8c7fb06eca425b22fe615ae1f9582491166464c91540be756419b1fe69cd9",
+    "COL_Floor": "a4e5cb64fff5573150cee899ecde8deb0ee8ec454b25ff9ab3d59764af734635",
+    "COL_Back": "6c986c91a091759fc5c4ae7c5e7d8fb5dba02df916bcbbf34a31a8fca401c02c",
+    "COL_Left": "5326b87f7a74f8b6c649255626fb05619e8fa1034d8c525bf262a66a08f738a9",
+    "COL_Right": "5326b87f7a74f8b6c649255626fb05619e8fa1034d8c525bf262a66a08f738a9",
+    "COL_FrontLeft": "3163c657e65ebacc569cbd866e0d93ab0a15b469e4a96a115fb12dc3556f69f0",
+    "COL_FrontRight": "3163c657e65ebacc569cbd866e0d93ab0a15b469e4a96a115fb12dc3556f69f0",
+    "COL_Lintel": "f25b93bbbe83405296acabec6083b4e504c42db86edb77a8d75b03e29fdc454c",
+    "COL_Counter": "b48c02cf6eff9054c26e55bc072cff6001f2b75d452813afbc693a31a7b179d0",
+    "Windows": "12ac23838a6677d98e4e5e9c0a5a052c4a0cee7b3dbff1b3db59903cfcd9a829"
+  },
+  "unchangedOtherTrimFaces": "cb59c1044a3ae48aa119e4e9d0e398d5670e0af1990fdc8490d37a735c0ea3f0",
+  "oldSourceSha256": "af48d6a80a62bf279dbcd4603860df8978c62dfc190bc9c9a85a66b5f003ee75",
+  "newSourceSha256": "22748874fb6ee053ef48be01159298c618f5f3584331c6cc98b1a9d8a6929234",
+  "originalOpeningAndCollisionUnchanged": true
+}

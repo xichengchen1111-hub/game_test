@@ -1,0 +1,16 @@
+{
+    "passed": true,
+    "collisionUnchanged": true,
+    "removedTriangles": 24,
+    "overlappingTriangles": 24,
+    "remainingTriangles": 0,
+    "surfaces": [
+        "Exterior_IvoryBrick: 12",
+        "Tower west inner wall: 2",
+        "Tower east inner wall: 2",
+        "Tower north inner wall: 2",
+        "Tower entrance pier: 2",
+        "Tower entrance pier: 2",
+        "Tower entrance lintel: 2"
+    ]
+}

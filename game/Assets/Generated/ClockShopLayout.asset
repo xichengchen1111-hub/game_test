@@ -17,8 +17,8 @@ MonoBehaviour:
   wallHeight: 3.3
   wallThickness: 0.2
   roofRise: 0.18
-  townPosition: {x: 9.72, y: 0, z: 1}
-  townYaw: 90
+  townPosition: {x: -35, y: 0, z: 31.8}
+  townYaw: 0
   interiorSpawn: {x: 0, y: 0.03, z: -2.2}
   entranceId: front-door
   openings:
