@@ -1,0 +1,149 @@
+{
+  "status": "interior_decoration_verified_deployed_and_opened",
+  "images": {
+    "reference-approved-v3.png": "957b91f23779119e3848aaa9d593a0e55f5dd7e8eb41b2ee33bba733966fcfa5",
+    "reference-meshy.png": "e0f1ca94c103bec3ab593a6a87eade5bd08b2f2747ecd0170ad9908c4d583065"
+  },
+  "referencePreparation": "ImageGen derivative of approved v3; remove background, clock hands and plaque letters",
+  "meshyTaskId": null,
+  "modelLicense": null,
+  "userClarification": {
+    "date": "2026-10-09",
+    "request": "用户接受现有游戏钟楼，要求增高至约20米并呈现三层体量；本轮以已有本地参考图重建资产为修改基础",
+    "pipeline": "Revise existing authored Blender reconstruction and shared Unity layout; image-conditioned model inference is not a prerequisite for this height revision.",
+    "externalUploadRequested": false,
+    "meshyGenerationRequired": false,
+    "formalReplacementPendingRuntimeVerification": false,
+    "imageConditionedInferenceExecuted": false,
+    "priorImage3DResearch": "Retain prior distinction between neural image-conditioned inference and authored reference reconstruction; accepting the current tower does not imply neural inference was performed.",
+    "formalReplacementPendingDesktopDeployment": false,
+    "latestInteriorRequest": "保持已交付20米塔及其行走结构，添加墙地砖石纹理、下淡上厚积灰，同87脚印越上越清晰但不增密，顶层与上段扶手6处蛛网和最多32粒少量浮尘"
+  },
+  "historicalMeshyAttempt": {
+    "referenceUploaded": false,
+    "generationSubmitted": false,
+    "generationCreditsConsumed": false,
+    "note": "Earlier website interpretation superseded by latest user clarification; do not resume upload or route through another service."
+  },
+  "referenceFilenames": "reference-meshy.png and meshy-reference-prompt.txt retain their historical filenames; they are local modeling references and do not assert Meshy model provenance.",
+  "localModel": {
+    "source": "exterior/ClockTower1931.blend",
+    "fbx": "../../../game/Assets/Art/ClockTower1931/ClockTower1931.fbx",
+    "script": "../../../tools/clocktower/build_exterior.py",
+    "externalInferenceUsed": false,
+    "historical9_5mRuntimeEvidence": "../../../output/demo/clocktower/",
+    "currentRuntimeEvidence": "../../../output/demo/clocktower-20m/",
+    "staticInspection": "exterior/verification/inspection-results.json",
+    "runtimeStatus": "12 visible-player suites passed for the 20m revision. Final review-camera-only build and middle-save rerun passed; geometry and controller unchanged. Desktop app backed up, replaced, and opened at normal menu with normal save unchanged.",
+    "sourceSha256": "759815ba68b3331d418075d9e547c70c5cbf69679aba1346daa91661af3d7dcb",
+    "fbxSha256": "d863ab75a0aadd77c2affec74e94c173c4b90cf7e6b5c1c973697757297406c3"
+  },
+  "heightRevision": {
+    "height_m": 20.0,
+    "exterior_width_m": 3.6,
+    "interior_clear_width_m": 3.05,
+    "levels": 3,
+    "floor_elevations_m": [
+      0.12,
+      8.530435,
+      15.0
+    ],
+    "inner_wall_height_m": 18.3,
+    "dial_center_height_m": 16.72,
+    "dial_diameter_m": 2.2,
+    "stair_segments": {
+      "total": 92,
+      "lower_risers": 52,
+      "flat_middle_segments": 5,
+      "upper_risers": 35,
+      "middle_landing_angle_degrees": 90
+    },
+    "review_path_feet_points": 101,
+    "human_scale_door_and_brick_preserved": true,
+    "staticReimportChecked": true,
+    "runtimeVerificationComplete": true,
+    "legacySaveMigration": "Five independent-process cases passed: old stair indices 1, 12, 20, 31 and previous machine room map to safe new positions, preserving clock/evidence/door/dialogue; middle-level save and upper-level relaunch/descent also passed.",
+    "formalMacBuildComplete": true,
+    "staticLayoutChecksPassed": 18,
+    "meshGroups": 7,
+    "triangles": 230159,
+    "footprintCount": 87,
+    "runtimeVerification": {
+      "suiteCount": 12,
+      "allPassed": true,
+      "sourceResults": "../../../builds/clocktower-20m/verification/results.json",
+      "suiteNames": [
+        "time",
+        "time-relaunch",
+        "tower-1080",
+        "tower-relaunch",
+        "tower-720",
+        "shop",
+        "legacy-step-1",
+        "legacy-step-12",
+        "legacy-step-20",
+        "legacy-step-31",
+        "legacy-upper",
+        "middle-save"
+      ],
+      "scope": "Visible native player with scripted real CharacterController and interaction rays; not physical keyboard input, blind playtest or complete-town verification."
+    },
+    "finalCameraReviewStatus": "Final build-review-camera.log passed; middle-save rerun passed in 4.2s and actual middle-floor image visually inspected. Geometry/controller unchanged.",
+    "desktopDeploymentStatus": "deployed_and_opened_normal_menu_with_save_unchanged"
+  },
+  "interiorDecorationRevision": {
+    "date": "2026-10-09",
+    "baseRevision": "heightRevision (20m, previously verified and deployed)",
+    "geometryAndTimeRulesChanged": false,
+    "sourceFiles": [
+      "../../../game/Assets/Editor/ClockTowerInteriorSurfaces.cs",
+      "../../../game/Assets/Editor/ClockTowerAtmosphere.cs",
+      "../../../game/Assets/Editor/ClockTowerInterior.cs"
+    ],
+    "research": "interior-reference-research.json",
+    "referenceSources": [
+      {
+        "id": "NT_DUST",
+        "title": "Tackling dust in historic houses",
+        "url": "https://www.nationaltrust.org.uk/our-cause/history-heritage/tackling-dust-in-historic-houses"
+      },
+      {
+        "id": "EH_ICOM_DUST",
+        "title": "Managing dust in historic houses – a visitor/conservator interface",
+        "url": "https://www.english-heritage.org.uk/siteassets/home/learn/conservation/collections-advice--guidance/icom14dust.pdf"
+      },
+      {
+        "id": "NHM_WEB_TYPES",
+        "title": "Spider webs: not just for Halloween",
+        "url": "https://www.nhm.ac.uk/discover/spider-webs.html"
+      },
+      {
+        "id": "NHM_SILK",
+        "title": "What are spider webs made of? And how do they spin them?",
+        "url": "https://www.nhm.ac.uk/discover/what-are-spider-webs-made-of.html"
+      },
+      {
+        "id": "OPB_CLOCKTOWER",
+        "title": "Inside Union Station clock tower: brick masonry and maintenance stairs",
+        "url": "https://www.opb.org/article/2024/03/11/time-marches-forward-at-portland-historic-union-station-on-daylight-saving/"
+      }
+    ],
+    "textures": "Locally authored 512px limestone brick and worn paving albedo/normal textures; no reference photos copied as game textures.",
+    "dustHeightMaterialBands": 8,
+    "footprints": {
+      "count": 87,
+      "sameSequenceAndPositions": true,
+      "upperDensityIncreased": false,
+      "readability": "Existing impressions become clearer toward the upper floor through dust contrast and broken edges, without more impressions."
+    },
+    "cobwebCount": 6,
+    "maximumAirborneDustParticles": 32,
+    "decorationCollidersAdded": false,
+    "implementationStatus": "Complete: locally generated brick/stone surfaces, eight dust bands, same 87 impressions, six anchored webs and sparse upper dust.",
+    "buildStatus": "passed: builds/clocktower-atmosphere/build-final.log",
+    "runtimeVerificationStatus": "Four targeted suites passed. Final footprint-material refinement and ground view rerun in full 1080p and 720p tower checks; actual live particles moved between samples.",
+    "desktopDeploymentStatus": "deployed_and_opened_normal_menu_with_save_unchanged",
+    "runtimeEvidence": "../../../output/demo/clocktower-interior/",
+    "fairness": "Decoration does not identify a visitor, date or time; no new evidence card, hint, clock rule or access gate. Dust increasing with height is this tower’s art direction, not a general scientific law."
+  }
+}

@@ -207,17 +207,7 @@ public static partial class BuildSlice {
         Building("BackRow",new Vector3(0,0,28),0,12,7,"#84899B");
         Building("EastBackground",new Vector3(17,0,31),0,10,9,"#787D96");
         Building("WestBackground",new Vector3(-17,0,30),0,10,8,"#8A8B9A");
-        var tower=Group("Town clock",new Vector3(0,0,10)).transform;
-        Box("Tower base",new Vector3(0,.22f,0),new Vector3(3.9f,.44f,3.9f),Mat("TowerBase","#787783"),tower);
-        Box("Tower shaft",new Vector3(0,3.55f,0),new Vector3(2.4f,6.6f,2.4f),Mat("TowerStone","#A19A96"),tower);
-        Box("Clock chamber",new Vector3(0,6.3f,0),new Vector3(3f,2.05f,3f),Mat("TowerStone","#A19A96"),tower);
-        Box("Clock cornice",new Vector3(0,7.42f,0),new Vector3(3.25f,.22f,3.25f),Mat("Cornice","#736D72"),tower,false);
-        Roof(tower,3.45f,3.45f,7.55f,2.15f,Mat("Roof","#3B4255"));
-        Dial(tower,new Vector3(0,6.35f,-1.52f),1.85f,true);
-        var side=Group("East dial",new Vector3(1.52f,6.35f,0),tower).transform;side.localRotation=Quaternion.Euler(0,-90,0);Dial(side,Vector3.zero,1.85f,true);
-        Point("Tower dial warm light",new Vector3(0,6.3f,8.2f),C("#E5BA7C"),1.2f,3);
-        var plaque=Box("Clock observation",new Vector3(0,1.3f,8.77f),new Vector3(.9f,.44f,.05f),Mat("SignWood","#283F40"));
-        var clock=plaque.AddComponent<Interactable>();clock.title="街钟";clock.evidenceId="E06";clock.source="广场的公共街钟";clock.body="广场上的钟，钟表铺的匠人负责维护。\n\n钟面可以直接观察，怀表在你身上。";
+        InstantiateClockTower();
         foreach(int lanternSide in new[]{-1,1})foreach(float z in new[]{-8f,6f,19f})
             Lantern(new Vector3(lanternSide*(z<6.5f?3.62f:5.7f),.1f,z));
         var bench=Model("Bench",new Vector3(-7.55f,westSidewalk.GetComponent<Renderer>().bounds.max.y,7.5f));
@@ -229,8 +219,8 @@ public static partial class BuildSlice {
         var milk=boy.AddComponent<Interactable>();milk.title="送奶少年";milk.evidenceId=testimony.id;milk.source=testimony.source;milk.body=testimony.body;
         MilkShopAsset.Create(boy);
         for(int i=0;i<4;i++)Model("Plant",new Vector3(i%2==0?-6.5f:6.5f,.12f,i<2?-1.8f:11.5f));
-        for(int i=0;i<9;i++) {
-            var shrub=GameObject.CreatePrimitive(PrimitiveType.Sphere);shrub.name="Clipped shrub";shrub.transform.position=new Vector3(Mathf.Cos(i*.7f)*2.3f,.48f,10+Mathf.Sin(i*.7f)*2.3f);
+        for(int i=0;i<7;i++) {
+            var shrub=GameObject.CreatePrimitive(PrimitiveType.Sphere);shrub.name="Clipped shrub";shrub.transform.position=new Vector3(Mathf.Cos(i*Mathf.PI/6)*2.8f,.48f,10+Mathf.Sin(i*Mathf.PI/6)*2.8f);
             shrub.transform.localScale=new Vector3(1.05f,.9f,1.05f);shrub.GetComponent<Renderer>().sharedMaterial=Mat("Foliage","#58685F");UnityEngine.Object.DestroyImmediate(shrub.GetComponent<Collider>());
         }
         Box("South town boundary",new Vector3(0,1,-23),new Vector3(55,3,.6f),Mat("Boundary","#64677B"));
@@ -406,7 +396,7 @@ public static partial class BuildSlice {
         if(!shopLayout){shopLayout=ScriptableObject.CreateInstance<BuildingLayout>();AssetDatabase.CreateAsset(shopLayout,layoutPath);}
         ConfigureWalnutLayout();
         BuildingLayoutChecks.ValidateDefinition(shopLayout);
-        WalnutShopPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);Systems();AssetDatabase.SaveAssets();
+        WalnutShopPrefab();ClockTowerPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);Systems();AssetDatabase.SaveAssets();
         string[] scenes={"Assets/Scenes/Systems.unity","Assets/Scenes/Town.unity","Assets/Scenes/ClockShop.unity"};
         EditorBuildSettings.scenes=Array.ConvertAll(scenes,p=>new EditorBuildSettingsScene(p,true));
         string output=Path.GetFullPath(relativeOutput);Directory.CreateDirectory(Path.GetDirectoryName(output));

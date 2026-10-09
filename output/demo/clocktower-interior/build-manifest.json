@@ -1,0 +1,64 @@
+{
+  "updatedApp": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/错日证词-新版.app",
+  "backup": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/backup-before-clocktower-interior-20261009-144731",
+  "desktopEntry": "/Users/wulizhi/Desktop/错日证词-新版.app",
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "normalSaveUnchanged": true,
+  "normalSaveSHA256": "7dd7977396831eaec3547433c5d1f4709c01d1ef3bf6dfd8bf28e5b755a38581",
+  "tests": [
+    {
+      "suite": "tower-relaunch",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 54.7,
+      "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+    },
+    {
+      "suite": "middle-save",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.7,
+      "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+    },
+    {
+      "suite": "tower-1080",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 85.4,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    },
+    {
+      "suite": "tower-720",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 84.9,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    }
+  ],
+  "normalSaveUnchangedAfterLaunch": true,
+  "normalMenuVisuallyConfirmed": true,
+  "architecture": [
+    "x86_64",
+    "arm64"
+  ],
+  "strictCodesignVerified": true,
+  "zipIntegrityVerified": true,
+  "zipBytes": 94457536,
+  "zipSHA256": "3186958168d7311502bdfccbb3ff3a69591b2e99d0ee9208ed9f276982b6508c",
+  "finalBuildLog": "builds/clocktower-atmosphere/build-final.log",
+  "verificationNote": "Initial build-2 passed all four suites. Final rebuild only softens footprint material and adds ground-floor review capture; final tower-1080 and tower-720 reran the complete 101-point ascent and atmosphere checks. Relaunch/descent and middle-save results correspond to unchanged geometry and save code from build-2.",
+  "verificationScope": "Script-driven native player and real CharacterController, not physical-keyboard input or blind playtest.",
+  "atmosphere": {
+    "gradedDustSurfaces": true,
+    "upperCobwebs": true,
+    "liveDriftingDust": true,
+    "dustBands": 8,
+    "particlesBefore": 20,
+    "particlesAfter": 21,
+    "movingParticles": 20,
+    "lowerPrintContrast": 0.007460564374923706,
+    "upperPrintContrast": 0.16291767358779907,
+    "lowerPrintCutoff": 0.6006250381469727,
+    "upperPrintCutoff": 0.4300000071525574
+  }
+}

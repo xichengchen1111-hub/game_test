@@ -1,0 +1,14 @@
+{
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "architectures": [
+    "arm64",
+    "x86_64"
+  ],
+  "runtimeMachine": "Apple Silicon Mac / Metal",
+  "normalSaveUnchangedAfterMenuLaunch": true,
+  "normalEntryUpdated": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/错日证词-新版.app",
+  "backup": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/backup-before-clocktower-20261009-135311",
+  "sourceFBXSHA256": "8aad2d8fac0beb4e584008b5037fc540f25a3d6e197fdb4eb952d30fdc5c1d07",
+  "zipMiB": 85.8,
+  "verification": "Real rendered player, scripted CharacterController and shared interaction handlers; not physical keyboard or blind playtest. No Intel hardware run."
+}

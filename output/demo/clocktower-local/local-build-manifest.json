@@ -1,0 +1,13 @@
+{
+  "applicationId": "com.qingchuanstudio.wrongdatetest.towerreview",
+  "binarySha256": "c9282359be3dbecbd9e3f2a5ebce87b118fc1ead353b87bd2d13631f716fb442",
+  "unityVersion": "6000.3.18f1",
+  "upstream": "a7c3191",
+  "meshyModelGenerated": false,
+  "meshyUpload": "declined by browser; user chose temporarily not to upload",
+  "normalDesktopAppReplaced": false,
+  "savedReference": "assets/source/clocktower/reference-meshy.png",
+  "localBuild": "builds/clocktower-review/钟塔-内部验证.app",
+  "oldFontGlyphsRetained": 306,
+  "currentFontGlyphs": 629
+}

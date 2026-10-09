@@ -1,0 +1,44 @@
+[
+  {
+    "suite": "time",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 19.6,
+    "marker": "TIME_REVIEW_PASS"
+  },
+  {
+    "suite": "time-relaunch",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 3.3,
+    "marker": "TIME_SAVE_RELAUNCH_PASS"
+  },
+  {
+    "suite": "tower-1080",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 49.2,
+    "marker": "CLOCKTOWER_REVIEW_PASS"
+  },
+  {
+    "suite": "tower-relaunch",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 24.0,
+    "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+  },
+  {
+    "suite": "tower-720",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 49.1,
+    "marker": "CLOCKTOWER_REVIEW_PASS"
+  },
+  {
+    "suite": "shop",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 54.0,
+    "marker": "WALNUT_REVIEW_PASS"
+  }
+]

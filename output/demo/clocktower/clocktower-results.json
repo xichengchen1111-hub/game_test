@@ -1,0 +1,11 @@
+{
+    "passed": true,
+    "referenceExterior": true,
+    "continuousTown": true,
+    "closedDoorBlocks": true,
+    "fourMovingDials": true,
+    "upperFloorSave": true,
+    "realStairWaypoints": 39,
+    "footprints": 32,
+    "verification": "Actual CharacterController walked from town through the door up every spiral-stair waypoint. Controlled review, not physical keyboard input or blind playtest. Exterior is locally reconstructed from the approved illustration, following the milk-shop workflow."
+}

@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-09",
+  "scope": "Public-method study only; no Meshy service, upload, model installation or inference execution.",
+  "host": {
+    "chip": "Apple M5 Pro",
+    "unifiedMemoryGiB": 24,
+    "freeDiskGiBApprox": 370
+  },
+  "sources": [
+    {
+      "url": "https://github.com/VAST-AI-Research/TripoSR",
+      "finding": "Single-image pretrained reconstruction; original no-CUDA script falls back to CPU."
+    },
+    {
+      "url": "https://github.com/Tencent-Hunyuan/Hunyuan3D-2",
+      "finding": "Separate image-conditioned shape and texture generation stages."
+    },
+    {
+      "url": "https://github.com/ZimengXiong/Hunyuan3D-Swift",
+      "finding": "Community Apple Silicon inference implementation; small shape model is a candidate for local trials, not yet validated here."
+    },
+    {
+      "url": "https://github.com/dgrauet/Hunyuan3D-2.1-mlx",
+      "finding": "Community Python MLX shape and PBR port; memory and quality reports require local verification."
+    }
+  ],
+  "deliveredModelProvenance": "Blender scripted reference reconstruction; not image-conditioned neural inference.",
+  "gameplayConstraint": "External-image inference does not establish a traversable interior. Existing shared layout, door, stair, gear and time behaviour still require deterministic integration and runtime checks."
+}

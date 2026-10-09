@@ -1,0 +1,110 @@
+{
+  "updatedApp": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/错日证词-新版.app",
+  "backup": "/Users/wulizhi/Documents/GitHub/game_test/builds/macos-current/backup-before-clocktower-20m-20261009-142040",
+  "desktopEntry": "/Users/wulizhi/Desktop/错日证词-新版.app",
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "normalSaveUnchanged": true,
+  "normalSaveSHA256": "44ba1f95ff6e23ff68eca06cb43cd8f31677e2e915e262bcb0d0f63771ce2102",
+  "tests": [
+    {
+      "suite": "time",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 19.8,
+      "marker": "TIME_REVIEW_PASS"
+    },
+    {
+      "suite": "time-relaunch",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.3,
+      "marker": "TIME_SAVE_RELAUNCH_PASS"
+    },
+    {
+      "suite": "tower-1080",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 81.7,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    },
+    {
+      "suite": "tower-relaunch",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 54.8,
+      "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+    },
+    {
+      "suite": "tower-720",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 81.8,
+      "marker": "CLOCKTOWER_REVIEW_PASS"
+    },
+    {
+      "suite": "shop",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 54.6,
+      "marker": "WALNUT_REVIEW_PASS"
+    },
+    {
+      "suite": "legacy-step-1",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.4,
+      "marker": "CLOCKTOWER_MIGRATION_PASS"
+    },
+    {
+      "suite": "legacy-step-12",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.4,
+      "marker": "CLOCKTOWER_MIGRATION_PASS"
+    },
+    {
+      "suite": "legacy-step-20",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.4,
+      "marker": "CLOCKTOWER_MIGRATION_PASS"
+    },
+    {
+      "suite": "legacy-step-31",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.4,
+      "marker": "CLOCKTOWER_MIGRATION_PASS"
+    },
+    {
+      "suite": "legacy-upper",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 3.6,
+      "marker": "CLOCKTOWER_MIGRATION_PASS"
+    },
+    {
+      "suite": "middle-save",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 4.2,
+      "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+    }
+  ],
+  "towerHeightMetres": 20,
+  "levels": 3,
+  "normalSaveUnchangedAfterLaunch": true,
+  "normalMenuVisuallyConfirmed": true,
+  "architecture": [
+    "x86_64",
+    "arm64"
+  ],
+  "strictCodesignVerified": true,
+  "zipIntegrityVerified": true,
+  "zipBytes": 93540824,
+  "zipSHA256": "25f9719b998f3e3c8ed2a2c3ba37c66d70e64dd4f8a641766f8065dd08edfe22",
+  "finalBuildLog": "builds/clocktower-20m/build-review-camera.log",
+  "verificationNote": "Twelve suites passed the initial 20m build. Final rebuild changes only the middle-level review-camera look target; middle-save rerun passed. Geometry and gameplay/controller code unchanged.",
+  "fbxSHA256": "d863ab75a0aadd77c2affec74e94c173c4b90cf7e6b5c1c973697757297406c3",
+  "verificationScope": "Script-driven actual player/controller; not physical keyboard input, blind playtest, Intel-hardware test, or complete-MVP verification."
+}

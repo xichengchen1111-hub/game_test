@@ -1,0 +1,1 @@
+PASS: separate process restored upper-floor position/E06/door; actual controller descended every stair and left the building; door closed from outside.

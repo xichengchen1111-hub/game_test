@@ -299,5 +299,272 @@
       "跨镇班次与返程",
       "售票员19日在另一镇相遇的交通安排"
     ]
+  },
+  "clocktower": {
+    "confirmed_by": "用户 2026-10-09",
+    "scene": "town",
+    "initially_accessible": true,
+    "placement": {
+      "scope": "现有可玩切片，原位替换旧钟楼；未迁移第四版全镇地图",
+      "town_world_position": [
+        0,
+        0,
+        10
+      ],
+      "full_town_map_migrated": false
+    },
+    "appearance": {
+      "exterior_pipeline": "沿用牛奶店的本地参考图重建方式：依据已认可第三版概念，在 Blender 中制作几何与纹理，保留可编辑 .blend，再导出 FBX 接入 Unity 的同一建筑",
+      "style": "约20米高、三层体量的精致古老欧式钟楼；保持3.6米塔身外宽、浅色外墙涂装均匀且保养良好，保留正常尺度砖砌纹理",
+      "plaque": {
+        "mount": "固定在钟楼墙面",
+        "fictional_lore": true,
+        "name": "青川古钟塔",
+        "built_year": 1816,
+        "builder": "钟表大师埃利亚斯·霍夫曼",
+        "player_text_reveals_clock_offset": false
+      },
+      "pipeline_clarification": "用户最新接受现有游戏钟楼作为本轮增高基础；继续修改本地参考图重建资产，不要求先完成图生模型推理。尚未运行神经图生3D，不能把接受现有资产等同于完成该技术流程；不使用 Meshy 网站或上传服务。"
+    },
+    "interior": {
+      "entry": "可开关实体门，Town 同一建筑内直接步行进出",
+      "shared_exterior_interior_layout": true,
+      "staircase": "可实际上下、经中层平台到达15米机房的螺旋阶梯；积灰且有较清晰鞋底和鞋跟印，脚印随新梯生成",
+      "mechanism": "传统机芯按新布局置于15米平台，玩家可走到旁边辨认齿轮、传动轴和机架",
+      "gear_rotation_required": false,
+      "progression_gate": false,
+      "stair_segments": {
+        "total": 92,
+        "lower_risers": 52,
+        "flat_middle_segments": 5,
+        "upper_risers": 35,
+        "middle_landing_angle_degrees": 90,
+        "review_path_feet_points": 101
+      },
+      "footprint_count": 87
+    },
+    "time_system": {
+      "single_shared_clock": true,
+      "initial_pocket_watch_time": "17:55",
+      "rate": {
+        "real_seconds": 7,
+        "game_minutes": 10
+      },
+      "continuous_hands": true,
+      "tower_faces": 4,
+      "tower_offset_minutes": 30,
+      "portable_time_display": "仅按 Q 取出的怀表",
+      "digital_or_persistent_clock_hud": false,
+      "automatic_clock_difference_hint": false,
+      "decorative_shop_sign_clock_time": "10:10",
+      "decorative_shop_signs_follow_game_time": false,
+      "pause_during": [
+        "opening",
+        "scene_loading",
+        "pause_menu",
+        "dialogue",
+        "journal",
+        "inspection"
+      ],
+      "pocket_watch_alone_pauses_time": false,
+      "save_value": "累计游戏分钟，显示时按一日取模",
+      "legacy_missing_time": "从 17:55 初始化，保留证物、位置及对话进度",
+      "offline_time_advance": false,
+      "historical_testimony_and_documents": "原有日期与18:25等时刻不随探索时钟变化",
+      "day_night_npc_schedules_in_scope": false
+    },
+    "private_truth": {
+      "player_visible": false,
+      "fact": "原主此前上楼调快镇钟，积灰中的较清晰脚印由这次来访留下",
+      "adjustment_at": null,
+      "date_and_exact_time_status": "用户尚未给定，不补造时间线锚点",
+      "supersedes": "旧稿借梯子的进入方式；不据此新增梯子签领簿证物",
+      "observable_facts": "积灰的螺旋阶梯上有较清晰脚印，并延伸至机芯附近",
+      "observation_limits": [
+        "脚印单独不能确定留下者身份",
+        "脚印单独不能证明调钟行为或发生时刻",
+        "当前钟差与脚印不能替代案发日派送簿的独立核实"
+      ]
+    },
+    "evidence_boundary": {
+      "existing_ids_unchanged": true,
+      "observation_evidence_id": "E06",
+      "new_footprint_evidence_card": false,
+      "historical_clock_offset_requires": "保留 D02 的 E01、E04、E05 必要材料，E06 仅作补强",
+      "npc_or_plaque_spoiler": false
+    },
+    "runtime_acceptance": [
+      "实体门内外开关、防夹及直接步行往返",
+      "实际控制器连续走上和走下92段旋梯路径，经过90°中层平台并停留，走到15米机房齿轮组旁；检查101个脚底路径点",
+      "灰尘和脚印近景可读，内外开口和空间对应",
+      "上层位置、门状态与累计时间可独立进程读档",
+      "720p与1080p同屏可读怀表和塔钟，四面塔钟同值并持续快30分钟",
+      "规定界面暂停计时，Q怀表继续计时，无新增数字时间HUD",
+      "旧9.5米塔楼梯与机房存档按新布局版本迁移到安全位置，保留证物、门状态与累计时间，并能继续上下楼"
+    ],
+    "implementation_status": {
+      "as_of": "2026-10-09",
+      "time_code": "已交付20米基线通过7秒/10分钟、Q表持续走时、界面暂停、跨小时/跨日、四面塔钟+30分钟、自动保存与独立进程恢复；本轮内装不改时间规则",
+      "interior": "20米布局含52下阶、5同高平台段、35上阶、101脚底路径点和87鞋印；源码18项静态检查通过。1080p/720p真实控制器上楼、中层停留、门/防夹/护栏与机芯检查通过，独立进程楼上恢复并逐级下楼通过",
+      "current_build": "已交付20米基线正式Mac构建与12项可见播放器检查通过，middle-save相机调整复跑及正式桌面部署已完成。新增内装的构建、实机和部署状态另见interior_decoration_revision，不能沿用旧结果判定新装饰通过",
+      "formal_tower_replacement_complete": true,
+      "local_exterior": "20米本地Blender可编辑外壳、FBX和纹理已完成；7组网格、230159三角面，源/FBX静态回导尺寸与轴向通过。人的门尺度与砖纹比例保留，外壳与内装中层/机房/钟心/塔顶标记匹配；1080p/720p本轮实机钟楼专项通过",
+      "pipeline_history": "上一轮曾误将要求理解为指定 Meshy；图片未上传、未生成模型、未消耗额度。当前按用户澄清继续本地制作，不恢复上传或改用其他平台上传",
+      "image_conditioned_inference_status": "尚未安装或运行图生模型；用户接受现有游戏钟楼作本轮高度修改基础，不以图生推理完成为前提，也不宣称该技术已完成",
+      "historical_9_5m_delivery": "9.5米参考图重建版本已替换正式Mac入口并保留正常存档；时间与读档、双分辨率钟楼、楼上重启与下楼、原钟表铺共六项实机检查通过，证据output/demo/clocktower/。不将旧结果沿用为20米版本验收",
+      "current_runtime_evidence": "output/demo/clocktower-20m/",
+      "runtime_verification": {
+        "passed": true,
+        "suites": 12,
+        "source_results": "builds/clocktower-20m/verification/results.json",
+        "evidence_directory": "output/demo/clocktower-20m/",
+        "suite_names": [
+          "time",
+          "time-relaunch",
+          "tower-1080",
+          "tower-relaunch",
+          "tower-720",
+          "shop",
+          "legacy-step-1",
+          "legacy-step-12",
+          "legacy-step-20",
+          "legacy-step-31",
+          "legacy-upper",
+          "middle-save"
+        ],
+        "scope": "可见播放器、脚本驱动真实CharacterController与交互射线；不是物理键鼠或盲测，不证明完整MVP/第四版全镇已迁移"
+      },
+      "final_camera_review_status": "最终build-review-camera.log构建通过；仅验收相机目标变更，middle-save独立进程复跑通过并目视确认中层旋梯/平台画面，几何和控制器未变",
+      "desktop_deployment_status": "deployed_and_opened_normal_menu_with_save_unchanged",
+      "verified_revision": "20m_before_interior_decoration",
+      "active_revision": "interior_decoration_verified_and_deployed"
+    },
+    "dimensions_m": {
+      "total_height": 20.0,
+      "exterior_width": 3.6,
+      "interior_clear_width": 3.05,
+      "ground_floor": 0.12,
+      "middle_floor": 8.530435,
+      "machine_floor": 15.0,
+      "inner_wall_height": 18.3,
+      "dial_center_height": 16.72,
+      "dial_diameter": 2.2,
+      "door_width": 1.1,
+      "door_height": 2.15,
+      "physical_brick_scale_preserved": true
+    },
+    "save_migration": {
+      "from_height_m": 9.5,
+      "to_height_m": 20.0,
+      "revisioned": true,
+      "stair_position": "旧塔楼梯存档按阶次映射到新梯安全点，不原样保留旧高度",
+      "machine_room_position": "旧机房存档迁移到15米机房安全点",
+      "preserve": [
+        "evidence_ids",
+        "door_state",
+        "elapsed_game_minutes",
+        "dialogue_progress"
+      ],
+      "verification_status": "本轮独立进程迁移通过：旧梯第1/12/20/31级和旧机房五项案例均映射到新安全位置，真实控制器站立并移动，证物/门/累计时间/对白进度保留；中层平台存档恢复另项通过"
+    },
+    "interior_decoration_revision": {
+      "confirmed_by": "用户 2026-10-09",
+      "scope": "在已交付20米钟楼中增加墙地表面细节、分层积灰、同串脚印可读性、上层蛛网与少量浮尘",
+      "base_geometry_changed": false,
+      "surface_materials": {
+        "walls": "按米制UV生成内墙石灰石砖纹及法线，覆盖原内墙的无碰撞渲染衬面保留门洞",
+        "ground_floor": "底层磨损石板的自制颜色与法线纹理",
+        "stairs_and_platforms": "保留木质踏面与平台；灰膜覆盖由低到高增加，不把原表面改成厚雪或沙堆",
+        "authored_texture_size": 512,
+        "external_photos_used_as_textures": false
+      },
+      "dust": {
+        "height_material_bands": 8,
+        "coverage": "底层薄且断续，中层增加，顶部和机房灰膜更明显；常触摸扶手与立面不刷同样厚度",
+        "basis": "用户要求的本塔清理频率与触碰频率差异设定，不代表灰尘普遍随高度增加的自然规律",
+        "runtime_transition_verification": "passed: 第7/47/87段同方位实机近景已目视，下层极淡、中层渐清、上层更清晰；最终上层底色反差0.1629，alpha cutoff 0.43"
+      },
+      "footprints": {
+        "count": 87,
+        "same_sequence": true,
+        "positions_and_left_right_order_unchanged": true,
+        "same_shoe_pattern": true,
+        "upper_density_increase": false,
+        "readability": "调节现有印记与周围尘层的反差和破边，低处轻淡、越上越清晰；保留压散尘层后露出底材的效果",
+        "inference_limits": [
+          "不能据此确定来访者身份",
+          "不能由清晰度确定来访日期、时刻或尘龄",
+          "不能单独证明调钟行为或案发时钟差"
+        ]
+      },
+      "cobwebs": {
+        "count": 6,
+        "placements": "顶层三处墙角、上段三处扶手外侧与墙/立杆之间",
+        "form": "带实体锚点、灰白半透明、疏密不均且部分断裂的不规则细丝",
+        "adds_colliders": false,
+        "blocks_walkway": false
+      },
+      "airborne_dust": {
+        "region": "机房局部",
+        "maximum_simultaneous_particles": 32,
+        "appearance": "小尺寸、柔和透明、低密度缓慢漂动",
+        "adds_colliders": false
+      },
+      "unchanged_contract": [
+        "20米布局与101个行走路径点",
+        "门洞、楼梯和扶手碰撞",
+        "87个脚印的同一串分布",
+        "机芯与动态双钟",
+        "Q怀表7秒/10分钟、塔钟+30分钟、无时间HUD",
+        "E01–E10、private_truth及既有推理依赖",
+        "原存档与自由进入"
+      ],
+      "new_evidence_card": false,
+      "identity_or_date_hint": false,
+      "implementation_sources": [
+        "game/Assets/Editor/ClockTowerInteriorSurfaces.cs",
+        "game/Assets/Editor/ClockTowerAtmosphere.cs",
+        "game/Assets/Editor/ClockTowerInterior.cs"
+      ],
+      "research": "assets/source/clocktower/interior-reference-research.json",
+      "sources": [
+        {
+          "id": "NT_DUST",
+          "title": "Tackling dust in historic houses",
+          "url": "https://www.nationaltrust.org.uk/our-cause/history-heritage/tackling-dust-in-historic-houses"
+        },
+        {
+          "id": "EH_ICOM_DUST",
+          "title": "Managing dust in historic houses – a visitor/conservator interface",
+          "url": "https://www.english-heritage.org.uk/siteassets/home/learn/conservation/collections-advice--guidance/icom14dust.pdf"
+        },
+        {
+          "id": "NHM_WEB_TYPES",
+          "title": "Spider webs: not just for Halloween",
+          "url": "https://www.nhm.ac.uk/discover/spider-webs.html"
+        },
+        {
+          "id": "NHM_SILK",
+          "title": "What are spider webs made of? And how do they spin them?",
+          "url": "https://www.nhm.ac.uk/discover/what-are-spider-webs-made-of.html"
+        },
+        {
+          "id": "OPB_CLOCKTOWER",
+          "title": "Inside Union Station clock tower: brick masonry and maintenance stairs",
+          "url": "https://www.opb.org/article/2024/03/11/time-marches-forward-at-portland-historic-union-station-on-daylight-saving/"
+        }
+      ],
+      "implementation_status": "已完成并部署：内墙砖石、底层石板、8档积灰、87原位脚印、6锚定蛛网及稀疏浮尘",
+      "build_status": "passed: builds/clocktower-atmosphere/build-final.log",
+      "runtime_verification_status": "passed: tower-1080、tower-720、tower-relaunch、middle-save；最终脚印材质微调后复跑两档完整上楼/气氛效果",
+      "desktop_deployment_status": "deployed_and_opened_normal_menu_with_save_unchanged",
+      "runtime_evidence": "output/demo/clocktower-interior/",
+      "acceptance": [
+        "逐层对比砖石纹理和尘层，保留原底材并确认过渡自然",
+        "确认同87脚印位置/左右次序/鞋型不变，上层仅更清晰而不增密",
+        "检查6处蛛网锚点、通道净空与最多32粒浮尘，无遮挡且无新增碰撞",
+        "真实控制器复走门/上下梯/平台/机房，并核对原存档、Q表和双钟规则"
+      ]
+    }
   }
 }

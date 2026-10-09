@@ -1,0 +1,128 @@
+{
+  "asset": "ClockTower1931",
+  "construction": "Reference-guided authored editable 3D reconstruction; no external Meshy upload or neural inference.",
+  "reference": "../reference-approved-v3.png",
+  "blender_version": "4.5.9 LTS",
+  "units": "metres",
+  "blender_axes": {
+    "right": "+X",
+    "up": "+Z",
+    "door_front": "-Y"
+  },
+  "fbx_export": {
+    "axis_forward": "-Z",
+    "axis_up": "Y",
+    "apply_unit_scale": true,
+    "scale": 1
+  },
+  "markers_blender": {
+    "FrontMarker": [
+      0.0,
+      -1.7999999523162842,
+      0.11999999731779099
+    ],
+    "EastMarker": [
+      1.7999999523162842,
+      0.0,
+      0.11999999731779099
+    ],
+    "DoorHeadMarker": [
+      0.0,
+      -1.7999999523162842,
+      2.2699999809265137
+    ],
+    "MiddleFloorMarker": [
+      0.0,
+      0.0,
+      8.530434608459473
+    ],
+    "GearFloorMarker": [
+      0.0,
+      0.0,
+      15.0
+    ],
+    "ClockCentreFront": [
+      0.0,
+      -1.8600000143051147,
+      16.719999313354492
+    ],
+    "RoofPeakMarker": [
+      0.0,
+      0.0,
+      20.0
+    ]
+  },
+  "bounds_blender_min": [
+    -2.1069998741149902,
+    -2.1069998741149902,
+    0.0
+  ],
+  "bounds_blender_max": [
+    2.1069998741149902,
+    2.1069998741149902,
+    20.0
+  ],
+  "footprint_physical_m": [
+    3.6,
+    3.6
+  ],
+  "interior_clear_width_m": 3.05,
+  "height_m": 20.0,
+  "clear_door": {
+    "width": 1.1,
+    "bottom": 0.12,
+    "top": 2.27,
+    "face": -1.8
+  },
+  "clock_centres_height": 16.72,
+  "clock_unity_plane_distance": 1.86,
+  "ring_clear_diameter": 2.21,
+  "dial_diameter": 2.2,
+  "gear_floor_height": 15.0,
+  "middle_floor_height": 8.530435,
+  "inner_wall_top": 18.3,
+  "levels": 3,
+  "shared_layout_source": "game/Assets/Scripts/ClockTowerInteriorLayout.cs",
+  "renderers": 7,
+  "triangles": 230159,
+  "material_names": [
+    "Tower_IvoryBrick",
+    "Tower_CreamStone",
+    "Tower_Slate",
+    "Tower_Lead",
+    "Tower_DarkOak",
+    "Tower_Recess",
+    "Tower_Bronze"
+  ],
+  "textures": {
+    "IvoryBrick": {
+      "base_color": "IvoryBrick-BaseColor.png",
+      "normal": "IvoryBrick-Normal.png",
+      "tile_metres": 1.44
+    },
+    "CreamStone": {
+      "base_color": "CreamStone-BaseColor.png",
+      "normal": "CreamStone-Normal.png",
+      "tile_metres": 1.0
+    },
+    "Slate": {
+      "base_color": "Slate-BaseColor.png",
+      "normal": "Slate-Normal.png",
+      "tile_metres": 1.0
+    }
+  },
+  "ventilation": "Eight solid-backed closed arched louvre panels, one per face on each lower shaft level; not transparent windows or extra playable rooms.",
+  "unity_supplies": [
+    "shared interior shell and all collision",
+    "animated wooden door below clear head",
+    "four deterministic clock dials and dynamic hands",
+    "wall plaque and readable history text"
+  ],
+  "review_only": "Preview dials, hands, plaque and door illustrate the Unity overlays and are excluded from FBX.",
+  "authored_interpretations": [
+    "back and hidden side continue matching four-face clock architecture",
+    "user-requested 20m three-level revision with unchanged 3.6m width and human-scale door",
+    "three facade levels follow ground, intermediate deck and machinery deck; physical brick UV scale unchanged",
+    "vent panels closed against shared interior envelope"
+  ]
+}

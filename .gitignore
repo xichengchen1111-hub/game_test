@@ -6,6 +6,10 @@ game/Logs/
 game/obj/
 game/UserSettings/
 builds/
+# Local Blender backups and verbose clock-tower verification logs.
+assets/source/clocktower/**/*.blend[0-9]
+assets/source/clocktower/**/*.log
+output/demo/clocktower*/**/*.log
 output/demo/*.log
 output/demo/motion/
 output/demo/window/motion/

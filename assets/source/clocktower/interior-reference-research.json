@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "reviewed_on": "2026-10-09",
+  "scope": "20 米钟楼内装：由底层至机房的积灰层次、同一串脚印、上层角落蛛网及少量浮尘；网络资料与公平性设计审核。",
+  "method": {
+    "primary_sources_only": true,
+    "external_media_downloaded": false,
+    "external_media_uploaded": false,
+    "reference_use": "阅读官方正文、论文及图片说明；下列实景照片是可回访的参考入口，未复制为游戏贴图，不将图片说明当作逐像素目视验收。",
+    "implementation_verified": false
+  },
+  "sources": [
+    {
+      "id": "NT_DUST",
+      "organisation": "National Trust",
+      "title": "Tackling dust in historic houses",
+      "url": "https://www.nationaltrust.org.uk/our-cause/history-heritage/tackling-dust-in-historic-houses",
+      "type": "历史建筑保护机构的一手研究与保洁实践说明，附真实保育工作照片",
+      "summary": "可见积尘与人员衣物、接触距离和清洁频率有关；机构按表面脆弱程度及暴露情况采取不同清洁周期，并在部分历史房屋保留可见旧尘。",
+      "reference_locator": "Findings of the research；Different measures for different properties；How we tackle dust。文内 Tyntesfield 刷尘近照与 Greenway 架上物品保育照片。",
+      "art_application": "灰尘做成薄覆层与局部堆积，保留木材、金属本来的纹理。用本塔不同清洁频率解释层次。",
+      "limits": "文献不支持灰尘普遍随建筑高度递增，也不能由灰尘量反推出特定年份或来访者身份。"
+    },
+    {
+      "id": "EH_ICOM_DUST",
+      "organisation": "English Heritage / National Trust / University of East Anglia",
+      "title": "Managing dust in historic houses – a visitor/conservator interface",
+      "url": "https://www.english-heritage.org.uk/siteassets/home/learn/conservation/collections-advice--guidance/icom14dust.pdf",
+      "type": "2005 年历史建筑积尘研究论文，官方机构托管原文",
+      "summary": "研究报告人流路径附近沉积较高，地面及成人衣物高度也有较高尘量；湿度与积尘附着相关。Chastleton 保留的灰色尘膜说明老旧表面不必表现为厚重沙堆。",
+      "reference_locator": "PDF 第 2 页 Background 与 Dust adhesion；第 4 页 Chastleton 的灰色尘膜说明和 Figure 5 Great Hall 实景；第 5 页 Figure 6 为物件洁净度观感比较。",
+      "art_application": "踏面上表面、墙脚凹槽和少接触结构处做断续灰膜；深木色与浅灰尘形成可读对比，避免整面均匀发白。",
+      "limits": "这些结果与“越高越积灰”不是同一命题。钟楼上层更厚必须标为对清洁条件的艺术设定；不能用明暗差直接宣告尘龄。"
+    },
+    {
+      "id": "NHM_WEB_TYPES",
+      "organisation": "Natural History Museum, London",
+      "title": "Spider webs: not just for Halloween",
+      "url": "https://www.nhm.ac.uk/discover/spider-webs.html",
+      "type": "自然史博物馆蛛网类型说明，附真实蛛网照片",
+      "summary": "室内乱网是疏松的三维丝线结构，房间角落及家具背后可见；不受扰动的旧网会积尘。文中也区分薄片、漏斗和蕾丝网，不能把所有室内蛛网都做成规整圆网。",
+      "reference_locator": "Tangle webs 中 daddy-long-legs 的乱网照片；House spiders 中岩壁蛛网实景；Lace webs 中木面与缝隙附近蛛网照片。",
+      "art_application": "顶层墙角和梁底采用少量不规则乱网；上段扶手用立杆与墙面之间的小片悬丝，局部断裂、疏密不均。",
+      "limits": "只借用网形和环境关系，不将英国物种分布或现代家居习性当成 1931 年虚构小镇的物种史；不添加特定蜘蛛种类的剧情断言。"
+    },
+    {
+      "id": "NHM_SILK",
+      "organisation": "Natural History Museum, London",
+      "title": "What are spider webs made of? And how do they spin them?",
+      "url": "https://www.nhm.ac.uk/discover/what-are-spider-webs-made-of.html",
+      "type": "自然史博物馆馆员解释与真实吐丝照片",
+      "summary": "蛛丝是细纤维，文中描述丝线可附着到物体作为锚点，并展示蜘蛛吐丝及不同丝结构。浅色或微蓝的丝感可供材质参考。",
+      "reference_locator": "How do spiders make their webs?；Silk: a multipurpose material。",
+      "art_application": "每片网有可见的 2–4 个结构附着点，纤丝半透明、低亮度，主拉线连接墙角、梁底或栏杆外侧；不悬空生成整张平面网。",
+      "limits": "文中的锚点例子包括安全拖丝；此处多锚点的角网布局是合理美术实现，不声称文献提供了该钟楼的精确网形。"
+    }
+  ],
+  "art_direction": {
+    "basis": "本塔底层偶有出入和打扫，上层较少触碰与清理，因此视觉上越往上积灰越厚。这是用户要求的空间叙事设计，不是灰尘普遍随高度增加的自然规律。",
+    "height_domain": "沿可步行高度由底层至机房归一化；屋顶总高 20 米不能直接当成所有可行走表面的高度。层次平滑过渡，不按楼层骤变。",
+    "dust": {
+      "lower": "底层薄且断续，主行走面仍显露木纹和磨损，边角略积尘；不能完全无灰以免同一串脚印凭空开始。",
+      "middle": "逐渐增加灰膜覆盖与浅色细颗粒，重点为踏面上表面、靠墙边沿和立杆底座；立面和常触摸扶手不刷同样厚度。",
+      "upper": "机房与上段楼梯有更连贯的灰色尘膜和轻微颗粒层，角隅可更厚；保留结构轮廓与原材质，避免雪、沙漠或整栋失修废墟的感觉。",
+      "material": "低饱和灰米色、粗糙哑光，覆盖率带大尺度斑驳与细粒变化；无需堆成可阻挡角色的立体灰丘。"
+    },
+    "footprints": {
+      "population": "保持当前同一串脚印的数量、位置、左右脚顺序、步幅和鞋底图案；不得因到上层就增添更多组脚印或第二人的鞋型。",
+      "readability_gradient": "低处同一脚印轻淡、边缘破碎；越上由周围尘膜变厚与鞋印内暴露底材产生更清楚的反差。优先调整现有脚印对比度和局部尘覆盖，不增加印记数量。",
+      "surface_relationship": "脚印是压散或擦开尘层后的底材/浅沟纹，鞋底与鞋跟有不完整颗粒残留；避免纯黑油漆图章和一模一样的硬边贴纸。",
+      "chronology_limit": "对比度增强不等于上层脚印更新，也不能推断绝对留下时间或人物年龄。"
+    },
+    "cobwebs": {
+      "placement": "少量集中于顶层梁墙交界、靠墙机架后侧、上段扶手外侧与立杆连接处；选择少碰触且有实体锚点的位置。",
+      "geometry": "2–4 个实体锚点的小片不规则三维纤丝，主线较清楚、次线稀疏，少量断口和轻微积尘；避免重复同一圆形放射模板。",
+      "walkability": "不横封门口、扶手抓握带、楼梯净空或玩家通道，不添加阻挡碰撞。网片不能切进移动齿轮，也不成为必须清理的机关。",
+      "material": "灰白半透明、非自发光，受局部灯光掠过时才易见；不要呈现白色棉絮墙或高亮恐怖装饰。"
+    },
+    "airborne_dust": {
+      "placement": "仅在顶部少量、局部、缓慢漂动，借已有真实开口或灯光显现。",
+      "visual_budget": "低密度、小尺寸、柔和透明、无发光大亮点；不能像飘雪或浓雾，不遮挡齿轮、台阶边缘、钟面和怀表。",
+      "claim_limit": "局部浮尘用于气氛与光线可读性，不被当成尘龄、犯罪时间或人员身份的证据。"
+    }
+  },
+  "fairness_guardrails": [
+    "不新增调查 UI、自动提示、对白或悬浮标签来解释脚印属于原主；不宣告来访者身份、年龄或来访日期。",
+    "仅通过环境呈现积灰与一串鞋印；玩家可以观察到有人曾沿楼梯行走，不能由此直接证明调钟行为或案发时钟差。",
+    "本轮不增加新证物卡，不改变 E01–E10、既有推理依赖、门的自由进入与 Q 怀表规则。",
+    "维持楼梯碰撞、净空与扶手功能；蛛网和浮尘不新增阻挡、任务门槛或误导性的可交互高亮。",
+    "最终实机对比底层、中层、机房脚印：同一组几何数量不变，上层只是更清晰；素材研究不能代替可见效果与行走验收。"
+  ],
+  "additionalVisualReference": {
+    "title": "Inside Union Station clock tower: brick masonry and maintenance stairs",
+    "url": "https://www.opb.org/article/2024/03/11/time-marches-forward-at-portland-historic-union-station-on-daylight-saving/",
+    "use": "Visual research only: masonry scale, wood stairs, local service lighting. No images copied into the game."
+  },
+  "fairnessReview": {
+    "reviewed_on": "2026-10-09",
+    "scope": "只读检查 ClockTowerAtmosphere.cs、DemoApp.ClockTowerReview.cs，并核对当前内墙/楼梯源；未构建、未运行游戏。",
+    "status": "已修复两项问题；本轮双分辨率和存档/上下楼检查完成，未见新增剧情泄露或证物。",
+    "findings": [
+      {
+        "severity": "fix",
+        "file": "game/Assets/Editor/ClockTowerAtmosphere.cs",
+        "lines": [
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          30
+        ],
+        "detail": "本次读取时墙面锚点使用 ±1.49m，而当前内墙贴面为 ±1.519m，墙端悬空约29mm。应共用内墙坐标或把丝线末端轻微埋入墙面。",
+        "status": "resolved_by_parent_before_build_2"
+      },
+      {
+        "severity": "verification_gap",
+        "file": "game/Assets/Scripts/DemoApp.ClockTowerReview.cs",
+        "line": 174,
+        "detail": "当前源仍生成87枚脚印，但 >=70 的检查不能约束不增量；建议检查本轮固定基准87枚。",
+        "status": "resolved_by_parent_before_build_2"
+      }
+    ],
+    "confirmed_by_source": [
+      "三处扶手网的两个端点落在偶数级真实立杆，网面位于外护栏外侧，没有蛛网碰撞体。",
+      "浮尘发射体及最大寿命/速度推算水平约±1.332m、高度约14.39–17.286m；局限在上段，发射率1.25枚/秒、上限32。稀疏程度与可见亮度尚需实机核对。",
+      "装饰代码不创建 Interactable、证物、对白或UI，没有原主身份或脚印年代提示。",
+      "本次检查到的鞋印生成规则未增量，强化清晰度通过既有材料分带实现。"
+    ],
+    "not_verified": "未做陌生玩家盲测、Intel实机或长时间性能测试。"
+  },
+  "resolvedReviewFindings": {
+    "wallAnchors": "WallAnchor = InteriorWidth/2 - .005; one millimetre embedded into the .006m-offset inner lining. Applied to all masonry anchors.",
+    "footprintCount": "Runtime requirement now exactly 87, retaining original locations and density.",
+    "runtimeStatus": "Final 1080p/720p full tower suites passed and visually inspected; original relaunch/descent and middle-save passed with unchanged geometry/save code. Normal desktop app deployed and opened."
+  }
+}

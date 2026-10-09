@@ -1,0 +1,30 @@
+[
+  {
+    "suite": "tower-1080",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 85.2,
+    "marker": "CLOCKTOWER_REVIEW_PASS"
+  },
+  {
+    "suite": "tower-relaunch",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 54.7,
+    "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+  },
+  {
+    "suite": "tower-720",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 84.5,
+    "marker": "CLOCKTOWER_REVIEW_PASS"
+  },
+  {
+    "suite": "middle-save",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 3.7,
+    "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+  }
+]

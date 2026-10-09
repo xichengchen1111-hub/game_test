@@ -1,0 +1,87 @@
+{
+  "source": {
+    "source_opened": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/map-publish/assets/source/clocktower/exterior/ClockTower1931.blend",
+    "mesh_count": 7,
+    "materials": [
+      "Tower_Bronze",
+      "Tower_CreamStone",
+      "Tower_DarkOak",
+      "Tower_IvoryBrick",
+      "Tower_Lead",
+      "Tower_Recess",
+      "Tower_Slate"
+    ],
+    "triangles": 230159,
+    "bounds_min": [
+      -2.1069998741149902,
+      -2.1069998741149902,
+      0.0
+    ],
+    "bounds_max": [
+      2.1069998741149902,
+      2.1069998741149902,
+      20.0
+    ],
+    "door_clearance_rays": 30,
+    "door_width_tested": 1.02,
+    "door_height_tested": 2.06,
+    "door_test_range_blender_y": [
+      -2.2,
+      -1.5
+    ],
+    "all_export_meshes_origin_at_base": true,
+    "explicit_uvs": true,
+    "no_zero_area_faces": true,
+    "review_geometry_separate": true,
+    "clock_ring_measured_clear_diameter": 2.2099985743521526,
+    "three_level_heights": [
+      0.12,
+      8.530435,
+      15.0
+    ],
+    "physical_brick_tile_metres": 1.44
+  },
+  "fbx_roundtrip": {
+    "mesh_count": 7,
+    "markers_blender": {
+      "FrontMarker": [
+        0.0,
+        -1.7999999523162842,
+        0.12000028789043427
+      ],
+      "EastMarker": [
+        1.7999999523162842,
+        1.955048212209931e-08,
+        0.11999999731779099
+      ],
+      "DoorHeadMarker": [
+        0.0,
+        -1.7999995946884155,
+        2.2700002193450928
+      ],
+      "MiddleFloorMarker": [
+        0.0,
+        1.3897843018639833e-06,
+        8.530434608459473
+      ],
+      "GearFloorMarker": [
+        0.0,
+        2.443810217300779e-06,
+        15.0
+      ],
+      "ClockCentreFront": [
+        0.0,
+        -1.859997272491455,
+        16.719999313354492
+      ],
+      "RoofPeakMarker": [
+        0.0,
+        3.2584136988589307e-06,
+        20.0
+      ]
+    },
+    "metre_scale_preserved": true,
+    "axis_markers_preserved": true
+  },
+  "pass": true
+}

@@ -64,11 +64,12 @@ public static partial class BuildSlice {
             var tick=Box("Clock hour index",new Vector3(Mathf.Sin(a)*diameter*.42f,Mathf.Cos(a)*diameter*.42f,-.012f),new Vector3(diameter*.018f,diameter*.060f,.009f),ShopMaterial("ShopIron"),face,false);
             tick.transform.localRotation=Quaternion.Euler(0,0,-i*30);
         }
-        var dial=face.gameObject.AddComponent<ClockDial>();
-        dial.minuteHand=Group("Minute",new Vector3(0,0,-.023f),face).transform;
-        dial.hourHand=Group("Hour",new Vector3(0,0,-.033f),face).transform;
-        Box("Minute hand",new Vector3(0,diameter*.16f,0),new Vector3(diameter*.022f,diameter*.36f,.01f),ShopMaterial("ShopIron"),dial.minuteHand,false).isStatic=false;
-        Box("Hour hand",new Vector3(0,diameter*.10f,0),new Vector3(diameter*.035f,diameter*.25f,.012f),ShopMaterial("ShopIron"),dial.hourHand,false).isStatic=false;
+        // Painted trade-sign hands are decorative, not another accurate time source.
+        var minute=Group("Fixed sign minute",new Vector3(0,0,-.023f),face).transform;
+        var hour=Group("Fixed sign hour",new Vector3(0,0,-.033f),face).transform;
+        Box("Minute hand",new Vector3(0,diameter*.16f,0),new Vector3(diameter*.022f,diameter*.36f,.01f),ShopMaterial("ShopIron"),minute,false);
+        Box("Hour hand",new Vector3(0,diameter*.10f,0),new Vector3(diameter*.035f,diameter*.25f,.012f),ShopMaterial("ShopIron"),hour,false);
+        minute.localRotation=Quaternion.Euler(0,0,-60);hour.localRotation=Quaternion.Euler(0,0,-305);
     }
     static void ShopDoor(Transform frame,BuildingOpening opening) {
         float width=opening.size.x-.10f,height=opening.size.y-.04f;

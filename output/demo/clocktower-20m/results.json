@@ -1,0 +1,86 @@
+[
+  {
+    "suite": "time",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 19.8,
+    "marker": "TIME_REVIEW_PASS"
+  },
+  {
+    "suite": "time-relaunch",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 3.3,
+    "marker": "TIME_SAVE_RELAUNCH_PASS"
+  },
+  {
+    "suite": "tower-1080",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 81.7,
+    "marker": "CLOCKTOWER_REVIEW_PASS"
+  },
+  {
+    "suite": "tower-relaunch",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 54.8,
+    "marker": "CLOCKTOWER_SAVE_RELAUNCH_PASS"
+  },
+  {
+    "suite": "tower-720",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 81.8,
+    "marker": "CLOCKTOWER_REVIEW_PASS"
+  },
+  {
+    "suite": "shop",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 54.6,
+    "marker": "WALNUT_REVIEW_PASS"
+  },
+  {
+    "suite": "legacy-step-1",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 3.4,
+    "marker": "CLOCKTOWER_MIGRATION_PASS"
+  },
+  {
+    "suite": "legacy-step-12",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 3.4,
+    "marker": "CLOCKTOWER_MIGRATION_PASS"
+  },
+  {
+    "suite": "legacy-step-20",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 3.4,
+    "marker": "CLOCKTOWER_MIGRATION_PASS"
+  },
+  {
+    "suite": "legacy-step-31",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 3.4,
+    "marker": "CLOCKTOWER_MIGRATION_PASS"
+  },
+  {
+    "suite": "legacy-upper",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 3.6,
+    "marker": "CLOCKTOWER_MIGRATION_PASS"
+  },
+  {
+    "suite": "middle-save",
+    "exitCode": 0,
+    "passed": true,
+    "seconds": 4.2,
+    "marker": "CLOCKTOWER_MIDDLE_SAVE_PASS"
+  }
+]

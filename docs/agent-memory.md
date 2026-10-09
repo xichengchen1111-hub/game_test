@@ -320,3 +320,65 @@ python tools/check_lighting.py output/demo/lighting/before/lighting-results.json
 - **实际检查**：Mac/Metal、Unity6000.3.18f1当前入口BuildFreshMac通过BUILDING_LAYOUT_PASS与SLICE_BUILD_PASS。剧情合同静态验证通过。现有对话专项增加旧greeted=true/revision=0状态、保留既有E07、准确开场文字、远离箭头的右下点可推进、左下/右上不推进、底部按钮与选项不误推进等检查；720p/1080p初版全流程均PASS。最后调整左侧文本宽度后，720p重新全流程PASS，1080p独立进程不加fresh读档PASS（保留新版开场版本、E04和回访选项），目视核对最终图。均为真实角色/射线加共用处理函数的自动验收，未声称物理鼠标盲测；没有重测无关完整MVP。
 - **交付与边界**：精简证据在 `output/demo/dialogue/compact/`，日志在忽略的 `builds/dialogue-compact/`。复验使用独立dialogue-review-save.json。更新正常窗口前备份已有正常存档到normal-save-before-restart.json，并只终止已核实的旧游戏进程以载入新程序；不删除正常存档。远端fetch仍因HTTPS凭据不可用失败，保留其他本地奶店改动，未提交推送。
 - **统一规范（用户后续要求）**：用户要求将当前版本上传，并在根目录 `AGENTS.md` 明确今后全部 NPC 对话 UI 遵循本条当前效果。已添加“全部 NPC 对话 UI 统一规范”，涵盖低遮挡底部渐变、文字与双列选项、数字键／鼠标整行选择、已问同样式、右下象限推进及输入隔离；新增或修改对话时复用现有实现。此要求不代表钟表匠已经迁移，也不改变证物查看界面。本次整理未修改已验收的对话代码，沿用上面的最终720p流程与1080p独立读档证据。
+
+
+### PLATFORM-03：aed8b28 的 Mac 通用构建与正常入口更新（2026-10-09）
+
+- 用户要求拉取最新仓库、总结 Change 并交付 Mac 版。命令行复查 `origin/main` 与 HEAD 均为 `aed8b2827f45525c3e04e766db1be9ed82005049`；已有干净副本从 `fc72ff2` fast-forward，另克隆最新仓库至同级 `game_test/`。新增5提交涵盖 NPC、街面/怀表、分支对话与连续钟表铺。未提交或推送本轮记录。
+- 在本机 Unity 6000.3.18f1 执行 `BuildSlice.BuildFreshMac`，输出 `builds/macos-current/错日证词-新版.app`；日志 `build-aed8b28.log` 中 SLICE_BUILD_PASS、BUILDING_LAYOUT_PASS、角色导入/街面/奶店位置检查通过。实际 Info.plist 标识为 `com.qingchuanstudio.wrongdatetest.currentmac`，lipo 为 x86_64 + arm64，codesign 深度严格校验通过。生成的5份场景/Prefab/材质差异已备份于 `generated-backup-aed8b28/` 并恢复 HEAD；构建前此副本无本地修改。
+- 本轮实际可见 Mac/Metal 玩家9项全部退出0且对应PASS：1920×1080 Walnut店铺实体门、阻挡/防夹、同场景前后门行走、两窗视差、坐姿循环、老板/E07/调查簿/抽屉/展柜；独立店内磁盘重启；独立旧ClockShop磁盘存档迁移；1280×720及1920×1080少年完整分支；对话磁盘重启；奶店两窗及进出；少年待机/交谈；720p怀表共享时间检查。证据与各日志在 `builds/macos-current/verification-aed8b28/`，results.json含9项PASS。已目视核对本轮店铺内外/窗景、两档对白和怀表；未运行旧固定暗色阈值的怀表像素检测，不声称该检测通过。
+- 已将验证后的应用复制至用户原固定入口 `~/Documents/GitHub/game_test/builds/macos-current/错日证词-新版.app`，桌面原同名符号链接保持；旧应用移至该目录 `backup-before-aed8b28-20261009/`。正常无review启动已目视到标题菜单，normal-launch.log确认新版正常slice-save.json路径；正常存档哈希未改变，测试前的review/dialogue存档备份并恢复。保持菜单供用户继续，不宣称正常手动全流程通过。
+- 压缩包 `builds/macos-current/错日证词-Mac-aed8b28.zip` 约77MiB，通过unzip完整性检查，旁边有SHA-256与Changes-aed8b28.txt。真实控制器/射线及共享处理函数自动验证，不是物理键鼠或盲测；未在Intel实机、完整MVP六顺序或长时间性能复验。当前仍为10%切片，全镇第四版尚未迁移。
+
+### TOWER-01：本地可进入钟塔与持续时间系统；Meshy 上传按用户要求暂缓（2026-10-09）
+
+> 历史阶段记录：随后用户澄清不是指定 Meshy 网站。当前制作方式与正式交付状态以 TOWER-02 为准；这里的旧模型门槛和待完成项已被取代。
+
+- **用户范围与最终决定**：采用已认可第三版古欧式塔楼概念，原计划用 Meshy 图生建模外壳、实体开门、灰尘旋梯与原主鞋印、可走近的传统机芯；Q怀表为随身校时工具、塔钟恒快30分钟、无数字时间HUD。Meshy网页登录后显示Free/100积分/CC BY4.0，但浏览器拒绝参考图上传；用户明确答复“暂不上传，保留本地制作结果”。图片没有上传，模型没有开始生成，没有消耗生成积分。**不得继续尝试上传、换API绕过或称程序灰壳为Meshy。只有用户后续明确恢复此步骤才继续。**
+- **同步与素材**：命令行fetch并从aed8b28快进到a7c3191（仅性能研究/测量文档），保留原PLATFORM-03本地记忆追加，未提交/推送。`assets/source/clocktower/`保留第三版参考、透明无针Meshy输入、提示/哈希/字体来源。1816年/埃利亚斯·霍夫曼为虚构镇史。齿轮视觉参考CCCBR的Turret Clock Handbook，机芯是项目自产简化模型，不是机械精度复原。
+- **共用生成源**：`BuildSlice.ClockTower.cs`生成同一ClockTower.prefab，Town与历史窗外副本共用；沿用切片中心(0,0,10)，3.6m外宽/3.05m内净宽/9.5m高。未迁移第四版全镇坐标。`ClockTowerInteriorLayout.cs`统一32级台阶（0.17125m步高）、5.6m机房、39个脚底路线点；`ClockTowerInterior.cs`生成实体梯面、灰尘、32个鞋印、铸铁框架/铜轮/轴/卷筒/摆锤。`ClockTowerGearMotion`三轮反向转动，仅视觉动画。机房西侧108°为可站平台，其余为挑空，不是可环绕大机房。
+- **实体门与防跌**：复用ShopMechanism真实木门与扫掠防夹。最初外侧扶手仅显示几何，已加随梯上升的连续阻挡；随后实机发现最底段挡住南门进梯，已同时移除前两级36°范围外栏显示/碰撞，第三阶起连续防跌。不得扩大测试容差或传送掩盖入口问题。机房挑空边带可见扶手与阻挡。SafePosition只允许塔内部合法高处至5.9m，仍拒绝镇外高点和塔顶。
+- **时间**：`GameClock.cs`/`DemoApp.Time.cs`从17:55开始，现实7秒＝游戏10分钟，以double累计、一天取模；四面ClockDial LateUpdate读取同一时间并+30。Q拿表不暂停；开场/暂停/对白/回看/调查簿/查看物件/转场冻结。每15活跃秒自动保存累计时间；旧存档缺字段从17:55开始且保留其他进度，不计算离线时间。钟表铺三面招牌改固定10:10装饰，店内陈列表保持静止，不再提供另一准确校时源。
+- **文字与画面修复**：墙装铭牌与无针罗马钟面由`tools/clocktower/build_lettering.py`受控排版；不使用生成图片的文字。最初TextMesh尺寸/朝向错误已换成实际墙面贴图。随后发现原TownSans字体子集缺新增字，`expand_ui_font.py`从原Google Fonts Noto Sans SC OFL来源扩充，保留所有旧字形并覆盖铭牌；许可仍在原OFL.txt。鞋印由硬黑图标改为较接近木色的破边/碎灰痕迹。
+- **构建边界**：`BuildSlice.BuildClockTowerPreviewMac`输出`builds/clocktower-review/钟塔-内部验证.app`，独立标识`com.qingchuanstudio.wrongdatetest.towerreview`，只使用自己的review存档；正式桌面入口与正常进度未更新。当前外观为明确的开发灰壳，不能当作获认可概念的最终外壳。常规交付构建在缺少`Assets/Art/ClockTowerMeshy/ClockTowerMeshy.fbx`时明确停止；实际模型仍须掏空、切门洞、校准钟面与内外轮廓、转换贴图并重新验收。
+- **已实际验证**：Mac/Metal可见播放器通过`--review-time`和独立进程`--verify-time-save`；通过720p/1080p的`--review-clocktower`（真实CharacterController从街道进入、39个路径点、四面实际指针、门内外操作/扫掠拒绝、向外推挤护栏、机房齿轮转动），独立`--verify-clocktower-save`恢复楼上位置/E06/开门并逐级下楼离开。没有用teleport过门或爬梯。静态楼梯8项、叙事10证物/2判断/6设计顺序、全镇平面70建筑/20角色/17路线检查通过；平面只有证据合同哈希更新。完整记录在`builds/clocktower-review/verification/`。这些是程序驱动实机检查，不是物理键鼠或陌生玩家盲测；没有宣称完整MVP或最终Meshy替换完成。
+- **最终本地交付核对**：补字后构建`build-lettering.log`成功，重新运行1080p/720p钟塔专项分别47.1s/46.6s均PASS；已目视确认完整铭牌、查看面板、同屏罗马钟面与Q表、灰尘鞋印及机芯。`output/demo/clocktower-local/`保留精简实机图、5项结果与应用清单；完整初次时间/重启与最终塔楼日志在构建目录。78MiB `钟塔-本地内装与时间-Mac.zip`通过完整性检查，通用二进制和codesign严格校验通过。源码/素材/生成场景与本地验证应用均保留，未提交推送、未替换正式桌面入口。
+
+### TOWER-02：按牛奶店流程完成图片参考重建、正式钟楼替换与 Mac 入口更新（2026-10-09）
+
+- **用户澄清**：要求“类似 Meshy 的图生建模方式”，沿用牛奶店按参考图制作的本地流程，不指定 Meshy 服务。不得再次上传或把本地重建称为 Meshy 推理。读取 MILKSHOP-01 与源脚本核实：参考图→Blender 几何/贴图→可编辑 .blend→FBX→Unity。命令行 fetch 核对 HEAD/origin/main 均 a7c3191，无新提交；保留全部本地改动，未提交推送。
+- **正式外观**：`tools/clocktower/build_exterior.py` 生成 `assets/source/clocktower/exterior/ClockTower1931.blend` 和 `game/Assets/Art/ClockTower1931/`。米白均匀砖纹、浅石雕花钟圈/角石/檐口、实体四坡石板瓦顶、关闭拱形百叶及门框；7 材质组、151351 三角面，9.5m 高。百叶是实体关闭通风面板，不是透视假窗或额外房间。四钟面/动态针、木门、铭牌和全部内装由同一个 ClockTower.prefab 承载。
+- **导入修复/回归规则**：`ClockTowerAsset.cs` 显式映射 URP 材质/法线，利用 FrontMarker/EastMarker 校准米制与南门。FBX 根含 X 轴转换，必须将 yaw 乘原 rotation，不能直接赋 yaw 清掉它；首次构建因此被尺寸标记检查阻断，修复后 build-2.log 成功。源合并百叶残留旋转已冻结，避免包围盒虚胖，最终FBX重开验证通过。构建检查导入可见几何的9条门洞射线，源模型另检30条；不得仅打碰撞洞而保留视觉实墙。正式门牌前移到 z=-1.845/-1.862 避免外墙遮盖。旧 Meshy 路径/门槛改为本地模型门槛，运行报告改 referenceExterior。
+- **本轮实际验证**：`builds/clocktower-final/verification/results.json` 六项 PASS：time19.6s、time-relaunch3.3s、tower-1080 49.2s、tower-relaunch24.0s、tower-720 49.1s、shop54.0s。真实 CharacterController 从街道过门、39点上32级梯、护栏推挤、内外开门及防夹、机房齿轮动画；另一个进程恢复楼上/E06/开门并逐级下楼。四面实体针与 Q 怀表共享计时，+30分钟、7秒/10分钟、暂停、跨日、旧字段迁移及自动存档通过。720/1080完整中文铭牌、砖纹、灰尘鞋印、齿轮、双钟同屏均已目视核对。独立只读叙事公平性复核未发现时钟来源、脚印身份或证物依赖越界。
+- **正式入口**：构建为通用 arm64+x86_64，codesign --deep --strict 和85.8MiB ZIP完整性通过。已更新 `~/Documents/GitHub/game_test/builds/macos-current/错日证词-新版.app`，原应用与正常存档备份在 `backup-before-clocktower-20261009-135311/`，桌面原符号链接保持。普通无review启动已通过原入口打开并目视标题菜单，新钟楼在背景可见；normal-launch.log确认SAVE_LOCATION仍是 `com.qingchuanstudio.wrongdatetest.currentmac/slice-save.json`，启动前后正常存档哈希相同。测试使用独立review文件，原review/time/tower/proof文件均恢复。
+- **证据与范围**：精简结果及实机截图 `output/demo/clocktower/`；模型渲染 `assets/source/clocktower/exterior/previews/`，两者不混称。程序驱动实机，不是物理键鼠/陌生玩家盲测；未做 Intel 实机、长时间性能或完整MVP六路线运行。仍为10%切片中心(0,0,10)，没有迁移全镇第四版。合同同步后重新生成平面验证hash，不改几何，不以平面PASS替代3D验证。
+
+### TOWER-03：再次纠正图生建模的含义（2026-10-09）
+
+- 用户明确“不要用这个网站，我的意思是学习这个网站图生成建模的方式”。TOWER-02 把其要求解释为接受 Blender 参考图脚本重建，是助手的推断，不能继续视为用户已认可制作方法或美术结果。现有钟楼实际已构建并可玩，但不等于完成了图片条件模型推理。
+- 最新边界：研究/学习同类图片→三维形状→纹理的方法，不操作 Meshy 网站、不上传、不调用服务；不得假称知晓或复刻其未公开内部模型。本轮只查阅公开论文、代码与硬件，没有下载模型、安装环境或运行推理，也没有再次覆盖游戏。
+- 官方 TripoSR 为图片编码→三平面表示→网格；Hunyuan3D 提供形状与纹理两阶段。Mac 路线需区分官方CUDA默认实现和社区MLX移植。实际主机读取为 Apple M5 Pro、24GiB统一内存、约370GiB可用空间；系统Python3.12当前无torch/transformers/diffusers等。社区小型形状模型可能可行，未在本机验证；完整贴图内存与质量仍待验证，不能借用作者性能数据当作本机结果。
+- 后续若执行应先隔离试验图片条件形状生成、保留输入/模型版本/原始网格，再比较外观；不要先覆盖现有已测试的门、旋梯、时间与存档。外观图不提供内部通道、门轴与机房信息，这些需按既有空间合同修整并重验。调研来源与状态见 `assets/source/clocktower/image3d-research.json`。
+
+### TOWER-04：现有钟楼增高至 20 米、三层连续旋梯与旧存档迁移（2026-10-09）
+
+- **用户最新决定**：接受当前游戏中的钟楼作继续修改的基础，要求约 20 米、三层体量。本轮继续已有本地资产；没有使用 Meshy 网站、上传、下载或运行图生模型，不以神经图生推理为本次高度修改的前提。命令行 fetch 成功，HEAD 与 origin/main 同为 a7c3191，没有新增远端提交；保留全部本地改动，未提交推送。
+- **共用尺度**：`ClockTowerInteriorLayout` 定义总高 20m、塔身外宽 3.6m／净宽 3.05m、地面 .12m、中层 8.530435m、机房 15m、内墙 18.3m、四钟心 16.72m／直径 2.2m。Blender 生成源读取同份常量并补砖列、角石、檐口与实体关闭百叶，不把人的门或砖纹拉长。7 材质组／230159 三角面，源和 FBX 静态回导、门洞射线及各层标记通过。原 9.5m 资产备份于 `builds/clocktower-20m/previous-art/`。
+- **楼梯与中层**：92 段不是 92 个升高阶；实际为下段 52 级（步高 .161739m）、同高 90° 中层的 5 段、上段 35 级（步高 .184845m），共 87 级／87 鞋印／101 脚底路线点。保留首两级的门口扶手缺口；中层栏杆两端开放，旋梯和平台来自同一 Prefab。禁止恢复“每段持续升高并在中间直接叠楼板”，那会遮住中层站立区。共享布局 18 项检查通过，整圈同点最小净高约 2.316m，保守胶囊包络净高约 2.154m，高于玩家 1.78m；不能把同点净高当作整个胶囊净高。
+- **旧档迁移**：新增 `towerLayoutRevision=1`。无版本旧档在塔内旧梯高度时映射到相同角度的新梯，旧机房移到新 15m 平台；只改位置和版本，保留证物、门、对白及累计时间。正常塔外位置不变。`ContainsUpperWalkPosition` 上限同步至 15.3m，测试用非法高点移到 21m，仍拒绝塔顶和塔外悬空点，不能为新高度放开所有高处存档。
+- **实机结果**：Mac/Metal 12 项 PASS，`builds/clocktower-20m/verification/results.json`：time、time-relaunch、tower-1080、tower-relaunch、tower-720、shop、旧梯第 1／12／20／31 级及旧机房五种迁移、middle-save。真实控制器走满 101 点登至机房，新进程恢复机房并逐级下楼；中层站立/往返、门口/防夹、各段扶手、87 鞋印与齿轮动画通过。四面塔钟持续比 Q 表快 30 分钟，7 秒/10 分钟规则保持。迁移保留 E06、开门、问候及加载时 123.5 秒累计时间。不是所有旧阶次穷举验证。
+- **最后构建与画面**：首轮中层验收机位只拍到近墙，因此仅修改 `middleLookPoint` 至 (.55, MiddleFloor+.25, -.65)，最终 `build-review-camera.log` 构建通过并单独复跑 middle-save PASS（4.2s），已目视旋梯/平台画面。未改变几何或控制器，其他 11 项沿用同轮初始构建的有效结果。已查看双分辨率钟面／怀表、全高外观、脚印、机芯等。精简证据在 `output/demo/clocktower-20m/`，历史 9.5m 证据未覆盖。
+- **正式交付**：通用 arm64+x86_64、严格签名、89.2MiB ZIP 完整性通过。最终 ZIP SHA256 为 `25f9719b998f3e3c8ed2a2c3ba37c66d70e64dd4f8a641766f8065dd08edfe22`。已更新原 `~/Documents/GitHub/game_test/builds/macos-current/错日证词-新版.app`，桌面原符号链接保持；旧应用与正常档备份至 `backup-before-clocktower-20m-20261009-142040/`。正常打开标题菜单已目视，SAVE_LOCATION 仍为原正常路径，启动前后正常档哈希一致；所有验收专用档恢复。没有修改主 checkout 的源代码。
+- **范围**：程序驱动真实播放器／控制器及目视检查，不是物理键鼠或玩家盲测；未做 Intel 实机、长时间性能或完整 MVP 六路线运行。只增高现有塔，切片中心仍为 (0,0,10)，无第四版全镇迁移。合同更新后重新生成平面验证哈希，叙事及平面检查不能替代上述 3D 运行结果。
+
+### TOWER-05：钟楼砖石内装、逐层落灰、同串脚印与上层蛛网浮尘（2026-10-09）
+
+- **用户要求**：根据内部截图补墙地砖石纹理；底层灰尘和脚印轻淡，向上逐渐明显，脚印只更清晰而不增加；顶层墙角、上部扶手增加蛛网，接近机房有少量白色空气尘粒。命令行fetch成功，HEAD/origin/main仍a7c3191，无远端变化；保留所有已有未提交修改，没有提交推送。
+- **真实参考**：National Trust历史屋积尘、English Heritage论文、NHM蛛网/蛛丝说明及OPB联合车站塔内实景。`assets/source/clocktower/interior-reference-research.json`保留链接与适用边界：越高越积灰是本塔少清扫/少碰触的艺术设定，不是自然定律；不从印记清晰度宣布身份、日期或调钟行为。外部照片没有复制成游戏贴图，没有上传或调用Meshy。
+- **表面生成**：新增 `ClockTowerInteriorSurfaces.cs`，自制512px颜色/法线，约.38×.18m石灰砖、.58×.38m底层石板；内墙贴面比旧内壳前移6mm且切开原门洞，只渲染无碰撞。所有相关表面改米制UV，防止每个三角区重复整张砖图。原木梯/平台保留，8个每2m高度带的灰膜从轻到厚。6盏维护灯适度提亮并加入小暖色灯泡，未增灯数或阴影灯。
+- **同串脚印**：仍为原位置、左右和鞋型的87枚，`footprintCount==87`实机断言取代旧>=70门槛。初轮顶部近似深色实心图章，经目视后改上端底色为#8A8271、alpha cutoff .43，保留孔隙与碎灰；最终低/高对比约.00746/.16292，cutoff .600625/.43。第7/47/87段同方位实机近景可见低层近乎淡去、中层渐清、顶部清楚的变化，不新增第二串脚印。
+- **蛛网与浮尘**：新增 `ClockTowerAtmosphere.cs`，顶层三墙角与上段第76/84/90段扶手外侧共6处疏密不均细丝网，不横封路径且没有碰撞。只读复核发现初值1.49m墙端距1.519m贴面悬空29mm，已统一 `WallAnchor=InteriorWidth/2-.005`，丝端入墙1mm；扶手端落真实立杆。机房局部粒子12–22s寿命、1.25枚/s、上限32，微小灰白柔点缓慢漂移，水平范围约±1.332m、垂直14.39–17.286m，位于塔内。
+- **构建修复**：首构建因项目未启用ParticleSystem模块报类型缺失，依据本机Unity内置包manifest加入 `com.unity.modules.particlesystem=1.0.0`；锁文件仅增此builtin模块，无外部包升级。`build-2.log`与最终 `build-final.log`均BUILDING_LAYOUT_PASS、CLOCKTOWER_ATMOSPHERE_READY、SLICE_BUILD_PASS。
+- **实机证据**：首轮1080p/720p完整101点行走、独立机房读档下楼、中层存档四项全PASS；随后仅脚印材质柔化和底层机位补充，最终1080p85.4s、720p84.9s再次完整通过。上下楼/存档代码和碰撞未变，机房重启54.7s与中层3.7s沿用同轮build-2结果。检查真实门口/防夹/护栏、四面针+30分钟/Q表持续走时、87枚印记、上层网无碰撞、实际粒子两次GetParticles匹配位移；最终1080p20→21粒、20粒实际移动，未调用Emit/Simulate制造通过。已目视底层砖石、三段灰尘脚印、角落网、机芯和双钟两档画面。证据 `output/demo/clocktower-interior/`，完整日志 `builds/clocktower-atmosphere/`。
+- **交付**：arm64+x86_64、严格签名、90.1MiB ZIP完整性通过，SHA256 `3186958168d7311502bdfccbb3ff3a69591b2e99d0ee9208ed9f276982b6508c`。已更新原桌面入口并正常打开菜单，可见保存位置的新砖墙；旧应用及正常档备份在 `backup-before-clocktower-interior-20261009-144731/`。SAVE_LOCATION仍为原正常路径，启动前后正常档哈希一致，所有review存档恢复。没有修改主checkout源文件。
+- **范围**：18项布局静态检查仍通过，最终叙事与地图合同哈希检查另记录。只是现有钟楼表面/气氛与照明调整，无20m布局、钟表规则、证物依赖或第四版全镇迁移。脚本驱动实际玩家与目视验收，不是物理键鼠或盲测；未做Intel实机或长时间性能评估。

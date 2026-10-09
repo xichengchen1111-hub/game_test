@@ -17,6 +17,9 @@ using UnityEngine.SceneManagement;
     public List<string> dialogueTopics = new List<string>();
     public List<string> openFixtures = new List<string>();
     public int worldRevision;
+    public int gameClockRevision;
+    public int towerLayoutRevision;
+    public double elapsedGameMinutes;
 }
 
 public partial class DemoApp : MonoBehaviour {
@@ -33,7 +36,7 @@ public partial class DemoApp : MonoBehaviour {
     public UnityEngine.Rendering.Universal.ScriptableRendererFeature reviewAmbientOcclusion;
     public SliceSave state = new SliceSave();
     public bool Review { get; private set; }
-    public float Minutes => 17*60+55+Time.time/60f;
+    public float Minutes => (float)gameClock.MinutesOfDay;
     public bool Blocked => opening || transitioning || inspected || journal || paused || DialogueOpen;
     public string CurrentScene { get; private set; } = "Town";
     public bool IsInsideShop { get; private set; }
@@ -42,6 +45,8 @@ public partial class DemoApp : MonoBehaviour {
     bool opening=true, transitioning, journal, paused, watch;
     bool quitting,reviewPortrait;
     bool sceneReady;
+    bool towerSaveMigrated;
+    Vector3 towerMigratedPosition;
     float fade=1, locationAge, remarkUntil;
     string location="青川 · 小镇广场", remark="";
     Interactable inspected, focus;
@@ -77,7 +82,10 @@ public partial class DemoApp : MonoBehaviour {
         Silent=Review || Array.IndexOf(args,"--silent")>=0;
         bool dialogueReview=Review&&(Array.IndexOf(args,"--review-dialogue")>=0||Array.IndexOf(args,"--verify-dialogue-save")>=0);
         bool migrationReview=Review&&Array.IndexOf(args,"--verify-walnut-migration")>=0;
-        savePath=Path.Combine(Application.persistentDataPath,migrationReview?"walnut-migration-save.json":dialogueReview?"dialogue-review-save.json":Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
+        bool timeReview=Review&&(Array.IndexOf(args,"--review-time")>=0||Array.IndexOf(args,"--verify-time-save")>=0);
+        bool towerMigrationReview=Review&&(Array.IndexOf(args,"--verify-clocktower-migration")>=0||Array.IndexOf(args,"--verify-clocktower-middle-save")>=0);
+        bool towerReview=Review&&(Array.IndexOf(args,"--review-clocktower")>=0||Array.IndexOf(args,"--verify-clocktower-save")>=0);
+        savePath=Path.Combine(Application.persistentDataPath,towerMigrationReview?"clocktower-migration-save.json":towerReview?"clocktower-review-save.json":timeReview?"time-review-save.json":migrationReview?"walnut-migration-save.json":dialogueReview?"dialogue-review-save.json":Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
         int c=Array.IndexOf(args,"--capture-dir");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -89,6 +97,7 @@ public partial class DemoApp : MonoBehaviour {
         if (state==null || state.entries==null) state=new SliceSave();
         if(state.dialogueTopics==null)state.dialogueTopics=new List<string>();
         if(state.openFixtures==null)state.openFixtures=new List<string>();
+        InitializeGameClock(File.Exists(savePath)&&Array.IndexOf(args,"--fresh")<0);
         if (state.scene!="Town" && state.scene!="ClockShop") state.scene="Town";
         if(previewWindow){state.scene="ClockShop";state.x=0;state.y=.03f;state.z=-.6f;opening=false;}
         if(previewStreet){state.scene="Town";state.x=0;state.y=.03f;state.z=1;opening=false;}
@@ -111,6 +120,15 @@ public partial class DemoApp : MonoBehaviour {
         CurrentScene="Town";
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentScene));
         var savedPosition=new Vector3(state.x,state.y,state.z);
+        if(state.towerLayoutRevision<1&&!legacyRoom) {
+            var tower=FindFirstObjectByType<ClockTowerInstance>();
+            if(tower&&tower.TryMigrateLegacyPosition(savedPosition,out var migrated)) {
+                savedPosition=migrated;towerSaveMigrated=true;towerMigratedPosition=migrated;
+                state.x=migrated.x;state.y=migrated.y;state.z=migrated.z;
+                Debug.Log("CLOCKTOWER_SAVE_MIGRATED: old tower position moved to corresponding safe stair/landing; progress retained");
+            }
+        }
+        state.towerLayoutRevision=1;
         if(!SafePosition(savedPosition)) {
             Debug.LogWarning("Recovered invalid saved position: "+savedPosition);
             savedPosition=SafeSpawn();
@@ -127,7 +145,13 @@ public partial class DemoApp : MonoBehaviour {
         if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--review-walnut-shop")>=0)StartCoroutine(ReviewWalnutShop());
+            if(Array.IndexOf(args,"--review-clocktower")>=0)StartCoroutine(ReviewClockTower());
+            else if(Array.IndexOf(args,"--verify-clocktower-save")>=0)StartCoroutine(VerifyClockTowerSave());
+            else if(Array.IndexOf(args,"--verify-clocktower-migration")>=0)StartCoroutine(VerifyClockTowerMigration());
+            else if(Array.IndexOf(args,"--verify-clocktower-middle-save")>=0)StartCoroutine(VerifyClockTowerMiddleSave());
+            else if(Array.IndexOf(args,"--review-time")>=0)StartCoroutine(ReviewTime());
+            else if(Array.IndexOf(args,"--verify-time-save")>=0)StartCoroutine(VerifyTimeSave());
+            else if(Array.IndexOf(args,"--review-walnut-shop")>=0)StartCoroutine(ReviewWalnutShop());
             else if(Array.IndexOf(args,"--verify-walnut-save")>=0)StartCoroutine(VerifyWalnutSave());
             else if(Array.IndexOf(args,"--verify-walnut-migration")>=0)StartCoroutine(VerifyWalnutMigration());
             else if(Array.IndexOf(args,"--review-dialogue")>=0)StartCoroutine(ReviewDialogue());
@@ -143,6 +167,7 @@ public partial class DemoApp : MonoBehaviour {
         }
     }
     void Update() {
+        UpdateGameClock();
         if(sceneReady&&seamlessShop) {
             var p=seamlessShop.transform.InverseTransformPoint(player.transform.position);
             bool inside=Mathf.Abs(p.x)<seamlessShop.layout.footprint.x/2&&Mathf.Abs(p.z)<seamlessShop.layout.footprint.y/2;
@@ -223,6 +248,8 @@ public partial class DemoApp : MonoBehaviour {
     }
     public void Save() {
         if(!player||!sceneReady) return;
+        StoreGameClock();
+        state.towerLayoutRevision=1;
         state.scene=CurrentScene;
         var p=player.transform.position;
         if(!SafePosition(p))p=SafeSpawn();
@@ -238,7 +265,11 @@ public partial class DemoApp : MonoBehaviour {
     }
     bool SafePosition(Vector3 p) {
         if(float.IsNaN(p.x)||float.IsNaN(p.y)||float.IsNaN(p.z)||float.IsInfinity(p.x)||float.IsInfinity(p.y)||float.IsInfinity(p.z))return false;
-        if(p.y < -1 || p.y > 4)return false;
+        if(p.y < -1)return false;
+        if(p.y > 4) {
+            var tower=CurrentScene=="Town"?FindFirstObjectByType<ClockTowerInstance>():null;
+            if(!tower||!tower.ContainsUpperWalkPosition(p))return false;
+        }
         if(CurrentScene=="Town")return p.x > -16.7f && p.x < 16.7f && p.z > -22.7f && p.z < 31.7f;
         var layout=FindFirstObjectByType<BuildingInstance>().layout;
         return Mathf.Abs(p.x)<layout.footprint.x/2 && Mathf.Abs(p.z)<layout.footprint.y/2;
@@ -430,9 +461,10 @@ public partial class DemoApp : MonoBehaviour {
         float first=watchRenderedMinutes;
         yield return new WaitForSeconds(1.1f);
         yield return Capture("watch-later");
-        if(watchRenderedMinutes<=first)throw new Exception("Pocket-watch time is not advancing.");
+        if(Mathf.Repeat(watchRenderedMinutes-first,1440f)<=0)throw new Exception("Pocket-watch time is not advancing.");
+        yield return new WaitForEndOfFrame();
         foreach(var dial in FindObjectsByType<ClockDial>(FindObjectsSortMode.None)) {
-            float expected=-((Minutes+(dial.streetClock?30:0))%60)*6;
+            float expected=-((Minutes+(dial.streetClock?(float)GameClock.TowerOffsetMinutes:0))%60)*6;
             if(Mathf.Abs(Mathf.DeltaAngle(dial.minuteHand.localEulerAngles.z,expected))>.5f)
                 throw new Exception("Scene clock no longer matches shared game time.");
         }
