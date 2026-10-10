@@ -75,3 +75,8 @@ node tools/check_town_map_ui.cjs
 `tools/build_full_town.py`从本目录数据生成`game/Assets/Resources/TownPlan.json`与占位贴图；`BuildSlice.FullMap.cs`生成共享Town场景。改图后先运行`python -X utf8 tools/check_town_map.py --write`，再运行`python -X utf8 tools/build_full_town.py`，最后Unity `BuildSlice.Build`。新存档`worldRevision=3`；旧店内、牛奶屋、塔内位置映射到新坐标，旧街道位置回到新广场安全点，保留证物、时间和交互状态。不要再将旧切片坐标写进测试。
 
 原生Windows检查走通车站／钟表铺／住宅六种**室外访问顺序**，扫查11条道路人行道净宽、比较屋顶索引、迁移四类旧位置并单独重启。指定邻居窗→厨房门视线可通，→东正门被住宅挡住；东侧送奶点可看到真实塔钟。住宅和车站仍无室内，本轮未验证完整案件闭环、全部视点或历史连续目击。环境与交互回归及程序版本见[全镇验收](../../../output/demo/full-map/README.md)。
+
+2026-10-10运行时人物更新：送奶少年在同一B04牛奶店内柜台旁，MilkShopAsset共享生成器的本地坐标(2.35,0.18,0.85)，对应Unity世界约(-146.209,0.122,6.445)，朝店内顾客区。牛奶店原双扇门可交互；宅地、建筑轮廓、门洞、道路和历史actor-audit路线均未移动。这一当前探索点位不代表案发时历史路线。
+
+
+2026-10-10 跑速与怀表一起校准：当前2.5m/s步行、6m/s Shift奔跑，时间4倍（150现实秒/10游戏分钟）。本目录历史路线表中1.2m/s的剧情步行预算、2.5m/s的原室外调查预算是距离/速度演算，不能直接当作当前怀表耗时。未改道路/宅地/历史路线源；原生门口到门口测量与候选路线/地图近路区别见[跑速校准](../../../output/demo/sprint-calibration/README.md)。

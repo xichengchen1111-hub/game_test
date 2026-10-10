@@ -6,6 +6,7 @@ public sealed class WeatherShelter : MonoBehaviour {
     public Vector2 footprint;
     public float eaves, rise;
     public Vector2 centre;
+    public ShopMechanism[] exteriorDoors = new ShopMechanism[0];
     static readonly HashSet<WeatherShelter> active = new HashSet<WeatherShelter>();
     const float CellSize=16;
     static readonly Dictionary<long,List<WeatherShelter>> cells=new Dictionary<long,List<WeatherShelter>>();
@@ -41,5 +42,15 @@ public sealed class WeatherShelter : MonoBehaviour {
         return Mathf.Abs(exhaustive-RoofHeight(point))<.001f;
     }
     public static bool Covered(Vector3 eye) => RoofHeight(eye)>eye.y;
+    // Roof coverage still clips drops with the door open. Only the acoustic enclosure changes.
+    public static bool MufflesRain(Vector3 eye) {
+        bool covered=false;
+        if(cells.TryGetValue(Key(eye),out var candidates))foreach(var shelter in candidates) {
+            if(!shelter.RoofAt(eye,out var height)||height<=eye.y)continue;
+            covered=true;
+            foreach(var door in shelter.exteriorDoors)if(door&&door.OpenFraction>.001f)return false;
+        }
+        return covered;
+    }
     public static int Count => active.Count;
 }

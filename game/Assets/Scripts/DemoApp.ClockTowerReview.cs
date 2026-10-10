@@ -118,10 +118,10 @@ public partial class DemoApp {
         ToggleWatch();yield return new WaitForSeconds(.4f);yield return Capture("tower-watch-comparison");
         yield return new WaitForEndOfFrame();RequireSharedDialHands();
         var dials=tower.GetComponentsInChildren<ClockDial>();var handsBefore=dials.Select(d=>d.minuteHand.localRotation).ToArray();
-        float before=Minutes;yield return new WaitForSeconds(7);yield return Capture("tower-watch-comparison-later");
+        float before=Minutes;double compareReal=Time.unscaledTimeAsDouble;yield return new WaitForSeconds(7);yield return Capture("tower-watch-comparison-later");
         yield return new WaitForEndOfFrame();RequireSharedDialHands();
-        for(int i=0;i<dials.Length;i++)NeedTower(Quaternion.Angle(handsBefore[i],dials[i].minuteHand.localRotation)>55,"A physical tower minute hand stopped moving");
-        NeedTower(Mathf.Abs(Mathf.Repeat(Minutes-before,1440)-10)<.8f,"Q view does not continue advancing at the configured ratio");
+        for(int i=0;i<dials.Length;i++)NeedTower(Quaternion.Angle(handsBefore[i],dials[i].minuteHand.localRotation )>2.5f,"A physical tower minute hand stopped moving");
+        NeedTower(Math.Abs(Mathf.Repeat(Minutes-before,1440)-(Time.unscaledTimeAsDouble-compareReal)*GameClock.GameMinutesPerRealSecond)<.01,"Q view does not continue advancing at the configured ratio");
         ToggleWatch();
         yield return WalkTo(new Vector3(0,.1f,-3.2f));
         var plaque=tower.GetComponentsInChildren<Interactable>().Single(i=>i.evidenceId=="E06");
@@ -246,14 +246,14 @@ public partial class DemoApp {
         player.Aim(tower.LocalToWorld(layout.mechanismLookPoint));yield return null;
         int evidenceCount=state.entries.Count;
         NeedTower(TryInteract()&&inspected is ClockTowerAdjustment,"Ordinary E ray cannot reach the mechanical adjustment");
-        NeedTower(Blocked&&GameTimePaused,"Adjustment UI must suspend movement/look like other inspections");
+        NeedTower(Blocked&&!GameTimePaused,"Adjustment UI must suspend movement/look while watch time continues");
         yield return Capture("tower-adjustment-controls");
         double watchBefore=ElapsedGameMinutes;
         int[] expected={-60,-90,-60,0,0};
         for(int i=0;i<5;i++) {
             ApplyTowerAdjustment(i);yield return ReviewWinding(tower,i==0);
             NeedTower(state.towerAdjustmentMinutes==expected[i],"Wrong relative adjustment for control "+i);
-            NeedTower(ElapsedGameMinutes==watchBefore&&state.entries.Count==evidenceCount,"Adjustment changed watch time or granted evidence");
+            NeedTower(ElapsedGameMinutes>watchBefore&&state.entries.Count==evidenceCount,"Watch must continue naturally without adjustment granting evidence");
         }
         // Boundary fixtures exercise real controls on either side of a day wrap.
         state.towerAdjustmentMinutes=1410;ApplyTowerAdjustment(3);yield return ReviewWinding(tower);
@@ -265,10 +265,10 @@ public partial class DemoApp {
         ApplyTowerAdjustment(3);yield return ReviewWinding(tower);
         NeedTower(TowerClockOffsetMinutes==90,"One +1-hour turn must add to the original offset");
         var disk=JsonUtility.FromJson<SliceSave>(File.ReadAllText(savePath));
-        NeedTower(disk.towerAdjustmentMinutes==60&&Math.Abs(disk.elapsedGameMinutes-watchBefore)<1e-9,"Adjustment did not persist independently of watch time: offset="+disk.towerAdjustmentMinutes+" elapsed="+disk.elapsedGameMinutes.ToString("R")+" expected="+watchBefore.ToString("R"));
+        NeedTower(disk.towerAdjustmentMinutes==60&&disk.elapsedGameMinutes>watchBefore&&disk.elapsedGameMinutes<=ElapsedGameMinutes,"Adjustment did not persist independently of the advancing watch: offset="+disk.towerAdjustmentMinutes+" elapsed="+disk.elapsedGameMinutes.ToString("R"));
         yield return Capture("tower-adjustment-applied");CloseInspect();
         NeedTower(!Blocked,"Closing adjustment UI failed to restore walking");
-        Debug.Log("CLOCKTOWER_ADJUSTMENT_PASS: five controls, three-second multi-turn acceleration/deceleration, all controls locked, pause/reopen, +/- day wrap, unchanged watch/evidence, four shared hands, disk write, close restores movement");
+        Debug.Log("CLOCKTOWER_ADJUSTMENT_PASS: five controls, three-second multi-turn acceleration/deceleration, locks, pause/reopen, day wrap, advancing watch/no new evidence, shared hands and disk write");
     }
     IEnumerator VerifyClockTowerSave() {
         yield return new WaitForSeconds(.8f);
@@ -278,9 +278,11 @@ public partial class DemoApp {
         NeedTower(state.towerAdjustmentMinutes==60&&TowerClockOffsetMinutes==90,"Adjusted tower offset did not persist across process relaunch");
         player.Aim(tower.LocalToWorld(layout.mechanismLookPoint));yield return Capture("tower-upper-floor-reloaded");
         NeedTower(TryInteract()&&inspected is ClockTowerAdjustment,"Reloaded machine cannot be interacted with");
-        double watchBeforeReset=ElapsedGameMinutes;
+        double watchBeforeReset=ElapsedGameMinutes,realBeforeReset=Time.unscaledTimeAsDouble;
         ApplyTowerAdjustment(4);yield return ReviewWinding(tower);
-        NeedTower(TowerClockOffsetMinutes==30&&ElapsedGameMinutes==watchBeforeReset,"Reset must restore watch +30 without changing the watch");
+        double watchAdvance=ElapsedGameMinutes-watchBeforeReset;
+        NeedTower(TowerClockOffsetMinutes==30&&watchAdvance>3*GameClock.GameMinutesPerRealSecond*.9&&Math.Abs(watchAdvance-(Time.unscaledTimeAsDouble-realBeforeReset)*GameClock.GameMinutesPerRealSecond)<.1,
+            "Reset must restore watch +30 while the watch advances at its ordinary rate");
         yield return Capture("tower-reset-after-reload");CloseInspect();
         var path=layout.WorldAscendingPath();
         for(int i=path.Length-1;i>=0;i--)yield return TowerWalk(path[i]);
@@ -295,7 +297,7 @@ public partial class DemoApp {
         ToggleWatch();yield return Capture("tower-reset-ground-comparison");
         yield return new WaitForEndOfFrame();RequireSharedDialHands();
         NeedTower(TowerClockOffsetMinutes==30,"Reset clock drifted after descent");
-        File.WriteAllText(Path.Combine(captures,"clocktower-save-relaunch.txt"),"PASS: separate process restored upper-floor position/E06/door/adjusted +90-minute offset; ordinary E interaction reset all four dials to watch +30, watch unchanged; actual controller descended every stair and left the building; door closed from outside.\n");
+        File.WriteAllText(Path.Combine(captures,"clocktower-save-relaunch.txt"),"PASS: separate process restored upper-floor position/E06/door/adjusted +90-minute offset; ordinary E interaction reset all four dials to watch +30 while the watch advanced at its ordinary rate; actual controller descended every stair and left the building; door closed from outside.\n");
         Debug.Log("CLOCKTOWER_SAVE_RELAUNCH_PASS");Application.Quit();
     }
     IEnumerator VerifyClockTowerMigration() {

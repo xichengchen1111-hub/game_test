@@ -1,0 +1,30 @@
+[
+  {
+    "file": "01-从家全速跑到车站.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-sprint-clock-release-20261010/sprint-route/current-home-station",
+    "seconds": 55.9138726,
+    "nativeFrames": 1119,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0104818,
+    "audioPeak": 0.0472412109375,
+    "audioSeconds": 55.91466666666667,
+    "sha256": "a58b737d9208f355b1e7722b65f969893792f8d04e16111fab1978bbc7910369",
+    "bytes": 21218131,
+    "decodedWithoutErrors": true
+  },
+  {
+    "file": "02-沿近路全速返家.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-sprint-clock-release-20261010/sprint-route/current-station-home",
+    "seconds": 49.7474415,
+    "nativeFrames": 995,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.006568,
+    "audioPeak": 0.048583984375,
+    "audioSeconds": 49.74933333333333,
+    "sha256": "15e6d47130b416202f4b9314bd5d57bd525f6d0216ce303d73615245e00daf34",
+    "bytes": 17059227,
+    "decodedWithoutErrors": true
+  }
+]

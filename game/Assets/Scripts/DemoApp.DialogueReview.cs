@@ -31,10 +31,10 @@ public partial class DemoApp {
         var headFront=Array.Find(bones,t=>t.name=="headfront");
         RequireDialogue(head&&headFront,"Milkboy facing bones must exist");
         Vector3 face=headFront.position-head.position;face.y=0;face.Normalize();
-        RequireDialogue(Vector3.Dot(face,Vector3.forward)>.9f,"Milkboy must face the accessible northern street");
-        Vector3 front=boy.transform.position+face*2.1f;
-        front.y=.1f;
-        player.Place(front+face*1.1f,0);
+        RequireDialogue(Vector3.Dot(face,milkShopRoot.TransformDirection(Vector3.back))>.9f,"Milkboy must face the accessible customer floor");
+        Vector3 front=boy.transform.position+face*1.35f;
+        front.y=milkShopRoot.TransformPoint(new Vector3(0,.20f,0)).y;
+        player.Place(front+face*.75f,0);
         yield return WalkTo(front);
         player.Aim(boy.transform.position+Vector3.up*.94f);yield return null;
     }

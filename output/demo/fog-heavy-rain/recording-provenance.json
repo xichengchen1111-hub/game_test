@@ -1,0 +1,38 @@
+[
+  {
+    "file": "01-大雨与落地水花.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-fog-rain-street-video-20261010/rain-presentation/01-rain-and-splashes",
+    "seconds": 30.0355274,
+    "nativeFrames": 601,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0180524,
+    "sha256": "4e4f1687c5e05b16d078dfc9186c187f1127254b3e585a82181904e803d2cb0f",
+    "bytes": 2307960,
+    "assemblySHA256": "43516aabfe7826da7fa8d935e8fa5c4b6db772d7a3a04711d9f5b2dde3953a31"
+  },
+  {
+    "file": "02-走进室内听雨.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-fog-rain-street-video-20261010/rain-presentation/02-enter-room-rain",
+    "seconds": 19.1784505,
+    "nativeFrames": 384,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0168479,
+    "sha256": "c607caaa9f4c10ec9a0750a118fa7363d0522e477e67bb357d0c9b7fadab56e8",
+    "bytes": 5162475,
+    "assemblySHA256": "43516aabfe7826da7fa8d935e8fa5c4b6db772d7a3a04711d9f5b2dde3953a31"
+  },
+  {
+    "file": "03-灰雾白天.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-fog-rain-street-video-20261010/rain-presentation/03-grey-day-fog",
+    "seconds": 10.0409235,
+    "nativeFrames": 201,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0194683,
+    "sha256": "6a9cb5803bc01b69265f436ee982c6b8a4fa745db270447963815e7405e651ce",
+    "bytes": 2010658,
+    "assemblySHA256": "43516aabfe7826da7fa8d935e8fa5c4b6db772d7a3a04711d9f5b2dde3953a31"
+  }
+]

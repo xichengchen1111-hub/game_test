@@ -1,8 +1,10 @@
 using UnityEngine;
 
-// Original procedural sounds: no third-party recordings or asset dependencies.
+// Original procedural ambience and authored held-item foley; no sampled recordings.
 public class TownSound : MonoBehaviour {
     AudioSource ambience,details;
+    AudioSource mapAudio,watchAudio;
+    readonly AudioClip[] propClips=new AudioClip[4];
     AudioClip step,tick;
     float nextStep,nextTick;
 
@@ -19,6 +21,20 @@ public class TownSound : MonoBehaviour {
         ambience.clip=AudioClip.Create("Quiet dusk breeze",wind.Length,1,rate,false);ambience.clip.SetData(wind,0);ambience.Play();
         details=gameObject.AddComponent<AudioSource>();details.volume=.15f;
         step=Impulse("Soft footstep",.15f,125f,random,rate);tick=Impulse("Clock tick",.055f,1900f,random,rate);
+        mapAudio=HeldSource("Paper handling",.52f);watchAudio=HeldSource("Pocket watch handling",.48f);
+        string[] names={"MapUnfold","MapFold","WatchTakeOut","WatchPutAway"};
+        for(int i=0;i<names.Length;i++)propClips[i]=Resources.Load<AudioClip>("PropSounds/"+names[i]);
+    }
+    AudioSource HeldSource(string name,float volume) {
+        var child=new GameObject(name);child.transform.SetParent(transform,false);
+        var source=child.AddComponent<AudioSource>();source.playOnAwake=false;source.loop=false;
+        source.spatialBlend=0;source.dopplerLevel=0;source.volume=volume;source.priority=64;return source;
+    }
+    public AudioSource HeldItemSource(bool map)=>map?mapAudio:watchAudio;
+    public void PlayHeldItem(bool map,bool opening) {
+        var source=HeldItemSource(map);var clip=propClips[(map?0:2)+(opening?0:1)];
+        if(!source||!clip)return;
+        source.clip=clip;source.Play();
     }
     AudioClip Impulse(string name,float seconds,float frequency,System.Random random,int rate) {
         var samples=new float[(int)(rate*seconds)];

@@ -159,6 +159,7 @@ public static partial class BuildSlice {
         DayNightLighting.Bind(task,DayNightLamp.Role.Interior,.30f,DayNightLighting.ModuleGlow(root.transform,"Module_RepairBay"));
         var rear=Point("Rear ambient pool",new Vector3(0,2.75f,2.6f),C("#FFD19B"),5.2f,4.4f);rear.transform.SetParent(root.transform,true);
         DayNightLighting.Bind(rear,DayNightLamp.Role.Interior,.45f);
+        WeatherAuthoring.BindDoors(root);
         PrefabUtility.SaveAsPrefabAsset(root,ShopPrefabPath);
         Debug.Log("WALNUT_SHOP_ASSET_PASS: calibrated FBX, two transparent windows, two physical doors, owner and evidence");
     }

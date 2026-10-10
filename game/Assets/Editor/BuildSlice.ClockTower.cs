@@ -39,6 +39,7 @@ public static partial class BuildSlice {
         ClockTowerInterior.Build(root.transform);
         ClockTowerSurfaceChecks.Repair(root.transform);
         TowerDoor(root.transform);
+        WeatherAuthoring.BindDoors(root);
         TowerWallPlaque(root.transform);
         for(int face=0;face<4;face++) {
             var mount=Group("Tower dial "+face,new Vector3(0,T.DialHeight,0),root.transform).transform;

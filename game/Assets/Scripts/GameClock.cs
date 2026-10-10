@@ -4,7 +4,9 @@ using System;
 // Store elapsed game minutes, never wall-clock timestamps or a wrapped time of day.
 public sealed class GameClock {
     public const double InitialMinutes = 17 * 60 + 55;
-    public const double GameMinutesPerRealSecond = 10.0 / 7.0;
+    // Four game seconds per real second: the home-to-station run fits the
+    // 17:35 departure / 17:40 appearance without changing historical times.
+    public const double GameMinutesPerRealSecond = 4.0 / 60.0;
     public const double MinutesPerDay = 24 * 60;
     public const double TowerOffsetMinutes = 30;
 

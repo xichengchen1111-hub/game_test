@@ -7,6 +7,8 @@ public class ShopMechanism : Interactable {
     public Transform movingPart;
     public Vector3 openEuler,openOffset;
     public bool protectPlayer;
+    public bool startsOpen;
+    public float OpenFraction => Mathf.SmoothStep(0,1,progress);
     public Vector3 leafCentre,leafSize;
     public bool IsOpen { get; private set; }
     public bool Moving => Mathf.Abs(progress-(IsOpen?1:0))>.001f;
@@ -17,7 +19,13 @@ public class ShopMechanism : Interactable {
     float blockedUntil;
     void Start() {
         closedRotation=movingPart.localRotation;closedPosition=movingPart.localPosition;
-        IsOpen=DemoApp.Instance.state.openFixtures.Contains(fixtureId);
+        var state=DemoApp.Instance.state;
+        // Initialize once, so closing a door authored open survives old-save migration and relaunch.
+        if(!state.initializedFixtures.Contains(fixtureId)) {
+            state.initializedFixtures.Add(fixtureId);
+            if(startsOpen&&!state.openFixtures.Contains(fixtureId))state.openFixtures.Add(fixtureId);
+        }
+        IsOpen=state.openFixtures.Contains(fixtureId);
         progress=IsOpen?1:0;Apply(progress);SetTitle();
     }
     void SetTitle() { title=(IsOpen?"关闭":"打开")+(fixtureId.Contains("drawer")?"零件抽屉":fixtureId.Contains("vitrine")?"展柜":"木门"); }
@@ -26,6 +34,7 @@ public class ShopMechanism : Interactable {
         LastUseBlocked=false;
         float target=IsOpen?0:1;
         if(protectPlayer) {
+            Physics.SyncTransforms();
             // Reject a swing whose swept leaf intersects the actual player capsule,
             // including somebody standing in the doorway when closing from either side.
             for(int i=0;i<=24;i++)if(Occupied(Mathf.Lerp(progress,target,i/24f))){LastUseBlocked=true;title="先让开门扇的转动范围";blockedUntil=Time.time+2;return;}
@@ -40,7 +49,9 @@ public class ShopMechanism : Interactable {
         var parent=movingPart.parent;
         var centre=parent.TransformPoint(closedPosition+openOffset*t+rotation*leafCentre);
         var orientation=parent.rotation*rotation;
-        foreach(var collider in Physics.OverlapBox(centre,leafSize*.5f,orientation,~0,QueryTriggerInteraction.Ignore))
+        var scale=parent.lossyScale;scale=new Vector3(Mathf.Abs(scale.x),Mathf.Abs(scale.y),Mathf.Abs(scale.z));
+        var hits=Physics.OverlapBox(centre,Vector3.Scale(leafSize*.5f,scale),orientation,~0,QueryTriggerInteraction.Ignore);
+        foreach(var collider in hits)
             if(collider.GetComponentInParent<PlayerMotor>())return true;
         return false;
     }

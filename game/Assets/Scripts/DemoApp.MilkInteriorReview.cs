@@ -33,7 +33,7 @@ public partial class DemoApp {
         NeedMilk(CurrentMilkOrder.DateId=="1931-01-20"&&CurrentMilkOrder.deliveries[0].shop=="旅馆"&&CurrentMilkOrder.deliveries[0].bottles==3&&CurrentMilkOrder.deliveries[0].delivered,"20 January record incorrect");
         var position=player.transform.position;var rotation=player.transform.rotation;double clock=ElapsedGameMinutes;
         player.scriptedDirection=Vector3.forward;yield return new WaitForSeconds(.5f);player.scriptedDirection=Vector3.zero;
-        NeedMilk(Blocked&&GameTimePaused&&Vector3.Distance(position,player.transform.position)<.001f&&Quaternion.Angle(rotation,player.transform.rotation)<.001f&&Math.Abs(clock-ElapsedGameMinutes)<1e-9,"Ledger failed to block player/time");
+        NeedMilk(Blocked&&!GameTimePaused&&Vector3.Distance(position,player.transform.position)<.001f&&Quaternion.Angle(rotation,player.transform.rotation)<.001f&&ElapsedGameMinutes-clock>.5*GameClock.GameMinutesPerRealSecond*.9,"Ledger must block movement/look while time continues");
         NeedMilk(Cursor.visible&&Cursor.lockState==CursorLockMode.None,"Reading cursor isn't free");
         yield return Capture("milk-a-orders-jan20");
         MoveMilkOrderDay(-1);MoveMilkOrderDay(-1);
@@ -87,7 +87,7 @@ public partial class DemoApp {
             yield return Capture("milk-a-window-"+(side<0?"north":"south")+"-outside");
         }
         player.eye.transform.localPosition=eyePosition;player.eye.transform.localRotation=eyeRotation;reviewPortrait=false;player.enabled=true;
-        File.WriteAllText(Path.Combine(captures,"milk-a-results.json"),JsonUtility.ToJson(new MilkReviewResult{passed=true,width=Screen.width,height=Screen.height,continuousEntry=true,actualRayAllFiveObjects=true,orderDatesAndQuantities=true,timeAndMovementPaused=true,noEvidenceGranted=true,bothWindowCollisions=true,lampPersistence=true,originalShellUnchanged=true,verification="Rendered Windows D3D11 player; scripted CharacterController and normal TryInteract rays. Page navigation invokes the same UI handlers. Not physical keyboard input or blind playtest."},true));
+        File.WriteAllText(Path.Combine(captures,"milk-a-results.json"),JsonUtility.ToJson(new MilkReviewResult{passed=true,width=Screen.width,height=Screen.height,continuousEntry=true,actualRayAllFiveObjects=true,orderDatesAndQuantities=true,movementAndLookBlocked=true,timeContinues=true,noEvidenceGranted=true,bothWindowCollisions=true,lampPersistence=true,originalShellUnchanged=true,verification="Native rendered player; scripted CharacterController and normal TryInteract rays. Page navigation invokes the same UI handlers. Not physical keyboard input or blind playtest."},true));
         Debug.Log("MILK_INTERIOR_A_REVIEW_PASS");Application.Quit();
     }
     IEnumerator VerifyMilkInteriorSave() {
@@ -106,7 +106,7 @@ public partial class DemoApp {
         Debug.Log("MILK_INTERIOR_SAVE_RELAUNCH_PASS");Application.Quit();
     }
     [Serializable] class MilkReviewResult {
-        public bool passed,continuousEntry,actualRayAllFiveObjects,orderDatesAndQuantities,timeAndMovementPaused,noEvidenceGranted,bothWindowCollisions,lampPersistence,originalShellUnchanged;
+        public bool passed,continuousEntry,actualRayAllFiveObjects,orderDatesAndQuantities,movementAndLookBlocked,timeContinues,noEvidenceGranted,bothWindowCollisions,lampPersistence,originalShellUnchanged;
         public int width,height;public string verification;
     }
 }

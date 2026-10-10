@@ -15,7 +15,7 @@ public partial class DemoApp {
         public Vector2 cloudOffset;public Vector3 position;
     }
     [Serializable] class WeatherResult {
-        public bool passed,pause,transition,cloudMotion,shelter,daytimeStreetOff,rainRoomLight,shadowBudget,worldRainParallax;
+        public bool passed,explicitPause,readingTimeContinues,dailySchedule,dailyRepeat,transition,cloudMotion,shelter,weatherAwareStreetLights,rainRoomLight,shadowBudget,worldRainParallax;
         public List<WeatherSample> samples=new List<WeatherSample>();public string verification;
     }
     void NeedWeather(bool ok,string why) {
@@ -36,7 +36,8 @@ public partial class DemoApp {
         if(kind==TownWeather.Kind.Rain)NeedWeather(cycle.CloudTransmission<.2f,"Rain cloud blanket failed to dim the celestial light");
         RainRoofCheck(effects);
         foreach(var lamp in DayNightLamp.Active)CheckEmission(lamp);
-        if(cycle.Daylight==1)NeedWeather(DayNightLamp.Active.Where(l=>l.role==DayNightLamp.Role.Exterior&&l.source).All(l=>!l.source.enabled),"Weather enabled noon street lamps");
+        if(cycle.NaturalIllumination>=.60f)NeedWeather(DayNightLamp.Active.Where(l=>l.role==DayNightLamp.Role.Exterior&&l.source).All(l=>!l.source.enabled),"Bright natural light left street lamps on");
+        if(cycle.NaturalIllumination<=.42f)NeedWeather(DayNightLamp.Active.Where(l=>l.role==DayNightLamp.Role.Exterior).All(l=>l.Output>.99f),"Dark weather failed to light the street lamps");
         result.samples.Add(new WeatherSample{view=view,weather=kind.ToString(),minutes=Minutes,coverage=state.coverage,rain=state.rain,
             fog=RenderSettings.fogDensity,directLight=cycle.celestialLight.intensity,cloudTransmission=cycle.CloudTransmission,streaks=effects.VisibleStreaks,covered=effects.ListenerSheltered,
             roomLight=DayNightLamp.Active.Where(l=>l.role==DayNightLamp.Role.Interior&&l.daylightAccess>.8f).Average(l=>l.Output)});
@@ -48,15 +49,28 @@ public partial class DemoApp {
         NeedWeather(cycle&&effects&&WeatherShelter.Count>=10,"Sky, weather or authored shelters missing");
         NeedWeather(FindObjectsByType<Light>(FindObjectsSortMode.None).Count(l=>l.shadows!=UnityEngine.LightShadows.None)==4,"Shadow baseline must retain upstream tower lamp and original shop lamps");
         var result=new WeatherResult{shadowBudget=true};
-        // Full timetable sweep includes hold/fade boundaries and cumulative days.
+        // Sweep three days, including every rain/clear boundary and midnight.
         var before=TownWeather.Evaluate(0);
-        for(double t=.25;t<210*24;t+=.25) {
+        for(int tick=1;tick<3*1440*20;tick++) {
+            double t=tick/20.0;
             var after=TownWeather.Evaluate(t);
-            NeedWeather(Mathf.Abs(after.coverage-before.coverage)<.004f&&Mathf.Abs(after.rain-before.rain)<.008f,"Weather timetable contains a discontinuity");
+            NeedWeather(Mathf.Abs(after.coverage-before.coverage)<.02f&&Mathf.Abs(after.rain-before.rain)<.03f,"Weather timetable contains a discontinuity");
             NeedWeather(after.coverage>=.65f||after.rain==0,"Showers started before sufficient cloud cover");
+            if(tick%5==0)
+                NeedWeather(JsonUtility.ToJson(after)==JsonUtility.ToJson(TownWeather.Evaluate(t+1440)),"Daily weather differs at the same watch time");
             before=after;
         }
         NeedWeather(TownWeather.Evaluate(double.NaN).coverage==TownWeather.Evaluate(0).coverage,"Invalid weather time not recovered");
+        int[] centres={165,355,465,565,625,690,785,875,945,1025,1060,1085,1185,1290,1375};
+        var expected=new[]{TownWeather.Kind.Overcast,TownWeather.Kind.Rain,TownWeather.Kind.Overcast,TownWeather.Kind.Clear,TownWeather.Kind.Overcast,
+            TownWeather.Kind.Rain,TownWeather.Kind.Overcast,TownWeather.Kind.Clear,TownWeather.Kind.Overcast,TownWeather.Kind.Rain,
+            TownWeather.Kind.Overcast,TownWeather.Kind.Rain,TownWeather.Kind.Overcast,TownWeather.Kind.Rain,TownWeather.Kind.Overcast};
+        for(int i=0;i<centres.Length;i++) {
+            double elapsed=GameClock.WrapMinutes(centres[i]-GameClock.InitialMinutes);
+            NeedWeather(JsonUtility.ToJson(TownWeather.Evaluate(elapsed))==JsonUtility.ToJson(TownWeather.Preset(expected[i])),"Approved weather period differs at watch minute "+centres[i]);
+        }
+        NeedWeather(TownWeather.Evaluate(0).rain>.8f,"Fresh 17:55 game must start in evening rain");
+        result.dailySchedule=result.dailyRepeat=true;
         player.Place(new Vector3(0,.1f,-7),0);
         var townLook=new Vector3(0,12,10);
         foreach(TownWeather.Kind kind in Enum.GetValues(typeof(TownWeather.Kind))) {
@@ -79,9 +93,9 @@ public partial class DemoApp {
         yield return WeatherView("town-sunset",TownWeather.Kind.Scattered,1060,new Vector3(-25,6,10),result);
         yield return WeatherView("town-night",TownWeather.Kind.Clear,0,player.eye.transform.position-DayNightCycle.SunDirection(0)*70,result);
         yield return WeatherView("town-night",TownWeather.Kind.Rain,0,townLook,result);
-        result.daytimeStreetOff=true;
+        result.weatherAwareStreetLights=true;
         // Actual unpaused clock, using the ordinary weather evaluator during a fade.
-        cycle.SetReviewWeather(null);gameClock=new GameClock(3*TownWeather.SegmentMinutes+185);cycle.Apply(Minutes);
+        DayReviewTime(1072);cycle.SetReviewWeather(null);
         player.Aim(townLook);yield return Capture("automatic-transition-before");
         var old=RenderSettings.skybox.GetVector("_CloudOffset");before=cycle.Weather;
         dayNightReviewFrozen=false;float until=Time.unscaledTime+2.5f;
@@ -90,8 +104,17 @@ public partial class DemoApp {
             NeedWeather(Mathf.Abs(next.rain-before.rain)<.02f,"Live rain transition jumps");before=next;RainRoofCheck(effects);
         }
         dayNightReviewFrozen=true;
-        NeedWeather((RenderSettings.skybox.GetVector("_CloudOffset")-old).sqrMagnitude>.0001f,"Clouds did not move with game time");
+        NeedWeather((RenderSettings.skybox.GetVector("_CloudOffset")-old).sqrMagnitude>1e-6f,"Clouds did not move with game time");
         result.transition=result.cloudMotion=true;yield return Capture("automatic-transition-after");
+        // Native views use the ordinary daily schedule, not preset overrides.
+        foreach(var sample in new[]{(minute:565,name:"daily-clear-0925",kind:TownWeather.Kind.Clear),(minute:785,name:"daily-overcast-1305",kind:TownWeather.Kind.Overcast),
+            (minute:690,name:"daily-rain-1130",kind:TownWeather.Kind.Rain),(minute:1075,name:"daily-start-1755",kind:TownWeather.Kind.Rain)}) {
+            DayReviewTime(sample.minute);cycle.SetReviewWeather(null);player.Aim(townLook);yield return new WaitForEndOfFrame();
+            var current=cycle.Weather;
+            result.samples.Add(new WeatherSample{view=sample.name,weather=sample.kind.ToString(),minutes=Minutes,coverage=current.coverage,rain=current.rain,
+                fog=RenderSettings.fogDensity,directLight=cycle.celestialLight.intensity,cloudTransmission=cycle.CloudTransmission,streaks=effects.VisibleStreaks,covered=effects.ListenerSheltered});
+            RainRoofCheck(effects);yield return Capture(sample.name);
+        }
         // Walk into the unchanged milk shop; outdoor drops remain visible beyond its panes.
         var placement=milkShopRoot.GetComponent<MilkShopPlacement>();
         player.Place(placement.outside,0);yield return WalkTo(placement.outside);yield return WalkTo(placement.inside);
@@ -111,16 +134,22 @@ public partial class DemoApp {
         result.shelter=true;
         yield return WalkTo(P(-.52f,.2f,-1.23f));
         var ledger=milkShopRoot.GetComponentInChildren<MilkOrderBook>();player.Aim(ledger.GetComponent<Collider>().bounds.center);yield return null;
-        dayNightReviewFrozen=false;NeedWeather(TryInteract()&&MilkOrdersOpen,"Weather UI pause check did not open the normal ledger");yield return new WaitForEndOfFrame();
-        double frozen=ElapsedGameMinutes;old=RenderSettings.skybox.GetVector("_CloudOffset");var drops=effects.RainMesh.vertices;
+        dayNightReviewFrozen=false;NeedWeather(TryInteract()&&MilkOrdersOpen,"Weather reading check did not open the normal ledger");yield return new WaitForEndOfFrame();
+        double readingTime=ElapsedGameMinutes;old=RenderSettings.skybox.GetVector("_CloudOffset");var drops=effects.RainMesh.vertices;
         yield return new WaitForSecondsRealtime(.45f);
-        NeedWeather(frozen==ElapsedGameMinutes&&old==RenderSettings.skybox.GetVector("_CloudOffset")&&drops.SequenceEqual(effects.RainMesh.vertices)&&effects.RainVolume==0,"Inspection did not freeze weather and rain");
-        result.pause=true;yield return Capture("rain-ledger-pause");CloseMilkOrders();dayNightReviewFrozen=true;
+        yield return new WaitForEndOfFrame();
+        NeedWeather(Blocked&&!GameTimePaused&&ElapsedGameMinutes>readingTime&&old!=RenderSettings.skybox.GetVector("_CloudOffset")&&!drops.SequenceEqual(effects.RainMesh.vertices)&&effects.RainVolume>0,"Reading stopped the clock, clouds, rain or sound");
+        result.readingTimeContinues=true;yield return Capture("rain-ledger-running");CloseMilkOrders();
+        paused=true;yield return new WaitForEndOfFrame();double frozen=ElapsedGameMinutes;
+        old=RenderSettings.skybox.GetVector("_CloudOffset");drops=effects.RainMesh.vertices;
+        yield return new WaitForSecondsRealtime(.45f);
+        NeedWeather(frozen==ElapsedGameMinutes&&old==RenderSettings.skybox.GetVector("_CloudOffset")&&drops.SequenceEqual(effects.RainMesh.vertices)&&effects.RainVolume==0,"Explicit pause did not freeze weather and rain");
+        result.explicitPause=true;paused=false;dayNightReviewFrozen=true;
         // Restore ordinary deterministic rain, save its exact phase, relaunch separately.
-        cycle.SetReviewWeather(null);gameClock=new GameClock(4*TownWeather.SegmentMinutes+40);cycle.Apply(Minutes);
+        DayReviewTime(690);cycle.SetReviewWeather(null);
         yield return WalkTo(placement.inside);yield return null;Save();
         File.WriteAllText(savePath+".weather-proof.json",JsonUtility.ToJson(new WeatherProof{elapsed=ElapsedGameMinutes,processId=System.Diagnostics.Process.GetCurrentProcess().Id,weather=cycle.Weather,cloudOffset=TownWeather.CloudOffset(ElapsedGameMinutes),position=player.transform.position},true));
-        result.passed=true;result.verification="Actual Windows rendered player, normal AO/shadows, scripted CharacterController and normal interaction rays; weather/time staging isolated. No physical input or low-end FPS claim.";
+        result.passed=true;result.verification="Native rendered player, normal AO/shadows, scripted CharacterController and normal interaction rays; weather/time staging isolated. No physical input or low-end FPS claim.";
         File.WriteAllText(Path.Combine(captures,"weather-results.json"),JsonUtility.ToJson(result,true));
         Debug.Log("WEATHER_REVIEW_PASS");Application.Quit();
     }

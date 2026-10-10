@@ -63,7 +63,7 @@ public sealed class DayNightCycle : MonoBehaviour {
             RenderSettings.sun = celestialLight;
             celestialLight.transform.rotation = Quaternion.LookRotation(MoonActive ? sun : -sun, Vector3.up);
             celestialLight.color = MoonActive ? new Color(.65f, .74f, 1) : Color.Lerp(new Color(1, .63f, .34f), new Color(1, .96f, .86f), sunStrength);
-            celestialLight.intensity = (MoonActive ? .20f * moonStrength : 1.4f * sunStrength) * Weather.directLight * CloudTransmission;
+            celestialLight.intensity = (MoonActive ? .20f * moonStrength : .9f * sunStrength) * Weather.directLight * CloudTransmission;
             celestialLight.shadowStrength=Mathf.Lerp(.15f,.85f,Weather.directLight*CloudTransmission);
             // The direction flips while intensity is zero at the horizon.
             celestialLight.enabled = celestialLight.intensity > .0001f;
@@ -72,15 +72,18 @@ public sealed class DayNightCycle : MonoBehaviour {
         RenderSettings.ambientSkyColor = Color.Lerp(new Color(.32f, .39f, .55f), new Color(.70f, .78f, .88f), Daylight);
         RenderSettings.ambientEquatorColor = Color.Lerp(new Color(.23f, .27f, .37f), new Color(.58f, .60f, .61f), Daylight);
         RenderSettings.ambientGroundColor = Color.Lerp(new Color(.14f, .16f, .22f), new Color(.37f, .35f, .31f), Daylight);
-        float diffuse=Mathf.Lerp(1,.60f+Weather.naturalLight*.40f,Daylight);
+        float cloudGrey=Daylight*Weather.darkness;
+        RenderSettings.ambientSkyColor=Color.Lerp(RenderSettings.ambientSkyColor,new Color(.52f,.55f,.60f),cloudGrey*.55f);
+        RenderSettings.ambientEquatorColor=Color.Lerp(RenderSettings.ambientEquatorColor,new Color(.48f,.49f,.50f),cloudGrey*.40f);
+        float diffuse=Mathf.Lerp(1,.42f+Weather.naturalLight*.58f,Daylight);
         RenderSettings.ambientSkyColor*=diffuse;
         RenderSettings.ambientEquatorColor*=diffuse;
         RenderSettings.ambientGroundColor*=diffuse;
-        RenderSettings.fogColor = Color.Lerp(new Color(.095f, .12f, .20f), new Color(.57f, .65f, .74f), Daylight);
+        RenderSettings.fogColor = Color.Lerp(new Color(.095f, .12f, .20f), new Color(.51f, .54f, .57f), Daylight);
         RenderSettings.fogColor = Color.Lerp(RenderSettings.fogColor, new Color(.42f, .35f, .40f), twilight * .55f);
         RenderSettings.fogDensity = Mathf.Lerp(.012f, .0085f, Daylight);
-        RenderSettings.fogColor=Color.Lerp(RenderSettings.fogColor,Color.Lerp(new Color(.13f,.16f,.23f),new Color(.53f,.58f,.62f),Daylight),Weather.darkness);
-        RenderSettings.fogDensity+=Weather.mist*.017f;
+        RenderSettings.fogColor=Color.Lerp(RenderSettings.fogColor,Color.Lerp(new Color(.13f,.16f,.23f),new Color(.47f,.49f,.51f),Daylight),Weather.darkness);
+        RenderSettings.fogDensity+=Weather.mist*.057f;
         if (sky) {
             // Town is loaded additively before DemoApp makes it active. Restore the
             // owned sky after that active-scene change, including on the first frame.
@@ -88,7 +91,7 @@ public sealed class DayNightCycle : MonoBehaviour {
             var top=Color.Lerp(new Color(.028f,.045f,.105f),new Color(.15f,.36f,.64f),Daylight);
             var middle=Color.Lerp(new Color(.075f,.105f,.18f),new Color(.48f,.65f,.80f),Daylight);
             var bottom=Color.Lerp(Color.Lerp(new Color(.13f,.15f,.23f),new Color(.74f,.79f,.84f),Daylight),new Color(.72f,.40f,.25f),twilight*.65f);
-            var grey=Color.Lerp(new Color(.065f,.08f,.13f),new Color(.39f,.46f,.55f),Daylight);
+            var grey=Color.Lerp(new Color(.065f,.08f,.13f),new Color(.39f,.42f,.45f),Daylight);
             sky.SetColor("_Top",Color.Lerp(top,grey,Weather.darkness));
             sky.SetColor("_Middle",Color.Lerp(middle,grey,Weather.darkness*.80f));
             sky.SetColor("_Bottom",Color.Lerp(bottom,RenderSettings.fogColor,Weather.darkness*.70f));
@@ -104,7 +107,7 @@ public sealed class DayNightCycle : MonoBehaviour {
             sky.SetFloat("_Twilight",twilight);
             sky.SetVector("_SunDirection", sun);
             sky.SetVector("_MoonDirection", -sun);
-            sky.SetFloat("_SunVisibility", Smooth(-.02f, .03f, sun.y));
+            sky.SetFloat("_SunVisibility", Smooth(-.02f, .03f, sun.y)*(1-Weather.mist*.72f));
             sky.SetFloat("_MoonVisibility", moonStrength);
             sky.SetFloat("_Night", 1 - Smooth(-.18f, .02f, sun.y));
         }

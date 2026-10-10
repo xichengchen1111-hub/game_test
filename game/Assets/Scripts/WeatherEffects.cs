@@ -8,7 +8,7 @@ public sealed class WeatherEffects : MonoBehaviour {
     public Material rainTemplate;
     public int VisibleStreaks {get;private set;}
     public bool ListenerSheltered {get;private set;}
-    public float RainVolume => rainAudio ? rainAudio.volume : 0;
+    public float RainVolume => ambience ? ambience.Bed.volume : 0;
     public Mesh RainMesh => mesh;
     readonly Vector3[] vertices=new Vector3[DropBudget*4];
     readonly Color32[] colours=new Color32[DropBudget*4];
@@ -16,8 +16,10 @@ public sealed class WeatherEffects : MonoBehaviour {
     Mesh mesh;
     Material rainMaterial;
     MeshRenderer rainRenderer;
-    AudioSource rainAudio;
-    AudioClip rainClip;
+    RainAmbience ambience;
+    RainSplashes splashes;
+    public RainAmbience Ambience => ambience;
+    public RainSplashes Splashes => splashes;
     double lastElapsed=double.NaN;
     Vector3 lastEye=Vector3.positiveInfinity;
     Quaternion lastRotation;
@@ -42,25 +44,17 @@ public sealed class WeatherEffects : MonoBehaviour {
         rainRenderer=rain.AddComponent<MeshRenderer>();rainRenderer.shadowCastingMode=ShadowCastingMode.Off;rainRenderer.receiveShadows=false;
         rainRenderer.lightProbeUsage=LightProbeUsage.Off;rainRenderer.reflectionProbeUsage=ReflectionProbeUsage.Off;
         rainMaterial=rainTemplate ? new Material(rainTemplate) : null;rainRenderer.sharedMaterial=rainMaterial;rainRenderer.enabled=false;
-        // A quiet original filtered-noise bed, generated once, with seamless loop ends.
-        const int rate=22050;var samples=new float[rate*6];float filtered=0;
-        for(int i=0;i<samples.Length;i++) {
-            float white=(float)random.NextDouble()*2-1;
-            filtered=filtered*.85f+white*.15f;
-            float edge=Mathf.Min(1,Mathf.Min(i,samples.Length-1-i)/(float)(rate*.04f));
-            samples[i]=(white*.025f+filtered*.22f)*edge;
-        }
-        rainClip=AudioClip.Create("Original soft rain",samples.Length,1,rate,false);rainClip.SetData(samples,0);
-        rainAudio=gameObject.AddComponent<AudioSource>();rainAudio.clip=rainClip;rainAudio.loop=true;rainAudio.volume=0;rainAudio.spatialBlend=0;rainAudio.Play();
+        ambience=gameObject.AddComponent<RainAmbience>();
+        splashes=gameObject.AddComponent<RainSplashes>();splashes.Initialize(rainMaterial);
+
     }
     void LateUpdate() {
         var app=DemoApp.Instance;var cycle=DayNightCycle.Instance;
         if(!app||!app.player||!cycle||!rainMaterial)return;
         var eye=app.player.eye.transform;var weather=cycle.Weather;
         ListenerSheltered=WeatherShelter.Covered(eye.position);
-        rainAudio.volume=app.GameTimePaused ? 0 : weather.rain*(ListenerSheltered?.11f:.32f);
-        if(app.GameTimePaused) { if(rainAudio.isPlaying)rainAudio.Pause(); }
-        else if(!rainAudio.isPlaying)rainAudio.UnPause();
+        ambience.Apply(weather.rain,WeatherShelter.MufflesRain(eye.position),app.GameTimePaused);
+        splashes.Apply(eye,weather,cycle.Daylight,app.ElapsedGameMinutes);
         rainRenderer.enabled=weather.rain>.001f;
         if(!rainRenderer.enabled){VisibleStreaks=0;return;}
         if(lastElapsed==app.ElapsedGameMinutes && lastEye==eye.position && lastRotation==eye.rotation && lastRain==weather.rain)return;
@@ -75,14 +69,14 @@ public sealed class WeatherEffects : MonoBehaviour {
             // Rain must retain parallax rather than sliding along with the camera.
             var point=new Vector3(seed.x+Mathf.Floor((eye.position.x-seed.x)/field+.5f)*field,eye.position.y,
                 seed.z+Mathf.Floor((eye.position.z-seed.z)/field+.5f)*field);
-            var margin=eye.right*.024f;
-            var tail=new Vector3(-weather.wind*.06f,.22f+seed.y*.28f,weather.wind*.025f);
+            var margin=eye.right*.036f;
+            var tail=new Vector3(-weather.wind*.10f,.40f+seed.y*.34f,weather.wind*.045f);
             float roof=WeatherShelter.RoofHeight(point);
             roof=Mathf.Max(roof,Mathf.Max(WeatherShelter.RoofHeight(point-margin),WeatherShelter.RoofHeight(point+margin)));
             roof=Mathf.Max(roof,Mathf.Max(WeatherShelter.RoofHeight(point+tail-margin),WeatherShelter.RoofHeight(point+tail+margin)));
             float top=eye.position.y+8,bottom=Mathf.Max(eye.position.y-7,roof+.05f);
             float length=tail.y,span=top-bottom;
-            float speed=8+seed.y*3;
+            float speed=11+seed.y*4;
             float fall=(float)((seed.y*16-(seconds%(16/speed))*speed+16)%16);
             point.y=fall+Mathf.Floor((top-fall)/16)*16;
             if(span<length || point.y<bottom || weather.rain<seed.y*.08f) {
@@ -91,10 +85,10 @@ public sealed class WeatherEffects : MonoBehaviour {
             float fade=Mathf.Clamp01((point.y-bottom)/length)*Mathf.Clamp01((top-point.y)/length);
             fade*=1-DayNightCycle.Smooth(field*.35f,field*.5f,Mathf.Abs(point.x-eye.position.x));
             fade*=1-DayNightCycle.Smooth(field*.35f,field*.5f,Mathf.Abs(point.z-eye.position.z));
-            var side=eye.right*(.004f+Vector3.Distance(eye.position,point)*.00045f);
+            var side=eye.right*(.007f+Vector3.Distance(eye.position,point)*.00055f);
             vertices[v]=point-side;vertices[v+1]=point+side;
             vertices[v+2]=point-side+tail;vertices[v+3]=point+side+tail;
-            byte alpha=(byte)(Mathf.Clamp01(weather.rain*fade*.65f)*255);
+            byte alpha=(byte)(Mathf.Clamp01(weather.rain*fade*.84f)*255);
             for(int j=0;j<4;j++)colours[v+j]=new Color32(255,255,255,alpha);
             VisibleStreaks++;
         }
@@ -103,6 +97,6 @@ public sealed class WeatherEffects : MonoBehaviour {
     }
     void OnDestroy() {
         if(rainRenderer)Destroy(rainRenderer.gameObject);
-        if(mesh)Destroy(mesh);if(rainMaterial)Destroy(rainMaterial);if(rainClip)Destroy(rainClip);
+        if(mesh)Destroy(mesh);if(rainMaterial)Destroy(rainMaterial);
     }
 }

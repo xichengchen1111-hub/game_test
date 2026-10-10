@@ -12,15 +12,17 @@ public partial class DemoApp {
     }
     IEnumerator MapWalk(Vector3 target) {
         float distance=Vector2.Distance(new Vector2(target.x,target.z),new Vector2(player.transform.position.x,player.transform.position.z));
-        float deadline=Time.unscaledTime+distance/4.1f+8;
+        float deadline=Time.unscaledTime+distance/PlayerMotor.SprintSpeed+8;
+        player.scriptedSprint=true;player.scriptedPlayerInput=true;
         while(Time.unscaledTime<deadline) {
             var delta=target-player.transform.position;delta.y=0;if(delta.magnitude<.1f)break;
-            // Same 4.1m/s as the player's Shift run; ordinary CharacterController collision/gravity.
-            player.scriptedDirection=delta.normalized*1.64f*Mathf.Clamp(delta.magnitude*2,.08f,1);
+            // Same Shift speed and normalization as player input; slow only at stops.
+            player.scriptedDirection=delta.normalized*Mathf.Clamp(delta.magnitude*2,.08f,1);
             yield return null;
             NeedMap(player.transform.position.y>-.15f&&player.transform.position.y<.45f,"Street route fell or climbed a prop: "+player.transform.position);
         }
-        player.scriptedDirection=Vector3.zero;NeedMap(Time.unscaledTime<deadline,"Street route blocked: "+target+" from "+player.transform.position);
+        player.scriptedDirection=Vector3.zero;player.scriptedSprint=false;player.scriptedPlayerInput=false;
+        NeedMap(Time.unscaledTime<deadline,"Street route blocked: "+target+" from "+player.transform.position);
     }
     Vector3[] MapLeg(string from,string to) {
         Vector3 V(float x,float z)=>new Vector3(x,.1f,z);

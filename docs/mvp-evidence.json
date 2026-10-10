@@ -347,7 +347,7 @@
       "single_shared_clock": true,
       "initial_pocket_watch_time": "17:55",
       "rate": {
-        "real_seconds": 7,
+        "real_seconds": 150,
         "game_minutes": 10
       },
       "continuous_hands": true,
@@ -361,10 +361,7 @@
       "pause_during": [
         "opening",
         "scene_loading",
-        "pause_menu",
-        "dialogue",
-        "journal",
-        "inspection"
+        "pause_menu"
       ],
       "pocket_watch_alone_pauses_time": false,
       "save_value": "累计游戏分钟及独立towerAdjustmentMinutes；钟盘显示按一日循环，复位只将调整量清零",
@@ -394,6 +391,22 @@
         "reopen_does_not_bypass_lock": true,
         "hands_follow_winding_continuously": true,
         "interrupted_animation_save": "Chosen final offset commits immediately; next launch restores completed setting; watch untouched"
+      },
+      "continue_during": [
+        "dialogue",
+        "journal",
+        "inspection",
+        "dialogue_history",
+        "milk_orders",
+        "tower_adjustment",
+        "held_map",
+        "pocket_watch"
+      ],
+      "movement": {
+        "walk_metres_per_second": 2.5,
+        "sprint_metres_per_second": 6,
+        "sprint_input": "Hold LeftShift or RightShift; normalized diagonal; no stamina limit",
+        "reason": "User approved joint movement/clock calibration on 2026-10-10; preserve 17:35 departure, 17:40 station appearance and 17:55 return."
       }
     },
     "private_truth": {

@@ -19,7 +19,7 @@ public partial class DemoApp {
         public string selectedDate;
     }
     [Serializable] class DayNightResult {
-        public bool passed, clockPause, midnightContinuous, sunlightContinuous, roomAutoOff, deepRoomLit, manualOffPreserved, shadowBudget, emissionSynced;
+        public bool passed, clockPause, readingTimeContinues, midnightContinuous, sunlightContinuous, roomAutoOff, deepRoomLit, manualOffPreserved, shadowBudget, emissionSynced;
         public List<DayNightSample> samples=new List<DayNightSample>();
         public string verification;
     }
@@ -70,12 +70,13 @@ public partial class DemoApp {
         dayNightReviewFrozen=false;paused=false;CursorMode();
     }
     IEnumerator DayBoundary(double boundary,string label) {
-        DayReviewTime(GameClock.WrapMinutes(boundary-.4));
+        DayReviewTime(GameClock.WrapMinutes(boundary-GameClock.GameMinutesPerRealSecond*.25));
         var cycle=DayNightCycle.Instance;
         float previous=cycle.Daylight;
         double elapsed=ElapsedGameMinutes;
         yield return Capture("boundary-"+label+"-before");
         dayNightReviewFrozen=false;
+        double realBefore=Time.unscaledTimeAsDouble;
         float until=Time.unscaledTime+.65f;
         while(Time.unscaledTime<until) {
             yield return new WaitForEndOfFrame();
@@ -83,7 +84,7 @@ public partial class DemoApp {
             previous=cycle.Daylight;
         }
         dayNightReviewFrozen=true;
-        NeedDay(ElapsedGameMinutes-elapsed>.7&&ElapsedGameMinutes-elapsed<1.2,"Boundary check did not use the real clock rate");
+        NeedDay(ElapsedGameMinutes>elapsed&&Math.Abs(ElapsedGameMinutes-elapsed-(Time.unscaledTimeAsDouble-realBefore)*GameClock.GameMinutesPerRealSecond)<.003,"Boundary check did not use the real clock rate");
         NeedDay(Math.Abs(GameClock.WrapMinutes(Minutes-boundary))<1,"Real game clock failed to cross "+label);
         if(label!="midnight")NeedDay(cycle.celestialLight.intensity<.003f,"Celestial direction changed with a bright horizon light");
         yield return Capture("boundary-"+label+"-after");
@@ -105,9 +106,10 @@ public partial class DemoApp {
             foreach(var lamp in DayNightLamp.Active) {
                 float a=DayNightLamp.AutomaticOutput(lamp.role,DayNightCycle.NaturalDaylight(minute-.05),lamp.daylightAccess);
                 float b=DayNightLamp.AutomaticOutput(lamp.role,value,lamp.daylightAccess);
-                // Nested smoothsteps have a maximum change below 0.5% for this
-                // .05 game-minute interval (~35ms at the unchanged clock rate).
-                NeedDay(Mathf.Abs(a-b)<.005f,"Fixture jumps at "+minute);
+                // At .05 game-minute intervals (~35ms), the new .42-.60 exterior
+                // sensor band peaks at .005644; the other curves remain below .005.
+                float limit=lamp.role==DayNightLamp.Role.Exterior?.006f:.005f;
+                NeedDay(Mathf.Abs(a-b)<limit,"Fixture jumps at "+minute);
             }
         }
         NeedDay(Vector3.Angle(DayNightCycle.SunDirection(1439.99),DayNightCycle.SunDirection(.01))<.02f,"Orbit jumps at midnight");
@@ -135,10 +137,15 @@ public partial class DemoApp {
         dayNightReviewFrozen=false;paused=false;var book=shop.GetComponentInChildren<MilkOrderBook>();
         yield return WalkTo(P(-.14f,.2f,-.02f));player.Aim(book.GetComponent<Collider>().bounds.center);yield return null;
         NeedDay(TryInteract()&&MilkOrdersOpen,"Ledger interaction failed");
-        double before=ElapsedGameMinutes;float daylight=cycle.Daylight;Quaternion rotation=cycle.celestialLight.transform.rotation;
+        double before=ElapsedGameMinutes;Quaternion rotation=cycle.celestialLight.transform.rotation;
         yield return new WaitForSeconds(.5f);
-        NeedDay(before==ElapsedGameMinutes&&Mathf.Abs(daylight-cycle.Daylight)<1e-6f&&Quaternion.Angle(rotation,cycle.celestialLight.transform.rotation)<.001f,"UI changed illumination while time paused");
-        CloseMilkOrders();result.clockPause=true;
+        yield return new WaitForEndOfFrame();
+        NeedDay(Blocked&&!GameTimePaused&&ElapsedGameMinutes-before>.5*GameClock.GameMinutesPerRealSecond*.9&&cycle.AppliedElapsedMinutes==ElapsedGameMinutes&&(rotation*Vector3.forward-cycle.celestialLight.transform.forward).sqrMagnitude>1e-10f,"Reading stopped clock-driven daylight");
+        CloseMilkOrders();result.readingTimeContinues=true;
+        paused=true;yield return new WaitForEndOfFrame();before=ElapsedGameMinutes;rotation=cycle.celestialLight.transform.rotation;
+        yield return new WaitForSecondsRealtime(.4f);
+        NeedDay(before==ElapsedGameMinutes&&Quaternion.Angle(rotation,cycle.celestialLight.transform.rotation)<.001f,"Explicit pause changed clock or lighting");
+        paused=false;result.clockPause=true;
         foreach(int side in new[]{-1,1}) {
             yield return WalkTo(P(side*2.65f,.2f,-.65f));
             yield return DayViews(side<0?"milk-window-north":"milk-window-south",P(side*3.6f,1.87f,.1f),result);
@@ -160,7 +167,7 @@ public partial class DemoApp {
         yield return WalkTo(P(-.66f,.2f,-1.1f));DayReviewTime(720);Save();
         File.WriteAllText(savePath+".day-proof.json",JsonUtility.ToJson(new DayNightProof{elapsedMinutes=ElapsedGameMinutes,processId=System.Diagnostics.Process.GetCurrentProcess().Id,selectedDate=state.milkOrderDate},true));
         result.passed=true;result.emissionSynced=true;
-        result.verification="Rendered Windows player with normal AO/shadows. Scripted controller and ordinary interaction rays; time staging in isolated review. No physical keyboard or low-end hardware benchmark.";
+        result.verification="Native rendered player with normal AO/shadows. Scripted controller and ordinary interaction rays; time staging in isolated review. No physical keyboard or low-end hardware benchmark.";
         File.WriteAllText(Path.Combine(captures,"day-night-results.json"),JsonUtility.ToJson(result,true));
         Debug.Log("DAY_NIGHT_REVIEW_PASS");Application.Quit();
     }

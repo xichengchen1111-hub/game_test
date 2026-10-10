@@ -62,7 +62,7 @@ Shader "WrongDate/DuskSky" {
     float lightEdge=cloudField(p+lightStep);
     float rim=saturate((n-lightEdge)*13+.12)*pow(saturate(sunDot),3);
     float depth=smoothstep(threshold-.02,threshold+.20,n);
-    float bodyShade=saturate(depth*.67+(lightEdge-n)*8+.10);
+    float bodyShade=saturate(depth*.82+(lightEdge-n)*9+.18);
     float3 cloud=lerp(_CloudColor.rgb,_CloudShade.rgb,bodyShade);
     cloud=lerp(cloud,_CloudColor.rgb*.55+_CloudShade.rgb*.45,stratus*.72);
     float3 warmLight=lerp(float3(.91,.94,1),float3(1,.48,.17),_Twilight);
@@ -71,10 +71,10 @@ Shader "WrongDate/DuskSky" {
     // High thin wisps move independently and remain behind the lower cumulus.
     float2 high=d.xz/max(.3,d.y+.4)*.34*float2(.55,1.6)+_HighCloudOffset.xy;
     float w=tex2D(_Noise,high).r;
-    float veil=smoothstep(.50,.70,w)*above*(.12+_Coverage*.12);
-    c=lerp(c,_CloudColor.rgb,veil);
+    float veil=smoothstep(.48,.68,w)*above*(.14+_Coverage*.20);
+    c=lerp(c,lerp(_CloudColor.rgb,_CloudShade.rgb,_Darkness*.45),veil);
     float transmission=1-alpha*.96;
-    c+=float3(1,.79,.50)*_SunVisibility*transmission*(smoothstep(.99968,.99986,sunDot)*2.1+pow(saturate(sunDot),64)*.22+pow(saturate(sunDot),8)*.07);
+    c+=float3(1,.79,.50)*_SunVisibility*transmission*(smoothstep(.99968,.99986,sunDot)*.75+pow(saturate(sunDot),64)*.09+pow(saturate(sunDot),8)*.025);
     float moonSurface=1;
     if(moonDot>.9996) {
      float3 moonRight=normalize(cross(_MoonDirection.xyz,float3(0,1,0)));
@@ -88,7 +88,7 @@ Shader "WrongDate/DuskSky" {
     float star=step(.992,hash(cell))*exp(-dot(starPos,starPos)*65);
     c+=star*_Night*smoothstep(.06,.22,d.y)*.40*transmission*(1-veil);
     c=lerp(c,cloud,alpha);
-    c=lerp(c,_Bottom.rgb,exp(-h*10)*(.15+_Haze*.30));
+    c=lerp(c,_Bottom.rgb,exp(-h*5)*(.15+_Haze*.68));
     return float4(c,1);
    }
    ENDCG

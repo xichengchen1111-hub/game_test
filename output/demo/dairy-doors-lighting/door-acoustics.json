@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-dairy-doors-release-20261010/dairy-doors/rain-acoustic-samples.json",
+  "scope": "Only open/closed door final listener comparisons; full loop/pause tests are not part of this sample report. See dairy-doors-results.json for actual assertions.",
+  "samples": [
+    {
+      "location": "milk-open-left",
+      "rms": 0.08249920606613159,
+      "highFrequencyRatio": 0.2964985966682434,
+      "sourceHighFrequencyRatio": 0.30628299713134766,
+      "cutoff": 15999.9931640625,
+      "shelter": 0.0,
+      "splashes": 27
+    },
+    {
+      "location": "milk-both-closed",
+      "rms": 0.0321929045021534,
+      "highFrequencyRatio": 0.006328152492642403,
+      "sourceHighFrequencyRatio": 0.30573806166648865,
+      "cutoff": 1100.0001220703125,
+      "shelter": 1.0,
+      "splashes": 26
+    },
+    {
+      "location": "milk-open-right",
+      "rms": 0.08259886503219604,
+      "highFrequencyRatio": 0.2951904833316803,
+      "sourceHighFrequencyRatio": 0.3023832142353058,
+      "cutoff": 15999.9931640625,
+      "shelter": 0.0,
+      "splashes": 23
+    }
+  ]
+}

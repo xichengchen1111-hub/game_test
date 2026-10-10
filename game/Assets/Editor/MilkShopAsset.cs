@@ -40,17 +40,41 @@ public static class MilkShopAsset {
             if(gap<.55f)throw new Exception("Milk shop too close to "+neighbour.mapId+": "+gap);
         }
         marker.minimumBuildingGap=minimum;
-        float behind=Vector3.Distance(root.transform.position,milkboy.transform.position);
         if(root.GetComponentsInChildren<Collider>().Length!=12)throw new Exception("Milk shop colliders missing");
         var windows=root.GetComponentsInChildren<MeshRenderer>().Single(r=>r.name=="Windows");
         if(windows.sharedMaterials.Count(m=>m==glass)!=1||glass.shader.name!="WrongDate/ClearGlass"||glass.renderQueue!=3000)
             throw new Exception("Milk shop windows must share the transparent glass asset");
         if(Mathf.Abs(marker.visualBounds.min.y+.04f)>.015f)throw new Exception("Milk shop foundation isn't on the ground");
         MilkShopInteriorAsset.AddTo(root);
+        ConfigureDoors(root);
+        // Counter-side floor, facing the customer area; keep both window aisles and ledger clear.
+        milkboy.transform.SetPositionAndRotation(root.transform.TransformPoint(new Vector3(2.35f,.18f,.85f)),root.transform.rotation);
+        marker.milkboyPosition=milkboy.transform.position;
+        WeatherAuthoring.BindDoors(root);
         Directory.CreateDirectory("../output/demo/milkshop");
         File.WriteAllText("../output/demo/milkshop/placement-results.json",JsonUtility.ToJson(marker,true));
-        Debug.Log("MILKSHOP_PLACEMENT_PASS: scale=.90 center="+root.transform.position+" minimum building gap="+minimum+" behind boy="+behind);
+        Debug.Log("MILKSHOP_PLACEMENT_PASS: scale=.90 center="+root.transform.position+" minimum building gap="+minimum+" milkboy inside="+marker.milkboyPosition);
         return root;
+    }
+    static void ConfigureDoors(GameObject root) {
+        var leaves=root.GetComponentsInChildren<Transform>();
+        var left=leaves.Single(t=>t.name=="Door_Left");
+        float openingAngle=Vector3.SignedAngle(left.parent.TransformDirection(Vector3.right),left.parent.TransformDirection(left.localRotation*Vector3.right),Vector3.up);
+        if(Mathf.Abs(openingAngle)<90)throw new Exception("Milk door must retain its outward opening hinge");
+        // Stop just short of square so the opened face remains reachable from inside the jamb.
+        openingAngle=Mathf.Sign(openingAngle)*85;
+        foreach(bool isLeft in new[]{true,false}) {
+            var leaf=isLeft?left:leaves.Single(t=>t.name=="Door_Right");
+            var collider=leaf.GetComponent<BoxCollider>();
+            if(!collider)throw new Exception("Milk door has no physical leaf collider");
+            leaf.localRotation=Quaternion.identity;
+            PrefabUtility.RecordPrefabInstancePropertyModifications(leaf);
+            var door=leaf.gameObject.AddComponent<ShopMechanism>();
+            door.fixtureId=isLeft?"milk-left-door":"milk-right-door";door.movingPart=leaf;
+            door.openEuler=new Vector3(0,isLeft?openingAngle:-openingAngle,0);
+            door.protectPlayer=true;door.startsOpen=isLeft;door.leafCentre=collider.center;door.leafSize=collider.size;
+            foreach(var part in leaf.GetComponentsInChildren<Transform>())part.gameObject.isStatic=false;
+        }
     }
     public static Bounds BoundsOf(GameObject obj) {
         var renderers=obj.GetComponentsInChildren<Renderer>().Where(r=>r.enabled).ToArray();

@@ -8,7 +8,7 @@ public partial class DemoApp {
     double towerWindingStart, towerWindingDelta;
     public bool TowerAdjustmentBusy => towerAdjustmentBusy;
     public bool TowerAdjustmentOpen => inspected is ClockTowerAdjustment;
-    public bool TowerMechanismPaused => opening || paused || transitioning || journal || DialogueOpen || (inspected && !TowerAdjustmentOpen);
+    public bool TowerMechanismPaused => !sceneReady || opening || paused || transitioning;
     public float TowerWindingSpeedFactor {
         get {
             if (!towerAdjustmentBusy) return 1;

@@ -1,0 +1,28 @@
+[
+  {
+    "file": "01-牛奶店开关门与雨声.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-dairy-doors-release-20261010/dairy-doors/01-milk-doors-rain",
+    "seconds": 29.4616384,
+    "nativeFrames": 590,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0096852,
+    "rms": 0.07122295844347616,
+    "peak": 0.300140380859375,
+    "encodedSHA256": "c1b51e5b95bf1dcfa1682b2d568ca071f3a393949bd5ea6620709d1dd2176ffe",
+    "assemblySHA256": "d13665e44854926f1a4682dcb1600bde3fcb154e873f94e30d96403fc2b8ae5c"
+  },
+  {
+    "file": "02-雨天路灯与晴天对比.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-dairy-doors-release-20261010/dairy-doors/02-weather-street-lamps",
+    "seconds": 7.4255106,
+    "nativeFrames": 149,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0068714,
+    "rms": 0.05409654490774036,
+    "peak": 0.289154052734375,
+    "encodedSHA256": "fd2a4edabe72e54f5d96780d7ae6bcd9a4528fc8f100729e0a2d720ef935fbcb",
+    "assemblySHA256": "d13665e44854926f1a4682dcb1600bde3fcb154e873f94e30d96403fc2b8ae5c"
+  }
+]

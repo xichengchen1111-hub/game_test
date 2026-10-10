@@ -58,7 +58,8 @@ public sealed class DayNightLamp : MonoBehaviour {
     }
     public static float AutomaticOutput(Role role, float daylight, float access) {
         if (role == Role.WindowDaylight) return .14f + .86f * daylight;
-        if (role == Role.Exterior) return 1 - DayNightCycle.Smooth(.10f, .40f, daylight);
+        // 42% or less: fully lit; 60% or more: off. The smooth band avoids abrupt switching.
+        if (role == Role.Exterior) return 1 - DayNightCycle.Smooth(.42f, .60f, daylight);
         return 1 - DayNightCycle.Smooth(.35f, .60f, daylight * access);
     }
     public void Apply(float daylight) {
@@ -66,8 +67,8 @@ public sealed class DayNightLamp : MonoBehaviour {
     }
     public void Apply(float daylight,float naturalLight) {
         Prepare();
-        NaturalIllumination = naturalLight * daylightAccess;
-        float next = RequestedOn ? AutomaticOutput(role, role==Role.Exterior ? daylight : naturalLight, daylightAccess) : 0;
+        NaturalIllumination = naturalLight * (role==Role.Exterior ? 1 : daylightAccess);
+        float next = RequestedOn ? AutomaticOutput(role, naturalLight, daylightAccess) : 0;
         // Update disabled lights and emission together. The smooth illumination curve
         // has no thresholds that can oscillate and freezes with the game clock.
         if (applied && Mathf.Abs(Output - next) < .00001f && (!source || source.enabled == (next*distanceVisibility > .001f))) return;

@@ -12,7 +12,7 @@ public partial class DemoApp {
         if(Blocked||!book)return;
         milkOrderBook=book;milkOrderPage=book.Pages.Count-1;
         for(int i=0;i<book.Pages.Count;i++)if(book.Pages[i].DateId==state.milkOrderDate)milkOrderPage=i;
-        player.scriptedDirection=Vector3.zero;watch=false;focus=null;CursorMode();
+        player.scriptedDirection=Vector3.zero;SetWatchOpen(false);focus=null;CursorMode();
     }
     public void CloseMilkOrders() {
         if(!MilkOrdersOpen)return;

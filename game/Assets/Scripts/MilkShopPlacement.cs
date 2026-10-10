@@ -4,5 +4,6 @@ using UnityEngine;
 public class MilkShopPlacement : MonoBehaviour {
     public Bounds visualBounds;
     public Vector3 entrance,inside,outside,northPassageStart,northPassageEnd;
+    public Vector3 milkboyPosition;
     public float minimumBuildingGap;
 }

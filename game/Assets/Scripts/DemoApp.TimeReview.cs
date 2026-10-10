@@ -14,8 +14,8 @@ public partial class DemoApp {
 
     void ReviewClockBoundaries() {
         var clock = new GameClock();
-        clock.Advance(7, false);
-        RequireTime(Math.Abs(clock.ElapsedGameMinutes - 10) < 1e-9, "Seven real seconds must advance ten game minutes");
+        clock.Advance(150, false);
+        RequireTime(Math.Abs(clock.ElapsedGameMinutes - 10) < 1e-9, "150 real seconds must advance ten game minutes");
         clock.Advance(80, true);
         clock.Advance(-1, false);
         clock.Advance(double.NaN, false);
@@ -23,10 +23,10 @@ public partial class DemoApp {
         RequireTime(Math.Abs(clock.ElapsedGameMinutes - 10) < 1e-9, "Pause/invalid delta must not move time");
 
         var hour = new GameClock(4.75);
-        hour.Advance(.35, false);
+        hour.Advance(7.5, false);
         RequireTime(Math.Abs(hour.MinutesOfDay - 1080.25) < 1e-9, "Continuous hands must cross 18:00 without jumping back");
         var midnight = new GameClock(364.75);
-        midnight.Advance(.35, false);
+        midnight.Advance(7.5, false);
         RequireTime(Math.Abs(midnight.MinutesOfDay - .25) < 1e-9 && midnight.ElapsedGameMinutes > 365,
             "Midnight must wrap the dial while cumulative saved time continues");
         var days = new GameClock(midnight.ElapsedGameMinutes + 3 * GameClock.MinutesPerDay);
@@ -50,6 +50,22 @@ public partial class DemoApp {
         yield return new WaitForSecondsRealtime(.3f);
         RequireTime(Math.Abs(ElapsedGameMinutes - before) < 1e-9, phase + " allowed time to advance");
         verified.Add(phase);
+    }
+
+    IEnumerator RequireReadingTime(string phase, List<string> verified) {
+        double before=ElapsedGameMinutes, real=Time.unscaledTimeAsDouble;
+        var position=player.transform.position;var rotation=player.eye.transform.rotation;
+        RequireTime(Blocked&&!GameTimePaused,phase+" must lock movement without pausing time");
+        player.scriptedDirection=Vector3.forward;
+        yield return new WaitForSecondsRealtime(.4f);
+        yield return new WaitForEndOfFrame();player.scriptedDirection=Vector3.zero;
+        double advance=ElapsedGameMinutes-before;
+        RequireTime(advance>.4 * GameClock.GameMinutesPerRealSecond * .9 && Math.Abs(advance-(Time.unscaledTimeAsDouble-real)*GameClock.GameMinutesPerRealSecond)<.003,
+            phase+" must keep the ordinary watch rate");
+        RequireTime(Vector3.Distance(position,player.transform.position)<.001f&&Quaternion.Angle(rotation,player.eye.transform.rotation)<.01f,
+            phase+" released movement or look");
+        RequireTime(DayNightCycle.Instance.AppliedElapsedMinutes==ElapsedGameMinutes,phase+" left lighting on a different time");
+        RequireSharedDialHands();verified.Add(phase);
     }
 
     void RequireSharedDialHands() {
@@ -78,19 +94,21 @@ public partial class DemoApp {
         paused = false; opening = true;
         yield return RequireTimeFrozen("opening", result.pausedStates);
         opening = false; journal = true;
-        yield return RequireTimeFrozen("journal", result.pausedStates);
+        yield return RequireReadingTime("journal", result.runningReadingStates);
         journal = false; transitioning = true;
         yield return RequireTimeFrozen("transition", result.pausedStates);
         transitioning = false;
         var notice = Array.Find(FindObjectsByType<Interactable>(FindObjectsSortMode.None), i => i.evidenceId == "E07");
         RequireTime(notice, "Existing inspectable E07 notice is required for the pause check");
         Inspect(notice);
-        yield return RequireTimeFrozen("inspection", result.pausedStates);
+        yield return RequireReadingTime("inspection", result.runningReadingStates);
+        yield return Capture("time-inspection-running");
         CloseInspect();
         OpenMilkboyDialogue();
-        yield return RequireTimeFrozen("dialogue", result.pausedStates);
+        yield return RequireReadingTime("dialogue", result.runningReadingStates);
         ToggleDialogueHistory();
-        yield return RequireTimeFrozen("dialogue history", result.pausedStates);
+        yield return RequireReadingTime("dialogue history", result.runningReadingStates);
+        yield return Capture("time-dialogue-running");
         CloseDialogue();
 
         RequireTime(dialTexture, "The pocket-watch face must be available");
@@ -103,10 +121,10 @@ public partial class DemoApp {
         result.realSeconds = Time.unscaledTimeAsDouble - startReal;
         result.advancedGameMinutes = ElapsedGameMinutes - startGame;
         RequireTime(Math.Abs(result.advancedGameMinutes - result.realSeconds * GameClock.GameMinutesPerRealSecond) < .08,
-            "Rendered runtime did not advance at ten game minutes per seven real seconds");
+            "Rendered runtime did not advance at four game seconds per real second");
         yield return new WaitForEndOfFrame();
         RequireSharedDialHands();
-        RequireTime(Mathf.Repeat(watchRenderedMinutes - firstWatchReading, 1440) > 9,
+        RequireTime(Mathf.Repeat(watchRenderedMinutes - firstWatchReading, 1440) > .4,
             "The visible watch hands must advance during the real-time check");
         float previousReading = watchRenderedMinutes;
         yield return new WaitForEndOfFrame();
@@ -124,7 +142,7 @@ public partial class DemoApp {
         while (!autosaved && Time.realtimeSinceStartupAsDouble < until) {
             yield return new WaitForSecondsRealtime(.25f);
             var disk = JsonUtility.FromJson<SliceSave>(File.ReadAllText(savePath));
-            autosaved = disk.gameClockRevision == ClockSaveRevision && disk.elapsedGameMinutes > diskBefore + 1;
+            autosaved = disk.gameClockRevision == ClockSaveRevision && disk.elapsedGameMinutes > diskBefore + .1;
         }
         RequireTime(autosaved, "Normal play must autosave advancing time");
         paused = true;
@@ -142,7 +160,7 @@ public partial class DemoApp {
         result.ratePassed = result.smoothHandsPassed = result.sharedDialsPassed = result.boundariesPassed = result.autosavePassed = true;
         result.verification = "Rendered player, shared Q handler, real active-time autosave; UI handlers/flags are driven by review, physical keyboard bypassed. Relaunch separately with --verify-time-save.";
         File.WriteAllText(Path.Combine(captures, "time-results.json"), JsonUtility.ToJson(result, true));
-        Debug.Log("TIME_REVIEW_PASS: continuous 7s/10min clock, UI pauses, Q keeps running, hour/midnight, +30m dials, legacy fields and disk autosave; independent relaunch still required");
+        Debug.Log("TIME_REVIEW_PASS: continuous 4x clock, explicit pause freezes; journal/inspection/dialogue/history and Q keep running; shared dials, boundaries, legacy fields and disk autosave; independent relaunch still required");
         Application.Quit();
     }
 
@@ -178,6 +196,7 @@ public partial class DemoApp {
 
     [Serializable] class TimeReviewResult {
         public List<string> pausedStates = new List<string>();
+        public List<string> runningReadingStates = new List<string>();
         public double realSeconds, advancedGameMinutes, elapsedGameMinutes;
         public bool ratePassed, smoothHandsPassed, sharedDialsPassed, boundariesPassed, autosavePassed;
         public string verification;

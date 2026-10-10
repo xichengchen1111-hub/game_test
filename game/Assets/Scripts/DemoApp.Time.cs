@@ -10,7 +10,9 @@ public partial class DemoApp {
     bool clockSaveLoadedAtStartup;
 
     public double ElapsedGameMinutes => gameClock.ElapsedGameMinutes;
-    public bool GameTimePaused => !sceneReady || Blocked || (Review && dayNightReviewFrozen);
+    // Reading and conversation lock the player, while the shared world clock
+    // continues. Only an explicit pause, opening or scene load stops time.
+    public bool GameTimePaused => !sceneReady || opening || transitioning || paused || (Review && dayNightReviewFrozen);
 
     static double ReadElapsedGameMinutes(SliceSave saved) =>
         saved.gameClockRevision > 0 && GameClock.ValidElapsed(saved.elapsedGameMinutes) ? saved.elapsedGameMinutes : 0;
