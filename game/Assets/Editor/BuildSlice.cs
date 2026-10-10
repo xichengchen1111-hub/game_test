@@ -313,6 +313,8 @@ public static partial class BuildSlice {
     static void Systems() {
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
         var app=new GameObject("Persistent systems").AddComponent<DemoApp>();app.font=font;app.dialTexture=AssetDatabase.LoadAssetAtPath<Texture2D>(art+"WatchFace.png");
+        app.intactTicketImage=RailTexture("E02.png",false,false,true);
+        app.punchedTicketImage=RailTexture("E03.png",false,false,true);
         var renderer=AssetDatabase.LoadAssetAtPath<UniversalRendererData>("Assets/Settings/PC_Renderer.asset");
         app.reviewAmbientOcclusion=renderer.rendererFeatures.Find(f=>f is ScreenSpaceAmbientOcclusion);
         app.gameObject.AddComponent<TownSound>();
@@ -374,8 +376,8 @@ public static partial class BuildSlice {
         if(!shopLayout){shopLayout=ScriptableObject.CreateInstance<BuildingLayout>();AssetDatabase.CreateAsset(shopLayout,layoutPath);}
         ConfigureWalnutLayout();
         BuildingLayoutChecks.ValidateDefinition(shopLayout);
-        HeldMapAuthoring.EnsureMaterial();PropSoundAuthoring.EnsureImports();WalnutShopPrefab();ClockTowerPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);Systems();AssetDatabase.SaveAssets();
-        string[] scenes={"Assets/Scenes/Systems.unity","Assets/Scenes/Town.unity","Assets/Scenes/ClockShop.unity"};
+        HeldMapAuthoring.EnsureMaterial();PropSoundAuthoring.EnsureImports();WalnutShopPrefab();ClockTowerPrefab();StationPrefab();TrainPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);OtherTown();Systems();AssetDatabase.SaveAssets();
+        string[] scenes={"Assets/Scenes/Systems.unity","Assets/Scenes/Town.unity","Assets/Scenes/ClockShop.unity","Assets/Scenes/OtherTown.unity"};
         EditorBuildSettings.scenes=Array.ConvertAll(scenes,p=>new EditorBuildSettingsScene(p,true));
         string output=Path.GetFullPath(relativeOutput);Directory.CreateDirectory(Path.GetDirectoryName(output));
         var report=BuildPipeline.BuildPlayer(scenes,output,target,BuildOptions.None);

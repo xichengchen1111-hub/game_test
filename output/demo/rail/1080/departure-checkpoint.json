@@ -1,0 +1,37 @@
+{
+    "scene": "Town",
+    "x": 184.8000030517578,
+    "y": 1.0499999523162842,
+    "z": 72.08000183105469,
+    "yaw": 125.0,
+    "returnX": 3.700000047683716,
+    "returnY": 0.05000000074505806,
+    "returnZ": 1.0,
+    "entries": [
+        {
+            "id": "E03",
+            "title": "已验车票",
+            "body": "同线路的废票边缘留有清晰的齿孔。\n\n售票说明：正常检票会在车票上留下齿孔。仅持有车票，并不能证明已完成检票。",
+            "source": "售票员提供的同线路废票及验票规则"
+        },
+        {
+            "id": "E08",
+            "title": "巡警原簿副本",
+            "body": "一九三一年一月十九日\n下午五时二十分\n\n南区巡查记录：有人询问东街。此处没有该街。\n\n本页为获准查阅的原簿副本。",
+            "source": "本镇车站资料桌 · 获准查阅的另一镇巡警原簿副本"
+        }
+    ],
+    "remarkSeen": false,
+    "milkboyGreeted": false,
+    "milkboyGreetingRevision": 0,
+    "dialogueTopics": [],
+    "openFixtures": [],
+    "worldRevision": 3,
+    "gameClockRevision": 1,
+    "towerLayoutRevision": 1,
+    "towerAdjustmentMinutes": 0,
+    "elapsedGameMinutes": 1500.1710009468422,
+    "milkOrderDate": "",
+    "railSeated": true,
+    "railJourneys": 0
+}

@@ -49,3 +49,58 @@ output/demo/full-map/**/*.png
 !output/demo/full-map/milk-1080/milk-a-interior.png
 !output/demo/full-map/tower-night/tower-upper-stone-floor.png
 !output/demo/full-map/dialogue-720/dialogue-greeting.png
+
+# Keep compact railway acceptance results and selected final renderer views.
+assets/source/rail/*.blend[0-9]
+output/demo/rail/**/*.log
+output/demo/rail/**/*.png
+output/demo/rail/*.log
+!output/demo/rail/1080/train-coach-02.png
+!output/demo/rail/1080/station-B-wide-dusk.png
+!output/demo/rail/1080/train-steam-platform.png
+!output/demo/rail/1080/next-town-street.png
+!output/demo/rail/1080/train-seated-departure.png
+!output/demo/rail/1080/train-window-rain.png
+output/demo/rail/edit-tests.xml
+output/demo/rail/720-fixed/
+output/demo/rail/720-final/
+output/demo/rail/reload-before-final/
+
+# Rail detail pass: retain selected native views and compact machine-readable proofs.
+output/demo/rail-polish/**/*.log
+output/demo/rail-polish/*.log
+output/demo/rail-polish/edit-tests.xml
+output/demo/rail-polish/**/*.png
+!output/demo/rail-polish/1080/station-B-front-detail-day.png
+!output/demo/rail-polish/1080/station-B-wide-dusk.png
+!output/demo/rail-polish/1080/station-ticket-hall.png
+!output/demo/rail-polish/1080/train-coach-02.png
+!output/demo/rail-polish/1080/ticket-carried-intact.png
+!output/demo/rail-polish/1080/ticket-bin-punched-physical.png
+!output/demo/rail-polish/1080/station-E03.png
+!output/demo/rail-polish/720/station-E03.png
+
+# Interactive furniture: keep compact proofs and selected final rendered views.
+output/demo/rail-items/**/*.log
+output/demo/rail-items/*.log
+output/demo/rail-items/**/*.png
+output/demo/rail-items/edit-tests.xml
+output/demo/rail-items/attempt-*/
+output/demo/rail-items/720-final/
+!output/demo/rail-items/final-1080/station-bench-seated.png
+!output/demo/rail-items/final-1080/coach-seat-resting.png
+!output/demo/rail-items/final-1080/coach-lamp-switch.png
+!output/demo/rail-items/final-1080/coach-lights-on.png
+!output/demo/rail-items/final-1080/coach-lights-off.png
+
+# Mounted world signs: compact audit and selected native views.
+output/demo/rail-signs/**/*.log
+output/demo/rail-signs/*.log
+output/demo/rail-signs/**/*.png
+!output/demo/rail-signs/1080/station-B-front-dusk.png
+!output/demo/rail-signs/1080/town-sign-06-oblique.png
+!output/demo/rail-signs/1080/town-sign-08.png
+!output/demo/rail-signs/1080/other-town-sign-04-oblique.png
+
+# Native player logs remain local; publish compact verification summaries.
+output/demo/**/*.log

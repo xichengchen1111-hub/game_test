@@ -16,11 +16,11 @@ public partial class DemoApp {
         public Vector3[] points;
     }
     [Serializable] class SprintReport {
-        public bool passed,stationBefore1740,homeBefore1755,normalizedDiagonal,closedDoorBlocks,openDoorPasses,mapSprint,stairs;
+        public bool passed,stationBefore1740,homeBefore1755,storyWindowFeasible,normalizedDiagonal,closedDoorBlocks,openDoorPasses,mapSprint,stairs;
         public float walkSpeed=PlayerMotor.WalkSpeed,sprintSpeed=PlayerMotor.SprintSpeed;
         public double gameMinutesPerRealSecond=GameClock.GameMinutesPerRealSecond,stationWaitRealSeconds,roundTripGameMinutes,homeArrivalWatchMinutes;
         public List<SprintLeg> legs=new List<SprintLeg>();
-        public string scope="Native macOS renderer, real CharacterController, scripted normalized movement and Shift state; no physical keyboard or blind player claim. Home/station interiors are unfinished; endpoints are exterior door approaches. Historical lines are candidate routes, not proof of NPC actions. Old clock figures are projections of measured wall time.";
+        public string scope="Native "+Application.platform+" renderer, real CharacterController, scripted normalized movement and Shift state; no physical keyboard or blind player claim. Endpoints are exterior door approaches, excluding station interior travel; home interior is unfinished. Historical lines are candidate routes, not proof of NPC actions. Old clock figures are projections of measured wall time. Passed means controller/rate/persistence checks succeeded; story-window feasibility is reported separately.";
     }
     void NeedSprint(bool ok,string why) {if(ok)return;Debug.LogError("SPRINT_REVIEW_FAIL: "+why);Application.Quit(1);throw new InvalidOperationException(why);}
     static float SprintDistance(Vector3 a,Vector3 b)=>Vector2.Distance(new Vector2(a.x,a.z),new Vector2(b.x,b.z));
@@ -117,7 +117,9 @@ public partial class DemoApp {
             dayNightReviewFrozen=false;double start=ElapsedGameMinutes;
             yield return SprintLegRun(outward,speed,label+"-home-station",report,current);
             if(current) {
-                report.stationBefore1740=Minutes<1060;NeedSprint(report.stationBefore1740,"Cannot reach station before 17:40");
+                // Measure the unchanged story budget honestly at the user-selected rate.
+                // A missed story window must not abort the remaining controller checks.
+                report.stationBefore1740=Minutes<1060;
                 watch=true;yield return Capture("current-station-arrival");watch=false;
                 double wait=Time.realtimeSinceStartupAsDouble;
                 while(Minutes<1060)yield return null;
@@ -128,7 +130,9 @@ public partial class DemoApp {
             yield return SprintLegRun(back,speed,label+"-station-home",report,current);
             if(current) {
                 report.roundTripGameMinutes=ElapsedGameMinutes-start;report.homeArrivalWatchMinutes=Minutes;
-                report.homeBefore1755=Minutes<1075;NeedSprint(report.homeBefore1755,"Cannot return by 17:55");
+                report.homeBefore1755=Minutes<1075;
+                report.storyWindowFeasible=report.stationBefore1740&&report.homeBefore1755;
+                Debug.Log("SPRINT_STORY_WINDOW: stationBefore1740="+report.stationBefore1740+" homeBefore1755="+report.homeBefore1755+" feasible="+report.storyWindowFeasible);
                 watch=true;yield return Capture("current-home-return");watch=false;
             }
         }

@@ -8,7 +8,7 @@ public static class FullMapChecks {
         void Need(bool ok,string why){if(!ok)throw new InvalidOperationException("Full map: "+why);}
         var markers=geometry.GetComponentsInChildren<TownMapBuilding>();
         Need(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70,"all 70 properties must appear once");
-        Need(markers.Count(m=>m.finished)==3,"finished tower/shop/dairy only");
+        Need(markers.Count(m=>m.finished)==4,"finished tower/shop/dairy/station");
         foreach(var b in plan.buildings) {
             var marker=markers.Single(m=>m.mapId==b.id);
             Need(Vector3.Distance(marker.door,TownPlan.Point(b.door))<.001f,"door marker drift "+b.id);
@@ -28,7 +28,7 @@ public static class FullMapChecks {
         Need(shadowLights.Length==3,"preserve upstream's two shop and one low-resolution machinery shadow lamps: "+string.Join(", ",shadowLights.Select(l=>l.name+"/"+l.type)));
         Need(geometry.GetComponentsInChildren<WeatherShelter>().Length>70,"finished and placeholder roofs shelter rain");
         string directory="../output/demo/full-map";Directory.CreateDirectory(directory);
-        File.WriteAllText(directory+"/authoring-checks.json",JsonUtility.ToJson(new Result{passed=true,mapVersion=plan.version,source=plan.sourceSha256,properties=markers.Length,finished=3,roads=11,lights=geometry.GetComponentsInChildren<Light>().Length,shadows=3},true));
+        File.WriteAllText(directory+"/authoring-checks.json",JsonUtility.ToJson(new Result{passed=true,mapVersion=plan.version,source=plan.sourceSha256,properties=markers.Length,finished=4,roads=11,lights=geometry.GetComponentsInChildren<Light>().Length,shadows=3},true));
         Debug.Log("FULL_MAP_AUTHORING_PASS: 70 property markers; finished proportions, origin/doors, roads and light budget");
     }
     [Serializable] class Result {public bool passed;public int mapVersion,properties,finished,roads,lights,shadows;public string source;}

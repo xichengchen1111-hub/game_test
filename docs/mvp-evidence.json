@@ -86,8 +86,8 @@
     {
       "id": "E02",
       "label": "完整车票",
-      "scene": "home",
-      "source": "住宅书桌",
+      "scene": "town",
+      "source": "主角随身车票（用户2026-10-10确认携带）",
       "admissible": true,
       "requires": [],
       "fact": "1月20日车票没有验票孔；仅证明持票，不能否定19日实际乘车"
@@ -96,7 +96,7 @@
       "id": "E03",
       "label": "已验车票",
       "scene": "station",
-      "source": "售票员提供的同线路废票及验票规则",
+      "source": "车站废票桶内获准查看的同线路已验票，及售票员的检票说明",
       "admissible": true,
       "requires": [],
       "fact": "正常检票会留下齿孔"
@@ -347,7 +347,7 @@
       "single_shared_clock": true,
       "initial_pocket_watch_time": "17:55",
       "rate": {
-        "real_seconds": 150,
+        "real_seconds": 50,
         "game_minutes": 10
       },
       "continuous_hands": true,

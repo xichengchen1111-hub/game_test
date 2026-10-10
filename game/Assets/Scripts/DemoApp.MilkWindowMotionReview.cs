@@ -16,10 +16,12 @@ public partial class DemoApp {
         player.scriptedDirection=shop.transform.TransformDirection(Vector3.forward*.30f);
         float finish=Time.unscaledTime+1.25f;float next=Time.unscaledTime;int frame=0;
         while(Time.unscaledTime<finish) {
-            player.Aim(look);yield return new WaitForEndOfFrame();
+            // Keep both the pane and the sampled jamb in view throughout the
+            // lateral walk; aiming only at the pane puts the probe at the edge.
+            player.Aim(Vector3.Lerp(look,surface,.5f));yield return new WaitForEndOfFrame();
             if(Time.unscaledTime<next)continue;next+=.1f;
             var xy=player.eye.WorldToScreenPoint(surface);
-            NeedMilk(xy.z>0&&xy.x>5&&xy.x<Screen.width-5&&xy.y>5&&xy.y<Screen.height-5,"Window-motion frame probe is outside screen");
+            NeedMilk(xy.z>0&&xy.x>5&&xy.x<Screen.width-5&&xy.y>5&&xy.y<Screen.height-5,"Window-motion frame probe is outside screen: pixel="+xy+" feet="+player.transform.position+" viewport="+Screen.width+"x"+Screen.height);
             patch.ReadPixels(new Rect(Mathf.Round(xy.x)-4,Mathf.Round(xy.y)-4,9,9),0,0);patch.Apply();
             float sum=0;foreach(var pixel in patch.GetPixels())sum+=.2126f*pixel.r+.7152f*pixel.g+.0722f*pixel.b;
             result.framePatchLuminance.Add(sum/81);

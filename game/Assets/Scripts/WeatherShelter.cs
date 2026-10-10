@@ -7,6 +7,7 @@ public sealed class WeatherShelter : MonoBehaviour {
     public float eaves, rise;
     public Vector2 centre;
     public ShopMechanism[] exteriorDoors = new ShopMechanism[0];
+    public bool ridgeAlongX, barrel, elliptical;
     static readonly HashSet<WeatherShelter> active = new HashSet<WeatherShelter>();
     const float CellSize=16;
     static readonly Dictionary<long,List<WeatherShelter>> cells=new Dictionary<long,List<WeatherShelter>>();
@@ -29,7 +30,14 @@ public sealed class WeatherShelter : MonoBehaviour {
         float x=Mathf.Abs(p.x-centre.x), z=Mathf.Abs(p.z-centre.y);
         height=0;
         if(x>footprint.x*.5f || z>footprint.y*.5f)return false;
-        height=toWorld.MultiplyPoint3x4(new Vector3(p.x,eaves+rise*(1-x/(footprint.x*.5f)),p.z)).y;
+        float across=ridgeAlongX?z:x,half=ridgeAlongX?footprint.y*.5f:footprint.x*.5f;
+        float roofRise=rise*(1-across/half);
+        if(elliptical)roofRise=rise*Mathf.Sqrt(Mathf.Max(0,1-across*across/(half*half)));
+        else if(barrel&&rise>0) {
+            float radius=(half*half+rise*rise)/(2*rise);
+            roofRise=rise-radius+Mathf.Sqrt(Mathf.Max(0,radius*radius-across*across));
+        }
+        height=toWorld.MultiplyPoint3x4(new Vector3(p.x,eaves+roofRise,p.z)).y;
         return true;
     }
     public static float RoofHeight(Vector3 point) {

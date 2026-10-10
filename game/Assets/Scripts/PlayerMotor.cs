@@ -28,11 +28,14 @@ public class PlayerMotor : MonoBehaviour {
         eye.transform.localRotation = Quaternion.Euler(pitch,0,0);
     }
     void Update() {
-        if (!DemoApp.Instance || DemoApp.Instance.Blocked) return;
+        if (!DemoApp.Instance) return;
         bool scripted = DemoApp.Instance.Review;
-        if (!scripted && Cursor.lockState == CursorLockMode.Locked) {
+        if (DemoApp.Instance.LookAllowed && !scripted && Cursor.lockState == CursorLockMode.Locked) {
             transform.Rotate(0,Input.GetAxisRaw("Mouse X")*1.9f,0);
             pitch = Mathf.Clamp(pitch-Input.GetAxisRaw("Mouse Y")*1.9f,-72,72);
+        }
+        if(DemoApp.Instance.MovementLocked) {
+            eye.transform.localRotation=Quaternion.Euler(pitch,0,0);return;
         }
         bool sprint = scripted ? scriptedSprint : Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
         Vector3 movement = scripted ? scriptedDirection : transform.TransformDirection(new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")));

@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-10",
+  "baseCommit": "ea1f197",
+  "status": "concept_only_pending_review",
+  "method": "Built-in image_gen",
+  "station": {
+    "selected": "B / 铁与玻璃长廊",
+    "reference": "docs/concepts/station/round-01/b-iron-glass.png",
+    "implementation": "not_started"
+  },
+  "userConfirmed": [
+    "Interactive train that starts",
+    "Board then sit",
+    "Black-screen transition to next town",
+    "Do not start implementation yet"
+  ],
+  "suggestedConsist": [
+    "2-6-0 steam locomotive",
+    "Separate coal/water tender",
+    "Passenger coach01",
+    "Passenger coach02",
+    "Short luggage/guard van"
+  ],
+  "proposedMeasurements": {
+    "coachLengthM": 15,
+    "coachWidthM": 2.9,
+    "interiorWidthM": 2.6,
+    "clearAisleTargetM": 0.75,
+    "stage": "unmeasured_design_targets"
+  },
+  "interactionProposal": {
+    "departureSeat": "Coach01 front window seat",
+    "prompt": "E 坐下并出发",
+    "beforeSit": "Can leave train",
+    "departure": "Close doors, whistle, steam, wheel/linkage movement, brief acceleration and real window parallax",
+    "suggestedStartSeconds": [
+      3,
+      5
+    ],
+    "suggestedFadeSeconds": 1,
+    "transition": "Next town",
+    "arrival": "Restore same seat, allow stand and disembark",
+    "implemented": false
+  },
+  "unknowns": [
+    "Next town name/layout/content",
+    "Return travel design",
+    "Historical train timetable/travel/return times",
+    "Actual boarding platform and footboard heights",
+    "Exact window/seat counts and shared geometry"
+  ],
+  "files": [
+    {
+      "image": "exterior-and-boarding.png",
+      "prompt": "exterior-prompt.txt",
+      "referenceRoles": [
+        "Station B: architecture/material/atmosphere"
+      ]
+    },
+    {
+      "image": "interior-and-departure.png",
+      "prompt": "interior-prompt.txt",
+      "referenceRoles": [
+        "Exterior board: same train design and materials",
+        "Station B: real outside window scene"
+      ]
+    }
+  ],
+  "verification": "Visual concept review only; no model, shared-layout/collision or runtime validation; no implementation.",
+  "sources": [
+    "https://collection.sciencemuseumgroup.org.uk/objects/co205793/london-midland-scottish-railway-crab-2-6-0-steam-locomotive-no-2700-1926",
+    "https://gcr-rollingstocktrust.co.uk/our-rolling-stock/gcr-barnum-no-664/",
+    "https://gcr-rollingstocktrust.co.uk/research/"
+  ]
+}

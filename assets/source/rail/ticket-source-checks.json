@@ -1,0 +1,18 @@
+{
+  "passed": true,
+  "sharedUnityJson": "ticket-geometry.json",
+  "models": [
+    {
+      "stock": "intact",
+      "vertices": 24,
+      "triangles": 12,
+      "actualPunchVoids": 0
+    },
+    {
+      "stock": "punched",
+      "vertices": 2352,
+      "triangles": 1176,
+      "actualPunchVoids": 3
+    }
+  ]
+}

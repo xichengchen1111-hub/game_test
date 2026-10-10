@@ -1,0 +1,5 @@
+{
+  "name": "Railway.EditTests",
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

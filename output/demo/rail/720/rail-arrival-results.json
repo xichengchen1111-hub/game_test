@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "width": 1280,
+  "height": 720,
+  "scene": "OtherTown",
+  "journeys": 1,
+  "evidence": "player.log RAIL_NEXT_TOWN_CHECKPOINT_PASS",
+  "scope": "one-way arrival on final binary, not full round trip"
+}

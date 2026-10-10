@@ -59,7 +59,7 @@ public partial class DemoApp {
     IEnumerator ReviewFullMap() {
         yield return new WaitForSeconds(.8f);
         var plan=TownPlan.Current;var markers=FindObjectsByType<TownMapBuilding>(FindObjectsSortMode.None);
-        NeedMap(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70&&markers.Count(m=>m.finished)==3,"Property identity/count");
+        NeedMap(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70&&markers.Count(m=>m.finished)==4,"Property identity/count");
         NeedMap(FindFirstObjectByType<ClockTowerInstance>().transform.position==Vector3.zero,"Clock tower map origin");
         NeedMap(FindObjectsByType<StreetSurfaceLayout>(FindObjectsSortMode.None).Length==11,"Street profiles missing");
         CheckMapMigrations();

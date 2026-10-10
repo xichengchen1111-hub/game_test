@@ -1,0 +1,20 @@
+{
+    "pausedStates": [
+        "pause menu",
+        "opening",
+        "journal",
+        "transition",
+        "inspection",
+        "dialogue",
+        "dialogue history"
+    ],
+    "realSeconds": 7.0015448979591829,
+    "advancedGameMinutes": 10.002206987036122,
+    "elapsedGameMinutes": 21.60992186250429,
+    "ratePassed": true,
+    "smoothHandsPassed": true,
+    "sharedDialsPassed": true,
+    "boundariesPassed": true,
+    "autosavePassed": true,
+    "verification": "Rendered player, shared Q handler, real active-time autosave; UI handlers/flags are driven by review, physical keyboard bypassed. Relaunch separately with --verify-time-save."
+}

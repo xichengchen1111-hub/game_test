@@ -70,15 +70,17 @@ public static partial class BuildSlice {
         var shop=InstantiateShop(false);MapMarker(shop.gameObject,plan.Building("B02"),true);
         var tower=InstantiateClockTower();MapMarker(tower,plan.Building("B01"),true);
         StreetSurfaces.BuildFull(plan);
-        foreach(var b in plan.buildings)if(b.id!="B01"&&b.id!="B02")PlaceholderBuilding(b);
+        foreach(var b in plan.buildings)if(b.id=="B17")StationTown(b);else if(b.id!="B01"&&b.id!="B02")PlaceholderBuilding(b);
         var dairy=plan.Building("B04");var boy=Milkboy(TownPlan.Point(dairy.gate)+new Vector3(2,0,-.8f),180);boy.transform.localScale=Vector3.one*.88f;
         Collider(boy,new Vector3(0,.8f,0),new Vector3(.65f,1.65f,.55f));
         var testimony=DialogueScript.Load("MilkboyDialogue").evidence;var milk=boy.AddComponent<Interactable>();milk.title="送奶少年";milk.evidenceId=testimony.id;milk.source=testimony.source;milk.body=testimony.body;
         var milkHouse=MilkShopAsset.Create(boy);MapMarker(milkHouse,dairy,true);
         var cart=Model("MilkCart",TownPlan.Point(dairy.gate)+new Vector3(-2,.0f,-.9f),0);Collider(cart,new Vector3(0,.6f,0),new Vector3(1.6f,1.15f,.9f));
         // Existing props are distributed across the square, station forecourt and south garden.
+        int streetBenchIndex=0;
         foreach(var pos in new[]{new Vector3(-10,.1f,8),new Vector3(10,.1f,8),new Vector3(-10,.1f,-8),new Vector3(10,.1f,-8),new Vector3(194,.1f,33),new Vector3(205,.1f,33),new Vector3(42,-.03f,-108),new Vector3(74,-.03f,-107)}) {
             var bench=Model("Bench",pos);FaceBenchTowardSquare(bench);Collider(bench,new Vector3(0,.45f,0),new Vector3(2,.9f,.75f));
+            StreetBenchSeat(bench,streetBenchIndex++);
         }
         foreach(var b in plan.buildings.Where(b=>b.id.StartsWith("B")&&b.id!="B01"&&b.id!="B04")) {
             var offset=b.front=="E"?Vector3.right*1.8f:Quaternion.Euler(0,TownPlan.Yaw(b.front),0)*Vector3.right*2.1f;Model("Plant",TownPlan.Point(b.gate)+offset);

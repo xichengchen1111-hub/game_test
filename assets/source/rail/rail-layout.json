@@ -1,0 +1,561 @@
+{
+  "metadata": {
+    "title": "1931 Railway Station & Train Visual Specification",
+    "era": 1931,
+    "version": "1.0",
+    "coordinateSystem": "Unity (X East, Y Up, Z North)"
+  },
+  "station": {
+    "root": [
+      188.0,
+      0.0,
+      46.0
+    ],
+    "mainHall": {
+      "boundsX": [
+        -15.0,
+        15.0
+      ],
+      "boundsZ": [
+        -6.0,
+        6.0
+      ],
+      "floorTopY": 0.1,
+      "eavesY": 6.0,
+      "ridgeY": 7.6,
+      "wallThickness": 0.24,
+      "centeredDoors": {
+        "front": {
+          "x": [
+            -1.7,
+            1.7
+          ],
+          "z": -6.0,
+          "height": 3.4,
+          "status": "always_open_no_leaf"
+        },
+        "rear": {
+          "x": [
+            -1.7,
+            1.7
+          ],
+          "z": 6.0,
+          "height": 3.4,
+          "status": "always_open_no_leaf"
+        }
+      },
+      "facadeWindows": {
+        "centersX": [
+          -12.0,
+          -8.0,
+          -4.0,
+          4.0,
+          8.0,
+          12.0
+        ],
+        "width": 2.2,
+        "yRange": [
+          1.3,
+          4.1
+        ],
+        "facades": [
+          "South (z=-6.0)",
+          "North (z=6.0)"
+        ],
+        "apertures": "real_round_arch_with_translucent_glazing",
+        "archSpringY": 3.0,
+        "archRadius": 1.1
+      },
+      "annexPassages": {
+        "west": {
+          "x": -15.0,
+          "z": [
+            -1.4,
+            1.4
+          ],
+          "yRange": [
+            0.1,
+            3.3
+          ]
+        },
+        "east": {
+          "x": 15.0,
+          "z": [
+            -1.4,
+            1.4
+          ],
+          "yRange": [
+            0.1,
+            3.3
+          ]
+        }
+      },
+      "centralWalkingRoute": {
+        "x": [
+          -2.0,
+          2.0
+        ],
+        "z": [
+          -6.0,
+          6.0
+        ],
+        "status": "completely_unobstructed"
+      }
+    },
+    "annexes": {
+      "west": {
+        "x": [
+          -23.0,
+          -15.0
+        ],
+        "z": [
+          -4.0,
+          4.0
+        ],
+        "eavesY": 4.0,
+        "ridgeY": 5.2
+      },
+      "east": {
+        "x": [
+          15.0,
+          23.0
+        ],
+        "z": [
+          -4.0,
+          4.0
+        ],
+        "eavesY": 4.0,
+        "ridgeY": 5.2
+      },
+      "windows": [
+        {
+          "wall": "WestOuter (x=-23)",
+          "centersZ": [
+            -2.0,
+            2.0
+          ],
+          "width": 1.4,
+          "yRange": [
+            1.3,
+            3.2
+          ]
+        },
+        {
+          "wall": "EastOuter (x=23)",
+          "centersZ": [
+            -2.0,
+            2.0
+          ],
+          "width": 1.4,
+          "yRange": [
+            1.3,
+            3.2
+          ]
+        }
+      ]
+    },
+    "shedCanopy": {
+      "spanX": [
+        -34.0,
+        34.0
+      ],
+      "spanZ": [
+        9.0,
+        31.0
+      ],
+      "springHeightY": 5.4,
+      "archRise": 4.0,
+      "ridgeHeightY": 9.4,
+      "barrelRadius": 17.125,
+      "columns": {
+        "rowsZ": [
+          9.0,
+          31.0
+        ],
+        "stationsX": [
+          -30.0,
+          -20.0,
+          -10.0,
+          0.0,
+          10.0,
+          20.0,
+          30.0
+        ],
+        "count": 14
+      },
+      "platformBoardingClearArea": {
+        "boundsX": [
+          -30.0,
+          30.0
+        ],
+        "boundsZ": [
+          17.0,
+          25.45
+        ],
+        "topY": 0.42,
+        "status": "clear_unobstructed_no_structure_collision"
+      }
+    },
+    "interiorFeatures": [
+      {
+        "name": "TicketDesk",
+        "local": [
+          -8.0,
+          0.0,
+          1.0
+        ],
+        "material": "RailWalnut/RailBrass"
+      },
+      {
+        "name": "TimetableDesk",
+        "local": [
+          9.0,
+          0.0,
+          1.0
+        ],
+        "material": "RailWalnut/RailIvory"
+      },
+      {
+        "name": "LuggageScale",
+        "local": [
+          11.5,
+          0.0,
+          -2.0
+        ],
+        "material": "RailIron/RailBrass"
+      },
+      {
+        "name": "WaitingBenches",
+        "wings": [
+          "West (x in [-11, -5])",
+          "East (x in [5, 11])"
+        ],
+        "material": "RailWalnut/RailFelt"
+      }
+    ],
+    "signage": [
+      {
+        "text": "QINGCHUAN",
+        "location": "Front Facade Pediment (0, 6.25, -6.25)",
+        "material": "RailBrass"
+      },
+      {
+        "text": "TICKETS",
+        "location": "Above Ticket Window (-8.0, 2.70, 0.97)",
+        "material": "RailBrass"
+      },
+      {
+        "text": "PLATFORM 1",
+        "location": "Canopy Truss Suspended (0.0, 4.95, 18.0)",
+        "material": "RailIvory"
+      }
+    ],
+    "markers": {
+      "EastMarker": [
+        3.0,
+        0.0,
+        0.0
+      ],
+      "FrontMarker": [
+        0.0,
+        0.0,
+        -3.0
+      ],
+      "FloorMarker": [
+        0.0,
+        1.05,
+        0.0
+      ],
+      "Lamp_Hall": [
+        [
+          -8.0,
+          4.5,
+          0.0
+        ],
+        [
+          -3.0,
+          4.8,
+          0.0
+        ],
+        [
+          3.0,
+          4.8,
+          0.0
+        ],
+        [
+          8.0,
+          4.5,
+          0.0
+        ]
+      ],
+      "Lamp_Platform": [
+        [
+          -25.0,
+          5.8,
+          20.0
+        ],
+        [
+          -15.0,
+          5.8,
+          20.0
+        ],
+        [
+          -5.0,
+          5.8,
+          20.0
+        ],
+        [
+          5.0,
+          5.8,
+          20.0
+        ],
+        [
+          15.0,
+          5.8,
+          20.0
+        ],
+        [
+          25.0,
+          5.8,
+          20.0
+        ]
+      ]
+    }
+  },
+  "train": {
+    "root": [
+      181.0,
+      0.0,
+      73.0
+    ],
+    "orientation": "Faces +X (East)",
+    "consist": [
+      {
+        "unit": "GuardLuggageVan",
+        "centerX": -29.0,
+        "length": 9.0,
+        "width": 2.9
+      },
+      {
+        "unit": "Coach02",
+        "centerX": -16.0,
+        "length": 15.0,
+        "width": 2.9
+      },
+      {
+        "unit": "Coach01",
+        "centerX": 0.0,
+        "length": 15.0,
+        "width": 2.9
+      },
+      {
+        "unit": "Tender",
+        "centerX": 11.5,
+        "length": 7.0,
+        "width": 2.7
+      },
+      {
+        "unit": "Locomotive_260",
+        "centerX": 20.0,
+        "length": 10.5,
+        "frontBufferX": 26.0
+      }
+    ],
+    "locomotive": {
+      "wheelArrangement": "2-6-0",
+      "leadingAxle": {
+        "x": 23.6,
+        "radius": 0.4,
+        "empties": [
+          "Wheel_L_Lead",
+          "Wheel_R_Lead"
+        ]
+      },
+      "drivingAxles": [
+        {
+          "x": 20.9,
+          "radius": 0.73,
+          "empties": [
+            "Wheel_L_Drive1",
+            "Wheel_R_Drive1"
+          ]
+        },
+        {
+          "x": 19.1,
+          "radius": 0.73,
+          "empties": [
+            "Wheel_L_Drive2",
+            "Wheel_R_Drive2"
+          ]
+        },
+        {
+          "x": 17.3,
+          "radius": 0.73,
+          "empties": [
+            "Wheel_L_Drive3",
+            "Wheel_R_Drive3"
+          ]
+        }
+      ],
+      "sideRods": {
+        "empties": [
+          "Rod_Left",
+          "Rod_Right"
+        ],
+        "pivotNeutral": [
+          19.1,
+          0.4,
+          "+-1.05"
+        ],
+        "crankpinSpan": [
+          17.3,
+          20.9
+        ]
+      },
+      "markers": {
+        "SmokestackMarker": [
+          23.0,
+          3.6,
+          0.0
+        ],
+        "SteamMarker": [
+          20.0,
+          0.8,
+          -1.1
+        ]
+      }
+    },
+    "tender": {
+      "axles": [
+        9.3,
+        11.5,
+        13.7
+      ],
+      "wheelRadius": 0.48,
+      "empties": [
+        "Wheel_Tender_L1",
+        "Wheel_Tender_R1",
+        "Wheel_Tender_L2",
+        "Wheel_Tender_R2",
+        "Wheel_Tender_L3",
+        "Wheel_Tender_R3"
+      ]
+    },
+    "coaches": {
+      "floorTopY": 1.05,
+      "roofInnerYRange": [
+        3.365,
+        3.705
+      ],
+      "roofOuterYRange": [
+        3.46,
+        3.8
+      ],
+      "wallsZ": [
+        -1.45,
+        1.45
+      ],
+      "doors": {
+        "localCenterOffsetsX": [
+          -5.9,
+          5.9
+        ],
+        "openingWidth": 1.05,
+        "openingYRange": [
+          1.05,
+          3.35
+        ],
+        "hingeOffset": "center - 0.525",
+        "hingeY": 1.05,
+        "hingeZ": [
+          -1.49,
+          1.49
+        ],
+        "defaultState": "CLOSED",
+        "rotationAxis": "Unity Y",
+        "empties": [
+          "Door_C1_S_F",
+          "Door_C1_N_F",
+          "Door_C1_S_R",
+          "Door_C1_N_R",
+          "Door_C2_S_F",
+          "Door_C2_N_F",
+          "Door_C2_S_R",
+          "Door_C2_N_R"
+        ]
+      },
+      "windows": {
+        "localCentersX": [
+          -4.5,
+          -2.7,
+          -0.9,
+          0.9,
+          2.7,
+          4.5
+        ],
+        "width": 1.45,
+        "yRange": [
+          1.8,
+          3.2
+        ],
+        "bottomPanel": [
+          1.05,
+          1.8
+        ],
+        "topFascia": [
+          3.2,
+          3.55
+        ],
+        "posts": "only_in_gaps"
+      },
+      "vestibules": {
+        "frontX": [
+          5.2,
+          7.3
+        ],
+        "rearX": [
+          -7.3,
+          -5.2
+        ],
+        "internalPassengerOpeningWidthZ": 0.8,
+        "gangwayEndOpeningWidthZ": 0.8,
+        "gangwayClearHeight": 2.2
+      },
+      "seating": {
+        "aisleZ": [
+          -0.4,
+          0.4
+        ],
+        "benchesZ": "|z| > 0.45",
+        "cushionTopY": 1.52,
+        "backTopY": 2.3,
+        "dedicatedRow": {
+          "x": 3.8,
+          "orientation": "Faces +X",
+          "seatCenter": [
+            3.8,
+            1.05,
+            -0.92
+          ]
+        }
+      },
+      "markersCoach1": {
+        "RideSeat": [
+          3.8,
+          1.05,
+          -0.92
+        ],
+        "StandMarker": [
+          3.8,
+          1.05,
+          0.0
+        ],
+        "EntryMarker": [
+          5.9,
+          1.05,
+          -1.9
+        ]
+      }
+    }
+  }
+}

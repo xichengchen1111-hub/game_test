@@ -1,0 +1,906 @@
+{
+  "files": [
+    {
+      "path": "builds/windows/D3D12/D3D12Core.dll",
+      "bytes": 4725304,
+      "sha256": "625bd40005b1c3708695d5256ecf230d278e6b8edba5a88af70f3d91324f3052"
+    },
+    {
+      "path": "builds/windows/launch.log",
+      "bytes": 1357,
+      "sha256": "317a88113a30e3d67205a96951700767015fe9965706d86995683c87abb01150"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/EmbedRuntime/mono-2.0-bdwgc.dll",
+      "bytes": 7828912,
+      "sha256": "4ea64aa2c09be86db7341e5c9001e1266b1cf765a3ceca4d798efb7b4dcaec1a"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/EmbedRuntime/MonoPosixHelper.dll",
+      "bytes": 611248,
+      "sha256": "1765a12f381aa37c110c12f45f5013a6b6da73cc1268a37e9117fa6da3102b7f"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/2.0/Browsers/Compat.browser",
+      "bytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/2.0/DefaultWsdlHelpGenerator.aspx",
+      "bytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/2.0/machine.config",
+      "bytes": 29066,
+      "sha256": "e91782a27fa39fc6c1d6ee8b08529f5d35052310d0006034b878eb04b8f2af30"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/2.0/settings.map",
+      "bytes": 2622,
+      "sha256": "49c6160f9d54af4270a3b4e997fc4a8301f79b9e2070118fa46ddbcbbc44f9a2"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/2.0/web.config",
+      "bytes": 11635,
+      "sha256": "cf2b54339e069b9e42f7d6795eecbf562c50c1011f4ca8f65f578fe52d97ff92"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.0/Browsers/Compat.browser",
+      "bytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.0/DefaultWsdlHelpGenerator.aspx",
+      "bytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.0/machine.config",
+      "bytes": 33598,
+      "sha256": "e60aec2c5115d65b3acb3c55ea21576dbd770f579166c017125571e46ae560ed"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.0/settings.map",
+      "bytes": 2622,
+      "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.0/web.config",
+      "bytes": 18802,
+      "sha256": "e38bb8cc68fe5b4edecdfd288d094b9e8ced7629039b2a347682aba0d8bd7492"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.5/Browsers/Compat.browser",
+      "bytes": 1605,
+      "sha256": "8a1082057ac5681dcd4e9c227ed7fb8eb42ac1618963b5de3b65739dd77e2741"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.5/DefaultWsdlHelpGenerator.aspx",
+      "bytes": 60575,
+      "sha256": "751861040b69ea63a3827507b7c8da9c7f549dc181c1c8af4b7ca78cc97d710a"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.5/machine.config",
+      "bytes": 34056,
+      "sha256": "ee950004b576fb28dc85f4b0435ed04bf96612de2e8b53be84d07afe85a0de6c"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.5/settings.map",
+      "bytes": 2622,
+      "sha256": "ce1db1ad8a9512073164e3eccdc193f7eda036e1a9733caec4635de21b2865c8"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/4.5/web.config",
+      "bytes": 18811,
+      "sha256": "c4cbddd4fd9347b58cc5a72b36dc4ba1ad2bb699e65869d05cd3fb9865f0d824"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/browscap.ini",
+      "bytes": 311984,
+      "sha256": "4ddd50f31fb968f30bedefc253a46dc3f2890192d05cdaa9e0a64a056eee807e"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/config",
+      "bytes": 3815,
+      "sha256": "5776169973a26a387b8b3e5c0f2301a7ab9a6dd7c7d3efa22a96abc47fbf8662"
+    },
+    {
+      "path": "builds/windows/MonoBleedingEdge/etc/mono/mconfig/config.xml",
+      "bytes": 25817,
+      "sha256": "0c56e34c69124510fa8c19e7b4c2ca6c1c4ff460ae19f798dd0ca035809e396d"
+    },
+    {
+      "path": "builds/windows/TownDemo.exe",
+      "bytes": 667136,
+      "sha256": "5cf8283e7cb3761b6fcbba8e2c9f36a298a75883cc65ca7719b008f3a7aa231e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/app.info",
+      "bytes": 45,
+      "sha256": "ecefd16d5af5453e4f1b3578febcd92511ed27a71e72393755d0238bd33c11eb"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/boot.config",
+      "bytes": 156,
+      "sha256": "364ae9946b82ef39562ec963e60701535fec014bc614d79fe7cec84fc7551953"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/globalgamemanagers",
+      "bytes": 164740,
+      "sha256": "528308b7acbe144d53f58c8f6544a700e18d1659660ce9d943395a2941c11d5e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/globalgamemanagers.assets",
+      "bytes": 796344,
+      "sha256": "a6a0f96404301a15b5bde0d25f31d5f15a06d544e488b19d597600c2b8650d15"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/globalgamemanagers.assets.resS",
+      "bytes": 6174944,
+      "sha256": "26b24bbd0bdb7017ecbac3b829c0ed7c4848bc343af5702e96ebdb75a7258b04"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/level0",
+      "bytes": 2676,
+      "sha256": "fe9b3049b0959fe9be33eec9f3df417e21f53e63708d2406bc6097eb350111e8"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/level1",
+      "bytes": 3762460,
+      "sha256": "c1646644ec81d5e7c090e0904f14302324881a4ae9ed6ef057a1275f86bbaec0"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/level1.resS",
+      "bytes": 16138816,
+      "sha256": "714f5e4bdf60b24d9d5a70f09f78b0283384a22152440f5ceeeae33e7f74afe4"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/level2",
+      "bytes": 3588700,
+      "sha256": "ba0c1ec0cff650870c722307e78f3b1dbf7b58627847df9ed8d6f67135fb1b10"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/level2.resS",
+      "bytes": 16138816,
+      "sha256": "9627520578ad73fd79ec76bb9c28b0a59dde45dbbc1f27b5c0396d59b8dc62c8"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/level3",
+      "bytes": 321420,
+      "sha256": "10dc47d32798c23b67ea96cc0d2fe5ba9f891bd35288fba3cf9c159117b40ba8"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/level3.resS",
+      "bytes": 225984,
+      "sha256": "97d9e56e7916fab89877c66d383b83ac336be59d352a5f6e8448c6651ebf4074"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Assembly-CSharp.dll",
+      "bytes": 312320,
+      "sha256": "908e1c4a08c0d1053a56a050d7833f49514bc3d8072fc347a8aae622387639b6"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Mono.Security.dll",
+      "bytes": 241152,
+      "sha256": "618009319dbf3ae374f9b5dc0d0522e1e1bdd172200c120a5471747b7991a584"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/mscorlib.dll",
+      "bytes": 4632064,
+      "sha256": "6c76e06e6d44cf0f39bf59e6a90770968b70093ad4c1572dfbc5e46e431c5fbf"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/netstandard.dll",
+      "bytes": 90112,
+      "sha256": "6ae62e082dc494a2433984177f60ca4db5fae69b1f360a8b33754172b310b8c5"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.ComponentModel.Composition.dll",
+      "bytes": 257024,
+      "sha256": "0c3e81771a5fe9657bea02887996de72606c3cb247e4fbe413f743f40e2af244"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Configuration.dll",
+      "bytes": 124928,
+      "sha256": "04907729e87a101e62d3a5c93cfa16688bee745d05440d6daa0c541964be27ab"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Core.dll",
+      "bytes": 1113088,
+      "sha256": "a5e7d47313da0eca0b92a901a30498f5e970916faf63b70b74dd62b09760ed72"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Data.DataSetExtensions.dll",
+      "bytes": 29696,
+      "sha256": "498f14c37d83f946a47a79e01de777e62f269ee9c3820f2026b59ab1c1b9222f"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Data.dll",
+      "bytes": 2125312,
+      "sha256": "427478545ce66b632414ca838088ea073f250ed16b21c70005f48cb571350e47"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.dll",
+      "bytes": 2641920,
+      "sha256": "7019d6b6dbfa07cf30f62e7d3ccb969f70cbf001fd72112938ffb535c7f75d81"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Drawing.dll",
+      "bytes": 489984,
+      "sha256": "e182e688223acedb8135227e8fbff17d5ed22f47f81141aa9cb96ef1ab9926fc"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.EnterpriseServices.dll",
+      "bytes": 44544,
+      "sha256": "84af394ad863e31407eb2b9555ca7e96a9f1966630f5d7f0eec54f0011f6babc"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.IO.Compression.dll",
+      "bytes": 114688,
+      "sha256": "80421a67b4162a5f1b4aad6a8327c6d1fb4b04dedd39dae14a770b812594fae2"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.IO.Compression.FileSystem.dll",
+      "bytes": 18432,
+      "sha256": "2730d2a27f9362259a406ea14727e5f0a71bc21a6825be94f8623a84bd9f9c79"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.IO.Hashing.dll",
+      "bytes": 50488,
+      "sha256": "ac7ac3e83805b0b621c48b90543dc733c9a89106835278618357d6187e3da74e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Memory.dll",
+      "bytes": 4608,
+      "sha256": "c4f030a2cba7da7cdcf493257c24560e203d355904aee490d645a935842f834a"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Net.Http.dll",
+      "bytes": 122880,
+      "sha256": "3cd3ac19050d5031c13644cd87958ad8029b79ce16c7747faf3d0542e7fb45a3"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Numerics.dll",
+      "bytes": 119296,
+      "sha256": "ac9224b32355a09f09b706cab568384f64cf8116825c5911cef1e13221c61c38"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Runtime.CompilerServices.Unsafe.dll",
+      "bytes": 18024,
+      "sha256": "01748200f2400c742aa689f1f5101bd6298efdfd92c00c18f4fa473847235ba9"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Runtime.dll",
+      "bytes": 12288,
+      "sha256": "e0a7334b7ba419aaab6bd3bb6992d693e689341a9178172c9bf99c2aa6a085bd"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Runtime.Serialization.dll",
+      "bytes": 934400,
+      "sha256": "1152ef687dbe39e0ccb6b9a68f6501004415a729072df29abab3bc7c66840217"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Security.dll",
+      "bytes": 320000,
+      "sha256": "2101a4dd4475285f96b1ac3ba1715a52aa8067690709e675cc49a9eb8ed901a4"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.ServiceModel.Internals.dll",
+      "bytes": 215040,
+      "sha256": "888ec94a59c127854871b76afa49fdcefdf723c0f0b6fd78e87f73a8495b63b5"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Transactions.dll",
+      "bytes": 35328,
+      "sha256": "f65dbc257d26a361dcc01edd58bf3e542d186c8ee492a4f7a62b0dd7d59f7050"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Xml.dll",
+      "bytes": 3160064,
+      "sha256": "79194220adfcf027a334c87b1adcc6d07b9660a4061e04b3d9500c10d30f7d49"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/System.Xml.Linq.dll",
+      "bytes": 136704,
+      "sha256": "4f5d6bf313cbf091e7bff83d07dd03ed93d0ecb3ddb025ae786aadd6b5f477fb"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.Burst.dll",
+      "bytes": 304640,
+      "sha256": "378b1eb17cb76a20db2c9d97158df6945e35c231779c97fab0e3eefa86a7a530"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.Burst.Unsafe.dll",
+      "bytes": 5632,
+      "sha256": "9d9c1ff52411decbee5d9f0d1cd61ebeaa222077aa77a52101ea3debafae98e2"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.Collections.dll",
+      "bytes": 453632,
+      "sha256": "f45b065bf1e5ee61cc6a1cf9ba6bacd4dab904f8ddcbb546bba6f779c1149a18"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.Collections.LowLevel.ILSupport.dll",
+      "bytes": 5120,
+      "sha256": "ff50383f807f9692e4913b97e47d86fefcb8faa33d6d48cd3e3fd6fc7ffb448d"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.InternalAPIEngineBridge.004.dll",
+      "bytes": 4608,
+      "sha256": "b5ce48fc887f1d9f34760f9c7d07fc38a556a7d9e10838c3efc5e4a8a49d4520"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.Mathematics.dll",
+      "bytes": 752640,
+      "sha256": "222121ffec5681da4e59431d6a246a12e0c37264ed5fba8d6637727dd4c3d4f9"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipeline.Universal.ShaderLibrary.dll",
+      "bytes": 9216,
+      "sha256": "d8a88106883fab4b2df9d2b479bce160b858f235bdd4d095915e28fdc14930bf"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipelines.Core.Runtime.dll",
+      "bytes": 1190400,
+      "sha256": "8fb28cd64de13913b8057543eef41c035c66ab1dfa3129453400f745253f9dc6"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipelines.Core.Runtime.Shared.dll",
+      "bytes": 5632,
+      "sha256": "198f11067b6e79cbe045cb6215c5d06e898cc02769341bd4dc1d3c2dd0d92b12"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipelines.Core.ShaderLibrary.dll",
+      "bytes": 4608,
+      "sha256": "847f31d317b2a1ddfe30be0a2b14ea88ae50f5354aa950ceed19dc9bb7dd7414"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipelines.GPUDriven.Runtime.dll",
+      "bytes": 235520,
+      "sha256": "39502fdb68c8d864db1fca3ad73636919c4f2ce12daaac79e953c0331af08b12"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll",
+      "bytes": 4608,
+      "sha256": "bc176ad12174f9940e6262e00853f0cc118fa5343b9570029c602b31fac409cb"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipelines.Universal.2D.Runtime.dll",
+      "bytes": 228864,
+      "sha256": "c7a5f44a193372eb0e23205f87b50e1f44a2a6146247f0c0ea023d069090d420"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipelines.Universal.Config.Runtime.dll",
+      "bytes": 5632,
+      "sha256": "9d707ddc0a22d92103c27b327f012a10eaef083252f843c33a41ab034bf06d44"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipelines.Universal.Runtime.dll",
+      "bytes": 745984,
+      "sha256": "051a47ec438fa39fdd6eb802499b0aea7196e0edca1ceec04ba24168c1b9b436"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.RenderPipelines.Universal.Shaders.dll",
+      "bytes": 4608,
+      "sha256": "6b510a8a7f8d502c5e0cc173b74f348e4a2c38693037aefb5ec7908b22fcf15d"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.TextMeshPro.dll",
+      "bytes": 445952,
+      "sha256": "adb06742b15f6c45177091de4576af21e58b216d2d1c1615d88cdd3235340fe6"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Unity.UnifiedRayTracing.Runtime.dll",
+      "bytes": 98816,
+      "sha256": "46ec95dc017e40b894efc5f0384b6c778b572391d132be2ea19611690ad4751a"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.AccessibilityModule.dll",
+      "bytes": 51632,
+      "sha256": "e446c9738906b834d89f6c243f467a505d5e2e6afe7273e52abf2c7e6e07c1fc"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.AdaptivePerformanceModule.dll",
+      "bytes": 124848,
+      "sha256": "193afa106a1bc18eb559de85687b1f31b59f751f345babb51161085e44ed9077"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.AIModule.dll",
+      "bytes": 77224,
+      "sha256": "3f232fdf455982c8782db4bf8f105d4514e8be5de869253f2fbe86aad164cb4e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.AMDModule.dll",
+      "bytes": 21928,
+      "sha256": "c972a8ce44bfd495a52e537d79028aa5bd9c5bfa47741802de94d4a36e9c5b26"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.AndroidJNIModule.dll",
+      "bytes": 121768,
+      "sha256": "8cd105596d3f8a8181fc7b3b4530b97821efaceef285a06cbac2ba612c9968c6"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.AnimationModule.dll",
+      "bytes": 225192,
+      "sha256": "8a81a18f134c5e9d3e03b8d4b9b52789de26c9adfdc63d95ad9663a2b6b19bb8"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ARModule.dll",
+      "bytes": 25520,
+      "sha256": "86062a6b440878e789019af3ac6c2f93952be5ed8b02c906dd10fe9e5cffd603"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.AssetBundleModule.dll",
+      "bytes": 41904,
+      "sha256": "8de7ff6c0bf00b3287eb14a9b330ba2c745482ce02da6ffae21d8f063de1d53e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.AudioModule.dll",
+      "bytes": 142760,
+      "sha256": "752d576d7f23cd1ac7856d7546897e188ab642eaf258aeebdd867ca2fe40d9c1"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ClothModule.dll",
+      "bytes": 36272,
+      "sha256": "bab3dc07e1ba3b99f50ec6894f3b397bac0d55e9fead8c42dfdfd7d500922d32"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ClusterInputModule.dll",
+      "bytes": 28080,
+      "sha256": "309e65daca9ff656d65a7f7632f256a011fdb44f538f7ddf1c1271adab78e015"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ClusterRendererModule.dll",
+      "bytes": 26544,
+      "sha256": "f460009272c0fa6f5f1d97bcb0bd3874cfba11829acd2f630adc458934103e2c"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ContentLoadModule.dll",
+      "bytes": 32680,
+      "sha256": "c8024aa962aa10b0c6e67cac8a48ef88e2a18e014490167a2676ee6c03e15db2"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.CoreModule.dll",
+      "bytes": 1983912,
+      "sha256": "d497b69f0baf52d2a2c86569af8e36d1f564e798b557fba1587a5ad1e57affb2"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.CrashReportingModule.dll",
+      "bytes": 26536,
+      "sha256": "53565476538d15702b566bfec6f1f286432d38cffa4d1250a59cb63e8c7e9fb3"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.DirectorModule.dll",
+      "bytes": 41896,
+      "sha256": "0f41461824311d50a3cd51158b728adacfd1d092ded43c4e9f43ab16a50d109a"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.dll",
+      "bytes": 197544,
+      "sha256": "d1b98773bcd9d97c87a94521840c4cae8f1d0782297d9f3874296515c41c2d2c"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.DSPGraphModule.dll",
+      "bytes": 31656,
+      "sha256": "0948b937ad400b4536d0ff4e764b19ec637fa5e667f4eaffd29c4280a383b2df"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.GameCenterModule.dll",
+      "bytes": 46000,
+      "sha256": "013130dc77b3a79ae067894eaa0b344a9fb832c74075bbc4af74a801fc28e650"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.GIModule.dll",
+      "bytes": 24488,
+      "sha256": "49155b2ff64f50f9928ae6334bf45ee94438d446300602bb58e19d6243c7cbaf"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.GraphicsStateCollectionSerializerModule.dll",
+      "bytes": 14256,
+      "sha256": "50408e5b3a625f354131801e1938bd579afec6abf0be457db335300a5d5b9758"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.GridModule.dll",
+      "bytes": 30640,
+      "sha256": "0d04c2ba703afa7f530a27b463155ed854b27a4bb56e228c2c4b674d3fe077dd"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.HierarchyCoreModule.dll",
+      "bytes": 109488,
+      "sha256": "c45a2190cafea04a35f2ade17f34bacb154818307d9d8ca30634c6774af5f139"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.HierarchyModule.dll",
+      "bytes": 102320,
+      "sha256": "3ef6e9ab868b176ac62ccf0418425e731904c02d1714e5224ec5b44ac92eea65"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.HotReloadModule.dll",
+      "bytes": 24496,
+      "sha256": "62dbc83d6c53fe82bdc69da5f01a008dbaa570059eebecb258556f58f38b08e1"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.IdentifiersModule.dll",
+      "bytes": 16816,
+      "sha256": "a2eae37a1dece656c9675c27ca66c456a06ebab5bae8a602c3762bf8b88e8af7"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ImageConversionModule.dll",
+      "bytes": 31152,
+      "sha256": "7da8fef67702d2ac1982e39f35c890160f71fc6f42e05fd106dd7f7786ae0741"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.IMGUIModule.dll",
+      "bytes": 214448,
+      "sha256": "b148da74c1197e6bca13848f8e64b66f111294398dfb3a3a4d949f6e15d64380"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.InputForUIModule.dll",
+      "bytes": 57768,
+      "sha256": "212ab1a1e767e1b751ebe1e8f8207922ec03b4c912e7f6a94b78160a00b7f511"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.InputLegacyModule.dll",
+      "bytes": 45480,
+      "sha256": "84bfab8d32e3297da5fdd668d3b9d35d309e6d3185be6933fd6377873f6979cd"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.InputModule.dll",
+      "bytes": 28072,
+      "sha256": "d36e072c1ba16a699c6c537b2021db1bf325c3aa3723e60613ff1efecf5ca117"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.InsightsModule.dll",
+      "bytes": 14248,
+      "sha256": "ef966684170e07ae7f33e749b4d0669f01bac45149c8b23a96413fa59320b84b"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.JSONSerializeModule.dll",
+      "bytes": 27056,
+      "sha256": "350aa60e23f1cb598248b58abac2039cd50e5f165e63f331a3f929cad9dc8b9c"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.LocalizationModule.dll",
+      "bytes": 27048,
+      "sha256": "af0ce6f3f02e9584b7d6c0d2e463025fb8b3e2e05a920dbd844a20e6d473d12d"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.MarshallingModule.dll",
+      "bytes": 83888,
+      "sha256": "2d2829de0ae802891b1543a03ebf62effebf5136f83b5ecda9efe5eeaf445c79"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.MultiplayerModule.dll",
+      "bytes": 17832,
+      "sha256": "1ffc7d94f9eaab458f73adddbe29360e3ba12c028d101c415c11baaeb48877ff"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.NVIDIAModule.dll",
+      "bytes": 40880,
+      "sha256": "617889dac1d67fb544dc15b4a032fb9e6ad98e7c41ee63ca8ce3e72084d838c0"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ParticleSystemModule.dll",
+      "bytes": 171952,
+      "sha256": "4e0789d8bcb317f93240338b04f86ee311e0bd95c5b267e69a6d47411f7bddae"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.PerformanceReportingModule.dll",
+      "bytes": 25000,
+      "sha256": "b92743b7baa8e3b54a93eb8311200d507d67d89618ec416dd5b74165529c8d4f"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.Physics2DModule.dll",
+      "bytes": 586672,
+      "sha256": "a205acd8ea198191029adb302ac2070d0e566c6e7a30cd48da74cf5989d04b5d"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.PhysicsBackendPhysXModule.dll",
+      "bytes": 14248,
+      "sha256": "3e2251688a77956288b227dd5dd39039d91e31e63596fcd0148e2f575c34b719"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.PhysicsModule.dll",
+      "bytes": 183728,
+      "sha256": "2bf2ffe42f647500a181652f36640a37ef709b3a1a238bf3c52d65de89bd566e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.PropertiesModule.dll",
+      "bytes": 133544,
+      "sha256": "2553baf18965876f5689ff5aa4985258fcb271127dcaf167b8714fffd4ff7982"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.RenderAs2DModule.dll",
+      "bytes": 25520,
+      "sha256": "3028a83ee4f1fe319af5b8c1b25b84c7e2ed94c9609e56a2ee9635c0d452e0e8"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll",
+      "bytes": 24488,
+      "sha256": "50ed59f8d98326ab7966dd74c43682fbdd4c68b676ddf8292401e3424e214dab"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ScreenCaptureModule.dll",
+      "bytes": 26024,
+      "sha256": "23e08c5e1a734cc971beaf24324346903dc87c258db38da7be351a5731204dd6"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ShaderRuntimeModule.dll",
+      "bytes": 25520,
+      "sha256": "4ca59fa4a1f3d2c5c39454e6e64b93da1f0a9047896b0568c6a7709ea9fcb55a"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.ShaderVariantAnalyticsModule.dll",
+      "bytes": 24496,
+      "sha256": "a97ab3a694b930331c156e73ff6183eac0387439586404edf196025dd0b3878a"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.SharedInternalsModule.dll",
+      "bytes": 37800,
+      "sha256": "c015778f52d2435f617d00ce6a3b32b1de2257c93c789b1ebc9ecf4914b7c003"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.SpriteMaskModule.dll",
+      "bytes": 28584,
+      "sha256": "fe55e91cddd6bfcf22b27b4f0dfc3545c0067bed346b988939796e99344e7694"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.SpriteShapeModule.dll",
+      "bytes": 32680,
+      "sha256": "e9263927fa833d088058cbdaddf125fd5a8388f1ccf0eeb268188564547ba72b"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.StreamingModule.dll",
+      "bytes": 26032,
+      "sha256": "a85753cfcf2e1ec874f8154b1be8dceac45796fafebe4c1a59952a6ae9c5c386"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.SubstanceModule.dll",
+      "bytes": 29096,
+      "sha256": "1ac85d73f63be373411d09e1953e5a08cfcbec8e7203c9622c938c6c473fdd33"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.SubsystemsModule.dll",
+      "bytes": 41896,
+      "sha256": "d36342cc7dc9942cf5cb6cb15cba4d59a519ceab5f400b252b81459c73918e09"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.TerrainModule.dll",
+      "bytes": 133552,
+      "sha256": "03aca06e11f20d7f4a53f4f55d08a682883a9b068c246eb3b68caebf2ad97711"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.TerrainPhysicsModule.dll",
+      "bytes": 25512,
+      "sha256": "23e654b6a07548d6de4a5f45ed838643cd7b4de52fe2b5681b100ac458484722"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.TextCoreFontEngineModule.dll",
+      "bytes": 81832,
+      "sha256": "08686be43105c53739848e10709e591c661e5aaa3691a432c7160544164bf9cb"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.TextCoreTextEngineModule.dll",
+      "bytes": 334256,
+      "sha256": "957454e8ffacc797548aceafe61d4ab5705196f8ddbfe5b607bb8be0db7cb977"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.TextRenderingModule.dll",
+      "bytes": 39344,
+      "sha256": "1fb43fd201a772d0c7e0bbd3496f3c67e857d9d3678e740b7454018219af232c"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.TilemapModule.dll",
+      "bytes": 58792,
+      "sha256": "8ac8e6515fbe71207cc93cc52c9f3fc88f742b986d82cc7c10275fef6dfb3297"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.TLSModule.dll",
+      "bytes": 32168,
+      "sha256": "6dc13396f65d99e8c9b7b26e7c62a59720cd1ce58212e5c0b13304480548ce91"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UI.dll",
+      "bytes": 253440,
+      "sha256": "62c38174a02e40ae0609047656e8fe16775f5d394c49d6471dcdf0d38cf57de6"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UIElementsModule.dll",
+      "bytes": 2451368,
+      "sha256": "9564db5e3ed969e3bf806a17b2141f6bcb056d5952ba389a522f07796174a573"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UIModule.dll",
+      "bytes": 49584,
+      "sha256": "ede4d08066fe912e0025f16102d7ff7f77098dc3bae8f198e8b6267feb998983"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UmbraModule.dll",
+      "bytes": 24496,
+      "sha256": "49343d1cb283f373e412de6ecf8e164e71cabb2d0c4018078346813de38d46ed"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityAnalyticsCommonModule.dll",
+      "bytes": 35752,
+      "sha256": "762b31431f69b2e20047e45d33fec698fb6284190ff08e727f18df1861618163"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityAnalyticsModule.dll",
+      "bytes": 60848,
+      "sha256": "c39f34eddaf3a1fe1874e3f48e79df82b89d793d6afed6900679e1817ecae1c2"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityConnectModule.dll",
+      "bytes": 27568,
+      "sha256": "0a8459bd006a5a541bd0a5db6adf29fa15d5a79f7378a251ad5fef49f7f74fe4"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityConsentModule.dll",
+      "bytes": 16296,
+      "sha256": "793036e7d9da65e81795ed2f29027e19651c84be1a154e32c1d0c0e8ba81bd32"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityCurlModule.dll",
+      "bytes": 26032,
+      "sha256": "8ac20d6f9bd7869c09825559c4a785732e4e87d537b2c41792383742f5b42a91"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityWebRequestAssetBundleModule.dll",
+      "bytes": 28592,
+      "sha256": "a3ac983bbe20af6ffcf92c93211631ac14ebb387e9c8d38817a4228127a19a9e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityWebRequestAudioModule.dll",
+      "bytes": 28080,
+      "sha256": "b2be95a45e2406d12907d978cab7e9c1545d74fad99341e88369e1c0c0a2f524"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityWebRequestModule.dll",
+      "bytes": 70064,
+      "sha256": "c25db01d90a4f9fed9c1165f03f5a035c174e40b3f287a60a01aa1416aad9e0c"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityWebRequestTextureModule.dll",
+      "bytes": 27560,
+      "sha256": "fe0149ad189b33ea45e87824f9e91ea7cbfad853bbcfd0e1dc478aba63c18194"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.UnityWebRequestWWWModule.dll",
+      "bytes": 36264,
+      "sha256": "ace542b6bbb1ea3fafd6b60f039996b9073ed68b3a45cb5760664e5fe9f7131e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.VectorGraphicsModule.dll",
+      "bytes": 253864,
+      "sha256": "643c2b0a6bf4423e153b24d7026aa93c217ddabc1880bb7a6e37cd64283543fd"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.VehiclesModule.dll",
+      "bytes": 31656,
+      "sha256": "253ce9df0408c3527b77bfb22d56c341b2d2c0064c3bfaa8927e438bf60580a7"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.VFXModule.dll",
+      "bytes": 78256,
+      "sha256": "2fa9fc1c938109ce9570ddfcd9820893754eb72687a31e5033561e546996019f"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.VideoModule.dll",
+      "bytes": 49072,
+      "sha256": "70fcfc91bd290006f78c710707a4375806bb12a3c67934afed105654aca53a2c"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.VirtualTexturingModule.dll",
+      "bytes": 42928,
+      "sha256": "34032b3d7ea573e98996e6645d79e94f9668472498edc8ac0fb16bb5153c015b"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.VRModule.dll",
+      "bytes": 31656,
+      "sha256": "3db91b9b8744ba5df7409d679def4aa54a57e7e567c7a19cb9f7a67992087794"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.WindModule.dll",
+      "bytes": 26536,
+      "sha256": "bdf7fef088059602a44bb8c0597e14e36fb11cd5744f9414f910ef26542252d5"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/UnityEngine.XRModule.dll",
+      "bytes": 88496,
+      "sha256": "7008a21927bbb54bc83a378772d37fbc26115b26e3cb8eb4ad10cda91a7a739b"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Plugins/x86_64/lib_burst_generated.dll",
+      "bytes": 447488,
+      "sha256": "7782422a7ff7487b9c3debccebad09050e7908f570a561a1533f101d8b6c5d23"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Resources/unity default resources",
+      "bytes": 5923140,
+      "sha256": "fb2492cd1ad7c38dda8a4ce5f1a1fb57edcff44e3ae250b263e44beae3660ec4"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Resources/unity_builtin_extra",
+      "bytes": 403496,
+      "sha256": "267f241dffe815823a0dc811e772cc175e72683e506f6bce3695507afd3771a2"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/resources.assets",
+      "bytes": 501944,
+      "sha256": "7fb3afe431dccf88fd2ce81ebb5b1c5a255f80b1a267e38bcfa6ad179df0b7f2"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/resources.assets.resS",
+      "bytes": 7232,
+      "sha256": "f12f30b4c1648273e460dab9f8ec974e616980f7a3027d54ac4ca0f19ba89cd3"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/RuntimeInitializeOnLoads.json",
+      "bytes": 1758,
+      "sha256": "fba5729a0a1b982cc45971dfbeaeb35cdabf4b582d2f2250e94aacaf920756cc"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/ScriptingAssemblies.json",
+      "bytes": 4038,
+      "sha256": "5c5502c6ffa77a4a14a726312e96597d43efa4400bf0e821b200ac1d78e05d7b"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/sharedassets0.assets",
+      "bytes": 1007606,
+      "sha256": "7cb5c4d6e01bed2b4facef7bee1179569d2d9546a479a786ee28e80fa22cc72f"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/sharedassets0.assets.resS",
+      "bytes": 1922416,
+      "sha256": "a8770379ab67e352feb2ed8fe3178dcb652cfa0b324f7b9dc4d9f185ad20b535"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/sharedassets1.assets",
+      "bytes": 115487336,
+      "sha256": "3660bffd4c319fa195510bc9b19c93a4288caa031a8d33dfa60814719f9539f7"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/sharedassets1.assets.resS",
+      "bytes": 124441760,
+      "sha256": "df4633f73f5470e022f4b36aff5eb830b8631e9a31564b7c8114f7592b25b6dc"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/sharedassets1.resource",
+      "bytes": 18240,
+      "sha256": "86c0e5ad30c634b0325c83416e8e3544761584fdd6553db351304a9c24a0617f"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/sharedassets2.assets",
+      "bytes": 8248,
+      "sha256": "e220d6848898e02d1223b05e4f6f6286ccf25d9f3227861598d9c061fc0e9c66"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/sharedassets3.assets",
+      "bytes": 17312,
+      "sha256": "8c7a29e49d152cfe96b471d347d44033bc75bfe24f004019ad4eb9266bc33618"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/StreamingAssets/ThirdPartyNotices.txt",
+      "bytes": 1248,
+      "sha256": "1799756f409d8285e5860dfdc104e141a613b67f083e95d5077dc437e6911be8"
+    },
+    {
+      "path": "builds/windows/UnityCrashHandler64.exe",
+      "bytes": 1621936,
+      "sha256": "d688f97ade767aba911cbf5b564130d122705f97159c3810c925a36613440d6d"
+    },
+    {
+      "path": "builds/windows/UnityPlayer.dll",
+      "bytes": 36587952,
+      "sha256": "fc749fc75aaf743cf5f666a849a4bb06bcf8f4bf188e1230451f2ac399c8c500"
+    },
+    {
+      "path": "builds/windows/\u9519\u65e5\u8bc1\u8bcd \u00b7 \u66ae\u8272\u5c0f\u9547_BurstDebugInformation_DoNotShip/Data/Plugins/x86_64/lib_burst_generated.txt",
+      "bytes": 193566,
+      "sha256": "0ba5daddbd002bc7d8aba2acdd4fbf9ce6e6c7b7ccaf586bc023b9f3481e6f55"
+    }
+  ],
+  "directoryBytes": 382373676,
+  "fingerprint": "69f8d1a85c107de448917fa21d47209534951aca242213825d48b90a38093a42"
+}

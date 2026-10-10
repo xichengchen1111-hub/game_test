@@ -1,0 +1,291 @@
+{
+  "date": "2026-10-10",
+  "passed": true,
+  "baseCommit": "ea1f197",
+  "committedOrPushed": false,
+  "unity": "6000.3.18f1 / URP17",
+  "platform": "Windows D3D11 / RTX 5060 Laptop GPU",
+  "blender": "5.2.0 LTS",
+  "verification": "Visible native renderer; scripted ordinary CharacterController walking, ordinary 3m E rays and shared UI handlers. Physical mesh and image-alpha ticket checks. Not physical keyboard/mouse, blind playtest, forced process kill or FPS benchmark.",
+  "buildStages": {
+    "beforeBinClearance": {
+      "buildFingerprint": "95ae814c0a41dba518c22feb43f9fc4d6369b6dbe479d6c8a2c455f6234482ba",
+      "proof": "build-before-bin-clearance.json",
+      "differenceFromFinal": "Waste bin was 0.7m closer to bench. Same runtime logic, font, ticket geometry/images, train and route. Reload/time/milk checks executed on this precise build."
+    },
+    "final": {
+      "buildFingerprint": "b8179364c4ea5419c17bbe465324c80615d54100587cbccf14df3b0e970435d9",
+      "proof": "build-final.json",
+      "directoryBytes": 382107556,
+      "unityReportedBuildBytes": 381912633
+    }
+  },
+  "checks": [
+    {
+      "name": "1080",
+      "passed": true,
+      "buildStage": "final",
+      "evidence": {
+        "path": "output/demo/rail-polish/1080/player.log",
+        "sha256": "aea2a53e7bd584b0b7be47ebb502c2301ae7daf58044433c23b941992892c06e",
+        "marker": "RAIL_REVIEW_PASS"
+      }
+    },
+    {
+      "name": "720",
+      "passed": true,
+      "buildStage": "final",
+      "evidence": {
+        "path": "output/demo/rail-polish/720/player.log",
+        "sha256": "9e69f854fa8e80360c609f6005566c182fedcb5f48850a6ba26c3b852922954c",
+        "marker": "RAIL_REVIEW_PASS"
+      }
+    },
+    {
+      "name": "1080-reload",
+      "passed": true,
+      "buildStage": "final",
+      "evidence": {
+        "path": "output/demo/rail-polish/1080-reload/player.log",
+        "sha256": "c4b0b52a7a9945fdfb23f55471249eb84385f7b7de23d65092801bba97a52d51",
+        "marker": "RAIL_SAVE_PASS"
+      }
+    },
+    {
+      "name": "720-reload",
+      "passed": true,
+      "buildStage": "final",
+      "evidence": {
+        "path": "output/demo/rail-polish/720-reload/player.log",
+        "sha256": "05196e45665d9ec2afa928802a09e667ff4b7c63d8c4a14cdf037c5eb62b6bca",
+        "marker": "RAIL_SAVE_PASS"
+      }
+    },
+    {
+      "name": "next-town",
+      "passed": true,
+      "buildStage": "beforeBinClearance",
+      "evidence": {
+        "path": "output/demo/rail-polish/next-town/player.log",
+        "sha256": "43737a7b1ea2a78ebdb71e21c1e670fa1766585aafd4d2da0ea3447f30aa77ef",
+        "marker": "RAIL_NEXT_TOWN_CHECKPOINT_PASS"
+      }
+    },
+    {
+      "name": "next-town-reload",
+      "passed": true,
+      "buildStage": "beforeBinClearance",
+      "evidence": {
+        "path": "output/demo/rail-polish/next-town-reload/player.log",
+        "sha256": "a2682ab708ee508c4468a34ea6093a7b1eb0f7a62200cbe17d25f43891db3136",
+        "marker": "RAIL_SAVE_PASS"
+      }
+    },
+    {
+      "name": "departure-reload",
+      "passed": true,
+      "buildStage": "final",
+      "evidence": {
+        "path": "output/demo/rail-polish/departure-reload/player.log",
+        "sha256": "4cffd20bcc39e9ce82477328ebde8046636e61f99bd0e56539a65f3cd9872085",
+        "marker": "RAIL_SAVE_PASS"
+      }
+    },
+    {
+      "name": "regression-time",
+      "passed": true,
+      "buildStage": "beforeBinClearance",
+      "evidence": {
+        "path": "output/demo/rail-polish/regression-time/player.log",
+        "sha256": "4174ea2fc688fc2420678e49a62188ad90eb2bc131b187f8525496cfdc614525",
+        "marker": "TIME_REVIEW_PASS"
+      }
+    },
+    {
+      "name": "regression-time-reload",
+      "passed": true,
+      "buildStage": "beforeBinClearance",
+      "evidence": {
+        "path": "output/demo/rail-polish/regression-time-reload/player.log",
+        "sha256": "925bc032ac91f3374cb0440640cd751c6160bea7e8fb7239aaff46e5ebb214cd",
+        "marker": "TIME_SAVE_RELAUNCH_PASS"
+      }
+    },
+    {
+      "name": "regression-milk",
+      "passed": true,
+      "buildStage": "beforeBinClearance",
+      "evidence": {
+        "path": "output/demo/rail-polish/regression-milk/player.log",
+        "sha256": "dca4c3316fb378997714b781da2c6cab6bfea806bb7d5b506aa089a748e4e8f6",
+        "marker": "MILK_INTERIOR_A_REVIEW_PASS"
+      }
+    },
+    {
+      "name": "regression-milk-reload",
+      "passed": true,
+      "buildStage": "beforeBinClearance",
+      "evidence": {
+        "path": "output/demo/rail-polish/regression-milk-reload/player.log",
+        "sha256": "c3234284fe256858e886a4e155099d3bb2e0b00c0501b325631c08c2980f6c63",
+        "marker": "MILK_INTERIOR_SAVE_RELAUNCH_PASS"
+      }
+    },
+    {
+      "name": "EditMode",
+      "passed": true,
+      "buildStage": "final",
+      "total": 12,
+      "tests": [
+        "AnExtraApertureCannotReplaceAWindowPost",
+        "AnOpaqueWindowBackingIsRejected",
+        "MovedVisualCannotDriftFromBoardingLayout",
+        "RailwayRainProfilesMatchTheirActualRoof(False,False,6.0f,1.6f,0.0f,11.0f,6.0f)",
+        "RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,0.0f,9.4f)",
+        "RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,11.0f,5.4f)",
+        "RailwayRainProfilesMatchTheirActualRoof(False,True,3.46f,0.34f,0.0f,0.0f,3.8f)",
+        "SharedPhysicalCoachIsValid",
+        "CarriedStockPreservesThePaperAtAllPunchPositions",
+        "PaintedDotsCannotReplacePhysicalPunchVoids",
+        "PunchedStockCannotBeUsedForTheCarriedOriginal",
+        "WasteStockHasPhysicalPunchVoids"
+      ],
+      "evidence": {
+        "path": "output/demo/rail-polish/edit-tests-final.xml",
+        "bytes": 10162,
+        "sha256": "9828b513f8e2480c9868767cc1e937e0bd7b5c189180d9ce40421180ae9fa02b"
+      }
+    },
+    {
+      "name": "ticketImageAlpha",
+      "passed": true,
+      "intactPixelsAllOpaque": true,
+      "punchedCentresAllTransparent": true
+    },
+    {
+      "name": "editableTicketSourceReopenedWithActualMeshRays",
+      "passed": true,
+      "evidence": {
+        "path": "assets/source/rail/ticket-source-checks.json",
+        "bytes": 329,
+        "sha256": "511f14463e702410f68f2eb8656966b2ef56670e329d1f6c6b484257a7dfa6da"
+      }
+    },
+    {
+      "name": "fontCoverage",
+      "passed": true,
+      "oldGlyphs": 770,
+      "newGlyphs": 822,
+      "oldGlyphsAllRetained": true
+    },
+    {
+      "name": "narrativeDesignData",
+      "passed": true,
+      "scope": "Design only, not six narrative playthroughs",
+      "evidence": {
+        "path": "output/demo/rail-polish/story-checks.json",
+        "bytes": 451,
+        "sha256": "0a3f2fa67e3fad3f111bb9a56df505cd779edcb289f632b17574f446b87ce85d"
+      }
+    },
+    {
+      "name": "mapFreshness",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail-polish/map-checks.json",
+        "bytes": 454,
+        "sha256": "5bb0b468e3148ea61dbf9f84603ba40af10ca25b403e524ba3fbd4341c557170"
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "builds/windows/TownDemo.exe",
+      "bytes": 667136,
+      "sha256": "5cf8283e7cb3761b6fcbba8e2c9f36a298a75883cc65ca7719b008f3a7aa231e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Assembly-CSharp.dll",
+      "bytes": 295424,
+      "sha256": "9d70849d7eae3b802aed7c2360637a459f8c29dbd232df2bb00c05ec369a0a18"
+    },
+    {
+      "path": "assets/source/rail/StationB.blend",
+      "bytes": 9361494,
+      "sha256": "392fc2d5d80f7a91e82ac8363d5bb5fb49a4128642a36a99c7830bd1d832f1dc"
+    },
+    {
+      "path": "assets/source/rail/TrainSet.blend",
+      "bytes": 5635866,
+      "sha256": "4cce6387018cdad7607be5dfdd45092627503d8ccf9d0afc2bfb9490aed9ea39"
+    },
+    {
+      "path": "assets/source/rail/TicketProps.blend",
+      "bytes": 5066000,
+      "sha256": "9603b366af0da3fbb7d57e7a2d96e60b95fc462a97f2544985674b7ed14ad32e"
+    },
+    {
+      "path": "game/Assets/Art/Rail/StationB.fbx",
+      "bytes": 7923900,
+      "sha256": "ebeec7d37929c4e6919b123f645b2b078d61b0f859f0a43251ca084978743d8f"
+    },
+    {
+      "path": "game/Assets/Art/Rail/TrainSet.fbx",
+      "bytes": 2791116,
+      "sha256": "f968f38e0a538d3b239cebb84aab7f1cc3c665d17772549e8d4dd5fe226a3dff"
+    },
+    {
+      "path": "assets/source/rail/TicketProps.fbx",
+      "bytes": 52380,
+      "sha256": "c58dd408f1cb4ba2ebe0197d03c113e7af4b441755b461cc35c9d2b454d6d7c1"
+    },
+    {
+      "path": "game/Assets/Art/Rail/E02.png",
+      "bytes": 468496,
+      "sha256": "261f2ebb2c1960331cca5505d5ac985af82ba04ae6f39cb19e1200f35c51d116"
+    },
+    {
+      "path": "game/Assets/Art/Rail/E03.png",
+      "bytes": 460883,
+      "sha256": "a39ab8a934c40dbf7b5fc676c60de505f7d6b4f0501fd20f300293536ebc85d5"
+    },
+    {
+      "path": "game/Assets/Art/Rail/TicketGeometry.json",
+      "bytes": 193218,
+      "sha256": "bd9833b1237da621ec98b7e1bf0cc8cfc5016780de88b6870a2db75201beb8f5"
+    },
+    {
+      "path": "game/Assets/Art/Fonts/TownSans.ttf",
+      "bytes": 207380,
+      "sha256": "db97bb4f1a8d8fc6aaebb9a7775ea14856d346de1b1be897d3a2f9012c541721"
+    },
+    {
+      "path": "assets/source/rail/source-manifest.json",
+      "bytes": 12422,
+      "sha256": "f75c49995d43d375a73618a68de7a3575aef28d98a4ed10b89002879aed7817b"
+    },
+    {
+      "path": "tools/rail/build_rail_assets.py",
+      "bytes": 86551,
+      "sha256": "9ee8e32269220a6e0668e2b6840b557fda15587a6ca44d1b4dc438b733030bf1"
+    },
+    {
+      "path": "tools/rail/ticket_art.py",
+      "bytes": 4902,
+      "sha256": "b60da6e79bdfeb7e64959ef2a3822e80c08c6c6bea6df2a9a4c9fc736b768f80"
+    }
+  ],
+  "normalSave": {
+    "baselineSHA256": "e1b5bc65f2c5779b98f9f65b1570b999d83e8f9251cfc50c431c1a428350ecc4",
+    "afterVerificationSHA256": "e1b5bc65f2c5779b98f9f65b1570b999d83e8f9251cfc50c431c1a428350ecc4",
+    "unchanged": true,
+    "previousTurnHashDiffersBecause": "User manually played between implementation and polish; their progress was retained."
+  },
+  "scopeLimits": [
+    "No full second-town case",
+    "No new historical timetable or case inference",
+    "No full six-order exterior rerun for this detail pass",
+    "No blind test or low-end frame-time benchmark"
+  ],
+  "delegation": "Antigravity drafted the isolated detail kit. Final geometry/material/narrative judgments, ticket implementation and Unity acceptance reviewed locally."
+}

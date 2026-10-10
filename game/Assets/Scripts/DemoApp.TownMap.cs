@@ -22,7 +22,7 @@ public partial class DemoApp {
         for(int i=0;i<ids.Length;i++){
             var b=plan.Building(ids[i]);var r=b.parts[0].rect;
             var outside=TownPlan.Point(b.door)+Quaternion.Euler(0,TownPlan.Yaw(b.doorFacing),0)*Vector3.back*.85f;
-            var point=new Vector3(r[0],.1f,r[1]);bool finished=ids[i]=="B01"||ids[i]=="B02"||ids[i]=="B04";
+            var point=new Vector3(r[0],.1f,r[1]);bool finished=ids[i]=="B01"||ids[i]=="B02"||ids[i]=="B04"||ids[i]=="B17";
             if(ids[i]=="B04"&&milkShopRoot){point=milkShopRoot.position;outside=milkShopRoot.GetComponent<MilkShopPlacement>().outside;}
             string name=b.name.Replace("（背景）","");
             mapLandmarks.Add(new MapLandmark{id=ids[i],name=name,symbol=symbols[i],point=point,entrance=outside,finished=finished});
@@ -37,12 +37,12 @@ public partial class DemoApp {
     static bool FiniteMapNumber(float value)=>!float.IsNaN(value)&&!float.IsInfinity(value);
     bool HandleMapKeys(bool m,bool escape){
         if(mapOpen&&!Blocked&&(m||escape)){SetMapOpen(false);return true;}
-        if(m&&sceneReady&&!Blocked){SetMapOpen(true);return true;}
+        if(m&&sceneReady&&!Blocked&&CurrentScene=="Town"){SetMapOpen(true);return true;}
         return false;
     }
     void SetMapOpen(bool value){
         if(mapOpen==value)return;
-        if(value&&(!sceneReady||Blocked))return;
+        if(value&&(!sceneReady||Blocked||CurrentScene!="Town"))return;
         mapOpen=value;focus=null;mapDragging=false;SetMapEditing(false);
         if(value){SetWatchOpen(false);RefreshMapRoute();}else Save();
         GetComponent<TownSound>()?.PlayHeldItem(true,value);
@@ -71,7 +71,7 @@ public partial class DemoApp {
         }
     }
     void RefreshMapRoute(){
-        mapRouteAvailable=state.hasMapWaypoint&&townNavigation.Route(player.transform.position,mapWaypoint);
+        mapRouteAvailable=CurrentScene=="Town"&&state.hasMapWaypoint&&townNavigation.Route(player.transform.position,mapWaypoint);
         mapRouteOrigin=player.transform.position;nextMapRouteUpdate=Time.unscaledTime+1;
         if(heldTownMap)heldTownMap.SetNavigation(state.hasMapWaypoint,mapWaypoint,mapRouteAvailable?townNavigation.Corners:Array.Empty<Vector3>());
     }

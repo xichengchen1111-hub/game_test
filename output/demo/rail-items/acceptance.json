@@ -1,0 +1,265 @@
+{
+  "date": "2026-10-10",
+  "passed": true,
+  "baseCommit": "ea1f197",
+  "committedOrPushed": false,
+  "platform": "Windows D3D11 / RTX 5060 Laptop GPU",
+  "unity": "6000.3.18f1 / URP17",
+  "blender": "5.2.0 LTS",
+  "features": {
+    "restingSeats": 59,
+    "streetBenches": 8,
+    "hallSeatingPlaces": 8,
+    "ordinaryCoachSeats": 43,
+    "ambientInspections": 8,
+    "coachLampSwitches": 2,
+    "departureSeatPreserved": true
+  },
+  "buildStages": {
+    "beforeHud": {
+      "fingerprint": "8aa1f0ec0fbdef7509a8f42f11ce940ad976278eeb8ec607d4668f6b6bc07216",
+      "proof": "build-before-hud.json",
+      "difference": "Final only changes focus action captions, e.g. E sit/rest and E lamp toggle; geometry, actions, physics, save and journey behavior identical."
+    },
+    "final": {
+      "fingerprint": "69f8d1a85c107de448917fa21d47209534951aca242213825d48b90a38093a42",
+      "proof": "build-final.json",
+      "directoryBytes": 382373676,
+      "unityReportedBytes": 382178753
+    }
+  },
+  "verification": "Native rendered Unity player. Staged at clear aisles, ordinary 3m E rays for all 59 seats; real CharacterController walks on item routes; shared UI and rise handlers. Separate player processes restore hall/coach/OtherTown seats. Not physical input, blind playtest or FPS benchmark.",
+  "checks": [
+    {
+      "name": "720",
+      "passed": true,
+      "buildStage": "beforeHud",
+      "evidence": {
+        "path": "output/demo/rail-items/720/player.log",
+        "sha256": "4e1d642df9253c3f6ab641c2ab57f519d022825102f220c3695db089ad9187c8",
+        "marker": "ITEM_REVIEW_PASS"
+      }
+    },
+    {
+      "name": "1080",
+      "passed": true,
+      "buildStage": "beforeHud",
+      "evidence": {
+        "path": "output/demo/rail-items/1080/player.log",
+        "sha256": "0da9eff15ecaec9d6ce981d36e0f1373113bc21dd1997e45f526888799d1cede",
+        "marker": "ITEM_REVIEW_PASS"
+      }
+    },
+    {
+      "name": "final-1080",
+      "passed": true,
+      "buildStage": "final",
+      "evidence": {
+        "path": "output/demo/rail-items/final-1080/player.log",
+        "sha256": "1608f0ea98c3f52f49a7dfdf1b1982cbfe0f92388dbd4d3e534458f2faf436c1",
+        "marker": "ITEM_REVIEW_PASS"
+      }
+    },
+    {
+      "name": "reload-travel",
+      "passed": true,
+      "buildStage": "beforeHud",
+      "evidence": {
+        "path": "output/demo/rail-items/reload-travel/player.log",
+        "sha256": "8ebf6abd421758b8c1617dfe3a8224c0646fa961de04729a3e2d52dda6a88b36",
+        "marker": "ITEM_SAVE_PASS"
+      }
+    },
+    {
+      "name": "reload-next-town",
+      "passed": true,
+      "buildStage": "beforeHud",
+      "evidence": {
+        "path": "output/demo/rail-items/reload-next-town/player.log",
+        "sha256": "cf2add151e37552b9523211b21c30c7842de6d0e46c5c1135d3462a183b5654e",
+        "marker": "ITEM_SAVE_PASS"
+      }
+    },
+    {
+      "name": "reload-bench",
+      "passed": true,
+      "buildStage": "beforeHud",
+      "evidence": {
+        "path": "output/demo/rail-items/reload-bench/player.log",
+        "sha256": "683aee3c7e05047237dff738f7cb5e6999fba0bd0c8f7ee7496ec56c0c45bd77",
+        "marker": "ITEM_SAVE_PASS"
+      }
+    },
+    {
+      "name": "rail-regression",
+      "passed": true,
+      "buildStage": "beforeHud",
+      "evidence": {
+        "path": "output/demo/rail-items/rail-regression/player.log",
+        "sha256": "3723035b4bc2f0ff2d9d9f3f8e3b45a9082c253ec5b8638bd3ea44cedfa21d28",
+        "marker": "RAIL_REVIEW_PASS"
+      }
+    },
+    {
+      "name": "rail-reload",
+      "passed": true,
+      "buildStage": "beforeHud",
+      "evidence": {
+        "path": "output/demo/rail-items/rail-reload/player.log",
+        "sha256": "d30588831ad2e3203b4e31a44d5ce549d542d85ece1edc65a729677c3da0d632",
+        "marker": "RAIL_SAVE_PASS"
+      }
+    },
+    {
+      "name": "EditMode",
+      "passed": true,
+      "total": 16,
+      "buildStage": "final",
+      "tests": [
+        "ClearFloorSupportsStanding",
+        "ItemTriggersDoNotObstructThePhysicalExit",
+        "OccupiedExitCannotPushPassengerThroughObjects",
+        "StandingRequiresARealFloor",
+        "AnExtraApertureCannotReplaceAWindowPost",
+        "AnOpaqueWindowBackingIsRejected",
+        "MovedVisualCannotDriftFromBoardingLayout",
+        "RailwayRainProfilesMatchTheirActualRoof(False,False,6.0f,1.6f,0.0f,11.0f,6.0f)",
+        "RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,0.0f,9.4f)",
+        "RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,11.0f,5.4f)",
+        "RailwayRainProfilesMatchTheirActualRoof(False,True,3.46f,0.34f,0.0f,0.0f,3.8f)",
+        "SharedPhysicalCoachIsValid",
+        "CarriedStockPreservesThePaperAtAllPunchPositions",
+        "PaintedDotsCannotReplacePhysicalPunchVoids",
+        "PunchedStockCannotBeUsedForTheCarriedOriginal",
+        "WasteStockHasPhysicalPunchVoids"
+      ],
+      "evidence": {
+        "path": "output/demo/rail-items/edit-tests-final.xml",
+        "bytes": 12852,
+        "sha256": "601feb8ac78994db649ffcdcecd41a1af4230799fe6eeb6bcd368e9229b0b8f5"
+      }
+    },
+    {
+      "name": "fontCoverage",
+      "passed": true,
+      "previousGlyphs": 822,
+      "currentGlyphs": 840,
+      "previousGlyphsAllRetained": true
+    },
+    {
+      "name": "mapFreshness",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail-items/map-checks.json",
+        "bytes": 454,
+        "sha256": "5bb0b468e3148ea61dbf9f84603ba40af10ca25b403e524ba3fbd4341c557170"
+      }
+    },
+    {
+      "name": "narrativeDesign",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail-items/story-checks.json",
+        "bytes": 451,
+        "sha256": "0a3f2fa67e3fad3f111bb9a56df505cd779edcb289f632b17574f446b87ce85d"
+      }
+    },
+    {
+      "name": "normalSavePreserved",
+      "passed": true,
+      "sha256": "451b35112dbfcf8c95cbae42e7719ffb481a2643197c429fe51e826b1c1b5d3f",
+      "baselineTakenAfterGracefulOldPlayerExit": true
+    },
+    {
+      "name": "editableSourceReopened",
+      "passed": true,
+      "evidence": {
+        "path": "assets/source/rail/source-manifest.json",
+        "bytes": 12848,
+        "sha256": "bd85f4b7045d9377d71efb7aa4bd610eb3fc53def4f120896082978a59d5f824"
+      }
+    }
+  ],
+  "normalSave": {
+    "beforeSHA256": "451b35112dbfcf8c95cbae42e7719ffb481a2643197c429fe51e826b1c1b5d3f",
+    "afterVerificationSHA256": "451b35112dbfcf8c95cbae42e7719ffb481a2643197c429fe51e826b1c1b5d3f",
+    "unchangedDuringTests": true,
+    "note": "Old normal player closed gracefully first, preserving latest user progress as the baseline."
+  },
+  "checkpointProvenance": [
+    {
+      "path": "output/demo/rail-items/1080/bench-checkpoint.json",
+      "bytes": 920,
+      "sha256": "fbbd938e8ccb7affc03daee20f0be951fba33d3f5a8d9c6002c78e28aa0307f2"
+    },
+    {
+      "path": "output/demo/rail-items/1080/coach-checkpoint.json",
+      "bytes": 941,
+      "sha256": "e130c6cb95e31b223b776690f398c1fab9c11aa5375081e2933633c209593bac"
+    },
+    {
+      "path": "output/demo/rail-items/reload-travel/next-town-rest-checkpoint.json",
+      "bytes": 945,
+      "sha256": "18c03dce7b83f5dba4655826e0ed444ee9b25e5a0913b0944fa39321c99ebb05"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "builds/windows/TownDemo.exe",
+      "bytes": 667136,
+      "sha256": "5cf8283e7cb3761b6fcbba8e2c9f36a298a75883cc65ca7719b008f3a7aa231e"
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Assembly-CSharp.dll",
+      "bytes": 312320,
+      "sha256": "908e1c4a08c0d1053a56a050d7833f49514bc3d8072fc347a8aae622387639b6"
+    },
+    {
+      "path": "assets/source/rail/TrainSet.blend",
+      "bytes": 5682607,
+      "sha256": "db49be0ae5dae23e5639ab47da6099d4a3d366eb301b40460bda6cd240ea976a"
+    },
+    {
+      "path": "game/Assets/Art/Rail/TrainSet.fbx",
+      "bytes": 2832780,
+      "sha256": "487845a7e62387bb44c3795a0b84ae3bd09d8f7daad307b70b31e7699b948115"
+    },
+    {
+      "path": "game/Assets/Art/Fonts/TownSans.ttf",
+      "bytes": 212172,
+      "sha256": "eb7081879ecfaa942ae47daf6fbb262a34ba7e7e6fff59f9ff6abcfb07c10766"
+    },
+    {
+      "path": "game/Assets/Scripts/FurnitureSeat.cs",
+      "bytes": 1152,
+      "sha256": "c9f4ddfd3ff0c75f334734f3ac8f2382875cd95a4597cef2eedd9819c3a5343a"
+    },
+    {
+      "path": "game/Assets/Scripts/DemoApp.Furniture.cs",
+      "bytes": 2480,
+      "sha256": "cae486f1c690f87b61b074cf0108e453c628630d8ea7cb72e95fdd3b21977891"
+    },
+    {
+      "path": "game/Assets/Scripts/CoachLampSwitch.cs",
+      "bytes": 1019,
+      "sha256": "06eec778f5c08ffd4581a5db692aee9e530ae392bfd20e007ed6d53dea985ff3"
+    },
+    {
+      "path": "game/Assets/Editor/BuildSlice.Furniture.cs",
+      "bytes": 5848,
+      "sha256": "1ca00ce22b3b5ac4be57bdbc175af3e70f4622c1de0fd50d46f4ff83a2195da9"
+    }
+  ],
+  "failedAttempt": {
+    "reason": "Review walking path crossed the real luggage-scale pillar; revised path walks around it. Original collision retained.",
+    "localEvidence": "output/demo/rail-items/attempt-01",
+    "countsAsPassed": false
+  },
+  "scopeLimits": [
+    "No new evidence or historical timetable",
+    "No loose-item pickup/inventory system",
+    "No full 59-seat continuous town route",
+    "No low-end or Mac performance test",
+    "No six-order narrative blind playthrough"
+  ]
+}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="12" result="Passed" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.1540767">
+  <test-suite type="TestSuite" id="1000" name="错日证词 · 暮色小镇" fullname="错日证词 · 暮色小镇" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.154077" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1016" name="Railway.EditTests.dll" fullname="D:/AllPersonalProjects/Chenchengame/game_test/game/Library/ScriptAssemblies/Railway.EditTests.dll" runstate="Runnable" testcasecount="12" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.148583" total="12" passed="12" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="23648" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1001" name="RailGeometryTests" fullname="RailGeometryTests" classname="RailGeometryTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.139353" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1005" name="AnExtraApertureCannotReplaceAWindowPost" fullname="RailGeometryTests.AnExtraApertureCannotReplaceAWindowPost" methodname="AnExtraApertureCannotReplaceAWindowPost" classname="RailGeometryTests" runstate="Runnable" seed="2044351305" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.081590" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1004" name="AnOpaqueWindowBackingIsRejected" fullname="RailGeometryTests.AnOpaqueWindowBackingIsRejected" methodname="AnOpaqueWindowBackingIsRejected" classname="RailGeometryTests" runstate="Runnable" seed="2102175737" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.005686" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1003" name="MovedVisualCannotDriftFromBoardingLayout" fullname="RailGeometryTests.MovedVisualCannotDriftFromBoardingLayout" methodname="MovedVisualCannotDriftFromBoardingLayout" classname="RailGeometryTests" runstate="Runnable" seed="502269892" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.004601" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1010" name="RailwayRainProfilesMatchTheirActualRoof" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.027129" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1006" name="RailwayRainProfilesMatchTheirActualRoof(False,False,6.0f,1.6f,0.0f,11.0f,6.0f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(False,False,6.0f,1.6f,0.0f,11.0f,6.0f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="1952772009" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.011404" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1007" name="RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,0.0f,9.4f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,0.0f,9.4f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="1132321103" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.005314" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1008" name="RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,11.0f,5.4f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,11.0f,5.4f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="1578005077" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.003832" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1009" name="RailwayRainProfilesMatchTheirActualRoof(False,True,3.46f,0.34f,0.0f,0.0f,3.8f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(False,True,3.46f,0.34f,0.0f,0.0f,3.8f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="756788841" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.003741" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1002" name="SharedPhysicalCoachIsValid" fullname="RailGeometryTests.SharedPhysicalCoachIsValid" methodname="SharedPhysicalCoachIsValid" classname="RailGeometryTests" runstate="Runnable" seed="1501495991" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.011828" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[RAIL_AUTHORING_PASS: original editable train; matched actual coach windows/floor/aisle, eight doors and independent wheels
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1011" name="TicketStockTests" fullname="TicketStockTests" classname="TicketStockTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.008534" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1013" name="CarriedStockPreservesThePaperAtAllPunchPositions" fullname="TicketStockTests.CarriedStockPreservesThePaperAtAllPunchPositions" methodname="CarriedStockPreservesThePaperAtAllPunchPositions" classname="TicketStockTests" runstate="Runnable" seed="362143308" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.003104" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1014" name="PaintedDotsCannotReplacePhysicalPunchVoids" fullname="TicketStockTests.PaintedDotsCannotReplacePhysicalPunchVoids" methodname="PaintedDotsCannotReplacePhysicalPunchVoids" classname="TicketStockTests" runstate="Runnable" seed="168970952" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.000598" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1015" name="PunchedStockCannotBeUsedForTheCarriedOriginal" fullname="TicketStockTests.PunchedStockCannotBeUsedForTheCarriedOriginal" methodname="PunchedStockCannotBeUsedForTheCarriedOriginal" classname="TicketStockTests" runstate="Runnable" seed="401411663" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.002669" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1012" name="WasteStockHasPhysicalPunchVoids" fullname="TicketStockTests.WasteStockHasPhysicalPunchVoids" methodname="WasteStockHasPhysicalPunchVoids" classname="TicketStockTests" runstate="Runnable" seed="1783008898" result="Passed" start-time="2026-10-10 10:30:24Z" end-time="2026-10-10 10:30:24Z" duration="0.000783" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/jason/AppData/LocalLow/Qingchuan Studio/错日证词 · 暮色小镇\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

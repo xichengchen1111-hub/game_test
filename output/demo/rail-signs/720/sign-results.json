@@ -1,0 +1,365 @@
+{
+    "passed": true,
+    "width": 1280,
+    "height": 720,
+    "verification": "Native Unity frames at staged player viewpoints; actual renderer bounds and rays into each physical face, including a larger-font rebuild. The accompanying rail route uses the real CharacterController and E rays. Not physical input or blind playtest.",
+    "signs": [
+        {
+            "scene": "town",
+            "text": "01",
+            "surface": "Module_Coach1_Static_RailGreen",
+            "capture": "town-sign-01.png",
+            "faceSize": {
+                "x": 0.25999999046325686,
+                "y": 0.23999999463558198
+            },
+            "position": {
+                "x": 187.89999389648438,
+                "y": 2.7499990463256838,
+                "z": 71.51000213623047
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "02",
+            "surface": "Module_Coach2_Static_RailGreen",
+            "capture": "town-sign-02.png",
+            "faceSize": {
+                "x": 0.25999999046325686,
+                "y": 0.23999999463558198
+            },
+            "position": {
+                "x": 171.89999389648438,
+                "y": 2.7499990463256838,
+                "z": 71.51000213623047
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "QINGCHUAN",
+            "surface": "Module_Signs_Lighting_RailWalnut",
+            "capture": "town-sign-03.png",
+            "faceSize": {
+                "x": 4.489999771118164,
+                "y": 0.48999977111816409
+            },
+            "position": {
+                "x": 188.0,
+                "y": 6.249997615814209,
+                "z": 39.755001068115237
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "一 号 站 台",
+            "surface": "Module_Signs_Lighting_RailIron",
+            "capture": "town-sign-04.png",
+            "faceSize": {
+                "x": 3.390000104904175,
+                "y": 0.4399986267089844
+            },
+            "position": {
+                "x": 188.0,
+                "y": 4.950000762939453,
+                "z": 63.969993591308597
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "一号站台",
+            "surface": "Solid painted sign face",
+            "capture": "town-sign-05.png",
+            "faceSize": {
+                "x": 2.5999999046325685,
+                "y": 0.47999998927116396
+            },
+            "position": {
+                "x": 203.0,
+                "y": 2.4000000953674318,
+                "z": 67.0
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "候车厅  →  站台",
+            "surface": "Solid painted sign face",
+            "capture": "town-sign-06.png",
+            "faceSize": {
+                "x": 3.0999999046325685,
+                "y": 0.41999998688697817
+            },
+            "position": {
+                "x": 188.0,
+                "y": 3.799999952316284,
+                "z": 51.81999969482422
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "售 票 处",
+            "surface": "Module_Signs_Lighting_RailWalnut",
+            "capture": "town-sign-07.png",
+            "faceSize": {
+                "x": 2.189999580383301,
+                "y": 0.3899998664855957
+            },
+            "position": {
+                "x": 180.0,
+                "y": 2.6999993324279787,
+                "z": 46.974998474121097
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "售票与候车\n请从后门前往站台\n请勿在轨道上停留",
+            "surface": "Module_Station_InteriorDetail_RailIvory",
+            "capture": "town-sign-08.png",
+            "faceSize": {
+                "x": 0.8500009775161743,
+                "y": 1.0799999237060547
+            },
+            "position": {
+                "x": 173.16749572753907,
+                "y": 2.5999984741210939,
+                "z": 42.5
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "废票",
+            "surface": "Solid painted sign face",
+            "capture": "town-sign-09.png",
+            "faceSize": {
+                "x": 0.23999999463558198,
+                "y": 0.14000000059604646
+            },
+            "position": {
+                "x": 176.6999969482422,
+                "y": 0.4000000059604645,
+                "z": 44.94300079345703
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "旅客须知\n检票时请交验车票\n大件行李请妥善放置",
+            "surface": "Module_Station_InteriorDetail_RailIvory",
+            "capture": "town-sign-10.png",
+            "faceSize": {
+                "x": 1.6299991607666016,
+                "y": 1.0799994468688965
+            },
+            "position": {
+                "x": 198.0,
+                "y": 2.6999993324279787,
+                "z": 51.832496643066409
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "行李须知\n大件行李请寄存\n请勿阻塞过道",
+            "surface": "Module_Station_InteriorDetail_RailIvory",
+            "capture": "town-sign-11.png",
+            "faceSize": {
+                "x": 0.8500009775161743,
+                "y": 1.0799999237060547
+            },
+            "position": {
+                "x": 202.83250427246095,
+                "y": 2.5999984741210939,
+                "z": 42.5
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "青 川 车 站",
+            "surface": "Solid painted sign face",
+            "capture": "town-sign-12.png",
+            "faceSize": {
+                "x": 3.700000047683716,
+                "y": 0.47999998927116396
+            },
+            "position": {
+                "x": 188.0,
+                "y": 3.719999074935913,
+                "z": 38.64500045776367
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "青川  ·  邻镇",
+            "surface": "Module_Coach2_Static_RailIvory",
+            "capture": "town-sign-13.png",
+            "faceSize": {
+                "x": 3.4000000953674318,
+                "y": 0.30000001192092898
+            },
+            "position": {
+                "x": 165.0,
+                "y": 3.3749990463256838,
+                "z": 71.51000213623047
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "town",
+            "text": "青川  ·  邻镇",
+            "surface": "Module_Coach1_Static_RailIvory",
+            "capture": "town-sign-14.png",
+            "faceSize": {
+                "x": 3.4000000953674318,
+                "y": 0.30000001192092898
+            },
+            "position": {
+                "x": 181.0,
+                "y": 3.3749990463256838,
+                "z": 71.51000213623047
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "other-town",
+            "text": "01",
+            "surface": "Module_Coach1_Static_RailGreen",
+            "capture": "other-town-sign-01.png",
+            "faceSize": {
+                "x": 0.25999999046325686,
+                "y": 0.23999999463558198
+            },
+            "position": {
+                "x": 6.899996757507324,
+                "y": 2.7499990463256838,
+                "z": -1.4899992942810059
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "other-town",
+            "text": "02",
+            "surface": "Module_Coach2_Static_RailGreen",
+            "capture": "other-town-sign-02.png",
+            "faceSize": {
+                "x": 0.25999999046325686,
+                "y": 0.23999999463558198
+            },
+            "position": {
+                "x": -9.10000228881836,
+                "y": 2.7499990463256838,
+                "z": -1.4899992942810059
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "other-town",
+            "text": "一号站台",
+            "surface": "Solid painted sign face",
+            "capture": "other-town-sign-03.png",
+            "faceSize": {
+                "x": 2.5999999046325685,
+                "y": 0.47999998927116396
+            },
+            "position": {
+                "x": 22.0,
+                "y": 2.4000000953674318,
+                "z": -6.0
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "other-town",
+            "text": "出站  ·  车站街区",
+            "surface": "Solid painted sign face",
+            "capture": "other-town-sign-04.png",
+            "faceSize": {
+                "x": 5.0,
+                "y": 0.6000000238418579
+            },
+            "position": {
+                "x": 7.0,
+                "y": 3.5,
+                "z": -25.815000534057618
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "other-town",
+            "text": "邻 镇 车 站",
+            "surface": "Solid painted sign face",
+            "capture": "other-town-sign-05.png",
+            "faceSize": {
+                "x": 5.0,
+                "y": 0.6000000238418579
+            },
+            "position": {
+                "x": 7.0,
+                "y": 3.5,
+                "z": -26.184999465942384
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "other-town",
+            "text": "青川  ·  邻镇",
+            "surface": "Module_Coach2_Static_RailIvory",
+            "capture": "other-town-sign-06.png",
+            "faceSize": {
+                "x": 3.4000000953674318,
+                "y": 0.30000001192092898
+            },
+            "position": {
+                "x": -15.999998092651368,
+                "y": 3.3749990463256838,
+                "z": -1.4900000095367432
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        },
+        {
+            "scene": "other-town",
+            "text": "青川  ·  邻镇",
+            "surface": "Module_Coach1_Static_RailIvory",
+            "capture": "other-town-sign-07.png",
+            "faceSize": {
+                "x": 3.4000000953674318,
+                "y": 0.30000001192092898
+            },
+            "position": {
+                "x": 0.0,
+                "y": 3.3749990463256838,
+                "z": -1.4900000095367432
+            },
+            "faceGap": 0.0020000000949949028,
+            "fontResizePassed": true
+        }
+    ]
+}

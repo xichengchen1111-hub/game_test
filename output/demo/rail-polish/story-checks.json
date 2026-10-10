@@ -1,0 +1,16 @@
+{
+  "evidence_cards": 10,
+  "core_deductions": [
+    "D02",
+    "D03"
+  ],
+  "visit_orders_checked": [
+    "station -> clock_shop -> home",
+    "station -> home -> clock_shop",
+    "clock_shop -> station -> home",
+    "clock_shop -> home -> station",
+    "home -> station -> clock_shop",
+    "home -> clock_shop -> station"
+  ],
+  "verification_scope": "Design data only; no runtime input, visuals, saves or puzzle fairness checked"
+}

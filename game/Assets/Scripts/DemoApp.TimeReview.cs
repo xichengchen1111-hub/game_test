@@ -14,8 +14,17 @@ public partial class DemoApp {
 
     void ReviewClockBoundaries() {
         var clock = new GameClock();
-        clock.Advance(150, false);
-        RequireTime(Math.Abs(clock.ElapsedGameMinutes - 10) < 1e-9, "150 real seconds must advance ten game minutes");
+        clock.Advance(50, false);
+        RequireTime(Math.Abs(clock.ElapsedGameMinutes - 10) < 1e-9, "50 real seconds must advance ten game minutes");
+        var fullDay = new GameClock(125.75);
+        double savedTimeOfDay = fullDay.MinutesOfDay;
+        RequireTime(fullDay.ElapsedGameMinutes == 125.75, "Changing rate must retain existing saved cumulative minutes");
+        fullDay.Advance(7200, false);
+        RequireTime(Math.Abs(fullDay.ElapsedGameMinutes - 1565.75) < 1e-9 &&
+            Math.Abs(fullDay.MinutesOfDay - savedTimeOfDay) < 1e-9,
+            "Two real hours must advance exactly one full day and preserve the dial phase");
+        fullDay.Advance(7200, true);
+        RequireTime(Math.Abs(fullDay.ElapsedGameMinutes - 1565.75) < 1e-9, "A paused full day must not advance the clock");
         clock.Advance(80, true);
         clock.Advance(-1, false);
         clock.Advance(double.NaN, false);
@@ -23,10 +32,10 @@ public partial class DemoApp {
         RequireTime(Math.Abs(clock.ElapsedGameMinutes - 10) < 1e-9, "Pause/invalid delta must not move time");
 
         var hour = new GameClock(4.75);
-        hour.Advance(7.5, false);
+        hour.Advance(.5 / GameClock.GameMinutesPerRealSecond, false);
         RequireTime(Math.Abs(hour.MinutesOfDay - 1080.25) < 1e-9, "Continuous hands must cross 18:00 without jumping back");
         var midnight = new GameClock(364.75);
-        midnight.Advance(7.5, false);
+        midnight.Advance(.5 / GameClock.GameMinutesPerRealSecond, false);
         RequireTime(Math.Abs(midnight.MinutesOfDay - .25) < 1e-9 && midnight.ElapsedGameMinutes > 365,
             "Midnight must wrap the dial while cumulative saved time continues");
         var days = new GameClock(midnight.ElapsedGameMinutes + 3 * GameClock.MinutesPerDay);
@@ -121,7 +130,7 @@ public partial class DemoApp {
         result.realSeconds = Time.unscaledTimeAsDouble - startReal;
         result.advancedGameMinutes = ElapsedGameMinutes - startGame;
         RequireTime(Math.Abs(result.advancedGameMinutes - result.realSeconds * GameClock.GameMinutesPerRealSecond) < .08,
-            "Rendered runtime did not advance at four game seconds per real second");
+            "Rendered runtime did not advance at twelve game seconds per real second");
         yield return new WaitForEndOfFrame();
         RequireSharedDialHands();
         RequireTime(Mathf.Repeat(watchRenderedMinutes - firstWatchReading, 1440) > .4,
@@ -160,7 +169,7 @@ public partial class DemoApp {
         result.ratePassed = result.smoothHandsPassed = result.sharedDialsPassed = result.boundariesPassed = result.autosavePassed = true;
         result.verification = "Rendered player, shared Q handler, real active-time autosave; UI handlers/flags are driven by review, physical keyboard bypassed. Relaunch separately with --verify-time-save.";
         File.WriteAllText(Path.Combine(captures, "time-results.json"), JsonUtility.ToJson(result, true));
-        Debug.Log("TIME_REVIEW_PASS: continuous 4x clock, explicit pause freezes; journal/inspection/dialogue/history and Q keep running; shared dials, boundaries, legacy fields and disk autosave; independent relaunch still required");
+        Debug.Log("TIME_REVIEW_PASS: continuous 12x clock, two-real-hour full day, explicit pause freezes; journal/inspection/dialogue/history and Q keep running; shared dials, boundaries, legacy fields and disk autosave; independent relaunch still required");
         Application.Quit();
     }
 
@@ -195,6 +204,8 @@ public partial class DemoApp {
     }
 
     [Serializable] class TimeReviewResult {
+        public double gameMinutesPerRealSecond = GameClock.GameMinutesPerRealSecond;
+        public double fullDayRealSeconds = GameClock.MinutesPerDay / GameClock.GameMinutesPerRealSecond;
         public List<string> pausedStates = new List<string>();
         public List<string> runningReadingStates = new List<string>();
         public double realSeconds, advancedGameMinutes, elapsedGameMinutes;

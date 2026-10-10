@@ -1,0 +1,216 @@
+{
+  "date": "2026-10-10",
+  "passed": true,
+  "platform": "Windows D3D11, RTX 5060 Laptop GPU",
+  "unity": "6000.3.18f1 / URP17",
+  "baseCommit": "ea1f197",
+  "committedOrPushed": false,
+  "verification": "Visible native renderer; scripted ordinary CharacterController walking and 3m E rays. Same final player for all listed native checks. Not physical keyboard, blind playtest, forced process kill or FPS benchmark.",
+  "artifacts": [
+    {
+      "path": "builds/windows/TownDemo.exe",
+      "sha256": "5cf8283e7cb3761b6fcbba8e2c9f36a298a75883cc65ca7719b008f3a7aa231e",
+      "bytes": 667136
+    },
+    {
+      "path": "builds/windows/TownDemo_Data/Managed/Assembly-CSharp.dll",
+      "sha256": "d315f3322ae3b0f8e0ec8f51c69750b6e714b1acd3a89188a1cd01ed1cdbd090",
+      "bytes": 290304
+    },
+    {
+      "path": "assets/source/rail/StationB.blend",
+      "sha256": "0817697a4122e17c5a45f33ccf607163430aa8651461dc34d8e05a053867c0fd",
+      "bytes": 3254012
+    },
+    {
+      "path": "assets/source/rail/TrainSet.blend",
+      "sha256": "0bc33316ee5a2a00f61dc33fffc1abe21222f8aa175988e44ad6bbf0cb80bd64",
+      "bytes": 623953
+    },
+    {
+      "path": "game/Assets/Art/Rail/StationB.fbx",
+      "sha256": "bd7e95c1ee4c7965496e5884d31348af2baa1e36631dc34853d4e975c1e8d9e4",
+      "bytes": 5032412
+    },
+    {
+      "path": "game/Assets/Art/Rail/TrainSet.fbx",
+      "sha256": "b42fedcb88c9b5dbe09b433c0b62b2984da1d6b9950180da79e0c56c1468aa84",
+      "bytes": 1493580
+    },
+    {
+      "path": "tools/rail/build_rail_assets.py",
+      "sha256": "a832d8b7486f3f1ddb71a0fbc015c42a97990faa652b6f60b5065f5f48e260fe",
+      "bytes": 83791
+    },
+    {
+      "path": "tools/rail/build_support_assets.py",
+      "sha256": "861a10c9663c9a8b4d99b466eeda953e8c850295e40418d575b90fa10c4a1126",
+      "bytes": 2510
+    },
+    {
+      "path": "docs/maps/town-current/plan-data.json",
+      "sha256": "afe327b3d9231a862178e630c6606acb0dd0044e900b876640f21739d2ffb2c3",
+      "bytes": 195759
+    }
+  ],
+  "checks": [
+    {
+      "name": "1080_complete_round_trip",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail/1080/player.log",
+        "marker": "RAIL_REVIEW_PASS",
+        "sha256": "019536133d8df252864dd04a1614788612a4661c4762eaaf9fc79ded80da506f"
+      }
+    },
+    {
+      "name": "720_arrival",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail/720/player.log",
+        "marker": "RAIL_NEXT_TOWN_CHECKPOINT_PASS",
+        "sha256": "d49adee44b820cfe58ce741bacbe160fe6456d0d9f9e05ffda98943615df68bd"
+      }
+    },
+    {
+      "name": "town_seat_reload",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail/reload-town/player.log",
+        "marker": "RAIL_SAVE_PASS",
+        "sha256": "d55269b2c50b0323bbc99f87c22322ca6efb1536eeefe7a68ac45305e5b0036b"
+      }
+    },
+    {
+      "name": "next_town_seat_reload",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail/reload-next-town/player.log",
+        "marker": "RAIL_SAVE_PASS",
+        "sha256": "57a12148f17c89deb092cbe867b7c2e76fa73ee9b3641b1491448f3f550d9c57"
+      }
+    },
+    {
+      "name": "departure_checkpoint_reload",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail/reload-departure/player.log",
+        "marker": "RAIL_SAVE_PASS",
+        "sha256": "180654517c93d1878e3e009039b47df19488cdc82df23e9377739d4c614196f2"
+      }
+    },
+    {
+      "name": "time_regression",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail/regression-time/player.log",
+        "marker": "TIME_REVIEW_PASS",
+        "sha256": "7b1b93d23d8a12aae8e59f31fa26601b2154b6bbeb8d4f250d15e85c69b4d836"
+      }
+    },
+    {
+      "name": "time_reload",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail/regression-time-reload/player.log",
+        "marker": "TIME_SAVE_RELAUNCH_PASS",
+        "sha256": "7c569ccf3db9306f600c04b04b826b2e76e92837c0dbe235abb97c4cba45f5a0"
+      }
+    },
+    {
+      "name": "milk_regression",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail/regression-milk/player.log",
+        "marker": "MILK_INTERIOR_A_REVIEW_PASS",
+        "sha256": "a184f91e523098a89b4a9d9cff72bedcb08b40718358649f0da38b21812c361e"
+      }
+    },
+    {
+      "name": "milk_reload",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/rail/regression-milk-reload/player.log",
+        "marker": "MILK_INTERIOR_SAVE_RELAUNCH_PASS",
+        "sha256": "c74ae07f3db682a6a9c49cac65b70417f934265156e0c19b6aef256c093599a7"
+      }
+    },
+    {
+      "name": "edit_mode",
+      "passed": true,
+      "tests": 8,
+      "evidence": {
+        "path": "output/demo/rail/edit-tests-final.xml",
+        "sha256": "e1a6e879a089b0fefadc2b6015cfb11b46d948481e037f2e0944f1bf4dbd1987"
+      }
+    },
+    {
+      "name": "map_authoring",
+      "passed": true,
+      "evidence": {
+        "path": "output/demo/full-map/authoring-checks.json",
+        "sha256": "e5e797a86ff54b0f9fd6ef7c17759fa20158aed82674e17c643b8d02fa33b064"
+      }
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "output/demo/rail/1080/train-coach-02.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "787a310f25d9c9742119f348b2b13137be3e28799a1768f8ba98ebefb37f7cac"
+    },
+    {
+      "path": "output/demo/rail/1080/train-seated-departure.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "e4f5d614be4ce9b80467f67060a91bd92068b0c25a315a9921833dc9dd9d3257"
+    },
+    {
+      "path": "output/demo/rail/1080/station-B-wide-dusk.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "3be7e2191b34aec2f81856b4853239e747b75b190380ff45be653bd6d2a65848"
+    },
+    {
+      "path": "output/demo/rail/1080/train-window-rain.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "a72774130f4e50ae3b51b36ce5b3d2abd62698a03aaee4a6ef44ecdf8375a7bf"
+    },
+    {
+      "path": "output/demo/rail/1080/train-steam-platform.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "819c69a9e62c196eef3093311b281e3cf8b0186c19232aa86ab7161a1bf7fd02"
+    },
+    {
+      "path": "output/demo/rail/1080/next-town-street.png",
+      "width": 1920,
+      "height": 1080,
+      "sha256": "19a95540118c131f469dabd01cdeefa9c4c59517b32b814c02bbc04a57133a84"
+    },
+    {
+      "path": "output/demo/rail/720/next-town-arrival-seat.png",
+      "width": 1280,
+      "height": 720,
+      "sha256": "65fbbd6709ccb3655c4f462056feb8683aa8fb6e8a01ab411195ae7073db9c51"
+    }
+  ],
+  "departureCheckpoint": {
+    "path": "output/demo/rail/720/departure-checkpoint.json",
+    "sha256": "3655c523b3e8467bd49b2b142781e32ad07308a4d7bdcbfefec9d35d6b7ddcf9",
+    "origin": "Captured by actual final 720 native departure, copied byte-for-byte to isolated review save, then reloaded in a separate process. Moving Save also asserted not to overwrite checkpoint."
+  },
+  "normalSave": {
+    "beforeSha256": "fde6bce28f10294a989dc5052a88111f08855e624bc756befd3a1bb326b58839",
+    "afterSha256": "fde6bce28f10294a989dc5052a88111f08855e624bc756befd3a1bb326b58839",
+    "unchanged": true
+  },
+  "limitations": [
+    "Neighbour town only has walkable station district, exterior facade placeholders and return train.",
+    "No new historic timetable, travel duration, witness route or complete second-town investigation.",
+    "1080 complete round trip; 720 arrival only on final binary. Earlier 720 full runs excluded.",
+    "Previous full-map six exterior visit orders not rerun; map freshness and UI verified."
+  ]
+}

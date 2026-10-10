@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-10",
+  "status": "concept-image-only; awaiting user Meshy generation",
+  "generation": "built-in image_gen",
+  "image": "adult-male-base.png",
+  "prompt": "generation-prompt.txt",
+  "styleReferences": [
+    "output/demo/milkboy-meshy/model-full.png",
+    "output/demo/watchmaker-meshy/model-full.png"
+  ],
+  "design": {
+    "character": "approximately 35-year-old ordinary adult male resident",
+    "clothing": "brown wool jacket, cream shirt, muted olive tie, roomy pleated trousers with turned-up hems, brown lace-up leather shoes",
+    "pose": "single near-frontal full-body low A-pose; empty hands",
+    "background": "plain light warm gray",
+    "variationPlan": "three later model variants; foundation deliberately has no hat, glasses, bag or handheld object"
+  },
+  "historicalReference": {
+    "url": "https://collections.lacma.org/object/197076",
+    "scope": "museum 1930 men's suit as adjacent-period reference; this design is original, not an exact replica and does not establish the fictional town's country"
+  },
+  "visualReview": {
+    "completed": true,
+    "findings": "one clearly adult full-body stylized character; sculpted facial features and hair; wool and leather readable; both shoes and hands visible; plain backdrop; no labels or scene props",
+    "limitations": "hands are gently curled; generated single view does not verify back geometry, actual topology, material separability, rigging or animation; jacket button arrangement is generated rather than guaranteed reconstruction"
+  },
+  "gameChanged": false
+}

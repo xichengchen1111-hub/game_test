@@ -84,7 +84,7 @@ for a,b,c,d,v in [(144,165,-113,-82,1),(165,187,-113,-82,2),(187,216,-113,-82,0)
 # Inn courtyard opening toward station street, under carriage passage planned as open yard.
 inb=plot(144,185,-27,13,'N','civic','B08',variant=0);inb['parts']=[dict(role='客房西翼',rect=rect(149,-8,10,30)),dict(role='客房东翼',rect=rect(180,-8,10,30)),dict(role='餐厅后翼',rect=rect(164.5,-21,21,4))];inb['door']=[154,5];inb['rearDoor']=[175,-19];inb['type']='U形旅馆＋前庭车马院';inb['note']='旅馆开口朝车站路；中央庭院用于上下客，后部餐厅与两翼客房分区。';Paths[-2]['points']=[[154,5],[164.5,5],[164.5,13]];inb['windows']=[[144,0,1.8,'客房窗'],[185,0,1.8,'客房窗']]
 # Station, separate front forecourt / rear platform.
-st=plot(153,224,30,61,'S','civic','B17',variant=0);st['parts']=[dict(role='候车厅',rect=rect(188,46,30,12)),dict(role='行李房',rect=rect(169,46,8,8)),dict(role='值班室',rect=rect(207,46,8,8))];st['door']=[188,40];st['rearDoor']=[188,52];st['type']='车站主厅＋两侧附房';st['note']='南侧站前场，北侧站台与铁轨；两侧附房分别用于行李和值班。';st['windows']=[[178,40,2,'候车窗'],[198,40,2,'候车窗']];Paths[-2]['points']=[[188,40],[188,30]];Paths[-1]['points']=[[188,52],[188,61]]
+st=plot(153,224,30,61,'S','civic','B17',variant=0);st['parts']=[dict(role='候车厅',rect=rect(188,46,30,12)),dict(role='行李房',rect=rect(169,46,8,8)),dict(role='值班室',rect=rect(207,46,8,8))];st['door']=[188,40];st['rearDoor']=[188,52];st['storeys']=1;st['type']='B铁与玻璃候车厅＋铁路雨棚';st['note']='完成的B方案：主厅30×12m、侧翼各8×8m；68×22m铁玻璃雨棚位于既有铁路用地，站台顶0.42m，铁轨中心Z73。无新增历史班次或人物行程。';st['windows']=[[188+x,z,2.2,'候车厅窗',side] for z,side in [(40,'S'),(52,'N')] for x in [-12,-8,-4,4,8,12]]+[[x,46+z,1.4,'侧翼窗',side] for x,side in [(165,'W'),(211,'E')] for z in [-2,2]]+[[x,z,1.4,'侧翼窗',side] for x in [169,207] for z,side in [(42,'S'),(50,'N')]]+[[188,z,1.64,'圆形玫瑰窗',side] for z,side in [(40,'S'),(52,'N')]];st['railCanopy']=[188,66,68,22];st['platformTop']=.42;st['trackZ']=73;Paths[-2]['points']=[[188,40],[188,30]];Paths[-1]['points']=[[188,52],[188,61]]
 B.append(dict(id='B01',name='钟楼',kind='civic',type='广场独立地标',plot=rect(0,0,30,27),parts=[dict(role='钟楼基座',rect=rect(0,0,6,6))],front='S',storeys=1,door=[0,-3],rearDoor=None,gate=[0,-13.5],backgate=None,windows=[],frontSetback=10.5,yard='公共铺石广场',status='剧情地点；位置为提案',note='广场是明确的公共停留空间；通往商业街及南侧住宅巷。'))
 roads=[dict(id='R01',name='车站路',points=[[-166,20],[224,20]],width=12,lane=6,walk=2,strip=1),dict(id='R02',name='住宅街',points=[[-165,-75],[224,-75]],width=12,lane=5,walk=2,strip=1.5),dict(id='R03',name='南街',points=[[-163,-122],[222,-122]],width=10,lane=5,walk=1.5,strip=1),dict(id='R04',name='西巷',points=[[-120,-139],[-120,96]],width=10,lane=4,walk=2,strip=1),dict(id='R05',name='中街',points=[[30,-140],[30,96]],width=10,lane=4,walk=2,strip=1),dict(id='R06',name='站西路',points=[[135,-140],[135,71]],width=10,lane=4,walk=2,strip=1),dict(id='A01',name='北后巷',points=[[-164,69],[134,69]],width=3,lane=0,walk=3,strip=0),dict(id='A02',name='住宅后巷',points=[[-164,-30],[135,-30]],width=3,lane=0,walk=3,strip=0),dict(id='A03',name='南园巷',points=[[-163,-117],[223,-117]],width=3,lane=0,walk=3,strip=0),dict(id='A04',name='广场步巷',points=[[0,-13.5],[0,-30]],width=3,lane=0,walk=3,strip=0),dict(id='A05',name='北园路',points=[[-165,91],[135,91]],width=6,lane=3,walk=1.5,strip=0)]
 # Roadside trees in planting strips, not in clear walking bands. Gaps at intersections.
@@ -162,10 +162,10 @@ for rd in roads:
  if rd['lane']:svg.append(line(rd['points'],'#ded9c6',rd['lane']+2*rd['walk'],'stroke-linecap="square"'))
 for rd in roads:
  if rd['lane']:svg.append(line(rd['points'],'#a0a697',rd['lane'],'stroke-linecap="square"'))
-for z in [66,72]:
- svg.append(line([[445,z],[527,z]],'#706e60',.35));svg.append(line([[445,z+1.2],[527,z+1.2]],'#706e60',.35))
- for x in range(445,528,3):svg.append(line([[x,z-.5],[x,z+1.7]],'#857c68',.3))
-svg.append(rr(box(459,520,57,61),'#c0b69c','#8a8772'));svg.append(txt(490,58.2,'站台 61 × 4 m',10))
+for z in [72.2825,73.7175]:svg.append(line([[144,z],[232,z]],'#706e60',.16))
+for x in range(145,233):svg.append(line([[x,71.75],[x,74.25]],'#857c68',.22))
+svg.append(rr(rect(188,67.5,68,7.9),'#c0b69c','#8a8772'));svg.append(txt(188,67.5,'站台 68 × 7.9 m · 顶高 0.42m',10))
+svg.append(rr(st['railCanopy'],'none','#41665b',.18,'stroke-dasharray="5 3"'));svg.append(txt(188,80,'B 铁玻璃雨棚 68 × 22 m',11))
 svg.append('</g><g id="plots">')
 for b in B:
  col='#d7d9bc' if b['kind'] in ['garden','semi','terrace'] else '#d9cdb3'
