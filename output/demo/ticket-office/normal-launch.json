@@ -1,0 +1,14 @@
+{
+  "processId": 41540,
+  "responding": true,
+  "windowTitle": "错日证词 · 暮色小镇",
+  "executable": "builds/windows/TownDemo.exe",
+  "arguments": "-screen-width 1600 -screen-height 900 -screen-fullscreen 0",
+  "normalSaveLocationLogged": true,
+  "normalSaveSHA256AtLaunch": "5850e1e6f99c4248eb04460f13b20f3857a23cedfca51451b6c5283e5409d1d6",
+  "originalExitSaveSHA256": "5850e1e6f99c4248eb04460f13b20f3857a23cedfca51451b6c5283e5409d1d6",
+  "reviewProfilesRestored": true,
+  "reviewOrFreshFlags": false,
+  "exceptions": false,
+  "log": "builds/review/ticket-checkin/normal-player.log"
+}

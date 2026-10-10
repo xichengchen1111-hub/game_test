@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-10",
+  "platform": "Windows / Unity 6000.3.18f1 / native D3D11 renderer",
+  "assemblySHA256": "7c2f4539d265a12676cb663ee45a5364e459db7ed4eb01d2bd9d0493a1cd8475",
+  "buildBytes": 392380225,
+  "nativeChecks": [
+    {
+      "name": "rail-lit-1080",
+      "passed": true,
+      "flags": "--review-rail --fresh --record-ticket-office --record-rail-signs",
+      "marker": "RAIL_REVIEW_PASS",
+      "width": 1920,
+      "height": 1080,
+      "exitCode": 0,
+      "processId": 42108,
+      "seconds": 172.2589049,
+      "assembly": "7C2F4539D265A12676CB663EE45A5364E459DB7ED4EB01D2BD9D0493A1CD8475"
+    },
+    {
+      "name": "rail-lit-reload-1080",
+      "passed": true,
+      "flags": "--verify-rail-save",
+      "marker": "RAIL_SAVE_PASS",
+      "width": 1920,
+      "height": 1080,
+      "exitCode": 0,
+      "processId": 31792,
+      "seconds": 9.1574204,
+      "assembly": "7C2F4539D265A12676CB663EE45A5364E459DB7ED4EB01D2BD9D0493A1CD8475"
+    },
+    {
+      "name": "rail-lit-720",
+      "passed": true,
+      "flags": "--review-rail --fresh --record-ticket-office --record-rail-signs",
+      "marker": "RAIL_REVIEW_PASS",
+      "width": 1280,
+      "height": 720,
+      "exitCode": 0,
+      "processId": 44104,
+      "seconds": 171.5230639,
+      "assembly": "7C2F4539D265A12676CB663EE45A5364E459DB7ED4EB01D2BD9D0493A1CD8475"
+    },
+    {
+      "name": "rail-lit-reload-720",
+      "passed": true,
+      "flags": "--verify-rail-save",
+      "marker": "RAIL_SAVE_PASS",
+      "width": 1280,
+      "height": 720,
+      "exitCode": 0,
+      "processId": 55860,
+      "seconds": 9.396097,
+      "assembly": "7C2F4539D265A12676CB663EE45A5364E459DB7ED4EB01D2BD9D0493A1CD8475"
+    },
+    {
+      "name": "items-lit-1080",
+      "passed": true,
+      "flags": "--review-items --fresh",
+      "marker": "ITEM_REVIEW_PASS",
+      "width": 1920,
+      "height": 1080,
+      "exitCode": 0,
+      "processId": 36256,
+      "seconds": 52.2495858,
+      "assembly": "7C2F4539D265A12676CB663EE45A5364E459DB7ED4EB01D2BD9D0493A1CD8475"
+    },
+    {
+      "name": "items-lit-reload-1080",
+      "passed": true,
+      "flags": "--verify-items-save",
+      "marker": "ITEM_SAVE_PASS",
+      "width": 1920,
+      "height": 1080,
+      "exitCode": 0,
+      "processId": 44264,
+      "seconds": 7.2325627,
+      "assembly": "7C2F4539D265A12676CB663EE45A5364E459DB7ED4EB01D2BD9D0493A1CD8475"
+    }
+  ],
+  "editMode": {
+    "passed": 32,
+    "failed": 0
+  },
+  "sourcePreservation": {
+    "preservedOutsideTicketArea": true,
+    "positionPrecisionMetres": 0.0001,
+    "uvPrecision": 1e-05,
+    "beforeFaces": 207175,
+    "afterFaces": 207175,
+    "removedOutside": 0,
+    "addedOutside": 0,
+    "blenderVersion": "5.2.0 LTS"
+  },
+  "contacts": 39,
+  "groundedFixtures": 8,
+  "sourceMeshes": 134,
+  "spentTickets": 8,
+  "physicalHolesPerSpentTicket": 3,
+  "carriedTicketUnpunched": true,
+  "trainBlendAndFBXUnchanged": true,
+  "normalSaveSHA256BeforeReopening": "5850e1e6f99c4248eb04460f13b20f3857a23cedfca51451b6c5283e5409d1d6",
+  "normalSaveUnchangedBeforeReopening": true,
+  "verification": "Native rendered Unity; scripted normal CharacterController walking and ordinary 3m E rays, eight-leaf collision tests, occupied sweep protection, actual two-way travel and separate-process reload. Staged camera/time/weather captures. Not physical keyboard input, blind playtest, Mac or low-end performance acceptance.",
+  "normalLaunch": {
+    "processId": 41540,
+    "responding": true,
+    "windowTitle": "错日证词 · 暮色小镇",
+    "executable": "builds/windows/TownDemo.exe",
+    "arguments": "-screen-width 1600 -screen-height 900 -screen-fullscreen 0",
+    "normalSaveLocationLogged": true,
+    "normalSaveSHA256AtLaunch": "5850e1e6f99c4248eb04460f13b20f3857a23cedfca51451b6c5283e5409d1d6",
+    "originalExitSaveSHA256": "5850e1e6f99c4248eb04460f13b20f3857a23cedfca51451b6c5283e5409d1d6",
+    "reviewProfilesRestored": true,
+    "reviewOrFreshFlags": false,
+    "exceptions": false,
+    "log": "builds/review/ticket-checkin/normal-player.log"
+  }
+}

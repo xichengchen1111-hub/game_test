@@ -1,0 +1,333 @@
+{
+  "version": 1,
+  "lamps": [
+    {
+      "bulb": "OfficeLampBulb_0",
+      "position": [
+        -9.1,
+        1.495,
+        1.22
+      ]
+    },
+    {
+      "bulb": "OfficeLampBulb_1",
+      "position": [
+        -6.9,
+        1.495,
+        1.22
+      ]
+    }
+  ],
+  "spentTicketPoses": [
+    {
+      "x": -0.035,
+      "z": -0.1,
+      "yaw": -15,
+      "supportTop": 0.716
+    },
+    {
+      "x": 0.08,
+      "z": 0.035,
+      "yaw": 54,
+      "supportTop": 0.7163499999999999
+    },
+    {
+      "x": -0.1,
+      "z": 0.06,
+      "yaw": -28,
+      "supportTop": 0.7167
+    },
+    {
+      "x": 0.04,
+      "z": 0.1,
+      "yaw": 112,
+      "supportTop": 0.71705
+    },
+    {
+      "x": -0.02,
+      "z": 0.005,
+      "yaw": 28,
+      "supportTop": 0.7173999999999999
+    },
+    {
+      "x": 0.09,
+      "z": -0.065,
+      "yaw": -48,
+      "supportTop": 0.71775
+    },
+    {
+      "x": -0.12,
+      "z": -0.06,
+      "yaw": 80,
+      "supportTop": 0.7181
+    },
+    {
+      "x": 0.01,
+      "z": 0.025,
+      "yaw": 0,
+      "supportTop": 0.7184499999999999
+    }
+  ],
+  "floorTop": 0.1,
+  "counterTop": 1.15,
+  "contacts": [
+    {
+      "item": "TicketCounterTop",
+      "support": "TicketCounter",
+      "gapMetres": -0.01
+    },
+    {
+      "item": "OfficeHeaderBeam",
+      "support": "OfficePost_0",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "OfficeHeaderBeam",
+      "support": "OfficePost_1",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "OfficeHeaderBeam",
+      "support": "OfficePost_2",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "OfficeHeaderBeam",
+      "support": "OfficePost_3",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "SignBacking_Tickets",
+      "support": "OfficeHeaderBeam",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "OfficeCorniceLower",
+      "support": "SignBacking_Tickets",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "WicketTrayBase_0",
+      "support": "TicketCounterTop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "WicketTrayBase_1",
+      "support": "TicketCounterTop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "WicketTrayBase_2",
+      "support": "TicketCounterTop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "OfficeStorageWorktop",
+      "support": "OfficeStorageBase",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "TicketPigeonholeBack",
+      "support": "OfficeStorageWorktop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "TicketPigeonholeSide-1",
+      "support": "OfficeStorageWorktop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "TicketPigeonholeSide1",
+      "support": "OfficeStorageWorktop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_0_0",
+      "support": "PigeonShelf_0",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_0_2",
+      "support": "PigeonShelf_0",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_0_5",
+      "support": "PigeonShelf_0",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_0_7",
+      "support": "PigeonShelf_0",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_1_1",
+      "support": "PigeonShelf_1",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_1_3",
+      "support": "PigeonShelf_1",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_1_6",
+      "support": "PigeonShelf_1",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_2_2",
+      "support": "PigeonShelf_2",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_2_4",
+      "support": "PigeonShelf_2",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_2_7",
+      "support": "PigeonShelf_2",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_3_0",
+      "support": "PigeonShelf_3",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_3_3",
+      "support": "PigeonShelf_3",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_3_5",
+      "support": "PigeonShelf_3",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_4_1",
+      "support": "PigeonShelf_4",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_4_4",
+      "support": "PigeonShelf_4",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PigeonDocBundle_4_6",
+      "support": "PigeonShelf_4",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "OfficeBlotter",
+      "support": "TicketCounterTop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "InkstandTray",
+      "support": "OfficeBlotter",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "CashierBellBase",
+      "support": "TicketCounterTop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "SafeLedgerCover",
+      "support": "TicketCounterTop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "PunchFixedHandle",
+      "support": "TicketCounterTop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "OfficeLampBase_0",
+      "support": "TicketCounterTop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "OfficeLampBase_1",
+      "support": "TicketCounterTop",
+      "gapMetres": 0.0
+    },
+    {
+      "item": "DiscardedPaperCore",
+      "support": "TicketBin_InnerBottom",
+      "gapMetres": -0.0
+    },
+    {
+      "item": "WastePaperPileSupport",
+      "support": "DiscardedPaperCore",
+      "gapMetres": 0.0
+    }
+  ],
+  "grounded": [
+    "TicketCounter",
+    "OfficeStorageBase",
+    "OfficeLeftCheek",
+    "OfficePost_0",
+    "OfficePost_1",
+    "OfficePost_2",
+    "OfficePost_3",
+    "TicketBin_InnerBottom"
+  ],
+  "fixtures": [
+    "CashierBellBase",
+    "DiscardedPaperCore",
+    "InkstandTray",
+    "OfficeBlotter",
+    "OfficeCorniceLower",
+    "OfficeHeaderBeam",
+    "OfficeLampBase_0",
+    "OfficeLampBase_1",
+    "OfficeLeftCheek",
+    "OfficePost_0",
+    "OfficePost_1",
+    "OfficePost_2",
+    "OfficePost_3",
+    "OfficeStorageBase",
+    "OfficeStorageWorktop",
+    "PigeonDocBundle_0_0",
+    "PigeonDocBundle_0_2",
+    "PigeonDocBundle_0_5",
+    "PigeonDocBundle_0_7",
+    "PigeonDocBundle_1_1",
+    "PigeonDocBundle_1_3",
+    "PigeonDocBundle_1_6",
+    "PigeonDocBundle_2_2",
+    "PigeonDocBundle_2_4",
+    "PigeonDocBundle_2_7",
+    "PigeonDocBundle_3_0",
+    "PigeonDocBundle_3_3",
+    "PigeonDocBundle_3_5",
+    "PigeonDocBundle_4_1",
+    "PigeonDocBundle_4_4",
+    "PigeonDocBundle_4_6",
+    "PigeonShelf_0",
+    "PigeonShelf_1",
+    "PigeonShelf_2",
+    "PigeonShelf_3",
+    "PigeonShelf_4",
+    "PigeonShelf_5",
+    "PunchFixedHandle",
+    "SafeLedgerCover",
+    "SignBacking_Tickets",
+    "TicketBin_InnerBottom",
+    "TicketCounter",
+    "TicketCounterTop",
+    "TicketPigeonholeBack",
+    "TicketPigeonholeSide-1",
+    "TicketPigeonholeSide1",
+    "WastePaperPileSupport",
+    "WicketTrayBase_0",
+    "WicketTrayBase_1",
+    "WicketTrayBase_2"
+  ],
+  "style": "Original timber and brass booth inspired by Station B; no invented dates or schedules."
+}

@@ -74,6 +74,7 @@ MATERIAL_DEFS = {
     'RailGreen':  {'color': '1E3B2C', 'metallic': 0.10, 'roughness': 0.45},
     'RailIvory':  {'color': 'EAE2CE', 'metallic': 0.00, 'roughness': 0.60},
     'RailBrass':  {'color': 'C6A152', 'metallic': 0.85, 'roughness': 0.28},
+    'RailOfficeWalnut': {'color': '5F4030', 'metallic': 0.00, 'roughness': 0.40},
     'RailWalnut': {'color': '5A3A22', 'metallic': 0.00, 'roughness': 0.52},
     'RailFelt':   {'color': '284D37', 'metallic': 0.00, 'roughness': 0.85},
     'RailGlass':  {'color': 'C2E0E5', 'metallic': 0.00, 'roughness': 0.04, 'transmission': 0.95, 'alpha': 0.35, 'ior': 1.45},
@@ -112,7 +113,7 @@ def setup_materials():
             if 'emission' in spec:
                 bsdf.inputs['Emission Color'].default_value = (*linear, 1.0)
                 bsdf.inputs['Emission Strength'].default_value = spec['emission']
-        surface={'RailStone':'Limestone','RailFloor':'Floor','RailWalnut':'Walnut','RailFelt':'Moquette',
+        surface={'RailStone':'Limestone','RailFloor':'Floor','RailOfficeWalnut':'Walnut','RailWalnut':'Walnut','RailFelt':'Moquette',
                  'RailIron':'Iron','RailBrass':'Brass','RailSlate':'Slate','RailLeather':'Leather',
                  'RailGreen':'Paint','RailIvory':'Paint','RailRed':'Paint'}.get(name)
         art=Path(__file__).resolve().parents[2]/'game/Assets/Art/Rail'
@@ -326,7 +327,7 @@ class RailSceneBuilder:
         """Merges static meshes per module and material to minimize draw calls."""
         bpy.context.view_layer.update()
         for mod_empty in [o for o in list(self.collection.objects) if o.type == 'EMPTY' and o.name.startswith('Module_')]:
-            members = [o for o in list(mod_empty.children) if o.type == 'MESH']
+            members = [o for o in list(mod_empty.children) if o.type == 'MESH' and not o.get('ticket_support_fixture')]
             groups = {m_name: [o for o in members if o.data.materials and o.data.materials[0].name == m_name] for m_name in self.materials}
             for m_name, group in groups.items():
                 if len(group) < 2:
@@ -551,25 +552,6 @@ def build_station(out_dir):
     # Clear central aisle: x in [-2, 2], z in [-6, 6]
     b.set_module('Module_Hall_Interior')
 
-    # Ticket Desk near local (-8, 0, 1):
-    # Walnut counter x in [-10.5, -5.5], z = 1.0, height y = 1.10
-    b.box('TicketCounter', (-8.0, 0.60, 1.0), (5.0, 1.00, 0.90), 'RailWalnut', bevel=0.008)
-    b.box('TicketCounterTop', (-8.0, 1.12, 1.0), (5.2, 0.06, 1.05), 'RailWalnut', bevel=0.006)
-    # Brass ticket grilles & wickets
-    for gx in (-9.5, -8.0, -6.5):
-        b.frame(f'TicketGrilleFrame_{gx:.1f}', (gx, 1.70, 1.0), (1.10, 1.10, 0.05), 'RailBrass', bevel=0.004)
-        b.ring(f'TicketArchWicket_{gx:.1f}', (gx, 1.45, 1.0), 0.22, 0.018, 'RailBrass', axis=(0, 0, 1))
-        for bar in range(7):
-            bx = gx - 0.45 + bar * 0.15
-            b.beam(f'TicketBar_{gx:.1f}_{bar}', (bx, 1.20, 1.0), (bx, 2.20, 1.0), 0.008, 'RailBrass')
-    # Cashier ledger, bell, and pigeonholes
-    b.box('TicketLedger', (-8.0, 1.16, 1.20), (0.35, 0.05, 0.45), 'RailGreen', bevel=0.003)
-    b.ring('TicketBell', (-7.3, 1.17, 0.85), 0.06, 0.015, 'RailBrass', axis=(0, 1, 0))
-    b.box('TicketPigeonholeBack',(-8,2.2,2.655),(4.4,1.60,.045),'RailWalnut',bevel=.004)
-    for side in (-1,1):
-        b.box('TicketPigeonholeSide'+str(side),(-8+side*2.19,2.2,2.5),(.045,1.60,.35),'RailWalnut',bevel=.004)
-        b.box('TicketPigeonholeEdge'+str(side),(-8,2.2+side*.78,2.5),(4.3,.045,.35),'RailWalnut',bevel=.004)
-
     # Timetable & Paper Desk near local (+9, 0, 1):
     # Writing desk at x in [7.5, 10.5], z = 1.0, height y = 1.05
     b.box('PaperDesk', (9.0, 0.55, 1.0), (3.0, 0.90, 0.85), 'RailWalnut', bevel=0.008)
@@ -694,7 +676,7 @@ def build_station(out_dir):
     b.box('SignBacking_Qingchuan', (0.0, 6.25, z_front - 0.22), (4.5, 0.50, 0.05), 'RailWalnut', bevel=0.005)
 
     # Interior Sign: TICKETS above ticket window
-    b.box('SignBacking_Tickets', (-8.0, 2.70, 1.0), (2.2, 0.40, 0.05), 'RailWalnut', bevel=0.005)
+    # Ticket header is part of the supported shared ticket-office kit.
 
     # Canopy Directional Sign: PLATFORM 1 suspended under truss at x=0, z=18, y=5.0
     b.box('SignBacking_Plat1', (0.0, 4.95, 18.0), (3.4, 0.45, 0.06), 'RailIron', bevel=0.005)
@@ -735,6 +717,9 @@ def build_station(out_dir):
     add_station_details(b)
     from rail_detail_refinements import add_station_refinements
     add_station_refinements(b)
+    from ticket_office import add_ticket_office
+    office = add_ticket_office(b)
+    (out_dir / 'ticket-office-geometry.json').write_text(json.dumps(office, indent=2)+'\n', encoding='utf-8')
     b.set_module('Module_Facade_Lamps')
     for x in (-10,-6,6,10):
         b.box('FacadeLanternMount'+str(x),(x,3.35,-6.31),(.16,.35,.07),'RailIron')
@@ -1419,7 +1404,7 @@ def write_layout_json(out_dir):
             ],
             "signage": [
                 {"text": "QINGCHUAN", "location": "Front Facade Pediment (0, 6.25, -6.25)", "material": "RailBrass"},
-                {"text": "TICKETS", "location": "Above Ticket Window (-8.0, 2.70, 0.97)", "material": "RailBrass"},
+                {"text": "售票 · 检票", "location": "Supported ticket-office header (-8.0, 2.70, 0.955)", "material": "RailGreen backing / ivory fitted lettering"},
                 {"text": "PLATFORM 1", "location": "Canopy Truss Suspended (0.0, 4.95, 18.0)", "material": "RailIvory"}
             ],
             "markers": {
@@ -1519,6 +1504,9 @@ def write_layout_json(out_dir):
             }
         }
     }
+    office_file = out_dir / 'ticket-office-geometry.json'
+    if office_file.exists():
+        layout['station']['ticketOffice'] = json.loads(office_file.read_text(encoding='utf-8'))
     target_file = out_dir / 'rail-layout.json'
     target_file.write_text(json.dumps(layout, indent=2) + '\n', encoding='utf-8')
     print(f"rail-layout.json written to {target_file}")
@@ -1527,10 +1515,27 @@ def write_layout_json(out_dir):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=Path(__file__).parent.resolve(), help="Output directory")
+    parser.add_argument('--station-only', action='store_true', help='Preserve train and ticket assets; rebuild Station B only.')
     args = parser.parse_args(sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else sys.argv[1:])
     out_dir = args.output.resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
     print(f"Building railway visual assets in: {out_dir}")
+
+    if args.station_only:
+        build_station(out_dir)
+        inspection = reopen_and_inspect(out_dir / 'StationB.blend')
+        manifest_path = out_dir / 'source-manifest.json'
+        manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
+        manifest['station'] = inspection
+        manifest['ticketOffice'] = json.loads((out_dir / 'ticket-office-geometry.json').read_text(encoding='utf-8'))
+        manifest['unityRuntimeChecked'] = False
+        manifest_path.write_text(json.dumps(manifest, indent=2)+'\n', encoding='utf-8')
+        layout_path = out_dir / 'rail-layout.json'
+        layout = json.loads(layout_path.read_text(encoding='utf-8'))
+        layout['station']['ticketOffice'] = manifest['ticketOffice']
+        layout_path.write_text(json.dumps(layout, indent=2)+'\n', encoding='utf-8')
+        print('STATION_ONLY_GENERATION_PASS: existing train and ticket sources preserved')
+        return
 
     # Build assets
     station_blend, station_fbx = build_station(out_dir)
@@ -1556,6 +1561,7 @@ def main():
         "unityRuntimeChecked": False
     }
 
+    manifest['ticketOffice'] = json.loads((out_dir / 'ticket-office-geometry.json').read_text(encoding='utf-8'))
     manifest_file = out_dir / 'source-manifest.json'
     manifest_file.write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     print(f"source-manifest.json written to {manifest_file}")

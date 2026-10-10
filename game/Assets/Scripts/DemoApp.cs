@@ -423,7 +423,7 @@ public partial class DemoApp : MonoBehaviour {
                 if(!mapOpen||player.pitch<25){GUI.color=new Color(1,0.95f,0.85f,0.8f);GUI.DrawTexture(new Rect(W/2-3,H/2-3,6,6),circle);GUI.color=Color.white;}
                 if(focus&&(!mapOpen||player.pitch<25)) {
                     Rect p=new Rect(W/2-170,H/2+38,340,43);Box(p,new Color(0.04f,0.08f,0.11f,0.87f));
-                    Label(p,"E   "+(focus is ScenePortal||focus is ShopMechanism||focus is MilkShopFixture||focus is RailSeat||focus is RailDoor?focus.title:focus.evidenceId=="E04"||focus.title=="钟表匠"?"交谈 · "+focus.title:focus.ActionText),button);
+                    Label(p,"E   "+(focus is ScenePortal||focus is ShopMechanism||focus is MilkShopFixture||focus is RailSeat?focus.title:focus.evidenceId=="E04"||focus.title=="钟表匠"?"交谈 · "+focus.title:focus.ActionText),button);
                 }
                 if(!mapOpen)Label(new Rect(36,H-50,W-72,30),RailSeated?"鼠标 观察    E 起身下车    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停":"WASD 行走    鼠标 观察    Shift 奔跑    E 互动    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停",small);
             }

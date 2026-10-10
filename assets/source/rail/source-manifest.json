@@ -5,10 +5,10 @@
   "fbxExportHelper": "u(p)=(-p[0], -p[2], p[1]) with axis_forward=-Z, axis_up=Y",
   "station": {
     "reopenedFile": "StationB.blend",
-    "meshObjectsCount": 65,
-    "emptyObjectsCount": 33,
-    "totalVertices": 232458,
-    "totalFaces": 218207,
+    "meshObjectsCount": 134,
+    "emptyObjectsCount": 39,
+    "totalVertices": 251939,
+    "totalFaces": 236240,
     "materials": [
       "RailBrass",
       "RailFelt",
@@ -19,6 +19,7 @@
       "RailIron",
       "RailIvory",
       "RailLeather",
+      "RailOfficeWalnut",
       "RailRed",
       "RailSkin",
       "RailSlate",
@@ -46,7 +47,10 @@
       31.275
     ],
     "meshNames": [
+      "CashierBellBase",
+      "DiscardedPaperCore",
       "HallFloor",
+      "InkstandTray",
       "LuggageScaleFace",
       "Module_Annexes_RailFloor",
       "Module_Annexes_RailGlass",
@@ -81,7 +85,6 @@
       "Module_Shed_Structure_RailIron",
       "Module_Shed_Trusses_RailIron",
       "Module_Signs_Lighting_RailIron",
-      "Module_Signs_Lighting_RailWalnut",
       "Module_Station_ArchJoinery_RailGreen",
       "Module_Station_ArchJoinery_RailStone",
       "Module_Station_Detail_RailBrass",
@@ -92,25 +95,92 @@
       "Module_Station_InteriorDetail_RailGreen",
       "Module_Station_InteriorDetail_RailIron",
       "Module_Station_InteriorDetail_RailIvory",
-      "Module_Station_InteriorDetail_RailRed",
       "Module_Station_InteriorDetail_RailWalnut",
       "Module_Station_PlatformDetail_RailBrass",
       "Module_Station_PlatformDetail_RailIron",
       "Module_Station_PlatformDetail_RailLeather",
       "Module_Station_PlatformDetail_RailRed",
       "Module_Station_PlatformDetail_RailWalnut",
+      "Module_TicketBin_PaperFill_RailIvory",
       "Module_TicketClerk_RailGreen",
       "Module_TicketClerk_RailIron",
       "Module_TicketClerk_RailSkin",
       "Module_TicketClerk_RailSlate",
-      "Module_TicketTools_RailIron",
+      "Module_TicketOffice_DeskProps_RailBrass",
+      "Module_TicketOffice_DeskProps_RailIron",
+      "Module_TicketOffice_DeskProps_RailRed",
+      "Module_TicketOffice_EndPanels_RailBrass",
+      "Module_TicketOffice_Grilles_RailBrass",
+      "Module_TicketOffice_Joinery_RailBrass",
+      "Module_TicketOffice_Joinery_RailGreen",
+      "Module_TicketOffice_Joinery_RailOfficeWalnut",
+      "Module_TicketOffice_Storage_RailBrass",
+      "Module_TicketOffice_Storage_RailGreen",
+      "Module_TicketOffice_Storage_RailIvory",
+      "Module_TicketOffice_Storage_RailOfficeWalnut",
+      "Module_TicketOffice_Storage_RailRed",
+      "Module_TicketOffice_WorkLamps_RailBrass",
+      "Module_TicketOffice_WorkLamps_RailGreen",
+      "Module_TicketOffice_WorkLamps_RailIvory",
+      "OfficeBlotter",
+      "OfficeCorniceLower",
+      "OfficeEndGreenPanel",
+      "OfficeHeaderBeam",
+      "OfficeKickplate",
+      "OfficeLampBase_0",
+      "OfficeLampBase_1",
+      "OfficeLampBulb_0",
+      "OfficeLampBulb_1",
+      "OfficeLeftCheek",
+      "OfficeLeftCheekTop",
+      "OfficePost_0",
+      "OfficePost_1",
+      "OfficePost_2",
+      "OfficePost_3",
+      "OfficeStorageBase",
+      "OfficeStorageWorktop",
       "PedimentClockBezel",
       "PedimentClockDial",
+      "PigeonDocBundle_0_0",
+      "PigeonDocBundle_0_2",
+      "PigeonDocBundle_0_5",
+      "PigeonDocBundle_0_7",
+      "PigeonDocBundle_1_1",
+      "PigeonDocBundle_1_3",
+      "PigeonDocBundle_1_6",
+      "PigeonDocBundle_2_2",
+      "PigeonDocBundle_2_4",
+      "PigeonDocBundle_2_7",
+      "PigeonDocBundle_3_0",
+      "PigeonDocBundle_3_3",
+      "PigeonDocBundle_3_5",
+      "PigeonDocBundle_4_1",
+      "PigeonDocBundle_4_4",
+      "PigeonDocBundle_4_6",
+      "PigeonShelf_0",
+      "PigeonShelf_1",
+      "PigeonShelf_2",
+      "PigeonShelf_3",
+      "PigeonShelf_4",
+      "PigeonShelf_5",
       "PorchGlass_Roof",
-      "PunchPivot",
+      "PunchFixedHandle",
+      "SafeLedgerCover",
+      "SafeLedgerPages",
+      "SignBacking_Qingchuan",
+      "SignBacking_Tickets",
       "Suitcase_SmallGreen",
-      "TicketLedger",
-      "WasteBinLabelPlate"
+      "TicketBin_InnerBottom",
+      "TicketCounter",
+      "TicketCounterTop",
+      "TicketPigeonholeBack",
+      "TicketPigeonholeSide-1",
+      "TicketPigeonholeSide1",
+      "WasteBinLabelPlate",
+      "WastePaperPileSupport",
+      "WicketTrayBase_0",
+      "WicketTrayBase_1",
+      "WicketTrayBase_2"
     ],
     "emptyNames": [
       "EastMarker",
@@ -142,8 +212,14 @@
       "Module_Station_Detail",
       "Module_Station_InteriorDetail",
       "Module_Station_PlatformDetail",
+      "Module_TicketBin_PaperFill",
       "Module_TicketClerk",
-      "Module_TicketTools",
+      "Module_TicketOffice_DeskProps",
+      "Module_TicketOffice_EndPanels",
+      "Module_TicketOffice_Grilles",
+      "Module_TicketOffice_Joinery",
+      "Module_TicketOffice_Storage",
+      "Module_TicketOffice_WorkLamps",
       "StationClockCentre",
       "TicketClerkMarker"
     ]
@@ -421,5 +497,358 @@
     "train": "train-threequarter.png"
   },
   "provenance": "Original procedural geometry for a fictional 1931-inspired railway. Antigravity first draft reviewed and refined locally: real apertures, wheel pivots, pitched and arched roofs, clock and signage integration. No downloaded third-party models.",
-  "unityRuntimeChecked": false
+  "unityRuntimeChecked": true,
+  "ticketOffice": {
+    "version": 1,
+    "lamps": [
+      {
+        "bulb": "OfficeLampBulb_0",
+        "position": [
+          -9.1,
+          1.495,
+          1.22
+        ]
+      },
+      {
+        "bulb": "OfficeLampBulb_1",
+        "position": [
+          -6.9,
+          1.495,
+          1.22
+        ]
+      }
+    ],
+    "spentTicketPoses": [
+      {
+        "x": -0.035,
+        "z": -0.1,
+        "yaw": -15,
+        "supportTop": 0.716
+      },
+      {
+        "x": 0.08,
+        "z": 0.035,
+        "yaw": 54,
+        "supportTop": 0.7163499999999999
+      },
+      {
+        "x": -0.1,
+        "z": 0.06,
+        "yaw": -28,
+        "supportTop": 0.7167
+      },
+      {
+        "x": 0.04,
+        "z": 0.1,
+        "yaw": 112,
+        "supportTop": 0.71705
+      },
+      {
+        "x": -0.02,
+        "z": 0.005,
+        "yaw": 28,
+        "supportTop": 0.7173999999999999
+      },
+      {
+        "x": 0.09,
+        "z": -0.065,
+        "yaw": -48,
+        "supportTop": 0.71775
+      },
+      {
+        "x": -0.12,
+        "z": -0.06,
+        "yaw": 80,
+        "supportTop": 0.7181
+      },
+      {
+        "x": 0.01,
+        "z": 0.025,
+        "yaw": 0,
+        "supportTop": 0.7184499999999999
+      }
+    ],
+    "floorTop": 0.1,
+    "counterTop": 1.15,
+    "contacts": [
+      {
+        "item": "TicketCounterTop",
+        "support": "TicketCounter",
+        "gapMetres": -0.01
+      },
+      {
+        "item": "OfficeHeaderBeam",
+        "support": "OfficePost_0",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "OfficeHeaderBeam",
+        "support": "OfficePost_1",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "OfficeHeaderBeam",
+        "support": "OfficePost_2",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "OfficeHeaderBeam",
+        "support": "OfficePost_3",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "SignBacking_Tickets",
+        "support": "OfficeHeaderBeam",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "OfficeCorniceLower",
+        "support": "SignBacking_Tickets",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "WicketTrayBase_0",
+        "support": "TicketCounterTop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "WicketTrayBase_1",
+        "support": "TicketCounterTop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "WicketTrayBase_2",
+        "support": "TicketCounterTop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "OfficeStorageWorktop",
+        "support": "OfficeStorageBase",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "TicketPigeonholeBack",
+        "support": "OfficeStorageWorktop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "TicketPigeonholeSide-1",
+        "support": "OfficeStorageWorktop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "TicketPigeonholeSide1",
+        "support": "OfficeStorageWorktop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_0_0",
+        "support": "PigeonShelf_0",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_0_2",
+        "support": "PigeonShelf_0",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_0_5",
+        "support": "PigeonShelf_0",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_0_7",
+        "support": "PigeonShelf_0",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_1_1",
+        "support": "PigeonShelf_1",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_1_3",
+        "support": "PigeonShelf_1",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_1_6",
+        "support": "PigeonShelf_1",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_2_2",
+        "support": "PigeonShelf_2",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_2_4",
+        "support": "PigeonShelf_2",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_2_7",
+        "support": "PigeonShelf_2",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_3_0",
+        "support": "PigeonShelf_3",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_3_3",
+        "support": "PigeonShelf_3",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_3_5",
+        "support": "PigeonShelf_3",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_4_1",
+        "support": "PigeonShelf_4",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_4_4",
+        "support": "PigeonShelf_4",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PigeonDocBundle_4_6",
+        "support": "PigeonShelf_4",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "OfficeBlotter",
+        "support": "TicketCounterTop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "InkstandTray",
+        "support": "OfficeBlotter",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "CashierBellBase",
+        "support": "TicketCounterTop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "SafeLedgerCover",
+        "support": "TicketCounterTop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "PunchFixedHandle",
+        "support": "TicketCounterTop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "OfficeLampBase_0",
+        "support": "TicketCounterTop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "OfficeLampBase_1",
+        "support": "TicketCounterTop",
+        "gapMetres": 0.0
+      },
+      {
+        "item": "DiscardedPaperCore",
+        "support": "TicketBin_InnerBottom",
+        "gapMetres": -0.0
+      },
+      {
+        "item": "WastePaperPileSupport",
+        "support": "DiscardedPaperCore",
+        "gapMetres": 0.0
+      }
+    ],
+    "grounded": [
+      "TicketCounter",
+      "OfficeStorageBase",
+      "OfficeLeftCheek",
+      "OfficePost_0",
+      "OfficePost_1",
+      "OfficePost_2",
+      "OfficePost_3",
+      "TicketBin_InnerBottom"
+    ],
+    "fixtures": [
+      "CashierBellBase",
+      "DiscardedPaperCore",
+      "InkstandTray",
+      "OfficeBlotter",
+      "OfficeCorniceLower",
+      "OfficeHeaderBeam",
+      "OfficeLampBase_0",
+      "OfficeLampBase_1",
+      "OfficeLeftCheek",
+      "OfficePost_0",
+      "OfficePost_1",
+      "OfficePost_2",
+      "OfficePost_3",
+      "OfficeStorageBase",
+      "OfficeStorageWorktop",
+      "PigeonDocBundle_0_0",
+      "PigeonDocBundle_0_2",
+      "PigeonDocBundle_0_5",
+      "PigeonDocBundle_0_7",
+      "PigeonDocBundle_1_1",
+      "PigeonDocBundle_1_3",
+      "PigeonDocBundle_1_6",
+      "PigeonDocBundle_2_2",
+      "PigeonDocBundle_2_4",
+      "PigeonDocBundle_2_7",
+      "PigeonDocBundle_3_0",
+      "PigeonDocBundle_3_3",
+      "PigeonDocBundle_3_5",
+      "PigeonDocBundle_4_1",
+      "PigeonDocBundle_4_4",
+      "PigeonDocBundle_4_6",
+      "PigeonShelf_0",
+      "PigeonShelf_1",
+      "PigeonShelf_2",
+      "PigeonShelf_3",
+      "PigeonShelf_4",
+      "PigeonShelf_5",
+      "PunchFixedHandle",
+      "SafeLedgerCover",
+      "SignBacking_Tickets",
+      "TicketBin_InnerBottom",
+      "TicketCounter",
+      "TicketCounterTop",
+      "TicketPigeonholeBack",
+      "TicketPigeonholeSide-1",
+      "TicketPigeonholeSide1",
+      "WastePaperPileSupport",
+      "WicketTrayBase_0",
+      "WicketTrayBase_1",
+      "WicketTrayBase_2"
+    ],
+    "style": "Original timber and brass booth inspired by Station B; no invented dates or schedules."
+  },
+  "ticketOfficeVerification": {
+    "assemblySHA256": "7c2f4539d265a12676cb663ee45a5364e459db7ed4eb01d2bd9d0493a1cd8475",
+    "platform": "Windows / Unity 6000.3.18f1 / native D3D11 renderer",
+    "record": "output/demo/ticket-office/acceptance.json",
+    "importedContacts": 39,
+    "groundedFixtures": 8,
+    "nativeChecks": 6,
+    "editModePassed": 32,
+    "scopedGenerationPreservedTrainFiles": true,
+    "outsideGeometryAndUVPreservation": {
+      "preservedOutsideTicketArea": true,
+      "positionPrecisionMetres": 0.0001,
+      "uvPrecision": 1e-05,
+      "beforeFaces": 207175,
+      "afterFaces": 207175,
+      "removedOutside": 0,
+      "addedOutside": 0,
+      "blenderVersion": "5.2.0 LTS"
+    }
+  }
 }

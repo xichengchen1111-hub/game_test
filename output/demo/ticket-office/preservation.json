@@ -1,0 +1,10 @@
+{
+  "preservedOutsideTicketArea": true,
+  "positionPrecisionMetres": 0.0001,
+  "uvPrecision": 1e-05,
+  "beforeFaces": 207175,
+  "afterFaces": 207175,
+  "removedOutside": 0,
+  "addedOutside": 0,
+  "blenderVersion": "5.2.0 LTS"
+}

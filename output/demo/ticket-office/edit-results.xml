@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="32" result="Passed" total="32" passed="32" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:39Z" duration="0.4909088">
+  <test-suite type="TestSuite" id="1000" name="错日证词 · 暮色小镇" fullname="错日证词 · 暮色小镇" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:39Z" duration="0.490909" total="32" passed="32" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1042" name="Railway.EditTests.dll" fullname="D:/AllPersonalProjects/Chenchengame/game_test/game/Library/ScriptAssemblies/Railway.EditTests.dll" runstate="Runnable" testcasecount="32" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:39Z" duration="0.485294" total="32" passed="32" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="52956" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1001" name="FurnitureSeatSafetyTests" fullname="FurnitureSeatSafetyTests" classname="FurnitureSeatSafetyTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:38Z" duration="0.028549" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1003" name="ClearFloorSupportsStanding" fullname="FurnitureSeatSafetyTests.ClearFloorSupportsStanding" methodname="ClearFloorSupportsStanding" classname="FurnitureSeatSafetyTests" runstate="Runnable" seed="751964831" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:38Z" duration="0.015528" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1005" name="ItemTriggersDoNotObstructThePhysicalExit" fullname="FurnitureSeatSafetyTests.ItemTriggersDoNotObstructThePhysicalExit" methodname="ItemTriggersDoNotObstructThePhysicalExit" classname="FurnitureSeatSafetyTests" runstate="Runnable" seed="1866558512" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:38Z" duration="0.001444" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1004" name="OccupiedExitCannotPushPassengerThroughObjects" fullname="FurnitureSeatSafetyTests.OccupiedExitCannotPushPassengerThroughObjects" methodname="OccupiedExitCannotPushPassengerThroughObjects" classname="FurnitureSeatSafetyTests" runstate="Runnable" seed="327388749" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:38Z" duration="0.001295" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1002" name="StandingRequiresARealFloor" fullname="FurnitureSeatSafetyTests.StandingRequiresARealFloor" methodname="StandingRequiresARealFloor" classname="FurnitureSeatSafetyTests" runstate="Runnable" seed="362481220" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:38Z" duration="0.000420" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1006" name="RailDoorInteractionTests" fullname="RailDoorInteractionTests" classname="RailDoorInteractionTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:39Z" duration="0.125829" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="ParameterizedMethod" id="1015" name="BothSidesHaveRealOpenClosedLeaves" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:39Z" duration="0.108820" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1007" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_S_F&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_S_F&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="2001651757" result="Passed" start-time="2026-10-10 14:54:38Z" end-time="2026-10-10 14:54:39Z" duration="0.071485" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1008" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_S_R&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_S_R&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="876757467" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.006544" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1009" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_N_F&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_N_F&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="311915959" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.005050" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1010" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_N_R&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_N_R&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="888087150" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.005022" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1011" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_S_F&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_S_F&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="840277324" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.004856" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1012" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_S_R&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_S_R&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="1236261817" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.005411" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1013" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_N_F&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_N_F&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="1925472846" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.004655" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1014" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_N_R&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_N_R&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="433537538" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.004205" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-suite type="ParameterizedMethod" id="1018" name="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed" fullname="RailDoorInteractionTests.CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed" classname="RailDoorInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.016078" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1016" name="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed(&quot;Door_C1_S_F&quot;)" fullname="RailDoorInteractionTests.CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed(&quot;Door_C1_S_F&quot;)" methodname="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed" classname="RailDoorInteractionTests" runstate="Runnable" seed="113578881" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.008130" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1017" name="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed(&quot;Door_C1_N_F&quot;)" fullname="RailDoorInteractionTests.CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed(&quot;Door_C1_N_F&quot;)" methodname="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed" classname="RailDoorInteractionTests" runstate="Runnable" seed="886197773" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.005577" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+      </test-suite>
+      <test-suite type="TestFixture" id="1019" name="RailGeometryTests" fullname="RailGeometryTests" classname="RailGeometryTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.071092" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1023" name="AnExtraApertureCannotReplaceAWindowPost" fullname="RailGeometryTests.AnExtraApertureCannotReplaceAWindowPost" methodname="AnExtraApertureCannotReplaceAWindowPost" classname="RailGeometryTests" runstate="Runnable" seed="86593306" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.012587" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1022" name="AnOpaqueWindowBackingIsRejected" fullname="RailGeometryTests.AnOpaqueWindowBackingIsRejected" methodname="AnOpaqueWindowBackingIsRejected" classname="RailGeometryTests" runstate="Runnable" seed="462816697" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.007894" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1021" name="MovedVisualCannotDriftFromBoardingLayout" fullname="RailGeometryTests.MovedVisualCannotDriftFromBoardingLayout" methodname="MovedVisualCannotDriftFromBoardingLayout" classname="RailGeometryTests" runstate="Runnable" seed="2004634893" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.005526" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1028" name="RailwayRainProfilesMatchTheirActualRoof" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.028444" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1024" name="RailwayRainProfilesMatchTheirActualRoof(False,False,6.0f,1.6f,0.0f,11.0f,6.0f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(False,False,6.0f,1.6f,0.0f,11.0f,6.0f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="1316734124" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.011746" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1025" name="RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,0.0f,9.4f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,0.0f,9.4f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="731830343" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.005062" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1026" name="RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,11.0f,5.4f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,11.0f,5.4f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="1458478022" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.004348" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1027" name="RailwayRainProfilesMatchTheirActualRoof(False,True,3.46f,0.34f,0.0f,0.0f,3.8f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(False,True,3.46f,0.34f,0.0f,0.0f,3.8f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="723668514" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.005566" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1020" name="SharedPhysicalCoachIsValid" fullname="RailGeometryTests.SharedPhysicalCoachIsValid" methodname="SharedPhysicalCoachIsValid" classname="RailGeometryTests" runstate="Runnable" seed="2106291631" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.013789" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[RAIL_AUTHORING_PASS: original editable train; matched actual coach windows/floor/aisle, eight doors and independent wheels
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1029" name="TicketOfficeSupportTests" fullname="TicketOfficeSupportTests" classname="TicketOfficeSupportTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.250293" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="ParameterizedMethod" id="1035" name="FloatingFixturesAreRejected" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.236853" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1031" name="FloatingFixturesAreRejected(&quot;PigeonDocBundle_0_0&quot;)" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected(&quot;PigeonDocBundle_0_0&quot;)" methodname="FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="1683893248" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.218519" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1032" name="FloatingFixturesAreRejected(&quot;PunchFixedHandle&quot;)" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected(&quot;PunchFixedHandle&quot;)" methodname="FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="755225874" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.007377" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1033" name="FloatingFixturesAreRejected(&quot;SignBacking_Tickets&quot;)" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected(&quot;SignBacking_Tickets&quot;)" methodname="FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="685814949" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.005699" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1034" name="FloatingFixturesAreRejected(&quot;OfficePost_3&quot;)" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected(&quot;OfficePost_3&quot;)" methodname="FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="1794373626" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.004667" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1030" name="ImportedOfficeFixturesAreSupported" fullname="TicketOfficeSupportTests.ImportedOfficeFixturesAreSupported" methodname="ImportedOfficeFixturesAreSupported" classname="TicketOfficeSupportTests" runstate="Runnable" seed="47170534" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.007035" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[TICKET_OFFICE_SUPPORT_PASS: 39 imported contacts, 8 grounded fixtures
+]]></output>
+        </test-case>
+        <test-case id="1036" name="MissingWastePaperFillIsRejected" fullname="TicketOfficeSupportTests.MissingWastePaperFillIsRejected" methodname="MissingWastePaperFillIsRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="2122348942" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.004862" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1037" name="TicketStockTests" fullname="TicketStockTests" classname="TicketStockTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.007764" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1039" name="CarriedStockPreservesThePaperAtAllPunchPositions" fullname="TicketStockTests.CarriedStockPreservesThePaperAtAllPunchPositions" methodname="CarriedStockPreservesThePaperAtAllPunchPositions" classname="TicketStockTests" runstate="Runnable" seed="1628316455" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.003021" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1040" name="PaintedDotsCannotReplacePhysicalPunchVoids" fullname="TicketStockTests.PaintedDotsCannotReplacePhysicalPunchVoids" methodname="PaintedDotsCannotReplacePhysicalPunchVoids" classname="TicketStockTests" runstate="Runnable" seed="2051366922" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.000628" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1041" name="PunchedStockCannotBeUsedForTheCarriedOriginal" fullname="TicketStockTests.PunchedStockCannotBeUsedForTheCarriedOriginal" methodname="PunchedStockCannotBeUsedForTheCarriedOriginal" classname="TicketStockTests" runstate="Runnable" seed="213605743" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.001613" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1038" name="WasteStockHasPhysicalPunchVoids" fullname="TicketStockTests.WasteStockHasPhysicalPunchVoids" methodname="WasteStockHasPhysicalPunchVoids" classname="TicketStockTests" runstate="Runnable" seed="1586491929" result="Passed" start-time="2026-10-10 14:54:39Z" end-time="2026-10-10 14:54:39Z" duration="0.000389" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/jason/AppData/LocalLow/Qingchuan Studio/错日证词 · 暮色小镇\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

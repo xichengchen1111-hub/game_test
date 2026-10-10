@@ -32,12 +32,12 @@ public static partial class BuildSlice {
         }
         string hex=name switch {
             "RailIron"=>"#44514E","RailGreen"=>"#345B47","RailIvory"=>"#E2D6BE","RailBrass"=>"#B59755",
-            "RailWalnut"=>"#A37850","RailFelt"=>"#4B6651","RailGlow"=>"#FFD292","RailStone"=>"#D4C8AD",
+            "RailOfficeWalnut"=>"#805B42","RailWalnut"=>"#A37850","RailFelt"=>"#4B6651","RailGlow"=>"#FFD292","RailStone"=>"#D4C8AD",
             "RailFloor"=>"#DDD8C3","RailLeather"=>"#8C5C3D",
             "RailSlate"=>"#35414E","RailRed"=>"#773C36","RailCoal"=>"#1C2224","RailSkin"=>"#B99075",_=>"#A49170"};
         var material=Mat(name,hex,name=="RailGlow"?1.8f:0,name=="RailBrass"?.45f:.22f);
         material.SetFloat("_Metallic",name=="RailBrass"?.65f:name=="RailIron"?.22f:0);
-        string surface=name switch {"RailStone"=>"Limestone","RailFloor"=>"Floor","RailWalnut"=>"Walnut","RailFelt"=>"Moquette","RailBrass"=>"Brass","RailIron"=>"Iron","RailSlate"=>"Slate","RailLeather"=>"Leather","RailGreen" or "RailIvory" or "RailRed"=>"Paint",_=>null};
+        string surface=name switch {"RailStone"=>"Limestone","RailFloor"=>"Floor","RailOfficeWalnut" or "RailWalnut"=>"Walnut","RailFelt"=>"Moquette","RailBrass"=>"Brass","RailIron"=>"Iron","RailSlate"=>"Slate","RailLeather"=>"Leather","RailGreen" or "RailIvory" or "RailRed"=>"Paint",_=>null};
         if(surface!=null) {
             material.SetTexture("_BaseMap",RailTexture(surface+"Base.png"));
             material.SetTexture("_BumpMap",RailTexture(surface+"Normal.png",true,true));
@@ -113,7 +113,17 @@ public static partial class BuildSlice {
         train.rods=transforms.Where(t=>t.name.StartsWith("Rod_")&&t.GetComponent<MeshFilter>()==null).ToArray();
         foreach(var rod in train.rods)rod.gameObject.AddComponent<RailRod>().rest=rod.localPosition;
         train.doors=transforms.Where(t=>t.name.StartsWith("Door_")&&t.GetComponent<MeshFilter>()==null).ToArray();
-        foreach(var door in train.doors){var handle=door.gameObject.AddComponent<RailDoor>();handle.train=train;handle.title="打开车门";}
+        foreach(var door in train.doors) {
+            var handle=door.gameObject.AddComponent<RailDoor>();handle.train=train;handle.title="车门";
+            // One simple physical leaf moves with the authored hinge, instead of many bevel colliders.
+            var renderers=door.GetComponentsInChildren<MeshRenderer>();var bounds=renderers[0].bounds;
+            foreach(var renderer in renderers)bounds.Encapsulate(renderer.bounds);
+            foreach(var collider in door.GetComponentsInChildren<MeshCollider>())UnityEngine.Object.DestroyImmediate(collider);
+            var leaf=Group("Door leaf collision",Vector3.zero,door);
+            leaf.transform.position=bounds.center;leaf.transform.rotation=root.transform.rotation;
+            var scale=door.lossyScale;leaf.transform.localScale=new Vector3(1/scale.x,1/scale.y,1/scale.z);
+            handle.leafCollider=leaf.AddComponent<BoxCollider>();handle.leafCollider.size=new Vector3(1.05f,2.30f,.085f);
+        }
         foreach(float offset in new[]{0f,-16f})foreach(float end in new[]{-5.9f,5.9f}) {
             // Three 21cm rises from the 42cm platform to the 105cm coach floor.
             for(int step=0;step<3;step++) {
@@ -165,6 +175,8 @@ public static partial class BuildSlice {
         material.SetTexture("_BaseMap",AssetDatabase.LoadAssetAtPath<Texture2D>(RailFolder+"Steam.png"));EditorUtility.SetDirty(material);
         if(burst)system.Stop(true,ParticleSystemStopBehavior.StopEmittingAndClear);return system;
     }
+    [Serializable] class OfficeLampData {public string bulb;public float[] position;}
+    [Serializable] class OfficeLightingData {public OfficeLampData[] lamps;}
     static void StationPrefab() {
         var root=Group("B 方案 · 铁与玻璃车站",Vector3.zero);var visual=RailVisual("StationB",root.transform,false);
         WeatherAuthoring.Shelter(root,new Vector2(30,12),6,1.6f);root.GetComponent<WeatherShelter>().ridgeAlongX=true;
@@ -175,6 +187,13 @@ public static partial class BuildSlice {
         }
         foreach(float x in new[]{-8f,-3f,3f,8f}) {
             var lamp=Point("Station hall lantern",new Vector3(x,Mathf.Abs(x)==8?4.4f:4.7f,0),C("#FFE0B1"),6.5f,10);lamp.transform.SetParent(root.transform,false);DayNightLighting.Bind(lamp,DayNightLamp.Role.Interior,.65f,x==-8?DayNightLighting.ModuleGlow(visual.transform,"Module_Hall_Lamps"):new Renderer[0]);
+        }
+        var office=JsonUtility.FromJson<OfficeLightingData>(AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/TicketOfficeGeometry.json").text);
+        foreach(var data in office.lamps) {
+            var p=data.position;var lamp=Point("Ticket office shaded work lamp",new Vector3(p[0],p[1],p[2]),C("#FFD59E"),.35f,2.1f);
+            lamp.transform.SetParent(root.transform,false);
+            var glow=visual.GetComponentsInChildren<Renderer>().Single(r=>r.name==data.bulb);
+            DayNightLighting.Bind(lamp,DayNightLamp.Role.Interior,.5f,new[]{glow});
         }
         foreach(float x in new[]{-25f,-15f,-5f,5f,15f,25f}) {
             var lamp=Point("Platform lantern",new Vector3(x,5.7f,20),C("#FFDEA8"),3.5f,11);lamp.transform.SetParent(root.transform,false);DayNightLighting.Bind(lamp,DayNightLamp.Role.Exterior,.85f,x==-25?DayNightLighting.ModuleGlow(visual.transform,"Module_Platform_Lamps"):new Renderer[0]);
@@ -197,7 +216,7 @@ public static partial class BuildSlice {
         var porchFace=RailFace(root.transform,new Vector3(0,3.72f,-7.26f),Quaternion.identity);
         RailBoard(root.transform,"青 川 车 站",root.transform.InverseTransformPoint(porchFace.point-Vector3.forward*.06f),new Vector2(3.7f,.48f),Quaternion.identity);
         RailSurfaceText(root.transform,"QINGCHUAN",new Vector3(0,6.25f,-6.29f),Quaternion.identity);
-        RailSurfaceText(root.transform,"售 票 处",new Vector3(-8,2.7f,.92f),Quaternion.identity);
+        RailSurfaceText(root.transform,"售票 · 检票",new Vector3(-8,2.7f,.92f),Quaternion.identity);
         RailSurfaceText(root.transform,"一 号 站 台",new Vector3(0,4.95f,17.90f),Quaternion.identity);
         RailWallBoard(root.transform,"候车厅  →  站台",new Vector3(0,3.8f,5.88f),new Vector2(3.1f,.42f),Quaternion.identity);
         RailSurfaceText(root.transform,"旅客须知\n检票时请交验车票\n大件行李请妥善放置",new Vector3(10,2.70f,5.80f),Quaternion.identity,C("#453C30"));
@@ -205,6 +224,7 @@ public static partial class BuildSlice {
         RailSurfaceText(root.transform,"行李须知\n大件行李请寄存\n请勿阻塞过道",new Vector3(14.81f,2.60f,-3.5f),Quaternion.Euler(0,90,0),C("#453C30"));
         StationItems(root.transform);
         RailValidateSigns(root.transform);
+        TicketOfficeChecks.Validate(root,AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/TicketOfficeGeometry.json"));
         RailChecks.ValidateStation(root);
         PrefabUtility.SaveAsPrefabAsset(root,"Assets/Generated/StationB.prefab");UnityEngine.Object.DestroyImmediate(root);
     }
@@ -220,7 +240,7 @@ public static partial class BuildSlice {
         }
         RailWasteTickets(root.transform);
         RailBoard(root.transform,"废票",new Vector3(-11.3f,.40f,-1.057f),new Vector2(.24f,.14f),Quaternion.identity,inset:.03f);
-        var punch=Group("手持检票钳",new Vector3(-6.68f,1.235f,.64f),root.transform);Collider(punch,Vector3.zero,new Vector3(.26f,.065f,.07f));
+        var punch=Group("手持检票钳",new Vector3(-6.665f,1.189f,.60f),root.transform);var punchTarget=punch.AddComponent<BoxCollider>();punchTarget.size=new Vector3(.31f,.078f,.11f);punchTarget.isTrigger=true;
         var tool=punch.AddComponent<Interactable>();tool.title="手持检票钳";tool.source="青川车站售票柜台";tool.body="金属检票钳。按下把手，钳口便在票上打出一个小孔。";
         var clerk=Group("车站售票员",new Vector3(-8,1.64f,1.9f),root.transform);
         Collider(clerk,Vector3.zero,new Vector3(.35f,.30f,.28f));var conversation=clerk.AddComponent<Interactable>();conversation.title="售票员";conversation.source="青川车站售票处";conversation.body="检票的时候，会用检票钳在票上打孔。旁边废票桶里的同线路旧票，你可以拿起来看看。\n\n请从候车厅后门前往站台，车厢靠站台的一侧可以登车。坐稳后，列车便会出发。";

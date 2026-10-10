@@ -27,9 +27,11 @@ public partial class DemoApp {
     IEnumerator RailBoard(RailTrain train) {
         var root=train.transform;
         yield return RailWalk(root.TransformPoint(new Vector3(5.9f,.42f,-3)));
+        yield return ReviewRailDoor(train);
         player.Aim(root.TransformPoint(new Vector3(5.9f,2.5f,-1.4f)));yield return Capture("train-open-boarding");
         yield return RailWalk(root.TransformPoint(new Vector3(5.9f,1.05f,-.6f)));
         yield return RailWalk(root.TransformPoint(new Vector3(5.9f,1.05f,0)));
+        yield return ReviewRailDoorInside(train);
         // Traverse the actual passenger bulkhead, aisle and coach connector.
         yield return RailWalk(root.TransformPoint(new Vector3(-16,1.05f,0)));
         player.Aim(root.TransformPoint(new Vector3(-22,2.6f,0)));yield return Capture("train-coach-02");
@@ -54,6 +56,10 @@ public partial class DemoApp {
         player.Place(new Vector3(170,.12f,31),0);player.Aim(new Vector3(188,4.5f,49));yield return Capture("station-B-wide-dusk");
         player.Place(new Vector3(188,.12f,33),0);player.Aim(new Vector3(188,5,46));yield return Capture("station-B-front-dusk");
         yield return RailWalk(new Vector3(188,.12f,44));player.Aim(new Vector3(178,3,47));yield return Capture("station-ticket-hall");
+        if(Array.IndexOf(Environment.GetCommandLineArgs(),"--record-ticket-office")>=0) {
+            yield return ReviewTicketOffice();
+            if(Array.IndexOf(Environment.GetCommandLineArgs(),"--office-only")>=0)yield break;
+        }
         RailTicketChecks.ValidateImages(intactTicketImage,punchedTicketImage);
         InspectCarriedTicket();yield return Capture("ticket-carried-intact");CloseInspect();
         yield return RailWalk(new Vector3(177.4f,.12f,43.5f));

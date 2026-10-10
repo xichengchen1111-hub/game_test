@@ -18,10 +18,3 @@ def add_station_refinements(b):
                 b.beam('ArchedGlazingBead_%s_%s_%s'%(x,z,i),(x+1.08*math.cos(a),3+1.08*math.sin(a),z+sign*.135),
                        (x+1.08*math.cos(c),3+1.08*math.sin(c),z+sign*.135),.024,'RailGreen',vertices=8)
     b.box('WasteBinLabelPlate',(-11.3,.41,-1.045),(.18,.10,.012),'RailIron',bevel=.002)
-    # Hand punch on the counter; a single jaw punches one hole per press.
-    b.set_module('Module_TicketTools')
-    b.beam('PunchFixedHandle',(-6.8,1.2,.64),(-6.6,1.2,.64),.012,'RailIron',vertices=10)
-    b.beam('PunchUpperHandle',(-6.8,1.22,.64),(-6.62,1.245,.64),.012,'RailIron',vertices=10)
-    b.cylinder('PunchPivot',(-6.62,1.225,.64),.018,.037,'RailBrass',axis=(0,0,1),vertices=12)
-    b.box('PunchJaw',(-6.57,1.222,.64),(.055,.010,.035),'RailIron',bevel=.002)
-    b.cylinder('PunchDie',(-6.558,1.24,.64),.004,.014,'RailIron',axis=(0,1,0),vertices=12)
