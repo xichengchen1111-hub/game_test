@@ -1,6 +1,62 @@
 # Agent 持久记忆：错日证词
 
-最后核对：2026-10-11。最新：钟楼夜景（背光钟盘、投光、门灯、光照层隔离）见末尾TOWER-10；车站后门出站口z-fighting见RAIL-07；车内地图飘到车顶见CAR-02；白天质感光影与云后太阳见LOOK-01（均在staging构建验收，未提交推送，正常入口builds/windows未重建）。此前：旅馆用车（可驾驶、42 个交互点）见末尾CAR-01；车站／列车美化、铁路灯发光修复与车轮落轨见末尾RAIL-06（在worktree验收，未提交，正常入口未重建）。此前：最新检票处细化、废票桶填充与实体车门修复见RAIL-05；用户随后授权本轮提交推送，发布核对见末尾PUBLISH-02，最终提交与远端状态以Git为准。完整一天仍为现实2小时，当前12倍、现实50秒=游戏10分钟；已有累计存档不重算。时间兼容性与剧情窗口未满足的实测见TIME-01。前轮main从ea1f197快进至7f01ddb并合并本地铁路的记录见SYNC-01；恢复stash 9a8cfe83c9c716c2df9bd418b772900364d687da留存。TIME-01后的直接推送已完成，RAIL-05开工基线main/origin/main同ca395d0338a31939d8b851953342656ca42e625c。本文旧数值与验收不覆盖现行AGENTS规则，不把旧构建通过当作新版本重跑。
+### PUBLISH-05：用户授权推送最新人物、绿化与售票员对话（2026-10-11）
+
+- 用户确认售票员对话后明确要求“把最新版本push到github上”。CLI fetch确认main=origin/main=e079779，0/0，无新增远端提交和合并需求。发布范围为此前完成但未推送的NPC-04/05/06/07、GREENERY-01/02：Tripo送奶少年／坐姿修表钟表匠／中年售票员、对应动作和灯光／统一UI与六选项、7树形与22种植物及连续花境、共用生成器重建的场景／预制件／导航／模型、可编辑Blender／原始Tripo来源、文档／技能和精简实机证据。保留原证物及时间规则、角色／地图约束和正常存档。
+- 发布前检查：远程一致、diff --check通过、待提交文件无100MiB超限和凭据模式；排除新增Milkboy.blend1自动恢复副本，并为三个人物源目录补齐恢复版本忽略规则，原文件仍留本机。现有builds／Unity缓存／完整日志／原始逐帧与存档备份继续不入Git。
+- 验收沿用明确的各版本记录：最新NPC-07最终56/56 EditMode，8项原生共享UI／人物／票柜检查，以及日期答复换行后双分辨率／独立读档3项；此前人物和整镇绿化的较大回归见各自条目，不冒充全部在最新构建重跑。Mac原桌面应用及最终包已更新，源代码／资源的此次发布不新增游戏改动，无需再造相同构建。代码程序集9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9，资源8b113f1c575675b367e5ef10bfb58dbbaeeabb58198a2e4bcc3e7c0e42cf27cb；正常存档验收哈希adbb96bd5c40e7276ec6324e38a34bca7997f4efb2452b6d8106db3b36edf69a保留。最新证据位于output/demo/station-clerk-dialogue。
+- 本条记录本次用户授权、整理范围与已执行检查；提交编号及推送完成状态以命令行Git、远端main核对和交付消息为准。
+
+### NPC-07：售票员六选项、含糊日期记忆与统一 UI（2026-10-11）
+
+- 用户要求先按 AGENTS 统一 UI，再新增“你好。”开场、玩家问20号是否见过和无法确定日子的回答。StationClerkDialogue.json 采用 greeting→topics 六选项：日期／情形／上车／检票／站台／告别，独立玩家问句→NPC回答→topics；可重复，不变色或标记已问。告别自然关闭。所有话题 station-clerk.* 持久保存，不修改 milkboyGreetingRevision 或已获证物。
+- 记忆仅是“前几天好像见过”的面熟印象，不能确认20日、具体时间或上车；未增加证物卡／E03或E08前置。更新叙事约束与旧“无新增历史证词”说明，不能后续扩写成确定目击。主分支58字按停顿换行以避免末尾孤行。
+- 复用 DemoApp.Dialogue.cs 透明底栏／两列完整选项／数字或鼠标选择／无选项右下四分之一区域推进／H与Esc，字号和最大alpha0.58保持。实际文本宽度计算选项高度，直接相同玩家节点不再在回看重复记录。角色沿用Tripo两动作，玩家发言待机、NPC回答说话。
+- Unity6000.3.18f1最终EditMode56/56、叙事合同六访问顺序数据检查；原生Metal首轮8项（售票员双分辨率＋独立读档、票柜／废票桶、共享送奶UI双分辨率＋读档、钟表匠）通过，日期答复换行后只复跑受影响售票员双分辨率＋独立读档3项，全部通过。程序集9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9保持，最终resources.assets哈希8b113f1c575675b367e5ef10bfb58dbbaeeabb58198a2e4bcc3e7c0e42cf27cb，与首轮资源版本分记。
+- 正常存档SHA adbb96bd5c40e7276ec6324e38a34bca7997f4efb2452b6d8106db3b36edf69a保持，与任务开始备份逐字节相同；review存档恢复。最终Mac已更新原桌面入口，旧应用在backup-before-clerk-dialogue。实机截图、完整对话稿、56项结果、版本／存档／范围说明与原速原声验收录像在output/demo/station-clerk-dialogue。为脚本驱动控制器／射线／UI，不是物理键鼠或盲测；未改地图或列车系统，未重跑全镇六顺序或完整跨镇往返。未提交／推送。
+
+### NPC-06：Tripo 中年售票员、待机／对话动作与 Mac 接入（2026-10-11晚）
+
+- 用户确认中年概念后要求用Tripo制作并替换车站售票员，加普通待机与对话两动作。CLI fetch确认main/origin/main=e079779、0/0，保留全部送奶少年／钟表匠／绿化等未提交工作，未提交推送。Chrome自动上传先因文件网址权限阻塞；用户明确授权并手动开启详情页的文件网址开关后上传成功。只开启扩展总开关无效；浏览器拒绝打开chrome://设置，未绕过拒绝。
+- Tripo资产 `7ef008b1-0a11-4338-a813-c65ba9636e73`：H3.1原生成1898222三角面，重拓扑9821四边形／9272顶点，Unity Humanoid Compatible自动绑定成功。普通idle15.333秒与AI文本动作Clerk Talking to Passenger4.958秒均由Tripo导出；24800→24655积分（65＋40＋20＋20）。白底T形参考由内置image_gen转换，提示词与原始FBX/ZIP/8K基色／4K PBR保留在assets/source/station-clerk/tripo。
+- prepare_tripo_station_clerk.py保留自动绑定和上身动作，统一下半身站姿、封闭循环接缝，加Jaw和局部嘴唇权重及内部口腔。首个平面口腔外露形成黑块，改为完全在头内的椭球后重新检查；ModelRoot承担身高归一化，避免原对象动画覆盖比例。最终69骨骼／9408顶点，两材质，打包源StationClerk.blend、Unity2048贴图与FBX。独立重新打开源逐三帧采样：脚漂移0、鞋底约0、首尾骨矩阵一致、Jaw最大6.846度且不牵动衣服。复现入口import_tripo_station_clerk.py与verify_tripo_station_clerk.py。
+- StationClerkAsset在主镇StationTown隐藏旧Module_TicketClerk、保留旧源，原柜台后局部(-8,.12,1.9)站立朝向顾客，未移到站台门口或增添历史目击。原检票／登车说明分成两个StationClerkDialogue节点，复用统一底部界面，E／H／Esc保持，E03/E08自由查阅。StationClerkPerformance用Generic保留动作，另验证保存有效Humanoid Avatar；台词期间Talk，发言结束／回看／退出Idle，显式暂停冻结，无根运动。嘴部为通用开合，没有配音或逐音素同步。
+- 最终Unity6000.3.18f1／macOS Metal／Apple M5 Pro，同一Assembly SHA256 `684e799e1f045116ea8aeef726697fa8c67842401b077cd5800d4aa240a170e4`：54/54 EditMode，六项原生全部通过：clerk1080(45.86s)、独立clerk-save(9.32s)、clerk720(45.34s)、ticket-office(38.47s)、milkboy(38.25s)、watchmaker(67.38s)。普通3m E、回看、关闭恢复、世界时间继续、暂停、两动作与嘴部通过，实际根／脚漂移0、1080 Jaw变化3.465度。已目视柜台交谈、侧面全身／脚底、面部与晴／雨／夜光照。属脚本驱动真实控制器／射线和受控特写，不是物理输入、盲测、Intel或低配验收。
+- 车站复验首轮驱动误带rail-gallery，完成31个图库视点但未执行ticket-office；纠正为record-ticket-office/office-only后通过，未降低游戏断言。初轮不同程序集证据保持独立。最终截图、22.65秒待机交谈＋4.83秒嘴部原速原声录像在output/demo/station-clerk；完整日志／逐帧源在忽略的builds/macos-current/verification-station-clerk-20261011。
+- 正常存档前后SHA256均 `adbb96bd5c40e7276ec6324e38a34bca7997f4efb2452b6d8106db3b36edf69a`（用户已继续游玩，不能回退旧95c7记录），review文件恢复。原唯一新版.app及桌面链接保持；Universal arm64/x86_64、严格深度签名通过；旧应用备份backup-before-station-clerk，Mac包及约49.7MB模型源包已保存。本轮未重跑全镇六顺序／完整铁路往返、未修改其系统；历史各版本证据独立。
+
+### GREENERY-02：树木材质、七种树形与连续路边花境（2026-10-11晚）
+
+- 用户给出两张花境照片，要求树材质/种类和画质提升、全镇路边花丛布置。CLI fetch确认main/origin/main=e079779、0/0；保留送奶少年/Tripo钟表匠等已有改动，未提交推送。范围主镇Town，邻镇车站街区未重布。
+- tools/build_greenery_textures.py原创2048×1024树皮/白桦斑纹/叶脉/花瓣与法线图集；build_greenery.py输出7树形、3灌木、3草、7花、2观赏草，共22模型/51LOD。独立叶片冠替代旧球块，原灰绿/橄榄绿、暖褐与奶白紫粉花保持。Blender4.5.9 reopen验证51网格、UV/材质/尺寸/两张打包图；source-verification.json。新白桦源实际约9.2m，Unity按既有树冠r归一化高度2.7r，源尺度上限由旧9m更新为10m，不改变地图树高。
+- plan_greenery.py保留217树位/树冠范围/原.13m树干碰撞；21507小植物、32段路边花境、约8477.58平方米花带、56239.23平方米草地。低白花前缘、紫粉中层、高灌木/草后层；窄树带低花，路口/门口断开，所有原道路/站台轨道/车马院/观察走廊留空。奶车在B04 gate+(-2,-.9)，在建筑排除区外；原预览发现5组穿车轮，最终后置过滤独立矩形[-147.1,10.8,-143.9,13.4]，避免重排其他花境，并加原生位置检查。
+- GreeneryAuthoring同源生成Town/历史窗景，3147个16m实例批次，2档小植物/3档树；显式动态环境SH继续保留。图集法线/8倍各向异性、近档草25m/花灌45m、剔除65m/125m。BuildSlice默认1080p/内部绘制1.10，原SMAA/4K四级阴影和所有天气/曝光/光池不变。第一预览花带地面141MB，简化轮廓到15MB，模型贴图23MB；不复制实例顶点。
+- 最终Unity6000.3.18f1/Metal/M5 Pro，同一Assembly `fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea`，PlayerData `94f8308233dfb752c5b0cd40e075d89ebcb9dddda88309110c262a9d7aa3117e`，8项原生通过：greenery1080/720、full-map六室外顺序(556.64s)、full-map-save、walnut-shop/save、milkboy-tripo、watchmaker-tripo。原217碰撞/11路扫查/实际奶店往返/指定视线/奶车净空/阴晴夜雨/角色交互保持。短时不录屏1080p平均16.67ms、P95 16.67ms；60帧上限，本机5秒视点样本不代表最低帧率、低配/Intel或盲测。
+- 最终37.89秒原速原声实录/15张截图/精简证据在 output/demo/greenery-refinement；可编辑源与Mac zip在builds/macos-current。桌面唯一本地入口已更新；签名/压缩完整性通过。正常存档仍95c7a0cb4798ae63f4515648f1f2aa386a807c6f86ad9c8c33f014828f175c3a，review文件恢复；旧源/应用完整备份。此前12倍故事时间窗口失败结论保留。
+
+### GREENERY-01：本镇绿化模型、布置与Mac实录（2026-10-11）
+
+- 用户要求花丛、草地和树木覆盖整个地图，以少量相似但不同模型复用、保持原画风。本轮CLI fetch确认main/origin/main均e079779、0/0，保留NPC-04及待完成NPC-05工作，未提交推送。范围是主镇Town，邻镇车站街区未重布绿化。
+- 原创11种模型：3树形、2灌木、3草簇、3花丛，树3档LOD/其余2档，共25网格。源 tools/build_greenery.py → assets/source/greenery/GreeneryKit.blend 与 Unity Art/Greenery。调色板已打包；Blender4.5.9重新打开验证25网格、UV/材质/尺寸，花叶朝上法线最小z=.697。首版树冠过尖、草地有条纹、花叶法线反向造成近景全黑，已改为宽短切向叶/丰满树冠、平滑随机草地色斑、向上法线，并显式传入动态环境光。
+- tools/plan_greenery.py依据未改的第四版地图布置；217树位/树冠半径及原.13m树干碰撞不动。6014组小植物（4877草、308灌木、829花）、56239.23平方米草地、290地表块；留空道路/路径/门口/设施/轨道站台/车马院及指定视线。地图20角色17路线/6顺序数据检查通过；所有坐标与导出物字节未改，仅verification跨平台换行哈希刷新。compiled TownPlan哈希为原CRLF版afe327…，当前LF原文94f288…，生成器核对二者只允许换行差异并逐项比较树位。
+- GreeneryAuthoring由同源生成Town及历史窗景；小植物按16m网格、资产分1543批次共享FBX，不保存每组重复顶点。曾试合并网格造成约1.1GB，已移除该任务的中间合并资产；最终地表生成资源5.7MB、模型/贴图约3.8MB。GreeneryInstances缓存矩阵、视锥/距离剔除和两档细节，并提供当前ambientProbe；保留现有天气/时间/雾/光池及阴影灯预算。
+- 最终Mac Unity6000.3.18f1/Metal/M5 Pro，同一Assembly SHA256 d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f，7项全部通过：greenery1080/720、full-map、full-map-save、walnut-shop、walnut-save、milkboy-tripo。完整地图556.47秒走通6种室外顺序；原树碰撞/11道路净宽/门口往返/指定视线/阴晴夜雨、两店交互与读档正常。已目视主街/住宅/车站/果园/牛奶店/广场、花叶近景、指定钟面视线及6段实录。程序控制真实角色，不是物理键鼠、盲测或低配/Intel实测。
+- 约29.77秒游戏原声原速实录、截图与精简acceptance/build/save校验在 output/demo/greenery/；完整日志/逐帧源在忽略的 builds/macos-current/verification-greenery-20261011。Mac新版原入口、桌面链接保持；通用包含arm64/x86_64，签名及压缩包完整性通过。正常存档SHA256仍95c7a0cb4798ae63f4515648f1f2aa386a807c6f86ad9c8c33f014828f175c3a，review存档恢复。此前12倍剧情时间窗口未达成的事实保持。
+
+
+### NPC-05：Tripo 钟表匠、三段坐姿修表与 Mac 实录（2026-10-11）
+
+- 用户要求用 Tripo 重做钟表匠，坐着低头修表，多段克制动作轮换，替换现有角色。此前扩展文件上传阻塞后，用户手动上传并生成；本轮 Chrome 已能正常访问新资产，未修改权限。CLI fetch确认main/origin/main均e079779，0/0；保留未提交的送奶少年与绿化改动，未提交推送。
+- Tripo资产373ab2a6-bf3d-43a4-9c4a-a20d63e69697：白发、眼镜/目镜、皮围裙；原生成1970956三角面，减面后10060面/9505顶点。生成后余额24840，40积分减面后24800。Humanoid自动绑定先提示不适合，再返回406；余额未减少20绑定积分。随后下载FBX/原8K基色与4K PBR，保存在assets/source/watchmaker/tripo/original；不得声称Tripo成功绑定或生成动作。
+- tools/build_tripo_watchmaker.py在Blender4.5.9本地制作56骨骼、独立围裙与手部权重、手持怀表/螺丝刀，三段RepairScrew8秒、InspectMovement9秒、AdjustParts8秒，30fps。第一次围裙内腿混权出现长三角面，已改前片/裤腿平滑权重，并修正隐藏裤面与围裙的穿插；手指骨根据实际网格调整。工具尖端跟随表盘工作点。可编辑Watchmaker.blend已打包4张原纹理；Unity使用2048贴图。生成器与PIL纹理转换有tools/import_tripo_watchmaker.py复现入口。
+- tools/verify_tripo_watchmaker.py重新打开源并采253个动作样本：衣服/围裙最大手指骨权重0，髋移动0，鞋底约0，坐垫支持面约0.392m（原椅面0.400m，约8mm软垫重叠）。工具与表盘标记源最大距离7.7mm（微调动作允许轻移）；修螺丝约2.14mm、检查机芯约0.028mm。Unity AvatarBuilder验证并保存有效Humanoid Avatar；实际三动作使用Generic播放保持接触，非自动重定向后效果保证。
+- WatchmakerAsset.Create转入TripoWatchmakerAsset，原Meshy和CreateLegacy保留；WatchmakerPerformance洗牌轮换、相邻不重复、0.6秒混合、根运动关闭。普通对话继续修表，显式暂停冻结。原局部(2,0,2.7)、0.4m椅面、1.72m休止身高、共享ClockShop/Town、E07/原交谈/门窗保持。新髋约0.535m，禁止复用旧交叉腿0.284m偏移。
+- 原生Mac Unity6000.3.18f1/Metal/Apple M5 Pro，同一最终Assembly SHA256 9c752f02f7806d4833ad5bcc6cf04a0426a8f560fe6cbae6d5bc352dcb4c4c76：6项通过，watchmaker1080(67.54s)/720(67.01s)、walnut-shop(48.87s)、walnut-save独立进程(4.81s)、milkboy(37.73s)、greenery(42.74s)。人物连续采样48秒看到3状态/6次完成，无相邻重复；根/髋不漂移、头始终低、对话射线/阅读继续/暂停冻结通过。实机工具标记最大距约11.5mm，落在直径62mm机芯内。
+- 初轮低头检测误用了高于Head原点的鼻梁标记，已将headfront与头骨原点同高后重测；不是减小阈值或提高头部姿势。侧面机位原位于墙/陈设内出现黑画面，已移到可见的左侧低机位；最终手部、围裙/椅面、鞋底、背面及原交谈均已目视，影片抽帧也已查看。
+- 证据/原速原声48秒全动作和约8秒手部近景在output/demo/watchmaker-tripo/；完整日志/原始逐帧源在忽略的builds/macos-current/verification-watchmaker-tripo-20261011。实际是脚本驱动真实控制器、普通交互射线与受控特写，不是物理键鼠、盲测、Intel/低配实测。本輪未重跑全地图6访问顺序；上一GREENERY-01的不同程序集证据保持独立。
+- Mac唯一新版入口与桌面链接保持，更新前绿化app/普通存档备份到builds/macos-current/backup-before-watchmaker-integration。正常存档SHA256仍95c7a0cb4798ae63f4515648f1f2aa386a807c6f86ad9c8c33f014828f175c3a，review存档均恢复。深度签名校验通过；最终Mac/模型压缩包及摘要见交付verification文件。本轮仅修表，没有新增钟表匠口型/配音，三段动作的主观自然度仍可按用户反馈调整。
+
+最后核对：2026-10-11。最新NPC-05已在Mac同一程序集完成6项验收并交付；GREENERY-01与NPC-04保留。以下NPC-04记录属于上一版本：main 已同步 e079779，Tripo v5 送奶少年、两段抬头动作、柜台前位置与店内补光已在 Mac 最终同程序集完成 9 项验收并交付；未提交推送。当前时间倍率仍为 12 倍、完整一天现实 2 小时。远端铁路/汽车/夜景/白天等既有发布结果见 PUBLISH-03/04；不能把历史平台验收写成本轮重跑。
 
 ### ART-04：成年路人基础设计图（2026-10-10，待用户Meshy生成）
 
@@ -38,7 +94,7 @@
 | 事项 | 必须遵守 |
 | --- | --- |
 | 游戏空间 | 第一人称、完整可行走的三维空间。最新 A 钟表铺在 Town 同一建筑内实体门直接进出，无黑屏转场；其他未制作室内仍保留原计划。横版、固定机位和静态图片不能代替游戏空间。 |
-| 画风与成本 | 环境保留简化低模、宽色块、灰蓝/紫灰暗部和暖黄室内光，1931 年道具保持时代一致。送奶少年、钟表铺老板以各自用户提供的 Meshy 包为准，保留完整人物及贴图；老板全程坐着并配木椅。旧人物的具体外观、握带姿态及方块造型不再约束这些新资源。 |
+| 画风与成本 | 环境保留简化低模、宽色块、灰蓝/紫灰暗部和暖黄室内光，1931 年道具保持时代一致。送奶少年以用户 2026-10-11 指定 Tripo v5 为准，双手抓肩带待机、带嘴部动作交谈，两者基本抬头看人；原资源保留。钟表铺老板采用用户指定的 Tripo 新外观，本地绑定三段坐着低头修表动作，保留原木椅与旧 Meshy 源。 |
 | 探索顺序 | 玩家自由选择线路。完整 MVP 的三个室内从开局开放；当前切片的钟表铺也从开局开放。不能把企划精简误做成强制单线任务。 |
 | 同行者 | 只偶尔随口提醒，不承担律师、带路、审批、解锁证物或自动解题的职责。完全静默也不影响核心调查。 |
 | 推理 | 证物使用稳定 ID；开发合同 `mvp-evidence.json` 的隐藏事实与推理答案不能直接写到物件 UI。当前钟差不能单独证明案发时钟差，未验票不能单独证明没有离镇，疑点不能自动变成定罪。 |
@@ -774,3 +830,16 @@ Antigravity在本地scratch做只读架构初稿；首调用读权限未授权�
 ### PUBLISH-04：用户授权推送钟楼夜景、白天光影与三处修复（2026-10-11）
 
 - 用户在交付后明确回复“push吧”。CLI fetch：main=origin/main=63e93a9，0/0，无远端新提交，无需合并。提交范围：TOWER-10／TOWER-11／RAIL-07／CAR-02／LOOK-01 的源码、着色器、生成源与纹理、共享生成器重建的预制件／场景／导航／网格、文档与技能、`output/demo/tower-night-daylight/` 精简证据；builds、原始帧、日志与存档备份继续忽略。提交前检查无大于 20MB 文件、无凭据模式、无孤立 .meta。实际提交编号与推送结果以 Git 与远端 main 为准。
+
+
+### NPC-04：Tripo 送奶少年、双手抓肩带、抬头看人与牛奶店补光（2026-10-11）
+
+- 用户要求拉取最新、总结、构建 Mac，替换送奶少年，抓肩带紧张动作为默认待机，对话时用说话动作，移到柜台前进店可见并录游戏视频。随后明确要求调亮房间，以及待机/说话都基本抬头看玩家。用户说的是肩带，不是包盖。
+- CLI 从 7f01ddb 快进到 e079779（6 提交，车站/列车/两小时昼夜、旅馆车、钟楼夜景、白天光影及修复）；再次 fetch main=origin/main，0/0。保留全部本地工作。无提交/推送。
+- 来源：用户既有 Tripo v4 源、T 形参考修复版本；tools/import_tripo_milkboy.py 导入 FBX、原纹理及打包纹理 Blender 源到 assets/source/milkboy/tripo 与 Assets/Art/MilkboyTripo。tools/milkboy_raise_gaze.py 将两动画 Neck/Head 改为基本抬头（基础 14°，小幅侧看 3°，轻微倾斜 1°）。head-up-preservation.json 确认其他动画、Jaw/双手/身体曲线及网格权重不变。旧 Meshy、Toon Boy 和原始 Tripo 交付目录均保留，不虚构授权。
+- Unity：有效 Humanoid，68 骨骼（Jaw），2 个原地循环动作，默认 02_Nervous_HoldShoulderStrap，E04 少年台词用 01_Talk_WithMouth；.25 秒转换，按台词长度 2.5–8 秒播放后回待机；玩家发言、历史、退出停止说话，显式暂停冻结动作。嘴部为通用下颌/嘴唇开合，没有配音或逐音素同步。MilkboyPerformance 在 LateUpdate 平滑看向前侧 6m 内玩家，转头限制 ±55°、抬头 5–38°，只调头，不改手和身体。
+- 共享 MilkShopAsset 站位 (.15,.18,.15)，世界约 (-144.229,.122,7.075)，朝入口；旧位置太靠门曾仅见帽子，已移近柜台。柜台测试旧直线路径会撞上新 NPC，现通过实际顾客过道绕行，保留碰撞及普通 3m 射线，不降低断言。接近角色测试改用身体 -Z，不用随玩家转动的 headfront 作为站位方向。
+- 用户指出脸黑：MilkShopInteriorAsset 将两吊灯 4.8→3、阅读灯 1.2→.75，新增两处无阴影暖中性间接补光（2.2/.7，范围4.3m，采光系数.48）。Light Layer 3 限定店内/少年，避免无阴影灯穿墙照街道；共5盏无阴影灯，沿用天气/昼夜与阅读灯手动关灯优先。晴/雨正午、傍晚与夜间实际画面脸/嘴/手清楚，未改全局曝光。
+- 一次自动对话回看检查在桌面活动期间出现不稳定失败，不能据此断定玩家流程坏；现 review 模式隔离真实键鼠/GUI事件，仍调用同一普通对话处理函数；正常模式输入不变。最终720p/1080p对话含回看均通过。
+- 最终同程序集 3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84：9项 Mac/Metal 原生检查通过（人物含真实进店/两动作/看人/录像，对话720/1080及独立读档，牛奶内饰720/1080及独立读档，双门声学灯控及独立读档）。待机6秒视线偏差最大2.02°，说话采样.06°，Jaw变化7.39°，根位置不变。目视正/侧面和帧序列未见旧错误权重导致的明显衣包拉长，不能声称全部角度绝无轻微穿插。
+- 交付：builds/macos-current/错日证词-新版.app 和“错日证词-Mac-送奶小孩抬头与灯光版.zip”，Universal x86_64+arm64，原/解压严格签名通过，原桌面入口仍指向它。证据与21.41秒/8.60秒两段原速实机视频在 output/demo/milkboy-tripo；原始帧/完整日志/失败轮次/原包备份在忽略的 builds/macos-current。正常存档 SHA256 前后均 95c7a0cb4798ae63f4515648f1f2aa386a807c6f86ad9c8c33f014828f175c3a，review 存档原样恢复。非物理键鼠、盲测、Intel实机或低配验收，铁路/汽车/全镇全套未在本包重跑。

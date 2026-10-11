@@ -49,6 +49,7 @@ public partial class DemoApp : MonoBehaviour {
     public SliceSave state = new SliceSave();
     public bool Review { get; private set; }
     public float Minutes => (float)gameClock.MinutesOfDay;
+    public bool NPCAnimationPaused => opening || transitioning || paused;
     public bool Blocked => opening || transitioning || inspected || journal || paused || DialogueOpen || MilkOrdersOpen;
     public string CurrentScene { get; private set; } = "Town";
     public bool IsInsideShop { get; private set; }
@@ -114,6 +115,10 @@ public partial class DemoApp : MonoBehaviour {
         savePath=Path.Combine(Application.persistentDataPath,sprintReview?"sprint-review-save.json":dairyDoorsReview?"dairy-doors-review-save.json":navigationReview?"map-review-save.json":fullMapReview?"full-map-review-save.json":weatherReview?"weather-review-save.json":dayNightReview?"day-night-review-save.json":milkInteriorReview?"milk-interior-review-save.json":towerMigrationReview?"clocktower-migration-save.json":towerReview?"clocktower-review-save.json":timeReview?"time-review-save.json":migrationReview?"walnut-migration-save.json":dialogueReview?"dialogue-review-save.json":Review?"review-save.json":previewWindow?"window-preview-save.json":previewStreet?"street-preview-save.json":previewMilkboy?"milkboy-preview-save.json":previewWatchmaker?"watchmaker-preview-save.json":"slice-save.json");
         int c=Array.IndexOf(args,"--capture-dir");
         if(Review&&(Array.IndexOf(args,"--review-rail")>=0||Array.IndexOf(args,"--verify-rail-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"rail-review-save.json");
+        if(Review&&Array.IndexOf(args,"--review-milkboy-tripo")>=0)savePath=Path.Combine(Application.persistentDataPath,"milkboy-tripo-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-station-clerk")>=0||Array.IndexOf(args,"--verify-station-clerk-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"station-clerk-review-save.json");
+        if(Review&&Array.IndexOf(args,"--review-greenery")>=0)savePath=Path.Combine(Application.persistentDataPath,"greenery-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-watchmaker-tripo")>=0||Array.IndexOf(args,"--review-watchmaker")>=0))savePath=Path.Combine(Application.persistentDataPath,"watchmaker-tripo-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-items")>=0||Array.IndexOf(args,"--verify-items-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"items-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-car")>=0||Array.IndexOf(args,"--verify-car-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"car-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-tower-night")>=0||Array.IndexOf(args,"--review-day-look")>=0))savePath=Path.Combine(Application.persistentDataPath,"look-gallery-review-save.json");
@@ -196,6 +201,7 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--verify-items-save")>=0)StartCoroutine(VerifyFurnitureSave());
             else if(Array.IndexOf(args,"--review-rail")>=0)StartCoroutine(ReviewRail());
             else if(Array.IndexOf(args,"--verify-rail-save")>=0)StartCoroutine(VerifyRailSave());
+            else if(Array.IndexOf(args,"--review-greenery")>=0)StartCoroutine(ReviewGreenery());
             else if(Array.IndexOf(args,"--review-full-map")>=0)StartCoroutine(ReviewFullMap());
             else if(Array.IndexOf(args,"--verify-full-map-save")>=0)StartCoroutine(VerifyFullMapSave());
             else if(Array.IndexOf(args,"--review-rain-presentation")>=0)StartCoroutine(ReviewRainPresentation());
@@ -216,6 +222,10 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--review-walnut-shop")>=0)StartCoroutine(ReviewWalnutShop());
             else if(Array.IndexOf(args,"--verify-walnut-save")>=0)StartCoroutine(VerifyWalnutSave());
             else if(Array.IndexOf(args,"--verify-walnut-migration")>=0)StartCoroutine(VerifyWalnutMigration());
+            else if(Array.IndexOf(args,"--review-milkboy-tripo")>=0)StartCoroutine(ReviewTripoMilkboy());
+            else if(Array.IndexOf(args,"--review-station-clerk")>=0)StartCoroutine(ReviewStationClerk());
+            else if(Array.IndexOf(args,"--verify-station-clerk-save")>=0)StartCoroutine(VerifyStationClerkSave());
+            else if(Array.IndexOf(args,"--review-watchmaker-tripo")>=0||Array.IndexOf(args,"--review-watchmaker")>=0)StartCoroutine(ReviewTripoWatchmaker());
             else if(Array.IndexOf(args,"--review-dialogue")>=0)StartCoroutine(ReviewDialogue());
             else if(Array.IndexOf(args,"--verify-dialogue-save")>=0)StartCoroutine(VerifyDialogueSave());
             else if(Array.IndexOf(args,"--review-milkshop-windows")>=0)StartCoroutine(ReviewMilkShopWindows());
@@ -244,6 +254,8 @@ public partial class DemoApp : MonoBehaviour {
             if(inside!=IsInsideShop||inMilk!=insideMilkShop){IsInsideShop=inside;insideMilkShop=inMilk;location=inside?"青川 · 钟表铺":inMilk?"青川 · 牛奶屋":"青川 · 小镇广场";locationAge=Time.time;Save();}
         }
         if (Input.GetKeyDown(KeyCode.F12)) StartCoroutine(Capture("manual-"+DateTime.Now.ToString("HHmmss")));
+        // Review coroutines invoke the same handlers; desktop shortcuts must not race them.
+        if(Review)return;
         if (transitioning) return;
         bool mapKey=Input.GetKeyDown(KeyCode.M);
         if(mapKey&&!mapOpen&&HeldItemBlockedByDriving())mapKey=false;
@@ -287,6 +299,7 @@ public partial class DemoApp : MonoBehaviour {
     public void Inspect(Interactable item) {
         if(item.evidenceId=="E04") { OpenMilkboyDialogue(); return; }
         if(item.title=="钟表匠") { OpenWatchmakerDialogue(); return; }
+        if(item.title=="售票员") { OpenStationClerkDialogue(item); return; }
         inspected=item; towerAdjustmentFeedback=""; CursorMode();
         if(item.evidenceId=="E02"||item.evidenceId=="E03") {
             var existing=state.entries.Find(e=>e.id==item.evidenceId);
@@ -421,6 +434,7 @@ public partial class DemoApp : MonoBehaviour {
     void Panel(Rect r) { Box(r,new Color(0.055f,0.10f,0.13f,0.97f)); Box(new Rect(r.x,r.y,r.width,2),new Color(0.68f,0.5f,0.3f)); }
     void OnGUI() {
         if(reviewPortrait)return;
+        if(Review&&(Event.current.isKey||Event.current.isMouse))return;
         Styles(); float scale=Mathf.Min(Screen.width/1600f,Screen.height/900f);
         W=Screen.width/scale;H=Screen.height/scale;
         GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
@@ -631,7 +645,7 @@ public partial class DemoApp : MonoBehaviour {
         if(!boy)throw new Exception("Milkboy is missing from Town.");
         Vector3 origin=boy.transform.position,front=-boy.transform.forward,right=boy.transform.right;
         // Reach the NPC from the square with the real motor and interaction ray.
-        yield return WalkTo(new Vector3(3.8f,0,-4.1f));
+        yield return ApproachReviewMilkboy();
         player.Aim(origin+Vector3.up*.94f);
         yield return new WaitForSeconds(.3f);yield return Capture("unity-player-view");
         if(!TryInteract()||!DialogueOpen)throw new Exception("Milkboy interaction ray failed.");
@@ -647,7 +661,7 @@ public partial class DemoApp : MonoBehaviour {
         var animator=boy.GetComponentInChildren<Animator>();
         if(!animator||!animator.GetCurrentAnimatorStateInfo(0).loop||animator.applyRootMotion)
             throw new Exception("Milkboy must have a looping, in-place idle.");
-        var head=Array.Find(boy.GetComponentsInChildren<Transform>(),t=>t.name.Replace(':','_')=="mixamorig_Head");
+        var head=boy.GetComponentInChildren<MilkboyPerformance>().head;
         if(!head)throw new Exception("Milkboy animated head bone is missing.");
         var headRotation=head.localRotation;float startTime=animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
         yield return new WaitForSeconds(1.2f);yield return Capture("unity-idle-later");
@@ -657,8 +671,8 @@ public partial class DemoApp : MonoBehaviour {
             throw new Exception("Milkboy idle is static or moves the actor root.");
         Frame(origin+front*.94f+right*.19f+Vector3.up*1.22f,origin+Vector3.up*1.14f,33);
         yield return new WaitForSeconds(.25f);yield return Capture("unity-face");
-        var leftHand=Array.Find(boy.GetComponentsInChildren<Transform>(),t=>t.name.Replace(':','_')=="mixamorig_LeftHand");
-        var rightHand=Array.Find(boy.GetComponentsInChildren<Transform>(),t=>t.name.Replace(':','_')=="mixamorig_RightHand");
+        var leftHand=animator.GetBoneTransform(HumanBodyBones.LeftHand);
+        var rightHand=animator.GetBoneTransform(HumanBodyBones.RightHand);
         if(!leftHand||!rightHand)throw new Exception("Milkboy hand bones are missing.");
         var handCentre=(leftHand.position+rightHand.position)*.5f;
         Frame(handCentre+front*1.05f+right*.08f+Vector3.up*.04f,handCentre,44);

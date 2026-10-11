@@ -5,6 +5,8 @@ using UnityEngine;
 public partial class DemoApp {
     const int MilkboyGreetingRevision=2;
     DialogueScript milkboyScript;
+    MilkboyPerformance milkboyPerformance;
+    StationClerkPerformance stationClerkPerformance;
     DialogueNode dialogueNode;
     List<DialogueChoice> dialogueChoices=new List<DialogueChoice>();
     readonly List<string> dialogueHistory=new List<string>();
@@ -27,9 +29,16 @@ public partial class DemoApp {
         dialogueHistory.Clear();dialogueHistoryOpen=false;player.scriptedDirection=Vector3.zero;
         VisitDialogue(milkboyScript.first);CursorMode();Debug.Log("DIALOGUE_OPEN: watchmaker");
     }
+    void OpenStationClerkDialogue(Interactable item) {
+        milkboyScript=DialogueScript.Load("StationClerkDialogue");
+        stationClerkPerformance=item.GetComponentInChildren<StationClerkPerformance>();
+        dialogueHistory.Clear();dialogueHistoryOpen=false;player.scriptedDirection=Vector3.zero;
+        VisitDialogue(milkboyScript.first);CursorMode();Debug.Log("DIALOGUE_OPEN: station-clerk");
+    }
     void VisitDialogue(string id) {
         dialogueNode=milkboyScript.Get(id);
         dialogueChoices=milkboyScript.Choices(dialogueNode,state);
+        UpdateMilkboySpeech();
         dialogueHistory.Add(dialogueNode.speaker+"："+dialogueNode.text);
         if(dialogueHistory.Count>100)dialogueHistory.RemoveAt(0);
         if(dialogueNode.greeted) {
@@ -46,10 +55,24 @@ public partial class DemoApp {
         Save();
         Debug.Log("DIALOGUE_NODE: "+id);
     }
+    void UpdateMilkboySpeech() {
+        if(stationClerkPerformance) {
+            if(dialogueNode.speaker=="售票员")stationClerkPerformance.Speak(dialogueNode.text);
+            else stationClerkPerformance.Listen();
+        }
+        if(!milkboyPerformance) {
+            var boy=GameObject.Find("Milkboy");if(boy)milkboyPerformance=boy.GetComponentInChildren<MilkboyPerformance>();
+        }
+        if(!milkboyPerformance)return;
+        if(milkboyScript.evidence!=null&&milkboyScript.evidence.id=="E04"&&dialogueNode.speaker=="送奶少年")milkboyPerformance.Speak(dialogueNode.text);
+        else milkboyPerformance.Listen();
+    }
     void SelectDialogue(int index) {
         if(!DialogueOpen||dialogueHistoryOpen||index<0||index>=dialogueChoices.Count)return;
         var choice=dialogueChoices[index];
-        dialogueHistory.Add("你："+choice.text);
+        // Player nodes already retain the chosen question in history.
+        var target=milkboyScript.Get(choice.target);
+        if(target.speaker!="你"||target.text!=choice.text)dialogueHistory.Add("你："+choice.text);
         if(!string.IsNullOrEmpty(choice.topic)&&!state.dialogueTopics.Contains(choice.topic))state.dialogueTopics.Add(choice.topic);
         VisitDialogue(choice.target);
     }
@@ -60,12 +83,16 @@ public partial class DemoApp {
     }
     void CloseDialogue() {
         dialogueNode=null;dialogueChoices.Clear();dialogueHistoryOpen=false;
+        if(milkboyPerformance)milkboyPerformance.Listen();
+        if(stationClerkPerformance)stationClerkPerformance.Listen();
         player.scriptedDirection=Vector3.zero;
         CursorMode();Save();
         Debug.Log("DIALOGUE_CLOSED");
     }
     void ToggleDialogueHistory() {
         dialogueHistoryOpen=!dialogueHistoryOpen;
+        if(milkboyPerformance)milkboyPerformance.Listen();
+        if(stationClerkPerformance)stationClerkPerformance.Listen();
         dialogueHistoryScroll=new Vector2(0,float.MaxValue);
     }
     void UpdateDialogueInput() {
@@ -128,20 +155,30 @@ public partial class DemoApp {
         }
         GUI.matrix=previous;
     }
+    struct DialogueLayout {
+        public float speechWidth,speechHeight,rightX,columnGap,columnWidth,row,top;
+        public Rect Choice(int index) => new Rect(rightX+(index%2)*(columnWidth+columnGap),top+(index/2)*row,columnWidth,row-4);
+    }
+    DialogueLayout MeasureDialogue() {
+        float margin=DialogueMargin;bool choosing=dialogueChoices.Count>0;
+        float speechWidth=choosing?(W-2*margin)*.32f:W-2*margin-65;
+        float rightX=margin+speechWidth+38,columnGap=24;
+        float columnWidth=(W-margin-rightX-columnGap)/2;
+        float row=48;
+        foreach(var choice in dialogueChoices)row=Mathf.Max(row,dialogueOption.CalcHeight(new GUIContent(choice.text),columnWidth-38)+8);
+        float speechHeight=dialogueSpeech.CalcHeight(new GUIContent(dialogueNode.text),speechWidth);
+        float contentHeight=Mathf.Max(100,speechHeight+55,Mathf.Ceil(dialogueChoices.Count/2f)*row);
+        float top=H-44-contentHeight;
+        return new DialogueLayout{speechWidth=speechWidth,speechHeight=speechHeight,rightX=rightX,columnGap=columnGap,columnWidth=columnWidth,row=row,top=top};
+    }
     void DrawDialogue() {
         DialogueStyles();
         GUIUtility.keyboardControl=0;
         float margin=DialogueMargin;
         if(dialogueHistoryOpen) { DrawDialogueHistory(margin); return; }
         bool choosing=dialogueChoices.Count>0;
-        float speechWidth=choosing?(W-2*margin)*.32f:W-2*margin-65;
-        float rightX=margin+speechWidth+38,columnGap=24;
-        float columnWidth=(W-margin-rightX-columnGap)/2;
-        float row=48;
-        foreach(var choice in dialogueChoices)row=Mathf.Max(row,dialogueOption.CalcHeight(new GUIContent(choice.text),columnWidth-42)+8);
-        float speechHeight=dialogueSpeech.CalcHeight(new GUIContent(dialogueNode.text),speechWidth);
-        float contentHeight=Mathf.Max(100,speechHeight+55,Mathf.Ceil(dialogueChoices.Count/2f)*row);
-        float top=H-44-contentHeight;
+        var layout=MeasureDialogue();
+        float speechWidth=layout.speechWidth,speechHeight=layout.speechHeight,top=layout.top;
         GUI.DrawTexture(new Rect(0,top-28,W,H-top+28),dialogueGradient);
         Box(new Rect(margin,top+5,2,16),new Color(.86f,.7f,.44f,.8f));
         DialogueLabel(new Rect(margin+12,top+3,speechWidth-12,25),dialogueNode.speaker,dialogueName);
@@ -152,7 +189,7 @@ public partial class DemoApp {
             var choices=dialogueChoices;
             for(int i=0;i<choices.Count;i++) {
                 var choice=choices[i];
-                Rect r=new Rect(rightX+(i%2)*(columnWidth+columnGap),top+(i/2)*row,columnWidth,row-4);
+                Rect r=layout.Choice(i);
                 if(r.Contains(Event.current.mousePosition))Box(r,new Color(.55f,.43f,.27f,.20f));
                 if(GUI.Button(r,GUIContent.none,GUIStyle.none)) { SelectDialogue(i); break; }
                 DialogueLabel(new Rect(r.x+6,r.y+(r.height-25)/2,30,25),(i+1).ToString(),dialogueName);

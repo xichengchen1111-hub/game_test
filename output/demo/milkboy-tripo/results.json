@@ -1,0 +1,179 @@
+[
+  {
+    "name": "actor-1080",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 38.35,
+    "marker": "MILKBOY_TRIPO_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-milkboy-tripo"
+    ],
+    "resolution": [
+      1920,
+      1080
+    ],
+    "failures": [],
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "dialogue-720",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 6.37,
+    "marker": "DIALOGUE_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-dialogue"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "dialogue-save-720",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 4.37,
+    "marker": "DIALOGUE_SAVE_RELAUNCH_PASS",
+    "arguments": [
+      "--review",
+      "--verify-dialogue-save"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "dialogue-1080",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 6.4,
+    "marker": "DIALOGUE_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-dialogue"
+    ],
+    "resolution": [
+      1920,
+      1080
+    ],
+    "failures": [],
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "milk",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 21.43,
+    "marker": "MILK_INTERIOR_A_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-milk-interior-a"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "milk-1080",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 21.48,
+    "marker": "MILK_INTERIOR_A_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-milk-interior-a"
+    ],
+    "resolution": [
+      1920,
+      1080
+    ],
+    "failures": [],
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "milk-save",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 5.87,
+    "marker": "MILK_INTERIOR_SAVE_RELAUNCH_PASS",
+    "arguments": [
+      "--review",
+      "--verify-milk-interior-save"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "dairy-doors",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 56.88,
+    "marker": "DAIRY_DOORS_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-dairy-doors"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "dairy-doors-save",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 5.49,
+    "marker": "DAIRY_DOORS_SAVE_RELAUNCH_PASS",
+    "arguments": [
+      "--review",
+      "--verify-dairy-doors-save"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  }
+]

@@ -27,10 +27,11 @@ public partial class DemoApp {
         RequireDialogue(boy,"Relocated milkboy must exist");
         // The imported head-front bone is normalized to root -Z by MilkboyAsset.
         var bones=boy.GetComponentsInChildren<Transform>();
-        var head=Array.Find(bones,t=>t.name.Replace(':','_')=="mixamorig_Head");
+        var head=boy.GetComponentInChildren<MilkboyPerformance>().head;
         var headFront=Array.Find(bones,t=>t.name=="headfront");
         RequireDialogue(head&&headFront,"Milkboy facing bones must exist");
-        Vector3 face=headFront.position-head.position;face.y=0;face.Normalize();
+        // The face tracks the player; use the authored body front for approach staging.
+        Vector3 face=-boy.transform.forward;face.y=0;face.Normalize();
         RequireDialogue(Vector3.Dot(face,milkShopRoot.TransformDirection(Vector3.back))>.9f,"Milkboy must face the accessible customer floor");
         Vector3 front=boy.transform.position+face*1.35f;
         front.y=milkShopRoot.TransformPoint(new Vector3(0,.20f,0)).y;

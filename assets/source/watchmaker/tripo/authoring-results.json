@@ -1,0 +1,28 @@
+{
+  "source": "Tripo 373ab2a6-bf3d-43a4-9c4a-a20d63e69697",
+  "rigging": "Tripo automatic humanoid rejected model; locally authored Unity-named skeleton and tailored seated skinning",
+  "height": 1.72,
+  "bones": 56,
+  "bodyVertices": 9505,
+  "sourcePolygons": 10060,
+  "seatHeight": 0.4,
+  "clips": [
+    {
+      "name": "RepairScrew",
+      "seconds": 8.0,
+      "frames": 241
+    },
+    {
+      "name": "InspectMovement",
+      "seconds": 9.0,
+      "frames": 271
+    },
+    {
+      "name": "AdjustParts",
+      "seconds": 8.0,
+      "frames": 241
+    }
+  ],
+  "contact": "Rigid hand-skinned pocket watch and screwdriver; no cloth hand/finger weights",
+  "originalPreserved": true
+}

@@ -104,3 +104,9 @@ output/demo/rail-signs/**/*.png
 
 # Native player logs remain local; publish compact verification summaries.
 output/demo/**/*.log
+
+# Editable source is kept; automatic Blender recovery versions stay local.
+assets/source/greenery/*.blend[0-9]
+assets/source/milkboy/tripo/*.blend[0-9]
+assets/source/watchmaker/tripo/*.blend[0-9]
+assets/source/station-clerk/tripo/*.blend[0-9]

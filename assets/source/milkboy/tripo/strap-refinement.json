@@ -1,0 +1,142 @@
+{
+  "actions": [
+    "01_Talk_WithMouth",
+    "02_Nervous_HoldShoulderStrap"
+  ],
+  "anchors": {
+    "Right": [
+      8298,
+      8299,
+      8300,
+      8301,
+      8304
+    ],
+    "Left": [
+      6873,
+      6875,
+      6886,
+      6887,
+      6891,
+      6893,
+      6894,
+      6897,
+      6900,
+      6901,
+      8006,
+      8007
+    ]
+  },
+  "contact_max_error": {
+    "Left": 1.0975390570354636e-07,
+    "Right": 4.123585171657754e-07
+  },
+  "anchor_weights": {
+    "Right": [
+      {
+        "Chest": 0.30296,
+        "UpperChest": 0.47314,
+        "Left_Shoulder": 0.0465,
+        "Right_Shoulder": 0.1774
+      },
+      {
+        "Spine": 0.04188,
+        "Chest": 0.31204,
+        "UpperChest": 0.46147,
+        "Right_Shoulder": 0.1846
+      },
+      {
+        "Spine": 0.04511,
+        "Chest": 0.31433,
+        "UpperChest": 0.45377,
+        "Right_Shoulder": 0.18678
+      },
+      {
+        "Spine": 0.03667,
+        "Chest": 0.30364,
+        "UpperChest": 0.47018,
+        "Right_Shoulder": 0.18951
+      },
+      {
+        "Chest": 0.22756,
+        "UpperChest": 0.47608,
+        "Left_Shoulder": 0.01885,
+        "Right_Shoulder": 0.27752
+      }
+    ],
+    "Left": [
+      {
+        "Hips": 0.07836,
+        "Spine": 0.30547,
+        "Chest": 0.48223,
+        "UpperChest": 0.13393
+      },
+      {
+        "Hips": 0.07142,
+        "Spine": 0.27705,
+        "Chest": 0.50018,
+        "UpperChest": 0.15135
+      },
+      {
+        "Hips": 0.09133,
+        "Spine": 0.35741,
+        "Chest": 0.4386,
+        "UpperChest": 0.11266
+      },
+      {
+        "Hips": 0.09858,
+        "Spine": 0.38267,
+        "Chest": 0.41695,
+        "UpperChest": 0.10181
+      },
+      {
+        "Hips": 0.09061,
+        "Spine": 0.21306,
+        "Chest": 0.45459,
+        "UpperChest": 0.24174
+      },
+      {
+        "Hips": 0.09199,
+        "Spine": 0.21003,
+        "Chest": 0.45596,
+        "UpperChest": 0.24201
+      },
+      {
+        "Hips": 0.092,
+        "Spine": 0.21186,
+        "Chest": 0.45532,
+        "UpperChest": 0.24082
+      },
+      {
+        "Hips": 0.06658,
+        "Spine": 0.25687,
+        "Chest": 0.50565,
+        "UpperChest": 0.1709
+      },
+      {
+        "Hips": 0.09381,
+        "Spine": 0.21209,
+        "Chest": 0.45571,
+        "UpperChest": 0.23839
+      },
+      {
+        "Hips": 0.09195,
+        "Spine": 0.2102,
+        "Chest": 0.45775,
+        "UpperChest": 0.24011
+      },
+      {
+        "Hips": 0.07899,
+        "Spine": 0.30927,
+        "Chest": 0.47533,
+        "UpperChest": 0.13641
+      },
+      {
+        "Hips": 0.07556,
+        "Spine": 0.29461,
+        "Chest": 0.48432,
+        "UpperChest": 0.14551
+      }
+    ]
+  },
+  "strap_max_hand_finger_weight": 0
+}

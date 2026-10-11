@@ -90,13 +90,7 @@ public static partial class BuildSlice {
         var squareStandards=new[]{new Vector3(-11,.1f,-10),new Vector3(11,.1f,-10),new Vector3(-11,.1f,10),new Vector3(11,.1f,10)};
         foreach(var pos in squareStandards)Lantern(pos);
         TowerFloodlights(squareStandards);
-        var trees=Group("Map tree placeholders",Vector3.zero);var treeMat=MapTexture("MapTreeCards","Tree.png",true);
-        foreach(var tree in plan.trees) {
-            var root=Group("Tree "+tree.owner,new Vector3(tree.x,-.04f,tree.z),trees.transform).transform;
-            float height=tree.r*2.7f;
-            for(int a=0;a<2;a++){var card=Quad("Tree card",new Vector3(0,height/2,0),new Vector2(tree.r*2,height),treeMat,root);card.transform.localRotation=Quaternion.Euler(0,a*90+27,0);card.isStatic=true;}
-            var trunk=root.gameObject.AddComponent<CapsuleCollider>();trunk.radius=.13f;trunk.height=height*.6f;trunk.center=new Vector3(0,trunk.height/2,0);
-        }
+        GreeneryAuthoring.Build(plan);
         // Actual silhouettes for the two-home sightline, with the specified lower fence.
         Box("Two homes low fence",new Vector3(-37,.425f,-57),new Vector3(.12f,.85f,11),Mat("MapFence","#766E5C"));
         foreach(var detail in plan.details.Where(d=>d.kind=="bed"||d.kind=="shed")) {

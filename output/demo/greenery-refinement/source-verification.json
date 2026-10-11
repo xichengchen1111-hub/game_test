@@ -1,0 +1,523 @@
+{
+  "passed": true,
+  "meshes": 51,
+  "models": 22,
+  "treeFamilies": 7,
+  "packedImages": [
+    "GreeneryNormal.png",
+    "GreeneryPalette.png"
+  ],
+  "checks": [
+    {
+      "name": "Tree1_LOD0",
+      "dimensions": [
+        4.301346778869629,
+        4.277082681655884,
+        7.5647958209738135
+      ],
+      "vertices": 53294,
+      "triangles": 18022
+    },
+    {
+      "name": "Tree1_LOD1",
+      "dimensions": [
+        4.424777507781982,
+        4.40039324760437,
+        7.552861540578306
+      ],
+      "vertices": 5636,
+      "triangles": 2818
+    },
+    {
+      "name": "Tree1_LOD2",
+      "dimensions": [
+        4.662110328674316,
+        4.55898118019104,
+        7.757763213478029
+      ],
+      "vertices": 2664,
+      "triangles": 1332
+    },
+    {
+      "name": "Tree2_LOD0",
+      "dimensions": [
+        3.1818312406539917,
+        3.1486856937408447,
+        9.136169283650815
+      ],
+      "vertices": 53294,
+      "triangles": 18022
+    },
+    {
+      "name": "Tree2_LOD1",
+      "dimensions": [
+        3.4279532432556152,
+        3.2594412565231323,
+        9.20798000600189
+      ],
+      "vertices": 5636,
+      "triangles": 2818
+    },
+    {
+      "name": "Tree2_LOD2",
+      "dimensions": [
+        3.6899776458740234,
+        3.678471565246582,
+        9.124910182319582
+      ],
+      "vertices": 2664,
+      "triangles": 1332
+    },
+    {
+      "name": "Tree3_LOD0",
+      "dimensions": [
+        5.539836645126343,
+        5.2974631786346436,
+        6.988823263905942
+      ],
+      "vertices": 53294,
+      "triangles": 18022
+    },
+    {
+      "name": "Tree3_LOD1",
+      "dimensions": [
+        5.633608818054199,
+        5.255198240280151,
+        6.969211905263364
+      ],
+      "vertices": 5636,
+      "triangles": 2818
+    },
+    {
+      "name": "Tree3_LOD2",
+      "dimensions": [
+        6.02216649055481,
+        5.687682390213013,
+        6.909794635139406
+      ],
+      "vertices": 2664,
+      "triangles": 1332
+    },
+    {
+      "name": "Tree4_LOD0",
+      "dimensions": [
+        4.154488801956177,
+        4.089063048362732,
+        8.117608874104917
+      ],
+      "vertices": 53294,
+      "triangles": 18022
+    },
+    {
+      "name": "Tree4_LOD1",
+      "dimensions": [
+        4.313414812088013,
+        4.139660835266113,
+        8.229828684590757
+      ],
+      "vertices": 5636,
+      "triangles": 2818
+    },
+    {
+      "name": "Tree4_LOD2",
+      "dimensions": [
+        4.234419584274292,
+        4.438841342926025,
+        8.038323230110109
+      ],
+      "vertices": 2664,
+      "triangles": 1332
+    },
+    {
+      "name": "Tree5_LOD0",
+      "dimensions": [
+        5.07206654548645,
+        4.780451536178589,
+        7.7428258350118995
+      ],
+      "vertices": 153702,
+      "triangles": 51726
+    },
+    {
+      "name": "Tree5_LOD1",
+      "dimensions": [
+        5.246057510375977,
+        4.8853325843811035,
+        7.883086531423032
+      ],
+      "vertices": 15668,
+      "triangles": 7834
+    },
+    {
+      "name": "Tree5_LOD2",
+      "dimensions": [
+        5.333897590637207,
+        5.332379102706909,
+        7.891112155281007
+      ],
+      "vertices": 7240,
+      "triangles": 3620
+    },
+    {
+      "name": "Tree6_LOD0",
+      "dimensions": [
+        4.491886854171753,
+        4.562609672546387,
+        6.540119021199644
+      ],
+      "vertices": 53294,
+      "triangles": 18022
+    },
+    {
+      "name": "Tree6_LOD1",
+      "dimensions": [
+        4.73246169090271,
+        4.5115697383880615,
+        6.386548846028745
+      ],
+      "vertices": 5636,
+      "triangles": 2818
+    },
+    {
+      "name": "Tree6_LOD2",
+      "dimensions": [
+        4.58171820640564,
+        4.777804374694824,
+        6.258260554634035
+      ],
+      "vertices": 2664,
+      "triangles": 1332
+    },
+    {
+      "name": "Tree7_LOD0",
+      "dimensions": [
+        4.668598651885986,
+        4.567679166793823,
+        8.356683581136167
+      ],
+      "vertices": 47184,
+      "triangles": 16032
+    },
+    {
+      "name": "Tree7_LOD1",
+      "dimensions": [
+        4.9365925788879395,
+        4.667006492614746,
+        8.478561251424253
+      ],
+      "vertices": 5584,
+      "triangles": 2792
+    },
+    {
+      "name": "Tree7_LOD2",
+      "dimensions": [
+        4.926766633987427,
+        4.939958333969116,
+        8.43255407270044
+      ],
+      "vertices": 3000,
+      "triangles": 1500
+    },
+    {
+      "name": "Shrub1_LOD0",
+      "dimensions": [
+        1.4399454593658447,
+        1.397562563419342,
+        0.9226658027619123
+      ],
+      "vertices": 5810,
+      "triangles": 1960
+    },
+    {
+      "name": "Shrub1_LOD1",
+      "dimensions": [
+        1.5201449990272522,
+        1.4396241307258606,
+        0.997792212292552
+      ],
+      "vertices": 700,
+      "triangles": 350
+    },
+    {
+      "name": "Shrub2_LOD0",
+      "dimensions": [
+        1.4250416159629822,
+        1.454533338546753,
+        1.110946604050696
+      ],
+      "vertices": 5810,
+      "triangles": 1960
+    },
+    {
+      "name": "Shrub2_LOD1",
+      "dimensions": [
+        1.4320874214172363,
+        1.5577204823493958,
+        1.1708319867029786
+      ],
+      "vertices": 700,
+      "triangles": 350
+    },
+    {
+      "name": "Shrub3_LOD0",
+      "dimensions": [
+        1.4476784467697144,
+        1.4159469604492188,
+        0.8246668027713895
+      ],
+      "vertices": 5810,
+      "triangles": 1960
+    },
+    {
+      "name": "Shrub3_LOD1",
+      "dimensions": [
+        1.602152168750763,
+        1.4948752522468567,
+        0.8548888014629483
+      ],
+      "vertices": 700,
+      "triangles": 350
+    },
+    {
+      "name": "Grass1_LOD0",
+      "dimensions": [
+        0.833774983882904,
+        0.8389703035354614,
+        0.2877159118652344
+      ],
+      "vertices": 1170,
+      "triangles": 390
+    },
+    {
+      "name": "Grass1_LOD1",
+      "dimensions": [
+        0.7355761826038361,
+        0.776405394077301,
+        0.2877159118652344
+      ],
+      "vertices": 100,
+      "triangles": 50
+    },
+    {
+      "name": "Grass2_LOD0",
+      "dimensions": [
+        0.8909634947776794,
+        0.853421688079834,
+        0.2946699559688568
+      ],
+      "vertices": 1170,
+      "triangles": 390
+    },
+    {
+      "name": "Grass2_LOD1",
+      "dimensions": [
+        0.8155365884304047,
+        0.8090367317199707,
+        0.2927851974964142
+      ],
+      "vertices": 100,
+      "triangles": 50
+    },
+    {
+      "name": "Grass3_LOD0",
+      "dimensions": [
+        0.8318829834461212,
+        0.8604268431663513,
+        0.2932124733924866
+      ],
+      "vertices": 1170,
+      "triangles": 390
+    },
+    {
+      "name": "Grass3_LOD1",
+      "dimensions": [
+        0.7516418099403381,
+        0.8604268431663513,
+        0.2860443890094757
+      ],
+      "vertices": 100,
+      "triangles": 50
+    },
+    {
+      "name": "Flowers1_LOD0",
+      "dimensions": [
+        1.1284626722335815,
+        1.1554846167564392,
+        0.4576716274023056
+      ],
+      "vertices": 13766,
+      "triangles": 4690
+    },
+    {
+      "name": "Flowers1_LOD1",
+      "dimensions": [
+        1.2084488272666931,
+        1.2939504384994507,
+        0.5068188684526831
+      ],
+      "vertices": 1804,
+      "triangles": 806
+    },
+    {
+      "name": "Flowers2_LOD0",
+      "dimensions": [
+        1.045365571975708,
+        1.1363199949264526,
+        1.0201267662341706
+      ],
+      "vertices": 17722,
+      "triangles": 5966
+    },
+    {
+      "name": "Flowers2_LOD1",
+      "dimensions": [
+        1.1943951845169067,
+        1.2860114574432373,
+        0.9073770514514763
+      ],
+      "vertices": 3632,
+      "triangles": 1276
+    },
+    {
+      "name": "Flowers3_LOD0",
+      "dimensions": [
+        1.1255478262901306,
+        1.1179499626159668,
+        0.8304998522798996
+      ],
+      "vertices": 9302,
+      "triangles": 3178
+    },
+    {
+      "name": "Flowers3_LOD1",
+      "dimensions": [
+        1.1128761172294617,
+        1.1144856810569763,
+        0.8288703049474861
+      ],
+      "vertices": 1244,
+      "triangles": 550
+    },
+    {
+      "name": "Flowers4_LOD0",
+      "dimensions": [
+        1.1369998455047607,
+        1.1134424209594727,
+        0.6737461020238698
+      ],
+      "vertices": 9258,
+      "triangles": 3150
+    },
+    {
+      "name": "Flowers4_LOD1",
+      "dimensions": [
+        1.243679165840149,
+        1.20657080411911,
+        0.6684542893781327
+      ],
+      "vertices": 1180,
+      "triangles": 530
+    },
+    {
+      "name": "Flowers5_LOD0",
+      "dimensions": [
+        1.1499152183532715,
+        1.117185115814209,
+        0.8372639966546558
+      ],
+      "vertices": 13248,
+      "triangles": 4992
+    },
+    {
+      "name": "Flowers5_LOD1",
+      "dimensions": [
+        1.2760455012321472,
+        1.147667944431305,
+        0.8526581669284496
+      ],
+      "vertices": 3140,
+      "triangles": 1240
+    },
+    {
+      "name": "Flowers6_LOD0",
+      "dimensions": [
+        1.0428204536437988,
+        1.1490610241889954,
+        0.4281747750355862
+      ],
+      "vertices": 8954,
+      "triangles": 3070
+    },
+    {
+      "name": "Flowers6_LOD1",
+      "dimensions": [
+        1.1560924649238586,
+        1.1894482374191284,
+        0.48114780854666606
+      ],
+      "vertices": 1316,
+      "triangles": 574
+    },
+    {
+      "name": "Flowers7_LOD0",
+      "dimensions": [
+        1.1400277614593506,
+        1.1212706565856934,
+        0.6180191713501699
+      ],
+      "vertices": 8026,
+      "triangles": 2750
+    },
+    {
+      "name": "Flowers7_LOD1",
+      "dimensions": [
+        1.2536615133285522,
+        1.2210306525230408,
+        0.6132774775032885
+      ],
+      "vertices": 1148,
+      "triangles": 502
+    },
+    {
+      "name": "Ornamental1_LOD0",
+      "dimensions": [
+        1.4603604078292847,
+        1.3865126371383667,
+        1.173633673985023
+      ],
+      "vertices": 6054,
+      "triangles": 2062
+    },
+    {
+      "name": "Ornamental1_LOD1",
+      "dimensions": [
+        1.3380815982818604,
+        1.2548547983169556,
+        1.1447335319244303
+      ],
+      "vertices": 1816,
+      "triangles": 648
+    },
+    {
+      "name": "Ornamental2_LOD0",
+      "dimensions": [
+        1.5814970135688782,
+        1.379915177822113,
+        1.1683679806883447
+      ],
+      "vertices": 6054,
+      "triangles": 2062
+    },
+    {
+      "name": "Ornamental2_LOD1",
+      "dimensions": [
+        1.5268692374229431,
+        1.3126046061515808,
+        1.1616501134703867
+      ],
+      "vertices": 1816,
+      "triangles": 648
+    }
+  ],
+  "scope": "Reopened Blender source geometry/UV/material/ground/orientation/packed texture checks; native rendering separate."
+}

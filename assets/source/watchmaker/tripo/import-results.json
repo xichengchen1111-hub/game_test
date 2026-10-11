@@ -1,0 +1,9 @@
+{
+  "archive": "Watchmaker_Tripo_Retopo.zip",
+  "archiveSHA256": "b19ee109ad47af56b08a7bce363b312675d5dbcc56052f3f3c977b5e2e29c291",
+  "tripoAsset": "373ab2a6-bf3d-43a4-9c4a-a20d63e69697",
+  "originalPreserved": true,
+  "source": "Tripo image-to-model and 10000-quad retopology. Automatic humanoid rig rejected; locally authored rig, skinning, repair props and three clips.",
+  "license": "No license file supplied in export; no inherited Meshy or Toon Boy license claim.",
+  "unity": "Generic playback preserves authored contact; valid reusable Humanoid Avatar additionally saved by TripoWatchmakerAsset."
+}

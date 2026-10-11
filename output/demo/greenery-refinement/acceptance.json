@@ -1,0 +1,160 @@
+[
+  {
+    "name": "greenery-1080",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 59.25,
+    "marker": "GREENERY_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-greenery"
+    ],
+    "resolution": [
+      1920,
+      1080
+    ],
+    "failures": [],
+    "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "greenery-720",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 58.73,
+    "marker": "GREENERY_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-greenery"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "full-map",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 556.64,
+    "marker": "FULL_MAP_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-full-map"
+    ],
+    "resolution": [
+      1920,
+      1080
+    ],
+    "failures": [],
+    "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "full-map-save",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 5.66,
+    "marker": "FULL_MAP_SAVE_PASS",
+    "arguments": [
+      "--review",
+      "--verify-full-map-save"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "shop",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 48.75,
+    "marker": "WALNUT_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-walnut-shop"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "shop-save",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 4.57,
+    "marker": "WALNUT_SAVE_RELAUNCH_PASS",
+    "arguments": [
+      "--review",
+      "--verify-walnut-save"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "milkboy",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 37.67,
+    "marker": "MILKBOY_TRIPO_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-milkboy-tripo"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  },
+  {
+    "name": "watchmaker",
+    "passed": true,
+    "exitCode": 0,
+    "seconds": 66.95,
+    "marker": "WATCHMAKER_TRIPO_REVIEW_PASS",
+    "arguments": [
+      "--review",
+      "--fresh",
+      "--review-watchmaker-tripo"
+    ],
+    "resolution": [
+      1280,
+      720
+    ],
+    "failures": [],
+    "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+    "platform": "macOS Metal native rendered player",
+    "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+  }
+]

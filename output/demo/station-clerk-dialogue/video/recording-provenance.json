@@ -1,0 +1,20 @@
+[
+  {
+    "file": "01-售票员待机与对话.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-clerk-dialogue-layout-final-20261011/clerk-1080/01-idle-dialogue",
+    "seconds": 29.3274859,
+    "nativeFrames": 586,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0069172
+  },
+  {
+    "file": "02-售票员嘴部动作近景.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-clerk-dialogue-layout-final-20261011/clerk-1080/02-face-talk-detail",
+    "seconds": 4.8805866,
+    "nativeFrames": 98,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0045274
+  }
+]

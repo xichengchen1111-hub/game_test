@@ -1,0 +1,166 @@
+{
+  "passed": true,
+  "platform": "Unity 6000.3.18f1; macOS Metal; Apple M5 Pro",
+  "assemblySHA256": "d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f",
+  "checks": [
+    {
+      "name": "greenery-1080",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 43.37,
+      "marker": "GREENERY_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-greenery"
+      ],
+      "resolution": [
+        1920,
+        1080
+      ],
+      "failures": [],
+      "assemblySHA256": "d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "greenery-720",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 42.74,
+      "marker": "GREENERY_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-greenery"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "full-map",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 556.47,
+      "marker": "FULL_MAP_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-full-map"
+      ],
+      "resolution": [
+        1920,
+        1080
+      ],
+      "failures": [],
+      "assemblySHA256": "d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "full-map-save",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 5.92,
+      "marker": "FULL_MAP_SAVE_PASS",
+      "arguments": [
+        "--review",
+        "--verify-full-map-save"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "shop",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 49.58,
+      "marker": "WALNUT_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-walnut-shop"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "shop-save",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 5.02,
+      "marker": "WALNUT_SAVE_RELAUNCH_PASS",
+      "arguments": [
+        "--review",
+        "--verify-walnut-save"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "milkboy",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 37.89,
+      "marker": "MILKBOY_TRIPO_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-milkboy-tripo"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    }
+  ],
+  "sixExteriorOrders": [
+    "shop -> home -> station",
+    "shop -> station -> home",
+    "home -> shop -> station",
+    "home -> station -> shop",
+    "station -> shop -> home",
+    "station -> home -> shop"
+  ],
+  "saveIsolation": {
+    "normalSaveUnchanged": true,
+    "beforeSHA256": "95c7a0cb4798ae63f4515648f1f2aa386a807c6f86ad9c8c33f014828f175c3a",
+    "afterSHA256": "95c7a0cb4798ae63f4515648f1f2aa386a807c6f86ad9c8c33f014828f175c3a",
+    "reviewSavesRestored": true
+  },
+  "visualReview": "Native 1080p and 720p main/residential streets, station garden, orchard, dairy approach, plaza flowers, close flower leaves, clear day, overcast, night rain, and specified clock sightline inspected; six video sections sampled.",
+  "limitations": [
+    "Scripted real controller/interaction handlers, not physical keys or blind playtesting",
+    "No Intel hardware or low-end FPS benchmark",
+    "No new historical route/time feasibility claims",
+    "OtherTown station neighborhood not replanted"
+  ]
+}

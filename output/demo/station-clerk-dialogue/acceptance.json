@@ -1,0 +1,236 @@
+{
+  "passed": true,
+  "editMode": {
+    "passed": 56,
+    "total": 56
+  },
+  "initialRuntimeChecks": [
+    {
+      "name": "clerk-1080",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 52.42,
+      "marker": "STATION_CLERK_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-station-clerk"
+      ],
+      "resolution": [
+        1920,
+        1080
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "clerk-save",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 9.22,
+      "marker": "STATION_CLERK_SAVE_PASS",
+      "arguments": [
+        "--review",
+        "--verify-station-clerk-save"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "clerk-720",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 51.69,
+      "marker": "STATION_CLERK_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-station-clerk"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "ticket-office",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 38.24,
+      "marker": "TICKET_OFFICE_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-rail",
+        "--record-ticket-office",
+        "--office-only"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "dialogue-1080",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 6.64,
+      "marker": "DIALOGUE_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-dialogue"
+      ],
+      "resolution": [
+        1920,
+        1080
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "dialogue-save",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 4.44,
+      "marker": "DIALOGUE_SAVE_RELAUNCH_PASS",
+      "arguments": [
+        "--review",
+        "--verify-dialogue-save"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "dialogue-720",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 6.58,
+      "marker": "DIALOGUE_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-dialogue"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "watchmaker",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 67.03,
+      "marker": "WATCHMAKER_TRIPO_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-watchmaker-tripo"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    }
+  ],
+  "finalLayoutChecks": [
+    {
+      "name": "clerk-1080",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 52.44,
+      "marker": "STATION_CLERK_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-station-clerk"
+      ],
+      "resolution": [
+        1920,
+        1080
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "resourcesSHA256": "8b113f1c575675b367e5ef10bfb58dbbaeeabb58198a2e4bcc3e7c0e42cf27cb",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "clerk-save",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 9.22,
+      "marker": "STATION_CLERK_SAVE_PASS",
+      "arguments": [
+        "--review",
+        "--verify-station-clerk-save"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "resourcesSHA256": "8b113f1c575675b367e5ef10bfb58dbbaeeabb58198a2e4bcc3e7c0e42cf27cb",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "clerk-720",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 51.74,
+      "marker": "STATION_CLERK_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-station-clerk"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+      "resourcesSHA256": "8b113f1c575675b367e5ef10bfb58dbbaeeabb58198a2e4bcc3e7c0e42cf27cb",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    }
+  ],
+  "normalSaveUnchangedFromTaskStart": true,
+  "normalSaveSHA256": "adbb96bd5c40e7276ec6324e38a34bca7997f4efb2452b6d8106db3b36edf69a",
+  "scope": "Native macOS Metal with scripted real controller, ordinary E ray and shared dialogue handlers. Not physical keyboard/mouse or blind playtest. Initial eight checks precede only a date-answer line break; final three repeat both resolutions and independent save. Code assembly unchanged; resource versions tracked separately. E03/E08 retain no dialogue precondition."
+}

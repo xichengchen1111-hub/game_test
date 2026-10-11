@@ -1,0 +1,21 @@
+{
+    "passed": true,
+    "visibleOnEntry": true,
+    "idleLoops": true,
+    "inPlace": true,
+    "dialogueRay": true,
+    "playerLineIdle": true,
+    "closeRestoresIdle": true,
+    "humanoid": true,
+    "mouthMoves": true,
+    "localPosition": {
+        "x": 0.1499938815832138,
+        "y": 0.18000000715255738,
+        "z": 0.15000027418136598
+    },
+    "jawMaxDegrees": 7.393845558166504,
+    "idleLoopsObserved": 1.2136149406433106,
+    "idleGazeMaxDegrees": 2.021682024002075,
+    "talkGazeDegrees": 0.05595291033387184,
+    "verification": "OSXPlayer native rendered player; real controller entry and interaction ray. Conversation uses shared handlers; detail views use controlled camera. No phoneme/audio lip sync, physical-input or blind-playtest claim."
+}

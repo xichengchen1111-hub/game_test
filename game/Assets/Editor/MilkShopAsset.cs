@@ -47,8 +47,9 @@ public static class MilkShopAsset {
         if(Mathf.Abs(marker.visualBounds.min.y+.04f)>.015f)throw new Exception("Milk shop foundation isn't on the ground");
         MilkShopInteriorAsset.AddTo(root);
         ConfigureDoors(root);
-        // Counter-side floor, facing the customer area; keep both window aisles and ledger clear.
-        milkboy.transform.SetPositionAndRotation(root.transform.TransformPoint(new Vector3(2.35f,.18f,.85f)),root.transform.rotation);
+        // In front of the counter, visible from the entrance; keep window aisles and ledger access.
+        milkboy.transform.SetPositionAndRotation(root.transform.TransformPoint(new Vector3(.15f,.18f,.15f)),root.transform.rotation);
+        foreach(var renderer in milkboy.GetComponentsInChildren<Renderer>())renderer.renderingLayerMask|=MilkShopInteriorAsset.InteriorFillLayer;
         marker.milkboyPosition=milkboy.transform.position;
         WeatherAuthoring.BindDoors(root);
         Directory.CreateDirectory("../output/demo/milkshop");

@@ -381,11 +381,11 @@ public static partial class BuildSlice {
         if(ids.Length==0)throw new Exception("Official URP template pipeline not present");
         var pipe=AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>("Assets/Settings/PC_RPAsset.asset");
         if(!pipe) throw new Exception("Desktop URP pipeline not present");
-        GraphicsSettings.defaultRenderPipeline=pipe;QualitySettings.renderPipeline=pipe;pipe.supportsHDR=true;pipe.msaaSampleCount=4;pipe.shadowDistance=55;
+        GraphicsSettings.defaultRenderPipeline=pipe;QualitySettings.renderPipeline=pipe;pipe.supportsHDR=true;pipe.msaaSampleCount=4;pipe.shadowDistance=55;pipe.renderScale=1.10f;
         pipe.mainLightShadowmapResolution=4096;pipe.shadowCascadeCount=4;QualitySettings.anisotropicFiltering=AnisotropicFiltering.ForceEnable;EditorUtility.SetDirty(pipe);
         ConfigureAmbientOcclusion();
         PlayerSettings.companyName=String.IsNullOrEmpty(companyOverride)?"Qingchuan Studio":companyOverride;PlayerSettings.productName="错日证词 · 暮色小镇";
-        PlayerSettings.defaultScreenWidth=1600;PlayerSettings.defaultScreenHeight=900;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
+        PlayerSettings.defaultScreenWidth=1920;PlayerSettings.defaultScreenHeight=1080;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
         PlayerSettings.resizableWindow=true;PlayerSettings.runInBackground=true;PlayerSettings.colorSpace=ColorSpace.Linear;
         PlayerSettings.SplashScreen.show=false;PlayerSettings.SetScriptingBackend(NamedBuildTarget.Standalone,ScriptingImplementation.Mono2x);
         if(architecture.HasValue)PlayerSettings.SetArchitecture(NamedBuildTarget.Standalone,architecture.Value);

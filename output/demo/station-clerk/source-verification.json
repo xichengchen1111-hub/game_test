@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "bones": 69,
+  "meshVertices": 9408,
+  "rootScale": [
+    1.8207110166549683,
+    1.8207110166549683,
+    1.8207110166549683
+  ],
+  "sourcePackedImages": 4,
+  "clips": [
+    {
+      "name": "01_Idle",
+      "feetDriftMetres": 0,
+      "soleMinMetres": 7.664810453000825e-10,
+      "soleMaxMetres": 7.664810453000825e-10,
+      "jawMaxDegrees": 0.0,
+      "loopMatrixError": 0.0
+    },
+    {
+      "name": "02_Talk_WithMouth",
+      "feetDriftMetres": 0,
+      "soleMinMetres": 7.664810453000825e-10,
+      "soleMaxMetres": 7.664810453000825e-10,
+      "jawMaxDegrees": 6.846279815036832,
+      "loopMatrixError": 0.0
+    }
+  ]
+}

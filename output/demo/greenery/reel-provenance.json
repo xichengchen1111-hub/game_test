@@ -1,0 +1,13 @@
+{
+  "parts": [
+    "01-主街行道树.mp4",
+    "02-住宅街绿化.mp4",
+    "03-车站花园.mp4",
+    "04-北边果园.mp4",
+    "05-牛奶店门前.mp4",
+    "06-广场花丛.mp4"
+  ],
+  "seconds": 29.7655967,
+  "nativeFrames": 596,
+  "notes": "Native Unity frame captures and game listener audio. Each staged camera area uses real controller side steps. Segments concatenated at recorded speed."
+}

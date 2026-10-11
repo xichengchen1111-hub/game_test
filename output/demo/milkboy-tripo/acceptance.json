@@ -1,0 +1,21 @@
+{
+  "upstream": "e07977974c551ab264bca34c384fa7c9b3d49fc9",
+  "unity": "6000.3.18f1",
+  "nativePlatform": "macOS Metal / Apple M5 Pro",
+  "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+  "passedCases": 9,
+  "zip": {
+    "app": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app",
+    "desktop": "/Users/wulizhi/Desktop/错日证词-新版.app",
+    "archive": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-Mac-送奶小孩抬头与灯光版.zip",
+    "archiveBytes": 147934380,
+    "archiveSHA256": "ecc7dd9cf0d26ab71507883af5fe62a5cd8d6cfe571f1c522daf72fa65cd877b",
+    "assemblySHA256": "3feb8cdfe4b87aa42268b3c26618b38e5fa5bea93039854ebc667404c5dbcc84",
+    "architectures": "x86_64 arm64",
+    "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+    "sourceAndExtractedStrictSignature": true
+  },
+  "input": "Scripted CharacterController, ordinary interaction ray and shared UI handlers. Detail camera controlled. Not physical input/blind playtest or Intel hardware testing.",
+  "mouth": "Generic jaw/lip motion, not phoneme/audio synchronization.",
+  "scope": "Milkboy, dialogue, dairy props/doors/light switch/save; fixed clear/rain noon/night face views. Other upstream car/rail/time full suites not rerun in this build."
+}

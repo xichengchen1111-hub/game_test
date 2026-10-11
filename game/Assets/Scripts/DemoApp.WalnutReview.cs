@@ -64,11 +64,12 @@ public partial class DemoApp {
         player.Aim(owner.transform.position+Vector3.up*1.1f);yield return null;
         NeedShop(TryInteract()&&DialogueOpen,"Owner is not reachable through the new counter layout");
         yield return Capture("unity-owner-dialogue");CloseDialogue();
-        NeedShop(animator.GetCurrentAnimatorClipInfo(0).Single().clip.name.Contains("Sit_Cross_Legged")&&!animator.applyRootMotion,"Locked owner animation changed");
-        var originalRoot=owner.transform.position;float startLoop=animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        var repair=owner.GetComponentInChildren<WatchmakerPerformance>();
+        NeedShop(repair&&repair.Ready&&animator.GetCurrentAnimatorClipInfo(0).All(c=>repair.states.Any(s=>c.clip.name.Contains(s)))&&!animator.applyRootMotion,"Owner must use authored seated repair actions");
+        var originalRoot=owner.transform.position;int startActions=repair.CompletedActions;
         player.Aim(owner.transform.position+Vector3.up*.85f);yield return Capture("unity-repair-area");
         yield return new WaitForSeconds(animator.GetCurrentAnimatorClipInfo(0)[0].clip.length+.2f);
-        NeedShop(animator.GetCurrentAnimatorStateInfo(0).normalizedTime-startLoop>=1&&Vector3.Distance(originalRoot,owner.transform.position)<.001f,"Owner seated cycle not stable");
+        NeedShop(repair.CompletedActions>startActions&&Vector3.Distance(originalRoot,owner.transform.position)<.001f,"Owner seated sequence not stable");
         var notice=GameObject.Find("RepairNotice");player.Aim(notice.transform.position);yield return null;
         NeedShop(TryInteract()&&inspected&&inspected.evidenceId=="E07","New clipboard cannot be read with ordinary ray");
         yield return Capture("unity-evidence");CloseInspect();

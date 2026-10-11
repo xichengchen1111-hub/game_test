@@ -4,7 +4,10 @@ import json, subprocess, sys
 import imageio_ffmpeg
 ffmpeg=imageio_ffmpeg.get_ffmpeg_exe()
 source=Path(sys.argv[1]).resolve();dest=Path(sys.argv[2]).resolve();dest.mkdir(parents=True,exist_ok=True)
-names={'current-home-station':'01-从家全速跑到车站','current-station-home':'02-沿近路全速返家','01-rain-and-splashes':'01-大雨与落地水花','02-enter-room-rain':'02-走进室内听雨','03-grey-day-fog':'03-灰雾白天','01-milk-doors-rain':'01-牛奶店开关门与雨声','02-weather-street-lamps':'02-雨天路灯与晴天对比'}
+names={'01-entry-idle-dialogue':'01-进店与送奶少年对话','02-hands-mouth-detail':'02-肩带与嘴部动作近景','current-home-station':'01-从家全速跑到车站','current-station-home':'02-沿近路全速返家','01-rain-and-splashes':'01-大雨与落地水花','02-enter-room-rain':'02-走进室内听雨','03-grey-day-fog':'03-灰雾白天','01-milk-doors-rain':'01-牛奶店开关门与雨声','02-weather-street-lamps':'02-雨天路灯与晴天对比'}
+names.update({'01-repair-variants':'01-钟表匠三段修表动作','02-hands-watch-detail':'02-双手与修表工具近景'})
+names.update({'01-idle-dialogue':'01-售票员待机与对话','02-face-talk-detail':'02-售票员嘴部动作近景'})
+names.update({'roadside-flower-walk':'07-沿路边花境行走','main-street':'01-主街行道树','residential-street':'02-住宅街绿化','station-garden':'03-车站花园','north-orchard':'04-北边果园','dairy-approach':'05-牛奶店门前','plaza-flowers':'06-广场花丛'})
 results=[]
 for folder in sorted(source.iterdir()):
  if folder.name not in names or not (folder/'capture.json').exists():continue

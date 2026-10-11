@@ -1,0 +1,44 @@
+[
+  {
+    "file": "01-进店与送奶少年对话.mp4",
+    "video": {
+      "ffmpeg_version": "7.1 built with Apple clang version 13.1.6 (clang-1316.0.21.2.5)",
+      "codec": "h264",
+      "pix_fmt": "yuvj420p(pc, bt470bg/unknown/unknown, progressive)",
+      "audio_codec": "aac",
+      "fps": 30.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "size": [
+        1920,
+        1080
+      ],
+      "rotate": 0,
+      "duration": 21.41
+    },
+    "fullDecodePassed": true
+  },
+  {
+    "file": "02-肩带与嘴部动作近景.mp4",
+    "video": {
+      "ffmpeg_version": "7.1 built with Apple clang version 13.1.6 (clang-1316.0.21.2.5)",
+      "codec": "h264",
+      "pix_fmt": "yuvj420p(pc, bt470bg/unknown/unknown, progressive)",
+      "audio_codec": "aac",
+      "fps": 30.0,
+      "source_size": [
+        1920,
+        1080
+      ],
+      "size": [
+        1920,
+        1080
+      ],
+      "rotate": 0,
+      "duration": 8.62
+    },
+    "fullDecodePassed": true
+  }
+]

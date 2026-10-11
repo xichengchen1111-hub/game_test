@@ -1,0 +1,7 @@
+Tripo H3.1 asset: 7ef008b1-0a11-4338-a813-c65ba9636e73
+Idle: Tripo preset idle, 15.333 seconds.
+Talk: Tripo text-to-motion, 5-second request.
+
+A calm middle-aged railway ticket clerk stands still behind a counter and talks politely to a passenger in front of him. Both feet remain planted throughout. Subtle conversational movement only: small natural nods, one restrained open-hand explaining gesture close to the waist, the other hand relaxed beside the body. Upright head facing forward, no walking, no turning around, no dramatic arm movements. Start and end in the same relaxed standing pose so the motion can loop.
+
+Local refinement: shared planted lower-body pose, loop closure and generic jaw/lip opening; original Tripo export retained.

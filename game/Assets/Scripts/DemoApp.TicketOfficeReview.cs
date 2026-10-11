@@ -11,7 +11,16 @@ public partial class DemoApp {
         yield return RailWalk(new Vector3(188,.12f,45.5f));
         yield return RailWalk(new Vector3(180,.12f,45.5f));
         player.Aim(new Vector3(180,2.04f,47));yield return Capture("ticket-office-front");
-        yield return ReadWorldItem("售票员",new Vector3(180,.12f,45.5f));
+        var clerk=FindObjectsByType<Interactable>(FindObjectsSortMode.None).Single(i=>i.title=="售票员");
+        player.Aim(clerk.GetComponentsInChildren<Transform>().Single(t=>t.name=="Head").position);yield return null;
+        NeedRail(TryInteract()&&DialogueOpen&&dialogueNode.speaker=="售票员","ordinary 3m E ray could not open clerk dialogue");
+        NeedRail(dialogueNode.text=="你好。","clerk greeting missing");AdvanceDialogue();
+        NeedRail(dialogueChoices.Count==6,"clerk questions missing");SelectDialogue(dialogueChoices.FindIndex(c=>c.topic=="station-clerk.inspection"));AdvanceDialogue();
+        NeedRail(dialogueNode.text=="检票的时候，会用检票钳在票上打孔。旁边废票桶里的同线路旧票，您可以拿起来看看。","clerk inspection rule changed");
+        yield return Capture("ticket-office-clerk-dialogue");AdvanceDialogue();
+        SelectDialogue(dialogueChoices.FindIndex(c=>c.topic=="station-clerk.boarding"));AdvanceDialogue();
+        NeedRail(DialogueOpen&&dialogueNode.id=="boarding","clerk boarding instruction missing");CloseDialogue();
+        NeedRail(!Blocked,"clerk dialogue did not restore movement");
         player.Aim(new Vector3(180,1.64f,47.9f));yield return Capture("ticket-office-wicket-clerk");
         yield return ReadWorldItem("手持检票钳",new Vector3(181.5f,.12f,45.5f));
         player.Aim(new Vector3(181.335f,1.19f,46.60f));yield return Capture("ticket-office-punch-close");

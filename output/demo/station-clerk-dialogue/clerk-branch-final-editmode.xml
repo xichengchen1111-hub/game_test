@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="56" result="Passed" total="56" passed="56" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.4026566">
+  <test-suite type="TestSuite" id="1000" name="错日证词 · 暮色小镇" fullname="错日证词 · 暮色小镇" runstate="Runnable" testcasecount="56" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.402657" total="56" passed="56" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1027" name="HotelCar.EditTests.dll" fullname="/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/game/Library/ScriptAssemblies/HotelCar.EditTests.dll" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.087348" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="36922" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1001" name="HotelCarPrefabTests" fullname="HotelCarPrefabTests" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.087007" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="ParameterizedMethod" id="1015" name="ControlTargetsDoNotOverlap" fullname="HotelCarPrefabTests.ControlTargetsDoNotOverlap" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.024884" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1013" name="ControlTargetsDoNotOverlap(0.0f)" fullname="HotelCarPrefabTests.ControlTargetsDoNotOverlap(0.0f)" methodname="ControlTargetsDoNotOverlap" classname="HotelCarPrefabTests" runstate="Runnable" seed="1583355335" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.020169" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1014" name="ControlTargetsDoNotOverlap(1.0f)" fullname="HotelCarPrefabTests.ControlTargetsDoNotOverlap(1.0f)" methodname="ControlTargetsDoNotOverlap" classname="HotelCarPrefabTests" runstate="Runnable" seed="321591861" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002960" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-suite type="ParameterizedMethod" id="1007" name="DoorsSwingOutward" fullname="HotelCarPrefabTests.DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.011934" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1003" name="DoorsSwingOutward(&quot;Door_FL&quot;,-1)" fullname="HotelCarPrefabTests.DoorsSwingOutward(&quot;Door_FL&quot;,-1)" methodname="DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" seed="1441787319" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003731" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1004" name="DoorsSwingOutward(&quot;Door_FR&quot;,1)" fullname="HotelCarPrefabTests.DoorsSwingOutward(&quot;Door_FR&quot;,1)" methodname="DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" seed="1649180256" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002581" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1005" name="DoorsSwingOutward(&quot;Door_RL&quot;,-1)" fullname="HotelCarPrefabTests.DoorsSwingOutward(&quot;Door_RL&quot;,-1)" methodname="DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" seed="1573645813" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002582" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1006" name="DoorsSwingOutward(&quot;Door_RR&quot;,1)" fullname="HotelCarPrefabTests.DoorsSwingOutward(&quot;Door_RR&quot;,1)" methodname="DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" seed="1051580119" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002436" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-suite type="ParameterizedMethod" id="1019" name="DriverEyeReachesEveryControl" fullname="HotelCarPrefabTests.DriverEyeReachesEveryControl" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.011970" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1016" name="DriverEyeReachesEveryControl(0.0f)" fullname="HotelCarPrefabTests.DriverEyeReachesEveryControl(0.0f)" methodname="DriverEyeReachesEveryControl" classname="HotelCarPrefabTests" runstate="Runnable" seed="1703218827" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.004709" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1017" name="DriverEyeReachesEveryControl(0.5f)" fullname="HotelCarPrefabTests.DriverEyeReachesEveryControl(0.5f)" methodname="DriverEyeReachesEveryControl" classname="HotelCarPrefabTests" runstate="Runnable" seed="2098002918" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003415" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1018" name="DriverEyeReachesEveryControl(1.0f)" fullname="HotelCarPrefabTests.DriverEyeReachesEveryControl(1.0f)" methodname="DriverEyeReachesEveryControl" classname="HotelCarPrefabTests" runstate="Runnable" seed="1873660605" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003338" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1008" name="ExitPointsClearOfOpenDoorsAndBody" fullname="HotelCarPrefabTests.ExitPointsClearOfOpenDoorsAndBody" methodname="ExitPointsClearOfOpenDoorsAndBody" classname="HotelCarPrefabTests" runstate="Runnable" seed="400020885" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003102" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1002" name="PrefabHasEveryPartControlSeatAndWheel" fullname="HotelCarPrefabTests.PrefabHasEveryPartControlSeatAndWheel" methodname="PrefabHasEveryPartControlSeatAndWheel" classname="HotelCarPrefabTests" runstate="Runnable" seed="841134737" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003807" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="SeatedEyesAreInsideTheCabin" fullname="HotelCarPrefabTests.SeatedEyesAreInsideTheCabin" methodname="SeatedEyesAreInsideTheCabin" classname="HotelCarPrefabTests" runstate="Runnable" seed="173634435" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002573" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1026" name="StandingEyeReachesOutsideControls" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.016573" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1020" name="StandingEyeReachesOutsideControls(1.28f,1.3f,&quot;Hood_R&quot;,&quot;engine&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(1.28f,1.3f,&quot;Hood_R&quot;,&quot;engine&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="1019247252" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003036" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1021" name="StandingEyeReachesOutsideControls(0.5f,2.6f,&quot;&quot;,&quot;radiatorCap&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(0.5f,2.6f,&quot;&quot;,&quot;radiatorCap&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="816766002" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002297" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1022" name="StandingEyeReachesOutsideControls(-1.32f,1.45f,&quot;&quot;,&quot;spare,fuelCap&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(-1.32f,1.45f,&quot;&quot;,&quot;spare,fuelCap&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="1874084615" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002463" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1023" name="StandingEyeReachesOutsideControls(0.35f,-2.75f,&quot;&quot;,&quot;strap-L,strap-R&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(0.35f,-2.75f,&quot;&quot;,&quot;strap-L,strap-R&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="369832426" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002435" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1024" name="StandingEyeReachesOutsideControls(1.0f,-2.0f,&quot;TrunkLid,Strap_L,Strap_R&quot;,&quot;item-tools,item-tube,item-oil,item-tarp,crankStowed&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(1.0f,-2.0f,&quot;TrunkLid,Strap_L,Strap_R&quot;,&quot;item-tools,item-tube,item-oil,item-tarp,crankStowed&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="929088966" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003014" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1025" name="StandingEyeReachesOutsideControls(0.45f,2.65f,&quot;&quot;,&quot;crankHole&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(0.45f,2.65f,&quot;&quot;,&quot;crankHole&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="973932065" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002287" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1012" name="TrunkLidAndHoodSidesLiftClear" fullname="HotelCarPrefabTests.TrunkLidAndHoodSidesLiftClear" methodname="TrunkLidAndHoodSidesLiftClear" classname="HotelCarPrefabTests" runstate="Runnable" seed="1080337295" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002710" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="WheelVisualsSitOnTheirColliders" fullname="HotelCarPrefabTests.WheelVisualsSitOnTheirColliders" methodname="WheelVisualsSitOnTheirColliders" classname="HotelCarPrefabTests" runstate="Runnable" seed="666118374" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002914" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="WindowGlassDropsInsideTheDoor" fullname="HotelCarPrefabTests.WindowGlassDropsInsideTheDoor" methodname="WindowGlassDropsInsideTheDoor" classname="HotelCarPrefabTests" runstate="Runnable" seed="2001677346" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003211" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+    </test-suite>
+    <test-suite type="Assembly" id="1073" name="Railway.EditTests.dll" fullname="/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/game/Library/ScriptAssemblies/Railway.EditTests.dll" runstate="Runnable" testcasecount="35" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.312313" total="35" passed="35" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="36922" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1028" name="FurnitureSeatSafetyTests" fullname="FurnitureSeatSafetyTests" classname="FurnitureSeatSafetyTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.004140" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1030" name="ClearFloorSupportsStanding" fullname="FurnitureSeatSafetyTests.ClearFloorSupportsStanding" methodname="ClearFloorSupportsStanding" classname="FurnitureSeatSafetyTests" runstate="Runnable" seed="1692783641" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002157" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1032" name="ItemTriggersDoNotObstructThePhysicalExit" fullname="FurnitureSeatSafetyTests.ItemTriggersDoNotObstructThePhysicalExit" methodname="ItemTriggersDoNotObstructThePhysicalExit" classname="FurnitureSeatSafetyTests" runstate="Runnable" seed="399052937" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.000469" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1031" name="OccupiedExitCannotPushPassengerThroughObjects" fullname="FurnitureSeatSafetyTests.OccupiedExitCannotPushPassengerThroughObjects" methodname="OccupiedExitCannotPushPassengerThroughObjects" classname="FurnitureSeatSafetyTests" runstate="Runnable" seed="458671768" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.000659" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1029" name="StandingRequiresARealFloor" fullname="FurnitureSeatSafetyTests.StandingRequiresARealFloor" methodname="StandingRequiresARealFloor" classname="FurnitureSeatSafetyTests" runstate="Runnable" seed="1281704666" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.000252" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1033" name="RailDoorInteractionTests" fullname="RailDoorInteractionTests" classname="RailDoorInteractionTests" runstate="Runnable" testcasecount="10" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.096503" total="10" passed="10" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="ParameterizedMethod" id="1042" name="BothSidesHaveRealOpenClosedLeaves" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.088516" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1034" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_S_F&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_S_F&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="1921045570" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.066927" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1035" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_S_R&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_S_R&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="1713494222" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003138" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1036" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_N_F&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_N_F&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="383360782" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002660" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1037" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_N_R&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C1_N_R&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="1336874382" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002473" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1038" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_S_F&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_S_F&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="2044427129" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002578" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1039" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_S_R&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_S_R&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="1638024570" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003901" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1040" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_N_F&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_N_F&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="471700560" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003184" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1041" name="BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_N_R&quot;)" fullname="RailDoorInteractionTests.BothSidesHaveRealOpenClosedLeaves(&quot;Door_C2_N_R&quot;)" methodname="BothSidesHaveRealOpenClosedLeaves" classname="RailDoorInteractionTests" runstate="Runnable" seed="1479907738" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002980" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-suite type="ParameterizedMethod" id="1045" name="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed" fullname="RailDoorInteractionTests.CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed" classname="RailDoorInteractionTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.007608" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1043" name="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed(&quot;Door_C1_S_F&quot;)" fullname="RailDoorInteractionTests.CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed(&quot;Door_C1_S_F&quot;)" methodname="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed" classname="RailDoorInteractionTests" runstate="Runnable" seed="2007053023" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.004096" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1044" name="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed(&quot;Door_C1_N_F&quot;)" fullname="RailDoorInteractionTests.CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed(&quot;Door_C1_N_F&quot;)" methodname="CapsuleInTheLeafIsDetectedAndClearPassengerIsAllowed" classname="RailDoorInteractionTests" runstate="Runnable" seed="790636094" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002681" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+      </test-suite>
+      <test-suite type="TestFixture" id="1046" name="RailGeometryTests" fullname="RailGeometryTests" classname="RailGeometryTests" runstate="Runnable" testcasecount="8" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.030610" total="8" passed="8" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1050" name="AnExtraApertureCannotReplaceAWindowPost" fullname="RailGeometryTests.AnExtraApertureCannotReplaceAWindowPost" methodname="AnExtraApertureCannotReplaceAWindowPost" classname="RailGeometryTests" runstate="Runnable" seed="1333056036" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.005979" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1049" name="AnOpaqueWindowBackingIsRejected" fullname="RailGeometryTests.AnOpaqueWindowBackingIsRejected" methodname="AnOpaqueWindowBackingIsRejected" classname="RailGeometryTests" runstate="Runnable" seed="1945677214" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003413" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1048" name="MovedVisualCannotDriftFromBoardingLayout" fullname="RailGeometryTests.MovedVisualCannotDriftFromBoardingLayout" methodname="MovedVisualCannotDriftFromBoardingLayout" classname="RailGeometryTests" runstate="Runnable" seed="1902352462" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002899" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1055" name="RailwayRainProfilesMatchTheirActualRoof" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.012504" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1051" name="RailwayRainProfilesMatchTheirActualRoof(False,False,6.0f,1.6f,0.0f,11.0f,6.0f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(False,False,6.0f,1.6f,0.0f,11.0f,6.0f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="1821180499" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.004640" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1052" name="RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,0.0f,9.4f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,0.0f,9.4f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="802478208" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002460" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1053" name="RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,11.0f,5.4f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(True,False,5.4f,4.0f,0.0f,11.0f,5.4f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="886719567" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002309" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1054" name="RailwayRainProfilesMatchTheirActualRoof(False,True,3.46f,0.34f,0.0f,0.0f,3.8f)" fullname="RailGeometryTests.RailwayRainProfilesMatchTheirActualRoof(False,True,3.46f,0.34f,0.0f,0.0f,3.8f)" methodname="RailwayRainProfilesMatchTheirActualRoof" classname="RailGeometryTests" runstate="Runnable" seed="1967226205" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002451" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1047" name="SharedPhysicalCoachIsValid" fullname="RailGeometryTests.SharedPhysicalCoachIsValid" methodname="SharedPhysicalCoachIsValid" classname="RailGeometryTests" runstate="Runnable" seed="294934394" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.005009" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[RAIL_AUTHORING_PASS: original editable train; matched actual coach windows/floor/aisle, eight doors and independent wheels
+]]></output>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1056" name="StationClerkDialogueTests" fullname="StationClerkDialogueTests" classname="StationClerkDialogueTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.006927" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1058" name="AskedQuestionsRemainAvailableAfterSaveRoundTrip" fullname="StationClerkDialogueTests.AskedQuestionsRemainAvailableAfterSaveRoundTrip" methodname="AskedQuestionsRemainAvailableAfterSaveRoundTrip" classname="StationClerkDialogueTests" runstate="Runnable" seed="1196653229" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.005177" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1057" name="ClerkDialogueCannotGrantEvidenceOrGateTheWasteTickets" fullname="StationClerkDialogueTests.ClerkDialogueCannotGrantEvidenceOrGateTheWasteTickets" methodname="ClerkDialogueCannotGrantEvidenceOrGateTheWasteTickets" classname="StationClerkDialogueTests" runstate="Runnable" seed="1872721647" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.000287" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1059" name="DateQuestionRetainsUncertainRecognitionWithoutInventingACertainDay" fullname="StationClerkDialogueTests.DateQuestionRetainsUncertainRecognitionWithoutInventingACertainDay" methodname="DateQuestionRetainsUncertainRecognitionWithoutInventingACertainDay" classname="StationClerkDialogueTests" runstate="Runnable" seed="1146876431" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.000822" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1060" name="TicketOfficeSupportTests" fullname="TicketOfficeSupportTests" classname="TicketOfficeSupportTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.169761" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="ParameterizedMethod" id="1066" name="FloatingFixturesAreRejected" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.161691" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1062" name="FloatingFixturesAreRejected(&quot;PigeonDocBundle_0_0&quot;)" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected(&quot;PigeonDocBundle_0_0&quot;)" methodname="FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="627389184" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.148442" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1063" name="FloatingFixturesAreRejected(&quot;PunchFixedHandle&quot;)" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected(&quot;PunchFixedHandle&quot;)" methodname="FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="364879693" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.005857" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1064" name="FloatingFixturesAreRejected(&quot;SignBacking_Tickets&quot;)" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected(&quot;SignBacking_Tickets&quot;)" methodname="FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="1280890363" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003728" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1065" name="FloatingFixturesAreRejected(&quot;OfficePost_3&quot;)" fullname="TicketOfficeSupportTests.FloatingFixturesAreRejected(&quot;OfficePost_3&quot;)" methodname="FloatingFixturesAreRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="915469651" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003347" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1061" name="ImportedOfficeFixturesAreSupported" fullname="TicketOfficeSupportTests.ImportedOfficeFixturesAreSupported" methodname="ImportedOfficeFixturesAreSupported" classname="TicketOfficeSupportTests" runstate="Runnable" seed="1768290204" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.005724" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[TICKET_OFFICE_SUPPORT_PASS: 39 imported contacts, 8 grounded fixtures
+]]></output>
+        </test-case>
+        <test-case id="1067" name="MissingWastePaperFillIsRejected" fullname="TicketOfficeSupportTests.MissingWastePaperFillIsRejected" methodname="MissingWastePaperFillIsRejected" classname="TicketOfficeSupportTests" runstate="Runnable" seed="117558233" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.002022" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+      </test-suite>
+      <test-suite type="TestFixture" id="1068" name="TicketStockTests" fullname="TicketStockTests" classname="TicketStockTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.003728" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-case id="1070" name="CarriedStockPreservesThePaperAtAllPunchPositions" fullname="TicketStockTests.CarriedStockPreservesThePaperAtAllPunchPositions" methodname="CarriedStockPreservesThePaperAtAllPunchPositions" classname="TicketStockTests" runstate="Runnable" seed="1218322785" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.001403" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1071" name="PaintedDotsCannotReplacePhysicalPunchVoids" fullname="TicketStockTests.PaintedDotsCannotReplacePhysicalPunchVoids" methodname="PaintedDotsCannotReplacePhysicalPunchVoids" classname="TicketStockTests" runstate="Runnable" seed="407027159" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.000184" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1072" name="PunchedStockCannotBeUsedForTheCarriedOriginal" fullname="TicketStockTests.PunchedStockCannotBeUsedForTheCarriedOriginal" methodname="PunchedStockCannotBeUsedForTheCarriedOriginal" classname="TicketStockTests" runstate="Runnable" seed="1828112052" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.001087" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1069" name="WasteStockHasPhysicalPunchVoids" fullname="TicketStockTests.WasteStockHasPhysicalPunchVoids" methodname="WasteStockHasPhysicalPunchVoids" classname="TicketStockTests" runstate="Runnable" seed="1563413892" result="Passed" start-time="2026-10-11 11:02:21Z" end-time="2026-10-11 11:02:21Z" duration="0.000155" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: /Users/wulizhi/Library/Application Support/Qingchuan Studio/错日证词 · 暮色小镇/TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

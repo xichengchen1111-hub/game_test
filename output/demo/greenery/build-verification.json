@@ -1,0 +1,30 @@
+{
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "executable": "错日证词 · 暮色小镇",
+  "architectures": "x86_64 arm64",
+  "signatureVerified": true,
+  "assemblySHA256": "d3413290deb2040d171a8d9959c63dd07fb13e268fba7d88c4f6b6d67598b85f",
+  "archive": {
+    "file": "错日证词-Mac-绿化更新-20261011.zip",
+    "bytes": 154311936,
+    "sha256": "fd05bb94e0696fdad4054f71ed456c006a313e80607eb71ea97fc084320e02fe",
+    "zipIntegrityVerified": true
+  },
+  "assetSHA256": {
+    "game/Assets/Art/Greenery/Grass1.fbx": "ffc056f95285104d58ffd0e48b1ca80f3ae2776a644573caf607ae10094f476a",
+    "game/Assets/Art/Greenery/Grass2.fbx": "3a56490f939c81b8add44d34f4cde3c42427dcfe72be19763c95c3c367c5b1a4",
+    "game/Assets/Art/Greenery/Grass3.fbx": "22c09f2406aaf6cb229635d8db5e305bb4bad4994405d524a8542d58a2b8a7b1",
+    "game/Assets/Art/Greenery/Flowers3.fbx": "251426d6a4e03d77b2c19520494bd7ba2516a438704eb6d9b6ef828b4c99114f",
+    "game/Assets/Art/Greenery/Flowers2.fbx": "c911bdd2f94742bdbfef396cac4f537edba0d781bef918d3b5788f4f61e89b14",
+    "game/Assets/Art/Greenery/Flowers1.fbx": "7c208d7616790380439ca04a6bed418337b915b031d2892da7a0eaf685f012fb",
+    "game/Assets/Art/Greenery/Tree3.fbx": "130fcf4daea83e59ad9174b64c3fd848ba6f2854485df2fe6ef58c87a2c627ea",
+    "game/Assets/Art/Greenery/Tree2.fbx": "db944be14e771c8d3b85aca9a07de56baa4fb0527c71ef75a7397af81de45574",
+    "game/Assets/Art/Greenery/Tree1.fbx": "783276e8b31ad93594d96a237d240f22970bace1ceeb38ac52460206d0c704a9",
+    "game/Assets/Art/Greenery/Shrub1.fbx": "f4a033e8b71683b5e165c259f46f8cb78c7d1d1d746642213a73698f668bfb58",
+    "game/Assets/Art/Greenery/Shrub2.fbx": "9a9edd4103ab3a56e16bbe78b169442fd1492f56660c995b68771ead07917e51",
+    "game/Assets/Art/Greenery/Meadow.png": "d9719cb5d7f2a77f948fa04383843aca6296f1e8c6ad4f26c4f692a18ed75008",
+    "game/Assets/Art/Greenery/GreeneryPalette.png": "eafd9d43bdbb4b7b2856caf873ca702cac8e884f479eac2af0bef7f08c9df43d",
+    "game/Assets/Resources/GreeneryPlan.json": "004452d19dd3e973a95f99e83287875120a055a117c6a16b630e98ca7e6f729b",
+    "assets/source/greenery/GreeneryKit.blend": "a878638e18ddc62e301d0e3f75ed1b6ce7fe9a06336ab2cbb0ca3a4cd2d16ab5"
+  }
+}

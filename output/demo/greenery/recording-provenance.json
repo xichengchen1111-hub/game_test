@@ -1,0 +1,56 @@
+[
+  {
+    "file": "05-牛奶店门前.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-greenery-20261011/greenery-1080/dairy-approach",
+    "seconds": 4.9469286,
+    "nativeFrames": 99,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0008324
+  },
+  {
+    "file": "01-主街行道树.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-greenery-20261011/greenery-1080/main-street",
+    "seconds": 4.994765,
+    "nativeFrames": 100,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0132861
+  },
+  {
+    "file": "04-北边果园.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-greenery-20261011/greenery-1080/north-orchard",
+    "seconds": 4.9467254,
+    "nativeFrames": 99,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0183743
+  },
+  {
+    "file": "06-广场花丛.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-greenery-20261011/greenery-1080/plaza-flowers",
+    "seconds": 4.9829043,
+    "nativeFrames": 100,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0064176
+  },
+  {
+    "file": "02-住宅街绿化.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-greenery-20261011/greenery-1080/residential-street",
+    "seconds": 4.9449242,
+    "nativeFrames": 99,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0100448
+  },
+  {
+    "file": "03-车站花园.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-greenery-20261011/greenery-1080/station-garden",
+    "seconds": 4.9493492,
+    "nativeFrames": 99,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0176427
+  }
+]

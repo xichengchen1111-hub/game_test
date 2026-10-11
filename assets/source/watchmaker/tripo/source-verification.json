@@ -1,0 +1,47 @@
+{
+  "reopened": true,
+  "blender": "4.5.9 LTS",
+  "materials": [
+    "WatchmakerBody",
+    "RepairBrass",
+    "RepairSteel",
+    "RepairWood"
+  ],
+  "packedImages": 4,
+  "clothHandWeightMax": 0,
+  "actions": [
+    {
+      "name": "AdjustParts",
+      "samples": 81,
+      "maxToolWatchDistance": 0.007723006472857514,
+      "maxHipTravel": 0,
+      "soleMin": 2.854084470982343e-07,
+      "soleMax": 0.02356194332242012,
+      "headDownMinimum": 0.6606084704399109,
+      "supportSurfaceMin": 0.39235424995422363,
+      "supportSurfaceMax": 0.39235424995422363
+    },
+    {
+      "name": "InspectMovement",
+      "samples": 91,
+      "maxToolWatchDistance": 2.7678667505215274e-05,
+      "maxHipTravel": 0,
+      "soleMin": 2.854084470982343e-07,
+      "soleMax": 0.02356194332242012,
+      "headDownMinimum": 0.6293203830718994,
+      "supportSurfaceMin": 0.39235424995422363,
+      "supportSurfaceMax": 0.39235424995422363
+    },
+    {
+      "name": "RepairScrew",
+      "samples": 81,
+      "maxToolWatchDistance": 0.002138885622549712,
+      "maxHipTravel": 0,
+      "soleMin": 2.854084470982343e-07,
+      "soleMax": 0.02356194332242012,
+      "headDownMinimum": 0.6606084704399109,
+      "supportSurfaceMin": 0.39235424995422363,
+      "supportSurfaceMax": 0.39235424995422363
+    }
+  ]
+}

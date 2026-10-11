@@ -19,7 +19,7 @@ public partial class DemoApp {
         Vector3 P(float x,float y,float z)=>shop.transform.TransformPoint(new Vector3(x,y,z));
         int identity=shop.GetInstanceID(),scenes=SceneManager.sceneCount,entries=state.entries.Count;
         NeedMilk(book.Pages.Count==2&&book.Pages[0].DateId=="1931-01-19"&&book.Pages[1].DateId=="1931-01-20","Approved historical dates differ");
-        NeedMilk(lamp.LampOn&&shop.GetComponentsInChildren<Light>().Length==3,"Default warm light setup missing");
+        NeedMilk(lamp.LampOn&&shop.GetComponentsInChildren<Light>().Length==5,"Three fixture lights and two room fills required");
         NeedMilk(shop.GetComponentsInChildren<Light>().All(l=>l.shadows==LightShadows.None),"Added realtime shadow budget");
         var windows=shop.GetComponentsInChildren<MeshRenderer>().Single(r=>r.name=="Windows");
         var glass=windows.sharedMaterials.Single(m=>m.name=="OldWindow");
@@ -27,7 +27,7 @@ public partial class DemoApp {
         player.Place(placement.outside,0);yield return WalkTo(placement.outside);yield return WalkTo(placement.inside);
         player.Aim(P(0,1.98f,1.75f));yield return Capture("milk-a-interior");
         NeedMilk(insideMilkShop&&location=="青川 · 牛奶屋","Milk-shop location label failed");
-        yield return WalkTo(P(-.14f,.20f,-.02f));
+        yield return WalkTo(P(-.85f,.20f,-.02f));
         player.Aim(book.GetComponent<Collider>().bounds.center);yield return null;
         NeedMilk(TryInteract()&&MilkOrdersOpen,"Counter ledger is not reachable by the normal three-metre ray");
         NeedMilk(CurrentMilkOrder.DateId=="1931-01-20"&&CurrentMilkOrder.deliveries[0].shop=="旅馆"&&CurrentMilkOrder.deliveries[0].bottles==3&&CurrentMilkOrder.deliveries[0].delivered,"20 January record incorrect");
@@ -41,11 +41,14 @@ public partial class DemoApp {
         yield return Capture("milk-a-orders-jan19");MoveMilkOrderDay(1);MoveMilkOrderDay(1);
         NeedMilk(CurrentMilkOrder.DateId=="1931-01-20","Next-day boundary overflow");MoveMilkOrderDay(-1);CloseMilkOrders();
         NeedMilk(!Blocked&&state.entries.Count==entries&&!state.entries.Any(e=>e.id=="E05"),"Ordinary ledger granted evidence or failed to close");
-        yield return WalkTo(P(.39f,.20f,.05f));player.Aim(lamp.GetComponent<Collider>().bounds.center);yield return null;
+        // Walk around the child through the customer aisle, preserving his collision.
+        yield return WalkTo(P(-.85f,.20f,-1.10f));yield return WalkTo(P(.90f,.20f,-1.10f));
+        yield return WalkTo(P(.90f,.20f,.05f));player.Aim(lamp.GetComponent<Collider>().bounds.center);yield return null;
         NeedMilk(TryInteract()&&!lamp.LampOn&&!lamp.readingLight.enabled,"Lamp cannot switch off through actual ray");
         yield return Capture("milk-a-reading-lamp-off");
         NeedMilk(TryInteract()&&lamp.LampOn&&lamp.readingLight.enabled,"Lamp cannot switch on");yield return Capture("milk-a-counter");
         NeedMilk(TryInteract()&&!lamp.LampOn,"Lamp off-state cannot be saved");
+        yield return WalkTo(P(.90f,.20f,-1.10f));yield return WalkTo(P(-.65f,.20f,-1.10f));
         yield return WalkTo(P(-.65f,.20f,.02f));player.Aim(bell.GetComponent<Collider>().bounds.center);yield return null;
         NeedMilk(TryInteract()&&bell.BellRings==1&&bell.bellAudio.isPlaying,"Bell isn't reachable or doesn't play audio");
         var tag=shop.GetComponentsInChildren<Interactable>().Single(i=>i.title=="鲜奶瓶签");

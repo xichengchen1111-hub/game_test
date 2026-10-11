@@ -1,0 +1,170 @@
+{
+  "passed": true,
+  "assemblySHA256": "684e799e1f045116ea8aeef726697fa8c67842401b077cd5800d4aa240a170e4",
+  "nativeCases": [
+    {
+      "name": "clerk-1080",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 45.86,
+      "marker": "STATION_CLERK_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-station-clerk"
+      ],
+      "resolution": [
+        1920,
+        1080
+      ],
+      "failures": [],
+      "assemblySHA256": "684e799e1f045116ea8aeef726697fa8c67842401b077cd5800d4aa240a170e4",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "clerk-save",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 9.32,
+      "marker": "STATION_CLERK_SAVE_PASS",
+      "arguments": [
+        "--review",
+        "--verify-station-clerk-save"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "684e799e1f045116ea8aeef726697fa8c67842401b077cd5800d4aa240a170e4",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "clerk-720",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 45.34,
+      "marker": "STATION_CLERK_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-station-clerk"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "684e799e1f045116ea8aeef726697fa8c67842401b077cd5800d4aa240a170e4",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "ticket-office",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 38.47,
+      "marker": "TICKET_OFFICE_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-rail",
+        "--record-ticket-office",
+        "--office-only"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "684e799e1f045116ea8aeef726697fa8c67842401b077cd5800d4aa240a170e4",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "milkboy",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 38.25,
+      "marker": "MILKBOY_TRIPO_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-milkboy-tripo"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "684e799e1f045116ea8aeef726697fa8c67842401b077cd5800d4aa240a170e4",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    },
+    {
+      "name": "watchmaker",
+      "passed": true,
+      "exitCode": 0,
+      "seconds": 67.38,
+      "marker": "WATCHMAKER_TRIPO_REVIEW_PASS",
+      "arguments": [
+        "--review",
+        "--fresh",
+        "--review-watchmaker-tripo"
+      ],
+      "resolution": [
+        1280,
+        720
+      ],
+      "failures": [],
+      "assemblySHA256": "684e799e1f045116ea8aeef726697fa8c67842401b077cd5800d4aa240a170e4",
+      "platform": "macOS Metal native rendered player",
+      "input": "Scripted real controller and normal interaction/UI handlers; not physical input or blind testing"
+    }
+  ],
+  "editModeTests": 54,
+  "sourceVerification": {
+    "passed": true,
+    "bones": 69,
+    "meshVertices": 9408,
+    "rootScale": [
+      1.8207110166549683,
+      1.8207110166549683,
+      1.8207110166549683
+    ],
+    "sourcePackedImages": 4,
+    "clips": [
+      {
+        "name": "01_Idle",
+        "feetDriftMetres": 0,
+        "soleMinMetres": 7.664810453000825e-10,
+        "soleMaxMetres": 7.664810453000825e-10,
+        "jawMaxDegrees": 0.0,
+        "loopMatrixError": 0.0
+      },
+      {
+        "name": "02_Talk_WithMouth",
+        "feetDriftMetres": 0,
+        "soleMinMetres": 7.664810453000825e-10,
+        "soleMaxMetres": 7.664810453000825e-10,
+        "jawMaxDegrees": 6.846279815036832,
+        "loopMatrixError": 0.0
+      }
+    ]
+  },
+  "saveIsolation": {
+    "normalSaveUnchanged": true,
+    "beforeSHA256": "adbb96bd5c40e7276ec6324e38a34bca7997f4efb2452b6d8106db3b36edf69a",
+    "afterSHA256": "adbb96bd5c40e7276ec6324e38a34bca7997f4efb2452b6d8106db3b36edf69a",
+    "reviewSavesRestored": true
+  },
+  "applicationIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "platform": "Unity6000.3.18f1 / macOS Metal / Apple M5 Pro; scripted real controller/rays, controlled detail cameras",
+  "macArchiveSHA256": "123c1bceeefd652faeed82ccedfe6b642bb83981d218bc7be659c80d7af875ae",
+  "modelArchiveSHA256": "f457285fdf8ba432ce77bd709136d92d7abbbdc8923987339777d6dc183ce9f8",
+  "macArchiveIntegrityVerified": true,
+  "normalSaveMatchesTaskStart": true,
+  "scope": "Main Qingchuan station actor; no Windows/Intel/low-end/blind testing or full railway/full-map rerun."
+}

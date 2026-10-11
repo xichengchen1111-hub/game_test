@@ -1,0 +1,27 @@
+{
+    "passed": true,
+    "dialogueRay": true,
+    "threeActions": true,
+    "noAdjacentRepeat": true,
+    "rootStationary": true,
+    "chairSupported": true,
+    "pauseFreezes": true,
+    "readingKeepsMotion": true,
+    "sequence": [
+        "RepairScrew",
+        "AdjustParts",
+        "RepairScrew",
+        "InspectMovement",
+        "AdjustParts",
+        "InspectMovement",
+        "RepairScrew"
+    ],
+    "maxRootTravel": 0.0,
+    "maxHipTravel": 0.0,
+    "headDownMinimum": 0.6293669939041138,
+    "seatHeight": 0.40000003576278689,
+    "maxToolWatchDistance": 0.011510674841701985,
+    "completedActions": 6,
+    "samples": 1859,
+    "verification": "OSXPlayer native rendered player; actual controller entry and dialogue ray; recorded live three-clip sequence and close hands/seat/feet views. Detail camera is staged; not physical input or blind playtesting. Source mesh checks supplement visual contact review."
+}

@@ -3,9 +3,11 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 // Additive detail kit. The original shell, counter, apertures and placement stay authoritative.
 public static class MilkShopInteriorAsset {
+    public const uint InteriorFillLayer=1u<<3;
     const string Folder="Assets/Art/MilkShopInteriorA/";
     const string Model=Folder+"MilkShopInteriorA.fbx";
     public static void AddTo(GameObject shop) {
@@ -29,10 +31,10 @@ public static class MilkShopInteriorAsset {
             renderer.sharedMaterials=renderer.sharedMaterials.Select(m=>MaterialFor(m.name)).ToArray();
         Transform Part(string name)=>nodes.Single(t=>t.name==name);
         for(int side=-1;side<=1;side+=2) {
-            var pendant=LightAt("Enamel pendant pool",shop.transform,new Vector3(side*1.05f,2.47f,.83f),4.8f,3.8f);
+            var pendant=LightAt("Enamel pendant pool",shop.transform,new Vector3(side*1.05f,2.47f,.83f),3.0f,4.2f);
             DayNightLighting.Bind(pendant,DayNightLamp.Role.Interior,.88f,Part(side<0?"Pendant_Left":"Pendant_Right").GetComponent<Renderer>());
         }
-        var task=LightAt("Counter reading pool",shop.transform,new Vector3(.21f,1.675f,1.105f),1.2f,2.2f);
+        var task=LightAt("Counter reading pool",shop.transform,new Vector3(.21f,1.675f,1.105f),.75f,2.2f);
         var schedule=DayNightLighting.Bind(task,DayNightLamp.Role.Interior,.80f,Part("ReadingBulb").GetComponent<Renderer>());
         var book=HitTarget("Counter delivery ledger",shop.transform,new Vector3(-.14f,1.39f,.75f),new Vector3(.68f,.25f,.46f));
         var orders=book.AddComponent<MilkOrderBook>();orders.title="送奶记录";orders.source="牛奶屋柜台";
@@ -40,6 +42,19 @@ public static class MilkShopInteriorAsset {
         var switcher=lamp.AddComponent<MilkShopFixture>();switcher.action=MilkShopFixture.Action.ReadingLamp;
         switcher.readingLight=task;switcher.readingBulb=Part("ReadingBulb").GetComponent<Renderer>();
         switcher.scheduledLamp=schedule;
+        // Broad indirect room fill lifts faces below the hat without blowing out the counter.
+        // Restrict it to this room and its actor so unshadowed light cannot leak onto the street.
+        foreach(var renderer in shop.GetComponentsInChildren<Renderer>()) {
+            renderer.renderingLayerMask|=InteriorFillLayer;
+            PrefabUtility.RecordPrefabInstancePropertyModifications(renderer);
+        }
+        foreach(var point in new[]{new Vector3(0,1.50f,-1.60f),new Vector3(2.40f,1.80f,-.10f)}) {
+            var fill=LightAt("Milk room indirect fill",shop.transform,point,point.x==0?2.2f:.7f,4.3f);
+            fill.color=new Color(1,.90f,.78f);
+            fill.GetUniversalAdditionalLightData().renderingLayers=InteriorFillLayer;
+            fill.renderingLayerMask=(int)InteriorFillLayer;
+            DayNightLighting.Bind(fill,DayNightLamp.Role.Interior,.48f);
+        }
         var bell=HitTarget("Counter service bell",shop.transform,new Vector3(-.63f,1.34f,.68f),new Vector3(.17f,.17f,.17f));
         var ring=bell.AddComponent<MilkShopFixture>();ring.action=MilkShopFixture.Action.Bell;ring.title="按响柜台铃";
         var audio=bell.AddComponent<AudioSource>();audio.clip=AssetDatabase.LoadAssetAtPath<AudioClip>(Folder+"ServiceBell.wav");
@@ -54,12 +69,12 @@ public static class MilkShopInteriorAsset {
         int triangles=detail.GetComponentsInChildren<MeshFilter>().Sum(f=>f.sharedMesh.triangles.Length/3);
         if(triangles>16000)throw new Exception("Milk shop detail budget exceeded: "+triangles);
         var lights=shop.GetComponentsInChildren<Light>();
-        if(lights.Length!=3||lights.Any(l=>l.shadows!=LightShadows.None))throw new Exception("Milk interior requires exactly three unshadowed lights");
+        if(lights.Length!=5||lights.Any(l=>l.shadows!=LightShadows.None))throw new Exception("Milk interior requires three fixture lights and two unshadowed room fills");
         var snapshot=UnityEngine.Object.Instantiate(detail);snapshot.transform.SetPositionAndRotation(Vector3.zero,detail.transform.localRotation);snapshot.transform.localScale=detail.transform.localScale;
         PrefabUtility.SaveAsPrefabAsset(snapshot,Folder+"MilkShopInteriorA.prefab");UnityEngine.Object.DestroyImmediate(snapshot);
         Directory.CreateDirectory("../output/demo/milkshop-interior-a");
-        File.WriteAllText("../output/demo/milkshop-interior-a/import.txt","PASS: metre markers; original exterior bounds unchanged; "+triangles+" triangles; 3 unshadowed lights; 5 interaction targets.\n");
-        Debug.Log("MILK_INTERIOR_IMPORT_PASS: "+triangles+" triangles, original bounds, three unshadowed lights");
+        File.WriteAllText("../output/demo/milkshop-interior-a/import.txt","PASS: metre markers; original exterior bounds unchanged; "+triangles+" triangles; 3 fixture lights + 2 room-only unshadowed fills; 5 interaction targets.\n");
+        Debug.Log("MILK_INTERIOR_IMPORT_PASS: "+triangles+" triangles, original bounds, five unshadowed lights");
     }
     static GameObject HitTarget(string name,Transform parent,Vector3 centre,Vector3 size) {
         var obj=new GameObject(name);obj.transform.SetParent(parent,false);obj.transform.localPosition=centre;

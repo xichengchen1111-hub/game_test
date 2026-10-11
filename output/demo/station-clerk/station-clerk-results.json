@@ -1,0 +1,18 @@
+{
+    "passed": true,
+    "idleLoops": true,
+    "inPlace": true,
+    "dialogueRay": true,
+    "talkLoops": true,
+    "mouthMoves": true,
+    "historyIdle": true,
+    "closeIdle": true,
+    "pauseFreezes": true,
+    "clockContinues": true,
+    "legacyHidden": true,
+    "idleLoopsObserved": 1.04347825050354,
+    "jawMaxDegrees": 3.4649229049682619,
+    "rootDrift": 0.0,
+    "feetDrift": 0.0,
+    "verification": "OSXPlayer native rendered player; scripted real controller/rays/shared dialogue handlers, controlled detail cameras. Generic mouth motion without phoneme or audio synchronization. Not physical input or blind playtest."
+}

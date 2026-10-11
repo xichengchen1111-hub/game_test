@@ -1,0 +1,9 @@
+{
+  "tripoAsset": "7ef008b1-0a11-4338-a813-c65ba9636e73",
+  "archive": "StationClerk-Tripo-idle-talk.zip",
+  "archiveSHA256": "a6138ae0370cbdadb4423b64ce2238170f432cb784e4fcdcfe404f1a4914d613",
+  "model": "Tripo H3.1 image-to-model, 9821 quad retopology, successful Unity Humanoid Compatible rig",
+  "motion": "Tripo idle and AI Clerk Talking to Passenger, planted lower-body refinement and local generic jaw opening",
+  "originalPreserved": true,
+  "license": "No license file supplied in export; no inherited third-party model license claim."
+}

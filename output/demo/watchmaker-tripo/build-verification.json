@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "assemblySHA256": "9c752f02f7806d4833ad5bcc6cf04a0426a8f560fe6cbae6d5bc352dcb4c4c76",
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "architecture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app/Contents/MacOS/错日证词 · 暮色小镇: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64:Mach-O 64-bit executable arm64]\n/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app/Contents/MacOS/错日证词 · 暮色小镇 (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app/Contents/MacOS/错日证词 · 暮色小镇 (for architecture arm64):\tMach-O 64-bit executable arm64",
+  "testedMachine": "Apple M5 Pro, macOS Metal, Unity 6000.3.18f1",
+  "nativeChecks": 6,
+  "codesignDeepStrict": true,
+  "normalSaveUnchanged": true,
+  "packages": [
+    {
+      "name": "错日证词-Mac-钟表匠与绿化-20261011.zip",
+      "bytes": 155101539,
+      "sha256": "971074707181992ec6274f1c315845828ad8cf51629c1116b5446f8a0cc7cd8e",
+      "integrity": true
+    },
+    {
+      "name": "钟表匠-模型骨架与三段动作-20261011.zip",
+      "bytes": 55312589,
+      "sha256": "45bafb335dc94b1ec053ddb3e87366bac81a34725bd5f7d72797a035cb96de62",
+      "integrity": true
+    }
+  ],
+  "assets": {
+    "game/Assets/Art/WatchmakerTripo/Watchmaker.fbx": "e463f65cabea07a05e6902a0e655723b48215c7cb271a0cfe941b0d5cf3d10de",
+    "game/Assets/Art/WatchmakerTripo/WatchmakerHumanoid.asset": "4a298dd20b517b9f07e125a6c84c5fd98a2d8014d41e1e84364e6597281e8112",
+    "assets/source/watchmaker/tripo/Watchmaker.blend": "f9a19b0fbfd26010619d577c2caed90d75261bbcc9489cff98c66177e457ed5f"
+  },
+  "scope": "Six tests on this assembly; earlier full-map six-order testing retains its own historical hash."
+}

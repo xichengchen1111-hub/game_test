@@ -1,0 +1,17 @@
+{
+  "output": "树木与路边花境实录.mp4",
+  "clips": [
+    "07-沿路边花境行走.mp4",
+    "01-主街行道树.mp4",
+    "02-住宅街绿化.mp4",
+    "03-车站花园.mp4",
+    "04-北边果园.mp4",
+    "05-牛奶店门前.mp4",
+    "06-广场花丛.mp4"
+  ],
+  "seconds": 37.8924515,
+  "retimed": false,
+  "dubbed": false,
+  "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+  "source": "Native Unity rendered player, scripted controller walking, isolated fixed weather/time review; original AudioListener mix."
+}

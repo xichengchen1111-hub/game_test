@@ -37,9 +37,9 @@ public partial class DemoApp {
         var left=Mechanism("milk-left-door");var right=Mechanism("milk-right-door");var marker=milkShopRoot.GetComponent<MilkShopPlacement>();
         Vector3 P(float x,float z)=>milkShopRoot.TransformPoint(new Vector3(x,.20f,z));
         var boy=GameObject.Find("Milkboy");result.milkboyLocal=milkShopRoot.InverseTransformPoint(boy.transform.position);
-        NeedWeather(Vector3.Distance(result.milkboyLocal,new Vector3(2.35f,.18f,.85f))<.01f,"Boy is not beside the counter");
+        NeedWeather(Vector3.Distance(result.milkboyLocal,new Vector3(.15f,.18f,.15f))<.01f,"Boy is not in front of the counter");
         NeedWeather(left.IsOpen&&!right.IsOpen&&milkShopRoot.GetComponent<WeatherShelter>().exteriorDoors.Length==2,"Milk door migration/default/binding failed");
-        player.Place(marker.outside,0);yield return WalkTo(marker.inside);yield return WalkTo(P(2.35f,-1.1f));yield return WalkTo(P(2.35f,-.5f));
+        player.Place(marker.outside,0);yield return WalkTo(marker.inside);yield return ApproachReviewMilkboy();
         player.Aim(boy.transform.position+Vector3.up*.94f);yield return null;
         NeedWeather(TryInteract()&&DialogueOpen,"Counter-side milkboy is not reachable by normal interaction");yield return Capture("milkboy-at-counter");CloseDialogue();result.counterReachable=true;
         yield return WalkTo(P(2.35f,-1.1f));yield return WalkTo(marker.inside);

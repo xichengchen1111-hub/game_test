@@ -1,0 +1,20 @@
+[
+  {
+    "file": "01-进店与送奶少年对话.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-tripo-milkboy-20261011/actor-1080/01-entry-idle-dialogue",
+    "seconds": 21.4094733,
+    "nativeFrames": 428,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0143851
+  },
+  {
+    "file": "02-肩带与嘴部动作近景.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/verification-tripo-milkboy-20261011/actor-1080/02-hands-mouth-detail",
+    "seconds": 8.6041804,
+    "nativeFrames": 172,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0198421
+  }
+]

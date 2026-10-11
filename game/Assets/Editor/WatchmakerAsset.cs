@@ -15,7 +15,9 @@ public static class WatchmakerAsset {
     // Measured supplied seated mesh: pelvis bone to the supporting apron/buttock surface,
     // scaled from source rest height 1.70m to the existing adult height 1.72m.
     const float SeatedHipAboveSeat=.284f;
-    public static GameObject Create(Vector3 position) {
+    public static GameObject Create(Vector3 position) => TripoWatchmakerAsset.Create(position);
+    // Kept with the original Meshy source for reproducibility; new scenes use the Tripo actor.
+    public static GameObject CreateLegacy(Vector3 position) {
         var importer=AssetImporter.GetAtPath(ModelPath) as ModelImporter;
         if(!importer)throw new Exception("Run tools/import_meshy_watchmaker.py with the supplied archive first.");
         if(!importer.importAnimation||importer.importCameras||importer.importLights||!importer.isReadable||

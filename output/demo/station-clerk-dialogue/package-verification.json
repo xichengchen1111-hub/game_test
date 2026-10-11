@@ -1,0 +1,9 @@
+{
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "architectures": "x86_64 arm64",
+  "strictSignaturePassed": true,
+  "zipCRCVerified": true,
+  "assemblySHA256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+  "zipBytes": 179541392,
+  "zip": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-Mac-售票员多选项对话版.zip"
+}

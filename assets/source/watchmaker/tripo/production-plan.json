@@ -1,0 +1,42 @@
+{
+  "status": "Complete: Tripo model, local Unity-compatible skeleton and three seated actions integrated; final Mac build passed six native checks, source deformation/contact checks and normal-save preservation.",
+  "reference": "watchmaker-tpose-front.png",
+  "referenceTool": "built-in image_gen",
+  "preserveOriginal": "assets/source/watchmaker/meshy",
+  "runtimeCharacterRoot": "Clockmaker",
+  "sharedPlacement": [
+    2,
+    0,
+    2.7
+  ],
+  "seatedVariants": [
+    {
+      "state": "RepairScrew",
+      "intent": "Seated, head down, support watch with left hand and make small screwdriver turns with right hand."
+    },
+    {
+      "state": "InspectMovement",
+      "intent": "Remain seated, bring watch slightly closer, tilt it under the loupe, then return to common repair pose."
+    },
+    {
+      "state": "AdjustParts",
+      "intent": "Remain seated and low-headed, small precise adjustments and brief pauses over movement, then return to common pose."
+    }
+  ],
+  "playback": "Shuffle all three; no adjacent repeats; soft transitions; freeze only with actual game pause.",
+  "verificationNeeded": [
+    "Seat/apron support and feet on floor",
+    "No hand/cloth weight leakage",
+    "Tool and watch hand contact",
+    "3 variants and transitions in native Mac player",
+    "Existing watchmaker dialogue, E07, windows and doors",
+    "Normal save unchanged"
+  ],
+  "tripoAssetId": "373ab2a6-bf3d-43a4-9c4a-a20d63e69697",
+  "generationCreditBalance": 24840,
+  "retopologyCreditBalance": 24800,
+  "highResolutionTriangles": 1970956,
+  "riggingOutcome": "Tripo humanoid eligibility warning followed by 406 rejection without rig credit deduction; local skeleton and seated weights completed.",
+  "currentCreditBalance": 24800,
+  "verificationEvidence": "output/demo/watchmaker-tripo"
+}

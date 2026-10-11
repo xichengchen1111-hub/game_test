@@ -440,8 +440,9 @@ public static partial class BuildSlice {
         RailBoard(root.transform,"废票",new Vector3(-11.3f,.40f,-1.057f),new Vector2(.24f,.14f),Quaternion.identity,inset:.03f);
         var punch=Group("手持检票钳",new Vector3(-6.665f,1.189f,.60f),root.transform);var punchTarget=punch.AddComponent<BoxCollider>();punchTarget.size=new Vector3(.31f,.078f,.11f);punchTarget.isTrigger=true;
         var tool=punch.AddComponent<Interactable>();tool.title="手持检票钳";tool.source="青川车站售票柜台";tool.body="金属检票钳。按下把手，钳口便在票上打出一个小孔。";
-        var clerk=Group("车站售票员",new Vector3(-8,1.64f,1.9f),root.transform);
-        Collider(clerk,Vector3.zero,new Vector3(.35f,.30f,.28f));var conversation=clerk.AddComponent<Interactable>();conversation.title="售票员";conversation.source="青川车站售票处";conversation.body="检票的时候，会用检票钳在票上打孔。旁边废票桶里的同线路旧票，你可以拿起来看看。\n\n请从候车厅后门前往站台，车厢靠站台的一侧可以登车。坐稳后，列车便会出发。";
+        var legacyClerk=root.GetComponentsInChildren<Transform>().Single(t=>t.name=="Module_TicketClerk");
+        legacyClerk.gameObject.SetActive(false);
+        StationClerkAsset.Create(root.transform,new Vector3(-8,.12f,1.9f));
         RailEvidence(root.transform,"E08","巡警原簿副本","本镇车站资料桌 · 获准查阅的另一镇巡警原簿副本","一九三一年一月十九日\n下午五时二十分\n\n南区巡查记录：有人询问东街。此处没有该街。\n\n本页为获准查阅的原簿副本。",new Vector3(9,1.06f,1),"E08.png");
         RailValidateSigns(root.transform);
         return root;

@@ -1,0 +1,22 @@
+{
+  "tripoAsset": "7ef008b1-0a11-4338-a813-c65ba9636e73",
+  "heightRest": 1.78,
+  "sourceSkinningPreserved": true,
+  "lowerBodyFixedToTripoIdleFrame1": true,
+  "mouthSeamEdges": 8,
+  "jawVertices": 111,
+  "clips": [
+    {
+      "name": "01_Idle",
+      "frames": 369,
+      "seconds": 15.333333333333334,
+      "origin": "Tripo preset idle"
+    },
+    {
+      "name": "02_Talk_WithMouth",
+      "frames": 120,
+      "seconds": 4.958333333333333,
+      "origin": "Tripo AI Clerk Talking to Passenger, with local jaw/lip opening"
+    }
+  ]
+}

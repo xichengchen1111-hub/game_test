@@ -1,0 +1,120 @@
+{
+  "first": "greeting",
+  "revisit": "greeting",
+  "nodes": [
+    {
+      "id": "greeting",
+      "speaker": "售票员",
+      "text": "你好。",
+      "next": "topics"
+    },
+    {
+      "id": "topics",
+      "speaker": "售票员",
+      "text": "先生，您想问些什么？",
+      "choices": [
+        {
+          "text": "你在20号见过我吗？",
+          "target": "ask-date",
+          "topic": "station-clerk.date"
+        },
+        {
+          "text": "你还记得当时的情形吗？",
+          "target": "ask-memory",
+          "topic": "station-clerk.memory"
+        },
+        {
+          "text": "你看见我上车了吗？",
+          "target": "ask-saw-boarding",
+          "topic": "station-clerk.saw-boarding"
+        },
+        {
+          "text": "检票时会在票上打孔吗？",
+          "target": "ask-inspection",
+          "topic": "station-clerk.inspection"
+        },
+        {
+          "text": "去站台该怎么走？",
+          "target": "ask-boarding",
+          "topic": "station-clerk.boarding"
+        },
+        {
+          "text": "谢谢，先不打扰了。",
+          "target": "ask-goodbye",
+          "topic": "station-clerk.goodbye"
+        }
+      ]
+    },
+    {
+      "id": "ask-date",
+      "speaker": "你",
+      "text": "你在20号见过我吗？",
+      "next": "date"
+    },
+    {
+      "id": "date",
+      "speaker": "售票员",
+      "text": "先生，我好像前几天确实见过您。不过究竟是哪一天，我记不清了。\n这里每天来来往往这么多人，实在没法把每张面孔都对上日子。",
+      "next": "topics"
+    },
+    {
+      "id": "ask-memory",
+      "speaker": "你",
+      "text": "你还记得当时的情形吗？",
+      "next": "memory"
+    },
+    {
+      "id": "memory",
+      "speaker": "售票员",
+      "text": "只是觉得您面熟，先生。当时说了什么、几点来的，我都记不真切了。要我凭这点印象说准是哪一天，我不敢。",
+      "next": "topics"
+    },
+    {
+      "id": "ask-saw-boarding",
+      "speaker": "你",
+      "text": "你看见我上车了吗？",
+      "next": "saw-boarding"
+    },
+    {
+      "id": "saw-boarding",
+      "speaker": "售票员",
+      "text": "这个我不敢说，先生。我忙着售票和检票，不会一直留意每位旅客。觉得您面熟，也不等于记得您上没上车。",
+      "next": "topics"
+    },
+    {
+      "id": "ask-inspection",
+      "speaker": "你",
+      "text": "检票时会在票上打孔吗？",
+      "next": "inspection"
+    },
+    {
+      "id": "inspection",
+      "speaker": "售票员",
+      "text": "检票的时候，会用检票钳在票上打孔。旁边废票桶里的同线路旧票，您可以拿起来看看。",
+      "next": "topics"
+    },
+    {
+      "id": "ask-boarding",
+      "speaker": "你",
+      "text": "去站台该怎么走？",
+      "next": "boarding"
+    },
+    {
+      "id": "boarding",
+      "speaker": "售票员",
+      "text": "请从候车厅后门前往站台，车厢靠站台的一侧可以登车。坐稳后，列车便会出发。",
+      "next": "topics"
+    },
+    {
+      "id": "ask-goodbye",
+      "speaker": "你",
+      "text": "谢谢，先不打扰了。",
+      "next": "goodbye"
+    },
+    {
+      "id": "goodbye",
+      "speaker": "售票员",
+      "text": "不客气，先生。您慢慢看，有事再来问我。"
+    }
+  ]
+}

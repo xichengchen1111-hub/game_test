@@ -1,0 +1,270 @@
+{
+  "sourceSha256": "94f28836481d178f74f0225b7bf56461e5fc1796f17c6419b638667397373dd2",
+  "seed": 19311011,
+  "treesPreserved": 217,
+  "lawnArea": 56239.23,
+  "plantCounts": {
+    "Grass3": 1422,
+    "Grass2": 1480,
+    "Grass1": 1501,
+    "Flowers7": 1260,
+    "Flowers1": 2473,
+    "Flowers2": 3904,
+    "Flowers3": 2422,
+    "Flowers6": 1915,
+    "Shrub2": 739,
+    "Ornamental1": 711,
+    "Flowers4": 753,
+    "Flowers5": 1511,
+    "Shrub1": 714,
+    "Ornamental2": 608,
+    "Shrub3": 94
+  },
+  "instances": 21507,
+  "surfaceChunks": 723,
+  "reservedAreas": "Roads, widened paths, doors, footprints, train platforms/track, service yards, hotel car forecourt and three authored sightlines",
+  "flowerBorders": [
+    {
+      "road": "R01",
+      "side": -1,
+      "type": "low existing tree strip",
+      "plants": 489,
+      "area": 185.36
+    },
+    {
+      "road": "R01",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 330,
+      "area": 188.1
+    },
+    {
+      "road": "R01",
+      "side": 1,
+      "type": "low existing tree strip",
+      "plants": 554,
+      "area": 210.59
+    },
+    {
+      "road": "R01",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 312,
+      "area": 178.06
+    },
+    {
+      "road": "R02",
+      "side": -1,
+      "type": "low existing tree strip",
+      "plants": 544,
+      "area": 249.87
+    },
+    {
+      "road": "R02",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 853,
+      "area": 492.24
+    },
+    {
+      "road": "R02",
+      "side": 1,
+      "type": "low existing tree strip",
+      "plants": 530,
+      "area": 242.83
+    },
+    {
+      "road": "R02",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 1035,
+      "area": 595.0
+    },
+    {
+      "road": "R03",
+      "side": -1,
+      "type": "low existing tree strip",
+      "plants": 541,
+      "area": 205.32
+    },
+    {
+      "road": "R03",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 1252,
+      "area": 709.36
+    },
+    {
+      "road": "R03",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 352,
+      "area": 237.51
+    },
+    {
+      "road": "R04",
+      "side": -1,
+      "type": "low existing tree strip",
+      "plants": 283,
+      "area": 107.73
+    },
+    {
+      "road": "R04",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 412,
+      "area": 236.34
+    },
+    {
+      "road": "R04",
+      "side": 1,
+      "type": "low existing tree strip",
+      "plants": 296,
+      "area": 112.41
+    },
+    {
+      "road": "R04",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 561,
+      "area": 322.26
+    },
+    {
+      "road": "R05",
+      "side": -1,
+      "type": "low existing tree strip",
+      "plants": 283,
+      "area": 107.47
+    },
+    {
+      "road": "R05",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 361,
+      "area": 210.4
+    },
+    {
+      "road": "R05",
+      "side": 1,
+      "type": "low existing tree strip",
+      "plants": 295,
+      "area": 111.68
+    },
+    {
+      "road": "R05",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 392,
+      "area": 227.41
+    },
+    {
+      "road": "R06",
+      "side": -1,
+      "type": "low existing tree strip",
+      "plants": 270,
+      "area": 102.46
+    },
+    {
+      "road": "R06",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 601,
+      "area": 344.46
+    },
+    {
+      "road": "R06",
+      "side": 1,
+      "type": "low existing tree strip",
+      "plants": 268,
+      "area": 101.85
+    },
+    {
+      "road": "R06",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 376,
+      "area": 215.79
+    },
+    {
+      "road": "A01",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 391,
+      "area": 261.36
+    },
+    {
+      "road": "A01",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 567,
+      "area": 376.32
+    },
+    {
+      "road": "A02",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 597,
+      "area": 391.68
+    },
+    {
+      "road": "A02",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 436,
+      "area": 289.06
+    },
+    {
+      "road": "A03",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 741,
+      "area": 489.41
+    },
+    {
+      "road": "A04",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 32,
+      "area": 21.08
+    },
+    {
+      "road": "A04",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 36,
+      "area": 22.89
+    },
+    {
+      "road": "A05",
+      "side": -1,
+      "type": "layered outer garden",
+      "plants": 411,
+      "area": 246.12
+    },
+    {
+      "road": "A05",
+      "side": 1,
+      "type": "layered outer garden",
+      "plants": 1219,
+      "area": 685.15
+    }
+  ],
+  "flowerBorderArea": 8477.58,
+  "treeFamilies": 7,
+  "modelVariants": 22,
+  "milkCartPlantClearance": {
+    "center": [
+      -145.5,
+      12.1
+    ],
+    "excludedGroups": 5,
+    "reservedRect": [
+      -147.1,
+      10.799999999999999,
+      -143.9,
+      13.4
+    ]
+  },
+  "noNewPlantColliders": true,
+  "status": "Authoring only; native rendering and walking verification pending."
+}

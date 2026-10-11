@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "unchangedJawHandsBodyCurvesAndSkinWeights": true,
+  "audit": {
+    "nonHeadNeckAnimationCurves": {
+      "01_Talk_WithMouth": "e75b61443f73ea673438d562d2680e00338b9deab9b13710630924b95d473d0d",
+      "02_Nervous_HoldShoulderStrap": "3ce8ad818cc9da350f3aee6902085b5a9cc1d7cf7ed763f97d880e6d02c2ca20"
+    },
+    "verticesAndWeights": "43568e3e1f43b8c00cab1bdbcc77d6ef8e5ef6196978176905ff3f4621007195",
+    "bones": 68,
+    "animations": 2
+  },
+  "note": "Only head/neck rotations changed. Runtime gaze is separate."
+}

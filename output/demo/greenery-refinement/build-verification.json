@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "assemblySHA256": "fa358da16bebcdb4f01491d629a9fae3807b42bad39c7c951e19d58a045d28ea",
+  "playerDataTreeSHA256": "94f8308233dfb752c5b0cd40e075d89ebcb9dddda88309110c262a9d7aa3117e",
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "architecture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app/Contents/MacOS/错日证词 · 暮色小镇: Mach-O universal binary with 2 architectures: [x86_64:Mach-O 64-bit executable x86_64] [arm64:Mach-O 64-bit executable arm64]\n/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app/Contents/MacOS/错日证词 · 暮色小镇 (for architecture x86_64):\tMach-O 64-bit executable x86_64\n/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app/Contents/MacOS/错日证词 · 暮色小镇 (for architecture arm64):\tMach-O 64-bit executable arm64",
+  "testedMachine": "Apple M5 Pro, macOS Metal, Unity6000.3.18f1",
+  "nativeChecks": 8,
+  "codesignDeepStrict": true,
+  "normalSaveUnchanged": true,
+  "packages": [
+    {
+      "name": "错日证词-Mac-花境与树木细化-20261011.zip",
+      "bytes": 169163352,
+      "sha256": "287baae1b7e07b7ec96d8c9f4af0ad98c438675fa193476d5177ed05f6933d64",
+      "integrity": true
+    },
+    {
+      "name": "小镇绿化-模型材质与布置源-20261011.zip",
+      "bytes": 31881914,
+      "sha256": "6eb9b3aa73ed8c3585eea1a8aec418706ed8e2d3abcada90ccfed313ff44b615",
+      "integrity": true
+    }
+  ],
+  "assets": {
+    "assets/source/greenery/GreeneryKit.blend": "b97743cf826c6db9d9398081026d660f8ad7d446dc5b8a08541a9023f7abb5a0",
+    "game/Assets/Resources/GreeneryPlan.json": "d766f80a906bb6856f6b8d56ded426106c62d88706b9ddd3a758d40591efe024",
+    "game/Assets/Art/Greenery/GreeneryPalette.png": "1fef4018f142876e77ba4483d6dac6d0a6c6e116a868a1f18965b852143a6c04",
+    "game/Assets/Art/Greenery/GreeneryNormal.png": "432dd17cfbd9fc5d4f53458a4cf3796bc03266105211217c605b5ffe9f551b67"
+  },
+  "scope": "All eight native checks on this final assembly and exact Player Data tree. Scripted real controller/UI handlers; no physical-input, blind playtest, Intel or low-end benchmark claim."
+}

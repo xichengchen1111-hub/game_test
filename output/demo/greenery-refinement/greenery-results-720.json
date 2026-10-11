@@ -1,0 +1,19 @@
+{
+    "passed": true,
+    "originalTrunks": true,
+    "roadsClear": true,
+    "entryClear": true,
+    "sightlineClear": true,
+    "milkCartClear": true,
+    "trees": 217,
+    "plants": 21507,
+    "models": 22,
+    "batches": 3147,
+    "lodGroups": 217,
+    "views": 15,
+    "meanFrameMs": 16.835044860839845,
+    "p95FrameMs": 17.48070526123047,
+    "sampledFrames": 297,
+    "mapSource": "afe327b3d9231a862178e630c6606acb0dd0044e900b876640f21739d2ffb2c3",
+    "verification": "OSXPlayer native rendered player; authored collider comparison, road capsule sweeps, actual dairy entry/exit. Staged camera positions between areas; real small lateral controller movement. Not physical input, blind playtest, full-town walking or low-end FPS proof."
+}

@@ -1,1 +1,1 @@
-PASS: metre markers; original exterior bounds unchanged; 7208 triangles; 3 unshadowed lights; 5 interaction targets.
+PASS: metre markers; original exterior bounds unchanged; 7208 triangles; 3 fixture lights + 2 room-only unshadowed fills; 5 interaction targets.

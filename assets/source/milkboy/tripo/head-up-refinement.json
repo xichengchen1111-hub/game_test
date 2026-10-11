@@ -1,0 +1,30 @@
+{
+  "revision": "v5 head-up",
+  "actions": [
+    {
+      "name": "01_Talk_WithMouth",
+      "frames": [
+        1,
+        120
+      ],
+      "restGazeUpDegrees": 14,
+      "glanceDegrees": 3,
+      "rollDegrees": 1
+    },
+    {
+      "name": "02_Nervous_HoldShoulderStrap",
+      "frames": [
+        1,
+        120
+      ],
+      "restGazeUpDegrees": 14,
+      "glanceDegrees": 3,
+      "rollDegrees": 1
+    }
+  ],
+  "changedBones": [
+    "Neck",
+    "Head"
+  ],
+  "jawAndHandCurvesPreserved": true
+}

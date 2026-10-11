@@ -1,0 +1,12 @@
+{
+  "source": "User-approved Tripo asset a7950cfb-8a98-4db5-8dd9-8fb85e2bc3a5, v4 shoulder-strap contact plus user-requested v5 head-up neck/head animation refinement",
+  "modelSHA256": "71f165a414da10654eb3a745132eab5f6857f934ea18f2017ab58e835cf95c15",
+  "animations": [
+    "01_Talk_WithMouth",
+    "02_Nervous_HoldShoulderStrap"
+  ],
+  "mouth": "Generic jaw/lip opening; no phoneme or audio synchronization",
+  "originalAssetsPreserved": true,
+  "license": "No license file supplied; do not inherit prior Toon Boy or Meshy license claims.",
+  "gaze": "Both clips keep head raised; game adds smooth limited tracking toward nearby player."
+}
