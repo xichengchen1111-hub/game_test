@@ -7,6 +7,7 @@ public sealed class WeatherShelter : MonoBehaviour {
     public float eaves, rise;
     public Vector2 centre;
     public ShopMechanism[] exteriorDoors = new ShopMechanism[0];
+    public HotelCar vehicle;
     public bool ridgeAlongX, barrel, elliptical;
     static readonly HashSet<WeatherShelter> active = new HashSet<WeatherShelter>();
     const float CellSize=16;
@@ -57,6 +58,7 @@ public sealed class WeatherShelter : MonoBehaviour {
             if(!shelter.RoofAt(eye,out var height)||height<=eye.y)continue;
             covered=true;
             foreach(var door in shelter.exteriorDoors)if(door&&door.OpenFraction>.001f)return false;
+            if(shelter.vehicle&&shelter.vehicle.CabinOpen)return false;
         }
         return covered;
     }

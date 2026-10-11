@@ -9,7 +9,7 @@ public partial class DemoApp {
     bool railTravelling;
     string railStatus;
     bool RailSeated=>seatedTrain;
-    public bool MovementLocked=>RailSeated||FurnitureSeated||Blocked;
+    public bool MovementLocked=>RailSeated||FurnitureSeated||CarSeated||Blocked;
     public bool LookAllowed=>!opening&&(!transitioning||railTravelling)&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen;
     void RestoreRailSeat() {
         if(!state.railSeated)return;
@@ -22,7 +22,7 @@ public partial class DemoApp {
         player.eye.transform.localPosition=new Vector3(0,1.10f,0);
     }
     public void SitAndDepart(RailTrain train) {
-        if(Blocked||RailSeated||FurnitureSeated||railTravelling||!train)return;
+        if(Blocked||RailSeated||FurnitureSeated||CarSeated||railTravelling||!train)return;
         // Recheck a physical seat interaction rather than allowing a remote journey.
         if(Vector3.Distance(player.eye.transform.position,train.rideSeat.position+Vector3.up*.55f)>3.2f)return;
         SetMapOpen(false);SetWatchOpen(false);

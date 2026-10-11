@@ -11,7 +11,7 @@ public partial class DemoApp {
         player.eye.transform.localPosition=new Vector3(0,restingSeat.eyeHeight,0);
     }
     public void SitOnFurniture(FurnitureSeat seat) {
-        if(!seat||Blocked||RailSeated||FurnitureSeated||railTravelling)return;
+        if(!seat||Blocked||RailSeated||FurnitureSeated||CarSeated||railTravelling)return;
         if(Vector3.Distance(player.eye.transform.position,seat.GetComponent<Collider>().bounds.center)>3.2f)return;
         if(!seat.FindStandingPosition(out var exit)||!SafePosition(exit))return;
         restingSeat=seat;restingExit=exit;restingFeedback=null;

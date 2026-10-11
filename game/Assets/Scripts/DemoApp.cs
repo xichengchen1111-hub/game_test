@@ -28,6 +28,10 @@ using UnityEngine.SceneManagement;
     public bool railSeated;
     public string furnitureSeatId;
     public int railJourneys;
+    public bool carSaved;
+    public float carX,carY,carZ,carYaw;
+    public string carSeatId;
+    public double carWarmUntil;
 }
 
 public partial class DemoApp : MonoBehaviour {
@@ -111,6 +115,7 @@ public partial class DemoApp : MonoBehaviour {
         int c=Array.IndexOf(args,"--capture-dir");
         if(Review&&(Array.IndexOf(args,"--review-rail")>=0||Array.IndexOf(args,"--verify-rail-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"rail-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-items")>=0||Array.IndexOf(args,"--verify-items-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"items-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-car")>=0||Array.IndexOf(args,"--verify-car-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"car-review-save.json");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
         Debug.Log("SAVE_LOCATION: "+savePath);
@@ -165,6 +170,7 @@ public partial class DemoApp : MonoBehaviour {
         if(CurrentScene=="Town")player.Aim(previewWindow?seamlessShop.layout.ToTown(seamlessShop.layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f):new Vector3(0,ClockTowerInteriorLayout.DialHeight,-ClockTowerInteriorLayout.DialPlaneDistance));
         RestoreRailSeat();
         RestoreFurnitureSeat();
+        RestoreCarSeat();
         if(previewStreet){var layout=FindFirstObjectByType<BuildingInstance>().layout;player.Aim(layout.ToTown(layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f));}
         if(previewMilkboy)player.Aim(GameObject.Find("Milkboy").transform.position+Vector3.up*.94f);
         if(previewWatchmaker)player.Aim(GameObject.Find("Clockmaker").transform.position+Vector3.up*1.1f);
@@ -176,7 +182,9 @@ public partial class DemoApp : MonoBehaviour {
         if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--review-sprint-route")>=0)StartCoroutine(ReviewSprintRoute());
+            if(Array.IndexOf(args,"--review-car")>=0)StartCoroutine(ReviewCar());
+            else if(Array.IndexOf(args,"--verify-car-save")>=0)StartCoroutine(VerifyCarSave());
+            else if(Array.IndexOf(args,"--review-sprint-route")>=0)StartCoroutine(ReviewSprintRoute());
             else if(Array.IndexOf(args,"--verify-sprint-save")>=0)StartCoroutine(VerifySprintSave());
             else if(Array.IndexOf(args,"--review-dairy-doors")>=0)StartCoroutine(ReviewDairyDoors());
             else if(Array.IndexOf(args,"--verify-dairy-doors-save")>=0)StartCoroutine(VerifyDairyDoorsSave());
@@ -224,6 +232,7 @@ public partial class DemoApp : MonoBehaviour {
         TickHeldMap();
         if(TickRailSeat())return;
         if(TickFurnitureSeat())return;
+        TickCar();
         if(sceneReady&&seamlessShop) {
             var p=seamlessShop.transform.InverseTransformPoint(player.transform.position);
             bool inside=Mathf.Abs(p.x)<seamlessShop.layout.footprint.x/2&&Mathf.Abs(p.z)<seamlessShop.layout.footprint.y/2;
@@ -233,7 +242,9 @@ public partial class DemoApp : MonoBehaviour {
         }
         if (Input.GetKeyDown(KeyCode.F12)) StartCoroutine(Capture("manual-"+DateTime.Now.ToString("HHmmss")));
         if (transitioning) return;
-        if(HandleMapKeys(Input.GetKeyDown(KeyCode.M),Input.GetKeyDown(KeyCode.Escape)))return;
+        bool mapKey=Input.GetKeyDown(KeyCode.M);
+        if(mapKey&&!mapOpen&&HeldItemBlockedByDriving())mapKey=false;
+        if(HandleMapKeys(mapKey,Input.GetKeyDown(KeyCode.Escape)))return;
         if(TickCarriedTicket())return;
         if(MilkOrdersOpen) { UpdateMilkOrderInput(); focus=null; return; }
         if(DialogueOpen) { UpdateDialogueInput(); focus=null; return; }
@@ -245,12 +256,13 @@ public partial class DemoApp : MonoBehaviour {
         }
         if (!opening && !inspected && !paused) {
             if(Input.GetKeyDown(KeyCode.Tab)) { journal=!journal; selectedEntry=0; CursorMode(); }
-            if(Input.GetKeyDown(KeyCode.Q) && !journal) ToggleWatch();
+            if(Input.GetKeyDown(KeyCode.Q) && !journal && (watch||!HeldItemBlockedByDriving())) ToggleWatch();
         }
         if(inspected is ClockTowerAdjustment) { UpdateTowerAdjustmentInput(); focus=null; return; }
         focus=null;
         if(!Blocked && !RailSeated && !FurnitureSeated && Physics.Raycast(player.eye.transform.position,player.eye.transform.forward,out var hit,3f)) focus=hit.collider.GetComponentInParent<Interactable>();
-        if(!Blocked && Input.GetKeyDown(KeyCode.E)) TryInteract();
+        // Inside the car, E on no particular control means getting out (when stopped).
+        if(!Blocked && Input.GetKeyDown(KeyCode.E) && !TryInteract() && CarSeated) ExitCar();
     }
     void CursorMode() { bool free=(Blocked&&!railTravelling) || mapEditing || Review; Cursor.lockState=free?CursorLockMode.None:CursorLockMode.Locked; Cursor.visible=free; }
     void SetWatchOpen(bool value) {
@@ -290,7 +302,7 @@ public partial class DemoApp : MonoBehaviour {
         }
         inspected=null; CursorMode(); Save();
     }
-    public void Travel(ScenePortal portal) { if(!transitioning) StartCoroutine(Transition(portal)); }
+    public void Travel(ScenePortal portal) { if(!transitioning&&!CarSeated) StartCoroutine(Transition(portal)); }
     IEnumerator Transition(ScenePortal portal) {
         transitioning=true; CursorMode();
         string target=portal.destination;
@@ -323,8 +335,10 @@ public partial class DemoApp : MonoBehaviour {
         StoreGameClock();
         state.towerLayoutRevision=1;
         state.scene=CurrentScene;
-        var p=FurnitureSeated?restingExit:player.transform.position;
+        var p=FurnitureSeated?restingExit:CarSeated?CarStandingPoint():player.transform.position;
         state.furnitureSeatId=FurnitureSeated?restingSeat.seatId:"";
+        state.carSeatId=CarSeated?carSeat.seatId:"";
+        if(CurrentScene=="Town"&&HotelCar.Current)HotelCar.Current.StoreState(state);
         if(!SafePosition(p))p=SafeSpawn();
         state.x=p.x;state.y=p.y;state.z=p.z;state.yaw=player.transform.eulerAngles.y;
         string temporary=savePath+".tmp";
@@ -350,7 +364,8 @@ public partial class DemoApp : MonoBehaviour {
         return Mathf.Abs(p.x)<layout.footprint.x/2 && Mathf.Abs(p.z)<layout.footprint.y/2;
     }
     void LateUpdate() {
-        if(!sceneReady||transitioning||!player||SafePosition(player.transform.position))return;
+        // The car recovers itself (and its occupant) if it leaves the valid town area.
+        if(!sceneReady||transitioning||!player||CarSeated||SafePosition(player.transform.position))return;
         Debug.LogWarning("Recovered out-of-bounds player: "+player.transform.position);
         player.Place(SafeSpawn(),0);
         Save();
@@ -425,7 +440,7 @@ public partial class DemoApp : MonoBehaviour {
                     Rect p=new Rect(W/2-170,H/2+38,340,43);Box(p,new Color(0.04f,0.08f,0.11f,0.87f));
                     Label(p,"E   "+(focus is ScenePortal||focus is ShopMechanism||focus is MilkShopFixture||focus is RailSeat?focus.title:focus.evidenceId=="E04"||focus.title=="钟表匠"?"交谈 · "+focus.title:focus.ActionText),button);
                 }
-                if(!mapOpen)Label(new Rect(36,H-50,W-72,30),RailSeated?"鼠标 观察    E 起身下车    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停":"WASD 行走    鼠标 观察    Shift 奔跑    E 互动    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停",small);
+                if(!mapOpen)Label(new Rect(36,H-50,W-72,30),CarSeated?CarHelpLine():RailSeated?"鼠标 观察    E 起身下车    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停":"WASD 行走    鼠标 观察    Shift 奔跑    E 互动    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停",small);
             }
             if(watch&&!mapOpen&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen) DrawWatch();
             if(DialogueOpen) DrawDialogue();
@@ -446,6 +461,7 @@ public partial class DemoApp : MonoBehaviour {
         if(mapOpen&&!Blocked) DrawHeldMapDestination();
         DrawRailStatus();
         DrawFurnitureStatus();
+        DrawCarStatus();
         if(fade>0) Box(new Rect(0,0,W,H),new Color(0.018f,0.022f,0.03f,fade));
         GUI.matrix=Matrix4x4.identity;
     }

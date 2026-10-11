@@ -1,0 +1,5 @@
+{
+  "name": "HotelCar.EditTests",
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}

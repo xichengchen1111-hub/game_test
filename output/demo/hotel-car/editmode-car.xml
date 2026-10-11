@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="21" result="Passed" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.1937128">
+  <test-suite type="TestSuite" id="1000" name="错日证词 · 暮色小镇" fullname="错日证词 · 暮色小镇" runstate="Runnable" testcasecount="53" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.193713" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <test-suite type="Assembly" id="1027" name="HotelCar.EditTests.dll" fullname="D:/AllPersonalProjects/Chenchengame/game_test/game/Library/ScriptAssemblies/HotelCar.EditTests.dll" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.188371" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="28644" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <test-suite type="TestFixture" id="1001" name="HotelCarPrefabTests" fullname="HotelCarPrefabTests" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="21" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.187659" total="21" passed="21" failed="0" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <test-suite type="ParameterizedMethod" id="1015" name="ControlTargetsDoNotOverlap" fullname="HotelCarPrefabTests.ControlTargetsDoNotOverlap" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.043136" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1013" name="ControlTargetsDoNotOverlap(0.0f)" fullname="HotelCarPrefabTests.ControlTargetsDoNotOverlap(0.0f)" methodname="ControlTargetsDoNotOverlap" classname="HotelCarPrefabTests" runstate="Runnable" seed="1428283273" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.032000" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1014" name="ControlTargetsDoNotOverlap(1.0f)" fullname="HotelCarPrefabTests.ControlTargetsDoNotOverlap(1.0f)" methodname="ControlTargetsDoNotOverlap" classname="HotelCarPrefabTests" runstate="Runnable" seed="312213844" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.006830" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-suite type="ParameterizedMethod" id="1007" name="DoorsSwingOutward" fullname="HotelCarPrefabTests.DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="4" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.030038" total="4" passed="4" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1003" name="DoorsSwingOutward(&quot;Door_FL&quot;,-1)" fullname="HotelCarPrefabTests.DoorsSwingOutward(&quot;Door_FL&quot;,-1)" methodname="DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" seed="886236203" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.008526" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1004" name="DoorsSwingOutward(&quot;Door_FR&quot;,1)" fullname="HotelCarPrefabTests.DoorsSwingOutward(&quot;Door_FR&quot;,1)" methodname="DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" seed="898549254" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.007199" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1005" name="DoorsSwingOutward(&quot;Door_RL&quot;,-1)" fullname="HotelCarPrefabTests.DoorsSwingOutward(&quot;Door_RL&quot;,-1)" methodname="DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" seed="1044657267" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.005496" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1006" name="DoorsSwingOutward(&quot;Door_RR&quot;,1)" fullname="HotelCarPrefabTests.DoorsSwingOutward(&quot;Door_RR&quot;,1)" methodname="DoorsSwingOutward" classname="HotelCarPrefabTests" runstate="Runnable" seed="1069254947" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.007041" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-suite type="ParameterizedMethod" id="1019" name="DriverEyeReachesEveryControl" fullname="HotelCarPrefabTests.DriverEyeReachesEveryControl" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.021887" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1016" name="DriverEyeReachesEveryControl(0.0f)" fullname="HotelCarPrefabTests.DriverEyeReachesEveryControl(0.0f)" methodname="DriverEyeReachesEveryControl" classname="HotelCarPrefabTests" runstate="Runnable" seed="831205865" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.008984" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1017" name="DriverEyeReachesEveryControl(0.5f)" fullname="HotelCarPrefabTests.DriverEyeReachesEveryControl(0.5f)" methodname="DriverEyeReachesEveryControl" classname="HotelCarPrefabTests" runstate="Runnable" seed="46645716" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.005687" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1018" name="DriverEyeReachesEveryControl(1.0f)" fullname="HotelCarPrefabTests.DriverEyeReachesEveryControl(1.0f)" methodname="DriverEyeReachesEveryControl" classname="HotelCarPrefabTests" runstate="Runnable" seed="1806994263" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.005672" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1008" name="ExitPointsClearOfOpenDoorsAndBody" fullname="HotelCarPrefabTests.ExitPointsClearOfOpenDoorsAndBody" methodname="ExitPointsClearOfOpenDoorsAndBody" classname="HotelCarPrefabTests" runstate="Runnable" seed="91514062" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.006234" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1002" name="PrefabHasEveryPartControlSeatAndWheel" fullname="HotelCarPrefabTests.PrefabHasEveryPartControlSeatAndWheel" methodname="PrefabHasEveryPartControlSeatAndWheel" classname="HotelCarPrefabTests" runstate="Runnable" seed="2076627864" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.010770" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1009" name="SeatedEyesAreInsideTheCabin" fullname="HotelCarPrefabTests.SeatedEyesAreInsideTheCabin" methodname="SeatedEyesAreInsideTheCabin" classname="HotelCarPrefabTests" runstate="Runnable" seed="882298559" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.005506" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-suite type="ParameterizedMethod" id="1026" name="StandingEyeReachesOutsideControls" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="6" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.041464" total="6" passed="6" failed="0" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <test-case id="1020" name="StandingEyeReachesOutsideControls(1.28f,1.3f,&quot;Hood_R&quot;,&quot;engine&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(1.28f,1.3f,&quot;Hood_R&quot;,&quot;engine&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="862556399" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.010336" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1021" name="StandingEyeReachesOutsideControls(0.5f,2.6f,&quot;&quot;,&quot;radiatorCap&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(0.5f,2.6f,&quot;&quot;,&quot;radiatorCap&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="1131401015" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.005324" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1022" name="StandingEyeReachesOutsideControls(-1.32f,1.45f,&quot;&quot;,&quot;spare,fuelCap&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(-1.32f,1.45f,&quot;&quot;,&quot;spare,fuelCap&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="995064494" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.004661" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1023" name="StandingEyeReachesOutsideControls(0.35f,-2.75f,&quot;&quot;,&quot;strap-L,strap-R&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(0.35f,-2.75f,&quot;&quot;,&quot;strap-L,strap-R&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="2063613673" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.005821" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1024" name="StandingEyeReachesOutsideControls(1.0f,-2.0f,&quot;TrunkLid,Strap_L,Strap_R&quot;,&quot;item-tools,item-tube,item-oil,item-tarp,crankStowed&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(1.0f,-2.0f,&quot;TrunkLid,Strap_L,Strap_R&quot;,&quot;item-tools,item-tube,item-oil,item-tarp,crankStowed&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="404933949" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.007672" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1025" name="StandingEyeReachesOutsideControls(0.45f,2.65f,&quot;&quot;,&quot;crankHole&quot;)" fullname="HotelCarPrefabTests.StandingEyeReachesOutsideControls(0.45f,2.65f,&quot;&quot;,&quot;crankHole&quot;)" methodname="StandingEyeReachesOutsideControls" classname="HotelCarPrefabTests" runstate="Runnable" seed="528206319" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.004883" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+        </test-suite>
+        <test-case id="1012" name="TrunkLidAndHoodSidesLiftClear" fullname="HotelCarPrefabTests.TrunkLidAndHoodSidesLiftClear" methodname="TrunkLidAndHoodSidesLiftClear" classname="HotelCarPrefabTests" runstate="Runnable" seed="1295385241" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.006747" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1010" name="WheelVisualsSitOnTheirColliders" fullname="HotelCarPrefabTests.WheelVisualsSitOnTheirColliders" methodname="WheelVisualsSitOnTheirColliders" classname="HotelCarPrefabTests" runstate="Runnable" seed="926900856" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.008710" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+        </test-case>
+        <test-case id="1011" name="WindowGlassDropsInsideTheDoor" fullname="HotelCarPrefabTests.WindowGlassDropsInsideTheDoor" methodname="WindowGlassDropsInsideTheDoor" classname="HotelCarPrefabTests" runstate="Runnable" seed="479374233" result="Passed" start-time="2026-10-11 03:56:31Z" end-time="2026-10-11 03:56:31Z" duration="0.005691" asserts="0">
+          <properties>
+            <property name="retryIteration" value="0" />
+            <property name="repeatIteration" value="0" />
+          </properties>
+          <output><![CDATA[Saving results to: C:/Users/jason/AppData/LocalLow/Qingchuan Studio/错日证词 · 暮色小镇\TestResults.xml
+]]></output>
+        </test-case>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

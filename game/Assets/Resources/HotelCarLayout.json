@@ -1,0 +1,2750 @@
+{
+ "parts": [
+  {
+   "id": "Door_FL",
+   "parent": "Body",
+   "pivot": [
+    -0.65,
+    0.0,
+    0.28
+   ],
+   "kind": "hinge",
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "angle": 70.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.8,
+   "fixture": "car-door-fl"
+  },
+  {
+   "id": "Glass_FL",
+   "parent": "Door_FL",
+   "pivot": [
+    -0.632,
+    1.22,
+    -0.09999999999999998
+   ],
+   "kind": "slide",
+   "axis": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    -0.4,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": "car-window-fl"
+  },
+  {
+   "id": "Crank_FL",
+   "parent": "Door_FL",
+   "pivot": [
+    -0.596,
+    0.95,
+    -0.27999999999999997
+   ],
+   "kind": "spin",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 720.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": ""
+  },
+  {
+   "id": "Door_FR",
+   "parent": "Body",
+   "pivot": [
+    0.65,
+    0.0,
+    0.28
+   ],
+   "kind": "hinge",
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "angle": -70.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.8,
+   "fixture": "car-door-fr"
+  },
+  {
+   "id": "Glass_FR",
+   "parent": "Door_FR",
+   "pivot": [
+    0.632,
+    1.22,
+    -0.09999999999999998
+   ],
+   "kind": "slide",
+   "axis": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    -0.4,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": "car-window-fr"
+  },
+  {
+   "id": "Crank_FR",
+   "parent": "Door_FR",
+   "pivot": [
+    0.596,
+    0.95,
+    -0.27999999999999997
+   ],
+   "kind": "spin",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 720.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": ""
+  },
+  {
+   "id": "Door_RL",
+   "parent": "Body",
+   "pivot": [
+    -0.65,
+    0.0,
+    -1.3
+   ],
+   "kind": "hinge",
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "angle": -70.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.8,
+   "fixture": "car-door-rl"
+  },
+  {
+   "id": "Glass_RL",
+   "parent": "Door_RL",
+   "pivot": [
+    -0.632,
+    1.22,
+    -0.93
+   ],
+   "kind": "slide",
+   "axis": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    -0.4,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": "car-window-rl"
+  },
+  {
+   "id": "Crank_RL",
+   "parent": "Door_RL",
+   "pivot": [
+    -0.596,
+    0.95,
+    -0.76
+   ],
+   "kind": "spin",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 720.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": ""
+  },
+  {
+   "id": "Door_RR",
+   "parent": "Body",
+   "pivot": [
+    0.65,
+    0.0,
+    -1.3
+   ],
+   "kind": "hinge",
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "angle": 70.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.8,
+   "fixture": "car-door-rr"
+  },
+  {
+   "id": "Glass_RR",
+   "parent": "Door_RR",
+   "pivot": [
+    0.632,
+    1.22,
+    -0.93
+   ],
+   "kind": "slide",
+   "axis": [
+    0.0,
+    -1.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    -0.4,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": "car-window-rr"
+  },
+  {
+   "id": "Crank_RR",
+   "parent": "Door_RR",
+   "pivot": [
+    0.596,
+    0.95,
+    -0.76
+   ],
+   "kind": "spin",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 720.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": ""
+  },
+  {
+   "id": "Hood_L",
+   "parent": "Body",
+   "pivot": [
+    -0.43,
+    1.14,
+    1.24
+   ],
+   "kind": "hinge",
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "angle": -270.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": "car-hood-l"
+  },
+  {
+   "id": "Hood_R",
+   "parent": "Body",
+   "pivot": [
+    0.43,
+    1.14,
+    1.24
+   ],
+   "kind": "hinge",
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "angle": 270.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 0.9,
+   "fixture": "car-hood-r"
+  },
+  {
+   "id": "RadiatorCap",
+   "parent": "Body",
+   "pivot": [
+    0.0,
+    1.14,
+    1.71
+   ],
+   "kind": "screw",
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "angle": 150.0,
+   "offset": [
+    0.0,
+    0.035,
+    0.0
+   ],
+   "speed": 2.2,
+   "fixture": "car-radiator-cap"
+  },
+  {
+   "id": "FuelCap",
+   "parent": "Body",
+   "pivot": [
+    0.0,
+    1.205,
+    0.62
+   ],
+   "kind": "screw",
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "angle": 160.0,
+   "offset": [
+    0.0,
+    0.03,
+    0.0
+   ],
+   "speed": 2.2,
+   "fixture": "car-fuel-cap"
+  },
+  {
+   "id": "Windshield",
+   "parent": "Body",
+   "pivot": [
+    0.0,
+    1.665,
+    0.31
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": -12.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.2,
+   "fixture": "car-windshield"
+  },
+  {
+   "id": "WiperArm",
+   "parent": "Body",
+   "pivot": [
+    -0.3,
+    1.665,
+    0.345
+   ],
+   "kind": "sweep",
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "angle": 40.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.0,
+   "fixture": ""
+  },
+  {
+   "id": "WiperSwitch",
+   "parent": "Body",
+   "pivot": [
+    -0.14,
+    1.612,
+    0.245
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 35.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 4.0,
+   "fixture": "car-wipers"
+  },
+  {
+   "id": "SunVisor",
+   "parent": "Body",
+   "pivot": [
+    -0.35,
+    1.682,
+    0.26
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": -80.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 2.0,
+   "fixture": "car-visor"
+  },
+  {
+   "id": "CrankMounted",
+   "parent": "Body",
+   "pivot": [
+    0.0,
+    0.5,
+    1.79
+   ],
+   "kind": "spin",
+   "axis": [
+    0.0,
+    0.0,
+    1.0
+   ],
+   "angle": 1080.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 0.7,
+   "fixture": ""
+  },
+  {
+   "id": "SteeringWheel",
+   "parent": "Body",
+   "pivot": [
+    -0.30000001192092896,
+    1.1299999952316284,
+    -0.09000000357627869
+   ],
+   "kind": "spin",
+   "axis": [
+    0.0,
+    -0.7487866282463074,
+    0.6628111004829407
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.0,
+   "fixture": ""
+  },
+  {
+   "id": "HornButton",
+   "parent": "Body",
+   "pivot": [
+    -0.30000001192092896,
+    1.1389853954315186,
+    -0.09795373678207397
+   ],
+   "kind": "slide",
+   "axis": [
+    0.0,
+    -0.7487866282463074,
+    0.6628111004829407
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    -0.004492720123380423,
+    0.003976867068558931
+   ],
+   "speed": 12.0,
+   "fixture": ""
+  },
+  {
+   "id": "LightSwitch",
+   "parent": "Body",
+   "pivot": [
+    -0.30000001192092896,
+    1.1389853954315186,
+    -0.09795373678207397
+   ],
+   "kind": "steps",
+   "axis": [
+    0.0,
+    -0.7487866282463074,
+    0.6628111004829407
+   ],
+   "angle": 70.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 4.0,
+   "fixture": ""
+  },
+  {
+   "id": "SparkLever",
+   "parent": "Body",
+   "pivot": [
+    -0.30000001192092896,
+    1.0850727558135986,
+    -0.05023133382201195
+   ],
+   "kind": "hinge",
+   "axis": [
+    0.0,
+    -0.7487866282463074,
+    0.6628111004829407
+   ],
+   "angle": -30.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 3.0,
+   "fixture": "car-spark-advanced"
+  },
+  {
+   "id": "HandThrottle",
+   "parent": "Body",
+   "pivot": [
+    -0.30000001192092896,
+    1.0850727558135986,
+    -0.05023133382201195
+   ],
+   "kind": "hinge",
+   "axis": [
+    0.0,
+    -0.7487866282463074,
+    0.6628111004829407
+   ],
+   "angle": 30.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 3.0,
+   "fixture": "car-hand-throttle"
+  },
+  {
+   "id": "IgnitionKey",
+   "parent": "Body",
+   "pivot": [
+    0.0,
+    0.975,
+    0.256
+   ],
+   "kind": "hinge",
+   "axis": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "angle": 60.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 5.0,
+   "fixture": "car-ignition"
+  },
+  {
+   "id": "ChokeKnob",
+   "parent": "Body",
+   "pivot": [
+    0.2,
+    0.975,
+    0.262
+   ],
+   "kind": "slide",
+   "axis": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    -0.045
+   ],
+   "speed": 4.0,
+   "fixture": "car-choke"
+  },
+  {
+   "id": "StarterButton",
+   "parent": "Body",
+   "pivot": [
+    -0.019999999552965164,
+    0.5849999785423279,
+    0.41999998688697815
+   ],
+   "kind": "slide",
+   "axis": [
+    -0.0,
+    -0.8480481505393982,
+    0.5299192070960999
+   ],
+   "angle": 0.0,
+   "offset": [
+    -0.0,
+    -0.008480480872094631,
+    0.005299191921949387
+   ],
+   "speed": 10.0,
+   "fixture": ""
+  },
+  {
+   "id": "Pedal_Clutch",
+   "parent": "Body",
+   "pivot": [
+    -0.42,
+    0.46,
+    0.5
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 18.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 6.0,
+   "fixture": ""
+  },
+  {
+   "id": "Pedal_Brake",
+   "parent": "Body",
+   "pivot": [
+    -0.2,
+    0.46,
+    0.5
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 18.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 6.0,
+   "fixture": ""
+  },
+  {
+   "id": "Pedal_Throttle",
+   "parent": "Body",
+   "pivot": [
+    -0.08,
+    0.46,
+    0.5
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 18.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 6.0,
+   "fixture": ""
+  },
+  {
+   "id": "GearLever",
+   "parent": "Body",
+   "pivot": [
+    0.0,
+    0.5,
+    0.06
+   ],
+   "kind": "gear",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 5.0,
+   "fixture": ""
+  },
+  {
+   "id": "Handbrake",
+   "parent": "Body",
+   "pivot": [
+    0.12,
+    0.5,
+    0.08
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": -24.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 5.0,
+   "fixture": ""
+  },
+  {
+   "id": "Needle_Amp",
+   "parent": "Body",
+   "pivot": [
+    -0.07,
+    1.06,
+    0.2525
+   ],
+   "kind": "gauge",
+   "axis": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 6.0,
+   "fixture": ""
+  },
+  {
+   "id": "Needle_Speed",
+   "parent": "Body",
+   "pivot": [
+    0.0,
+    1.06,
+    0.2525
+   ],
+   "kind": "gauge",
+   "axis": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 6.0,
+   "fixture": ""
+  },
+  {
+   "id": "Needle_Fuel",
+   "parent": "Body",
+   "pivot": [
+    0.07,
+    1.06,
+    0.2525
+   ],
+   "kind": "gauge",
+   "axis": [
+    0.0,
+    0.0,
+    -1.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 6.0,
+   "fixture": ""
+  },
+  {
+   "id": "TrunkLid",
+   "parent": "Body",
+   "pivot": [
+    0.0,
+    1.17,
+    -1.73
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 85.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.3,
+   "fixture": "car-trunk-lid"
+  },
+  {
+   "id": "Strap_L",
+   "parent": "TrunkLid",
+   "pivot": [
+    -0.3,
+    1.17,
+    -2.235
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 25.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 3.0,
+   "fixture": "car-strap-l"
+  },
+  {
+   "id": "Strap_R",
+   "parent": "TrunkLid",
+   "pivot": [
+    0.3,
+    1.17,
+    -2.235
+   ],
+   "kind": "hinge",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 25.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 3.0,
+   "fixture": "car-strap-r"
+  },
+  {
+   "id": "CrankStowed",
+   "parent": "Body",
+   "pivot": [
+    0.015,
+    0.715,
+    -1.99
+   ],
+   "kind": "static",
+   "axis": [
+    0.0,
+    1.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.6,
+   "fixture": ""
+  },
+  {
+   "id": "Wheel_FL",
+   "parent": "Body",
+   "pivot": [
+    -0.71,
+    0.37,
+    1.315
+   ],
+   "kind": "wheel",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.6,
+   "fixture": ""
+  },
+  {
+   "id": "Wheel_FR",
+   "parent": "Body",
+   "pivot": [
+    0.71,
+    0.37,
+    1.315
+   ],
+   "kind": "wheel",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.6,
+   "fixture": ""
+  },
+  {
+   "id": "Wheel_RL",
+   "parent": "Body",
+   "pivot": [
+    -0.71,
+    0.37,
+    -1.315
+   ],
+   "kind": "wheel",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.6,
+   "fixture": ""
+  },
+  {
+   "id": "Wheel_RR",
+   "parent": "Body",
+   "pivot": [
+    0.71,
+    0.37,
+    -1.315
+   ],
+   "kind": "wheel",
+   "axis": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "angle": 0.0,
+   "offset": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "speed": 1.6,
+   "fixture": ""
+  }
+ ],
+ "controls": [
+  {
+   "id": "gauges",
+   "kind": "gauges",
+   "part": "Body",
+   "center": [
+    0.0,
+    1.062,
+    0.25
+   ],
+   "size": [
+    0.3,
+    0.1,
+    0.03
+   ],
+   "label": "查看仪表"
+  },
+  {
+   "id": "dome",
+   "kind": "dome",
+   "part": "Body",
+   "center": [
+    0.0,
+    1.675,
+    -0.62
+   ],
+   "size": [
+    0.12,
+    0.03,
+    0.12
+   ],
+   "label": "车顶灯"
+  },
+  {
+   "id": "windshieldCrank",
+   "kind": "windshieldCrank",
+   "part": "Body",
+   "center": [
+    0.12,
+    1.645,
+    0.27
+   ],
+   "size": [
+    0.05,
+    0.05,
+    0.05
+   ],
+   "label": "风挡摇柄"
+  },
+  {
+   "id": "crankHole",
+   "kind": "crankHole",
+   "part": "Body",
+   "center": [
+    0.0,
+    0.5,
+    1.78
+   ],
+   "size": [
+    0.12,
+    0.1,
+    0.08
+   ],
+   "label": "摇把孔"
+  },
+  {
+   "id": "engine",
+   "kind": "engine",
+   "part": "Body",
+   "center": [
+    0.0,
+    0.7,
+    1.24
+   ],
+   "size": [
+    0.34,
+    0.52,
+    0.66
+   ],
+   "label": "发动机"
+  },
+  {
+   "id": "body",
+   "kind": "body",
+   "part": "Body",
+   "center": [
+    0.0,
+    0.9,
+    -0.2
+   ],
+   "size": [
+    0.01,
+    0.01,
+    0.01
+   ],
+   "label": "旅馆用车"
+  },
+  {
+   "id": "window-FL",
+   "kind": "window",
+   "part": "Crank_FL",
+   "center": [
+    -0.585,
+    0.95,
+    -0.30999999999999994
+   ],
+   "size": [
+    0.05,
+    0.08,
+    0.12
+   ],
+   "label": "车窗摇柄"
+  },
+  {
+   "id": "door-FL",
+   "kind": "door",
+   "part": "Door_FL",
+   "center": [
+    -0.625,
+    0.9,
+    -0.09999999999999998
+   ],
+   "size": [
+    0.05,
+    0.6,
+    0.74
+   ],
+   "label": "车门"
+  },
+  {
+   "id": "window-FR",
+   "kind": "window",
+   "part": "Crank_FR",
+   "center": [
+    0.585,
+    0.95,
+    -0.30999999999999994
+   ],
+   "size": [
+    0.05,
+    0.08,
+    0.12
+   ],
+   "label": "车窗摇柄"
+  },
+  {
+   "id": "door-FR",
+   "kind": "door",
+   "part": "Door_FR",
+   "center": [
+    0.625,
+    0.9,
+    -0.09999999999999998
+   ],
+   "size": [
+    0.05,
+    0.6,
+    0.74
+   ],
+   "label": "车门"
+  },
+  {
+   "id": "window-RL",
+   "kind": "window",
+   "part": "Crank_RL",
+   "center": [
+    -0.585,
+    0.95,
+    -0.79
+   ],
+   "size": [
+    0.05,
+    0.08,
+    0.12
+   ],
+   "label": "车窗摇柄"
+  },
+  {
+   "id": "door-RL",
+   "kind": "door",
+   "part": "Door_RL",
+   "center": [
+    -0.625,
+    0.9,
+    -0.93
+   ],
+   "size": [
+    0.05,
+    0.6,
+    0.72
+   ],
+   "label": "车门"
+  },
+  {
+   "id": "window-RR",
+   "kind": "window",
+   "part": "Crank_RR",
+   "center": [
+    0.585,
+    0.95,
+    -0.79
+   ],
+   "size": [
+    0.05,
+    0.08,
+    0.12
+   ],
+   "label": "车窗摇柄"
+  },
+  {
+   "id": "door-RR",
+   "kind": "door",
+   "part": "Door_RR",
+   "center": [
+    0.625,
+    0.9,
+    -0.93
+   ],
+   "size": [
+    0.05,
+    0.6,
+    0.72
+   ],
+   "label": "车门"
+  },
+  {
+   "id": "hood-L",
+   "kind": "hood",
+   "part": "Hood_L",
+   "center": [
+    -0.43,
+    0.92,
+    1.24
+   ],
+   "size": [
+    0.05,
+    0.38,
+    0.86
+   ],
+   "label": "发动机罩"
+  },
+  {
+   "id": "hood-R",
+   "kind": "hood",
+   "part": "Hood_R",
+   "center": [
+    0.43,
+    0.92,
+    1.24
+   ],
+   "size": [
+    0.05,
+    0.38,
+    0.86
+   ],
+   "label": "发动机罩"
+  },
+  {
+   "id": "radiatorCap",
+   "kind": "radiatorCap",
+   "part": "RadiatorCap",
+   "center": [
+    0.0,
+    1.18,
+    1.71
+   ],
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "label": "水箱盖"
+  },
+  {
+   "id": "fuelCap",
+   "kind": "fuelCap",
+   "part": "FuelCap",
+   "center": [
+    0.0,
+    1.22,
+    0.62
+   ],
+   "size": [
+    0.1,
+    0.06,
+    0.1
+   ],
+   "label": "油箱盖"
+  },
+  {
+   "id": "wiperSwitch",
+   "kind": "wiper",
+   "part": "WiperSwitch",
+   "center": [
+    -0.14,
+    1.605,
+    0.25
+   ],
+   "size": [
+    0.05,
+    0.05,
+    0.05
+   ],
+   "label": "雨刷开关"
+  },
+  {
+   "id": "visor",
+   "kind": "visor",
+   "part": "SunVisor",
+   "center": [
+    -0.35,
+    1.676,
+    0.16
+   ],
+   "size": [
+    0.3,
+    0.02,
+    0.2
+   ],
+   "label": "遮阳板"
+  },
+  {
+   "id": "horn",
+   "kind": "horn",
+   "part": "HornButton",
+   "center": [
+    -0.30000001192092896,
+    1.1479707956314087,
+    -0.10590746998786926
+   ],
+   "size": [
+    0.04,
+    0.04,
+    0.04
+   ],
+   "label": "喇叭"
+  },
+  {
+   "id": "lightSwitch",
+   "kind": "lights",
+   "part": "LightSwitch",
+   "center": [
+    -0.3620000183582306,
+    1.153961181640625,
+    -0.11120995879173279
+   ],
+   "size": [
+    0.03,
+    0.03,
+    0.03
+   ],
+   "label": "灯光开关"
+  },
+  {
+   "id": "SparkLever",
+   "kind": "spark",
+   "part": "SparkLever",
+   "center": [
+    -0.20000001788139343,
+    1.0585603713989258,
+    -0.08018279820680618
+   ],
+   "size": [
+    0.04,
+    0.04,
+    0.04
+   ],
+   "label": "火花提前拨杆"
+  },
+  {
+   "id": "HandThrottle",
+   "kind": "handThrottle",
+   "part": "HandThrottle",
+   "center": [
+    -0.4000000059604645,
+    1.0585603713989258,
+    -0.08018279820680618
+   ],
+   "size": [
+    0.04,
+    0.04,
+    0.04
+   ],
+   "label": "手油门拨杆"
+  },
+  {
+   "id": "ignition",
+   "kind": "ignition",
+   "part": "IgnitionKey",
+   "center": [
+    0.0,
+    0.972,
+    0.248
+   ],
+   "size": [
+    0.045,
+    0.04,
+    0.03
+   ],
+   "label": "点火开关"
+  },
+  {
+   "id": "choke",
+   "kind": "choke",
+   "part": "ChokeKnob",
+   "center": [
+    0.2,
+    0.975,
+    0.235
+   ],
+   "size": [
+    0.04,
+    0.04,
+    0.04
+   ],
+   "label": "阻风门拉钮"
+  },
+  {
+   "id": "starter",
+   "kind": "starter",
+   "part": "StarterButton",
+   "center": [
+    -0.019999999552965164,
+    0.5934804677963257,
+    0.41470080614089966
+   ],
+   "size": [
+    0.06,
+    0.05,
+    0.06
+   ],
+   "label": "起动钮"
+  },
+  {
+   "id": "gear",
+   "kind": "gear",
+   "part": "GearLever",
+   "center": [
+    -0.03,
+    1.02,
+    -0.12
+   ],
+   "size": [
+    0.06,
+    0.06,
+    0.06
+   ],
+   "label": "变速杆"
+  },
+  {
+   "id": "handbrake",
+   "kind": "handbrake",
+   "part": "Handbrake",
+   "center": [
+    0.12,
+    0.91,
+    -0.035
+   ],
+   "size": [
+    0.05,
+    0.08,
+    0.05
+   ],
+   "label": "手刹杆"
+  },
+  {
+   "id": "trunkLid",
+   "kind": "trunkLid",
+   "part": "TrunkLid",
+   "center": [
+    0.0,
+    1.13,
+    -2.1
+   ],
+   "size": [
+    1.0,
+    0.12,
+    0.26
+   ],
+   "label": "行李箱盖"
+  },
+  {
+   "id": "strap-L",
+   "kind": "strap",
+   "part": "Strap_L",
+   "center": [
+    -0.3,
+    0.8,
+    -2.245
+   ],
+   "size": [
+    0.08,
+    0.12,
+    0.03
+   ],
+   "label": "行李箱皮带"
+  },
+  {
+   "id": "strap-R",
+   "kind": "strap",
+   "part": "Strap_R",
+   "center": [
+    0.3,
+    0.8,
+    -2.245
+   ],
+   "size": [
+    0.08,
+    0.12,
+    0.03
+   ],
+   "label": "行李箱皮带"
+  },
+  {
+   "id": "item-tools",
+   "kind": "itemTools",
+   "part": "TrunkItems",
+   "center": [
+    -0.25,
+    0.75,
+    -1.84
+   ],
+   "size": [
+    0.4,
+    0.1,
+    0.11
+   ],
+   "label": "工具卷"
+  },
+  {
+   "id": "item-tube",
+   "kind": "itemTube",
+   "part": "TrunkItems",
+   "center": [
+    0.25,
+    0.765,
+    -2.04
+   ],
+   "size": [
+    0.26,
+    0.05,
+    0.26
+   ],
+   "label": "备用内胎"
+  },
+  {
+   "id": "item-oil",
+   "kind": "itemOil",
+   "part": "TrunkItems",
+   "center": [
+    0.3,
+    0.86,
+    -1.82
+   ],
+   "size": [
+    0.12,
+    0.08,
+    0.11
+   ],
+   "label": "机油壶"
+  },
+  {
+   "id": "item-tarp",
+   "kind": "itemTarp",
+   "part": "TrunkItems",
+   "center": [
+    -0.25,
+    0.74,
+    -2.1
+   ],
+   "size": [
+    0.4,
+    0.08,
+    0.17
+   ],
+   "label": "雨布"
+  },
+  {
+   "id": "crankStowed",
+   "kind": "crankStowed",
+   "part": "Body",
+   "center": [
+    0.015,
+    0.73,
+    -1.99
+   ],
+   "size": [
+    0.07,
+    0.06,
+    0.3
+   ],
+   "label": "摇把"
+  },
+  {
+   "id": "spare",
+   "kind": "spare",
+   "part": "Body",
+   "center": [
+    -0.88,
+    0.8,
+    0.7
+   ],
+   "size": [
+    0.15,
+    0.74,
+    0.74
+   ],
+   "label": "备胎"
+  },
+  {
+   "id": "seat-driver",
+   "kind": "seat",
+   "part": "Body",
+   "center": [
+    -0.3,
+    0.83,
+    -0.53
+   ],
+   "size": [
+    0.46,
+    0.12,
+    0.4
+   ],
+   "label": "驾驶座"
+  },
+  {
+   "id": "seat-passenger",
+   "kind": "seat",
+   "part": "Body",
+   "center": [
+    0.3,
+    0.83,
+    -0.53
+   ],
+   "size": [
+    0.46,
+    0.12,
+    0.4
+   ],
+   "label": "副驾驶座"
+  },
+  {
+   "id": "seat-rearLeft",
+   "kind": "seat",
+   "part": "Body",
+   "center": [
+    -0.3,
+    0.83,
+    -1.23
+   ],
+   "size": [
+    0.46,
+    0.12,
+    0.4
+   ],
+   "label": "后排左座"
+  },
+  {
+   "id": "seat-rearRight",
+   "kind": "seat",
+   "part": "Body",
+   "center": [
+    0.3,
+    0.83,
+    -1.23
+   ],
+   "size": [
+    0.46,
+    0.12,
+    0.4
+   ],
+   "label": "后排右座"
+  }
+ ],
+ "body": [
+  {
+   "center": [
+    0.0,
+    1.18,
+    0.54
+   ],
+   "size": [
+    1.3,
+    0.05,
+    0.52
+   ]
+  },
+  {
+   "center": [
+    -0.555,
+    0.89,
+    0.54
+   ],
+   "size": [
+    0.2,
+    0.58,
+    0.52
+   ]
+  },
+  {
+   "center": [
+    0.555,
+    0.89,
+    0.54
+   ],
+   "size": [
+    0.2,
+    0.58,
+    0.52
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    1.05,
+    0.29
+   ],
+   "size": [
+    1.26,
+    0.26,
+    0.05
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.82,
+    0.79
+   ],
+   "size": [
+    0.88,
+    0.72,
+    0.04
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.47,
+    -0.7
+   ],
+   "size": [
+    1.3,
+    0.07,
+    2.02
+   ]
+  },
+  {
+   "center": [
+    -0.625,
+    1.16,
+    -0.52
+   ],
+   "size": [
+    0.05,
+    1.12,
+    0.08
+   ]
+  },
+  {
+   "center": [
+    -0.625,
+    1.11,
+    -1.5
+   ],
+   "size": [
+    0.05,
+    1.22,
+    0.4
+   ]
+  },
+  {
+   "center": [
+    -0.62,
+    0.75,
+    -1.31
+   ],
+   "size": [
+    0.06,
+    0.5,
+    0.78
+   ]
+  },
+  {
+   "center": [
+    -0.62,
+    1.45,
+    0.285
+   ],
+   "size": [
+    0.05,
+    0.52,
+    0.05
+   ]
+  },
+  {
+   "center": [
+    0.625,
+    1.16,
+    -0.52
+   ],
+   "size": [
+    0.05,
+    1.12,
+    0.08
+   ]
+  },
+  {
+   "center": [
+    0.625,
+    1.11,
+    -1.5
+   ],
+   "size": [
+    0.05,
+    1.22,
+    0.4
+   ]
+  },
+  {
+   "center": [
+    0.62,
+    0.75,
+    -1.31
+   ],
+   "size": [
+    0.06,
+    0.5,
+    0.78
+   ]
+  },
+  {
+   "center": [
+    0.62,
+    1.45,
+    0.285
+   ],
+   "size": [
+    0.05,
+    0.52,
+    0.05
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    1.11,
+    -1.7
+   ],
+   "size": [
+    1.3,
+    1.22,
+    0.05
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    1.745,
+    -0.69
+   ],
+   "size": [
+    1.3,
+    0.09,
+    2.1
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    1.115,
+    1.24
+   ],
+   "size": [
+    0.86,
+    0.03,
+    0.88
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.87,
+    1.71
+   ],
+   "size": [
+    0.64,
+    0.56,
+    0.12
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.42,
+    -0.2
+   ],
+   "size": [
+    0.82,
+    0.16,
+    3.92
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.66,
+    1.24
+   ],
+   "size": [
+    0.3,
+    0.42,
+    0.62
+   ]
+  },
+  {
+   "center": [
+    -0.73,
+    0.86,
+    1.3
+   ],
+   "size": [
+    0.3,
+    0.2,
+    0.84
+   ]
+  },
+  {
+   "center": [
+    -0.73,
+    0.86,
+    -1.33
+   ],
+   "size": [
+    0.3,
+    0.2,
+    0.8
+   ]
+  },
+  {
+   "center": [
+    -0.76,
+    0.42,
+    -0.13
+   ],
+   "size": [
+    0.24,
+    0.05,
+    1.36
+   ]
+  },
+  {
+   "center": [
+    0.73,
+    0.86,
+    1.3
+   ],
+   "size": [
+    0.3,
+    0.2,
+    0.84
+   ]
+  },
+  {
+   "center": [
+    0.73,
+    0.86,
+    -1.33
+   ],
+   "size": [
+    0.3,
+    0.2,
+    0.8
+   ]
+  },
+  {
+   "center": [
+    0.76,
+    0.42,
+    -0.13
+   ],
+   "size": [
+    0.24,
+    0.05,
+    1.36
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.48,
+    1.95
+   ],
+   "size": [
+    1.68,
+    0.16,
+    0.06
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.48,
+    -2.3
+   ],
+   "size": [
+    1.68,
+    0.16,
+    0.06
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.685,
+    -1.98
+   ],
+   "size": [
+    1.1,
+    0.03,
+    0.48
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.875,
+    -1.75
+   ],
+   "size": [
+    1.1,
+    0.38,
+    0.02
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.875,
+    -2.21
+   ],
+   "size": [
+    1.1,
+    0.38,
+    0.02
+   ]
+  },
+  {
+   "center": [
+    -0.54,
+    0.875,
+    -1.98
+   ],
+   "size": [
+    0.02,
+    0.38,
+    0.44
+   ]
+  },
+  {
+   "center": [
+    0.54,
+    0.875,
+    -1.98
+   ],
+   "size": [
+    0.02,
+    0.38,
+    0.44
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.66,
+    -0.48
+   ],
+   "size": [
+    1.2,
+    0.28,
+    0.52
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    0.64,
+    -1.2
+   ],
+   "size": [
+    1.16,
+    0.26,
+    0.48
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    1.08,
+    -0.8
+   ],
+   "size": [
+    1.2,
+    0.56,
+    0.1
+   ]
+  },
+  {
+   "center": [
+    0.0,
+    1.06,
+    -1.52
+   ],
+   "size": [
+    1.16,
+    0.56,
+    0.1
+   ]
+  },
+  {
+   "center": [
+    -0.87,
+    0.8,
+    0.7
+   ],
+   "size": [
+    0.14,
+    0.74,
+    0.74
+   ]
+  }
+ ],
+ "seats": [
+  {
+   "id": "driver",
+   "label": "驾驶座",
+   "sit": [
+    -0.3,
+    0.8,
+    -0.5
+   ],
+   "eye": [
+    0.0,
+    0.72,
+    0.0
+   ],
+   "row": "F",
+   "side": -1,
+   "driver": true,
+   "exitNear": [
+    -1.3,
+    0.0,
+    -0.36
+   ],
+   "exitFar": [
+    1.3,
+    0.0,
+    -0.36
+   ],
+   "doors": [
+    "Door_FL",
+    "Door_FR"
+   ]
+  },
+  {
+   "id": "passenger",
+   "label": "副驾驶座",
+   "sit": [
+    0.3,
+    0.8,
+    -0.5
+   ],
+   "eye": [
+    0.0,
+    0.72,
+    0.0
+   ],
+   "row": "F",
+   "side": 1,
+   "driver": false,
+   "exitNear": [
+    1.3,
+    0.0,
+    -0.36
+   ],
+   "exitFar": [
+    -1.3,
+    0.0,
+    -0.36
+   ],
+   "doors": [
+    "Door_FR",
+    "Door_FL"
+   ]
+  },
+  {
+   "id": "rearLeft",
+   "label": "后排左座",
+   "sit": [
+    -0.3,
+    0.8,
+    -1.2
+   ],
+   "eye": [
+    0.0,
+    0.72,
+    0.0
+   ],
+   "row": "R",
+   "side": -1,
+   "driver": false,
+   "exitNear": [
+    -1.3,
+    0.0,
+    -0.66
+   ],
+   "exitFar": [
+    1.3,
+    0.0,
+    -0.66
+   ],
+   "doors": [
+    "Door_RL",
+    "Door_RR"
+   ]
+  },
+  {
+   "id": "rearRight",
+   "label": "后排右座",
+   "sit": [
+    0.3,
+    0.8,
+    -1.2
+   ],
+   "eye": [
+    0.0,
+    0.72,
+    0.0
+   ],
+   "row": "R",
+   "side": 1,
+   "driver": false,
+   "exitNear": [
+    1.3,
+    0.0,
+    -0.66
+   ],
+   "exitFar": [
+    -1.3,
+    0.0,
+    -0.66
+   ],
+   "doors": [
+    "Door_RR",
+    "Door_RL"
+   ]
+  }
+ ],
+ "wheels": [
+  {
+   "id": "FL",
+   "center": [
+    -0.71,
+    0.37,
+    1.315
+   ],
+   "steer": true,
+   "drive": false
+  },
+  {
+   "id": "FR",
+   "center": [
+    0.71,
+    0.37,
+    1.315
+   ],
+   "steer": true,
+   "drive": false
+  },
+  {
+   "id": "RL",
+   "center": [
+    -0.71,
+    0.37,
+    -1.315
+   ],
+   "steer": false,
+   "drive": true
+  },
+  {
+   "id": "RR",
+   "center": [
+    0.71,
+    0.37,
+    -1.315
+   ],
+   "steer": false,
+   "drive": true
+  }
+ ],
+ "partColliders": [
+  {
+   "center": [
+    -0.625,
+    0.8999999999999999,
+    -0.09999999999999998
+   ],
+   "size": [
+    0.05,
+    0.6,
+    0.76
+   ],
+   "part": "Door_FL"
+  },
+  {
+   "center": [
+    -0.632,
+    1.42,
+    0.26
+   ],
+   "size": [
+    0.03,
+    0.44,
+    0.04
+   ],
+   "part": "Door_FL"
+  },
+  {
+   "center": [
+    -0.632,
+    1.42,
+    -0.45999999999999996
+   ],
+   "size": [
+    0.03,
+    0.44,
+    0.04
+   ],
+   "part": "Door_FL"
+  },
+  {
+   "center": [
+    -0.632,
+    1.66,
+    -0.09999999999999998
+   ],
+   "size": [
+    0.03,
+    0.04,
+    0.76
+   ],
+   "part": "Door_FL"
+  },
+  {
+   "center": [
+    -0.632,
+    1.42,
+    -0.09999999999999998
+   ],
+   "size": [
+    0.03,
+    0.4,
+    0.66
+   ],
+   "part": "Glass_FL"
+  },
+  {
+   "center": [
+    0.625,
+    0.8999999999999999,
+    -0.09999999999999998
+   ],
+   "size": [
+    0.05,
+    0.6,
+    0.76
+   ],
+   "part": "Door_FR"
+  },
+  {
+   "center": [
+    0.632,
+    1.42,
+    0.26
+   ],
+   "size": [
+    0.03,
+    0.44,
+    0.04
+   ],
+   "part": "Door_FR"
+  },
+  {
+   "center": [
+    0.632,
+    1.42,
+    -0.45999999999999996
+   ],
+   "size": [
+    0.03,
+    0.44,
+    0.04
+   ],
+   "part": "Door_FR"
+  },
+  {
+   "center": [
+    0.632,
+    1.66,
+    -0.09999999999999998
+   ],
+   "size": [
+    0.03,
+    0.04,
+    0.76
+   ],
+   "part": "Door_FR"
+  },
+  {
+   "center": [
+    0.632,
+    1.42,
+    -0.09999999999999998
+   ],
+   "size": [
+    0.03,
+    0.4,
+    0.66
+   ],
+   "part": "Glass_FR"
+  },
+  {
+   "center": [
+    -0.625,
+    0.79,
+    -0.74
+   ],
+   "size": [
+    0.05,
+    0.38,
+    0.36
+   ],
+   "part": "Door_RL"
+  },
+  {
+   "center": [
+    -0.625,
+    1.0899999999999999,
+    -0.93
+   ],
+   "size": [
+    0.05,
+    0.21999999999999997,
+    0.74
+   ],
+   "part": "Door_RL"
+  },
+  {
+   "center": [
+    -0.632,
+    1.42,
+    -0.5800000000000001
+   ],
+   "size": [
+    0.03,
+    0.44,
+    0.04
+   ],
+   "part": "Door_RL"
+  },
+  {
+   "center": [
+    -0.632,
+    1.42,
+    -1.28
+   ],
+   "size": [
+    0.03,
+    0.44,
+    0.04
+   ],
+   "part": "Door_RL"
+  },
+  {
+   "center": [
+    -0.632,
+    1.66,
+    -0.93
+   ],
+   "size": [
+    0.03,
+    0.04,
+    0.74
+   ],
+   "part": "Door_RL"
+  },
+  {
+   "center": [
+    -0.632,
+    1.42,
+    -0.93
+   ],
+   "size": [
+    0.03,
+    0.4,
+    0.64
+   ],
+   "part": "Glass_RL"
+  },
+  {
+   "center": [
+    0.625,
+    0.79,
+    -0.74
+   ],
+   "size": [
+    0.05,
+    0.38,
+    0.36
+   ],
+   "part": "Door_RR"
+  },
+  {
+   "center": [
+    0.625,
+    1.0899999999999999,
+    -0.93
+   ],
+   "size": [
+    0.05,
+    0.21999999999999997,
+    0.74
+   ],
+   "part": "Door_RR"
+  },
+  {
+   "center": [
+    0.632,
+    1.42,
+    -0.5800000000000001
+   ],
+   "size": [
+    0.03,
+    0.44,
+    0.04
+   ],
+   "part": "Door_RR"
+  },
+  {
+   "center": [
+    0.632,
+    1.42,
+    -1.28
+   ],
+   "size": [
+    0.03,
+    0.44,
+    0.04
+   ],
+   "part": "Door_RR"
+  },
+  {
+   "center": [
+    0.632,
+    1.66,
+    -0.93
+   ],
+   "size": [
+    0.03,
+    0.04,
+    0.74
+   ],
+   "part": "Door_RR"
+  },
+  {
+   "center": [
+    0.632,
+    1.42,
+    -0.93
+   ],
+   "size": [
+    0.03,
+    0.4,
+    0.64
+   ],
+   "part": "Glass_RR"
+  },
+  {
+   "center": [
+    -0.425,
+    0.92,
+    1.24
+   ],
+   "size": [
+    0.04,
+    0.38,
+    0.88
+   ],
+   "part": "Hood_L"
+  },
+  {
+   "center": [
+    0.425,
+    0.92,
+    1.24
+   ],
+   "size": [
+    0.04,
+    0.38,
+    0.88
+   ],
+   "part": "Hood_R"
+  },
+  {
+   "center": [
+    0.0,
+    1.44,
+    0.31
+   ],
+   "size": [
+    1.2,
+    0.44,
+    0.03
+   ],
+   "part": "Windshield"
+  },
+  {
+   "center": [
+    0.0,
+    1.12,
+    -1.98
+   ],
+   "size": [
+    1.12,
+    0.1,
+    0.5
+   ],
+   "part": "TrunkLid"
+  }
+ ],
+ "name": "旅馆用车",
+ "version": 1,
+ "units": "metres, Unity car-local (+X right, +Y up, +Z forward)",
+ "wheelRadius": 0.37,
+ "wheelbase": 2.63,
+ "trackHalf": 0.71,
+ "centreOfMass": [
+  0.0,
+  0.55,
+  0.1
+ ],
+ "mass": 1100.0,
+ "steerCentre": [
+  -0.30000001192092896,
+  1.1299999952316284,
+  -0.09000000357627869
+ ],
+ "steerAxis": [
+  0.0,
+  -0.7487866878509521,
+  0.6628111600875854
+ ],
+ "headlampLeft": [
+  -0.5,
+  0.98,
+  1.7
+ ],
+ "headlampRight": [
+  0.5,
+  0.98,
+  1.7
+ ],
+ "tailLamp": [
+  -0.74,
+  0.98,
+  -1.82
+ ],
+ "domeLamp": [
+  0.0,
+  1.64,
+  -0.62
+ ],
+ "enginePoint": [
+  0.0,
+  0.8,
+  1.3
+ ],
+ "shelter": {
+  "centre": [
+   0.0,
+   -0.69
+  ],
+  "footprint": [
+   1.3,
+   2.06
+  ],
+  "eaves": 1.72,
+  "rise": 0.06
+ },
+ "windshieldRain": {
+  "centre": [
+   0.0,
+   1.44,
+   0.302
+  ],
+  "size": [
+   1.12,
+   0.38
+  ]
+ },
+ "triangles": 16234
+}

@@ -1,0 +1,23 @@
+{
+  "feature": "Hotel car (original 1928-31 style four-door sedan), B08 front court",
+  "date": "2026-10-11",
+  "platform": "Windows, Unity 6000.3.18f1, URP17, D3D11",
+  "player": "builds/car-staging/TownDemo.exe (ignored)",
+  "buildBytes": 433215021,
+  "assemblyCSharpSha256": "42628084ea623f633fa9dd4f34b0cb9140b06bb6db0aa09d435eb4ae67d65d29",
+  "editMode": {"total": 53, "passed": 53, "carTests": 21},
+  "native": [
+    {"check": "car review 1280x720", "passed": true, "results": "review-720.json"},
+    {"check": "car review 1920x1080", "passed": true, "results": "review-1080.json"},
+    {"check": "separate-process reload (driver seat, fixtures, drive away)", "passed": true, "results": "reload-720.json"},
+    {"check": "--review-items regression, same build", "passed": true},
+    {"check": "--review-rail round trip regression, same build", "passed": true}
+  ],
+  "normalSaveSha256BeforeAndAfter": "DA36CC066E9532BF0C0A6958221DB2BF03824FA20903187B7B1BE1E5625901F4",
+  "normalPlayerRebuilt": false,
+  "limits": [
+    "Scripted throttle/brake/steer values replace physical keys; ordinary 3m E ray and real WheelCollider/rigidbody physics are used.",
+    "Rain and night staged in an isolated review save; overturn staged by the harness, recovery uses the in-game push-upright action.",
+    "Not a blind playtest, Mac or low-end frame-rate benchmark; weather/day-night/full-map suites not rerun on this build."
+  ]
+}

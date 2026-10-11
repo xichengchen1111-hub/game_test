@@ -48,7 +48,8 @@ public class TownSound : MonoBehaviour {
         var app=DemoApp.Instance;if(!app||!details)return;
         ambience.volume=app.IsInsideShop?.06f:.32f;
         if(app.IsInsideShop&&Time.time>=nextTick){nextTick=Time.time+.85f;details.PlayOneShot(tick,.4f);}
-        if(!app.Blocked&&app.player.GetComponent<CharacterController>().velocity.sqrMagnitude>.1f&&Time.time>=nextStep) {
+        var walker=app.player.GetComponent<CharacterController>();
+        if(!app.Blocked&&walker.enabled&&walker.velocity.sqrMagnitude>.1f&&Time.time>=nextStep) {
             nextStep=Time.time+.44f;details.PlayOneShot(step,.6f);
         }
     }

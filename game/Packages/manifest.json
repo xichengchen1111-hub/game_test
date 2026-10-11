@@ -11,6 +11,7 @@
     "com.unity.modules.imageconversion": "1.0.0",
     "com.unity.modules.screencapture": "1.0.0",
     "com.unity.modules.ui": "1.0.0",
-    "com.unity.modules.ai": "1.0.0"
+    "com.unity.modules.ai": "1.0.0",
+    "com.unity.modules.vehicles": "1.0.0"
   }
 }

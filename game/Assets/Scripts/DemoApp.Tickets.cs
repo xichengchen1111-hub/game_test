@@ -15,7 +15,7 @@ public partial class DemoApp {
         SetWatchOpen(false);Inspect(carriedTicket);
     }
     bool TickCarriedTicket() {
-        if(!opening&&!paused&&!transitioning&&!inspected&&!DialogueOpen&&!MilkOrdersOpen&&Input.GetKeyDown(KeyCode.T)) {
+        if(!opening&&!paused&&!transitioning&&!inspected&&!DialogueOpen&&!MilkOrdersOpen&&Input.GetKeyDown(KeyCode.T)&&!HeldItemBlockedByDriving()) {
             journal=false;InspectCarriedTicket();return true;
         }
         return false;

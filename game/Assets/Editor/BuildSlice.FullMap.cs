@@ -112,6 +112,7 @@ public static partial class BuildSlice {
         foreach(var root in SceneManager.GetActiveScene().GetRootGameObjects())
             if(root!=geometry&&!atmosphere.Contains(root)&&!root.GetComponent<DayNightCycle>()&&!root.GetComponent<UnityEngine.Rendering.Volume>())root.transform.SetParent(geometry.transform,true);
         new GameObject("Street light budget").AddComponent<TownLightBudget>();
+        PlaceHotelCar();
         FullMapChecks.Validate(plan,geometry);
         TownNavigationBake.Build(geometry.transform);
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene(),"Assets/Scenes/Town.unity");

@@ -21,6 +21,20 @@ public class PlayerMotor : MonoBehaviour {
         capsule.enabled = true;
         falling = 0;
     }
+    // Seat the player in a moving vehicle: the capsule is disabled and look stays relative to the seat.
+    public void Mount(Transform seat) {
+        capsule.enabled = false;
+        transform.SetParent(seat, false);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        pitch = 0; falling = 0;
+        eye.transform.localRotation = Quaternion.identity;
+    }
+    public void Dismount(Transform home, Vector3 feet, float yaw) {
+        transform.SetParent(home, true);
+        Place(feet, yaw);
+        eye.transform.localPosition = new Vector3(0,1.66f,0);
+    }
     public void Aim(Vector3 point) {
         Vector3 d = point - eye.transform.position;
         transform.rotation = Quaternion.Euler(0,Mathf.Atan2(d.x,d.z)*Mathf.Rad2Deg,0);
