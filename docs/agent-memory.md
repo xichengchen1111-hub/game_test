@@ -1,6 +1,6 @@
 # Agent 持久记忆：错日证词
 
-最后核对：2026-10-10。最新检票处细化、废票桶填充与实体车门修复见RAIL-05；用户随后授权本轮提交推送，发布核对见末尾PUBLISH-02，最终提交与远端状态以Git为准。完整一天仍为现实2小时，当前12倍、现实50秒=游戏10分钟；已有累计存档不重算。时间兼容性与剧情窗口未满足的实测见TIME-01。前轮main从ea1f197快进至7f01ddb并合并本地铁路的记录见SYNC-01；恢复stash 9a8cfe83c9c716c2df9bd418b772900364d687da留存。TIME-01后的直接推送已完成，RAIL-05开工基线main/origin/main同ca395d0338a31939d8b851953342656ca42e625c。本文旧数值与验收不覆盖现行AGENTS规则，不把旧构建通过当作新版本重跑。
+最后核对：2026-10-11。最新旅馆用车（可驾驶、42 个交互点）见末尾CAR-01；车站／列车美化、铁路灯发光修复与车轮落轨见末尾RAIL-06（在worktree验收，未提交，正常入口未重建）。此前：最新检票处细化、废票桶填充与实体车门修复见RAIL-05；用户随后授权本轮提交推送，发布核对见末尾PUBLISH-02，最终提交与远端状态以Git为准。完整一天仍为现实2小时，当前12倍、现实50秒=游戏10分钟；已有累计存档不重算。时间兼容性与剧情窗口未满足的实测见TIME-01。前轮main从ea1f197快进至7f01ddb并合并本地铁路的记录见SYNC-01；恢复stash 9a8cfe83c9c716c2df9bd418b772900364d687da留存。TIME-01后的直接推送已完成，RAIL-05开工基线main/origin/main同ca395d0338a31939d8b851953342656ca42e625c。本文旧数值与验收不覆盖现行AGENTS规则，不把旧构建通过当作新版本重跑。
 
 ### ART-04：成年路人基础设计图（2026-10-10，待用户Meshy生成）
 
@@ -701,3 +701,29 @@ Antigravity在本地scratch做只读架构初稿；首调用读权限未授权�
 - RAIL-05交付后，用户明确要求“push”。命令行fetch确认main与origin/main同ca395d0、0/0，无新增远端提交或文件变化，不需要合并。授权范围是本轮检票处细化、废票填充、实体车门、可编辑源及Unity同源生成资源、测试／精简实机记录和文档；恢复stash继续保留。
 - 发布前diff --check、修改JSON解析、Unity新增源码／材质／合同的meta完整性通过，75个待提交文件均低于100MiB，构建包／缓存／原始日志／存档备份继续忽略。核对最终本地程序集仍为7c2f4539…，既有验收记录32项EditMode及六项同程序集原生检查全部通过；本轮仅发布，没有改玩法或重跑实机。
 - 本条记录授权、发布范围和已执行的检查；最终提交编号与推送成功以命令行Git结果和远端main为准。
+
+### RAIL-06：车站与列车美化、质感与旧缺陷修复（2026-10-11）
+
+- **要求与基线**：用户要求“根据剧情和设计，优化美化车站和火车；保留现在的画风，可以加强质感”。开工fetch时main/origin/main 0/0；期间另一会话（旅馆用车）提交推送了RAIL-05为9cd22d4，并在同一工作区开发汽车。双方经跨会话消息约定互不改对方文件、错开Unity；本轮在worktree `D:/AllPersonalProjects/Chenchengame/game_test-railpolish`（分支station-train-polish，自9cd22d4）构建与验收，最终源文件逐字节复制回game_test。未提交／推送；未触碰builds/windows与正常存档。
+- **实现**：新模块`tools/rail/rail_shapes.py`、`rail_station_beautify.py`、`rail_train_beautify.py`由`build_rail_assets.py`调用；`preview_rail.py`为Blender多机位建模预览。站房：拱石／拱心石、窗台线、拱脚线、花岗岩勒脚、隅石、门套、玫瑰窗石圈、托石檐口、屋脊花饰、两座烟囱、檐沟落水管、铁艺灯笼；候车厅木板天花、人字木与檩条、牛腿隅撑、球形吊灯与七盏墙灯、西北角火炉；后门玻璃连廊（新增WeatherShelter）；西翼行李房、东翼值班室按plan-data部件命名布置家具、天花和不投影吊灯，外加两块门楣字牌。雨棚：贴拱斜玻璃＋锌板下跨、格条、屋脊通风楼、放射端屏与挂檐、檐沟、铸铁柱线脚；新`WrongDate/ShedGlass`受光雾化玻璃。Unity：`RailMeshKit`米制UV网格、砖砌站台墙＋石板＋压顶石、后沿栏杆与检票口（双面钟读取共享时钟、双面字牌、讲台，不放检票钳）、站名牌（青川／邻镇）、消防桶、包裹、水鹤、臂板信号机；邻镇站台两盏既有路灯。列车：机车走行板／轮罩／火箱／铜帽烟囱／拱形司机室顶等，煤水车外翻沿与金线，客车象牙白窗带＋墨绿下部、金线、扶手、转向架侧架、拉杆、风挡、端门关闭，车内护墙、窗帘、地毯、小桌、头枕。20套程序化贴图与按材质光滑度。
+- **修复的原有缺陷**：侧翼外山墙缺三角墙；侧翼窗边20cm透光缝；侧翼屋面／屋脊穿过主厅山墙在厅内成“人”字暗条；窗拱上悬空石块与铁饰、檐口托石浮空；厅灯／站台灯吊线不接结构；雨棚玻璃为阶梯状水平板；车轮1.9m轮距与1.435m轨距不符、轮底在地面而轨顶0.24m——现轮组整体上抬0.09m、轨道改到轮下且轨顶0.095m，车体／地板／踏步不变；行李车侧墙两端各缺0.9m；连杆曲柄0.14m且逆向——现以轴心为圆心0.30m顺时针；**RailGlow材质被保存成无`_EMISSION`关键字，所有铁路灯玻璃从未真正发光、DayNightLamp也没写入**——RailMaterial现对发光材质每次重设关键字、发光色与RealtimeEmissive，图集诊断确认全部铁路灯接管；`set_module`同名重入会生成`Module_Hall_Lamps.001`使厅灯未绑定——改为复用同名模块（客车`Module_C*_Detail.001`也随之合并）。
+- **验收**：Windows Unity6000.3.18f1／D3D11，staging构建431655660字节，Assembly-CSharp SHA256 280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602。同程序集10项原生检查通过：图集31机位（含灯具发光诊断）、rail1080／720完整往返（检票处、20+11字牌贴面与字号变化、车门防夹、两次跨镇）、两档独立读档、items 59座位／8查看／2灯开关及读档、day-night、weather、full-map（6种访问顺序）。EditMode 32/32；首轮31/32为窗间柱开洞测试只禁用首个碰撞体，而柱内新增护墙板——测试改为禁用该处全部碰撞体，ValidateTrain未改。期间修过：QINGCHUAN被新檐沟仰视遮挡（正面檐沟在山花处断开）、讲台变量名冲突、窗帘过宽、站台灯强度3.5→4.5（范围12，数量与阴影预算不变）。
+- **存档与证据**：正常slice-save.json最后写入2026-10-10 23:36:14（早于本轮所有复查），SHA256 DA36CC066E9532BF0C0A6958221DB2BF03824FA20903187B7B1BE1E5625901F4；全部复查用隔离review存档。精简证据`output/demo/rail-beautify/`（改前改后对比、30张图集、native结果JSON、EditMode XML、acceptance.json）。改前图取自已提交RAIL-02／RAIL-05截图；本轮最早截的一组改前图在scratch中丢失。
+- **回归规则**：铁路字牌现为青川20／邻镇11（RailSignsReview与ReviewRail.ps1已同步）；改发光材质须确认`_EMISSION`在保存后的.mat里存在并跑图集诊断（`--review --fresh --review-rail --rail-gallery`）；生成器中同一模块可多次`set_module`；车轮中心=半径+0.09、轨距=车轮横距1.9m，改轮组时同步Unity轨道；ShedGlass与ClearGlass一样不加碰撞体；检票口开口宽3.4m对齐坡道，复查路线沿x=0穿过。
+- **后续**：汽车会话完成后已按用户要求合并重建正常入口并推送，见PUBLISH-03。本轮未做Mac构建或实测（本机Unity无Mac Build Support），Mac能否启动最新版尚未验证；非物理键鼠／盲测／低配帧率验收。
+
+### CAR-01：旅馆用车——可驾驶的1928–31风格四门轿车（2026-10-11）
+
+- **用户要求与决定**：要一台可运行、真实物理、可驾驶、交互点多（如开后备箱）、符合年代的车，并要求先出示意图。会话内展示侧视交互点、驾驶座视角、俯视物理布局三张示意图后，用户选：旅馆用车（B08前庭车马院，约169.5,2.0，车头朝北）、自动三档＋真实启动、暗栗红车身配黑翼子板。开工fetch：main=origin/main=9cd22d4、无远端新提交；同工作区另有车站／列车会话（RAIL-06），双方约定各改各的文件、跑Unity前互相通知、汽车会话不提交不推送。
+- **叙事边界**：原作1928年原主分心驾驶致孩子重伤、情夫是修车匠（B07里间有其工作车）、20日另有煤车；所以车归旅馆，不放修车铺或主角家，不进证据合同／证词，现在能开车不证明任何人20日开过车，也不改变17:35–17:55窗口结论。
+- **实现**：`tools/car/build_hotel_car.py`（Blender5.2）生成可编辑HotelCar.blend/FBX与布局合同`hotel-car-layout.json`（45个可动枢轴、42个交互点、盒碰撞、座位／下车点、车轮、灯位、挡雨顶），`BuildSlice.Car.cs`按合同装配`HotelCar.prefab`并放在Town几何组外（不进导航烘焙）。运行时`HotelCar.cs`（WheelCollider四轮、1100kg、L头四缸扭矩曲线、3.11/1.77/1.00自动档与倒档、机械鼓刹／手刹、雨天抓地降至0.72、防倾、点火＋起动钮＋冷车阻风门、摇把手摇与火花提前反弹、阅读／暂停冻结车辆物理、翻车推正、出界回车位）、`CarPart/CarControl/CarSeatPoint/CarSounds`（原创程序音：四缸、起动机、喇叭、胎噪、雨刷、门、棘轮）、`DemoApp.Car.cs`（上车／换座／下车、座位视角、司机HUD、驾驶中Q/M/T需停车拉手刹）、`WindshieldRain.shader`（雨滴与雨刷扫净扇区）。共享改动：SliceSave新增车位姿／座位／热车时间；E在车内未对准控件即下车；`MovementLocked`、列车与家具入口排除在车内；`WeatherShelter.vehicle`使车门窗／风挡打开时恢复室外雨声；`TownLightBudget.Reserved`让大灯与车顶灯占12光池名额；`TownSound`停用脚步于禁用的控制器；manifest新增`com.unity.modules.vehicles`。
+- **踩过的坑**：同一文件多个MonoBehaviour存进预制体会丢脚本（拆成一类一文件）；WheelCollider静止在targetPosition，悬挂抬高应为距离×0.5（0.09m）而不是加静压；座位眼点不在转体轴上会让瞄准偏5cm；下车点须在脚踏板（x0.88）外且离开门扇0.3m以上（最终x±1.30、前z−0.36、后z−0.66），并允许小幅挪位；站立检测须忽略0.24m以下路缘；交互目标做成触发器且不能重叠；发动机罩侧板改为整片翻到顶上（270°），否则从车旁看不见发动机；箱内物品按站立视线重排。
+- **验收**：Windows Unity6000.3.18f1／D3D11，staging `builds/car-staging`（433215021字节，Assembly-CSharp SHA256 42628084ea623f633fa9dd4f34b0cb9140b06bb6db0aa09d435eb4ae67d65d29，含RAIL-06源）。EditMode 53/53（含21项汽车几何／视线／重叠测试）；同一程序集原生：1280×720与1920×1080完整汽车验收、独立进程读档（恢复驾驶座与全部车况后起动开走）、`--review-items`与`--review-rail`回归，全部PASS。指标：0–30km/h 4.83s、湿路33km/h刹停8.16m、撞墙16.6km/h停在墙前、倒车2.2s 5.1m、33个不同交互点、车轮接地误差0.9mm。证据`output/demo/hotel-car/`（README、acceptance.json、结果JSON、EditMode XML、Blender预览与实机截图）。程序驱动脚本输入代替键盘，翻车由脚本摆放；非物理键鼠／盲测／Mac／低配帧率；weather／day-night／full-map全套未在此构建重跑。
+- **存档与交付**：正常slice-save.json前后SHA256均为DA36CC06…01F4，全部检查用隔离car-review-save.json；车站会话的items/rail review存档先备份后原样恢复。正常入口builds/windows未重建，由车站会话在合并origin/main后统一重建；汽车会话未提交／推送。示意图中“行李架折起”“脚踏板可踩上”未实现（行李箱固定在架上；角色无跳跃、台阶0.24m）；无NPC车流、损伤或油耗。
+
+### PUBLISH-03：铁路美化与旅馆用车合并重建并推送（2026-10-11）
+
+- **授权与顺序**：用户要求“等汽车结束合并到最新然后push”。汽车会话报告完成并给出文件清单与提交说明后，CLI fetch确认main=origin/main=9cd22d4、无远端新提交。本会话以合并后的game_test运行`tools/BuildDemo.ps1`重建正常入口builds/windows（旧包与正常存档先备份到忽略的builds/windows-before-rail06/）。
+- **集成验收**：SLICE_BUILD_PASS 433215917字节，Assembly-CSharp SHA256 42628084EA623F633FA9DD4F34B0CB9140B06BB6DB0AA09D435EB4AE67D65D29（与汽车会话car-staging相同）。EditMode 53/53（铁路32＋汽车21）。同程序集原生：rail 1080完整往返（字牌20＋11、检票处、车门、两次跨镇）与独立读档、items 59座位及读档、`tools/ReviewCar.ps1`汽车1080复查与独立进程读档均PASS；精简记录在output/demo/rail-beautify/integrated/。正常slice-save.json前后同为DA36CC066E9532BF0C0A6958221DB2BF03824FA20903187B7B1BE1E5625901F4。
+- **提交范围**：分三次提交——车站／列车美化（RAIL-06源、贴图、生成网格／材质／预制件、证据）、旅馆用车（汽车会话的源、资源、测试与AGENTS规则，按其提供的说明提交）、集成（BuildSlice.cs两边入口、共享文档、重建后的场景／导航／预制件）。builds、缓存、原始日志与存档备份继续忽略。最终提交编号与推送结果以命令行Git与远端main为准。
+- **未验证**：Mac未构建未实测；worktree `game_test-railpolish`在推送后清理。

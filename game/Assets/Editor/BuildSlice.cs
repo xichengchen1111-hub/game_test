@@ -333,6 +333,14 @@ public static partial class BuildSlice {
     public static void Build() {
         BuildFor(BuildTarget.StandaloneWindows64,"../builds/windows/TownDemo.exe",new[]{GraphicsDeviceType.Direct3D11},null);
     }
+    // Same build into a side folder, so review runs never touch the player the user has open.
+    public static void BuildStaging() {
+        BuildFor(BuildTarget.StandaloneWindows64,"../builds/windows-staging/TownDemo.exe",new[]{GraphicsDeviceType.Direct3D11},null);
+    }
+    // Car work verification build; leaves the user's running player untouched.
+    public static void BuildCarStaging() {
+        BuildFor(BuildTarget.StandaloneWindows64,"../builds/car-staging/TownDemo.exe",new[]{GraphicsDeviceType.Direct3D11},null);
+    }
     public static void BuildMac() {
         BuildFor(BuildTarget.StandaloneOSX,"../builds/macos-arm64/TownDemo.app",new[]{GraphicsDeviceType.Metal},1);
     }
@@ -376,7 +384,7 @@ public static partial class BuildSlice {
         if(!shopLayout){shopLayout=ScriptableObject.CreateInstance<BuildingLayout>();AssetDatabase.CreateAsset(shopLayout,layoutPath);}
         ConfigureWalnutLayout();
         BuildingLayoutChecks.ValidateDefinition(shopLayout);
-        HeldMapAuthoring.EnsureMaterial();PropSoundAuthoring.EnsureImports();WalnutShopPrefab();ClockTowerPrefab();StationPrefab();TrainPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);OtherTown();Systems();AssetDatabase.SaveAssets();
+        HeldMapAuthoring.EnsureMaterial();PropSoundAuthoring.EnsureImports();WalnutShopPrefab();ClockTowerPrefab();StationPrefab();TrainPrefab();CarPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);OtherTown();Systems();AssetDatabase.SaveAssets();
         string[] scenes={"Assets/Scenes/Systems.unity","Assets/Scenes/Town.unity","Assets/Scenes/ClockShop.unity","Assets/Scenes/OtherTown.unity"};
         EditorBuildSettings.scenes=Array.ConvertAll(scenes,p=>new EditorBuildSettingsScene(p,true));
         string output=Path.GetFullPath(relativeOutput);Directory.CreateDirectory(Path.GetDirectoryName(output));
