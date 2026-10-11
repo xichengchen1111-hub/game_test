@@ -40,7 +40,7 @@ def add_station_details(b):
             # Heavy limestone plinth block: y in [0.10, 0.40]
             b.box(f'PlinthBlock_{name_suffix}_{side_sign}',
                   (px_center, 0.25, z_offset),
-                  (p_width, 0.30, 0.07), 'RailStone', bevel=0.006)
+                  (p_width, 0.30, 0.07), 'RailGranite', bevel=0.006)
             # Chamfered plinth cap moulding: y in [0.40, 0.46]
             b.box(f'PlinthCap_{name_suffix}_{side_sign}',
                   (px_center, 0.43, z_offset - side_sign * 0.01),
@@ -50,92 +50,15 @@ def add_station_details(b):
     for annex_cx, x_outer, a_sign in ((-19.0, -23.0, -1), (19.0, 23.0, 1)):
         # End wall plinth at x_outer
         b.box(f'AnnexEndPlinth_{a_sign}', (x_outer + a_sign * 0.155, 0.25, 0.0),
-              (0.07, 0.30, 8.08), 'RailStone', bevel=0.005)
+              (0.07, 0.30, 8.08), 'RailGranite', bevel=0.005)
         # Side wall plinths at z = +-4.0
         for sz, s_sign in ((-4.0, -1), (4.0, 1)):
             b.box(f'AnnexSidePlinth_{a_sign}_{s_sign}',
                   (annex_cx, 0.25, sz + s_sign * 0.155),
-                  (8.08, 0.30, 0.07), 'RailStone', bevel=0.005)
+                  (8.08, 0.30, 0.07), 'RailGranite', bevel=0.005)
 
-    # Enhanced Classical Pilaster Capitals & Astragals on Facade Piers
-    front_piers_x = [-14.05, -10.0, -6.0, -2.3, 2.3, 6.0, 10.0, 14.05]
-    for side_sign, z_w in ((-1, z_front), (1, z_rear)):
-        for px in front_piers_x:
-            pw = 1.9 if abs(px) > 13 else (1.2 if abs(px) < 3 else 1.8)
-            z_face = z_w + side_sign * (wall_t / 2.0 + 0.07)
-            # Astragal necking bead below capital at y = 3.96
-            b.box(f'PilasterAstragal_{px:.1f}_{side_sign}',
-                  (px, 3.96, z_face),
-                  (pw * 0.78, 0.04, 0.05), 'RailStone', bevel=0.003)
-            # Abacus slab projecting above capital at y = 4.13
-            b.box(f'PilasterAbacus_{px:.1f}_{side_sign}',
-                  (px, 4.13, z_face + side_sign * 0.015),
-                  (pw * 0.90, 0.05, 0.08), 'RailStone', bevel=0.004)
-
-    # Cornice Modillions / Dentil Blocks along Main Roof Cornices (y = 5.96)
-    # Exclude central entrance axis x in [-2.2, 2.2]
-    dentil_xs = [x * 0.9 for x in range(-16, 17) if abs(x * 0.9) > 2.2 and abs(x * 0.9) < 14.8]
-    for side_sign, z_w in ((-1, z_front), (1, z_rear)):
-        z_dentil = z_w + side_sign * 0.24
-        for idx, dx in enumerate(dentil_xs):
-            b.box(f'CorniceModillion_{idx}_{side_sign}',
-                  (dx, 5.96, z_dentil),
-                  (0.12, 0.08, 0.14), 'RailStone', bevel=0.003)
-
-    # Real Arched Stone & Iron Surrounds for Tall Main Windows (keep y = 2.70 clear!)
-    # Window centers at wx in [-12, -8, -4, 4, 8, 12], width 2.2m, height y in [1.30, 4.10]
-    # Arches placed ABOVE opening: y in [4.08, 4.55]. Center y=2.70 remains completely clear!
-    window_xs = [-12.0, -8.0, -4.0, 4.0, 8.0, 12.0]
-    for side_sign, z_w in ((-1, z_front), (1, z_rear)):
-        z_arch = z_w + side_sign * (wall_t / 2.0 + 0.02)
-        for wx in window_xs:
-            # Arch Springing Impost Blocks at y = 4.08 (left and right of opening)
-            b.box(f'WinImpostL_{wx:.0f}_{side_sign}',
-                  (wx - 1.15, 4.08, z_arch),
-                  (0.16, 0.10, 0.08), 'RailStone', bevel=0.004)
-            b.box(f'WinImpostR_{wx:.0f}_{side_sign}',
-                  (wx + 1.15, 4.08, z_arch),
-                  (0.16, 0.10, 0.08), 'RailStone', bevel=0.004)
-
-            # Segmental Arch Voussoir Blocks (5 faceted blocks forming a sturdy stone arch)
-            # Arch radius ~ 1.6m, spanning from wx - 1.10 to wx + 1.10
-            arch_pts = [
-                (wx - 0.90, 4.22),
-                (wx - 0.48, 4.36),
-                (wx, 4.42),
-                (wx + 0.48, 4.36),
-                (wx + 0.90, 4.22)
-            ]
-            for v_idx, (vx, vy) in enumerate(arch_pts):
-                # Don't place central block as a standard voussoir; keystone is placed separately
-                if v_idx == 2:
-                    continue
-                b.box(f'WinVoussoir_{wx:.0f}_{v_idx}_{side_sign}',
-                  (vx, vy, z_arch),
-                  (0.38, 0.14, 0.06), 'RailStone', bevel=0.004)
-
-            # Protruding Carved Keystone at Arch Crown (wx, 4.45)
-            b.box(f'WinKeystone_{wx:.0f}_{side_sign}',
-                  (wx, 4.45, z_arch + side_sign * 0.025),
-                  (0.26, 0.22, 0.10), 'RailStone', bevel=0.005)
-
-            # Decorative Curved Iron Eyebrow Arch Trim under stone voussoirs
-            b.beam(f'WinIronArch_{wx:.0f}_1_{side_sign}',
-                   (wx - 1.05, 4.10, z_arch - side_sign * 0.005),
-                   (wx - 0.45, 4.24, z_arch - side_sign * 0.005),
-                   radius=0.014, mat='RailIron')
-            b.beam(f'WinIronArch_{wx:.0f}_2_{side_sign}',
-                   (wx - 0.45, 4.24, z_arch - side_sign * 0.005),
-                   (wx, 4.28, z_arch - side_sign * 0.005),
-                   radius=0.014, mat='RailIron')
-            b.beam(f'WinIronArch_{wx:.0f}_3_{side_sign}',
-                   (wx, 4.28, z_arch - side_sign * 0.005),
-                   (wx + 0.45, 4.24, z_arch - side_sign * 0.005),
-                   radius=0.014, mat='RailIron')
-            b.beam(f'WinIronArch_{wx:.0f}_4_{side_sign}',
-                   (wx + 0.45, 4.24, z_arch - side_sign * 0.005),
-                   (wx + 1.05, 4.10, z_arch - side_sign * 0.005),
-                   radius=0.014, mat='RailIron')
+    # Pier capitals, floating modillions and voussoir 'ears' were replaced (2026-10-10) by
+    # wall-bearing impost, archivolt and modillion courses in rail_station_beautify.py.
 
     # Layered Pediment Relief (South facade x in [-3.5, 3.5], y in [6.1, 8.0], NO invented dates)
     z_ped = z_front - 0.21
@@ -238,21 +161,7 @@ def add_station_details(b):
                radius=0.11, thickness=0.010, mat='RailIron', axis=(1, 0, 0),
                segments=14, ring_segs=6)
 
-    # Warm Brass Hanging Porch Lanterns (suspended under canopy at x = +-1.05)
-    for l_sign in (-1, 1):
-        lx = l_sign * 1.05
-        ly = porch_y - 0.35
-        lz = (porch_z_wall + porch_z_front) / 2.0
-        b.beam(f'PorchLanternStem_{l_sign}',
-               (lx, porch_y, lz), (lx, ly + 0.18, lz),
-               radius=0.010, mat='RailBrass')
-        b.cylinder(f'PorchLanternCap_{l_sign}',
-                   (lx, ly + 0.15, lz), 0.18, 0.06, 'RailBrass', axis=(0, 1, 0), vertices=12)
-        b.cylinder(f'PorchLanternGlow_{l_sign}',
-                   (lx, ly, lz), 0.12, 0.18, 'RailGlow', axis=(0, 1, 0), vertices=12)
-        b.ring(f'PorchLanternRing_{l_sign}',
-               (lx, ly - 0.09, lz), 0.12, 0.012, 'RailBrass', axis=(0, 1, 0),
-               segments=12, ring_segs=6)
+    # Porch lanterns now hang from real glazing ribs (rail_station_beautify, facade lamp module).
 
 
     # -----------------------------------------------------------------------
@@ -569,9 +478,9 @@ def add_train_details(b):
            radius=0.012, mat='RailBrass')
 
     # Cab Roof Steam Whistle & Injector Piping
-    b.cylinder('LocoSteamWhistle', (16.78, 3.66, 0.22),
+    b.cylinder('LocoSteamWhistle', (16.78, 3.76, 0.22),
                0.026, 0.16, 'RailBrass', axis=(0, 1, 0), vertices=10)
-    b.cylinder('LocoWhistleBase', (16.78, 3.56, 0.22),
+    b.cylinder('LocoWhistleBase', (16.78, 3.66, 0.22),
                0.040, 0.04, 'RailBrass', axis=(0, 1, 0), vertices=10)
 
     # Cab Doorway Vertical Brass Grab Irons (x = 14.85, z = +-1.32)
@@ -581,9 +490,9 @@ def add_train_details(b):
                radius=0.014, mat='RailBrass')
 
     # Mechanical Lubricator Box on Running Plate
-    b.box('LocoLubricatorBox', (21.40, 1.12, -1.05),
+    b.box('LocoLubricatorBox', (21.40, 1.42, -1.05),
           (0.28, 0.18, 0.16), 'RailBrass', bevel=0.003)
-    b.cylinder('LocoLubricatorDriveWheel', (21.40, 1.12, -1.14),
+    b.cylinder('LocoLubricatorDriveWheel', (21.40, 1.42, -1.14),
                0.055, 0.02, 'RailIron', axis=(0, 0, 1), vertices=10)
 
 
@@ -609,12 +518,7 @@ def add_train_details(b):
         b.box(f'TenderCoalLump_{c_i}', c_pos, c_size, 'RailCoal', bevel=0.008)
 
     # Tender Tank Vertical Stiffener Straps (along tank sides at z = +-1.36)
-    tender_strap_xs = [8.8, 10.2, 11.6, 13.0, 14.4]
-    for side_name, tz in (('L', 1.36), ('R', -1.36)):
-        for idx, tx in enumerate(tender_strap_xs):
-            b.box(f'TenderStrap_{side_name}_{idx}',
-                  (tx, 1.85, tz),
-                  (0.06, 1.82, 0.03), 'RailIron', bevel=0.002)
+    # Plain iron straps were replaced by lined panels (rail_train_beautify).
 
     # Tender Rear Backup Lantern (facing -X at x = 7.95, y = 2.40, z = 0.0)
     b.cylinder('TenderBackupLampBody', (7.95, 2.40, 0.0),
@@ -864,18 +768,18 @@ def add_train_details(b):
                 for sz_name, sz in (('L', 1.08), ('R', -1.08)):
                     # Semi-elliptical leaf spring bundle
                     b.box(f'{c_short}_LeafSpring_{b_idx}_{ax_off:.2f}_{sz_name}',
-                          (bx + ax_off, 0.56, sz),
+                          (bx + ax_off, 0.66, sz),
                           (0.42, 0.045, 0.06), 'RailIron', bevel=0.003)
                     # Axle Journal Box
                     b.box(f'{c_short}_JournalBox_{b_idx}_{ax_off:.2f}_{sz_name}',
-                          (bx + ax_off, 0.48, sz),
+                          (bx + ax_off, 0.58, sz),
                           (0.12, 0.12, 0.08), 'RailIron', bevel=0.003)
 
         # Underframe Air Brake Cylinder Reservoir (under center chassis)
-        b.cylinder(f'{c_short}_BrakeCylinder', (c_cx, 0.65, 0.45),
+        b.cylinder(f'{c_short}_BrakeCylinder', (c_cx, 0.69, 0.45),
                    0.16, 1.15, 'RailIron', axis=(1, 0, 0), vertices=12)
         b.beam(f'{c_short}_BrakePipe',
-               (c_cx - 4.5, 0.62, 0.45), (c_cx + 4.5, 0.62, 0.45),
+               (c_cx - 3.5, 0.835, 0.45), (c_cx + 3.5, 0.835, 0.45),
                radius=0.014, mat='RailIron')
 
 
@@ -911,7 +815,7 @@ def add_train_details(b):
                segments=16, ring_segs=6)
 
     # Underframe Luggage Van Brake Gear
-    b.cylinder('LuggageBrakeReservoir', (van_cx, 0.65, -0.40),
+    b.cylinder('LuggageBrakeReservoir', (van_cx, 0.70, -0.40),
                0.15, 0.95, 'RailIron', axis=(1, 0, 0), vertices=12)
 
     print(">>> TrainSet details added successfully.")

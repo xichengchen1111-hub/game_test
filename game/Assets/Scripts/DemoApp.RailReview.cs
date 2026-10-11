@@ -49,6 +49,7 @@ public partial class DemoApp {
         NeedRail(!mapOpen&&!mapEditing,"departure did not put away the town map/edit cursor");
     }
     IEnumerator ReviewRail() {
+        if(Array.IndexOf(Environment.GetCommandLineArgs(),"--rail-gallery")>=0){yield return ReviewRailGallery();yield break;}
         yield return new WaitForSeconds(.75f);DayReviewTime(990);dayNightReviewFrozen=false;DayNightCycle.Instance.SetReviewWeather(TownWeather.Kind.Clear);
         player.Place(new Vector3(184,.12f,33),0);player.Aim(new Vector3(188,4.1f,44));yield return Capture("station-B-front-detail-day");
         DayReviewTime(1065);dayNightReviewFrozen=false;

@@ -1,0 +1,9 @@
+{
+    "passed": true,
+    "width": 1920,
+    "height": 1080,
+    "journeys": 2,
+    "scene": "Town",
+    "verification": "Visible native Unity renderer; scripted ordinary CharacterController walking, 3m E rays, both coaches, two-way scene travel, actual seat reload checkpoint. Not physical keyboard input or blind playtest.",
+    "elapsed": 1454.6033243242878
+}

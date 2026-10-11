@@ -26,8 +26,9 @@ public class RailGeometryTests {
         Assert.Throws<TargetInvocationException>(Check);
     }
     [Test] public void AnExtraApertureCannotReplaceAWindowPost() {
-        Physics.SyncTransforms();var hit=Physics.RaycastAll(new Vector3(3.6f,2.7f,-1.7f),Vector3.forward,.4f).First(h=>h.collider.transform.IsChildOf(train.transform));
-        hit.collider.enabled=false;Assert.Throws<TargetInvocationException>(Check);
+        // A real aperture removes everything across the post: the painted post and its interior walnut lining.
+        Physics.SyncTransforms();var hits=Physics.RaycastAll(new Vector3(3.6f,2.7f,-1.7f),Vector3.forward,.4f).Where(h=>h.collider.transform.IsChildOf(train.transform)).ToArray();
+        Assert.IsNotEmpty(hits);foreach(var hit in hits)hit.collider.enabled=false;Assert.Throws<TargetInvocationException>(Check);
     }
     [TestCase(false,false,6f,1.6f,0f,11f,6f)]
     [TestCase(true,false,5.4f,4f,0f,0f,9.4f)]

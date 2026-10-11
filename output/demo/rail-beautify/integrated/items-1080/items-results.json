@@ -1,0 +1,11 @@
+{
+    "passed": true,
+    "safeRising": true,
+    "clockContinuesWhileResting": true,
+    "width": 1920,
+    "height": 1080,
+    "restSeats": 59,
+    "ambientInspections": 8,
+    "coachSwitches": 2,
+    "verification": "Native rendered player, staged aisle positions plus ordinary E ray on every seat, real controller walking for item routes, shared UI/rise handlers. Not physical input, blind playtest or full town walk."
+}

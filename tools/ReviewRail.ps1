@@ -24,5 +24,5 @@ if(!$railProcess.HasExited){Stop-Process -Id $railProcess.Id -ErrorAction Silent
 $railLog=Get-Content -Raw -LiteralPath (Join-Path $railOutput 'player.log')
 $pass=switch($Mode){'round-trip' {'RAIL_REVIEW_PASS'} 'interrupt' {'RAIL_INTERRUPT_CHECKPOINT_PASS'} 'next-town' {'RAIL_NEXT_TOWN_CHECKPOINT_PASS'} default {'RAIL_SAVE_PASS'}}
 if($railProcess.ExitCode -ne 0 -or !$railLog.Contains($pass) -or $railLog -match 'RAIL_REVIEW_FAIL|NullReferenceException|MissingReferenceException|referenced script.+missing') {throw "Rail review failed: $railOutput"}
-if($Signs -and ($Mode -ne 'round-trip' -or !$railLog.Contains('RAIL_SIGN_REVIEW_PASS: other-town 7 signs'))){throw "Both-town sign review did not finish: $railOutput"}
+if($Signs -and ($Mode -ne 'round-trip' -or !$railLog.Contains('RAIL_SIGN_REVIEW_PASS: other-town 11 signs'))){throw "Both-town sign review did not finish: $railOutput"}
 Write-Output "RAIL_NATIVE_PASS $Mode $railOutput"

@@ -86,7 +86,20 @@ MATERIAL_DEFS = {
     'RailSkin':   {'color': 'B99075', 'metallic': 0, 'roughness': .85},
     'RailFloor':  {'color': 'DDD8C3', 'metallic': 0, 'roughness': .6},
     'RailLeather': {'color': '8C5C3D', 'metallic': 0, 'roughness': .65},
+    'RailGranite': {'color': '77767A', 'metallic': 0, 'roughness': .78},
+    'RailBrick':  {'color': '8E5644', 'metallic': 0, 'roughness': .85},
+    'RailClay':   {'color': 'A0613F', 'metallic': 0, 'roughness': .75},
+    'RailCeiling': {'color': 'E6DCC4', 'metallic': 0, 'roughness': .70},
+    'RailZinc':   {'color': '5D6870', 'metallic': .35, 'roughness': .55},
+    'RailShedGlass': {'color': 'A9BEBC', 'metallic': 0, 'roughness': .08, 'transmission': .85, 'alpha': .45, 'ior': 1.45},
+    'RailEmber':  {'color': 'FF8A3D', 'metallic': 0, 'roughness': .5, 'emission': 4.0},
+    'RailParcel': {'color': 'A8875E', 'metallic': 0, 'roughness': .9},
+    'RailCarpet': {'color': '6E2B29', 'metallic': 0, 'roughness': .95},
+    'RailCurtain': {'color': '6A2C2A', 'metallic': 0, 'roughness': .9},
+    'RailRubber': {'color': '25272A', 'metallic': 0, 'roughness': .9},
+    'RailCopper': {'color': 'B06A43', 'metallic': .8, 'roughness': .35},
 }
+WORLD_UV = ('RailStone', 'RailFloor', 'RailGranite', 'RailBrick', 'RailCeiling', 'RailZinc')
 
 
 def hex_to_linear(hex_str):
@@ -115,7 +128,9 @@ def setup_materials():
                 bsdf.inputs['Emission Strength'].default_value = spec['emission']
         surface={'RailStone':'Limestone','RailFloor':'Floor','RailOfficeWalnut':'Walnut','RailWalnut':'Walnut','RailFelt':'Moquette',
                  'RailIron':'Iron','RailBrass':'Brass','RailSlate':'Slate','RailLeather':'Leather',
-                 'RailGreen':'Paint','RailIvory':'Paint','RailRed':'Paint'}.get(name)
+                 'RailGreen':'Paint','RailIvory':'Paint','RailRed':'Paint','RailGranite':'Granite','RailBrick':'Brick',
+                 'RailCeiling':'Boards','RailZinc':'Zinc','RailCarpet':'Carpet','RailCurtain':'Velvet','RailRubber':'Bellows',
+                 'RailParcel':'Paper'}.get(name)
         art=Path(__file__).resolve().parents[2]/'game/Assets/Art/Rail'
         if surface and (art/(surface+'Base.png')).exists():
             tex=m.node_tree.nodes.new('ShaderNodeTexImage');tex.image=bpy.data.images.load(str(art/(surface+'Base.png')));tex.image.pack()
@@ -146,8 +161,12 @@ class RailSceneBuilder:
         self.meshes = []
 
     def set_module(self, name):
-        obj = bpy.data.objects.new(name, None)
-        self.collection.objects.link(obj)
+        # Re-entering a module reuses it; a second empty would become "<name>.001" and its
+        # glowing parts would silently escape the light binding done by module name in Unity.
+        obj = self.collection.objects.get(name)
+        if obj is None or obj.type != 'EMPTY':
+            obj = bpy.data.objects.new(name, None)
+            self.collection.objects.link(obj)
         self.active_module = obj
         return obj
 
@@ -182,7 +201,7 @@ class RailSceneBuilder:
                 axes = [i for i in range(3) if i != axis]
                 for loop in face.loop_indices:
                     point = coords[obj.data.loops[loop].vertex_index]
-                    if material in ('RailStone','RailFloor'):point=obj.matrix_world @ point
+                    if material in WORLD_UV:point=obj.matrix_world @ point
                     uv.data[loop].uv = tuple(point[i] * uv_scale for i in axes)
 
         world = obj.matrix_world.copy()
@@ -409,9 +428,8 @@ def build_station(out_dir):
     ]
     for px, pw in front_piers:
         b.box(f'FrontPier_{px:.1f}', (px, 2.70, z_front), (pw, 2.80, wall_t), 'RailStone', bevel=0.008)
-        # Classical pilaster decoration on piers
-        b.box(f'FrontPilaster_{px:.1f}', (px, 2.70, z_front - 0.05), (pw * 0.75, 2.80, 0.08), 'RailStone', bevel=0.005)
-        b.box(f'FrontCapital_{px:.1f}', (px, 4.05, z_front - 0.06), (pw * 0.85, 0.12, 0.12), 'RailStone', bevel=0.004)
+        # Former pilaster/capital boxes were buried in, or coplanar with, this face; the
+        # beautification pass adds real projecting impost/sill/archivolt courses instead.
 
     # Above door lintel: x in [-1.7, 1.7], y in [3.50, 4.10]
     b.box('FrontDoorLintel', (0.0, 3.80, z_front), (3.4, 0.60, wall_t), 'RailStone', bevel=0.005)
@@ -447,8 +465,6 @@ def build_station(out_dir):
     b.box('RearSill_East', (8.35, 0.70, z_rear), (13.3, 1.20, wall_t), 'RailStone', bevel=0.005)
     for px, pw in front_piers:
         b.box(f'RearPier_{px:.1f}', (px, 2.70, z_rear), (pw, 2.80, wall_t), 'RailStone', bevel=0.008)
-        b.box(f'RearPilaster_{px:.1f}', (px, 2.70, z_rear + 0.05), (pw * 0.75, 2.80, 0.08), 'RailStone', bevel=0.005)
-        b.box(f'RearCapital_{px:.1f}', (px, 4.05, z_rear + 0.06), (pw * 0.85, 0.12, 0.12), 'RailStone', bevel=0.004)
     b.box('RearDoorLintel', (0.0, 3.80, z_rear), (3.4, 0.60, wall_t), 'RailStone', bevel=0.005)
     for sign in (-1,1):
         b.box('RearUpperPier'+str(sign),(sign*8,5.05,z_rear),(14,1.9,wall_t),'RailStone')
@@ -489,15 +505,17 @@ def build_station(out_dir):
         xx=sign*15
         b.triangle_prism('HallEndGable'+str(sign),[(xx,6,-6.2),(xx,6,6.2),(xx,7.6,0)],(-sign*.24,0,0),'RailStone')
 
-    # Internal timber roof trusses across the hall (at x = -10, -5, 0, 5, 10)
+    # Internal timber roof trusses across the hall (at x = -10, -5, 0, 5, 10). Rafters run
+    # parallel to, and just under, the boarded ceiling lining of rail_station_beautify.
+    from rail_station_beautify import lining
     for tx in (-10.0, -5.0, 0.0, 5.0, 10.0):
         # Tie beam at eaves level y = 6.0
         b.box(f'TrussTie_{tx:.0f}', (tx, 5.90, 0.0), (0.22, 0.24, 11.8), 'RailWalnut', bevel=0.005)
-        # King post
-        b.beam(f'TrussKing_{tx:.0f}', (tx, 5.90, 0.0), (tx, 7.50, 0.0), 0.10, 'RailWalnut')
+        # King post up to the ridge beam
+        b.beam(f'TrussKing_{tx:.0f}', (tx, 5.90, 0.0), (tx, lining(0) - .14, 0.0), 0.10, 'RailWalnut')
         # Rafters
-        b.beam(f'TrussRafterS_{tx:.0f}', (tx, 5.90, -5.8), (tx, 7.50, 0.0), 0.09, 'RailWalnut')
-        b.beam(f'TrussRafterN_{tx:.0f}', (tx, 5.90, 5.8), (tx, 7.50, 0.0), 0.09, 'RailWalnut')
+        b.beam(f'TrussRafterS_{tx:.0f}', (tx, lining(5.8) - .10, -5.8), (tx, lining(0) - .10, 0.0), 0.09, 'RailWalnut')
+        b.beam(f'TrussRafterN_{tx:.0f}', (tx, lining(5.8) - .10, 5.8), (tx, lining(0) - .10, 0.0), 0.09, 'RailWalnut')
 
     # 3. Windows & Glazing (Front and Rear)
     b.set_module('Module_Hall_Glazing')
@@ -530,6 +548,10 @@ def build_station(out_dir):
         for zw in (-2.0, 2.0):
             b.frame(f'{annex_name}_WinFrame_{zw:.0f}', (x_wall_outer, 2.25, zw), (0.10, 1.90, 1.40), 'RailGreen', bevel=0.003)
             b.box(f'{annex_name}_WinGlass_{zw:.0f}', (x_wall_outer, 2.25, zw), (0.015, 1.80, 1.30), 'RailGlass', bevel=0.0)
+            # The pier openings were 1.6m for a 1.4m window: close the 20cm daylight slot.
+            b.box(f'{annex_name}_WinGapFill_{zw:.0f}', (x_wall_outer, 2.25, zw - math.copysign(.8, zw)), (wall_t, 1.90, .20), 'RailStone', bevel=0.003)
+        # Outer gable triangle under the pitched annex roof (was open to the sky).
+        b.triangle_prism(f'{annex_name}_OuterGable', [(x_wall_outer - wall_t / 2, 4.0, -4.0), (x_wall_outer - wall_t / 2, 4.0, 4.0), (x_wall_outer - wall_t / 2, 5.2, 0.0)], (wall_t, 0, 0), 'RailStone')
 
         # South (z = -4) and North (z = +4) Annex Walls
         for side, zw in (('S', -4.0), ('N', 4.0)):
@@ -542,11 +564,13 @@ def build_station(out_dir):
             b.box(f'{annex_name}_SideWinGlass_{side}', (cx, 2.25, zw), (1.30, 1.80, 0.015), 'RailGlass', bevel=0.0)
 
         # Annex Slate Roof: eaves 4.0, ridge y = 5.2 at z = 0
+        # Roof and ridge stop at the hall's outer wall face (x=+-15.12); they used to pierce
+        # the end wall and show as a dark chevron inside the waiting hall.
         for sign in (-1,1):
-            pos=(cx,4.6,sign*2.1)
-            panel=b.box(f'{annex_name}_Roof{sign}',pos,(8.4,.14,4.4),'RailSlate')
+            pos=(cx+math.copysign(.16,cx),4.6,sign*2.1)
+            panel=b.box(f'{annex_name}_Roof{sign}',pos,(8.08,.14,4.4),'RailSlate')
             panel.matrix_world=Matrix.Translation(u(pos)) @ Matrix.Rotation(-sign*math.atan(1.2/4.2),4,u_dir((1,0,0)))
-        b.box(f'{annex_name}_RoofRidge', (cx, 5.25, 0.0), (8.5, 0.12, 0.35), 'RailSlate', bevel=0.004)
+        b.box(f'{annex_name}_RoofRidge', (cx+math.copysign(.185,cx), 5.25, 0.0), (8.13, 0.12, 0.35), 'RailSlate', bevel=0.004)
 
     # 5. Hall Interior Furnishings
     # Clear central aisle: x in [-2, 2], z in [-6, 6]
@@ -602,12 +626,16 @@ def build_station(out_dir):
     for cx in col_xs:
         for cz in (9.0, 31.0):
             if cx==0 and cz==9:continue  # Preserve the existing rear-door access axis.
-            # Heavy fluted cast iron column: base plinth y in [0.0, 0.4]
-            b.box(f'ColPlinth_{cx:.0f}_{cz:.0f}', (cx, 0.20, cz), (0.50, 0.40, 0.50), 'RailIron', bevel=0.008)
-            # Circular fluted shaft: y in [0.4, 5.0]
-            b.cylinder(f'ColShaft_{cx:.0f}_{cz:.0f}', (cx, 2.70, cz), 0.18, 4.60, 'RailIron', axis=(0, 1, 0), vertices=16)
-            # Decorative capital bracket: y in [5.0, 5.4]
-            b.box(f'ColCapital_{cx:.0f}_{cz:.0f}', (cx, 5.20, cz), (0.55, 0.40, 0.55), 'RailIron', bevel=0.008)
+            # Cast-iron column: square plinth, moulded base, round shaft, bell capital and abacus.
+            from rail_shapes import frustum
+            b.box(f'ColPlinth_{cx:.0f}_{cz:.0f}', (cx, 0.20, cz), (0.50, 0.40, 0.50), 'RailIron', bevel=0.012)
+            b.cylinder(f'ColBaseTorus_{cx:.0f}_{cz:.0f}', (cx, 0.475, cz), 0.25, 0.08, 'RailIron', axis=(0, 1, 0), vertices=20)
+            frustum(b, f'ColBaseScotia_{cx:.0f}_{cz:.0f}', (cx, 0.515, cz), 0.22, 0.175, 0.08, 'RailIron', segments=20)
+            b.cylinder(f'ColShaft_{cx:.0f}_{cz:.0f}', (cx, 2.745, cz), 0.17, 4.39, 'RailIron', axis=(0, 1, 0), vertices=20)
+            for ry in (1.7, 4.72):
+                b.ring(f'ColCollar_{cx:.0f}_{cz:.0f}_{ry}', (cx, ry, cz), 0.175, 0.016, 'RailIron', axis=(0, 1, 0), segments=20, ring_segs=6)
+            frustum(b, f'ColBell_{cx:.0f}_{cz:.0f}', (cx, 4.94, cz), 0.18, 0.30, 0.30, 'RailIron', segments=20)
+            b.box(f'ColCapital_{cx:.0f}_{cz:.0f}', (cx, 5.32, cz), (0.62, 0.16, 0.62), 'RailIron', bevel=0.012)
             # Cast iron corner bracket reaching towards roof
             bracket_dir_z = 1 if cz < 20 else -1
             b.beam(f'ColBracket_{cx:.0f}_{cz:.0f}', (cx, 4.4, cz), (cx, 5.4, cz + bracket_dir_z * 0.8), 0.045, 'RailIron')
@@ -658,16 +686,22 @@ def build_station(out_dir):
 
     # Glazed Barrel Vault Panels: x [-34, 34], z [9, 31]
     b.set_module('Module_Shed_Roof')
+    def vault_y(z):
+        return y_c_arch + math.sqrt(max(0.0, R_arch * R_arch - (z - z_c_arch) ** 2))
     for i in range(num_arc_segs):
-        t_mid = (i + 0.5) / float(num_arc_segs)
-        z_mid = 9.0 + t_mid * 22.0
-        dz = z_mid - z_c_arch
-        y_mid = y_c_arch + math.sqrt(max(0.0, R_arch * R_arch - dz * dz))
-        z_span = 22.0 / num_arc_segs
-        # Roof glass segment
-        b.box(f'VaultGlass_{i}', (0.0, y_mid + 0.02, z_mid), (68.0, 0.015, z_span * 0.96), 'RailGlass', bevel=0.0)
-        # Longitudinal iron glazing bar rib
-        b.beam(f'GlazingRib_{i}', (-34.0, y_mid + 0.04, z_mid), (34.0, y_mid + 0.04, z_mid), 0.022, 'RailIron')
+        z0 = 9.0 + 22.0 * i / num_arc_segs
+        z1 = 9.0 + 22.0 * (i + 1) / num_arc_segs
+        # Sloped panel on the chord of each arc segment (the old flat slabs stepped like stairs).
+        # The two lowest bays each side are zinc sheeting; the rest is lightly frosted glass.
+        mat = 'RailZinc' if i in (0, 1, num_arc_segs - 2, num_arc_segs - 1) else 'RailShedGlass'
+        thick = .02 if mat == 'RailZinc' else .012
+        pts = []
+        for x in (-34.0, 34.0):
+            for z in (z0, z1):
+                pts += [(x, vault_y(z) + .055, z), (x, vault_y(z) + .055 + thick, z)]
+        b.authored_mesh(f'VaultPanel_{i}', pts, [(0, 2, 6, 4), (1, 5, 7, 3), (0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6)], mat)
+        # Longitudinal iron glazing bar on every panel joint
+        b.beam(f'GlazingRib_{i}', (-34.0, vault_y(z1) + .06, z1), (34.0, vault_y(z1) + .06, z1), 0.022, 'RailIron', vertices=8)
 
     # 7. Signage & Lanterns
     b.set_module('Module_Signs_Lighting')
@@ -692,10 +726,7 @@ def build_station(out_dir):
         ('Lamp_Hall_04', (8.0, 4.5, 0.0)),
     ]
     for lamp_name, lpos in hall_lamp_locs:
-        b.empty(lamp_name, lpos)
-        b.beam(f'{lamp_name}_Cable', (lpos[0], 6.0, lpos[2]), (lpos[0], lpos[1] + 0.35, lpos[2]), 0.010, 'RailIron')
-        b.cylinder(f'{lamp_name}_Shade', (lpos[0], lpos[1] + 0.20, lpos[2]), 0.32, 0.12, 'RailBrass', axis=(0, 1, 0))
-        b.cylinder(f'{lamp_name}_Glow', (lpos[0], lpos[1], lpos[2]), 0.22, 0.25, 'RailGlow', axis=(0, 1, 0))
+        b.empty(lamp_name, lpos)  # Pendant bodies hang from the ridge beam (rail_station_beautify).
 
     b.set_module("Module_Platform_Lamps")
     # Platform Hanging Lanterns: 6 brass lanterns under canopy along z = 20
@@ -707,11 +738,11 @@ def build_station(out_dir):
         ('Lamp_Platform_05', (15.0, 5.8, 20.0)),
         ('Lamp_Platform_06', (25.0, 5.8, 20.0)),
     ]
+    from rail_shapes import hanging_lantern
     for lamp_name, lpos in platform_lamp_locs:
         b.empty(lamp_name, lpos)
-        b.beam(f'{lamp_name}_Cable', (lpos[0], 8.5, lpos[2]), (lpos[0], lpos[1] + 0.35, lpos[2]), 0.012, 'RailIron')
-        b.cylinder(f'{lamp_name}_Shade', (lpos[0], lpos[1] + 0.22, lpos[2]), 0.35, 0.15, 'RailBrass', axis=(0, 1, 0))
-        b.cylinder(f'{lamp_name}_Glow', (lpos[0], lpos[1], lpos[2]), 0.24, 0.28, 'RailGlow', axis=(0, 1, 0))
+        # Hung from the ridge purlin (the old cable stopped 0.9m short of any structure).
+        hanging_lantern(b, lamp_name, lpos, 9.35, size=.36, height=.50)
 
     from rail_detail_kit import add_station_details
     add_station_details(b)
@@ -720,13 +751,9 @@ def build_station(out_dir):
     from ticket_office import add_ticket_office
     office = add_ticket_office(b)
     (out_dir / 'ticket-office-geometry.json').write_text(json.dumps(office, indent=2)+'\n', encoding='utf-8')
-    b.set_module('Module_Facade_Lamps')
-    for x in (-10,-6,6,10):
-        b.box('FacadeLanternMount'+str(x),(x,3.35,-6.31),(.16,.35,.07),'RailIron')
-        b.beam('FacadeLanternBracket'+str(x),(x,3.58,-6.33),(x,3.58,-6.70),.018,'RailIron')
-        b.cylinder('FacadeLanternCap'+str(x),(x,3.48,-6.65),.12,.055,'RailBrass',axis=(0,1,0))
-        b.cylinder('FacadeLanternDiffuser'+str(x),(x,3.29,-6.65),.08,.27,'RailGlow',axis=(0,1,0),vertices=12)
-        b.cylinder('FacadeLanternFoot'+str(x),(x,3.135,-6.65),.105,.035,'RailBrass',axis=(0,1,0))
+    from rail_station_beautify import add_station_beautify
+    lanterns = add_station_beautify(b)
+    print('FACADE_LANTERN_GLASS_CENTRES', {k: [round(v, 3) for v in p] for k, p in lanterns.items()})
     # Join static modules by material
     b.join_static_modules_by_material()
 
@@ -779,6 +806,9 @@ def build_station(out_dir):
 # ---------------------------------------------------------------------------
 # Train Set Construction
 # ---------------------------------------------------------------------------
+
+WHEEL_LIFT = .09  # wheel treads rest on the 0.095m rail heads laid by Unity's RailwayGround
+
 
 def create_wheel(builder, name, pos, radius, width=0.14, is_driver=False, num_spokes=12, parent_empty=None):
     """Creates an independent spoked wheel mesh parented to parent_empty."""
@@ -890,8 +920,8 @@ def build_train(out_dir):
 
     # Steam Cylinders at x = 22.5, y = 0.75, z = +-1.15
     for side_name, cz in (('L', 1.15), ('R', -1.15)):
-        b.cylinder(f'LocoCylinder_{side_name}', (22.5, 0.75, cz), 0.35, 1.10, 'RailIron', axis=(1, 0, 0), vertices=20)
-        b.box(f'LocoCrossheadGuide_{side_name}', (21.3, 0.75, cz), (1.30, 0.10, 0.08), 'RailIron', bevel=0.004)
+        b.cylinder(f'LocoCylinder_{side_name}', (22.5, 0.75 + WHEEL_LIFT, cz), 0.35, 1.10, 'RailIron', axis=(1, 0, 0), vertices=20)
+        b.box(f'LocoCrossheadGuide_{side_name}', (21.3, 0.75 + WHEEL_LIFT, cz), (1.30, 0.10, 0.08), 'RailIron', bevel=0.004)
 
     # Boiler: cylinder along X from x = 16.5 to x = 24.2, radius 0.78, center y = 1.95
     b.cylinder('LocoBoiler', (20.35, 1.95, 0.0), 0.78, 7.70, 'RailIron', axis=(1, 0, 0), vertices=24)
@@ -922,7 +952,7 @@ def build_train(out_dir):
     # Front Headlamp at x = 24.8, y = 2.15: brass casing with warm glowing lens
     b.cylinder('LocoHeadlampCase', (24.75, 2.15, 0.0), 0.22, 0.32, 'RailBrass', axis=(1, 0, 0), vertices=18)
     b.cylinder('LocoHeadlampLens', (24.92, 2.15, 0.0), 0.19, 0.02, 'RailGlow', axis=(1, 0, 0), vertices=18)
-    b.cylinder('LocoHeadlampBracket', (24.55, 1.85, 0.0), 0.04, 0.50, 'RailIron', axis=(0, 1, 0))
+    b.cylinder('LocoHeadlampBracket', (24.55, 1.65, 0.0), 0.04, 0.70, 'RailIron', axis=(0, 1, 0))  # stands on the front running plate
 
     # Steam Marker at (20, 0.8, -1.1)
     b.empty('SteamMarker', (20.0, 0.8, -1.1))
@@ -942,8 +972,7 @@ def build_train(out_dir):
     # Spectacle oval windows on front plate
     for sz in (-0.85, 0.85):
         b.cylinder(f'LocoSpectacleWin_{sz:.1f}', (16.82, 2.75, sz), 0.22, 0.02, 'RailGlass', axis=(1, 0, 0), vertices=16)
-    # Arched Cab Roof
-    b.box('LocoCabRoof', (15.8, 3.52, 0.0), (2.10, 0.08, 2.75), 'RailIron', bevel=0.008)
+    # Arched cab roof is authored by rail_train_beautify.
 
     # Cab Interior Backhead: firebox door, brass gauges, levers
     b.box('LocoFireboxBackhead', (16.7, 1.85, 0.0), (0.22, 1.50, 1.20), 'RailIron', bevel=0.006)
@@ -954,8 +983,8 @@ def build_train(out_dir):
     # Locomotive Wheels (Dynamic Empties with Wheel Meshes):
     # 2-6-0: Leading axle at x=23.6, radius 0.40; Driving axles at x=17.3, 19.1, 20.9, radius 0.73
     loco_wheels = [
-        ('Wheel_L_Lead', (23.6, 0.40, 0.85), 0.40, False, 10),
-        ('Wheel_R_Lead', (23.6, 0.40, -0.85), 0.40, False, 10),
+        ('Wheel_L_Lead', (23.6, 0.40, 0.95), 0.40, False, 10),
+        ('Wheel_R_Lead', (23.6, 0.40, -0.95), 0.40, False, 10),
         ('Wheel_L_Drive1', (20.9, 0.73, 0.95), 0.73, True, 16),
         ('Wheel_R_Drive1', (20.9, 0.73, -0.95), 0.73, True, 16),
         ('Wheel_L_Drive2', (19.1, 0.73, 0.95), 0.73, True, 16),
@@ -964,13 +993,14 @@ def build_train(out_dir):
         ('Wheel_R_Drive3', (17.3, 0.73, -0.95), 0.73, True, 16),
     ]
     for w_name, w_pos, w_rad, is_drv, n_spk in loco_wheels:
+        w_pos = (w_pos[0], w_pos[1] + WHEEL_LIFT, w_pos[2])
         w_empty = b.empty(w_name, w_pos)
         create_wheel(b, w_name, w_pos, w_rad, is_driver=is_drv, num_spokes=n_spk, parent_empty=w_empty)
 
     # Side Rod Pivots Rod_Left / Rod_Right near driving wheels (horizontal along X, x in [17.3, 20.9])
     # Neutral crankpin position at y = 0.73 - 0.38 = 0.35
     for rod_name, rz in (('Rod_Left', 1.05), ('Rod_Right', -1.05)):
-        r_empty = b.empty(rod_name, (19.1, 0.40, rz))
+        r_empty = b.empty(rod_name, (19.1, 0.73 + WHEEL_LIFT, rz))  # side rods centred on the driving axles
         # Side rod child mesh: horizontal bar connecting driving crankpins from x = 17.3 to x = 20.9
         # Local coords relative to (19.1, 0.40, rz): local X in [-1.8, 1.8]
         rod_bm = bmesh.new()
@@ -1013,8 +1043,8 @@ def build_train(out_dir):
     for idx, tx in enumerate(tender_axle_xs):
         for side, tz in (('L', 0.95), ('R', -0.95)):
             w_name = f'Wheel_Tender_{side}{idx+1}'
-            w_empty = b.empty(w_name, (tx, 0.48, tz))
-            create_wheel(b, w_name, (tx, 0.48, tz), 0.48, is_driver=False, num_spokes=10, parent_empty=w_empty)
+            w_empty = b.empty(w_name, (tx, 0.48 + WHEEL_LIFT, tz))
+            create_wheel(b, w_name, (tx, 0.48 + WHEEL_LIFT, tz), 0.48, is_driver=False, num_spokes=10, parent_empty=w_empty)
 
     # -----------------------------------------------------------------------
     # 3. COACHES (Coach 01 center x=0, Coach 02 center x=-16)
@@ -1029,7 +1059,8 @@ def build_train(out_dir):
         b.set_module(f'Module_{c_long_name}_Static')
 
         # Chassis & Underframe
-        b.box(f'{c_short}_Chassis', (c_cx, 0.75, 0.0), (14.9, 0.45, 2.60), 'RailIron', bevel=0.01)
+        # Shallow underframe so the bogies, truss rods and brake gear show below the body.
+        b.box(f'{c_short}_Chassis', (c_cx, 0.915, 0.0), (14.9, 0.13, 2.60), 'RailIron', bevel=0.01)
         # End Buffer Beams (at c_cx +- 7.45)
         for end_sign, ex in ((-1, c_cx - 7.45), (1, c_cx + 7.45)):
             b.box(f'{c_short}_BufferBeam_{end_sign}', (ex, 0.85, 0.0), (0.22, 0.45, 2.40), 'RailRed', bevel=0.008)
@@ -1075,17 +1106,17 @@ def build_train(out_dir):
                 c_cx + 3.60,  # post 5-6: width 0.35
             ]
             for p_idx, px in enumerate(post_centers_x):
-                b.box(f'{c_short}_{side_name}_Post_{p_idx}', (px, 2.50, wz), (0.35, 1.40, 0.08), 'RailGreen', bevel=0.003)
+                b.box(f'{c_short}_{side_name}_Post_{p_idx}', (px, 2.50, wz), (0.35, 1.40, 0.08), 'RailIvory', bevel=0.003)
 
             # Vestibule wall posts around doors (y in [1.80, 3.20]):
             # Between window 1 and rear door: [c_cx - 5.375, c_cx - 5.225] (width 0.15)
-            b.box(f'{c_short}_{side_name}_Post_W_Door', (c_cx - 5.30, 2.50, wz), (0.15, 1.40, 0.08), 'RailGreen', bevel=0.003)
+            b.box(f'{c_short}_{side_name}_Post_W_Door', (c_cx - 5.30, 2.50, wz), (0.15, 1.40, 0.08), 'RailIvory', bevel=0.003)
             # Rear corner wall: [c_cx - 7.4, c_cx - 6.425] (width 0.975)
-            b.box(f'{c_short}_{side_name}_Wall_RearCorner', (c_cx - 6.91, 2.50, wz), (0.98, 1.40, 0.08), 'RailGreen', bevel=0.003)
+            b.box(f'{c_short}_{side_name}_Wall_RearCorner', (c_cx - 6.91, 2.50, wz), (0.98, 1.40, 0.08), 'RailIvory', bevel=0.003)
             # Between window 6 and front door: [c_cx + 5.225, c_cx + 5.375] (width 0.15)
-            b.box(f'{c_short}_{side_name}_Post_E_Door', (c_cx + 5.30, 2.50, wz), (0.15, 1.40, 0.08), 'RailGreen', bevel=0.003)
+            b.box(f'{c_short}_{side_name}_Post_E_Door', (c_cx + 5.30, 2.50, wz), (0.15, 1.40, 0.08), 'RailIvory', bevel=0.003)
             # Front corner wall: [c_cx + 6.425, c_cx + 7.4] (width 0.975)
-            b.box(f'{c_short}_{side_name}_Wall_FrontCorner', (c_cx + 6.91, 2.50, wz), (0.98, 1.40, 0.08), 'RailGreen', bevel=0.003)
+            b.box(f'{c_short}_{side_name}_Wall_FrontCorner', (c_cx + 6.91, 2.50, wz), (0.98, 1.40, 0.08), 'RailIvory', bevel=0.003)
 
             # Windows in openings:
             win_offsets = [-4.5, -2.7, -0.9, 0.9, 2.7, 4.5]
@@ -1158,14 +1189,13 @@ def build_train(out_dir):
 
         # Coach Bogies & Wheels (2 bogies per coach at c_cx +- 4.9)
         for b_idx, bx in enumerate((c_cx - 4.9, c_cx + 4.9)):
-            # Bogie frame
-            b.box(f'{c_short}_BogieFrame_{b_idx}', (bx, 0.52, 0.0), (2.40, 0.22, 2.10), 'RailIron', bevel=0.008)
+            # Bogie side frames / bolster are authored by rail_train_beautify.
             # 4 wheels per bogie (axles at bx +- 0.85)
             for ax_idx, ax_x in enumerate((bx - 0.85, bx + 0.85)):
                 for side, wz in (('L', 0.95), ('R', -0.95)):
                     w_name = f'Wheel_{c_short}_B{b_idx+1}_{side}{ax_idx+1}'
-                    w_empty = b.empty(w_name, (ax_x, 0.48, wz))
-                    create_wheel(b, w_name, (ax_x, 0.48, wz), 0.48, is_driver=False, num_spokes=10, parent_empty=w_empty)
+                    w_empty = b.empty(w_name, (ax_x, 0.48 + WHEEL_LIFT, wz))
+                    create_wheel(b, w_name, (ax_x, 0.48 + WHEEL_LIFT, wz), 0.48, is_driver=False, num_spokes=10, parent_empty=w_empty)
 
         # Dynamic Doors (8 Doors Total: 4 on Coach 1, 4 on Coach 2)
         # Side doors at local x = +-5.9 center. Width 1.05 along X, y in [1.05, 3.35]
@@ -1182,7 +1212,7 @@ def build_train(out_dir):
             d_empty = b.empty(d_name, (hinge_x, 1.05, d_hinge_z))
 
             b.box(d_name+'_LowerPanel',(d_center_x,1.60,d_hinge_z),(1.05,1.10,.04),'RailGreen',parent=d_empty)
-            b.frame(d_name+'_UpperFrame',(d_center_x,2.775,d_hinge_z),(1.05,1.15,.04),'RailGreen',parent=d_empty)
+            b.frame(d_name+'_UpperFrame',(d_center_x,2.775,d_hinge_z),(1.05,1.15,.04),'RailIvory',parent=d_empty)
             b.box(d_name+'_ClearGlass',(d_center_x,2.775,d_hinge_z),(.91,1.01,.015),'RailGlass',parent=d_empty)
             b.box(d_name+'_Handle',(d_center_x+.38,2.10,d_hinge_z-.04),(.06,.16,.03),'RailBrass',parent=d_empty)
 
@@ -1197,7 +1227,7 @@ def build_train(out_dir):
     b.set_module('Module_Luggage_Static')
     van_cx = -29.0
     # Chassis
-    b.box('LuggageChassis', (van_cx, 0.75, 0.0), (8.9, 0.45, 2.60), 'RailIron', bevel=0.01)
+    b.box('LuggageChassis', (van_cx, 0.915, 0.0), (8.9, 0.13, 2.60), 'RailIron', bevel=0.01)
     # End Buffer Beams
     for end_sign, ex in ((-1, van_cx - 4.45), (1, van_cx + 4.45)):
         b.box(f'LuggageBufferBeam_{end_sign}', (ex, 0.85, 0.0), (0.22, 0.45, 2.40), 'RailRed', bevel=0.008)
@@ -1212,9 +1242,10 @@ def build_train(out_dir):
     for side_name, wz in (('S', -1.45), ('N', 1.45)):
         # Sliding freight cargo doors at van_cx: width 1.8, y in [1.05, 3.20]
         # Wall left of door
-        b.box(f'LuggageWallW_{side_name}', (van_cx - 2.2, 2.30, wz), (2.6, 2.50, 0.08), 'RailGreen', bevel=0.005)
+        # (The walls previously stopped 0.9m short of both end walls, leaving open slots.)
+        b.box(f'LuggageWallW_{side_name}', (van_cx - 2.67, 2.30, wz), (3.54, 2.50, 0.08), 'RailGreen', bevel=0.005)
         # Wall right of door
-        b.box(f'LuggageWallE_{side_name}', (van_cx + 2.2, 2.30, wz), (2.6, 2.50, 0.08), 'RailGreen', bevel=0.005)
+        b.box(f'LuggageWallE_{side_name}', (van_cx + 2.67, 2.30, wz), (3.54, 2.50, 0.08), 'RailGreen', bevel=0.005)
         # Lintel above freight door
         b.box(f'LuggageDoorLintel_{side_name}', (van_cx, 3.375, wz), (1.8, 0.35, 0.08), 'RailGreen', bevel=0.004)
         # Sliding freight door leaf (recessed / framed)
@@ -1242,12 +1273,14 @@ def build_train(out_dir):
     for a_idx, ax in enumerate((van_cx - 2.4, van_cx + 2.4)):
         for side, wz in (('L', 0.95), ('R', -0.95)):
             w_name = f'Wheel_Luggage_{side}{a_idx+1}'
-            w_empty = b.empty(w_name, (ax, 0.50, wz))
-            create_wheel(b, w_name, (ax, 0.50, wz), 0.50, is_driver=False, num_spokes=10, parent_empty=w_empty)
+            w_empty = b.empty(w_name, (ax, 0.50 + WHEEL_LIFT, wz))
+            create_wheel(b, w_name, (ax, 0.50 + WHEEL_LIFT, wz), 0.50, is_driver=False, num_spokes=10, parent_empty=w_empty)
 
     # Join static modules by material (dynamic empties Wheel_*, Rod_*, Door_* untouched)
     from rail_detail_kit import add_train_details
     add_train_details(b)
+    from rail_train_beautify import add_train_beautify
+    add_train_beautify(b)
     b.join_static_modules_by_material()
 
     # Render Preview: train-threequarter.png
@@ -1430,7 +1463,7 @@ def write_layout_json(out_dir):
             ],
             "locomotive": {
                 "wheelArrangement": "2-6-0",
-                "leadingAxle": {"x": 23.6, "radius": 0.40, "empties": ["Wheel_L_Lead", "Wheel_R_Lead"]},
+                "leadingAxle": {"x": 23.6, "radius": 0.40, "centreY": 0.49, "gaugeZ": 0.95, "empties": ["Wheel_L_Lead", "Wheel_R_Lead"]},
                 "drivingAxles": [
                     {"x": 20.9, "radius": 0.73, "empties": ["Wheel_L_Drive1", "Wheel_R_Drive1"]},
                     {"x": 19.1, "radius": 0.73, "empties": ["Wheel_L_Drive2", "Wheel_R_Drive2"]},
@@ -1438,7 +1471,7 @@ def write_layout_json(out_dir):
                 ],
                 "sideRods": {
                     "empties": ["Rod_Left", "Rod_Right"],
-                    "pivotNeutral": [19.1, 0.40, "+-1.05"],
+                    "pivotNeutral": [19.1, 0.82, "+-1.05"], "crankRadius": 0.30,
                     "crankpinSpan": [17.3, 20.9]
                 },
                 "markers": {
@@ -1449,6 +1482,8 @@ def write_layout_json(out_dir):
             "tender": {
                 "axles": [9.3, 11.5, 13.7],
                 "wheelRadius": 0.48,
+                "wheelCentreY": 0.57,
+                "railHeadTopY": 0.095,
                 "empties": ["Wheel_Tender_L1", "Wheel_Tender_R1", "Wheel_Tender_L2", "Wheel_Tender_R2", "Wheel_Tender_L3", "Wheel_Tender_R3"]
             },
             "coaches": {

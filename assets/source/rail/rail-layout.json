@@ -699,6 +699,8 @@
       "leadingAxle": {
         "x": 23.6,
         "radius": 0.4,
+        "centreY": 0.49,
+        "gaugeZ": 0.95,
         "empties": [
           "Wheel_L_Lead",
           "Wheel_R_Lead"
@@ -737,9 +739,10 @@
         ],
         "pivotNeutral": [
           19.1,
-          0.4,
+          0.82,
           "+-1.05"
         ],
+        "crankRadius": 0.3,
         "crankpinSpan": [
           17.3,
           20.9
@@ -765,6 +768,8 @@
         13.7
       ],
       "wheelRadius": 0.48,
+      "wheelCentreY": 0.57,
+      "railHeadTopY": 0.095,
       "empties": [
         "Wheel_Tender_L1",
         "Wheel_Tender_R1",

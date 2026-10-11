@@ -11,7 +11,8 @@ public partial class DemoApp {
     IEnumerator ReviewRailSigns(string scene) {
         var start=player.transform.position;float yaw=player.transform.eulerAngles.y;
         var signs=FindObjectsByType<RailWorldSign>(FindObjectsSortMode.None).OrderBy(s=>s.lettering.text).ThenBy(s=>s.transform.position.x).ToArray();
-        NeedRail(signs.Length==(scene=="town"?14:7),"unexpected rail sign count in "+scene);
+        // Town: 14 earlier signs + barrier (2 faces) + nameboards (2) + wing headers (2); neighbour: 7 + 2 + 2.
+        NeedRail(signs.Length==(scene=="town"?20:11),"unexpected rail sign count in "+scene);
         int index=0;
         foreach(var sign in signs) {
             Physics.SyncTransforms();NeedRail(sign.Validate(out var issue),"sign "+sign.lettering.text+": "+issue);

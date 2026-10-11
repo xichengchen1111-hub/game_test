@@ -1,0 +1,55 @@
+{
+    "scene": "Town",
+    "x": 184.8000030517578,
+    "y": 1.0829998254776,
+    "z": 73.0,
+    "yaw": 90.0,
+    "returnX": 3.700000047683716,
+    "returnY": 0.05000000074505806,
+    "returnZ": 1.0,
+    "entries": [
+        {
+            "id": "E02",
+            "title": "完整车票 · 随身",
+            "body": "一九三一年一月二十日的车票。\n\n纸面完整，票边也完整，没有检票器打出的孔。",
+            "source": "主角随身车票"
+        }
+    ],
+    "remarkSeen": false,
+    "milkboyGreeted": false,
+    "milkboyGreetingRevision": 0,
+    "dialogueTopics": [],
+    "openFixtures": [
+        "milk-left-door",
+        "coach-light-off-01"
+    ],
+    "initializedFixtures": [
+        "milk-right-door",
+        "milk-left-door",
+        "shop-front-door",
+        "shop-rear-door",
+        "shop-vitrine-right",
+        "shop-parts-drawer",
+        "shop-vitrine-left",
+        "clocktower-door"
+    ],
+    "worldRevision": 3,
+    "gameClockRevision": 1,
+    "towerLayoutRevision": 1,
+    "towerAdjustmentMinutes": 0,
+    "elapsedGameMinutes": 1439.0558132955994,
+    "milkOrderDate": "",
+    "hasMapWaypoint": false,
+    "mapWaypointX": 0.0,
+    "mapWaypointZ": 0.0,
+    "railSeated": false,
+    "furnitureSeatId": "coach-01-end-1",
+    "railJourneys": 0,
+    "carSaved": true,
+    "carX": 169.5,
+    "carY": -0.02587437629699707,
+    "carZ": 2.0000009536743166,
+    "carYaw": 0.0000012132953770560562,
+    "carSeatId": "",
+    "carWarmUntil": 0.0
+}

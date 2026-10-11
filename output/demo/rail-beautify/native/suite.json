@@ -1,0 +1,122 @@
+﻿[
+    {
+        "name":  "gallery-1080",
+        "passed":  true,
+        "flags":  "--review --fresh --review-rail --rail-gallery",
+        "marker":  "RAIL_GALLERY_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  28964,
+        "seconds":  31.823327199999998,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    },
+    {
+        "name":  "rail-1080",
+        "passed":  true,
+        "flags":  "--review --fresh --review-rail --record-ticket-office --record-rail-signs",
+        "marker":  "RAIL_REVIEW_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  31660,
+        "seconds":  174.1270511,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    },
+    {
+        "name":  "rail-reload-1080",
+        "passed":  true,
+        "flags":  "--review --verify-rail-save",
+        "marker":  "RAIL_SAVE_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  48088,
+        "seconds":  9.3282689,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    },
+    {
+        "name":  "rail-720",
+        "passed":  true,
+        "flags":  "--review --fresh --review-rail --record-ticket-office --record-rail-signs",
+        "marker":  "RAIL_REVIEW_PASS",
+        "width":  1280,
+        "height":  720,
+        "exitCode":  0,
+        "processId":  49104,
+        "seconds":  174.1111228,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    },
+    {
+        "name":  "rail-reload-720",
+        "passed":  true,
+        "flags":  "--review --verify-rail-save",
+        "marker":  "RAIL_SAVE_PASS",
+        "width":  1280,
+        "height":  720,
+        "exitCode":  0,
+        "processId":  50020,
+        "seconds":  8.901467499999999,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    },
+    {
+        "name":  "items-1080",
+        "passed":  true,
+        "flags":  "--review --fresh --review-items",
+        "marker":  "ITEM_REVIEW_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  15444,
+        "seconds":  51.6221229,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    },
+    {
+        "name":  "items-reload-1080",
+        "passed":  true,
+        "flags":  "--review --verify-items-save",
+        "marker":  "ITEM_SAVE_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  33268,
+        "seconds":  7.1846723,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    },
+    {
+        "name":  "day-night-1080",
+        "passed":  true,
+        "flags":  "--review --fresh --review-day-night",
+        "marker":  "DAY_NIGHT_REVIEW_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  44300,
+        "seconds":  30.533788899999998,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    },
+    {
+        "name":  "weather-1080",
+        "passed":  true,
+        "flags":  "--review --fresh --review-weather",
+        "marker":  "WEATHER_REVIEW_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  46884,
+        "seconds":  23.9434196,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    },
+    {
+        "name":  "full-map-1080",
+        "passed":  true,
+        "flags":  "--review --fresh --review-full-map",
+        "marker":  "FULL_MAP_REVIEW_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  41296,
+        "seconds":  559.2482751,
+        "assembly":  "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+    }
+]

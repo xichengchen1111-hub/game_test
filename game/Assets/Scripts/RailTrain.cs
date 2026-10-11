@@ -16,8 +16,14 @@ public sealed class RailTrain : MonoBehaviour {
     readonly Dictionary<Transform,bool> doorTargets=new Dictionary<Transform,bool>();
     Vector3 parked;
     float speed, doorFraction;
+    // Side rods ride on crank pins 0.30m from the driving axles (the rods' rest is the axle centre).
+    const float CrankRadius=.30f;
     void Awake() {
         parked=transform.position;
+        foreach(var rod in rods)if(rod) {
+            var marker=rod.GetComponent<RailRod>();
+            if(marker)rod.position=rod.parent.TransformPoint(marker.rest)+transform.TransformVector(new Vector3(CrankRadius,0,0));
+        }
         foreach(var door in doors)if(door) {
             doorClosed[door]=door.localRotation;
             bool platform=door.name.Contains("_S_");
@@ -85,7 +91,8 @@ public sealed class RailTrain : MonoBehaviour {
         }
         float phase=Travelled/.73f;
         foreach(var rod in rods)if(rod) {
-            var marker=rod.GetComponent<RailRod>();if(marker)rod.position=rod.parent.TransformPoint(marker.rest)+transform.TransformVector(new Vector3(Mathf.Cos(phase)*.14f,Mathf.Sin(phase)*.14f,0));
+            // Clockwise as seen from +Z, matching the wheels rolling toward +X.
+            var marker=rod.GetComponent<RailRod>();if(marker)rod.position=rod.parent.TransformPoint(marker.rest)+transform.TransformVector(new Vector3(Mathf.Cos(phase)*CrankRadius,-Mathf.Sin(phase)*CrankRadius,0));
         }
         if(sound&&running&&!sound.isPlaying){sound.clip=running;sound.loop=true;sound.volume=.24f;sound.Play();}
         if(sound)sound.pitch=Mathf.Lerp(.65f,1.15f,speed/3.2f);

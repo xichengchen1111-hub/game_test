@@ -1,0 +1,154 @@
+{
+ "date": "2026-10-11",
+ "platform": "Windows / Unity 6000.3.18f1 / URP / native D3D11 renderer (RTX 5060 Laptop)",
+ "build": "isolated worktree D:/AllPersonalProjects/Chenchengame/game_test-railpolish (branch station-train-polish from 9cd22d4) -> builds/windows-staging; builds/windows untouched",
+ "buildBytes": 431655660,
+ "assemblySHA256": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602",
+ "nativeChecks": [
+  {
+   "name": "gallery-1080",
+   "passed": true,
+   "flags": "--review --fresh --review-rail --rail-gallery",
+   "marker": "RAIL_GALLERY_PASS",
+   "width": 1920,
+   "height": 1080,
+   "exitCode": 0,
+   "processId": 28964,
+   "seconds": 31.823327199999998,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  },
+  {
+   "name": "rail-1080",
+   "passed": true,
+   "flags": "--review --fresh --review-rail --record-ticket-office --record-rail-signs",
+   "marker": "RAIL_REVIEW_PASS",
+   "width": 1920,
+   "height": 1080,
+   "exitCode": 0,
+   "processId": 31660,
+   "seconds": 174.1270511,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  },
+  {
+   "name": "rail-reload-1080",
+   "passed": true,
+   "flags": "--review --verify-rail-save",
+   "marker": "RAIL_SAVE_PASS",
+   "width": 1920,
+   "height": 1080,
+   "exitCode": 0,
+   "processId": 48088,
+   "seconds": 9.3282689,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  },
+  {
+   "name": "rail-720",
+   "passed": true,
+   "flags": "--review --fresh --review-rail --record-ticket-office --record-rail-signs",
+   "marker": "RAIL_REVIEW_PASS",
+   "width": 1280,
+   "height": 720,
+   "exitCode": 0,
+   "processId": 49104,
+   "seconds": 174.1111228,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  },
+  {
+   "name": "rail-reload-720",
+   "passed": true,
+   "flags": "--review --verify-rail-save",
+   "marker": "RAIL_SAVE_PASS",
+   "width": 1280,
+   "height": 720,
+   "exitCode": 0,
+   "processId": 50020,
+   "seconds": 8.901467499999999,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  },
+  {
+   "name": "items-1080",
+   "passed": true,
+   "flags": "--review --fresh --review-items",
+   "marker": "ITEM_REVIEW_PASS",
+   "width": 1920,
+   "height": 1080,
+   "exitCode": 0,
+   "processId": 15444,
+   "seconds": 51.6221229,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  },
+  {
+   "name": "items-reload-1080",
+   "passed": true,
+   "flags": "--review --verify-items-save",
+   "marker": "ITEM_SAVE_PASS",
+   "width": 1920,
+   "height": 1080,
+   "exitCode": 0,
+   "processId": 33268,
+   "seconds": 7.1846723,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  },
+  {
+   "name": "day-night-1080",
+   "passed": true,
+   "flags": "--review --fresh --review-day-night",
+   "marker": "DAY_NIGHT_REVIEW_PASS",
+   "width": 1920,
+   "height": 1080,
+   "exitCode": 0,
+   "processId": 44300,
+   "seconds": 30.533788899999998,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  },
+  {
+   "name": "weather-1080",
+   "passed": true,
+   "flags": "--review --fresh --review-weather",
+   "marker": "WEATHER_REVIEW_PASS",
+   "width": 1920,
+   "height": 1080,
+   "exitCode": 0,
+   "processId": 46884,
+   "seconds": 23.9434196,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  },
+  {
+   "name": "full-map-1080",
+   "passed": true,
+   "flags": "--review --fresh --review-full-map",
+   "marker": "FULL_MAP_REVIEW_PASS",
+   "width": 1920,
+   "height": 1080,
+   "exitCode": 0,
+   "processId": 41296,
+   "seconds": 559.2482751,
+   "assembly": "280AE6DF2F44E6307B93C840AAD6E943353430488B86943F054C97C1EDFCB602"
+  }
+ ],
+ "editMode": {
+  "total": 32,
+  "passed": 32,
+  "failed": 0,
+  "note": "RailGeometryTests.AnExtraApertureCannotReplaceAWindowPost now disables every collider across the post (painted post + new interior walnut lining) to simulate a real aperture; ValidateTrain itself is unchanged. First run before that change: 31/32."
+ },
+ "authoringChecks": [
+  "STATION_AUTHORING_PASS",
+  "RAIL_AUTHORING_PASS",
+  "TICKET_OFFICE_SUPPORT_PASS: 39 imported contacts, 8 grounded fixtures",
+  "RAIL_SIGN_FACES_PASS town 20 / other town 11",
+  "FULL_MAP_AUTHORING_PASS"
+ ],
+ "lampEmissionDiagnostic": "gallery LogRailLamps: after re-asserting RailGlow _EMISSION every railway glow surface (platform, facade, hall, annex, coach, headlamp, ticket office) receives DayNightLamp emission; before the fix all of them reported an empty property block.",
+ "normalSave": {
+  "path": "%USERPROFILE%/AppData/LocalLow/Qingchuan Studio/错日证词 · 暮色小镇/slice-save.json",
+  "lastWrite": "2026-10-10T23:36:14 (before every review of this round)",
+  "sha256": "DA36CC066E9532BF0C0A6958221DB2BF03824FA20903187B7B1BE1E5625901F4",
+  "note": "All checks used isolated rail/items/day-night/weather/full-map review saves."
+ },
+ "limits": [
+  "Scripted real CharacterController walking and ordinary 3m E rays; staged camera/time/weather for photos. Not physical keyboard/mouse input, blind playtest, Mac, or low-end frame-rate measurement.",
+  "The integrated normal player (with the concurrent hotel-car work in game_test) has not been rebuilt by this session; builds/windows is still the RAIL-05 player.",
+  "Before images are the committed RAIL-02/RAIL-05 runtime captures (exterior/train geometry was unchanged between them); a fresh before set from this session was lost from scratch."
+ ]
+}

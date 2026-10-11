@@ -1,0 +1,50 @@
+﻿[
+    {
+        "name":  "rail-1080",
+        "passed":  true,
+        "flags":  "--review --fresh --review-rail --record-ticket-office --record-rail-signs",
+        "marker":  "RAIL_REVIEW_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  16656,
+        "seconds":  174.3462001,
+        "assembly":  "42628084EA623F633FA9DD4F34B0CB9140B06BB6DB0AA09D435EB4AE67D65D29"
+    },
+    {
+        "name":  "rail-reload-1080",
+        "passed":  true,
+        "flags":  "--review --verify-rail-save",
+        "marker":  "RAIL_SAVE_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  20768,
+        "seconds":  9.1020249,
+        "assembly":  "42628084EA623F633FA9DD4F34B0CB9140B06BB6DB0AA09D435EB4AE67D65D29"
+    },
+    {
+        "name":  "items-1080",
+        "passed":  true,
+        "flags":  "--review --fresh --review-items",
+        "marker":  "ITEM_REVIEW_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  57080,
+        "seconds":  52.0245757,
+        "assembly":  "42628084EA623F633FA9DD4F34B0CB9140B06BB6DB0AA09D435EB4AE67D65D29"
+    },
+    {
+        "name":  "items-reload-1080",
+        "passed":  true,
+        "flags":  "--review --verify-items-save",
+        "marker":  "ITEM_SAVE_PASS",
+        "width":  1920,
+        "height":  1080,
+        "exitCode":  0,
+        "processId":  40900,
+        "seconds":  10.5267006,
+        "assembly":  "42628084EA623F633FA9DD4F34B0CB9140B06BB6DB0AA09D435EB4AE67D65D29"
+    }
+]

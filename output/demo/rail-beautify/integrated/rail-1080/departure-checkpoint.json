@@ -1,0 +1,66 @@
+{
+    "scene": "Town",
+    "x": 184.8000030517578,
+    "y": 1.0499999523162842,
+    "z": 72.08000183105469,
+    "yaw": 125.0,
+    "returnX": 3.700000047683716,
+    "returnY": 0.05000000074505806,
+    "returnZ": 1.0,
+    "entries": [
+        {
+            "id": "E03",
+            "title": "废票桶里的已验车票",
+            "body": "同线路的旧车票。\n\n票上留有三个清楚的穿透孔，纸面被检票钳打穿。\n\n售票员说明：检票时会在车票上打孔。",
+            "source": "青川车站废票桶 · 售票员允许查看的同线路旧票"
+        },
+        {
+            "id": "E02",
+            "title": "完整车票 · 随身",
+            "body": "一九三一年一月二十日的车票。\n\n纸面完整，票边也完整，没有检票器打出的孔。",
+            "source": "主角随身车票"
+        },
+        {
+            "id": "E08",
+            "title": "巡警原簿副本",
+            "body": "一九三一年一月十九日\n下午五时二十分\n\n南区巡查记录：有人询问东街。此处没有该街。\n\n本页为获准查阅的原簿副本。",
+            "source": "本镇车站资料桌 · 获准查阅的另一镇巡警原簿副本"
+        }
+    ],
+    "remarkSeen": false,
+    "milkboyGreeted": false,
+    "milkboyGreetingRevision": 0,
+    "dialogueTopics": [],
+    "openFixtures": [
+        "milk-left-door"
+    ],
+    "initializedFixtures": [
+        "milk-right-door",
+        "milk-left-door",
+        "shop-front-door",
+        "shop-rear-door",
+        "shop-vitrine-right",
+        "shop-parts-drawer",
+        "shop-vitrine-left",
+        "clocktower-door"
+    ],
+    "worldRevision": 3,
+    "gameClockRevision": 1,
+    "towerLayoutRevision": 1,
+    "towerAdjustmentMinutes": 0,
+    "elapsedGameMinutes": 1442.6025758437977,
+    "milkOrderDate": "",
+    "hasMapWaypoint": true,
+    "mapWaypointX": 0.0,
+    "mapWaypointZ": -10.0,
+    "railSeated": true,
+    "furnitureSeatId": "",
+    "railJourneys": 0,
+    "carSaved": true,
+    "carX": 169.5,
+    "carY": -0.02587437629699707,
+    "carZ": 2.0000009536743166,
+    "carYaw": 0.0000012132953770560562,
+    "carSeatId": "",
+    "carWarmUntil": 0.0
+}
