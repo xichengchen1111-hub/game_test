@@ -94,7 +94,7 @@ public partial class DemoApp {
         }
         player.Place(new Vector3(-35,.1f,25),0);DayReviewTime(1075);player.Aim(new Vector3(30,3,20));yield return Capture("station-road-dusk");
         DayReviewTime(0);yield return new WaitForSeconds(.35f);
-        NeedMap(DayNightLamp.Active.Count(l=>l.role==DayNightLamp.Role.Exterior&&l.source&&l.source.enabled)<=TownLightBudget.MaximumPools,"Too many local street pools");
+        NeedMap(DayNightLamp.Active.Count(l=>l.role==DayNightLamp.Role.Exterior&&l.sharesStreetPoolBudget&&l.source&&l.source.enabled)<=TownLightBudget.MaximumPools,"Too many local street pools");
         NeedMap(DayNightLamp.Active.Where(l=>l.role==DayNightLamp.Role.Exterior).All(l=>l.Output>.9f),"Distant lamp bulbs extinguished at night");
         yield return Capture("station-road-night");
         // Milk station reached on the same public street, then through its real doorway.

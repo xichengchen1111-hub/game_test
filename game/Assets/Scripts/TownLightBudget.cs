@@ -9,7 +9,7 @@ public sealed class TownLightBudget : MonoBehaviour {
     public static int Reserved;
     readonly List<DayNightLamp> lamps=new List<DayNightLamp>();
     float next;
-    void Start() { foreach(var lamp in DayNightLamp.Active)if(lamp.source&&lamp.role==DayNightLamp.Role.Exterior)lamps.Add(lamp); }
+    void Start() { foreach(var lamp in DayNightLamp.Active)if(lamp.source&&lamp.role==DayNightLamp.Role.Exterior&&lamp.sharesStreetPoolBudget)lamps.Add(lamp); }
     void Update() {
         if(Time.unscaledTime<next||!DemoApp.Instance)return;
         next=Time.unscaledTime+.25f;

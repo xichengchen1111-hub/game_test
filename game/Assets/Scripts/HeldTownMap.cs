@@ -115,13 +115,25 @@ public sealed class HeldTownMap : MonoBehaviour {
         fontDirty=false;
     }
     public void SetShown(bool value){shown=value;}
+    // The sheet pose above is authored for the standing eye. Seated eyes (car .72m,
+    // train 1.10m, furniture) are lower: carry the sheet down with the resting eye so it
+    // stays held in front of the chest instead of floating up at the roof. The walking
+    // bob (±.016m) is ignored; the sheet keeps its own gentle sway.
+    Vector3 EyeOffset(){
+        var eye=player.eye.transform.localPosition;
+        float rest=Mathf.Abs(eye.y-StandingEye)<.02f?StandingEye:eye.y;
+        return new Vector3(eye.x,rest-StandingEye,eye.z);
+    }
+    const float StandingEye=1.66f;
+    // Sheet relative to the eye in the player's body frame (independent of look pitch).
+    public Vector3 SheetFromEye=>Sheet.localPosition-player.eye.transform.localPosition;
     void LateUpdate(){
         reveal=Mathf.MoveTowards(reveal,shown?1:0,Time.unscaledDeltaTime*4.5f);ViewCamera.enabled=reveal>.005f;
         if(!ViewCamera.enabled)return;
         float reading=Mathf.SmoothStep(0,1,Mathf.InverseLerp(12,48,player.pitch));
         float motion=controller.velocity.magnitude>.15f?1:0;
         float bob=Mathf.Sin(Time.time*6.8f)*.004f*motion;
-        Sheet.localPosition=Vector3.Lerp(new Vector3(0,1.06f,.70f),new Vector3(0,1.13f,.60f),reading)+new Vector3(Mathf.Sin(Time.time*3.4f)*.003f*motion,bob-(1-reveal)*.66f,0);
+        Sheet.localPosition=Vector3.Lerp(new Vector3(0,1.06f,.70f),new Vector3(0,1.13f,.60f),reading)+EyeOffset()+new Vector3(Mathf.Sin(Time.time*3.4f)*.003f*motion,bob-(1-reveal)*.66f,0);
         Sheet.localRotation=Quaternion.Euler(64+Mathf.Sin(Time.time*6.8f)*.4f*motion,0,Mathf.Sin(Time.time*3.4f)*.55f*motion);
         ViewCamera.fieldOfView=baseCamera.fieldOfView;
         if(fontDirty)UpdateType();if(viewDirty)UpdateView();

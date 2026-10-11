@@ -1,0 +1,159 @@
+{
+ "date": "2026-10-11",
+ "platform": "Windows 11, Unity 6000.3.18f1, D3D11, RTX 5060 Laptop, 1920x1080 reviews (galleries 1600x900)",
+ "player": "builds/windows-staging/TownDemo.exe",
+ "finalAssemblyCSharpSha256": "007B3004834BFC6AA02C80BB76FC774B880C0ED6BED08EED1E9AB895CF855098",
+ "finalBuildChecks": [
+  "CLOCKTOWER_FLOOR_COPLANAR_PASS",
+  "FULL_MAP_AUTHORING_PASS (incl. no coplanar street under StationConcourseFlags)",
+  "BUILDING_LAYOUT_PASS",
+  "SLICE_BUILD_PASS"
+ ],
+ "previousBuildRuns": {
+  "note": "Same source except the tower threshold trim and the two narrowed stale assertions; car/rail/weather not affected by those changes.",
+  "results": [
+   {
+    "normalSave": "normal-save-before BDB288E663F3AEA269F68C49C81917121B775B50A9BE2C4E641B945BEA1DD83A 2026-10-11T12:39:44"
+   },
+   {
+    "result": "PASS",
+    "review": "tower-night-1080",
+    "seconds": 126.4,
+    "note": "exit=0"
+   },
+   {
+    "result": "PASS",
+    "review": "tower-relaunch",
+    "seconds": 65.7,
+    "note": "exit=0"
+   },
+   {
+    "result": "PASS",
+    "review": "car-1080",
+    "seconds": 82.4,
+    "note": "exit=0"
+   },
+   {
+    "result": "PASS",
+    "review": "car-relaunch",
+    "seconds": 11.9,
+    "note": "exit=0"
+   },
+   {
+    "result": "FAIL",
+    "review": "day-night-1080",
+    "seconds": 6.8,
+    "note": "exit=0"
+   },
+   {
+    "result": "FAIL",
+    "review": "day-night-relaunch",
+    "seconds": 6.2,
+    "note": "exit=0"
+   },
+   {
+    "result": "PASS",
+    "review": "rail-1080",
+    "seconds": 138.0,
+    "note": "exit=0"
+   },
+   {
+    "result": "PASS",
+    "review": "weather-1080",
+    "seconds": 23.7,
+    "note": "exit=0"
+   },
+   {
+    "result": "PASS",
+    "review": "weather-relaunch",
+    "seconds": 6.2,
+    "note": "exit=0"
+   },
+   {
+    "result": "FAIL",
+    "review": "full-map-1080",
+    "seconds": 27.0,
+    "note": "exit=-1"
+   },
+   {
+    "normalSave": "normal-save-after BDB288E663F3AEA269F68C49C81917121B775B50A9BE2C4E641B945BEA1DD83A 2026-10-11T12:39:44"
+   }
+  ]
+ },
+ "finalBuildRuns": [
+  {
+   "normalSave": "normal-save-before BDB288E663F3AEA269F68C49C81917121B775B50A9BE2C4E641B945BEA1DD83A 2026-10-11T12:39:44"
+  },
+  {
+   "result": "PASS",
+   "review": "tower-night-1080",
+   "seconds": 124.5,
+   "note": "exit=0"
+  },
+  {
+   "result": "PASS",
+   "review": "tower-relaunch",
+   "seconds": 65.4,
+   "note": "exit=0"
+  },
+  {
+   "result": "PASS",
+   "review": "day-night-1080",
+   "seconds": 30.5,
+   "note": "exit=0"
+  },
+  {
+   "result": "PASS",
+   "review": "day-night-relaunch",
+   "seconds": 6.6,
+   "note": "exit=0"
+  },
+  {
+   "result": "PASS",
+   "review": "tower-gallery",
+   "seconds": 30.0,
+   "note": "exit=0"
+  },
+  {
+   "result": "PASS",
+   "review": "day-gallery",
+   "seconds": 29.8,
+   "note": "exit=0"
+  },
+  {
+   "result": "PASS",
+   "review": "full-map-1080",
+   "seconds": 559.1,
+   "note": "exit=0"
+  },
+  {
+   "normalSave": "normal-save-after BDB288E663F3AEA269F68C49C81917121B775B50A9BE2C4E641B945BEA1DD83A 2026-10-11T12:39:44"
+  }
+ ],
+ "staleAssertions": [
+  "--review-clocktower: accurate clocks allowed only inside station B17 (RAIL-01/06 design); fails identically on shipped builds/windows",
+  "--review-day-night: hotel car dome lamp (player switched, CAR-01) excluded from daylight scheduling check; fails identically on shipped builds/windows"
+ ],
+ "lightLeakCheck": {
+  "note": "Interior frames, identical staged views: mean luminance before vs after exterior lights",
+  "insideGround": [
+   36.9,
+   36.9
+  ],
+  "insideMiddle": [
+   43.85,
+   43.85
+  ],
+  "machineRoomIncludesLitDial": [
+   66.97,
+   76.25
+  ]
+ },
+ "gradingCheck": "Overcast mean blue-minus-red +0.037..+0.059 after vs +0.033..+0.055 before; mean saturation 0.12..0.17 after vs 0.12..0.13 before (first pass 0.31..0.37 was rejected and corrected).",
+ "seatedMapFromEye": [
+  0.0,
+  -0.537,
+  0.61
+ ],
+ "limits": "Programmatic controller/ray/UI handlers, not physical input or blind play; no low-end frame-rate benchmark; no Mac build."
+}

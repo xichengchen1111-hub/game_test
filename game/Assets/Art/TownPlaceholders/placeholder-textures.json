@@ -1,0 +1,29 @@
+{
+ "generator": "tools/make_placeholder_textures.py",
+ "seed": 1931,
+ "facadeAtlas": {
+  "size": [
+   1024,
+   1024
+  ],
+  "tileMetres": [
+   4.5,
+   6.1
+  ],
+  "rows": "top half upper storey, bottom half ground storey (3.05 m each)",
+  "uv": "u = metres/4.5; v = 0..0.5 one storey, 0..1 two storeys",
+  "colourSpace": "sRGB albedo; normal OpenGL +Y"
+ },
+ "slate": {
+  "size": [
+   512,
+   512
+  ],
+  "tileMetres": [
+   4,
+   4
+  ],
+  "courses": "0.20 m parallel to ridge (constant x), slates 0.30 m staggered"
+ },
+ "note": "Opaque painted windows on placeholders; no interior is implied."
+}

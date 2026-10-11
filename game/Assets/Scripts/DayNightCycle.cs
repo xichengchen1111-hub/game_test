@@ -16,6 +16,8 @@ public sealed class DayNightCycle : MonoBehaviour {
     public TownWeather.State Weather { get; private set; }
     public float NaturalIllumination => Daylight * Weather.naturalLight;
     public float CloudTransmission {get;private set;}
+    public float SkyKey {get;private set;}
+    public bool WeatherStaged => reviewWeather.HasValue;
     public double AppliedElapsedMinutes { get; private set; }
     TownWeather.Kind? reviewWeather;
     public static DayNightCycle Instance { get; private set; }
@@ -62,16 +64,26 @@ public sealed class DayNightCycle : MonoBehaviour {
         if (celestialLight) {
             RenderSettings.sun = celestialLight;
             celestialLight.transform.rotation = Quaternion.LookRotation(MoonActive ? sun : -sun, Vector3.up);
-            celestialLight.color = MoonActive ? new Color(.65f, .74f, 1) : Color.Lerp(new Color(1, .63f, .34f), new Color(1, .96f, .86f), sunStrength);
-            celestialLight.intensity = (MoonActive ? .20f * moonStrength : .9f * sunStrength) * Weather.directLight * CloudTransmission;
-            celestialLight.shadowStrength=Mathf.Lerp(.15f,.85f,Weather.directLight*CloudTransmission);
+            var sunColour = MoonActive ? new Color(.65f, .74f, 1) : Color.Lerp(new Color(1, .63f, .34f), new Color(1, .96f, .86f), sunStrength);
+            float direct = (MoonActive ? .20f * moonStrength : .9f * sunStrength) * Weather.directLight * CloudTransmission;
+            // Under thick cloud the sky is still brighter toward the hidden sun. A soft, near-neutral,
+            // faint-shadowed key from that side gives faces form instead of an even grey.
+            // Same single celestial light; zero at the horizon and at night.
+            SkyKey = MoonActive ? 0 : .24f * sunStrength * Smooth(.45f, .95f, Weather.coverage) * (1 - .40f * Weather.rain);
+            float key = SkyKey / Mathf.Max(.0001f, direct + SkyKey);
+            celestialLight.color = Color.Lerp(sunColour, new Color(.94f, .95f, .97f), key);
+            celestialLight.intensity = direct + SkyKey;
+            celestialLight.shadowStrength=Mathf.Min(.85f,Mathf.Lerp(.15f,.85f,Weather.directLight*CloudTransmission)+.22f*key);
             // The direction flips while intensity is zero at the horizon.
             celestialLight.enabled = celestialLight.intensity > .0001f;
         }
         RenderSettings.ambientMode = AmbientMode.Trilight;
-        RenderSettings.ambientSkyColor = Color.Lerp(new Color(.32f, .39f, .55f), new Color(.70f, .78f, .88f), Daylight);
-        RenderSettings.ambientEquatorColor = Color.Lerp(new Color(.23f, .27f, .37f), new Color(.58f, .60f, .61f), Daylight);
-        RenderSettings.ambientGroundColor = Color.Lerp(new Color(.14f, .16f, .22f), new Color(.37f, .35f, .31f), Daylight);
+        // Daylight ambient is top-lit: roofs and paving see the whole sky, walls half of it
+        // plus a darker, warmer ground bounce. That separation is what gives the overcast
+        // town its volume; night values are unchanged.
+        RenderSettings.ambientSkyColor = Color.Lerp(new Color(.32f, .39f, .55f), new Color(.75f, .79f, .85f), Daylight);
+        RenderSettings.ambientEquatorColor = Color.Lerp(new Color(.23f, .27f, .37f), new Color(.52f, .54f, .56f), Daylight);
+        RenderSettings.ambientGroundColor = Color.Lerp(new Color(.14f, .16f, .22f), new Color(.31f, .28f, .24f), Daylight);
         float cloudGrey=Daylight*Weather.darkness;
         RenderSettings.ambientSkyColor=Color.Lerp(RenderSettings.ambientSkyColor,new Color(.52f,.55f,.60f),cloudGrey*.55f);
         RenderSettings.ambientEquatorColor=Color.Lerp(RenderSettings.ambientEquatorColor,new Color(.48f,.49f,.50f),cloudGrey*.40f);

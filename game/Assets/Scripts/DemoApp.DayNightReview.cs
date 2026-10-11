@@ -97,7 +97,8 @@ public partial class DemoApp {
         cycle.SetReviewWeather(TownWeather.Kind.Clear);
         var lights=FindObjectsByType<Light>(FindObjectsSortMode.None);
         NeedDay(lights.Count(l=>l.type==LightType.Directional)==1&&lights.Count(l=>l.shadows!=LightShadows.None)==4,"Must retain upstream's three local shadow lamps and one celestial source");
-        NeedDay(lights.Where(l=>l.type==LightType.Point).All(l=>l.GetComponent<DayNightLamp>()),"Unscheduled point light");
+        // The hotel car's dome lamp is switched by the player (CAR-01), not by daylight.
+        NeedDay(lights.Where(l=>l.type==LightType.Point&&!l.GetComponentInParent<HotelCar>()).All(l=>l.GetComponent<DayNightLamp>()),"Unscheduled point light");
         var result=new DayNightResult{shadowBudget=true};
         float previous=DayNightCycle.NaturalDaylight(0);
         for(int minute=1;minute<=1440;minute++) {

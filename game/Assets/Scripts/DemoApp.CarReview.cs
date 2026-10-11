@@ -14,6 +14,7 @@ public partial class DemoApp {
         public float topSpeedKmh, stopFromKmh, stopDistance, stopDecel, zeroTo30Seconds, collisionSpeed, collisionStopZ, reverseMetres;
         public float averageDriveFrameMs, worstDriveFrameMs, restingWheelHeightError, rainOnGlass, wipeClear;
         public bool coldNeedsChoke, ignitionRequired, mufflesClosed, openWindowOutdoor, headlampsReserved, pauseFreezes, exitBlockedUsesFarSide, crankKickback, crankStart, flipRecovered;
+        public Vector3 seatedMapFromEye;
         public string verification;
     }
     readonly List<float> carFrames = new List<float>();
@@ -186,6 +187,18 @@ public partial class DemoApp {
         result.openWindowOutdoor = true;
         yield return CarUse("window-FL"); yield return CarWait(1.2f);
         NeedCar(!HeldItemBlockedByDriving(), "watch/map should be usable when stopped with hand brake");
+        // Reported 2026-10-11: the paper map rose to the car roof. It must stay held in
+        // front of the seated chest, at the same offset from the eye as when standing.
+        NeedCar(HandleMapKeys(true, false) && mapOpen, "map should open while parked with the hand brake on");
+        var seatedBody = player.transform.localRotation; float seatedPitch = player.pitch;
+        player.Aim(car.transform.TransformPoint(new Vector3(-.25f, .35f, .85f))); yield return CarWait(.8f);
+        var sheet = heldTownMap.SheetFromEye;
+        NeedCar(sheet.y < -.40f && sheet.y > -.70f && sheet.z > .45f && Mathf.Abs(sheet.x) < .15f, "held map is not in front of the seated chest: " + sheet);
+        result.seatedMapFromEye = sheet;
+        yield return Capture("car-map-seated");
+        SetMapOpen(false); yield return CarWait(.5f);
+        // Leave the seated pose exactly as the following control checks expect it.
+        player.transform.localRotation = seatedBody; player.pitch = seatedPitch; player.eye.transform.localRotation = Quaternion.Euler(seatedPitch, 0, 0);
 
         // Drive out of the hotel court onto Station Road (north lane, westbound).
         yield return CarUse("handbrake"); NeedCar(!car.HandbrakeOn, "hand brake release");

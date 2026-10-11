@@ -34,7 +34,7 @@ public static partial class BuildSlice {
         var root=Group("Town clock",Vector3.zero);
         WeatherAuthoring.Shelter(root,new Vector2(6,6),ClockTowerInstance.Height);
         var instance=root.AddComponent<ClockTowerInstance>();instance.referenceExteriorImported=model;
-        if(model)ClockTowerAsset.Create(root.transform);
+        var exterior=model?ClockTowerAsset.Create(root.transform):null;
         TowerPhysicalShell(root.transform,!model);
         ClockTowerInterior.Build(root.transform);
         ClockTowerSurfaceChecks.Repair(root.transform);
@@ -46,6 +46,8 @@ public static partial class BuildSlice {
             mount.localRotation=Quaternion.Euler(0,face*90,0);
             TowerDial(mount,new Vector3(0,0,-T.DialPlaneDistance),T.DialDiameter);
         }
+        TowerNightDress(root.transform,exterior);
+        TowerFloorCoplanarCheck(root.transform);
         PrefabUtility.SaveAsPrefabAsset(root,TowerPrefabPath);
         UnityEngine.Object.DestroyImmediate(root);
         Debug.Log("CLOCKTOWER_PREFAB_READY: localReferenceExterior="+(model!=null)+" shared exterior/interior; four moving faces; continuous doorway");
@@ -66,7 +68,10 @@ public static partial class BuildSlice {
         Box("Tower entrance lintel",new Vector3(0,(wallHeight+lintelBottom)/2,-half+thickness/2),new Vector3(ClockTowerInstance.DoorWidth,wallHeight-lintelBottom,thickness),wall,root);
         ClockTowerGlazing.BuildShell(root,wall);
         Box("Tower roof underside",new Vector3(0,T.InnerWallHeight,0),new Vector3(T.ChamberInteriorWidth,.12f,T.ChamberInteriorWidth),wall,root);
-        Box("Tower entrance threshold",new Vector3(0,.06f,-1.72f),new Vector3(1.10f,.12f,.70f),Mat("TowerThreshold","#AEA99A"),root);
+        // Outer step and wall reveal only: it stops 5 mm short of the inner wall face so its top
+        // (also .12) never lies coplanar over the interior stone floor (reported z-fighting).
+        float innerFace=-ClockTowerInstance.InnerWidth/2,stepFront=-2.07f,stepBack=innerFace-.005f;
+        Box("Tower entrance threshold",new Vector3(0,.06f,(stepFront+stepBack)/2),new Vector3(1.10f,.12f,stepBack-stepFront),Mat("TowerThreshold","#AEA99A"),root);
         if(preview) {
             Roof(root,3.8f,3.8f,wallHeight,T.ExteriorHeight-wallHeight,Mat("TowerPreviewRoof","#59606B"));
             Debug.LogWarning("CLOCKTOWER_DEVELOPMENT_SHELL: placeholder for collision review; finished reference exterior is absent.");
@@ -108,6 +113,16 @@ public static partial class BuildSlice {
         Quad("Legible tower history",new Vector3(1.06f,1.52f,-1.862f),new Vector2(.63f,.68f),ImageMat("TowerHistory","TowerHistory.png",true),root);
         var clock=plaque.AddComponent<Interactable>();clock.title="古钟塔铭牌";clock.evidenceId="E06";clock.source="广场古钟塔，外墙铭牌与钟面";
         clock.body="青川古钟塔\n\n建成于 1816 年，由钟表大师埃利亚斯·霍夫曼主持建造。\n百余年钟声，守候小镇晨昏。\n\n钟楼由钟表铺的匠人维护。抬头可以看见钟面。";
+    }
+
+    // Walkable top faces of separate pieces must not share a height where they overlap.
+    static void TowerFloorCoplanarCheck(Transform root) {
+        var pieces=root.GetComponentsInChildren<MeshRenderer>().Where(r=>r.name=="Tower entrance threshold"||r.name=="Ground floor").Select(r=>r.bounds).ToArray();
+        if(pieces.Length!=2)throw new InvalidOperationException("Tower threshold or ground floor missing");
+        var a=pieces[0];var b=pieces[1];
+        bool overlap=a.min.x<b.max.x-.001f&&b.min.x<a.max.x-.001f&&a.min.z<b.max.z-.001f&&b.min.z<a.max.z-.001f;
+        if(overlap&&Mathf.Abs(a.max.y-b.max.y)<.01f)throw new InvalidOperationException("Tower threshold overlaps the interior floor at the same height (z-fighting)");
+        Debug.Log("CLOCKTOWER_FLOOR_COPLANAR_PASS: threshold ends at the inner wall face");
     }
 
     static GameObject InstantiateClockTower() {

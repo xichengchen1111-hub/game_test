@@ -27,7 +27,12 @@ for b in p['buildings']:
   windows=[dict(x=w[0],z=w[1],width=w[2],side=w[4] if len(w)>4 else b['front']) for w in b['windows']]))
  if b['id']=='B04':holes.append(rect(milk))
  else:holes.extend(rect(q['rect']) for q in b['parts'])
-holes=unary_union(holes)
+# Ground slabs owned by finished building prefabs. Street surfaces stop at their
+# edge instead of lying coplanar beneath them: B17's rear footpath (walk, y .10)
+# z-fought with the station concourse flags (also .10) outside the hall's rear door.
+# BuildSlice.Rail StationConcourseFlags: local centre (0, 11.775), 68 x 11.55 m, root (188, 46).
+covers=[box(188-34,46+11.775-11.55/2,188+34,46+11.775+11.55/2)]
+holes=unary_union(holes+covers)
 road=unary_union([corridor(r['points'],r['lane']) for r in p['roads'] if r['lane']])
 public=unary_union([corridor(r['points'],r['width']) for r in p['roads']])
 paths=unary_union([corridor(q['points'],q['width']) for q in p['paths']])

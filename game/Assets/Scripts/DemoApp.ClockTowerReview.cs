@@ -107,7 +107,10 @@ public partial class DemoApp {
         NeedTower(layout.middlePlatformCollider,"Middle storey needs a real floor");
         var atmosphere=CheckTowerSurfaceGradient(tower);
         int scenes=SceneManager.sceneCount,instanceId=tower.GetInstanceID();
-        NeedTower(FindObjectsByType<ClockDial>(FindObjectsSortMode.None).All(d=>d.streetClock),"Another accurate world clock bypasses Q pocket watch");
+        // The station's barrier and facade clocks (RAIL-01/06) deliberately read the accurate
+        // shared clock; any other accurate dial in town would bypass the Q pocket watch.
+        static bool InStation(Transform t){var b=t.GetComponentInParent<TownMapBuilding>();return b&&b.mapId=="B17";}
+        NeedTower(FindObjectsByType<ClockDial>(FindObjectsSortMode.None).All(d=>d.streetClock||InStation(d.transform)),"Another accurate world clock bypasses Q pocket watch");
         NeedTower(tower.GetComponentsInChildren<ClockDial>().Length==4,"Tower needs four synchronized clock faces");
         yield return WalkTo(new Vector3(0,.1f,-19f));
         player.Aim(tower.LocalToWorld(new Vector3(0,T.ExteriorHeight*.47f,0)));yield return Capture("tower-exterior-front");

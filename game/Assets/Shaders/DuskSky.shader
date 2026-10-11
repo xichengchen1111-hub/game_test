@@ -88,6 +88,13 @@ Shader "WrongDate/DuskSky" {
     float star=step(.992,hash(cell))*exp(-dot(starPos,starPos)*65);
     c+=star*_Night*smoothstep(.06,.22,d.y)*.40*transmission*(1-veil);
     c=lerp(c,cloud,alpha);
+    // Behind the cloud deck the sun still reads as a pale, soft-edged disc and a wide
+    // glow, stronger where the cloud is thin and fading in heavy rain. It marks the same
+    // direction as the single celestial light and its soft overcast key.
+    float thin=saturate(1-depth*.35)*(1-_Darkness*.45);
+    float throughDisc=smoothstep(.99885,.99958,sunDot);
+    float throughGlow=pow(saturate(sunDot),48)*.55+pow(saturate(sunDot),10)*.16+pow(saturate(sunDot),3)*.04;
+    c+=float3(1,.94,.82)*_SunVisibility*alpha*thin*(throughDisc*1.35+throughGlow);
     c=lerp(c,_Bottom.rgb,exp(-h*5)*(.15+_Haze*.68));
     return float4(c,1);
    }

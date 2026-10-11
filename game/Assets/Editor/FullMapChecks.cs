@@ -27,6 +27,17 @@ public static class FullMapChecks {
         var shadowLights=geometry.GetComponentsInChildren<Light>().Where(l=>l.shadows!=LightShadows.None).ToArray();
         Need(shadowLights.Length==3,"preserve upstream's two shop and one low-resolution machinery shadow lamps: "+string.Join(", ",shadowLights.Select(l=>l.name+"/"+l.type)));
         Need(geometry.GetComponentsInChildren<WeatherShelter>().Length>70,"finished and placeholder roofs shelter rain");
+        // A finished prefab's own ground slab owns its footprint: no street triangle may lie
+        // coplanar beneath it (2026-10-11, rear footpath z-fighting the station concourse).
+        foreach(var slab in geometry.GetComponentsInChildren<MeshRenderer>().Where(r=>r.name=="StationConcourseFlags")) {
+            var b=slab.bounds;int coplanar=0;
+            foreach(var surface in plan.surfaces)for(int i=0;i+8<surface.vertices.Length;i+=9) {
+                float x=(surface.vertices[i]+surface.vertices[i+3]+surface.vertices[i+6])/3,y=surface.vertices[i+1],z=(surface.vertices[i+2]+surface.vertices[i+5]+surface.vertices[i+8])/3;
+                if(x>b.min.x&&x<b.max.x&&z>b.min.z&&z<b.max.z&&y>b.max.y-.06f)coplanar++;
+            }
+            Need(coplanar==0,"street surfaces lie coplanar under "+slab.name+": "+coplanar+" triangles");
+        }
+        Need(geometry.GetComponentsInChildren<MeshRenderer>().Any(r=>r.name=="StationConcourseFlags"),"station concourse slab present for coplanarity check");
         string directory="../output/demo/full-map";Directory.CreateDirectory(directory);
         File.WriteAllText(directory+"/authoring-checks.json",JsonUtility.ToJson(new Result{passed=true,mapVersion=plan.version,source=plan.sourceSha256,properties=markers.Length,finished=4,roads=11,lights=geometry.GetComponentsInChildren<Light>().Length,shadows=3},true));
         Debug.Log("FULL_MAP_AUTHORING_PASS: 70 property markers; finished proportions, origin/doors, roads and light budget");

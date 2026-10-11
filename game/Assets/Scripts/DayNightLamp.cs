@@ -11,6 +11,9 @@ public sealed class DayNightLamp : MonoBehaviour {
     [Range(0, 1)] public float daylightAccess = .85f;
     public Renderer[] glowingSurfaces = new Renderer[0];
     public bool darkenWindowWhenOff;
+    // Street lanterns share the nearest-twelve pool budget. Landmark lighting (the
+    // clock tower's floodlights and dial glow) stays lit at any distance instead.
+    public bool sharesStreetPoolBudget = true;
     public bool RequestedOn { get; private set; } = true;
     public float Output { get; private set; }
     public float NaturalIllumination { get; private set; }

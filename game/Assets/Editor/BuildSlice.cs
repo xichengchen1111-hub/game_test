@@ -118,23 +118,29 @@ public static partial class BuildSlice {
         if(!profile.TryGet<Bloom>(out var bloom))bloom=profile.Add<Bloom>();bloom.intensity.Override(.18f);bloom.threshold.Override(1f);bloom.scatter.Override(.55f);
         if(!profile.TryGet<ColorAdjustments>(out var color))color=profile.Add<ColorAdjustments>();color.postExposure.Override(inside?.45f:.2f);color.saturation.Override(-6);color.contrast.Override(5);
         if(!profile.TryGet<Vignette>(out var vignette))vignette=profile.Add<Vignette>();vignette.intensity.Override(.18f);vignette.smoothness.Override(.65f);
+        GradeTownVolume(profile,inside);
         foreach(var component in profile.components) if(!AssetDatabase.Contains(component))AssetDatabase.AddObjectToAsset(component,profile);
         EditorUtility.SetDirty(profile);
     }
-    static void Roof(Transform parent,float width,float depth,float bottom,float rise,Material material) {
+    static void Roof(Transform parent,float width,float depth,float bottom,float rise,Material material,Material gable=null) {
         var g=new GameObject("Pitched roof");g.transform.SetParent(parent,false);g.isStatic=true;
         var mesh=new Mesh();
         mesh.vertices=new[]{new Vector3(-width/2,bottom,-depth/2),new Vector3(width/2,bottom,-depth/2),new Vector3(-width/2,bottom,depth/2),new Vector3(width/2,bottom,depth/2),new Vector3(0,bottom+rise,-depth/2),new Vector3(0,bottom+rise,depth/2)};
         // The original template wound every face inward. Use outward, flat-shaded faces.
         var points=mesh.vertices;var triangles=new[]{0,2,4,2,5,4,1,4,3,3,4,5,0,4,1,2,3,5,0,1,2,1,3,2};
         var vertices=new Vector3[triangles.Length];var uv=new Vector2[vertices.Length];
-        for(int i=0;i<vertices.Length;i++){vertices[i]=points[triangles[i]];uv[i]=new Vector2(vertices[i].x,vertices[i].z)/4;triangles[i]=i;}
-        mesh.vertices=vertices;mesh.uv=uv;mesh.triangles=triangles;mesh.RecalculateNormals();mesh.RecalculateTangents();
+        for(int i=0;i<vertices.Length;i++){vertices[i]=points[triangles[i]];triangles[i]=i;}
+        // Slopes and soffit take a plan projection; the two gable ends a wall projection, as a second submesh.
+        bool GableFace(int t)=>t==12||t==15;
+        for(int t=0;t<vertices.Length;t+=3)for(int k=0;k<3;k++){var v=vertices[t+k];uv[t+k]=(GableFace(t)?new Vector2(v.x,v.y):new Vector2(v.x,v.z))/4;}
+        var slopes=new List<int>();var ends=new List<int>();
+        for(int t=0;t<vertices.Length;t+=3)(GableFace(t)?ends:slopes).AddRange(new[]{t,t+1,t+2});
+        mesh.vertices=vertices;mesh.uv=uv;mesh.subMeshCount=2;mesh.SetTriangles(slopes,0);mesh.SetTriangles(ends,1);mesh.RecalculateNormals();mesh.RecalculateTangents();
         string p="Assets/Generated/"+parent.name+"-roof.asset";
         var saved=AssetDatabase.LoadAssetAtPath<Mesh>(p);
         if(saved){EditorUtility.CopySerialized(mesh,saved);UnityEngine.Object.DestroyImmediate(mesh);mesh=saved;EditorUtility.SetDirty(mesh);}
         else AssetDatabase.CreateAsset(mesh,p);
-        g.AddComponent<MeshFilter>().sharedMesh=mesh;g.AddComponent<MeshRenderer>().sharedMaterial=material;g.AddComponent<MeshCollider>().sharedMesh=mesh;
+        g.AddComponent<MeshFilter>().sharedMesh=mesh;g.AddComponent<MeshRenderer>().sharedMaterials=new[]{material,gable?gable:material};g.AddComponent<MeshCollider>().sharedMesh=mesh;
     }
     static void Window(Transform p,float x,float y,float z,float width=1.1f,float height=1.55f,bool glow=true) {
         var trim=Mat("WindowTrim","#37323A");var glass=Mat(glow?"WarmWindow":"DarkWindow",glow?"#D4A878":"#3B4962",glow?.6f:0);
@@ -338,6 +344,10 @@ public static partial class BuildSlice {
         BuildFor(BuildTarget.StandaloneWindows64,"../builds/windows-staging/TownDemo.exe",new[]{GraphicsDeviceType.Direct3D11},null);
     }
     // Car work verification build; leaves the user's running player untouched.
+    // Second staging slot for before/after captures while a review suite occupies windows-staging.
+    public static void BuildLookStaging() {
+        BuildFor(BuildTarget.StandaloneWindows64,"../builds/look-staging/TownDemo.exe",new[]{GraphicsDeviceType.Direct3D11},null);
+    }
     public static void BuildCarStaging() {
         BuildFor(BuildTarget.StandaloneWindows64,"../builds/car-staging/TownDemo.exe",new[]{GraphicsDeviceType.Direct3D11},null);
     }
@@ -373,6 +383,7 @@ public static partial class BuildSlice {
         if(!pipe) throw new Exception("Desktop URP pipeline not present");
         GraphicsSettings.defaultRenderPipeline=pipe;QualitySettings.renderPipeline=pipe;pipe.supportsHDR=true;pipe.msaaSampleCount=4;pipe.shadowDistance=55;
         pipe.mainLightShadowmapResolution=4096;pipe.shadowCascadeCount=4;QualitySettings.anisotropicFiltering=AnisotropicFiltering.ForceEnable;EditorUtility.SetDirty(pipe);
+        ConfigureAmbientOcclusion();
         PlayerSettings.companyName=String.IsNullOrEmpty(companyOverride)?"Qingchuan Studio":companyOverride;PlayerSettings.productName="错日证词 · 暮色小镇";
         PlayerSettings.defaultScreenWidth=1600;PlayerSettings.defaultScreenHeight=900;PlayerSettings.fullScreenMode=FullScreenMode.Windowed;
         PlayerSettings.resizableWindow=true;PlayerSettings.runInBackground=true;PlayerSettings.colorSpace=ColorSpace.Linear;

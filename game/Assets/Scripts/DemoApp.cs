@@ -116,6 +116,7 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&(Array.IndexOf(args,"--review-rail")>=0||Array.IndexOf(args,"--verify-rail-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"rail-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-items")>=0||Array.IndexOf(args,"--verify-items-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"items-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-car")>=0||Array.IndexOf(args,"--verify-car-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"car-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-tower-night")>=0||Array.IndexOf(args,"--review-day-look")>=0))savePath=Path.Combine(Application.persistentDataPath,"look-gallery-review-save.json");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
         Debug.Log("SAVE_LOCATION: "+savePath);
@@ -204,6 +205,8 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--verify-day-night-save")>=0)StartCoroutine(VerifyDayNightSave());
             else if(Array.IndexOf(args,"--review-milk-interior-a")>=0)StartCoroutine(ReviewMilkInteriorA());
             else if(Array.IndexOf(args,"--verify-milk-interior-save")>=0)StartCoroutine(VerifyMilkInteriorSave());
+            else if(Array.IndexOf(args,"--review-tower-night")>=0)StartCoroutine(ReviewTowerNightGallery());
+            else if(Array.IndexOf(args,"--review-day-look")>=0)StartCoroutine(ReviewDayLookGallery());
             else if(Array.IndexOf(args,"--review-clocktower")>=0)StartCoroutine(ReviewClockTower());
             else if(Array.IndexOf(args,"--verify-clocktower-save")>=0)StartCoroutine(VerifyClockTowerSave());
             else if(Array.IndexOf(args,"--verify-clocktower-migration")>=0)StartCoroutine(VerifyClockTowerMigration());

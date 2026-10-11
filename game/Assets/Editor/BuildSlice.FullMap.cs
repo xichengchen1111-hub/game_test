@@ -19,13 +19,13 @@ public static partial class BuildSlice {
     }
     static void PlaceholderBuilding(TownPlanBuilding b) {
         var root=Group(b.id+" "+b.name,Vector3.zero);if(b.id!="B04")MapMarker(root,b,false);
-        var wall=MapTexture("MapPlaceholderFacade","Facade.png");var roof=Mat("MapPlaceholderRoof","#505660");
+        int variant=FacadeVariant(b.id);var wall=PlaceholderFacade(variant);var roof=PlaceholderSlate();var gable=PlaceholderPlaster(variant);
         foreach(var part in b.parts) {
             // The dairy's main footprint is a production-yard placeholder around the existing house.
             if(b.id=="B04"&&part==b.parts[0])continue;
             var r=part.rect;float height=b.storeys==1?3.2f:6.1f;
             var block=Group(b.id+" "+part.role,new Vector3(r[0],0,r[1]),root.transform).transform;
-            var solid=Box("Placeholder volume",new Vector3(0,height/2,0),new Vector3(r[2],height,r[3]),Mat("MapPlaster"+(b.storeys%2),b.kind=="work"?"#A19A85":"#BCB1A0"),block);
+            var solid=Box("Placeholder volume",new Vector3(0,height/2,0),new Vector3(r[2],height,r[3]),gable,block);
             // Opaque repeated facade panels, not glass with an invented room behind it.
             for(int face=0;face<4;face++) {
                 var mount=Group("Placeholder facade",Vector3.zero,block).transform;mount.localRotation=Quaternion.Euler(0,face*90,0);
@@ -33,12 +33,13 @@ public static partial class BuildSlice {
                 var pane=Quad("Facade texture",new Vector3(0,height/2,-depth/2-.012f),new Vector2(width,height),wall,mount);
                 pane.isStatic=true;
                 var mesh=UnityEngine.Object.Instantiate(pane.GetComponent<MeshFilter>().sharedMesh);mesh.name="Facade "+b.id+" "+part.role+" "+face;
-                var uv=mesh.uv;for(int j=0;j<uv.Length;j++)uv[j]=new Vector2(uv[j].x*width/4.5f,uv[j].y*b.storeys);mesh.uv=uv;
+                // Atlas rows: bottom half ground storey (plinth, damp), top half upper storey (cornice).
+                var uv=mesh.uv;for(int j=0;j<uv.Length;j++)uv[j]=new Vector2(uv[j].x*width/4.5f,uv[j].y*(b.storeys>=2?1f:.5f));mesh.uv=uv;mesh.RecalculateTangents();
                 string path="Assets/Generated/Street/"+mesh.name.Replace('/','-')+".asset";
                 var old=AssetDatabase.LoadAssetAtPath<Mesh>(path);if(old){EditorUtility.CopySerialized(mesh,old);UnityEngine.Object.DestroyImmediate(mesh);mesh=old;}else AssetDatabase.CreateAsset(mesh,path);
                 pane.GetComponent<MeshFilter>().sharedMesh=mesh;
             }
-            Roof(block,r[2],r[3],height,1.15f,roof);
+            Roof(block,r[2],r[3],height,1.15f,roof,gable);
             WeatherAuthoring.Shelter(block.gameObject,new Vector2(r[2],r[3]),height,1.15f);
         }
         if(b.id=="B04")return;
@@ -86,7 +87,9 @@ public static partial class BuildSlice {
             var offset=b.front=="E"?Vector3.right*1.8f:Quaternion.Euler(0,TownPlan.Yaw(b.front),0)*Vector3.right*2.1f;Model("Plant",TownPlan.Point(b.gate)+offset);
         }
         foreach(var lamp in plan.lamps)Lantern(new Vector3(lamp.x,.1f,lamp.z));
-        foreach(var pos in new[]{new Vector3(-11,.1f,-10),new Vector3(11,.1f,-10),new Vector3(-11,.1f,10),new Vector3(11,.1f,10)})Lantern(pos);
+        var squareStandards=new[]{new Vector3(-11,.1f,-10),new Vector3(11,.1f,-10),new Vector3(-11,.1f,10),new Vector3(11,.1f,10)};
+        foreach(var pos in squareStandards)Lantern(pos);
+        TowerFloodlights(squareStandards);
         var trees=Group("Map tree placeholders",Vector3.zero);var treeMat=MapTexture("MapTreeCards","Tree.png",true);
         foreach(var tree in plan.trees) {
             var root=Group("Tree "+tree.owner,new Vector3(tree.x,-.04f,tree.z),trees.transform).transform;
@@ -112,6 +115,7 @@ public static partial class BuildSlice {
         foreach(var root in SceneManager.GetActiveScene().GetRootGameObjects())
             if(root!=geometry&&!atmosphere.Contains(root)&&!root.GetComponent<DayNightCycle>()&&!root.GetComponent<UnityEngine.Rendering.Volume>())root.transform.SetParent(geometry.transform,true);
         new GameObject("Street light budget").AddComponent<TownLightBudget>();
+        TownWetnessDriver();
         PlaceHotelCar();
         FullMapChecks.Validate(plan,geometry);
         TownNavigationBake.Build(geometry.transform);
