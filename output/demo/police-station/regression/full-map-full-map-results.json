@@ -1,0 +1,10 @@
+{
+    "passed": true,
+    "properties": 70,
+    "roads": 11,
+    "orders": 6,
+    "migrations": 4,
+    "pointLightLimit": 12,
+    "source": "7ca1b7fdc480ddcdcf73d0164f7939bb1821d7985f33f1519d617a78562db988",
+    "verification": "WindowsPlayer native renderer and real controller at Shift speed on clear footways. Five finished buildings (tower, shop, dairy, station, police) preserved; other rooms, historical NPC schedules and coal vehicle turning remain unimplemented."
+}

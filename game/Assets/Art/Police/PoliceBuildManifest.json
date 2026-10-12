@@ -1,0 +1,843 @@
+{
+ "version": 1,
+ "layoutVersion": 1,
+ "objects": {
+  "Int_Walls": 840,
+  "Ext_Facade": 2732,
+  "Int_Trim": 2912,
+  "Int_Floors": 46,
+  "Int_Ceilings": 12,
+  "Ext_Court": 26,
+  "Int_Stairs": 298,
+  "Ext_Roof": 326,
+  "Ext_Loggia": 312,
+  "Ext_Windows": 2862,
+  "Leaf_front-door_0": 158,
+  "Leaf_front-door_1": 158,
+  "Glass": 64,
+  "Leaf_court-door_0": 158,
+  "Leaf_annex-door_0": 180,
+  "Leaf_archive-door_0": 180,
+  "Leaf_duty-door_0": 180,
+  "Leaf_evidence-door_0": 180,
+  "Leaf_holding-door_0": 132,
+  "Leaf_interview-door_0": 180,
+  "Leaf_wc-door_0": 180,
+  "Leaf_office-door_0": 180,
+  "Leaf_chief-door_0": 180,
+  "Leaf_rest-door_0": 180,
+  "Leaf_wc2-door_0": 180,
+  "Lamp_lamp-hall-1": 76,
+  "Bulb_lamp-hall-1": 24,
+  "Lamp_lamp-hall-2": 76,
+  "Bulb_lamp-hall-2": 24,
+  "Lamp_lamp-read-1": 76,
+  "Bulb_lamp-read-1": 24,
+  "Lamp_lamp-read-2": 76,
+  "Bulb_lamp-read-2": 24,
+  "Lamp_lamp-read-desk-1": 62,
+  "Bulb_lamp-read-desk-1": 24,
+  "Lamp_lamp-read-desk-2": 62,
+  "Bulb_lamp-read-desk-2": 24,
+  "Lamp_lamp-int": 76,
+  "Bulb_lamp-int": 24,
+  "Lamp_lamp-wait": 76,
+  "Bulb_lamp-wait": 24,
+  "Lamp_lamp-cross-1": 76,
+  "Bulb_lamp-cross-1": 24,
+  "Lamp_lamp-cross-2": 76,
+  "Bulb_lamp-cross-2": 24,
+  "Lamp_lamp-cross-3": 76,
+  "Bulb_lamp-cross-3": 24,
+  "Lamp_lamp-cat": 76,
+  "Bulb_lamp-cat": 24,
+  "Lamp_lamp-cat-desk": 62,
+  "Bulb_lamp-cat-desk": 24,
+  "Lamp_lamp-wc": 76,
+  "Bulb_lamp-wc": 24,
+  "Lamp_lamp-office-1": 76,
+  "Bulb_lamp-office-1": 24,
+  "Lamp_lamp-office-2": 76,
+  "Bulb_lamp-office-2": 24,
+  "Lamp_lamp-stair": 76,
+  "Bulb_lamp-stair": 24,
+  "Lamp_lamp-annex": 76,
+  "Bulb_lamp-annex": 24,
+  "Lamp_lamp-annex-desk": 62,
+  "Bulb_lamp-annex-desk": 24,
+  "Lamp_lamp-archive": 76,
+  "Bulb_lamp-archive": 24,
+  "Lamp_lamp-duty": 76,
+  "Bulb_lamp-duty": 24,
+  "Lamp_lamp-evidence": 76,
+  "Bulb_lamp-evidence": 24,
+  "Lamp_lamp-holding": 76,
+  "Bulb_lamp-holding": 24,
+  "Lamp_lamp-chief": 76,
+  "Bulb_lamp-chief": 24,
+  "Lamp_lamp-chief-desk": 62,
+  "Bulb_lamp-chief-desk": 24,
+  "Lamp_lamp-work-1": 76,
+  "Bulb_lamp-work-1": 24,
+  "Lamp_lamp-work-2": 76,
+  "Bulb_lamp-work-2": 24,
+  "Lamp_lamp-rest": 76,
+  "Bulb_lamp-rest": 24,
+  "Lamp_lamp-corr-1": 76,
+  "Bulb_lamp-corr-1": 24,
+  "Lamp_lamp-corr-2": 76,
+  "Bulb_lamp-corr-2": 24,
+  "Lamp_lamp-a2-1": 76,
+  "Bulb_lamp-a2-1": 24,
+  "Lamp_lamp-a2-2": 76,
+  "Bulb_lamp-a2-2": 24,
+  "Lamp_lamp-wc2": 76,
+  "Bulb_lamp-wc2": 24,
+  "Lamp_lantern-front-w": 96,
+  "Bulb_lantern-front-w": 12,
+  "Lamp_lantern-front-e": 96,
+  "Bulb_lantern-front-e": 12,
+  "Lamp_lantern-loggia-w1": 96,
+  "Bulb_lantern-loggia-w1": 12,
+  "Lamp_lantern-loggia-w2": 96,
+  "Bulb_lantern-loggia-w2": 12,
+  "Lamp_lantern-loggia-e1": 96,
+  "Bulb_lantern-loggia-e1": 12,
+  "Lamp_lantern-loggia-e2": 96,
+  "Bulb_lantern-loggia-e2": 12,
+  "Furn_hall-coat": 138,
+  "Furn_report-desk": 184,
+  "Furn_hall-bench": 60,
+  "Furn_hall-umbrella": 60,
+  "Furn_hall-notice": 20,
+  "Furn_read-t1": 70,
+  "Furn_read-t2": 70,
+  "Furn_read-stand-1": 40,
+  "Furn_read-stand-2": 40,
+  "Furn_read-folder-1": 14,
+  "Furn_read-page-2": 10,
+  "Furn_read-photo-3": 4,
+  "Furn_read-cabinet": 30,
+  "Drawer_0": 212,
+  "Drawer_1": 212,
+  "Drawer_2": 212,
+  "Furn_read-shelf-1": 2422,
+  "Furn_read-shelf-2": 3290,
+  "Furn_read-chair-0": 108,
+  "Furn_read-chair-1": 108,
+  "Furn_read-chair-2": 108,
+  "Furn_int-table": 70,
+  "Furn_int-chair-0": 108,
+  "Furn_int-chair-1": 108,
+  "Furn_int-chair-2": 108,
+  "Furn_int-pad": 10,
+  "Furn_int-coat": 138,
+  "Furn_wait-bench-1": 60,
+  "Furn_wait-bench-2": 60,
+  "Furn_wait-stove": 104,
+  "Furn_wait-capes": 128,
+  "Furn_wait-boots": 60,
+  "Furn_cross-phone": 48,
+  "Furn_cross-notice": 20,
+  "Furn_cross-hooks": 84,
+  "Furn_cross-bench": 60,
+  "Furn_cat-desk": 148,
+  "Furn_cat-chair": 108,
+  "Furn_cat-typewriter": 66,
+  "Furn_cat-book": 18,
+  "Furn_cat-shelf": 1562,
+  "Furn_cat-files": 100,
+  "Furn_wc-basin": 80,
+  "Furn_off-desk-1": 148,
+  "Furn_off-chair-1": 108,
+  "Furn_off-desk-2": 148,
+  "Furn_off-files": 100,
+  "Furn_off-stove": 104,
+  "Furn_off-phone": 68,
+  "Furn_off-roster": 20,
+  "Furn_annex-table": 70,
+  "Furn_annex-chair-0": 108,
+  "Furn_annex-chair-1": 108,
+  "Furn_annex-shelf-1": 1738,
+  "Furn_annex-shelf-2": 1778,
+  "Furn_arch-shelf-1": 362,
+  "Furn_arch-shelf-2": 362,
+  "Furn_arch-island": 784,
+  "Furn_duty-desk": 148,
+  "Furn_duty-chair": 108,
+  "Furn_duty-book": 18,
+  "Furn_duty-stove": 104,
+  "Furn_duty-capes": 128,
+  "Furn_duty-bench": 60,
+  "Furn_ev-shelf": 466,
+  "Furn_ev-cage": 396,
+  "Furn_ev-board": 22,
+  "Furn_ev-table": 70,
+  "Furn_hold-bed": 84,
+  "Furn_hold-basin": 64,
+  "Furn_hold-bucket": 24,
+  "Furn_chief-desk": 148,
+  "Furn_chief-chair": 108,
+  "Furn_chief-visitor": 108,
+  "Furn_chief-shelf": 1738,
+  "Furn_chief-coat": 138,
+  "Furn_chief-papers": 10,
+  "Furn_work-desk-0": 148,
+  "Furn_work-chair-0": 108,
+  "Furn_work-desk-1": 148,
+  "Furn_work-chair-1": 108,
+  "Furn_work-desk-2": 148,
+  "Furn_work-chair-2": 108,
+  "Furn_work-typewriter": 66,
+  "Furn_work-files": 100,
+  "Furn_work-files-2": 100,
+  "Furn_rest-bed-1": 84,
+  "Furn_rest-bed-2": 84,
+  "Furn_rest-wardrobe": 60,
+  "Furn_rest-table": 70,
+  "Furn_rest-chair": 108,
+  "Furn_rest-wash": 80,
+  "Furn_a2-shelf-0": 362,
+  "Furn_a2-shelf-1": 362,
+  "Furn_a2-shelf-2": 362,
+  "Furn_a2-low-0": 112,
+  "Furn_a2-low-1": 112,
+  "Furn_a2-low-2": 112,
+  "Furn_a2-index": 288,
+  "Furn_wc2-basin": 80,
+  "Furn_wc2-cabinet": 60,
+  "Furn_corr-bench": 60,
+  "Furn_court-planter": 50,
+  "Furn_court-drain": 2
+ },
+ "triangles": 40804,
+ "leaves": [
+  {
+   "object": "Leaf_front-door_0",
+   "opening": "front-door",
+   "fixture": "police-front-door",
+   "index": 0,
+   "count": 2,
+   "hinge": [
+    10.832,
+    0.16,
+    0.35000000000000003
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 0.35000000000000003,
+   "leafCentre": [
+    11.165,
+    1.3850000000000002,
+    0.35000000000000003
+   ],
+   "width": 0.6699999999999999,
+   "height": 2.45
+  },
+  {
+   "object": "Leaf_front-door_1",
+   "opening": "front-door",
+   "fixture": "police-front-door",
+   "index": 1,
+   "count": 2,
+   "hinge": [
+    12.168,
+    0.16,
+    0.35000000000000003
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 0.35000000000000003,
+   "leafCentre": [
+    11.835,
+    1.3850000000000002,
+    0.35000000000000003
+   ],
+   "width": 0.6699999999999999,
+   "height": 2.45
+  },
+  {
+   "object": "Leaf_court-door_0",
+   "opening": "court-door",
+   "fixture": "police-court-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    6.867,
+    0.16,
+    11.65
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 11.65,
+   "leafCentre": [
+    7.36,
+    1.29,
+    11.65
+   ],
+   "width": 0.9900000000000002,
+   "height": 2.26
+  },
+  {
+   "object": "Leaf_annex-door_0",
+   "opening": "annex-door",
+   "fixture": "police-annex-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    5.1499999999999995,
+    0.16,
+    12.907
+   ],
+   "lowEnd": true,
+   "axis": "z",
+   "plane": 5.1499999999999995,
+   "leafCentre": [
+    13.4,
+    1.2400000000000002,
+    5.1499999999999995
+   ],
+   "width": 0.990000000000002,
+   "height": 2.16
+  },
+  {
+   "object": "Leaf_archive-door_0",
+   "opening": "archive-door",
+   "fixture": "police-archive-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    5.1499999999999995,
+    0.16,
+    18.707
+   ],
+   "lowEnd": true,
+   "axis": "z",
+   "plane": 5.1499999999999995,
+   "leafCentre": [
+    19.2,
+    1.2400000000000002,
+    5.1499999999999995
+   ],
+   "width": 0.9899999999999949,
+   "height": 2.16
+  },
+  {
+   "object": "Leaf_duty-door_0",
+   "opening": "duty-door",
+   "fixture": "police-duty-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    17.849999999999998,
+    0.16,
+    12.507
+   ],
+   "lowEnd": true,
+   "axis": "z",
+   "plane": 17.849999999999998,
+   "leafCentre": [
+    13.0,
+    1.2400000000000002,
+    17.849999999999998
+   ],
+   "width": 0.990000000000002,
+   "height": 2.16
+  },
+  {
+   "object": "Leaf_evidence-door_0",
+   "opening": "evidence-door",
+   "fixture": "police-evidence-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    17.849999999999998,
+    0.16,
+    16.507
+   ],
+   "lowEnd": true,
+   "axis": "z",
+   "plane": 17.849999999999998,
+   "leafCentre": [
+    17.0,
+    1.2400000000000002,
+    17.849999999999998
+   ],
+   "width": 0.9899999999999949,
+   "height": 2.16
+  },
+  {
+   "object": "Leaf_holding-door_0",
+   "opening": "holding-door",
+   "fixture": "police-holding-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    17.849999999999998,
+    0.16,
+    20.182000000000002
+   ],
+   "lowEnd": true,
+   "axis": "z",
+   "plane": 17.849999999999998,
+   "leafCentre": [
+    20.6,
+    1.1900000000000002,
+    17.849999999999998
+   ],
+   "width": 0.8399999999999963,
+   "height": 2.06
+  },
+  {
+   "object": "Leaf_interview-door_0",
+   "opening": "interview-door",
+   "fixture": "police-interview-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    13.0,
+    0.16,
+    5.042999999999999
+   ],
+   "lowEnd": false,
+   "axis": "z",
+   "plane": 13.0,
+   "leafCentre": [
+    4.6,
+    1.215,
+    13.0
+   ],
+   "width": 0.8899999999999988,
+   "height": 2.11
+  },
+  {
+   "object": "Leaf_wc-door_0",
+   "opening": "wc-door",
+   "fixture": "police-wc-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    8.632,
+    0.16,
+    9.0
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 9.0,
+   "leafCentre": [
+    9.0,
+    1.1900000000000002,
+    9.0
+   ],
+   "width": 0.740000000000002,
+   "height": 2.06
+  },
+  {
+   "object": "Leaf_office-door_0",
+   "opening": "office-door",
+   "fixture": "police-office-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    17.643,
+    0.16,
+    9.0
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 9.0,
+   "leafCentre": [
+    17.2,
+    1.215,
+    9.0
+   ],
+   "width": 0.8900000000000006,
+   "height": 2.11
+  },
+  {
+   "object": "Leaf_chief-door_0",
+   "opening": "chief-door",
+   "fixture": "police-chief-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    7.042999999999999,
+    3.5599999999999996,
+    6.0
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 6.0,
+   "leafCentre": [
+    6.6,
+    4.614999999999999,
+    6.0
+   ],
+   "width": 0.8899999999999988,
+   "height": 2.1099999999999994
+  },
+  {
+   "object": "Leaf_rest-door_0",
+   "opening": "rest-door",
+   "fixture": "police-rest-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    16.557,
+    3.5599999999999996,
+    6.0
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 6.0,
+   "leafCentre": [
+    17.0,
+    4.614999999999999,
+    6.0
+   ],
+   "width": 0.8900000000000006,
+   "height": 2.1099999999999994
+  },
+  {
+   "object": "Leaf_wc2-door_0",
+   "opening": "wc2-door",
+   "fixture": "police-wc2-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    17.767999999999997,
+    3.5599999999999996,
+    9.0
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 9.0,
+   "leafCentre": [
+    17.4,
+    4.59,
+    9.0
+   ],
+   "width": 0.7399999999999949,
+   "height": 2.0600000000000005
+  }
+ ],
+ "drawers": [
+  {
+   "object": "Drawer_0",
+   "index": 0,
+   "label": "证人",
+   "front": [
+    0.9,
+    0.815,
+    5.683333333333334
+   ],
+   "axis": [
+    1.0,
+    0,
+    6.123233995736766e-17
+   ],
+   "travel": 0.45
+  },
+  {
+   "object": "Drawer_1",
+   "index": 1,
+   "label": "日期",
+   "front": [
+    0.9,
+    0.815,
+    4.91
+   ],
+   "axis": [
+    1.0,
+    0,
+    6.123233995736766e-17
+   ],
+   "travel": 0.45
+  },
+  {
+   "object": "Drawer_2",
+   "index": 2,
+   "label": "物证",
+   "front": [
+    0.9,
+    0.815,
+    4.136666666666667
+   ],
+   "axis": [
+    1.0,
+    0,
+    6.123233995736766e-17
+   ],
+   "travel": 0.45
+  }
+ ],
+ "materials": [
+  {
+   "name": "PExt_Stucco",
+   "hex": "c2bdb0",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 3.0
+  },
+  {
+   "name": "PExt_Ashlar",
+   "hex": "8a8c88",
+   "metallic": 0,
+   "roughness": 0.85,
+   "tile": 1.2
+  },
+  {
+   "name": "PExt_Slate",
+   "hex": "4a5058",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 1.5
+  },
+  {
+   "name": "PExt_Flags",
+   "hex": "928d84",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 3.0
+  },
+  {
+   "name": "PExt_Timber",
+   "hex": "5e4632",
+   "metallic": 0,
+   "roughness": 0.7,
+   "tile": 1.0
+  },
+  {
+   "name": "PExt_Paint",
+   "hex": "ddd5c3",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "PExt_DoorOak",
+   "hex": "4f3a29",
+   "metallic": 0,
+   "roughness": 0.45,
+   "tile": 1.0
+  },
+  {
+   "name": "PExt_Iron",
+   "hex": "2c3133",
+   "metallic": 0.6,
+   "roughness": 0.45,
+   "tile": 0
+  },
+  {
+   "name": "PExt_Gutter",
+   "hex": "33393b",
+   "metallic": 0.5,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "PExt_Sign",
+   "hex": "2f3b38",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "P_Glass",
+   "hex": "9fb3be",
+   "metallic": 0,
+   "roughness": 0.05,
+   "tile": 0
+  },
+  {
+   "name": "P_LampGlass",
+   "hex": "ffd9a0",
+   "metallic": 0,
+   "roughness": 0.2,
+   "tile": 0
+  },
+  {
+   "name": "P_Bulb",
+   "hex": "fff0cf",
+   "metallic": 0,
+   "roughness": 0.2,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Plaster",
+   "hex": "d9d0bd",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 3.0
+  },
+  {
+   "name": "PInt_Ceiling",
+   "hex": "e6e0d2",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 3.0
+  },
+  {
+   "name": "PInt_Oak",
+   "hex": "9a805f",
+   "metallic": 0,
+   "roughness": 0.55,
+   "tile": 2.0
+  },
+  {
+   "name": "PInt_Tiles",
+   "hex": "a07a62",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 1.0
+  },
+  {
+   "name": "PInt_Stone",
+   "hex": "7c7d79",
+   "metallic": 0,
+   "roughness": 0.85,
+   "tile": 1.2
+  },
+  {
+   "name": "PInt_Panel",
+   "hex": "5e4632",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 1.0
+  },
+  {
+   "name": "PInt_Furniture",
+   "hex": "6a4f37",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 1.0
+  },
+  {
+   "name": "PInt_FurnLight",
+   "hex": "9a7c58",
+   "metallic": 0,
+   "roughness": 0.45,
+   "tile": 1.0
+  },
+  {
+   "name": "PInt_Green",
+   "hex": "3f5a47",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Brass",
+   "hex": "b38a49",
+   "metallic": 0.8,
+   "roughness": 0.35,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Iron",
+   "hex": "2b2f31",
+   "metallic": 0.5,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Paper",
+   "hex": "e8dfc8",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Folder",
+   "hex": "7a6543",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Fabric",
+   "hex": "8a8170",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Oilcloth",
+   "hex": "3b4639",
+   "metallic": 0,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Enamel",
+   "hex": "e6e2d6",
+   "metallic": 0,
+   "roughness": 0.25,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Cork",
+   "hex": "a37c55",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Black",
+   "hex": "1e1e1e",
+   "metallic": 0.2,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Photo",
+   "hex": "5b4a3a",
+   "metallic": 0,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "PInt_BookRed",
+   "hex": "6a3a2c",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "PInt_BookGreen",
+   "hex": "3e4a3a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "PInt_BookBrown",
+   "hex": "6a5a3a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "PInt_BookBlue",
+   "hex": "2e3a4a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Box",
+   "hex": "8a7656",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Leather",
+   "hex": "4a3328",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 0
+  }
+ ],
+ "blender": "5.2.0 LTS"
+}

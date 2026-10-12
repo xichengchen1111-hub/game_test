@@ -59,7 +59,7 @@ public partial class DemoApp {
     IEnumerator ReviewFullMap() {
         yield return new WaitForSeconds(.8f);
         var plan=TownPlan.Current;var markers=FindObjectsByType<TownMapBuilding>(FindObjectsSortMode.None);
-        NeedMap(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70&&markers.Count(m=>m.finished)==4,"Property identity/count");
+        NeedMap(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70&&markers.Count(m=>m.finished)==5,"Property identity/count (tower, shop, dairy, station, police)");
         NeedMap(FindFirstObjectByType<ClockTowerInstance>().transform.position==Vector3.zero,"Clock tower map origin");
         NeedMap(FindObjectsByType<StreetSurfaceLayout>(FindObjectsSortMode.None).Length==11,"Street profiles missing");
         CheckMapMigrations();
@@ -116,7 +116,7 @@ public partial class DemoApp {
         // Readable ground-player view of the real clock from the proposed delivery position.
         player.Place(new Vector3(-15.5f,.1f,-57),0);player.Aim(dial);cycle.SetReviewWeather(TownWeather.Kind.Clear);DayReviewTime(1075);yield return Capture("home-delivery-clock-view");
         player.Place(placement.inside,0);dayNightReviewFrozen=false;cycle.SetReviewWeather(null);Save();
-        File.WriteAllText(Path.Combine(captures,"full-map-results.json"),JsonUtility.ToJson(new MapResult{passed=true,properties=70,roads=11,orders=6,migrations=4,pointLightLimit=12,source=plan.sourceSha256,verification=Application.platform+" native renderer and real controller at Shift speed on clear footways. Four finished interiors preserved; other rooms, historical NPC schedules and coal vehicle turning remain unimplemented."},true));
+        File.WriteAllText(Path.Combine(captures,"full-map-results.json"),JsonUtility.ToJson(new MapResult{passed=true,properties=70,roads=11,orders=6,migrations=4,pointLightLimit=12,source=plan.sourceSha256,verification=Application.platform+" native renderer and real controller at Shift speed on clear footways. Five finished buildings (tower, shop, dairy, station, police) preserved; other rooms, historical NPC schedules and coal vehicle turning remain unimplemented."},true));
         Debug.Log("FULL_MAP_REVIEW_PASS");Application.Quit();
     }
     IEnumerator VerifyFullMapSave() {

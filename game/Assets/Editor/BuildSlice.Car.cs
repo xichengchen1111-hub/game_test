@@ -224,6 +224,7 @@ public static partial class BuildSlice {
 
         CarChecks(root, layout, car);
         Directory.CreateDirectory("Assets/Generated");
+        ZFightRepair.Repair(root.transform, "HotelCar");
         PrefabUtility.SaveAsPrefabAsset(root, CarPrefabPath);
         UnityEngine.Object.DestroyImmediate(root);
         Debug.Log("HOTEL_CAR_PREFAB_PASS: parts=" + layout.parts.Length + " controls=" + layout.controls.Length + " seats=" + layout.seats.Length);

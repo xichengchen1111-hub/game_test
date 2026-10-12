@@ -72,8 +72,9 @@ public static partial class BuildSlice {
         var backing=Box("Solid painted sign face",Vector3.forward*.03f,new Vector3(size.x,size.y,.06f),RailMaterial("RailGreen"),board.transform);
         const float rim=.025f;
         foreach(int side in new[]{-1,1}) {
-            Box("Brass side border",new Vector3(side*(size.x-rim)/2,0,0),new Vector3(rim,size.y,.012f),RailMaterial("RailBrass"),board.transform,false);
-            Box("Brass top bottom border",new Vector3(0,side*(size.y-rim)/2,0),new Vector3(size.x-2*rim,rim,.012f),RailMaterial("RailBrass"),board.transform,false);
+            // Borders wrap the painted face by 2mm so their edges never share its side planes (z-fighting).
+            Box("Brass side border",new Vector3(side*((size.x-rim)/2+.002f),0,0),new Vector3(rim,size.y+.004f,.012f),RailMaterial("RailBrass"),board.transform,false);
+            Box("Brass top bottom border",new Vector3(0,side*((size.y-rim)/2+.002f),0),new Vector3(size.x-2*rim+.004f,rim,.012f),RailMaterial("RailBrass"),board.transform,false);
         }
         RailLettering(board.transform,backing.GetComponent<Collider>(),board.transform.position,board.transform.rotation,size,words,tint,inset);
     }

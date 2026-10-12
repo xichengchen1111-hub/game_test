@@ -163,7 +163,7 @@ public static partial class BuildSlice {
         dial.minuteHand=Group("Minute hand",new Vector3(0,0,-.006f),clock.transform).transform;
         dial.hourHand=Group("Hour hand",new Vector3(0,0,-.012f),clock.transform).transform;
         Box("Minute needle",new Vector3(0,radius*.40f,0),new Vector3(.018f,radius*.80f,.008f),RailMaterial("RailIron"),dial.minuteHand,false);
-        Box("Hour needle",new Vector3(0,radius*.26f,0),new Vector3(.028f,radius*.52f,.008f),RailMaterial("RailIron"),dial.hourHand,false);
+        Box("Hour needle",new Vector3(0,radius*.25f,0),new Vector3(.028f,radius*.54f,.008f),RailMaterial("RailIron"),dial.hourHand,false);// tail past the axis, not coplanar with the minute tail
         for(int i=0;i<12;i++) {
             float a=i*Mathf.PI/6;
             var tick=Box("Clock index",new Vector3(Mathf.Sin(a)*radius*.82f,Mathf.Cos(a)*radius*.82f,-.002f),new Vector3(.014f,i%3==0?radius*.20f:radius*.11f,.004f),RailMaterial("RailIron"),clock.transform,false);
@@ -343,6 +343,7 @@ public static partial class BuildSlice {
         TrainItems(root.transform,visual.transform);
         RailValidateSigns(root.transform);
         RailChecks.ValidateTrain(root);
+        ZFightRepair.Repair(root.transform,"RailTrain");
         PrefabUtility.SaveAsPrefabAsset(root,"Assets/Generated/RailTrain.prefab");UnityEngine.Object.DestroyImmediate(root);
     }
     static ParticleSystem RailSteam(Transform parent,string name,Vector3 point,bool burst) {
@@ -405,7 +406,7 @@ public static partial class BuildSlice {
         clock.minuteHand=Group("Station minute hand",Vector3.zero,clock.transform).transform;
         clock.hourHand=Group("Station hour hand",new Vector3(0,0,-.008f),clock.transform).transform;
         Box("Minute needle",new Vector3(0,.22f,0),new Vector3(.025f,.44f,.015f),RailMaterial("RailIron"),clock.minuteHand,false);
-        Box("Hour needle",new Vector3(0,.14f,0),new Vector3(.04f,.28f,.015f),RailMaterial("RailIron"),clock.hourHand,false);
+        Box("Hour needle",new Vector3(0,.135f,0),new Vector3(.04f,.29f,.015f),RailMaterial("RailIron"),clock.hourHand,false);// tail past the axis, not coplanar with the minute tail
         for(int i=0;i<12;i++) {
             float angle=i*Mathf.PI/6;
             var tick=Box("Station clock index",new Vector3(Mathf.Sin(angle)*.46f,Mathf.Cos(angle)*.46f,-.004f),new Vector3(.018f,i%3==0?.075f:.045f,.008f),RailMaterial("RailIron"),clock.transform,false);
@@ -424,6 +425,7 @@ public static partial class BuildSlice {
         RailValidateSigns(root.transform);
         TicketOfficeChecks.Validate(root,AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/TicketOfficeGeometry.json"));
         RailChecks.ValidateStation(root);
+        ZFightRepair.Repair(root.transform,"StationB");
         PrefabUtility.SaveAsPrefabAsset(root,"Assets/Generated/StationB.prefab");UnityEngine.Object.DestroyImmediate(root);
     }
     static GameObject StationTown(TownPlanBuilding b) {
@@ -499,6 +501,7 @@ public static partial class BuildSlice {
         Group("Arrival lamp budget",Vector3.zero).AddComponent<TownLightBudget>();
         foreach(float x in new[]{-60f,60f})Box("Arrival district edge",new Vector3(x,2,-25),new Vector3(.2f,4,110),RailMaterial("RailIron"),root.transform);
         foreach(float z in new[]{-80f,30f})Box("Arrival district edge",new Vector3(0,2,z),new Vector3(120,4,.2f),RailMaterial("RailIron"),root.transform);
+        ZFightRepair.Repair(SceneManager.GetActiveScene().GetRootGameObjects().Select(g=>g.transform).ToArray(),"OtherTown",SceneEditable);
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene(),"Assets/Scenes/OtherTown.unity");
     }
 }

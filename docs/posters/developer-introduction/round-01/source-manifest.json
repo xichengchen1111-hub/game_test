@@ -1,0 +1,387 @@
+{
+  "date": "2026-10-12",
+  "source_commit": "7618050",
+  "assets": [
+    {
+      "key": "cover",
+      "path": "output/demo/tower-night-daylight/night-corner.jpg",
+      "label": "实机截图，钟楼夜景；取右侧改后画面",
+      "sha256": "a80d4f8290449ccbb4368500128041bd9c918f9e10927cce21a0d9db55042f07"
+    },
+    {
+      "key": "street",
+      "path": "output/demo/greenery-refinement/main-street.jpg",
+      "label": "实机截图，最新阴雾主街与花境",
+      "sha256": "4e0c8eba0a3541ed16d3fdea6ca71818cfd217d42add8e99638eb52e440a3a8d"
+    },
+    {
+      "key": "milk",
+      "path": "output/demo/milkboy-tripo/entrance-view.png",
+      "label": "实机截图，送奶少年与牛奶屋",
+      "sha256": "25b66f491a2899bacad3c4834f43ba1d672401d435b358bb0a883b1c22000a4b"
+    },
+    {
+      "key": "watchmaker",
+      "path": "output/demo/watchmaker-tripo/player-approach.jpg",
+      "label": "实机截图，Tripo钟表匠与维修台",
+      "sha256": "c52b7a80475cc35ac7a6b964b90fec0ba779ddc10247e48a92e0f12032bd3d88"
+    },
+    {
+      "key": "clerk",
+      "path": "output/demo/station-clerk-dialogue/clerk-1080/clerk-six-options.png",
+      "label": "实机截图，售票员六选项对话",
+      "sha256": "b3035946ddce67d556f168fc42e3ae18372120860d23bdf263ba5bc0787a9aeb"
+    },
+    {
+      "key": "clerkface",
+      "path": "output/demo/station-clerk-dialogue/clerk-1080/clerk-face-clear-noon.png",
+      "label": "实机受控近景，售票员",
+      "sha256": "7ecaac33da4dd62d074527d9f4950580cd76f2635dc38e61c8d22ebf53fe6be6"
+    },
+    {
+      "key": "station",
+      "path": "output/demo/rail-beautify/gallery/front-wide.jpg",
+      "label": "实机截图，B车站",
+      "sha256": "5a80bc982c3cf5170c0ceef3da080249d3848afced4c2734a801b378fb69da9f"
+    },
+    {
+      "key": "coach",
+      "path": "output/demo/rail-beautify/gallery/coach-aisle.jpg",
+      "label": "实机截图，列车客厢",
+      "sha256": "8b496cfb667ed940c783e962d3a0aff8bda84fe95c5eaacf1624e09c3f51be3f"
+    },
+    {
+      "key": "ticket",
+      "path": "output/demo/ticket-office/1080/ticket-bin-filled-punched.png",
+      "label": "实机截图，已验票实体孔洞",
+      "sha256": "ac3fc499f4aed8be10d86894678971df26383f78e2fd86fc2afa7dfbf2e7c736"
+    },
+    {
+      "key": "hands",
+      "path": "output/demo/watchmaker-tripo/hands-watch-detail.jpg",
+      "label": "实机截图，钟表匠双手与维修道具",
+      "sha256": "cfaf02fa3c29805acdf76e5dcb9602479c39e73bbbadc8183a000cfb2830b4f6"
+    },
+    {
+      "key": "rainstreet",
+      "path": "output/demo/greenery-refinement/main-street-night-rain.jpg",
+      "label": "实机截图，雨夜主街",
+      "sha256": "dfdc03ff492e63544b4ace11adcbd54bdaed2df81319027d352aee362e7e3539"
+    },
+    {
+      "key": "police",
+      "path": "docs/concepts/police-station/round-01/d-courtyard-loggia.png",
+      "label": "警署环境概念图，内院回廊方案，非游戏实机",
+      "sha256": "95895996c004b8dcd0500a84151d667b7aaabda4098cfbb209d5fbc5b61d09e8"
+    }
+  ],
+  "image_placements": [
+    {
+      "page": 1,
+      "key": "cover",
+      "source": "output/demo/tower-night-daylight/night-corner.jpg",
+      "label": "实机截图，钟楼夜景；取右侧改后画面",
+      "crop_region": [
+        0.51,
+        0.132,
+        0.485,
+        0.808
+      ],
+      "box": [
+        54,
+        293,
+        733.8897637795277,
+        414
+      ]
+    },
+    {
+      "page": 2,
+      "key": "street",
+      "source": "output/demo/greenery-refinement/main-street.jpg",
+      "label": "实机截图，最新阴雾主街与花境",
+      "crop_region": [
+        0,
+        0.055,
+        1,
+        0.875
+      ],
+      "box": [
+        54,
+        205,
+        733.8897637795277,
+        286
+      ]
+    },
+    {
+      "page": 3,
+      "key": "milk",
+      "source": "output/demo/milkboy-tripo/entrance-view.png",
+      "label": "实机截图，送奶少年与牛奶屋",
+      "crop_region": [
+        0.49,
+        0.4,
+        0.32,
+        0.55
+      ],
+      "box": [
+        54.0,
+        207,
+        233.29658792650923,
+        227
+      ]
+    },
+    {
+      "page": 3,
+      "key": "watchmaker",
+      "source": "output/demo/watchmaker-tripo/player-approach.jpg",
+      "label": "实机截图，Tripo钟表匠与维修台",
+      "crop_region": [
+        0.37,
+        0.33,
+        0.34,
+        0.46
+      ],
+      "box": [
+        304.29658792650923,
+        207,
+        233.29658792650923,
+        227
+      ]
+    },
+    {
+      "page": 3,
+      "key": "clerkface",
+      "source": "output/demo/station-clerk-dialogue/clerk-1080/clerk-face-clear-noon.png",
+      "label": "实机受控近景，售票员",
+      "crop_region": null,
+      "box": [
+        554.5931758530185,
+        207,
+        233.29658792650923,
+        227
+      ]
+    },
+    {
+      "page": 4,
+      "key": "clerk",
+      "source": "output/demo/station-clerk-dialogue/clerk-1080/clerk-six-options.png",
+      "label": "实机截图，售票员六选项对话",
+      "crop_region": [
+        0,
+        0.19,
+        1,
+        0.78
+      ],
+      "box": [
+        54,
+        206,
+        733.8897637795277,
+        330
+      ]
+    },
+    {
+      "page": 4,
+      "key": "ticket",
+      "source": "output/demo/ticket-office/1080/ticket-bin-filled-punched.png",
+      "label": "实机截图，已验票实体孔洞",
+      "crop_region": [
+        0.38,
+        0.36,
+        0.25,
+        0.42
+      ],
+      "box": [
+        54,
+        927,
+        218,
+        158
+      ]
+    },
+    {
+      "page": 5,
+      "key": "cover",
+      "source": "output/demo/tower-night-daylight/night-corner.jpg",
+      "label": "实机截图，钟楼夜景；取右侧改后画面",
+      "crop_region": [
+        0.51,
+        0.132,
+        0.485,
+        0.808
+      ],
+      "box": [
+        54.0,
+        207,
+        355.94488188976385,
+        214
+      ]
+    },
+    {
+      "page": 5,
+      "key": "watchmaker",
+      "source": "output/demo/watchmaker-tripo/player-approach.jpg",
+      "label": "实机截图，Tripo钟表匠与维修台",
+      "crop_region": [
+        0,
+        0.1,
+        1,
+        0.8
+      ],
+      "box": [
+        431.94488188976385,
+        207,
+        355.94488188976385,
+        214
+      ]
+    },
+    {
+      "page": 5,
+      "key": "milk",
+      "source": "output/demo/milkboy-tripo/entrance-view.png",
+      "label": "实机截图，送奶少年与牛奶屋",
+      "crop_region": [
+        0,
+        0.1,
+        1,
+        0.78
+      ],
+      "box": [
+        54.0,
+        569,
+        355.94488188976385,
+        214
+      ]
+    },
+    {
+      "page": 5,
+      "key": "station",
+      "source": "output/demo/rail-beautify/gallery/front-wide.jpg",
+      "label": "实机截图，B车站",
+      "crop_region": [
+        0,
+        0.08,
+        1,
+        0.82
+      ],
+      "box": [
+        431.94488188976385,
+        569,
+        355.94488188976385,
+        214
+      ]
+    },
+    {
+      "page": 5,
+      "key": "coach",
+      "source": "output/demo/rail-beautify/gallery/coach-aisle.jpg",
+      "label": "实机截图，列车客厢",
+      "crop_region": [
+        0,
+        0.08,
+        1,
+        0.8
+      ],
+      "box": [
+        54,
+        949,
+        229,
+        140
+      ]
+    },
+    {
+      "page": 6,
+      "key": "hands",
+      "source": "output/demo/watchmaker-tripo/hands-watch-detail.jpg",
+      "label": "实机截图，钟表匠双手与维修道具",
+      "crop_region": [
+        0,
+        0.16,
+        1,
+        0.75
+      ],
+      "box": [
+        54,
+        205,
+        733.8897637795277,
+        314
+      ]
+    },
+    {
+      "page": 7,
+      "key": "rainstreet",
+      "source": "output/demo/greenery-refinement/main-street-night-rain.jpg",
+      "label": "实机截图，雨夜主街",
+      "crop_region": [
+        0,
+        0.06,
+        1,
+        0.86
+      ],
+      "box": [
+        54,
+        205,
+        733.8897637795277,
+        287
+      ]
+    },
+    {
+      "page": 8,
+      "key": "police",
+      "source": "docs/concepts/police-station/round-01/d-courtyard-loggia.png",
+      "label": "警署环境概念图，内院回廊方案，非游戏实机",
+      "crop_region": [
+        0.005,
+        0.035,
+        0.49,
+        0.365
+      ],
+      "box": [
+        54,
+        207,
+        355.94488188976385,
+        243
+      ]
+    },
+    {
+      "page": 8,
+      "key": "police",
+      "source": "docs/concepts/police-station/round-01/d-courtyard-loggia.png",
+      "label": "警署环境概念图，内院回廊方案，非游戏实机",
+      "crop_region": [
+        0.502,
+        0.035,
+        0.494,
+        0.365
+      ],
+      "box": [
+        431.94488188976385,
+        207,
+        355.94488188976385,
+        243
+      ]
+    }
+  ],
+  "editorial_sources": [
+    "错日证词_修订稿.docx",
+    "AGENTS.md",
+    "docs/mvp-demo.md",
+    "docs/mvp-evidence.json",
+    "docs/agent-memory.md",
+    "output/demo/greenery-refinement/README.md",
+    "output/demo/station-clerk-dialogue/README.md",
+    "output/demo/watchmaker-tripo/README.md",
+    "output/demo/rail-beautify/README.md",
+    "docs/concepts/police-station/round-01/design-plan.json"
+  ],
+  "main_pages": 8,
+  "spoiler_page": 9,
+  "user_preferences": {
+    "collaboration": "兴趣协作",
+    "spoilers": "主体保留悬念，末页单列开发剧透",
+    "focus": "游戏内容、美术与氛围，不介绍进度、技术清单或任务分工"
+  },
+  "notes": [
+    "实机截图来自已记录的不同专项版本，版面裁切不修改原文件。",
+    "警署使用已选D的概念图，图下明确标注概念，不冒充实机。",
+    "联系方式未提供，项目仓库仅作为了解入口。"
+  ]
+}

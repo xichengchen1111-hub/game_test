@@ -3,6 +3,8 @@ using UnityEngine;
 // This actor owns only the station clerk's two in-place animations.
 public sealed class StationClerkPerformance : MonoBehaviour {
     public Animator animator;
+    // Dialogue speaker whose lines drive the talk clip (the police duty officer reuses this actor rig).
+    public string speaker = "售票员";
     float remaining;
     static readonly int Speaking=Animator.StringToHash("Speaking");
     public bool IsSpeaking => animator&&animator.GetBool(Speaking);

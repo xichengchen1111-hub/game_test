@@ -73,6 +73,8 @@ public static partial class BuildSlice {
         Add(Load("Assets/Generated/Materials/PeriodRoadPaint.mat"),.55f,.86f);
         for(int i=0;i<FacadeTints.Length;i++){Add(PlaceholderFacade(i),.40f,.84f);Add(PlaceholderPlaster(i),.38f,.85f);}
         Add(PlaceholderSlate(),.62f,.86f);
+        foreach(var (name,smoothness,darken) in new[]{("PExt_Stucco",.38f,.86f),("PExt_Ashlar",.50f,.82f),("PExt_Slate",.62f,.86f),("PExt_Flags",.72f,.80f)})
+            Add(Load(PoliceMaterials+name+".mat"),smoothness,darken);
         foreach(var (name,smoothness,darken) in new[]{("IvoryBrick",.48f,.82f),("CreamStone",.50f,.82f),("Slate",.62f,.86f),("Lead",.52f,.92f),("DarkOak",.40f,.86f),("Recess",.30f,.90f),("Bronze",.46f,.92f)})
             Add(Load("Assets/Art/ClockTower1931/Tower_"+name+".mat"),smoothness,darken);
         var driver=new GameObject("Town rain wetness").AddComponent<TownWetness>();driver.entries=entries.ToArray();

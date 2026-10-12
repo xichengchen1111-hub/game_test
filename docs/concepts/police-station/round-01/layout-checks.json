@@ -1,0 +1,46 @@
+{
+  "status": "CONCEPT_LAYOUT_CHECK_PASS",
+  "schemes": [
+    {
+      "scheme": "A",
+      "within_23x39_plot": true,
+      "room_rectangles_do_not_overlap": true,
+      "stairs_align": true,
+      "enclosed_ground_area_m2": 329.13,
+      "enclosed_floor_area_m2": 605.13
+    },
+    {
+      "scheme": "B",
+      "within_23x39_plot": true,
+      "room_rectangles_do_not_overlap": true,
+      "stairs_align": true,
+      "enclosed_ground_area_m2": 329.13,
+      "enclosed_floor_area_m2": 605.13
+    },
+    {
+      "scheme": "C",
+      "within_23x39_plot": true,
+      "room_rectangles_do_not_overlap": true,
+      "stairs_align": true,
+      "enclosed_ground_area_m2": 329.13,
+      "enclosed_floor_area_m2": 605.13
+    },
+    {
+      "scheme": "D",
+      "within_23x39_plot": true,
+      "room_rectangles_do_not_overlap": true,
+      "stairs_align": true,
+      "enclosed_ground_area_m2": 408,
+      "enclosed_floor_area_m2": 684
+    },
+    {
+      "scheme": "E",
+      "within_23x39_plot": true,
+      "room_rectangles_do_not_overlap": true,
+      "stairs_align": true,
+      "enclosed_ground_area_m2": 258,
+      "enclosed_floor_area_m2": 474
+    }
+  ],
+  "scope": "Only proposed plot containment, room rectangles and matching stair footprints. Not Unity navigation, collision, structural, door/window or gameplay acceptance."
+}

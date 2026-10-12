@@ -63,6 +63,15 @@ public static partial class BuildSlice {
             Quad("Lettered sign",new Vector3(0,0,-.128f),new Vector2(2.65f,.65f),ImageMat(b.id=="B17"?"sign-SignStation.png":"sign-SignInn.png",b.id=="B17"?"SignStation.png":"SignInn.png"),sign);
         }
     }
+    // Scene-level z-fight repair may edit scene objects and FBX model instances, never the
+    // generated building prefabs (shared with other scenes and layout checks).
+    static bool SceneEditable(MeshRenderer r) {
+        if(!PrefabUtility.IsPartOfPrefabInstance(r))return true;
+        // Objects added in the scene under a prefab instance (e.g. the station's waste tickets) are scene geometry.
+        for(var t=r.transform;t;t=t.parent)if(PrefabUtility.IsAddedGameObjectOverride(t.gameObject))return true;
+        var outer=PrefabUtility.GetOutermostPrefabInstanceRoot(r.gameObject);
+        return !outer||!PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(outer).StartsWith("Assets/Generated/");
+    }
     static void FullMapTown() {
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);SetupLight(false);
         var atmosphere=new System.Collections.Generic.HashSet<GameObject>(SceneManager.GetActiveScene().GetRootGameObjects());
@@ -71,7 +80,7 @@ public static partial class BuildSlice {
         var shop=InstantiateShop(false);MapMarker(shop.gameObject,plan.Building("B02"),true);
         var tower=InstantiateClockTower();MapMarker(tower,plan.Building("B01"),true);
         StreetSurfaces.BuildFull(plan);
-        foreach(var b in plan.buildings)if(b.id=="B17")StationTown(b);else if(b.id!="B01"&&b.id!="B02")PlaceholderBuilding(b);
+        foreach(var b in plan.buildings)if(b.id=="B17")StationTown(b);else if(b.id=="B10")PoliceTown(b);else if(b.id!="B01"&&b.id!="B02")PlaceholderBuilding(b);
         var dairy=plan.Building("B04");var boy=Milkboy(TownPlan.Point(dairy.gate)+new Vector3(2,0,-.8f),180);boy.transform.localScale=Vector3.one*.88f;
         Collider(boy,new Vector3(0,.8f,0),new Vector3(.65f,1.65f,.55f));
         var testimony=DialogueScript.Load("MilkboyDialogue").evidence;var milk=boy.AddComponent<Interactable>();milk.title="送奶少年";milk.evidenceId=testimony.id;milk.source=testimony.source;milk.body=testimony.body;
@@ -91,6 +100,7 @@ public static partial class BuildSlice {
         foreach(var pos in squareStandards)Lantern(pos);
         TowerFloodlights(squareStandards);
         GreeneryAuthoring.Build(plan);
+        PoliceCourtTree();
         // Actual silhouettes for the two-home sightline, with the specified lower fence.
         Box("Two homes low fence",new Vector3(-37,.425f,-57),new Vector3(.12f,.85f,11),Mat("MapFence","#766E5C"));
         foreach(var detail in plan.details.Where(d=>d.kind=="bed"||d.kind=="shed")) {
@@ -112,6 +122,8 @@ public static partial class BuildSlice {
         TownWetnessDriver();
         PlaceHotelCar();
         FullMapChecks.Validate(plan,geometry);
+        // Scene pass after the layout checks: generated building prefabs were repaired when saved and stay fixed here.
+        ZFightRepair.Repair(geometry.transform,"Town",SceneEditable);
         TownNavigationBake.Build(geometry.transform);
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene(),"Assets/Scenes/Town.unity");
     }

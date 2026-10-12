@@ -1,0 +1,36 @@
+# 2026-10-12 z-fight 回归（原生 Windows/D3D11，独立 review 存档）
+
+## staging build-z8（全部内容与正常版逐字节相同，两处网格仅改名）
+PASS police-1080 1.4min 
+PASS police-1080-verify 0.2min 
+PASS police-720 1.4min 
+PASS police-720-verify 0.2min 
+TIMEOUT rail 14.0min InvalidOperationException: Sequence contains more than one matching element
+FAIL rail-verify 0.1min RAIL_REVIEW_FAIL: arrival/source seat state failed separate-process reload | InvalidOperationException: arrival/source seat state failed separate-process reload
+PASS clocktower 2.1min 
+PASS clocktower-verify 1.1min 
+PASS car 1.4min 
+PASS car-verify 0.2min 
+PASS station-clerk 1.0min 
+PASS station-clerk-verify 0.2min 
+PASS dairy-doors 1.0min 
+PASS dairy-doors-verify 0.1min 
+PASS map 0.3min 
+PASS map-verify 0.1min 
+PASS walnut 0.8min 
+PASS walnut-verify 0.1min 
+PASS day-night 0.6min 
+PASS day-night-verify 0.1min 
+PASS full-map 9.3min 
+PASS full-map-verify 0.2min 
+NORMAL_SAVE_UNCHANGED 3220B64642F664DF0F9E4E4DA99ACC0C40CCEC016977B49788DFC4CD123047D5
+
+## staging build-z9（修正铁路检查脚本后重跑）
+PASS rail 2.4min 
+PASS rail-verify 0.2min 
+NORMAL_SAVE_UNCHANGED 3220B64642F664DF0F9E4E4DA99ACC0C40CCEC016977B49788DFC4CD123047D5
+
+## 正常版 builds/windows（Assembly-CSharp SHA256 前缀 8E9873A2F092978C，与 z9 相同）冒烟
+PASS police-1080 1.4min 
+PASS police-1080-verify 0.1min 
+NORMAL_SAVE_UNCHANGED 3220B64642F664DF0F9E4E4DA99ACC0C40CCEC016977B49788DFC4CD123047D5

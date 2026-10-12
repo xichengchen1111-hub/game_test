@@ -1,0 +1,21 @@
+{
+    "passed": true,
+    "counterReachable": true,
+    "bothDoorsInteract": true,
+    "closedDoorBlocks": true,
+    "obstructedCloseRejected": true,
+    "openDoorOutdoorSound": true,
+    "closedDoorMuffled": true,
+    "otherHouseIndependent": true,
+    "roofStillDry": true,
+    "weatherLamps": true,
+    "savePreserved": true,
+    "milkboyLocal": {
+        "x": 0.1499938815832138,
+        "y": 0.18000000715255738,
+        "z": 0.15000027418136598
+    },
+    "rainLight": 0.3799999952316284,
+    "clearLight": 1.0,
+    "verification": "Native macOS Metal player; scripted real controller, ray interactions and listener mix; isolated test saves. No physical keyboard input or blind test."
+}

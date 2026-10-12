@@ -1,0 +1,15 @@
+{
+    "passed": true,
+    "continuousTown": true,
+    "doorBlocksClosed": true,
+    "doorBothSides": true,
+    "obstructedCloseRejected": true,
+    "frontAndRearWalked": true,
+    "ownerSeatedLoop": true,
+    "evidenceRecorded": true,
+    "drawerAndVitrine": true,
+    "transparentWindows": 2,
+    "sceneCount": 2,
+    "saveScene": "Town",
+    "verification": "Visible native player, actual CharacterController and interaction rays. Controlled review movement/captures, not physical keyboard or blind playtest. No doorway fade/load/teleport."
+}

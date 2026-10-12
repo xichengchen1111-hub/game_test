@@ -9,6 +9,8 @@ public sealed class WeatherShelter : MonoBehaviour {
     public ShopMechanism[] exteriorDoors = new ShopMechanism[0];
     public HotelCar vehicle;
     public bool ridgeAlongX, barrel, elliptical;
+    // Roofed but open-sided (police loggias): clips rain, never muffles it.
+    public bool acousticallyOpen;
     static readonly HashSet<WeatherShelter> active = new HashSet<WeatherShelter>();
     const float CellSize=16;
     static readonly Dictionary<long,List<WeatherShelter>> cells=new Dictionary<long,List<WeatherShelter>>();
@@ -56,6 +58,7 @@ public sealed class WeatherShelter : MonoBehaviour {
         bool covered=false;
         if(cells.TryGetValue(Key(eye),out var candidates))foreach(var shelter in candidates) {
             if(!shelter.RoofAt(eye,out var height)||height<=eye.y)continue;
+            if(shelter.acousticallyOpen)return false;
             covered=true;
             foreach(var door in shelter.exteriorDoors)if(door&&door.OpenFraction>.001f)return false;
             if(shelter.vehicle&&shelter.vehicle.CabinOpen)return false;

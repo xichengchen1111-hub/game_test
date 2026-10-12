@@ -1,27 +1,27 @@
 {
-  "sourceSha256": "94f28836481d178f74f0225b7bf56461e5fc1796f17c6419b638667397373dd2",
+  "sourceSha256": "7ca1b7fdc480ddcdcf73d0164f7939bb1821d7985f33f1519d617a78562db988",
   "seed": 19311011,
   "treesPreserved": 217,
-  "lawnArea": 56239.23,
+  "lawnArea": 56036.85,
   "plantCounts": {
-    "Grass3": 1422,
-    "Grass2": 1480,
-    "Grass1": 1501,
-    "Flowers7": 1260,
-    "Flowers1": 2473,
+    "Grass3": 1455,
+    "Grass2": 1499,
+    "Grass1": 1470,
+    "Flowers7": 1262,
+    "Flowers1": 2465,
     "Flowers2": 3904,
-    "Flowers3": 2422,
-    "Flowers6": 1915,
-    "Shrub2": 739,
-    "Ornamental1": 711,
+    "Flowers3": 2419,
+    "Flowers6": 1925,
+    "Shrub2": 741,
+    "Ornamental1": 715,
     "Flowers4": 753,
-    "Flowers5": 1511,
+    "Flowers5": 1509,
     "Shrub1": 714,
-    "Ornamental2": 608,
+    "Ornamental2": 603,
     "Shrub3": 94
   },
-  "instances": 21507,
-  "surfaceChunks": 723,
+  "instances": 21528,
+  "surfaceChunks": 721,
   "reservedAreas": "Roads, widened paths, doors, footprints, train platforms/track, service yards, hotel car forecourt and three authored sightlines",
   "flowerBorders": [
     {
@@ -78,7 +78,7 @@
       "side": 1,
       "type": "layered outer garden",
       "plants": 1035,
-      "area": 595.0
+      "area": 595.06
     },
     {
       "road": "R03",
@@ -92,14 +92,14 @@
       "side": -1,
       "type": "layered outer garden",
       "plants": 1252,
-      "area": 709.36
+      "area": 709.25
     },
     {
       "road": "R03",
       "side": 1,
       "type": "layered outer garden",
       "plants": 352,
-      "area": 237.51
+      "area": 237.55
     },
     {
       "road": "R04",
@@ -127,7 +127,7 @@
       "side": 1,
       "type": "layered outer garden",
       "plants": 561,
-      "area": 322.26
+      "area": 322.28
     },
     {
       "road": "R05",
@@ -141,7 +141,7 @@
       "side": -1,
       "type": "layered outer garden",
       "plants": 361,
-      "area": 210.4
+      "area": 210.39
     },
     {
       "road": "R05",
@@ -154,57 +154,57 @@
       "road": "R05",
       "side": 1,
       "type": "layered outer garden",
-      "plants": 392,
-      "area": 227.41
+      "plants": 367,
+      "area": 212.9
     },
     {
       "road": "R06",
       "side": -1,
       "type": "low existing tree strip",
       "plants": 270,
-      "area": 102.46
+      "area": 102.65
     },
     {
       "road": "R06",
       "side": -1,
       "type": "layered outer garden",
-      "plants": 601,
-      "area": 344.46
+      "plants": 614,
+      "area": 348.23
     },
     {
       "road": "R06",
       "side": 1,
       "type": "low existing tree strip",
       "plants": 268,
-      "area": 101.85
+      "area": 101.59
     },
     {
       "road": "R06",
       "side": 1,
       "type": "layered outer garden",
-      "plants": 376,
-      "area": 215.79
+      "plants": 381,
+      "area": 218.92
     },
     {
       "road": "A01",
       "side": -1,
       "type": "layered outer garden",
-      "plants": 391,
-      "area": 261.36
+      "plants": 398,
+      "area": 265.42
     },
     {
       "road": "A01",
       "side": 1,
       "type": "layered outer garden",
       "plants": 567,
-      "area": 376.32
+      "area": 376.35
     },
     {
       "road": "A02",
       "side": -1,
       "type": "layered outer garden",
       "plants": 597,
-      "area": 391.68
+      "area": 391.58
     },
     {
       "road": "A02",
@@ -218,7 +218,7 @@
       "side": 1,
       "type": "layered outer garden",
       "plants": 741,
-      "area": 489.41
+      "area": 489.44
     },
     {
       "road": "A04",
@@ -239,17 +239,17 @@
       "side": -1,
       "type": "layered outer garden",
       "plants": 411,
-      "area": 246.12
+      "area": 246.08
     },
     {
       "road": "A05",
       "side": 1,
       "type": "layered outer garden",
       "plants": 1219,
-      "area": 685.15
+      "area": 685.21
     }
   ],
-  "flowerBorderArea": 8477.58,
+  "flowerBorderArea": 8473.93,
   "treeFamilies": 7,
   "modelVariants": 22,
   "milkCartPlantClearance": {

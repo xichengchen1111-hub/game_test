@@ -48,6 +48,7 @@ public static partial class BuildSlice {
         }
         TowerNightDress(root.transform,exterior);
         TowerFloorCoplanarCheck(root.transform);
+        ZFightRepair.Repair(root.transform,"ClockTower");
         PrefabUtility.SaveAsPrefabAsset(root,TowerPrefabPath);
         UnityEngine.Object.DestroyImmediate(root);
         Debug.Log("CLOCKTOWER_PREFAB_READY: localReferenceExterior="+(model!=null)+" shared exterior/interior; four moving faces; continuous doorway");
@@ -86,7 +87,8 @@ public static partial class BuildSlice {
         var ink=Mat("TowerDialInk","#303534",0,.28f);
         ClockTowerGlazing.BuildDial(face,diameter,ink);
         Box("Long minute hand",new Vector3(0,diameter*.17f,0),new Vector3(diameter*.023f,diameter*.40f,.025f),ink,dial.minuteHand,false).isStatic=false;
-        Box("Short hour hand",new Vector3(0,diameter*.11f,0),new Vector3(diameter*.034f,diameter*.28f,.027f),ink,dial.hourHand,false).isStatic=false;
+        // Hour tail ends 1% of the dial further past the axis than the minute tail: equal tails were coplanar whenever the hands aligned.
+        Box("Short hour hand",new Vector3(0,diameter*.105f,0),new Vector3(diameter*.034f,diameter*.29f,.027f),ink,dial.hourHand,false).isStatic=false;
         var hub=Cylinder("Clock hand spindle",new Vector3(0,0,-.058f),new Vector3(.070f,.013f,.070f),ink,face);
         hub.transform.localRotation=Quaternion.Euler(90,0,0);
     }

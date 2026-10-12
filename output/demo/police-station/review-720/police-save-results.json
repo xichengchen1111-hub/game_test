@@ -1,0 +1,32 @@
+{
+    "passed": true,
+    "frontDoorsOpened": false,
+    "e01Recorded": false,
+    "e01Deduplicated": false,
+    "e08Recorded": false,
+    "drawerCardRead": false,
+    "lampSwitchedOff": false,
+    "seatedAndStood": false,
+    "officerDialogue": false,
+    "unsupportedReportKept": false,
+    "supportedDateReport": false,
+    "courtDoorBothSides": false,
+    "openDoorKeepsRain": false,
+    "courtUncovered": false,
+    "loggiaCoveredButOpen": false,
+    "holdingDoorOpened": false,
+    "upperFloorReached": false,
+    "permitRead": false,
+    "roomLabel": false,
+    "upperFloorY": 0.0,
+    "reviewSeconds": 0.0,
+    "gameMinutesStart": 0.0,
+    "gameMinutesEnd": 0.0,
+    "entries": 2,
+    "reportSubmissions": 2,
+    "captures": [
+        "police-reload-chief-office.png"
+    ],
+    "log": [],
+    "verification": "Separate process reading police-review-save.json: evidence, report, lamp, door/drawer states and indoor upper-floor position."
+}

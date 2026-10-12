@@ -314,6 +314,8 @@ public static partial class BuildSlice {
     static void Shop() {
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);SetupLight(true);
         InstantiateShop(true);WindowStreet();
+        // Same scene pass as Town: the window street is scene geometry, generated prefabs were repaired when saved.
+        ZFightRepair.Repair(SceneManager.GetActiveScene().GetRootGameObjects().Select(g=>g.transform).ToArray(),"ClockShopScene",SceneEditable);
         EditorSceneManager.SaveScene(SceneManager.GetActiveScene(),"Assets/Scenes/ClockShop.unity");
     }
     static void Systems() {
@@ -395,7 +397,7 @@ public static partial class BuildSlice {
         if(!shopLayout){shopLayout=ScriptableObject.CreateInstance<BuildingLayout>();AssetDatabase.CreateAsset(shopLayout,layoutPath);}
         ConfigureWalnutLayout();
         BuildingLayoutChecks.ValidateDefinition(shopLayout);
-        HeldMapAuthoring.EnsureMaterial();PropSoundAuthoring.EnsureImports();WalnutShopPrefab();ClockTowerPrefab();StationPrefab();TrainPrefab();CarPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);OtherTown();Systems();AssetDatabase.SaveAssets();
+        HeldMapAuthoring.EnsureMaterial();PropSoundAuthoring.EnsureImports();WalnutShopPrefab();ClockTowerPrefab();StationPrefab();PolicePrefab();TrainPrefab();CarPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);OtherTown();Systems();AssetDatabase.SaveAssets();
         string[] scenes={"Assets/Scenes/Systems.unity","Assets/Scenes/Town.unity","Assets/Scenes/ClockShop.unity","Assets/Scenes/OtherTown.unity"};
         EditorBuildSettings.scenes=Array.ConvertAll(scenes,p=>new EditorBuildSettingsScene(p,true));
         string output=Path.GetFullPath(relativeOutput);Directory.CreateDirectory(Path.GetDirectoryName(output));

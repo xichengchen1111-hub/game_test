@@ -51,7 +51,7 @@ public partial class DemoApp {
         yield return Capture("paper-map-hotel-route");yield return VerifyRenderedHeldRoute();
         foreach(var corner in walking)yield return MapWalk(corner);RefreshMapRoute();NeedNavigation(townNavigation.Distance<.3f&&mapOpen&&!Blocked,"Held walking route did not update at arrival");
         SetMapEditing(true);NeedNavigation(HandleHeldMapRightClick(HeldScreen(mapWaypoint))&&!state.hasMapWaypoint,"Arrival pin cancellation failed");SetMapEditing(false);
-        var police=TownPlan.Current.Building("B10").parts[0].rect;SetMapWaypoint(new Vector3(police[0],.1f,police[1]),"坐标标记");NeedNavigation(!mapRouteAvailable,"Unreachable point invented a route");ClearMapWaypoint();
+        var police=TownPlan.Current.Building("B03").parts[0].rect; // B10 is now an enterable building; B03 stays a closed placeholderSetMapWaypoint(new Vector3(police[0],.1f,police[1]),"坐标标记");NeedNavigation(!mapRouteAvailable,"Unreachable point invented a route");ClearMapWaypoint();
         // Reading hides the prop and locks movement while the world clock runs.
         journal=true;CursorMode();var readingTime=ElapsedGameMinutes;yield return new WaitForSeconds(.4f);NeedNavigation(Blocked&&!GameTimePaused&&!heldTownMap.ViewCamera.enabled&&ElapsedGameMinutes>readingTime,"Journal must hide paper while time continues");journal=false;CursorMode();yield return new WaitForSeconds(.4f);NeedNavigation(heldTownMap.Visible&&!Blocked,"Paper did not return from journal");
         paused=true;var pausedTime=ElapsedGameMinutes;yield return new WaitForSeconds(.3f);NeedNavigation(GameTimePaused&&pausedTime==ElapsedGameMinutes&&!heldTownMap.ViewCamera.enabled,"Explicit pause did not freeze time/hide paper");paused=false;

@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &210747871
+--- !u!1 &923810933
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,184 +127,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 210747873}
-  - component: {fileID: 210747874}
-  - component: {fileID: 210747872}
-  m_Layer: 2
-  m_Name: First person
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &210747872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210747871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ab9c6430c50784ba2abfaf5850ea74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
-  eye: {fileID: 1292387221}
-  pitch: 0
-  scriptedDirection: {x: 0, y: 0, z: 0}
---- !u!4 &210747873
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210747871}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1292387224}
-  m_Father: {fileID: 395014063}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!143 &210747874
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 210747871}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 1.78
-  m_Radius: 0.25
-  m_SlopeLimit: 45
-  m_StepOffset: 0.24
-  m_SkinWidth: 0.03
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.9, z: 0}
---- !u!1 &395014060
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 395014063}
-  - component: {fileID: 395014062}
-  - component: {fileID: 395014061}
-  m_Layer: 0
-  m_Name: Persistent systems
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &395014061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395014060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06b1f503bf8721140a9f9d402f67b708, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TownSound
---- !u!114 &395014062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395014060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77936beb7096eb443a53b23252ec028e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemoApp
-  intactTicketImage: {fileID: 2800000, guid: 7a8da31ef2c2f1a40a9d56eed75bca56, type: 3}
-  punchedTicketImage: {fileID: 2800000, guid: 8752c0ab8e7e50e47811b0ab8fe09595, type: 3}
-  player: {fileID: 210747872}
-  font: {fileID: 12800000, guid: 8652e93670d8f934da475bc6e7e35e24, type: 3}
-  dialTexture: {fileID: 2800000, guid: 63da9a4b78f014d4ea6a4da8ab503ea7, type: 3}
-  reviewAmbientOcclusion: {fileID: 7833122117494664109, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
-  state:
-    scene: Town
-    x: 0
-    y: 0.12
-    z: -10
-    yaw: 0
-    returnX: 3.7
-    returnY: 0.05
-    returnZ: 1
-    entries: []
-    remarkSeen: 0
-    milkboyGreeted: 0
-    milkboyGreetingRevision: 0
-    dialogueTopics: []
-    openFixtures: []
-    initializedFixtures: []
-    worldRevision: 0
-    gameClockRevision: 0
-    towerLayoutRevision: 0
-    towerAdjustmentMinutes: 0
-    elapsedGameMinutes: 0
-    milkOrderDate: 
-    hasMapWaypoint: 0
-    mapWaypointX: 0
-    mapWaypointZ: 0
-    railSeated: 0
-    furnitureSeatId: 
-    railJourneys: 0
-    carSaved: 0
-    carX: 0
-    carY: 0
-    carZ: 0
-    carYaw: 0
-    carSeatId: 
-    carWarmUntil: 0
-  Silent: 0
---- !u!4 &395014063
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395014060}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 210747873}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1292387220
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1292387224}
-  - component: {fileID: 1292387221}
-  - component: {fileID: 1292387223}
-  - component: {fileID: 1292387222}
+  - component: {fileID: 923810937}
+  - component: {fileID: 923810934}
+  - component: {fileID: 923810936}
+  - component: {fileID: 923810935}
   m_Layer: 0
   m_Name: Player eye
   m_TagString: MainCamera
@@ -312,13 +138,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!20 &1292387221
+--- !u!20 &923810934
 Camera:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292387220}
+  m_GameObject: {fileID: 923810933}
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
@@ -363,21 +189,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &1292387222
+--- !u!81 &923810935
 AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292387220}
+  m_GameObject: {fileID: 923810933}
   m_Enabled: 1
---- !u!114 &1292387223
+--- !u!114 &923810936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292387220}
+  m_GameObject: {fileID: 923810933}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
@@ -415,23 +241,200 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!4 &1292387224
+--- !u!4 &923810937
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1292387220}
+  m_GameObject: {fileID: 923810933}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 210747873}
+  m_Father: {fileID: 1528012505}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1528012503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1528012505}
+  - component: {fileID: 1528012506}
+  - component: {fileID: 1528012504}
+  m_Layer: 2
+  m_Name: First person
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1528012504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528012503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ab9c6430c50784ba2abfaf5850ea74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMotor
+  eye: {fileID: 923810934}
+  pitch: 0
+  scriptedDirection: {x: 0, y: 0, z: 0}
+--- !u!4 &1528012505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528012503}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 923810937}
+  m_Father: {fileID: 1841659040}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &1528012506
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1528012503}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1.78
+  m_Radius: 0.25
+  m_SlopeLimit: 45
+  m_StepOffset: 0.24
+  m_SkinWidth: 0.03
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!1 &1841659037
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1841659040}
+  - component: {fileID: 1841659039}
+  - component: {fileID: 1841659038}
+  m_Layer: 0
+  m_Name: Persistent systems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1841659038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841659037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b1f503bf8721140a9f9d402f67b708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TownSound
+--- !u!114 &1841659039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841659037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77936beb7096eb443a53b23252ec028e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemoApp
+  intactTicketImage: {fileID: 2800000, guid: 7a8da31ef2c2f1a40a9d56eed75bca56, type: 3}
+  punchedTicketImage: {fileID: 2800000, guid: 8752c0ab8e7e50e47811b0ab8fe09595, type: 3}
+  player: {fileID: 1528012504}
+  font: {fileID: 12800000, guid: 8652e93670d8f934da475bc6e7e35e24, type: 3}
+  dialTexture: {fileID: 2800000, guid: 63da9a4b78f014d4ea6a4da8ab503ea7, type: 3}
+  reviewAmbientOcclusion: {fileID: 7833122117494664109, guid: f288ae1f4751b564a96ac7587541f7a2, type: 2}
+  state:
+    scene: Town
+    x: 0
+    y: 0.12
+    z: -10
+    yaw: 0
+    returnX: 3.7
+    returnY: 0.05
+    returnZ: 1
+    entries: []
+    remarkSeen: 0
+    milkboyGreeted: 0
+    milkboyGreetingRevision: 0
+    dialogueTopics: []
+    openFixtures: []
+    initializedFixtures: []
+    reportSubmissions: []
+    reportSupported: []
+    reportReinvestigation: 0
+    worldRevision: 0
+    gameClockRevision: 0
+    towerLayoutRevision: 0
+    towerAdjustmentMinutes: 0
+    elapsedGameMinutes: 0
+    milkOrderDate: 
+    hasMapWaypoint: 0
+    mapWaypointX: 0
+    mapWaypointZ: 0
+    railSeated: 0
+    furnitureSeatId: 
+    railJourneys: 0
+    carSaved: 0
+    carX: 0
+    carY: 0
+    carZ: 0
+    carYaw: 0
+    carSeatId: 
+    carWarmUntil: 0
+  Silent: 0
+--- !u!4 &1841659040
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841659037}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1528012505}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 395014063}
+  - {fileID: 1841659040}

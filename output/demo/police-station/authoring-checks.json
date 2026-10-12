@@ -1,0 +1,20 @@
+{
+    "passed": true,
+    "walls": 189,
+    "openings": 52,
+    "apertureProbes": 52,
+    "solidProbes": 13735,
+    "doors": 14,
+    "drawers": 3,
+    "lamps": 39,
+    "interiorLamps": 33,
+    "exteriorLamps": 6,
+    "items": 25,
+    "seats": 10,
+    "shelters": 8,
+    "rooms": 23,
+    "e01Copies": 2,
+    "e08Copies": 1,
+    "layoutRule": "One shared prefab for street exterior and interior; no second scene shell. Openings are cut from the layout contract that also generated the Blender shell.",
+    "verification": "Editor authoring check only; native rendering, controller walking and saves are verified by --review-police."
+}

@@ -1,0 +1,107 @@
+{
+  "pages_full": 9,
+  "pages_share": 8,
+  "fonts_embedded": true,
+  "glyphs_present": true,
+  "core_spoiler_only_in_last_page": true,
+  "source_commit": "7618050",
+  "no_progress_or_task_allocation_copy": true,
+  "scope": "Document bounds and text/font checks. Visual PDF review must be recorded separately.",
+  "page_text_lengths": [
+    258,
+    527,
+    441,
+    362,
+    374,
+    398,
+    345,
+    419,
+    635
+  ],
+  "visual_review": {
+    "reviewed_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "render_dpi": 144,
+    "render_dimensions": [
+      1684,
+      2382
+    ],
+    "method": "Poppler render and individual page inspection; revised pages 1, 5 and 8 inspected again.",
+    "issues_remaining": [],
+    "render_sha256": [
+      {
+        "page": 1,
+        "path": "output\\pdf\\developer-poster-20261012\\pages\\page-1.png",
+        "sha256": "edb34d63e47d4a447d30ce699089f67a59359e854dcd7913174d05cc9c9f0f81"
+      },
+      {
+        "page": 2,
+        "path": "output\\pdf\\developer-poster-20261012\\pages\\page-2.png",
+        "sha256": "d15c11506c989a54d366cf9a0ee2fd1c9f2930e87f1dafdf578b5da8323f1f92"
+      },
+      {
+        "page": 3,
+        "path": "output\\pdf\\developer-poster-20261012\\pages\\page-3.png",
+        "sha256": "7df6443f91be8a70ea6e0e1afe4275f605780dad81d4a9215bf27544b18f85ad"
+      },
+      {
+        "page": 4,
+        "path": "output\\pdf\\developer-poster-20261012\\pages\\page-4.png",
+        "sha256": "35eedf16e873624fb31697c4343c84f073d6bd83682dc0e515559bf995cc47df"
+      },
+      {
+        "page": 5,
+        "path": "output\\pdf\\developer-poster-20261012\\pages\\page-5.png",
+        "sha256": "3e30062adba57d2b9b55b050616723fed478183905e51d83981ce0ba4c252c93"
+      },
+      {
+        "page": 6,
+        "path": "output\\pdf\\developer-poster-20261012\\pages\\page-6.png",
+        "sha256": "2f9823b6d68dd4b954bc977bebbbd6a1bb8027731e5f7dc67959ad300ad20d99"
+      },
+      {
+        "page": 7,
+        "path": "output\\pdf\\developer-poster-20261012\\pages\\page-7.png",
+        "sha256": "56fd34c085b0737c737cffc6bc13936d1dc524a431d761f0b21eff298eff9831"
+      },
+      {
+        "page": 8,
+        "path": "output\\pdf\\developer-poster-20261012\\pages\\page-8.png",
+        "sha256": "0d90740460a1090f6b26181c9977d0162fe31de2e3e2a86382a16f0b3b3e9215"
+      },
+      {
+        "page": 9,
+        "path": "output\\pdf\\developer-poster-20261012\\pages\\page-9.png",
+        "sha256": "de5fb2ce3314533e61381b364efef2f34841b0379a871440af45e09658c2dbb2"
+      }
+    ]
+  },
+  "embedded_font_subsets": [
+    "/AAAAAA+DengXian",
+    "/AAAAAA+MicrosoftYaHei-Bold-0",
+    "/AAAAAA+SimSun-0",
+    "/AAAAAB+DengXian",
+    "/AAAAAB+MicrosoftYaHei-Bold-0",
+    "/AAAAAC+DengXian"
+  ],
+  "embedded_font_families": [
+    "DengXian",
+    "MicrosoftYaHei-Bold-0",
+    "SimSun-0"
+  ],
+  "share_pages_match_full": true,
+  "share_image_count": 8,
+  "pdf_sha256": {
+    "full": "dd337aa85dbbd6c4cecffde70c75bf7c92c52e467a4a658c7909d19ff3ecc704",
+    "share": "67e47b05574933f9cc037af3ab801b76100468c8bdf04c82eb69174af3aa6b29"
+  }
+}

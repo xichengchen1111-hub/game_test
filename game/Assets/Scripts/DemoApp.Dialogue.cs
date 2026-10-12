@@ -57,7 +57,7 @@ public partial class DemoApp {
     }
     void UpdateMilkboySpeech() {
         if(stationClerkPerformance) {
-            if(dialogueNode.speaker=="售票员")stationClerkPerformance.Speak(dialogueNode.text);
+            if(dialogueNode.speaker==stationClerkPerformance.speaker)stationClerkPerformance.Speak(dialogueNode.text);
             else stationClerkPerformance.Listen();
         }
         if(!milkboyPerformance) {
@@ -78,6 +78,7 @@ public partial class DemoApp {
     }
     void AdvanceDialogue() {
         if(!DialogueOpen||dialogueHistoryOpen||dialogueChoices.Count>0)return;
+        if(TryPoliceDialogueAction())return;
         if(string.IsNullOrEmpty(dialogueNode.next))CloseDialogue();
         else VisitDialogue(dialogueNode.next);
     }

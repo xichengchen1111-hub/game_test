@@ -81,6 +81,23 @@
 - 最新 MOVE-01 在 Unity 6000.3.18f1、Apple M5 Pro／macOS Metal 的同一交付程序集完成 14 项运行检查；前一轮 WORLD-04 完成门／声学／灯控等 22 项。不得把不同版本的通过记录混成全部在最新版重跑。精简测量与录像在 `output/demo/`，完整日志、程序集摘要和正常存档前后校验在忽略的 `builds/macos-current/verification-*/`；现有记录不是物理键鼠、陌生玩家盲测、Intel 实机或低配帧率验收。
 - 验收用独立 review 存档，不能重置或覆盖用户正常进度。构建包、原始逐帧录像、缓存和临时日志继续不入 Git。Mac 沿用下文唯一新版入口及原桌面链接；仅更新规则文档时不必重建已验证应用。
 
+### 警署（D 内院回廊，用户要求开工，2026-10-12）
+
+- 用户 2026-10-11 选定 D「内院回廊警署」，2026-10-12 要求开工并完整做完第一版。B10 改为两层前楼 23×12m＋西／东一层两翼各 5.5×12m＋12m 露天内院与 1.5m 回廊；地图名改「警署」。地图源 `docs/maps/town-current/build_plan.py` 的 B10 覆盖段与 `tools/police/police_layout.py` 互相断言轮廓、两门与 31 个外窗，改其一必须同步改另一份并重跑地图检查。
+- **唯一来源**：布局合同 `tools/police/police_layout.py` → `police-layout.json`／`Resources/PoliceLayout.json`；Blender `tools/police/build_police_station.py` → `assets/source/police/PoliceStation.blend/.fbx`；Unity `BuildSlice.Police.cs` 装配 `Assets/Generated/PoliceStation.prefab`。街景与室内是同一预制件，不另建室内场景；墙体视觉与碰撞用同一套「按洞口切列」算法。改门窗、房间、家具、灯或交互点先改合同，`tools/BuildPolice.ps1` 重建；不要手改预制件。`PoliceChecks` 拒绝堵住、缩小、错位或多出的洞口。
+- 门：14 扇 `ShopMechanism` 实体门（稳定 ID `police-*`，正门 `police-front-door-left/right`，首次左开右关；横厅后门、两翼五门关；室内门开）。三个分类抽屉 `police-index-drawer-0..2`，索引卡只在抽屉拉开时可读（`OpenDrawerTarget`）。门与抽屉有原创音效（`make_police_assets.py`）。
+- 雨与声学：前楼一个外壳，按正门两扇＋横厅后门判断闷雨；两翼每间房单独一个外门；回廊 `WeatherShelter.acousticallyOpen`＝有顶不闷声；内院露天。内院地面由预制件拥有，`build_full_town.py` 与 `plan_greenery.py` 已把 (6.5,39.7)-(18.5,51.7) 从街面／院落／草花中排除；`FullMapChecks` 对 `Ext_Court` 做共面检查。
+- 灯：33 盏室内点光只照 Light Layer 4（`PoliceInteriorLayer`），室内渲染器同时保留 Default；6 盏外墙／回廊灯为 Exterior 感光并占 12 处光池。无新增阴影灯。5 盏阅读灯 `LampSwitch` 手动关闭以 `police-*-lamp-off` 存档并优先于昼夜。
+- 叙事边界：E01 案卷摘要两份副本与 E08 巡警原簿副本沿用稳定 ID 去重；E08 正文与车站资料桌逐字一致，来源写明另一镇调取副本。案卷摘要只排版修订稿第一节与证据合同的事实，措辞待用户确认。分类索引、目录只记存放位置。值班警员只说程序与已有事实，不说钟差、正确日期或凶手。阶段报告由玩家选陈述、判断与调查簿材料，规则在 `Resources/PoliceReport.json`（D01–D04），只核对材料，不自动结案；两项核心（D02、D03）都成立才进入「需要重新调查」，仍可继续探索。
+- 值班警员暂用已认可售票员 Tripo 模型改藏青制服（`make_officer_texture.py`），脸与售票员相同，是占位；档案职员按设计缺席。
+- 字体：新增中文后用 `tools/clocktower/expand_ui_font.py builds/review/milk-interior-a/NotoSansSC.ttf` 扩充 TownSans（保留旧字形，源 SHA256 与 `font-manifest.json` 一致）。
+- 验收：`tools/ReviewPolice.ps1 -Mode police` 与 `-Mode verify`（独立 `police-review-save.json`），1080p／720p。结果与回归见 `output/demo/police-station/` 与记忆 POLICE-01。
+
+### 共面闪烁（z-fighting，用户要求全部修复，2026-10-12）
+
+- 构建期 `ZFightRepair` 在 ClockShop／ClockTower／StationB／RailTrain／HotelCar 预制件保存前，以及 Town（Town geometry）／ClockShop／OtherTown 场景保存前运行：同向、同平面（≤0.6mm）、着色不同且重叠 ≥1cm² 的面，按「渲染器＋子网格＋平面」分片、面积大者不动，其余取邻片未用的最小 2mm 档沿法线外移，复检直到干净。只改渲染网格副本（`Assets/Generated/ZFightRepair/`），碰撞保留原网格；门、抽屉、指针等运动部件按制作姿态在自身坐标系外移。不收敛或两个已保存预制件之间仍共面时构建失败。不要用着色器深度偏移、关闭 AO／阴影或删掉此步骤来“修”闪烁。
+- 新几何仍应在生成源头避免共面（警署生成器、塔钟／车站钟时针尾端即如此修）；新增预制件生成步骤要在保存前调用 `ZFightRepair.Repair`。改几何后运行 `ZFightScan.Run`，要求 EXACT 0、MOVING 0，结果在 `output/demo/zfight/`，经过见记忆 ZFIGHT-01。
+
 ### 旅馆用车（用户确认，2026-10-11）
 
 - 用户确认示意图后选定：**旅馆用车**，停在 B08 旅馆前庭车马院（约 169.5, 2.0，车头朝北）；**自动三档、真实启动**（点火开关＋起动钮，冷车拉阻风门，也可手摇）；**暗栗红车身配黑翼子板**。原创 1928–31 风格四门轿车，不复制厂牌、车型或标志。设计与边界见 `docs/concepts/car/round-01/design-notes.md`。

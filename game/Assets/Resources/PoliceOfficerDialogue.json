@@ -1,0 +1,119 @@
+{
+ "first": "greeting",
+ "revisit": "greeting",
+ "nodes": [
+  {
+   "id": "greeting",
+   "speaker": "值班警员",
+   "text": "您好，先生。是来查阅材料的吗？",
+   "next": "topics"
+  },
+  {
+   "id": "topics",
+   "speaker": "值班警员",
+   "text": "您想问什么？",
+   "choices": [
+    {
+     "text": "这里能查些什么？",
+     "target": "ask-what",
+     "topic": "police-officer.what"
+    },
+    {
+     "text": "巡警记录的副本是从哪儿来的？",
+     "target": "ask-copy",
+     "topic": "police-officer.copy"
+    },
+    {
+     "text": "原件能看吗？",
+     "target": "ask-originals",
+     "topic": "police-officer.originals"
+    },
+    {
+     "text": "后面的旧羁押室……",
+     "target": "ask-holding",
+     "topic": "police-officer.holding"
+    },
+    {
+     "text": "我想提交阶段报告。",
+     "target": "ask-report",
+     "topic": "police-officer.report"
+    },
+    {
+     "text": "先这样，谢谢。",
+     "target": "ask-goodbye",
+     "topic": "police-officer.goodbye"
+    }
+   ]
+  },
+  {
+   "id": "ask-what",
+   "speaker": "你",
+   "text": "这里能查些什么？",
+   "next": "what"
+  },
+  {
+   "id": "what",
+   "speaker": "值班警员",
+   "text": "公开案卷在左手边的阅览室：案卷摘要、陈述誊录页和残信照片都在桌上，对照桌上放着摘要和巡警记录的副本。分类柜按证人、日期、物证排。\n后院两翼还有资料分馆和档案库。您有查阅许可，看完放回原处就行。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-copy",
+   "speaker": "你",
+   "text": "巡警记录的副本是从哪儿来的？",
+   "next": "copy"
+  },
+  {
+   "id": "copy",
+   "speaker": "值班警员",
+   "text": "那是另一镇巡警原簿的调取副本。原簿在那边，我们这里只留获准抄录的一份，车站资料桌也放着一份。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-originals",
+   "speaker": "你",
+   "text": "原件能看吗？",
+   "next": "originals"
+  },
+  {
+   "id": "originals",
+   "speaker": "值班警员",
+   "text": "物证原件封存在东翼的物证室，不对外开放。照片副本挂在那边的照片板上，您可以去看。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-holding",
+   "speaker": "你",
+   "text": "后面的旧羁押室……",
+   "next": "holding"
+  },
+  {
+   "id": "holding",
+   "speaker": "值班警员",
+   "text": "那间空着，好久没用了。门没锁，想看就推开看看。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-report",
+   "speaker": "你",
+   "text": "我想提交阶段报告。",
+   "next": "report"
+  },
+  {
+   "id": "report",
+   "speaker": "值班警员",
+   "text": "报告纸在这儿。写清楚您质疑哪句陈述，附上哪些材料。我们只核对材料对不对得上，不替您下结论。"
+  },
+  {
+   "id": "ask-goodbye",
+   "speaker": "你",
+   "text": "先这样，谢谢。",
+   "next": "goodbye"
+  },
+  {
+   "id": "goodbye",
+   "speaker": "值班警员",
+   "text": "好的。有事再来窗口找我。"
+  }
+ ]
+}

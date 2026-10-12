@@ -10,7 +10,7 @@ public partial class DemoApp {
     string railStatus;
     bool RailSeated=>seatedTrain;
     public bool MovementLocked=>RailSeated||FurnitureSeated||CarSeated||Blocked;
-    public bool LookAllowed=>!opening&&(!transitioning||railTravelling)&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen;
+    public bool LookAllowed=>!opening&&(!transitioning||railTravelling)&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen&&!PoliceReportOpen;
     void RestoreRailSeat() {
         if(!state.railSeated)return;
         seatedTrain=FindFirstObjectByType<RailTrain>();

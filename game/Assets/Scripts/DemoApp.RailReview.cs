@@ -16,7 +16,8 @@ public partial class DemoApp {
         player.scriptedDirection=Vector3.zero;NeedRail(Time.unscaledTime<deadline,"continuous railway route blocked toward "+target+" at "+player.transform.position);
     }
     IEnumerator RailRead(string id) {
-        var item=FindObjectsByType<Interactable>(FindObjectsSortMode.None).Single(t=>t.evidenceId==id);
+        // The police station keeps an E08 copy (same stable ID); this review reads the station originals.
+        var item=FindObjectsByType<Interactable>(FindObjectsSortMode.None).Single(t=>t.evidenceId==id&&!t.GetComponentInParent<PoliceStation>());
         player.Aim(item.transform.position+(id=="E03"?Vector3.up*.74f:Vector3.zero));yield return null;
         NeedRail(TryInteract()&&inspected==item,"ordinary 3m E ray could not read "+id);
         double clock=ElapsedGameMinutes;float readingStart=Time.unscaledTime;yield return new WaitForSecondsRealtime(.25f);

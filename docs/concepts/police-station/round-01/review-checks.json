@@ -1,0 +1,43 @@
+{
+  "status": "DESIGN_REVIEW_UI_PASS",
+  "schemes": [
+    {
+      "id": "A",
+      "loadedImage": true,
+      "selection": true,
+      "roomSelection": true,
+      "routeToggle": true
+    },
+    {
+      "id": "B",
+      "loadedImage": true,
+      "selection": true,
+      "roomSelection": true,
+      "routeToggle": true
+    },
+    {
+      "id": "C",
+      "loadedImage": true,
+      "selection": true,
+      "roomSelection": true,
+      "routeToggle": true
+    },
+    {
+      "id": "D",
+      "loadedImage": true,
+      "selection": true,
+      "roomSelection": true,
+      "routeToggle": true
+    },
+    {
+      "id": "E",
+      "loadedImage": true,
+      "selection": true,
+      "roomSelection": true,
+      "routeToggle": true
+    }
+  ],
+  "mobile390pxNoPageOverflow": true,
+  "pageErrors": [],
+  "scope": "Offline concept review page and images only, not game acceptance."
+}

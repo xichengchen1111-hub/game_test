@@ -8,6 +8,10 @@ public class ShopMechanism : Interactable {
     public Vector3 openEuler,openOffset;
     public bool protectPlayer;
     public bool startsOpen;
+    // Optional (police station): explicit noun for the prompt and open/close sounds.
+    public string label;
+    public AudioSource sound;
+    public AudioClip openClip, closeClip;
     public float OpenFraction => Mathf.SmoothStep(0,1,progress);
     public Vector3 leafCentre,leafSize;
     public bool IsOpen { get; private set; }
@@ -28,7 +32,7 @@ public class ShopMechanism : Interactable {
         IsOpen=state.openFixtures.Contains(fixtureId);
         progress=IsOpen?1:0;Apply(progress);SetTitle();
     }
-    void SetTitle() { title=(IsOpen?"关闭":"打开")+(fixtureId.Contains("drawer")?"零件抽屉":fixtureId.Contains("vitrine")?"展柜":"木门"); }
+    void SetTitle() { title=(IsOpen?"关闭":"打开")+(!string.IsNullOrEmpty(label)?label:fixtureId.Contains("drawer")?"零件抽屉":fixtureId.Contains("vitrine")?"展柜":"木门"); }
     public override void Use() {
         if(Moving)return;
         LastUseBlocked=false;
@@ -40,6 +44,7 @@ public class ShopMechanism : Interactable {
             for(int i=0;i<=24;i++)if(Occupied(Mathf.Lerp(progress,target,i/24f))){LastUseBlocked=true;title="先让开门扇的转动范围";blockedUntil=Time.time+2;return;}
         }
         IsOpen=!IsOpen;SetTitle();
+        if(sound&&(IsOpen?openClip:closeClip)){sound.clip=IsOpen?openClip:closeClip;sound.Play();}
         var opened=DemoApp.Instance.state.openFixtures;
         if(IsOpen){if(!opened.Contains(fixtureId))opened.Add(fixtureId);}else opened.Remove(fixtureId);
         DemoApp.Instance.Save();

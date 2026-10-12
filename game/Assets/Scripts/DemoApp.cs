@@ -17,6 +17,10 @@ using UnityEngine.SceneManagement;
     public List<string> dialogueTopics = new List<string>();
     public List<string> openFixtures = new List<string>();
     public List<string> initializedFixtures = new List<string>();
+    // Stage report (police desk / officer / journal): player-composed submissions and supported rule IDs.
+    public List<string> reportSubmissions = new List<string>();
+    public List<string> reportSupported = new List<string>();
+    public bool reportReinvestigation;
     public int worldRevision;
     public int gameClockRevision;
     public int towerLayoutRevision;
@@ -50,7 +54,7 @@ public partial class DemoApp : MonoBehaviour {
     public bool Review { get; private set; }
     public float Minutes => (float)gameClock.MinutesOfDay;
     public bool NPCAnimationPaused => opening || transitioning || paused;
-    public bool Blocked => opening || transitioning || inspected || journal || paused || DialogueOpen || MilkOrdersOpen;
+    public bool Blocked => opening || transitioning || inspected || journal || paused || DialogueOpen || MilkOrdersOpen || PoliceReportOpen;
     public string CurrentScene { get; private set; } = "Town";
     public bool IsInsideShop { get; private set; }
     BuildingInstance seamlessShop;
@@ -123,6 +127,7 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&(Array.IndexOf(args,"--review-items")>=0||Array.IndexOf(args,"--verify-items-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"items-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-car")>=0||Array.IndexOf(args,"--verify-car-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"car-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-tower-night")>=0||Array.IndexOf(args,"--review-day-look")>=0))savePath=Path.Combine(Application.persistentDataPath,"look-gallery-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-police")>=0||Array.IndexOf(args,"--verify-police-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"police-review-save.json");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
         Debug.Log("SAVE_LOCATION: "+savePath);
@@ -134,6 +139,8 @@ public partial class DemoApp : MonoBehaviour {
         if(state.dialogueTopics==null)state.dialogueTopics=new List<string>();
         if(state.openFixtures==null)state.openFixtures=new List<string>();
         if(state.initializedFixtures==null)state.initializedFixtures=new List<string>();
+        if(state.reportSubmissions==null)state.reportSubmissions=new List<string>();
+        if(state.reportSupported==null)state.reportSupported=new List<string>();
         InitializeGameClock(File.Exists(savePath)&&Array.IndexOf(args,"--fresh")<0);
         if (state.scene!="Town" && state.scene!="ClockShop" && state.scene!="OtherTown") state.scene="Town";
         if(previewWindow){state.scene="ClockShop";state.x=0;state.y=.03f;state.z=-.6f;opening=false;}
@@ -189,7 +196,9 @@ public partial class DemoApp : MonoBehaviour {
         if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--review-car")>=0)StartCoroutine(ReviewCar());
+            if(Array.IndexOf(args,"--review-police")>=0)StartCoroutine(ReviewPolice());
+            else if(Array.IndexOf(args,"--verify-police-save")>=0)StartCoroutine(VerifyPoliceSave());
+            else if(Array.IndexOf(args,"--review-car")>=0)StartCoroutine(ReviewCar());
             else if(Array.IndexOf(args,"--verify-car-save")>=0)StartCoroutine(VerifyCarSave());
             else if(Array.IndexOf(args,"--review-sprint-route")>=0)StartCoroutine(ReviewSprintRoute());
             else if(Array.IndexOf(args,"--verify-sprint-save")>=0)StartCoroutine(VerifySprintSave());
@@ -264,6 +273,7 @@ public partial class DemoApp : MonoBehaviour {
         if(HandleMapKeys(mapKey,Input.GetKeyDown(KeyCode.Escape)))return;
         if(TickCarriedTicket())return;
         if(MilkOrdersOpen) { UpdateMilkOrderInput(); focus=null; return; }
+        if(PoliceReportOpen) { UpdatePoliceReportInput(); focus=null; return; }
         if(DialogueOpen) { UpdateDialogueInput(); focus=null; return; }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if(inspected) CloseInspect();
@@ -302,6 +312,7 @@ public partial class DemoApp : MonoBehaviour {
         if(item.evidenceId=="E04") { OpenMilkboyDialogue(); return; }
         if(item.title=="钟表匠") { OpenWatchmakerDialogue(); return; }
         if(item.title=="售票员") { OpenStationClerkDialogue(item); return; }
+        if(item.title=="值班警员") { OpenPoliceOfficerDialogue(item); return; }
         inspected=item; towerAdjustmentFeedback=""; CursorMode();
         if(item.evidenceId=="E02"||item.evidenceId=="E03") {
             var existing=state.entries.Find(e=>e.id==item.evidenceId);
@@ -457,7 +468,7 @@ public partial class DemoApp : MonoBehaviour {
                 if(!mapOpen||player.pitch<25){GUI.color=new Color(1,0.95f,0.85f,0.8f);GUI.DrawTexture(new Rect(W/2-3,H/2-3,6,6),circle);GUI.color=Color.white;}
                 if(focus&&(!mapOpen||player.pitch<25)) {
                     Rect p=new Rect(W/2-170,H/2+38,340,43);Box(p,new Color(0.04f,0.08f,0.11f,0.87f));
-                    Label(p,"E   "+(focus is ScenePortal||focus is ShopMechanism||focus is MilkShopFixture||focus is RailSeat?focus.title:focus.evidenceId=="E04"||focus.title=="钟表匠"?"交谈 · "+focus.title:focus.ActionText),button);
+                    Label(p,"E   "+(focus is ScenePortal||focus is ShopMechanism||focus is MilkShopFixture||focus is RailSeat?focus.title:focus.evidenceId=="E04"||focus.title=="钟表匠"||focus.title=="值班警员"?"交谈 · "+focus.title:focus.ActionText),button);
                 }
                 if(!mapOpen)Label(new Rect(36,H-50,W-72,30),CarSeated?CarHelpLine():RailSeated?"鼠标 观察    E 起身下车    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停":"WASD 行走    鼠标 观察    Shift 奔跑    E 互动    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停",small);
             }
@@ -466,6 +477,7 @@ public partial class DemoApp : MonoBehaviour {
             if(inspected is ClockTowerAdjustment) DrawTowerAdjustment();
             else if(inspected) DrawInspection(inspected.title,inspected.body,inspected.source,inspected.illustration);
             if(MilkOrdersOpen) DrawMilkOrders();
+            if(PoliceReportOpen) DrawPoliceReport();
             if(journal) DrawJournal();
             if(paused) {
                 Box(new Rect(0,0,W,H),new Color(0,0,0,0.42f));Panel(new Rect(W/2-230,H/2-180,460,360));
@@ -529,6 +541,7 @@ public partial class DemoApp : MonoBehaviour {
             Label(new Rect(p.x+400,p.y+330,640,TicketImage(e.id)?46:180),TicketImage(e.id)?(e.id=="E02"?"纸面与票边完整。":"同线路废票，票面留有检票孔。"):e.body,text);
             DrawTicketOnJournal(e,p);
         }
+        if(Button(new Rect(p.x+630,p.y+538,225,52),"整理阶段报告")){journal=false;OpenPoliceReport();}
         if(Button(new Rect(p.x+870,p.y+538,225,52),"继续调查  ·  Tab")){journal=false;CursorMode();}
     }
     IEnumerator Capture(string name) {

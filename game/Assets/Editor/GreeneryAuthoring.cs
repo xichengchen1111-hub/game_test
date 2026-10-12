@@ -31,6 +31,21 @@ public static class GreeneryAuthoring {
         }
         model=AssetDatabase.LoadAssetAtPath<GameObject>(path);models.Add(asset,model);return model;
     }
+    // One extra authored tree outside the 217 canonical map trees (the D police court).
+    // Same kit, material, LODs and trunk proxy; call after Build() so the material exists.
+    public static GameObject ExtraTree(Transform parent,string asset,Vector3 local,float radius,float yaw,string name) {
+        if(!foliage)throw new InvalidOperationException("Build town greenery before extra trees");
+        var g=(GameObject)PrefabUtility.InstantiatePrefab(Model(asset));g.name=name;g.transform.SetParent(parent,false);
+        var rs=g.GetComponentsInChildren<MeshRenderer>();
+        foreach(var r in rs){r.sharedMaterial=foliage;r.shadowCastingMode=ShadowCastingMode.On;r.receiveShadows=true;}
+        var near=rs.Single(r=>r.name.EndsWith("LOD0"));var bounds=near.bounds;float extent=Mathf.Max(bounds.extents.x,bounds.extents.z);
+        g.transform.localScale=new Vector3(radius/extent,radius*2.7f/bounds.size.y,radius/extent);
+        g.transform.localPosition=local;g.transform.localRotation=Quaternion.Euler(0,yaw,0);
+        SetLOD(g,new[]{new Renderer[]{near},new Renderer[]{rs.Single(r=>r.name.EndsWith("LOD1"))},new Renderer[]{rs.Single(r=>r.name.EndsWith("LOD2"))}},new[]{.15f,.06f,.008f});
+        var trunk=new GameObject(name+" trunk");trunk.transform.SetParent(parent,false);trunk.transform.localPosition=local;
+        var c=trunk.AddComponent<CapsuleCollider>();c.radius=.13f;c.height=radius*2.7f*.6f;c.center=Vector3.up*c.height/2;
+        return g;
+    }
     static Mesh Save(Mesh mesh,string name) {
         mesh.name=name;string path=Generated+name+".asset";var old=AssetDatabase.LoadAssetAtPath<Mesh>(path);
         if(old){EditorUtility.CopySerialized(mesh,old);UnityEngine.Object.DestroyImmediate(mesh);EditorUtility.SetDirty(old);return old;}

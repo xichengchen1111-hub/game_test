@@ -21,6 +21,8 @@ paths=unary_union([corridor(q['points'],q['width']+.8) for q in p['paths']])
 entrances=unary_union([Point(*b[k]).buffer(1.65) for b in p['buildings'] for k in ['door','rearDoor','gate'] if b.get(k)])
 # The actual station roof/platform/rail yard extends beyond the historic plot.
 protected=[box(143,30,231,95),rect(town['milkRect']).buffer(1.7),box(143,-26,184,18)]
+# The D police court (paved, own tree and benches in BuildSlice.Police) is not a lawn.
+protected.append(box(6.5,39.7,18.5,51.7).buffer(.3))
 protected += [rect(d['rect']).buffer(.3) for d in p['details'] if d['kind'] in ['service','shed']]
 protected += [rect(d['rect']).buffer(.3) for d in p['land'] if d['kind'] in ['rail','court','workyard']]
 protected += [Point(*f['point']).buffer(max(f['width'],f['depth'])/2+.8) for f in p['facilities']]

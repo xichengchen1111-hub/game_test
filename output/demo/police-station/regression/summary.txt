@@ -1,0 +1,16 @@
+﻿PASS police-1080 1.4min 
+PASS police-1080-verify 0.1min 
+PASS police-720 1.3min 
+PASS police-720-verify 0.1min 
+FAIL full-map 0.1min FULL_MAP_REVIEW_FAIL: Property identity/count | InvalidOperationException: Property identity/count
+FAIL full-map-verify 0.1min FULL_MAP_REVIEW_FAIL: Relocated indoor save failed in new process | InvalidOperationException: Relocated indoor save failed in new process
+PASS station-clerk 0.9min 
+PASS station-clerk-verify 0.2min 
+PASS dairy-doors 1.0min 
+PASS dairy-doors-verify 0.1min 
+PASS map 0.3min 
+PASS map-verify 0.1min 
+PASS walnut 0.8min 
+PASS walnut-verify 0.1min 
+PASS day-night 0.6min 
+PASS day-night-verify 0.1min 
