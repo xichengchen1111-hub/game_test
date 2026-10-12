@@ -5,7 +5,7 @@
 - Use command-line Git for all repository operations, including fetch, pull, commit and push; do not open GitHub Desktop (user instruction, 2026-10-08). At the start of each new task, fetch `origin/main` and summarize the commits and notable file changes since the local `main` before starting the requested work. If `main` is behind and the working tree is clean, fast-forward it. If local changes exist, preserve them before syncing and reapply them afterward; never discard user work, and report any conflict before overwriting files. Do not commit or push the sync or local work unless the user asks.
 - `docs/mvp-demo.md` defines the current first-person, freely explored MVP. The original Chinese DOCX/PDF supplies story background; older third-person or fixed-route wording does not override the current MVP.
 - In the complete MVP all three interiors are initially accessible. The current user-requested 10% visual slice implements the town and clock shop; its shop is freely accessible from the beginning. The companion makes optional ambient remarks; its dialogue, occupation and location never gate clues, doors or deductions.
-- Concepts in `docs/concepts/` are generated style references. The playable Unity project is in `game/`; actual runtime captures and the walking clip are in `output/demo/`, and the local Windows player is in `builds/windows/` (ignored by Git).
+- Concepts in `docs/concepts/` are generated style references. The playable Unity project is in `game/`; compact runtime captures are in `output/demo/` (new frames as JPG; existing walking clips stay there, new videos stay outside Git), and the local Windows player is in `builds/windows/` (ignored by Git). See 仓库体积与证据文件 below.
 - Skills are versioned in `skills/` and installed with `tools/install_project_skills.py`. Use `wrong-date-narrative` for chronology/evidence, `wrong-date-unity` for scenes and code, `wrong-date-blender` for assets, and `wrong-date-playtest` for runtime verification. Read the corresponding `SKILL.md` before applying it.
 - `docs/mvp-evidence.json` is a development contract, not player-facing UI text. Keep private deductions out of the material viewer and preserve stable evidence IDs.
 - Do not claim a playable build from concepts, static data checks or compilation. Gameplay acceptance needs runtime evidence and a separate fairness review.
@@ -92,6 +92,14 @@
 - 值班警员暂用已认可售票员 Tripo 模型改藏青制服（`make_officer_texture.py`），脸与售票员相同，是占位；档案职员按设计缺席。
 - 字体：新增中文后用 `tools/clocktower/expand_ui_font.py builds/review/milk-interior-a/NotoSansSC.ttf` 扩充 TownSans（保留旧字形，源 SHA256 与 `font-manifest.json` 一致）。
 - 验收：`tools/ReviewPolice.ps1 -Mode police` 与 `-Mode verify`（独立 `police-review-save.json`），1080p／720p。结果与回归见 `output/demo/police-station/` 与记忆 POLICE-01。
+
+### 仓库体积与证据文件（用户确认，2026-10-12）
+
+- 仓库开工一周已约 1.7GB：验收截图与录屏约占 54%，美术原始文件与导入美术约 39%，构建生成的网格只有约 1.4%。GitHub 建议仓库最好在 1GB 以内、不超过 5GB，所以按下面的规则控制增长；已在历史中的文件不改写、不强推。
+- **截图**：要进 Git 的验收帧先用 `python3 tools/evidence_jpg.py <目录或 PNG>` 转成 JPG（质量 88，游戏画面约为 PNG 的 12%，会同步改同目录 .md/.json/.txt 里的文件名，并列出别处仍引用旧名的文件）。每个功能只留少量关键帧；完整截图、逐帧图、录屏和原始下载包留在被忽略的 `builds/`，需要分享时另行上传（如 GitHub Releases、网盘），仓库只记链接与校验值。
+- **忽略规则**：`.gitignore` 忽略 `output/` 下新增的 PNG、MP4、MOV、WebM、GIF、ZIP；已跟踪的旧文件不受影响。重新跑验收覆盖了已跟踪的 PNG 时，要么转 JPG 并更新引用，要么 `git restore --staged --worktree <路径>` 还原，不要直接提交新 PNG。
+- **提交前检查**：每个克隆执行一次 `git config core.hooksPath tools/git-hooks`。`tools/git-hooks/pre-commit` 拦下超过 45MB 的单个文件（GitHub 50MB 警告、100MB 拒收），以及 `output/` 下新增或改动的 PNG、视频、压缩包；其他超过 10MB 的文件只提示。只有用户同意的例外才用 `ALLOW_LARGE_COMMIT=1 git commit …`，不要用 `--no-verify` 绕过。
+- **其他**：.blend、FBX、贴图等源文件照常进 Git，能用 JPG 的参考图优先 JPG；暂不启用 Git LFS（GitHub 免费额度 1GB）。共面修补网格保持构建生成、逐字节可复现，不要删掉 `Assets/Generated/ZFightRepair/` 再构建；长期在车站、钟楼生成器源头消除共面，缩小最大的副本。
 
 ### 共面闪烁（z-fighting，用户要求全部修复，2026-10-12）
 

@@ -1,5 +1,12 @@
 # Agent 持久记忆：错日证词
 
+### REPO-01：仓库体积控制——证据转 JPG、忽略新媒体文件、提交前大小检查（2026-10-12）
+
+- **起因**：PUBLISH-06 后用户问「未来怎么操作？asset 会很多很多吧？」，再要求「你直接帮我做，然后更新 remote，不要让任何游戏出现问题」。按历史统计（全部 blob 压缩后约 1.61GB）：output/demo 截图与录屏 862MB（54%），assets/source 389MB，game/Assets/Art 236MB，Generated 网格与预制件 23MB；按类型 PNG 913MB、MP4 235MB。开工 2026-10-06，一周 29 个提交即 1.7GB。
+- **做法**：①`tools/evidence_jpg.py` 把选定 PNG 转 JPG（质量 88；警署 18 张 1080p 截图 25.4MB→3.1MB，约 12%），同目录文本引用自动改名，并用 git grep 列出别处旧名；Pillow 优先，macOS 无 Pillow 时用 sips。②`.gitignore` 末尾忽略 `output/**` 下新增的 png/mp4/mov/webm/gif/zip（已跟踪文件不受影响，原有 `!` 白名单也只对已跟踪文件有效）。③`tools/git-hooks/pre-commit`＋`check_staged.py`：单文件 >45MB、或 `output/` 下新增／改动的 PNG／视频／压缩包时拒绝提交，>10MB 其他文件提示；例外需用户同意后 `ALLOW_LARGE_COMMIT=1`。`.gitattributes` 令钩子保持 LF。本机已 `git config core.hooksPath tools/git-hooks`；其他克隆（含协作者 Mac）需各自执行一次。
+- **验证**：在 scratch 仓库实测 8 种情况：普通提交通过；46MB 拦下（45.0MB 恰好等于上限放行）；强制加入的新 PNG 拦下；`ALLOW_LARGE_COMMIT=1` 放行；改动已跟踪 PNG 拦下；12MB 中文路径文件提示后放行；output 下 .md 放行；转换器 3 张 5.5MB→0.6MB、README 引用已改、别处引用被列出，JPG 目视清晰。本仓库本次提交即经过该钩子。编辑器代码只往 output/ 写 JSON／文本报告，不读取其中图片或视频；本次未改任何 game/ 文件、未重建游戏。
+- **未做**：没有改写历史或强推（已有 1.7GB 不会变小）；没有把已跟踪的 PNG 批量转 JPG（历史里仍在，只会再增加 JPG）；未启用 Git LFS；车站、钟楼生成器源头消除共面以缩小最大修补网格（40MB）留作后续。
+
 ### PUBLISH-06：用户授权推送警署与共面闪烁修复（2026-10-12）
 
 - 用户看完 ZFIGHT-01 后说「push吧」，并问修补网格这么大以后有没有影响。推送前 CLI fetch 确认 main＝origin/main＝bf2709a（0/0）；提交 b486e1f 直接推到 main，推送后再次核对一致。

@@ -1,0 +1,11 @@
+#!/bin/sh
+# Repository size guard (REPO-01, 2026-10-12): see tools/git-hooks/check_staged.py.
+# Activate once per clone:  git config core.hooksPath tools/git-hooks
+root=$(git rev-parse --show-toplevel) || exit 1
+for py in python3 python; do
+  if command -v "$py" >/dev/null 2>&1 && "$py" -c "import sys" >/dev/null 2>&1; then
+    exec "$py" "$root/tools/git-hooks/check_staged.py"
+  fi
+done
+echo "pre-commit: Python not found, repository size guard skipped." >&2
+exit 0

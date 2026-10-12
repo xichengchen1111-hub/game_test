@@ -110,3 +110,13 @@ assets/source/greenery/*.blend[0-9]
 assets/source/milkboy/tripo/*.blend[0-9]
 assets/source/watchmaker/tripo/*.blend[0-9]
 assets/source/station-clerk/tripo/*.blend[0-9]
+
+# Repository size (REPO-01, 2026-10-12): new evidence frames, videos and archives under output/
+# stay out of Git. Commit selected frames as JPG (tools/evidence_jpg.py); keep videos and raw
+# archives in builds/ or share them outside Git. Files that are already tracked are unaffected.
+output/**/*.png
+output/**/*.mp4
+output/**/*.mov
+output/**/*.webm
+output/**/*.gif
+output/**/*.zip

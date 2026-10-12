@@ -14,3 +14,6 @@ game/**/*.mat whitespace=-blank-at-eol
 game/**/*.meta whitespace=-blank-at-eol
 game/**/*.controller whitespace=-blank-at-eol
 game/Assets/Art/Fonts/OFL.txt whitespace=-blank-at-eol
+
+# Git hooks run under sh on every platform.
+tools/git-hooks/* text eol=lf
