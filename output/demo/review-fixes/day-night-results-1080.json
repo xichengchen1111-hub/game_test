@@ -1,0 +1,195 @@
+{
+    "passed": true,
+    "clockPause": true,
+    "readingTimeContinues": true,
+    "midnightContinuous": true,
+    "sunlightContinuous": true,
+    "roomAutoOff": true,
+    "deepRoomLit": true,
+    "manualOffPreserved": true,
+    "shadowBudget": true,
+    "emissionSynced": true,
+    "samples": [
+        {
+            "view": "town",
+            "phase": "dawn",
+            "minutes": 375.0,
+            "daylight": 0.3165895640850067,
+            "directionalIntensity": 0.01732402667403221,
+            "exteriorOn": 18,
+            "interiorOn": 30
+        },
+        {
+            "view": "town",
+            "phase": "noon",
+            "minutes": 720.0,
+            "daylight": 1.0,
+            "directionalIntensity": 0.593999981880188,
+            "exteriorOn": 0,
+            "interiorOn": 13
+        },
+        {
+            "view": "town",
+            "phase": "dusk",
+            "minutes": 1075.0,
+            "daylight": 0.19591471552848817,
+            "directionalIntensity": 0.009969610720872879,
+            "exteriorOn": 18,
+            "interiorOn": 30
+        },
+        {
+            "view": "town",
+            "phase": "night",
+            "minutes": 0.0,
+            "daylight": 0.0,
+            "directionalIntensity": 0.13200001418590547,
+            "exteriorOn": 18,
+            "interiorOn": 30
+        },
+        {
+            "view": "milk-room",
+            "phase": "dawn",
+            "minutes": 375.0,
+            "daylight": 0.3165895640850067,
+            "directionalIntensity": 0.01732402667403221,
+            "exteriorOn": 16,
+            "interiorOn": 30
+        },
+        {
+            "view": "milk-room",
+            "phase": "noon",
+            "minutes": 720.0,
+            "daylight": 1.0,
+            "directionalIntensity": 0.593999981880188,
+            "exteriorOn": 0,
+            "interiorOn": 13
+        },
+        {
+            "view": "milk-room",
+            "phase": "dusk",
+            "minutes": 1075.0,
+            "daylight": 0.19591471552848817,
+            "directionalIntensity": 0.009969610720872879,
+            "exteriorOn": 16,
+            "interiorOn": 30
+        },
+        {
+            "view": "milk-room",
+            "phase": "night",
+            "minutes": 0.0,
+            "daylight": 0.0,
+            "directionalIntensity": 0.13200001418590547,
+            "exteriorOn": 16,
+            "interiorOn": 30
+        },
+        {
+            "view": "milk-window-north",
+            "phase": "dawn",
+            "minutes": 375.0,
+            "daylight": 0.3165895640850067,
+            "directionalIntensity": 0.01732402667403221,
+            "exteriorOn": 16,
+            "interiorOn": 30
+        },
+        {
+            "view": "milk-window-north",
+            "phase": "noon",
+            "minutes": 720.0,
+            "daylight": 1.0,
+            "directionalIntensity": 0.593999981880188,
+            "exteriorOn": 0,
+            "interiorOn": 13
+        },
+        {
+            "view": "milk-window-north",
+            "phase": "dusk",
+            "minutes": 1075.0,
+            "daylight": 0.19591471552848817,
+            "directionalIntensity": 0.009969610720872879,
+            "exteriorOn": 16,
+            "interiorOn": 30
+        },
+        {
+            "view": "milk-window-north",
+            "phase": "night",
+            "minutes": 0.0,
+            "daylight": 0.0,
+            "directionalIntensity": 0.13200001418590547,
+            "exteriorOn": 16,
+            "interiorOn": 30
+        },
+        {
+            "view": "milk-window-south",
+            "phase": "dawn",
+            "minutes": 375.0,
+            "daylight": 0.3165895640850067,
+            "directionalIntensity": 0.01732402667403221,
+            "exteriorOn": 16,
+            "interiorOn": 30
+        },
+        {
+            "view": "milk-window-south",
+            "phase": "noon",
+            "minutes": 720.0,
+            "daylight": 1.0,
+            "directionalIntensity": 0.593999981880188,
+            "exteriorOn": 0,
+            "interiorOn": 13
+        },
+        {
+            "view": "milk-window-south",
+            "phase": "dusk",
+            "minutes": 1075.0,
+            "daylight": 0.19591471552848817,
+            "directionalIntensity": 0.009969610720872879,
+            "exteriorOn": 16,
+            "interiorOn": 30
+        },
+        {
+            "view": "milk-window-south",
+            "phase": "night",
+            "minutes": 0.0,
+            "daylight": 0.0,
+            "directionalIntensity": 0.13200001418590547,
+            "exteriorOn": 16,
+            "interiorOn": 30
+        },
+        {
+            "view": "clock-shop",
+            "phase": "dawn",
+            "minutes": 375.0,
+            "daylight": 0.3165895640850067,
+            "directionalIntensity": 0.01732402667403221,
+            "exteriorOn": 15,
+            "interiorOn": 30
+        },
+        {
+            "view": "clock-shop",
+            "phase": "noon",
+            "minutes": 720.0,
+            "daylight": 1.0,
+            "directionalIntensity": 0.593999981880188,
+            "exteriorOn": 0,
+            "interiorOn": 13
+        },
+        {
+            "view": "clock-shop",
+            "phase": "dusk",
+            "minutes": 1075.0,
+            "daylight": 0.19591471552848817,
+            "directionalIntensity": 0.009969610720872879,
+            "exteriorOn": 15,
+            "interiorOn": 30
+        },
+        {
+            "view": "clock-shop",
+            "phase": "night",
+            "minutes": 0.0,
+            "daylight": 0.0,
+            "directionalIntensity": 0.13200001418590547,
+            "exteriorOn": 15,
+            "interiorOn": 30
+        }
+    ],
+    "verification": "Native rendered player with normal AO/shadows. Scripted controller and ordinary interaction rays; time staging in isolated review. No physical keyboard or low-end hardware benchmark."
+}

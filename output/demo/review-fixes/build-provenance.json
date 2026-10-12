@@ -1,0 +1,22 @@
+{
+  "commit": "7618050",
+  "engine": "Unity6000.3.18f1",
+  "platform": "macOS / Apple M5 Pro / Metal",
+  "blender": "4.5.9 LTS",
+  "app": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app",
+  "assemblySha256": "54e74043b72c5a43e8c512107db219251f07d285dad7641ab2afeeb4230ec784",
+  "carFbxSha256": "b848a8fc604bd65b31a14f59b78abcb099bedbad6171c3ebdd4097da96b4cfd1",
+  "carLayoutSha256": "f919405b715c8dfdce267ed49113da8c827ba817a9d7ddef97da776ff4cabdf3",
+  "beforeCarFbxSha256": "d6ea4009f0a05720c64e12595c83a9755c44c3c7c05134ed1e6a079ebdbafa49",
+  "buildLog": "builds/review-fixes/build-03.log",
+  "normalSaveBefore": {
+    "existed": true,
+    "sha256": "9e01aff1d39841cf16850cac4629ca22e3d6cee8d40312350d0ca48797cf9733"
+  },
+  "dayNightEvidenceAssemblySha256": "f317812017d8d61ee06c66d4f8ad89705cee0264889520b536858f242b9258ee",
+  "dayNightDifference": "Final build changes only CarReview outside-seat aim; production code and assets identical.",
+  "normalSaveAfterSha256": "9e01aff1d39841cf16850cac4629ca22e3d6cee8d40312350d0ca48797cf9733",
+  "normalSaveUnchanged": true,
+  "priorReviewSavesRestored": true,
+  "signatureVerified": true
+}

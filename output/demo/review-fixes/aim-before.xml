@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="3" result="Failed(Child)" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-12 07:48:59Z" end-time="2026-10-12 07:48:59Z" duration="0.0197667">
+  <test-suite type="TestSuite" id="1000" name="错日证词 · 暮色小镇" fullname="错日证词 · 暮色小镇" runstate="Runnable" testcasecount="59" result="Failed" site="Child" start-time="2026-10-12 07:48:59Z" end-time="2026-10-12 07:48:59Z" duration="0.019767" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1032" name="HotelCar.EditTests.dll" fullname="/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/game/Library/ScriptAssemblies/HotelCar.EditTests.dll" runstate="Runnable" testcasecount="24" result="Failed" site="Child" start-time="2026-10-12 07:48:59Z" end-time="2026-10-12 07:48:59Z" duration="0.016922" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="52996" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1027" name="PlayerAimTests" fullname="PlayerAimTests" classname="PlayerAimTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-12 07:48:59Z" end-time="2026-10-12 07:48:59Z" duration="0.016468" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="ParameterizedMethod" id="1031" name="OffsetEyeAimsAtControlWithoutLeavingSeatFrame" fullname="PlayerAimTests.OffsetEyeAimsAtControlWithoutLeavingSeatFrame" classname="PlayerAimTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2026-10-12 07:48:59Z" end-time="2026-10-12 07:48:59Z" duration="0.015326" total="3" passed="0" failed="3" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1028" name="OffsetEyeAimsAtControlWithoutLeavingSeatFrame(0.0f,0.0f,0.0f,0.0f)" fullname="PlayerAimTests.OffsetEyeAimsAtControlWithoutLeavingSeatFrame(0.0f,0.0f,0.0f,0.0f)" methodname="OffsetEyeAimsAtControlWithoutLeavingSeatFrame" classname="PlayerAimTests" runstate="Runnable" seed="1510925323" result="Failed" start-time="2026-10-12 07:48:59Z" end-time="2026-10-12 07:48:59Z" duration="0.011735" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+            <failure>
+              <message><![CDATA[  Actual eye ray misses the control after turning
+  Expected: less than 0.0500000007f
+  But was:  5.11963558f
+]]></message>
+              <stack-trace><![CDATA[at PlayerAimTests.OffsetEyeAimsAtControlWithoutLeavingSeatFrame (System.Single tilt, System.Single yaw, System.Single roll, System.Single side) [0x0018d] in /Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/game/Assets/Editor/CarTests/PlayerAimTests.cs:25
+]]></stack-trace>
+            </failure>
+          </test-case>
+          <test-case id="1029" name="OffsetEyeAimsAtControlWithoutLeavingSeatFrame(3.0f,343.0f,-2.0f,0.0f)" fullname="PlayerAimTests.OffsetEyeAimsAtControlWithoutLeavingSeatFrame(3.0f,343.0f,-2.0f,0.0f)" methodname="OffsetEyeAimsAtControlWithoutLeavingSeatFrame" classname="PlayerAimTests" runstate="Runnable" seed="940822496" result="Failed" start-time="2026-10-12 07:48:59Z" end-time="2026-10-12 07:48:59Z" duration="0.000416" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+            <failure>
+              <message><![CDATA[  Actual eye ray misses the control after turning
+  Expected: less than 0.0500000007f
+  But was:  2.76541233f
+]]></message>
+              <stack-trace><![CDATA[at PlayerAimTests.OffsetEyeAimsAtControlWithoutLeavingSeatFrame (System.Single tilt, System.Single yaw, System.Single roll, System.Single side) [0x0018d] in /Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/game/Assets/Editor/CarTests/PlayerAimTests.cs:25
+]]></stack-trace>
+            </failure>
+          </test-case>
+          <test-case id="1030" name="OffsetEyeAimsAtControlWithoutLeavingSeatFrame(-7.0f,118.0f,5.0f,0.08f)" fullname="PlayerAimTests.OffsetEyeAimsAtControlWithoutLeavingSeatFrame(-7.0f,118.0f,5.0f,0.08f)" methodname="OffsetEyeAimsAtControlWithoutLeavingSeatFrame" classname="PlayerAimTests" runstate="Runnable" seed="1514665215" result="Failed" start-time="2026-10-12 07:48:59Z" end-time="2026-10-12 07:48:59Z" duration="0.000151" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+            <failure>
+              <message><![CDATA[  Actual eye ray misses the control after turning
+  Expected: less than 0.0500000007f
+  But was:  16.8641701f
+]]></message>
+              <stack-trace><![CDATA[at PlayerAimTests.OffsetEyeAimsAtControlWithoutLeavingSeatFrame (System.Single tilt, System.Single yaw, System.Single roll, System.Single side) [0x0018d] in /Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/game/Assets/Editor/CarTests/PlayerAimTests.cs:25
+]]></stack-trace>
+            </failure>
+            <output><![CDATA[Saving results to: /Users/wulizhi/Library/Application Support/Qingchuan Studio/错日证词 · 暮色小镇/TestResults.xml
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

@@ -1,0 +1,13 @@
+{
+  "name": "day-night-720",
+  "passed": false,
+  "baselineReproduces": true,
+  "stage": "After milk-room dawn/noon/dusk/night captures, the existing scripted approach to the reading lamp is blocked by the current counter-side layout.",
+  "failure": [
+    "Exception: Review movement blocked before (-144.45, 0.14, 7.17) at (-144.44, 0.16, 7.59) blocked=False direction=(0.00, 0.00, 0.00)"
+  ],
+  "baselineFailure": [
+    "Exception: Review movement blocked before (-144.45, 0.14, 7.17) at (-144.44, 0.16, 7.59) blocked=False direction=(0.00, 0.00, 0.00)"
+  ],
+  "scope": "Street-specific day/rain/night, lamp and clock/pause checks passed separately. This general suite and its save continuation did not pass; production lighting and NPC placement were not modified to evade the failure."
+}

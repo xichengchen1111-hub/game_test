@@ -1,0 +1,49 @@
+{
+  "unchangedFields": [
+    "version",
+    "bounds",
+    "buildings",
+    "roads",
+    "trees",
+    "land",
+    "details",
+    "facilities",
+    "lamps",
+    "milkRect"
+  ],
+  "surfaceAreas": {
+    "road": {
+      "previous": 9622.0,
+      "current": 9622.0,
+      "filled": 0.0,
+      "removed": 0.0
+    },
+    "walk": {
+      "previous": 5712.034119131292,
+      "current": 15706.03723728283,
+      "filled": 9994.003118151535,
+      "removed": 0.0
+    },
+    "kerb": {
+      "previous": 567.014400000015,
+      "current": 735.8544000000239,
+      "filled": 168.84000000000427,
+      "removed": 0.0
+    },
+    "yard": {
+      "previous": 8557.462623146452,
+      "current": 10190.94332782985,
+      "filled": 1633.4807046833996,
+      "removed": 0.0
+    }
+  },
+  "docs/maps/town-current/plan-data.json": {
+    "byteIdentical": true,
+    "sha256": "94f28836481d178f74f0225b7bf56461e5fc1796f17c6419b638667397373dd2"
+  },
+  "docs/mvp-evidence.json": {
+    "byteIdentical": true,
+    "sha256": "5a0048fc006a44645360f0690a52a1b04ce3f46cae586e3bc26a0492bae63b5d"
+  },
+  "plantingArraysPreserved": true
+}

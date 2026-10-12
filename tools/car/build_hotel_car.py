@@ -686,10 +686,12 @@ def build_interior_parts():
     lathe(gl, (-0.03, 1.02, -0.12), (0, 1, 0), [(0, -0.026), (0.02, -0.018), (0.026, 0), (0.02, 0.018), (0, 0.026)], 'Car_Black', seg=12)
     box(gl, (0, 0.512, 0.06), (0.10, 0.025, 0.10), 'Car_Rubber')
     control('gear', 'gear', 'GearLever', (-0.03, 1.02, -0.12), (0.06, 0.06, 0.06), '变速杆')
-    hb = movable('Handbrake', (0.12, 0.50, 0.08), 'hinge', (1, 0, 0), -24, speed=5)
-    cyl(hb, (0.12, 0.50, 0.08), (0.12, 0.93, -0.04), 0.011, 'Car_Chrome', seg=8)
-    cyl(hb, (0.12, 0.88, -0.026), (0.12, 0.95, -0.046), 0.017, 'Car_Black', seg=10)
-    control('handbrake', 'handbrake', 'Handbrake', (0.12, 0.91, -0.035), (0.05, 0.08, 0.05), '手刹杆')
+    # Keep the grip clear of the gear knob in reverse with the brake raised.
+    # Move the whole assembly (pivot, mesh and target) together, 14 cm right.
+    hb = movable('Handbrake', (0.26, 0.50, 0.08), 'hinge', (1, 0, 0), -24, speed=5)
+    cyl(hb, (0.26, 0.50, 0.08), (0.26, 0.93, -0.04), 0.011, 'Car_Chrome', seg=8)
+    cyl(hb, (0.26, 0.88, -0.026), (0.26, 0.95, -0.046), 0.017, 'Car_Black', seg=10)
+    control('handbrake', 'handbrake', 'Handbrake', (0.26, 0.91, -0.035), (0.05, 0.08, 0.05), '手刹杆')
     # Gauge needles turn about the dash normal.
     for name, x in (('Needle_Amp', -0.07), ('Needle_Speed', 0.0), ('Needle_Fuel', 0.07)):
         nd = movable(name, (x, 1.06, 0.2525), 'gauge', (0, 0, -1), 0, speed=6)

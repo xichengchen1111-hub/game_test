@@ -31,6 +31,11 @@ public partial class DemoApp {
     CarControl CarControlById(string id) => FindObjectsByType<CarControl>(FindObjectsSortMode.None).Single(c => c.controlId == id);
     Vector3 CarControlPoint(CarControl c) {
         var own = c.GetComponent<Collider>();
+        // From outside, the cushion centre can sit behind the B-pillar when the
+        // parked car tilts on a kerb. Aim at the visible front portion of the same
+        // seat target; keep the ordinary first-hit E ray and full body collision.
+        if (!CarSeated && c.kind == CarControlKind.Seat && own is BoxCollider seatBox)
+            return seatBox.transform.TransformPoint(seatBox.center + Vector3.forward * (seatBox.size.z * .3f));
         if (own) return own.bounds.center;
         if (c.part && c.part.leaves.Length > 0) return c.part.leaves[0].bounds.center;
         return c.transform.position;

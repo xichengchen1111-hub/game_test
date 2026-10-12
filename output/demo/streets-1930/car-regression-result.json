@@ -1,0 +1,12 @@
+{
+  "name": "car",
+  "exitCode": -1,
+  "passed": false,
+  "seconds": 200.03,
+  "expectedMarker": "CAR_REVIEW_PASS",
+  "failure": [
+    "CAR_REVIEW_FAIL: E ray reached Body box 18 instead of handbrake hit=(118.18, 0.57, 16.42) target=(118.08, 0.99, 15.99) eye=(117.83, 1.61, 15.41)"
+  ],
+  "baselineReproduces": true,
+  "notResolvedInStreetTask": true
+}

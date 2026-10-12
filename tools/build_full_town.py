@@ -1,10 +1,11 @@
-"""Compile authoritative map into inexpensive Unity meshes/markers. pip install shapely pillow.
+"""Compile authoritative map into inexpensive Unity meshes/markers. pip install 'shapely>=2.1' pillow.
 Source map is never edited here. World X/Z and metres are preserved, no parcel-to-house scaling.
 """
 from pathlib import Path
 import json, math, hashlib, random
 from shapely.geometry import box, LineString, Point
-from shapely.ops import unary_union, triangulate
+from shapely.ops import unary_union
+from shapely import constrained_delaunay_triangles
 from PIL import Image, ImageDraw
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -44,6 +45,7 @@ kerb=road.buffer(.18,join_style=2).difference(road).intersection(public).differe
 walk=walk.difference(kerb)
 yard=yards.difference(unary_union([public,paths,plaza,holes]))
 surfaces=[]
+coverage=[]
 def pieces(geometry,material,y):
  if geometry.is_empty:return
  x0,z0,x1,z1=geometry.bounds
@@ -51,11 +53,19 @@ def pieces(geometry,material,y):
   for cz in range(math.floor(z0/48),math.floor(z1/48)+1):
    part=geometry.intersection(box(cx*48,cz*48,(cx+1)*48,(cz+1)*48))
    verts=[]
-   for t in triangulate(part):
+   triangles=list(constrained_delaunay_triangles(part).geoms)
+   covered=unary_union(triangles)
+   error=part.symmetric_difference(covered).area
+   assert error<1e-6, f"Missing {material} area in chunk {cx},{cz}: {error}"
+   coverage.append(error)
+   for t in triangles:
     if t.area<1e-7 or not part.covers(t):continue
     a=list(t.exterior.coords)[:3]
-    # Shapely CCW in X/Z gives a downward normal; reverse to face sky.
-    for x,z in reversed(a):verts.extend([round(x,5),y,round(z,5)])
+    # GEOS constrained triangulation can return either winding. In X/Z,
+    # negative signed area is the required upward Unity normal.
+    cross=(a[1][0]-a[0][0])*(a[2][1]-a[0][1])-(a[1][1]-a[0][1])*(a[2][0]-a[0][0])
+    if cross>0:a.reverse()
+    for x,z in a:verts.extend([round(x,5),y,round(z,5)])
    if verts:surfaces.append(dict(name=f'{material}-{cx}-{cz}',material=material,vertices=verts))
 pieces(road.difference(holes),'road',.025)
 pieces(walk,'walk',.10)
@@ -101,6 +111,7 @@ im.save(ASSETS/'Tree.png')
 out=ROOT/'output/demo/full-map';out.mkdir(parents=True,exist_ok=True)
 report=dict(source=data['sourceSha256'],buildings=len(buildings),trees=len(p['trees']),roads=len(p['roads']),
  surfaceChunks=len(surfaces),surfaceTriangles=sum(len(s['vertices'])//9 for s in surfaces),lanterns=len(lamps),
+ maximumTriangulationAreaError=max(coverage),
  disjointSurfaceAreaError=road.intersection(walk).area+kerb.intersection(walk).area,
  milkPlacement='Existing house retained at scale .9 inside B04 production parcel; remaining production floor is placeholder yard',
  scope='Map compilation and planar surface partition. Native Unity collision and rendering require player acceptance.')

@@ -1,0 +1,88 @@
+{
+  "parts": [
+    [
+      {
+        "id": "Handbrake",
+        "parent": "Body",
+        "pivot": [
+          0.12,
+          0.5,
+          0.08
+        ],
+        "kind": "hinge",
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "angle": -24.0,
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "speed": 5.0,
+        "fixture": ""
+      },
+      {
+        "id": "Handbrake",
+        "parent": "Body",
+        "pivot": [
+          0.26,
+          0.5,
+          0.08
+        ],
+        "kind": "hinge",
+        "axis": [
+          1.0,
+          0.0,
+          0.0
+        ],
+        "angle": -24.0,
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "speed": 5.0,
+        "fixture": ""
+      }
+    ]
+  ],
+  "controls": [
+    [
+      {
+        "id": "handbrake",
+        "kind": "handbrake",
+        "part": "Handbrake",
+        "center": [
+          0.12,
+          0.91,
+          -0.035
+        ],
+        "size": [
+          0.05,
+          0.08,
+          0.05
+        ],
+        "label": "手刹杆"
+      },
+      {
+        "id": "handbrake",
+        "kind": "handbrake",
+        "part": "Handbrake",
+        "center": [
+          0.26,
+          0.91,
+          -0.035
+        ],
+        "size": [
+          0.05,
+          0.08,
+          0.05
+        ],
+        "label": "手刹杆"
+      }
+    ]
+  ]
+}

@@ -125,7 +125,8 @@ public partial class DemoApp {
         Vector3 P(float x,float y,float z)=>shop.transform.TransformPoint(new Vector3(x,y,z));
         yield return DayViews("milk-room",P(0,1.98f,1.75f),result);
         var reading=shop.GetComponentsInChildren<MilkShopFixture>().Single(f=>f.action==MilkShopFixture.Action.ReadingLamp);
-        yield return WalkTo(P(.39f,.2f,.05f));player.Aim(reading.GetComponent<Collider>().bounds.center);yield return null;
+        // Approach along the customer aisle, clear of the counter-side milkboy.
+        yield return WalkTo(P(.90f,.2f,-1.10f));yield return WalkTo(P(.90f,.2f,.05f));player.Aim(reading.GetComponent<Collider>().bounds.center);yield return null;
         DayReviewTime(720);paused=false;
         NeedDay(TryInteract()&&!reading.LampOn&&!reading.readingLight.enabled,"Manual off failed in daytime");
         DayReviewTime(0);
@@ -136,7 +137,8 @@ public partial class DemoApp {
         NeedDay(reading.LampOn&&!reading.readingLight.enabled,"Manual on bypassed daylight saving");
         result.manualOffPreserved=true;result.roomAutoOff=true;result.deepRoomLit=true;
         dayNightReviewFrozen=false;paused=false;var book=shop.GetComponentInChildren<MilkOrderBook>();
-        yield return WalkTo(P(-.14f,.2f,-.02f));player.Aim(book.GetComponent<Collider>().bounds.center);yield return null;
+        yield return WalkTo(P(.90f,.2f,-1.10f));yield return WalkTo(P(-.85f,.2f,-1.10f));
+        yield return WalkTo(P(-.85f,.2f,-.02f));player.Aim(book.GetComponent<Collider>().bounds.center);yield return null;
         NeedDay(TryInteract()&&MilkOrdersOpen,"Ledger interaction failed");
         double before=ElapsedGameMinutes;Quaternion rotation=cycle.celestialLight.transform.rotation;
         yield return new WaitForSeconds(.5f);
@@ -147,11 +149,13 @@ public partial class DemoApp {
         yield return new WaitForSecondsRealtime(.4f);
         NeedDay(before==ElapsedGameMinutes&&Quaternion.Angle(rotation,cycle.celestialLight.transform.rotation)<.001f,"Explicit pause changed clock or lighting");
         paused=false;result.clockPause=true;
+        yield return WalkTo(P(-.85f,.2f,-1.10f));
         foreach(int side in new[]{-1,1}) {
-            yield return WalkTo(P(side*2.65f,.2f,-.65f));
+            yield return WalkTo(P(side*2.65f,.2f,-1.10f));yield return WalkTo(P(side*2.65f,.2f,-.65f));
             yield return DayViews(side<0?"milk-window-north":"milk-window-south",P(side*3.6f,1.87f,.1f),result);
             DayReviewTime(side<0?720:0);paused=false;
             yield return MilkWindowMotion(shop,side);
+            yield return WalkTo(P(side*2.65f,.2f,-1.10f));
         }
         yield return WalkTo(placement.inside);yield return WalkTo(placement.outside);
         var door=seamlessShop.GetComponentsInChildren<ShopMechanism>().Single(f=>f.fixtureId=="shop-front-door");
@@ -163,9 +167,10 @@ public partial class DemoApp {
         yield return DayViews("clock-shop",seamlessShop.layout.ToTown(new Vector3(0,1.8f,2.6f)),result);
         yield return WalkTo(seamlessShop.layout.ToTown(new Vector3(0,.1f,-5)));
         player.Place(placement.outside,0);yield return WalkTo(placement.outside);yield return WalkTo(placement.inside);
-        yield return WalkTo(P(.39f,.2f,.05f));player.Aim(reading.GetComponent<Collider>().bounds.center);yield return null;
+        // Approach along the customer aisle, clear of the counter-side milkboy.
+        yield return WalkTo(P(.90f,.2f,-1.10f));yield return WalkTo(P(.90f,.2f,.05f));player.Aim(reading.GetComponent<Collider>().bounds.center);yield return null;
         NeedDay(TryInteract()&&!reading.LampOn,"Final off switch failed");
-        yield return WalkTo(P(-.66f,.2f,-1.1f));DayReviewTime(720);Save();
+        yield return WalkTo(P(.90f,.2f,-1.10f));yield return WalkTo(P(-.66f,.2f,-1.1f));DayReviewTime(720);Save();
         File.WriteAllText(savePath+".day-proof.json",JsonUtility.ToJson(new DayNightProof{elapsedMinutes=ElapsedGameMinutes,processId=System.Diagnostics.Process.GetCurrentProcess().Id,selectedDate=state.milkOrderDate},true));
         result.passed=true;result.emissionSynced=true;
         result.verification="Native rendered player with normal AO/shadows. Scripted controller and ordinary interaction rays; time staging in isolated review. No physical keyboard or low-end hardware benchmark.";

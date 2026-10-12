@@ -1,0 +1,9 @@
+[
+  {
+    "name": "baseline-day-night",
+    "exitCode": -1,
+    "passed": false,
+    "seconds": 50.02,
+    "expectedMarker": "DAY_NIGHT_REVIEW_PASS"
+  }
+]

@@ -36,10 +36,17 @@ public class PlayerMotor : MonoBehaviour {
         eye.transform.localPosition = new Vector3(0,1.66f,0);
     }
     public void Aim(Vector3 point) {
-        Vector3 d = point - eye.transform.position;
-        transform.rotation = Quaternion.Euler(0,Mathf.Atan2(d.x,d.z)*Mathf.Rad2Deg,0);
-        pitch = -Mathf.Atan2(d.y,new Vector2(d.x,d.z).magnitude)*Mathf.Rad2Deg;
-        eye.transform.localRotation = Quaternion.Euler(pitch,0,0);
+        // Solve yaw around the body pivot, in the parent's (possibly tilted seat)
+        // frame. Turning moves an offset eye; aiming from its old position misses
+        // small nearby controls. Ordinary mouse look already uses this local frame.
+        Vector3 target = transform.parent ? transform.parent.InverseTransformPoint(point) - transform.localPosition : point - transform.position;
+        Vector3 offset = Vector3.Scale(eye.transform.localPosition, transform.localScale);
+        float radius = new Vector2(target.x, target.z).magnitude;
+        float yaw = Mathf.Atan2(target.x, target.z) - Mathf.Asin(Mathf.Clamp(offset.x / Mathf.Max(radius, .0001f), -1, 1));
+        transform.localRotation = Quaternion.Euler(0, yaw * Mathf.Rad2Deg, 0);
+        Vector3 d = transform.InverseTransformDirection(point - eye.transform.position);
+        pitch = -Mathf.Atan2(d.y, new Vector2(d.x, d.z).magnitude) * Mathf.Rad2Deg;
+        eye.transform.localRotation = Quaternion.Euler(pitch, 0, 0);
     }
     void Update() {
         if (!DemoApp.Instance) return;

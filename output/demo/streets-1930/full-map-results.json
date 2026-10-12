@@ -1,0 +1,10 @@
+{
+    "passed": true,
+    "properties": 70,
+    "roads": 11,
+    "orders": 6,
+    "migrations": 4,
+    "pointLightLimit": 12,
+    "source": "94f28836481d178f74f0225b7bf56461e5fc1796f17c6419b638667397373dd2",
+    "verification": "OSXPlayer native renderer and real controller at Shift speed on clear footways. Four finished interiors preserved; other rooms, historical NPC schedules and coal vehicle turning remain unimplemented."
+}

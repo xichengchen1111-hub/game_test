@@ -69,6 +69,8 @@ public static partial class BuildSlice {
         Add(Load("Assets/Generated/Materials/StreetFlags.mat"),.78f,.80f);
         Add(Load("Assets/Generated/Materials/StreetKerb.mat"),.74f,.82f);
         Add(Load("Assets/Generated/Materials/StreetYard.mat"),.62f,.82f);
+        Add(Load("Assets/Generated/Materials/PeriodGutter.mat"),.78f,.78f);
+        Add(Load("Assets/Generated/Materials/PeriodRoadPaint.mat"),.55f,.86f);
         for(int i=0;i<FacadeTints.Length;i++){Add(PlaceholderFacade(i),.40f,.84f);Add(PlaceholderPlaster(i),.38f,.85f);}
         Add(PlaceholderSlate(),.62f,.86f);
         foreach(var (name,smoothness,darken) in new[]{("IvoryBrick",.48f,.82f),("CreamStone",.50f,.82f),("Slate",.62f,.86f),("Lead",.52f,.92f),("DarkOak",.40f,.86f),("Recess",.30f,.90f),("Bronze",.46f,.92f)})

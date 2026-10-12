@@ -1,0 +1,7 @@
+{
+  "file": "街道路口实机行走.mp4",
+  "duration": 6.3809555,
+  "nativeFrames": 128,
+  "assemblySha256": "0c53e888ac5c9bc0a2b11ca4e94d0fa449c6db4fbf5215ccc4611757abf42947",
+  "audioSource": "Native Unity screen and AudioListener mix; wall-clock frame timestamps, scripted real controller, no dubbed audio."
+}

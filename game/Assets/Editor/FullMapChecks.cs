@@ -6,6 +6,10 @@ using UnityEngine;
 public static class FullMapChecks {
     public static void Validate(TownPlan plan,GameObject geometry) {
         void Need(bool ok,string why){if(!ok)throw new InvalidOperationException("Full map: "+why);}
+        foreach(var surface in plan.surfaces)for(int i=0;i<surface.vertices.Length;i+=9) {
+            var v=surface.vertices;var a=new Vector3(v[i],v[i+1],v[i+2]);var b=new Vector3(v[i+3],v[i+4],v[i+5]);var c=new Vector3(v[i+6],v[i+7],v[i+8]);
+            Need(Vector3.Cross(b-a,c-a).y>0,"inverted road/footway triangle: "+surface.name);
+        }
         var markers=geometry.GetComponentsInChildren<TownMapBuilding>();
         Need(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70,"all 70 properties must appear once");
         Need(markers.Count(m=>m.finished)==4,"finished tower/shop/dairy/station");

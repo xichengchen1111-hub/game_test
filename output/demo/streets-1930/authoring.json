@@ -1,0 +1,12 @@
+{
+  "mapSource": "94f28836481d178f74f0225b7bf56461e5fc1796f17c6419b638667397373dd2",
+  "mapUnchanged": true,
+  "stopSigns": 16,
+  "signalJunctions": 1,
+  "crossingJunctions": 3,
+  "drains": 108,
+  "kerbRisers": 170,
+  "surfaceMeshes": 87,
+  "triangles": 412,
+  "design": "1930 urban yellow/red THROUGH STOP TRAFFIC; paired white crosswalk boundaries; no YIELD, zebra stripes, modern yellow centre lines or invented street names."
+}

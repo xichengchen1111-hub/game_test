@@ -1,0 +1,19 @@
+{
+  "commitAtStart": "7618050d690b199f1b07e36a1e247b354a0b627e",
+  "assemblySha256": "0c53e888ac5c9bc0a2b11ca4e94d0fa449c6db4fbf5215ccc4611757abf42947",
+  "app": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app",
+  "bundleIdentifier": "com.qingchuanstudio.wrongdatetest.currentmac",
+  "engine": "Unity6000.3.18f1",
+  "platform": "macOS / Apple M5 Pro / Metal",
+  "normalSaveBefore": {
+    "path": "/Users/wulizhi/Library/Application Support/com.qingchuanstudio.wrongdatetest.currentmac/slice-save.json",
+    "sha256": "9e01aff1d39841cf16850cac4629ca22e3d6cee8d40312350d0ca48797cf9733"
+  },
+  "productionEquivalentPreviousAssembly": "3d56d7e9d82f54f1cad533c5e1f43c83386b449842ee1400dad3ec110642cce3",
+  "differenceFromPreviousAssembly": "Only the isolated period-street review waits 0.7s after a staged teleport and asserts the nearest STOP sign lamp is active. Production code and assets unchanged.",
+  "buildLog": "builds/street-1930/build-05.log",
+  "codeSignature": "codesign --verify --deep --strict passed",
+  "baselineAssemblySha256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+  "normalSaveAfterSha256": "9e01aff1d39841cf16850cac4629ca22e3d6cee8d40312350d0ca48797cf9733",
+  "normalSaveUnchanged": true
+}

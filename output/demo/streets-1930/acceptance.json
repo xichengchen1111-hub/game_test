@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-12",
+  "platform": "macOS / Apple M5 Pro / Metal",
+  "engine": "Unity6000.3.18f1",
+  "streetWorkPassed": true,
+  "allRegressionSuitesPassed": false,
+  "checks": [
+    {
+      "name": "accepted-720",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 26.2,
+      "expectedMarker": "PERIOD_STREET_REVIEW_PASS",
+      "assemblySha256": "3d56d7e9d82f54f1cad533c5e1f43c83386b449842ee1400dad3ec110642cce3"
+    },
+    {
+      "name": "full-map",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 556.83,
+      "expectedMarker": "FULL_MAP_REVIEW_PASS",
+      "assemblySha256": "3d56d7e9d82f54f1cad533c5e1f43c83386b449842ee1400dad3ec110642cce3"
+    },
+    {
+      "name": "full-map-save",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 5.88,
+      "expectedMarker": "FULL_MAP_SAVE_PASS",
+      "assemblySha256": "3d56d7e9d82f54f1cad533c5e1f43c83386b449842ee1400dad3ec110642cce3"
+    },
+    {
+      "name": "car",
+      "exitCode": -1,
+      "passed": false,
+      "seconds": 200.03,
+      "expectedMarker": "CAR_REVIEW_PASS",
+      "assemblySha256": "3d56d7e9d82f54f1cad533c5e1f43c83386b449842ee1400dad3ec110642cce3"
+    },
+    {
+      "name": "final-720",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 27.47,
+      "expectedMarker": "PERIOD_STREET_REVIEW_PASS",
+      "assemblySha256": "0c53e888ac5c9bc0a2b11ca4e94d0fa449c6db4fbf5215ccc4611757abf42947"
+    },
+    {
+      "name": "final-1080",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 27.2,
+      "expectedMarker": "PERIOD_STREET_REVIEW_PASS",
+      "assemblySha256": "0c53e888ac5c9bc0a2b11ca4e94d0fa449c6db4fbf5215ccc4611757abf42947"
+    },
+    {
+      "name": "day-night-720",
+      "exitCode": -15,
+      "passed": false,
+      "seconds": 90.96,
+      "expectedMarker": "DAY_NIGHT_REVIEW_PASS",
+      "assemblySha256": "0c53e888ac5c9bc0a2b11ca4e94d0fa449c6db4fbf5215ccc4611757abf42947"
+    },
+    {
+      "name": "sprint",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 373.38,
+      "expectedMarker": "SPRINT_REVIEW_PASS",
+      "assemblySha256": "0c53e888ac5c9bc0a2b11ca4e94d0fa449c6db4fbf5215ccc4611757abf42947"
+    },
+    {
+      "name": "sprint-save",
+      "exitCode": 0,
+      "passed": true,
+      "seconds": 4.84,
+      "expectedMarker": "SPRINT_SAVE_PASS",
+      "assemblySha256": "0c53e888ac5c9bc0a2b11ca4e94d0fa449c6db4fbf5215ccc4611757abf42947"
+    }
+  ],
+  "baselineAssemblySha256": "9ccf0ced29248750a84c6f9b3e7673e6f978571ca5c622119a0bab501c69c6c9",
+  "previousBuildDifference": "Only the isolated period-street review waits 0.7s after a staged teleport and asserts the nearest STOP sign lamp is active. Production code and assets unchanged.",
+  "knownFailures": [
+    "Car review: after reversing from the facade, E ray to handbrake hits body; reproduced in before.app. Car save follow-up not run.",
+    "General day/night review: old milk-shop reading-lamp approach blocked at (-144.44,0.16,7.59); reproduced at identical point in before.app. Remaining day/night checks and save follow-up not completed."
+  ],
+  "storyWindowFeasible": false,
+  "normalSaveUnchanged": true,
+  "codeSignatureVerified": true,
+  "staticChecks": [
+    "Original map and evidence bytes unchanged",
+    "All original planting/ground arrays preserved",
+    "Constrained triangulation coverage and upward winding",
+    "Unity shared building layout and full-map authoring",
+    "git diff --check",
+    "New Unity asset metadata pairs and no new file over 20 MiB"
+  ],
+  "scope": "Native macOS Metal, staged cameras/weather/clock and scripted real CharacterController. Six exterior visit orders are not six complete story playthroughs. No physical keyboard, blind-player, Windows, Intel-hardware or low-end performance claim. Final 720p/1080p street captures and walking video are from build05; full-map checks are build04 with identical production behavior.",
+  "followUpResolution": {
+    "status": "resolved",
+    "record": "../review-fixes/acceptance.json",
+    "note": "Both previously failing suites and their independent save checks pass at 720p/1080p in the subsequent final build. Original street-build outcomes retained above."
+  }
+}

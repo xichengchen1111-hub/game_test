@@ -1,0 +1,8 @@
+{
+  "exitCode": -15,
+  "seconds": 117.87,
+  "passed": false,
+  "fail": [
+    "CAR_REVIEW_FAIL: E ray reached Body box 5 instead of handbrake hit=(117.66, 0.52, 16.18) target=(117.54, 0.92, 15.76) eye=(117.27, 1.52, 15.20)"
+  ]
+}

@@ -71,7 +71,7 @@ public static partial class StreetSurfaces {
             importer.textureType=suffix=="Normal"?TextureImporterType.NormalMap:TextureImporterType.Default;
             importer.sRGBTexture=suffix=="Base";importer.wrapMode=TextureWrapMode.Repeat;
             importer.mipmapEnabled=true;importer.filterMode=FilterMode.Trilinear;importer.anisoLevel=8;
-            importer.maxTextureSize=1024;importer.textureCompression=TextureImporterCompression.CompressedHQ;
+            importer.maxTextureSize=texture.StartsWith("Period")?2048:1024;importer.textureCompression=TextureImporterCompression.CompressedHQ;
             importer.alphaSource=TextureImporterAlphaSource.FromInput;importer.SaveAndReimport();
         }
         string path="Assets/Generated/Materials/"+name+".mat";

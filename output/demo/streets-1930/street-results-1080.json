@@ -1,0 +1,1 @@
+{"passed":true,"stopSigns":16,"signalJunctions":1,"colliders":18,"roadSweeps":true,"controllerCrossing":true,"clockAdvanceAndPause":true,"exclusiveSignalPhases":true,"verification":"Native Mac/Metal rendered views; staged camera/clock; actual CharacterController walking. No physical-keyboard or blind test."}

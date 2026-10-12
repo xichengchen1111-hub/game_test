@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test-run id="2" testcasecount="15" result="Failed(Child)" total="15" passed="14" failed="1" inconclusive="0" skipped="0" asserts="0" engine-version="3.5.0.0" clr-version="4.0.30319.42000" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.0743583">
+  <test-suite type="TestSuite" id="1000" name="错日证词 · 暮色小镇" fullname="错日证词 · 暮色小镇" runstate="Runnable" testcasecount="74" result="Failed" site="Child" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.074358" total="15" passed="14" failed="1" inconclusive="0" skipped="0" asserts="0">
+    <properties>
+      <property name="platform" value="EditMode" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="Assembly" id="1048" name="HotelCar.EditTests.dll" fullname="/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/game/Library/ScriptAssemblies/HotelCar.EditTests.dll" runstate="Runnable" testcasecount="39" result="Failed" site="Child" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.071184" total="15" passed="14" failed="1" inconclusive="0" skipped="0" asserts="0">
+      <properties>
+        <property name="_PID" value="53269" />
+        <property name="_APPDOMAIN" value="Unity Child Domain" />
+        <property name="platform" value="EditMode" />
+        <property name="EditorOnly" value="True" />
+      </properties>
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestFixture" id="1001" name="HotelCarPrefabTests" fullname="HotelCarPrefabTests" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="36" result="Failed" site="Child" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.070770" total="15" passed="14" failed="1" inconclusive="0" skipped="0" asserts="0">
+        <properties />
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="ParameterizedMethod" id="1035" name="DriverCanReachBrakeAndGearThroughoutTheirTravel" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" testcasecount="15" result="Failed" site="Child" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.069068" total="15" passed="14" failed="1" inconclusive="0" skipped="0" asserts="0">
+          <properties />
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-case id="1020" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(-1,0.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(-1,0.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="421130397" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.025247" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1021" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(-1,0.5f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(-1,0.5f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="1186499105" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002959" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1022" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(-1,1.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(-1,1.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="69870284" result="Failed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.004907" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+            <failure>
+              <message><![CDATA[  handbrake obstructed in gear -1 at brake 1
+  Expected: <Control handbrake (UnityEngine.GameObject)>
+  But was:  <Control gear (UnityEngine.GameObject)>
+]]></message>
+              <stack-trace><![CDATA[at HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel (System.Int32 gear, System.Single brake) [0x002ac] in /Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/game/Assets/Editor/CarTests/HotelCarPrefabTests.cs:168
+]]></stack-trace>
+            </failure>
+          </test-case>
+          <test-case id="1023" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(0,0.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(0,0.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="944219705" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002768" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1024" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(0,0.5f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(0,0.5f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="1994605982" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002698" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1025" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(0,1.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(0,1.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="1308911977" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002612" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1026" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(1,0.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(1,0.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="1107450408" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002691" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1027" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(1,0.5f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(1,0.5f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="801207289" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002627" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1028" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(1,1.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(1,1.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="1666141686" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002484" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1029" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(2,0.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(2,0.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="474059413" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002806" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1030" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(2,0.5f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(2,0.5f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="487097415" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002677" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1031" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(2,1.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(2,1.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="2146429705" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002575" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1032" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(3,0.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(3,0.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="584432635" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002810" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1033" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(3,0.5f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(3,0.5f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="543156536" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002657" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+          </test-case>
+          <test-case id="1034" name="DriverCanReachBrakeAndGearThroughoutTheirTravel(3,1.0f)" fullname="HotelCarPrefabTests.DriverCanReachBrakeAndGearThroughoutTheirTravel(3,1.0f)" methodname="DriverCanReachBrakeAndGearThroughoutTheirTravel" classname="HotelCarPrefabTests" runstate="Runnable" seed="2013544232" result="Passed" start-time="2026-10-12 07:54:10Z" end-time="2026-10-12 07:54:10Z" duration="0.002426" asserts="0">
+            <properties>
+              <property name="retryIteration" value="0" />
+              <property name="repeatIteration" value="0" />
+            </properties>
+            <output><![CDATA[Saving results to: /Users/wulizhi/Library/Application Support/Qingchuan Studio/错日证词 · 暮色小镇/TestResults.xml
+]]></output>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

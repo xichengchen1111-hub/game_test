@@ -133,6 +133,42 @@ public class HotelCarPrefabTests {
         Assert.IsEmpty(failures);
     }
     // From each standing spot used beside the car, a 1.66m eye ray reaches every outside control first.
+    [TestCase(-1, 0f)]
+    [TestCase(-1, 0.5f)]
+    [TestCase(-1, 1f)]
+    [TestCase(0, 0f)]
+    [TestCase(0, 0.5f)]
+    [TestCase(0, 1f)]
+    [TestCase(1, 0f)]
+    [TestCase(1, 0.5f)]
+    [TestCase(1, 1f)]
+    [TestCase(2, 0f)]
+    [TestCase(2, 0.5f)]
+    [TestCase(2, 1f)]
+    [TestCase(3, 0f)]
+    [TestCase(3, 0.5f)]
+    [TestCase(3, 1f)]
+    public void DriverCanReachBrakeAndGearThroughoutTheirTravel(int gear, float brake) {
+        var lever = Part("GearLever");
+        var pose = gear switch { 1 => new Vector3(12,0,9), 2 => new Vector3(-12,0,9), 3 => new Vector3(12,0,-9), -1 => new Vector3(-12,0,-9), _ => Vector3.zero };
+        lever.GetType().GetMethod("PoseEuler").Invoke(lever, new object[] { pose });Snap(Part("Handbrake"), brake);
+        var driver = Seats.Single(s => (string)Field(s, "seatId") == "driver");
+        var body = new GameObject("Seated control ray test");body.transform.SetParent(driver.transform, false);
+        try {
+            body.AddComponent<CharacterController>().enabled = false;
+            var type = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("PlayerMotor")).First(t => t != null);
+            var motor = body.AddComponent(type);
+            var cameraObject = new GameObject("Seated test eye");cameraObject.transform.SetParent(body.transform, false);
+            var eye = cameraObject.AddComponent<Camera>();eye.enabled = false;eye.transform.localPosition = (Vector3)Field(driver,"eyeLocal");
+            type.GetField("eye").SetValue(motor,eye);Physics.SyncTransforms();
+            foreach(var id in new[]{"handbrake","gear"}) {
+                var control = car.GetComponentsInChildren<Component>(true).Single(c => c && c.GetType().Name == "CarControl" && (string)Field(c,"controlId") == id);
+                type.GetMethod("Aim").Invoke(motor,new object[]{control.GetComponent<Collider>().bounds.center});Physics.SyncTransforms();
+                Assert.IsTrue(Physics.Raycast(eye.transform.position,eye.transform.forward,out var hit,3f), id+" missed");
+                Assert.AreEqual(control.gameObject,hit.collider.gameObject,id+" obstructed in gear "+gear+" at brake "+brake);
+            }
+        } finally { UnityEngine.Object.DestroyImmediate(body); }
+    }
     [TestCase(1.28f, 1.3f, "Hood_R", "engine")]
     [TestCase(.5f, 2.6f, "", "radiatorCap")]
     [TestCase(-1.32f, 1.45f, "", "spare,fuelCap")]

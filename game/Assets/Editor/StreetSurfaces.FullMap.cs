@@ -7,8 +7,8 @@ public static partial class StreetSurfaces {
     public static GameObject BuildFull(TownPlan plan) {
         Directory.CreateDirectory(MeshRoot);AssetDatabase.Refresh();
         var root=new GameObject("Street surfaces");
-        var road=Stone("StreetSetts","RoadSetts",Color.white,1,.32f);
-        var walk=Stone("StreetFlags","FootwayFlags",Color.white,.85f,.32f);
+        var road=Stone("StreetSetts","PeriodAsphalt",Color.white,.7f,.42f);
+        var walk=Stone("StreetFlags","PeriodConcrete",Color.white,.7f,.30f);
         var kerb=Stone("StreetKerb","KerbStone",new Color(.85f,.86f,.87f),.8f,.35f);
         var yard=Stone("StreetYard","FootwayFlags",new Color(.76f,.76f,.69f),.5f,.24f);
         foreach(var surface in plan.surfaces) {
@@ -25,6 +25,7 @@ public static partial class StreetSurfaces {
             var marker=new GameObject(r.id+" "+r.name);marker.transform.SetParent(root.transform,false);
             var profile=marker.AddComponent<StreetSurfaceLayout>();profile.profileId=r.id;profile.carriageway=r.lane;profile.clearFootway=r.walk;profile.furnitureStrip=r.strip;
         }
+        BuildPeriod(root,plan);
         Debug.Log("FULL_MAP_STREETS_PASS: "+plan.roads.Length+" profiles, "+plan.surfaces.Length+" partitioned chunks; metres UV, junction and building cutouts");
         return root;
     }
