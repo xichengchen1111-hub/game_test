@@ -223,7 +223,11 @@ def build_walls(L):
                 ends.append(along[1])
             if not (a1 < w['a1'] - 1e-6 and any(abs(q[0] - a1) < 1e-6 and q[2] <= y0 + 1e-6 and q[3] >= y1 - 1e-6 for q in pieces_all)):
                 ends.append(along[0])
-            bbox(rp, x0, yy0, z0, x1, yy1, z1, rm, faces=ends + ['+y', '-y'])
+            # The court paving runs under a free-standing court wall, so the sill top below its gate
+            # would lie in the paving plane. The threshold covers it: leave it out.
+            sill = w['pos'] == 'ext' and w['neg'] == 'ext' and any(
+                o['kind'] in ('door', 'arch') and abs(o['bottom'] - y1) < 1e-6 and o['at'] - o['width'] / 2 <= a0 + 1e-6 and a1 <= o['at'] + o['width'] / 2 + 1e-6 for o in own)
+            bbox(rp, x0, yy0, z0, x1, yy1, z1, rm, faces=ends + ([] if sill else ['+y']) + ['-y'])
 
 
 def interior_face_segments(L):
@@ -443,29 +447,40 @@ def build_exterior_details(L):
     doors = [o for o in L['openings'] if o['kind'] == 'door' and o['exterior']]
     # Ashlar plinth band (cut at doors).
     for w in ext_walls:
-        sign = 1 if w['pos'] == 'ext' else -1
-        face = w['c'] + sign * w['t'] / 2
-        cuts = sorted((o['at'] - o['width'] / 2, o['at'] + o['width'] / 2) for o in doors if o['wall'] == w['id'])
-        # Axis-z walls stop at the through walls; extend to the outer corner (+/-thickness) when that end is exterior.
-        # (Pieces meet exactly: F_E stops at z 12 where the east wing's plinth begins.)
-        ext0 = .04 if w['axis'] == 'x' else (.44 if w['id'] == 'F_E' else 0)
-        ext1 = .04 if w['axis'] == 'x' else (.4 if w['id'] == 'F_E' else .44 if w['id'] in ('WW_W', 'WW_E', 'EW_W', 'EW_E') else 0)
-        a, spans = w['a0'] - ext0, []
-        for lo, hi in cuts:
-            spans.append((a, lo)); a = hi
-        spans.append((a, w['a1'] + ext1))
-        for a0, a1 in spans:
-            if a1 - a0 < .02:
-                continue
-            # Span ends that start at an inside corner (ext0/ext1 == 0 at the wall ends) are buried.
-            lo_end = not (abs(a0 - w['a0']) < 1e-6 and ext0 == 0)
-            hi_end = not (abs(a1 - w['a1']) < 1e-6 and ext1 == 0)
+        # A free-standing court wall is exterior on both faces: it carries the band on each, and
+        # the band stops against the wing plinths (.05 proud of the wing walls) instead of
+        # running into them.
+        yard = w['pos'] == 'ext' and w['neg'] == 'ext'
+        for sign in ((1, -1) if yard else ((1,) if w['pos'] == 'ext' else (-1,))):
+            face = w['c'] + sign * w['t'] / 2
+            cuts = sorted((o['at'] - o['width'] / 2, o['at'] + o['width'] / 2) for o in doors if o['wall'] == w['id'])
+            # Axis-z walls stop at the through walls; extend to the outer corner (+/-thickness) when that end is exterior.
+            # (Pieces meet exactly: F_E stops at z 12 where the east wing's plinth begins.)
+            ext0 = -.05 if yard else .04 if w['axis'] == 'x' else (.44 if w['id'] == 'F_E' else 0)
+            ext1 = -.05 if yard else .04 if w['axis'] == 'x' else (.4 if w['id'] == 'F_E' else .44 if w['id'] in ('WW_W', 'WW_E', 'EW_W', 'EW_E') else 0)
+            a, spans = w['a0'] - ext0, []
+            for lo, hi in cuts:
+                spans.append((a, lo)); a = hi
+            spans.append((a, w['a1'] + ext1))
+            for a0, a1 in spans:
+                if a1 - a0 < .02:
+                    continue
+                # Span ends that start at an inside corner (ext0/ext1 <= 0 at the wall ends) are buried.
+                lo_end = not (abs(a0 - (w['a0'] - ext0)) < 1e-6 and ext0 <= 0)
+                hi_end = not (abs(a1 - (w['a1'] + ext1)) < 1e-6 and ext1 <= 0)
+                if w['axis'] == 'x':
+                    z0, z1 = sorted((face, face + sign * .05))
+                    bbox(fac, a0, -.1, z0, a1, .62, z1, 'PExt_Ashlar', faces=['+z' if sign > 0 else '-z', '+y'] + (['-x'] if lo_end else []) + (['+x'] if hi_end else []))
+                else:
+                    x0, x1 = sorted((face, face + sign * .05))
+                    bbox(fac, x0, -.1, a0, x1, .62, a1, 'PExt_Ashlar', faces=['+x' if sign > 0 else '-x', '+y'] + (['-z'] if lo_end else []) + (['+z'] if hi_end else []))
+        if yard:
+            # Stone coping; its ends die into the wing quoins (.04 proud of the wing corners).
+            c0, c1 = w['c'] - w['t'] / 2 - .04, w['c'] + w['t'] / 2 + .04
             if w['axis'] == 'x':
-                z0, z1 = sorted((face, face + sign * .05))
-                bbox(fac, a0, -.1, z0, a1, .62, z1, 'PExt_Ashlar', faces=['+z' if sign > 0 else '-z', '+y'] + (['-x'] if lo_end else []) + (['+x'] if hi_end else []))
+                bbox(fac, w['a0'] + .04, w['y1'], c0, w['a1'] - .04, w['y1'] + .08, c1, 'PExt_Ashlar', faces=['+y', '-y', '+z', '-z'])
             else:
-                x0, x1 = sorted((face, face + sign * .05))
-                bbox(fac, x0, -.1, a0, x1, .62, a1, 'PExt_Ashlar', faces=['+x' if sign > 0 else '-x', '+y'] + (['-z'] if lo_end else []) + (['+z'] if hi_end else []))
+                bbox(fac, c0, w['y1'], w['a0'] + .04, c1, w['y1'] + .08, w['a1'] - .04, 'PExt_Ashlar', faces=['+y', '-y', '+x', '-x'])
     # String course at the first floor on the front range (S, E, W, N upper).
     for wid, sign in (('F_S', -1), ('F_E', 1)):
         w = W[wid]; face = w['c'] + sign * w['t'] / 2

@@ -1,0 +1,86 @@
+{
+  "first": "greeting",
+  "revisit": "greeting",
+  "nodes": [
+    {
+      "id": "wait",
+      "speaker": "律师",
+      "text": "先去听门外的狱警说完。会见手续已经办好了。"
+    },
+    {
+      "id": "greeting",
+      "speaker": "律师",
+      "text": "你来了。我是来处理你这桩案子的律师。你看上去还没缓过神来。",
+      "next": "confused"
+    },
+    {
+      "id": "confused",
+      "speaker": "你",
+      "text": "这里是什么地方？我为什么会在这儿？",
+      "next": "background"
+    },
+    {
+      "id": "background",
+      "speaker": "律师",
+      "text": "青川警署。你的妻子被发现死在家中，警方把你列为嫌疑人。你之前已经做过一份陈述。",
+      "next": "paper"
+    },
+    {
+      "id": "paper",
+      "speaker": "律师",
+      "text": "我带了一份报纸，就放在桌上。先看看。报上写的，是记者和镇民的说法，我们还需要逐一核实。"
+    },
+    {
+      "id": "read",
+      "speaker": "律师",
+      "text": "报纸就在桌上。拿起来看看，读完我们再谈。"
+    },
+    {
+      "id": "after",
+      "speaker": "律师",
+      "text": "现在知道外面在传些什么了吧？报纸上的猜测不能替代证据。",
+      "next": "questions"
+    },
+    {
+      "id": "questions",
+      "speaker": "律师",
+      "text": "你想先问什么？",
+      "choices": [
+        {
+          "text": "警方为什么怀疑我？",
+          "target": "suspect"
+        },
+        {
+          "text": "我记不清先前的事了。",
+          "target": "memory"
+        },
+        {
+          "text": "我接下来该怎么办？",
+          "target": "release"
+        }
+      ]
+    },
+    {
+      "id": "suspect",
+      "speaker": "律师",
+      "text": "你是发现尸体的人，也熟悉这间住宅。警方要核实你那晚的行程。但怀疑并不等于已经证明你有罪。",
+      "next": "questions"
+    },
+    {
+      "id": "memory",
+      "speaker": "律师",
+      "text": "那就先从能核实的材料开始。别为了填补记忆，匆忙替自己编一个答案。你的原口供副本在阅览室，可以反复查看。",
+      "next": "questions"
+    },
+    {
+      "id": "release",
+      "speaker": "律师",
+      "text": "保释手续已经办好。你可以先在阅览室看看原口供，也可以去镇上走走，核对各人的说法。我先到门外等你，还有件事想问你。"
+    },
+    {
+      "id": "revisit",
+      "speaker": "律师",
+      "text": "先看看原始材料，再听各人的说法。查到新的情况，你可以在警署整理一份阶段报告。"
+    }
+  ]
+}

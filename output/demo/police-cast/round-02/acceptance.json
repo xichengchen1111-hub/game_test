@@ -1,0 +1,121 @@
+{
+  "date": "2026-10-13",
+  "engine": "Unity 6000.3.18f1",
+  "platform": "macOS Metal, Apple M5 Pro",
+  "assemblySha256": "d1b279d4f5c0d13e896857f688c44fff28be4482806a5f52c6b08ea0619ce230",
+  "delivery": {
+    "target": "builds/macos-current/错日证词-新版.app",
+    "backup": "builds/opening/integrated/before-new-cast-20261013.app",
+    "oldAssemblySha256": "18ed79128c00208e60e289ef376fd1eb6c1f1d164c27405787e3a57cc1d15d85"
+  },
+  "scriptedNativeChecks": [
+    {
+      "mode": "yard-gate",
+      "exit": 0
+    },
+    {
+      "mode": "yard-gate-save",
+      "exit": 0
+    },
+    {
+      "mode": "police-cast",
+      "exit": 0
+    },
+    {
+      "mode": "1080",
+      "exit": 0
+    },
+    {
+      "mode": "reload",
+      "exit": 0
+    },
+    {
+      "mode": "720",
+      "exit": 0
+    },
+    {
+      "mode": "reload",
+      "exit": 0
+    },
+    {
+      "mode": "opening-ride",
+      "exit": 0
+    },
+    {
+      "mode": "opening-ride-save",
+      "exit": 0
+    },
+    {
+      "mode": "opening-ride-interrupted",
+      "exit": 0
+    },
+    {
+      "mode": "opening-ride-interrupted-save",
+      "exit": 0
+    },
+    {
+      "mode": "police",
+      "exit": 0
+    },
+    {
+      "mode": "police-reload",
+      "exit": 0
+    },
+    {
+      "mode": "station-clerk",
+      "exit": 0
+    },
+    {
+      "mode": "station-clerk-save",
+      "exit": 0
+    }
+  ],
+  "allPassed": true,
+  "policeCastAssertions": 95,
+  "characters": {
+    "Lawyer": {
+      "maxHandDepthMetres": 0.0,
+      "maxSleeveDepthMetres": 0.0205,
+      "withinLimits": true
+    },
+    "CustodyGuard": {
+      "maxHandDepthMetres": 0.0,
+      "maxSleeveDepthMetres": 0.0205,
+      "withinLimits": true
+    },
+    "DutyOfficer": {
+      "maxHandDepthMetres": 0.0,
+      "maxSleeveDepthMetres": 0.0205,
+      "withinLimits": true
+    },
+    "PatrolOfficer": {
+      "maxHandDepthMetres": 0.0,
+      "maxSleeveDepthMetres": 0.0204,
+      "withinLimits": true
+    },
+    "ReceptionOfficer": {
+      "maxHandDepthMetres": 0.0,
+      "maxSleeveDepthMetres": 0.0212,
+      "withinLimits": true
+    }
+  },
+  "clippingRule": "Every frame of Idle, Walk and Talk: bare hands at most 3 mm and sleeves at most 2.5 cm behind the nearest torso/hip/leg face.",
+  "visualReview": "45 renders per character (five phases, front/side/back, three actions) and the in-game captures listed here were looked at.",
+  "knownLimits": [
+    "Talk is a body gesture; mouths do not move (no jaw or lip bones).",
+    "Stout characters stand with arms slightly away from the body; most visible on the last frames of Talk.",
+    "The seated driver is a fixed pose, not a seated Talk clip.",
+    "Sampled phases were viewed, not every frame; the numeric check covers arms against the body only."
+  ],
+  "physicalInputs": false,
+  "blindPlaytest": false,
+  "allReviewsMuted": true,
+  "normalSaveSha256BeforeAndAfter": "706209e91efe85bfe9f3e84f0b10afe9ace99270ca1cf5b7af7b08c958283348",
+  "notCovered": "Full-map six-order walk, day-night, dairy, walnut and house reviews were not rerun.",
+  "screenshots": [
+    "ingame-cast.jpg",
+    "ingame-lawyer-ride-and-guard.jpg",
+    "five-characters-three-actions.jpg",
+    "lawyer-talk-before-clearance.jpg"
+  ]
+}

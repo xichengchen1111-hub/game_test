@@ -1,0 +1,112 @@
+{
+  "date": "2026-10-13",
+  "unity": "6000.3.18f1",
+  "platform": "macOS Metal",
+  "finalApp": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/opening/final/错日证词-第一幕.app",
+  "finalAssemblySHA256": "40873532dd3b07d39944fdd06dd0af93f58513f0d538980069327bb85e1aa06c",
+  "focusedFinalChecks": [
+    {
+      "mode": "map-sightlines",
+      "exit": 0
+    },
+    {
+      "mode": "full-map-save",
+      "exit": 0
+    },
+    {
+      "mode": "1080",
+      "exit": 0
+    },
+    {
+      "mode": "reload",
+      "exit": 0
+    },
+    {
+      "mode": "720",
+      "exit": 0
+    },
+    {
+      "mode": "reload",
+      "exit": 0
+    }
+  ],
+  "editMode": {
+    "passed": 24,
+    "failed": 0
+  },
+  "normalSaveSHA256": "5465b593e6e79709acef397efbe676794ede09d0ad1effafc2731def58f92411",
+  "normalSaveUnchanged": true,
+  "inputScope": "Programmatic real CharacterController, ordinary E rays and shared dialogue/inspection handlers; not physical input or blind playtest",
+  "priorRegressionAssemblySHA256": "3ef919dd76c4a610b8008007455e65d47f694c7565b9649a2090f25f0f7fbb98",
+  "priorRegressionResults": [
+    {
+      "mode": "1080",
+      "exit": 0
+    },
+    {
+      "mode": "reload",
+      "exit": 0
+    },
+    {
+      "mode": "720",
+      "exit": 0
+    },
+    {
+      "mode": "reload",
+      "exit": 0
+    },
+    {
+      "mode": "police",
+      "exit": 0
+    },
+    {
+      "mode": "police-reload",
+      "exit": 0
+    },
+    {
+      "mode": "station-clerk",
+      "exit": 0
+    },
+    {
+      "mode": "station-clerk-save",
+      "exit": 0
+    },
+    {
+      "mode": "dairy-doors",
+      "exit": 0
+    },
+    {
+      "mode": "dairy-doors-save",
+      "exit": 0
+    },
+    {
+      "mode": "map",
+      "exit": 0
+    },
+    {
+      "mode": "map-save",
+      "exit": 0
+    },
+    {
+      "mode": "walnut-shop",
+      "exit": 0
+    },
+    {
+      "mode": "walnut-save",
+      "exit": 0
+    },
+    {
+      "mode": "day-night",
+      "exit": 0
+    },
+    {
+      "mode": "day-night-save",
+      "exit": 0
+    },
+    {
+      "mode": "full-map",
+      "exit": 1
+    }
+  ],
+  "fullMapNote": "All six physical exterior orders passed. The old +9m home-view proxy then hit the current open east door. Test-only references were changed to the existing +10m clear standing point; final player passed actual-eye sightline and independent indoor save. The entire long full-map sequence was not rerun after that test-staging correction."
+}

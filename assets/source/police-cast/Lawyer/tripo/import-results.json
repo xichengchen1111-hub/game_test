@@ -1,0 +1,30 @@
+{
+  "role": "Lawyer",
+  "tripoAsset": "8a4b6e4d-4657-48b8-b97f-2b5cfcd6e3d4",
+  "archive": "assets/source/police-cast/Lawyer/tripo/original/Lawyer-Tripo-idle-walk-talk-5e51de65ee3c.zip",
+  "archiveSHA256": "5e51de65ee3ca13e5d7f8d854a34fe00dfe291e6ae2c9d7ff9bc53d27d06ab39",
+  "originalPreserved": true,
+  "heightMetres": 1.8,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/Lawyer/tripo/original/export-5e51de65ee3c/tripo_convert_44755b59-cb25-4af2-8058-d5df83174654.fbm/tripo_image_44755b59-cb25-4af2-8058-d5df83174654_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/Lawyer/tripo/original/export-5e51de65ee3c/tripo_convert_44755b59-cb25-4af2-8058-d5df83174654.fbm/tripo_image_44755b59-cb25-4af2-8058-d5df83174654_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/Lawyer/tripo/original/export-5e51de65ee3c/tripo_convert_44755b59-cb25-4af2-8058-d5df83174654.fbm/Lawyer-Tripo-idle-walk-talk_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/Lawyer/tripo/original/export-5e51de65ee3c/tripo_convert_44755b59-cb25-4af2-8058-d5df83174654.fbm/Lawyer-Tripo-idle-walk-talk_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/police-cast/Lawyer/tripo/Character.blend",
+  "unity": "game/Assets/Art/PoliceCast/Lawyer/Character.fbx",
+  "motion": "game/Assets/Art/PoliceCast/Lawyer/Motion.json",
+  "fixtureLabel": "",
+  "sourceSHA256": "aaefdef5769941594461c7ce239198574a6c1c04584cd7048075f229182af688",
+  "fbxSHA256": "7a9c10218a757fde9452c8f7b63ca9a4eaca8d502e4bcaabc476683d1d1fbc32",
+  "license": "No third-party license inherited from existing characters; retain any license in original export.",
+  "runtimeVerified": false,
+  "meshSelfIntersectionVerified": false,
+  "appearanceAccepted": false,
+  "sourceCompressed": "Re-saved with Blender file compression on 2026-10-14; contents unchanged."
+}

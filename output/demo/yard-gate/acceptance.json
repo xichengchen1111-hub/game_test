@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-13",
+  "engine": "Unity 6000.3.18f1",
+  "platform": "macOS Metal, Apple M5 Pro",
+  "assemblySha256": "18ed79128c00208e60e289ef376fd1eb6c1f1d164c27405787e3a57cc1d15d85",
+  "delivery": {
+    "oldAssemblySha256": "3c7bb7f76a43608bc30f11d758ad6ba8bad53897c27ce585eb5566c50ddb8509",
+    "backup": "builds/opening/integrated/before-yard-gate-20261013.app",
+    "target": "builds/macos-current/错日证词-新版.app"
+  },
+  "scope": "Court wall C_N with the barred yard gate (police-yard-gate-left/right), pause menu with volume and developer entry.",
+  "scriptedNativeChecks": [
+    "yard-gate",
+    "yard-gate-save",
+    "1080",
+    "reload",
+    "720",
+    "reload",
+    "opening-ride",
+    "opening-ride-save",
+    "opening-ride-interrupted",
+    "opening-ride-interrupted-save",
+    "police",
+    "police-reload",
+    "station-clerk",
+    "station-clerk-save"
+  ],
+  "allPassed": true,
+  "yardGateAssertions": 44,
+  "authoring": {
+    "policeChecks": "53 apertures, 14151 solid wall probes, 16 door leaves, 39 lamps",
+    "zfightScan": "0 exact, 0 moving-exact; groups identical to the previous scan"
+  },
+  "physicalInputs": false,
+  "blindPlaytest": false,
+  "allReviewsMuted": true,
+  "normalSaveSha256BeforeAndAfter": "706209e91efe85bfe9f3e84f0b10afe9ace99270ca1cf5b7af7b08c958283348",
+  "newCastIntegrated": false,
+  "notCovered": "Full-map six-order walk, day-night, dairy, walnut and house reviews were not rerun for this police-only change. Audible sound was not reviewed.",
+  "reviewLogs": "builds/opening/finish2-*",
+  "screenshots": [
+    "yard-01-court-closed-noon.jpg",
+    "yard-02-court-closed-night.jpg",
+    "yard-04-wall-from-yard.jpg",
+    "yard-05-pause-menu.jpg",
+    "yard-06-developer-menu.jpg"
+  ],
+  "supersededBy": "output/demo/police-cast/round-02/acceptance.json reran yard-gate and the other checks on assembly d1b279d4… with the new cast; the court-side rays now start at local z 22.4, north of the guard's post."
+}

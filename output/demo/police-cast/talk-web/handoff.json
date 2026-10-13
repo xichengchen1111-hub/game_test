@@ -1,0 +1,118 @@
+{
+  "date": "2026-10-13",
+  "scope": "Cloud body conversation generation, retargeting and three-action export selection. Not downloaded FBXs, facial animation or game acceptance.",
+  "motion": {
+    "name": "Calm Conversation Gestures",
+    "prompt": "talk-prompt.txt",
+    "requestedSeconds": 5,
+    "previewSeconds": 4.96,
+    "credits": 20,
+    "startingCredits": 24030,
+    "endingCredits": 24010
+  },
+  "characters": [
+    {
+      "role": "Lawyer",
+      "assetId": "4e0f23e6-34e3-4568-b578-caaa6dc53f66",
+      "tabId": "600117516",
+      "url": "https://studio.tripo3d.ai/workspace/animate/one-full-body-male-lawyer-age-46-for-a-grounded-stylized-1931-small-4e0f23e6-34e3-4568-b578-caaa6dc53f66",
+      "sourceGeometry": "round 1 rejected/held appearance",
+      "bodyTalkSeconds": 4.96,
+      "selectedExportAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "selectedExportCount": 3,
+      "localThreeActionPackageAvailable": false,
+      "mouthMovementVerified": false,
+      "gameTalkVerified": false
+    },
+    {
+      "role": "CustodyGuard",
+      "assetId": "fd173583-e0ab-4986-a87f-f87fee06daa3",
+      "tabId": "600117509",
+      "url": "https://studio.tripo3d.ai/workspace/animate/one-full-body-male-custody-officer-age-37-for-a-grounded-stylized-19-fd173583-e0ab-4986-a87f-f87fee06daa3",
+      "sourceGeometry": "round 1 rejected/held appearance",
+      "bodyTalkSeconds": 4.96,
+      "selectedExportAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "selectedExportCount": 3,
+      "localThreeActionPackageAvailable": false,
+      "mouthMovementVerified": false,
+      "gameTalkVerified": false
+    },
+    {
+      "role": "DutyOfficer",
+      "assetId": "78ef7946-a297-4d50-b3a2-6be375c9fa27",
+      "tabId": "600117513",
+      "url": "https://studio.tripo3d.ai/workspace/animate/one-full-body-older-male-desk-police-officer-age-58-in-a-grounded-st-78ef7946-a297-4d50-b3a2-6be375c9fa27",
+      "sourceGeometry": "round 1 rejected/held appearance",
+      "bodyTalkSeconds": 4.96,
+      "selectedExportAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "selectedExportCount": 3,
+      "localThreeActionPackageAvailable": false,
+      "mouthMovementVerified": false,
+      "gameTalkVerified": false
+    },
+    {
+      "role": "PatrolOfficer",
+      "assetId": "9278f1f2-df1e-4769-a661-0877d687206e",
+      "tabId": "600117514",
+      "url": "https://studio.tripo3d.ai/workspace/animate/one-full-body-female-patrol-police-officer-age-28-grounded-stylized-9278f1f2-df1e-4769-a661-0877d687206e",
+      "sourceGeometry": "round 1 rejected/held appearance",
+      "bodyTalkSeconds": 4.96,
+      "selectedExportAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "selectedExportCount": 3,
+      "localThreeActionPackageAvailable": false,
+      "mouthMovementVerified": false,
+      "gameTalkVerified": false
+    },
+    {
+      "role": "ReceptionOfficer",
+      "assetId": "d10d5915-0f86-42d8-aaaf-c0b2a051bf87",
+      "tabId": "600117515",
+      "url": "https://studio.tripo3d.ai/workspace/animate/full-body-female-reception-police-officer-age-50-grounded-stylized-1-d10d5915-0f86-42d8-aaaf-c0b2a051bf87",
+      "sourceGeometry": "round 1 rejected/held appearance",
+      "bodyTalkSeconds": 4.96,
+      "selectedExportAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "selectedExportCount": 3,
+      "localThreeActionPackageAvailable": false,
+      "mouthMovementVerified": false,
+      "gameTalkVerified": false
+    }
+  ],
+  "export": {
+    "format": "FBX",
+    "preset": "Blender",
+    "textureResolution": "2k",
+    "skeleton": true,
+    "currentFrame": false,
+    "stayInPlace": false
+  },
+  "receptionDuplicate": "Two copies of the same body Talk appear after repeated application; one selected, one left unselected, total3.",
+  "download": "No retry this turn; previous Chrome ERR_BLOCKED_BY_CLIENT remains unresolved. Manual export required.",
+  "silentPreview": "builds/cast-talk-web/律师-对话手势网页预览.gif",
+  "faceAudit": {
+    "role": "DutyOfficer",
+    "source": "existing round1 idle-only ZIP",
+    "jawOrLipBones": false,
+    "shapeKeys": false,
+    "otherFour": "not locally inspected"
+  }
+}

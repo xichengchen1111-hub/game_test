@@ -34,6 +34,7 @@ public class ShopMechanism : Interactable {
     }
     void SetTitle() { title=(IsOpen?"关闭":"打开")+(!string.IsNullOrEmpty(label)?label:fixtureId.Contains("drawer")?"零件抽屉":fixtureId.Contains("vitrine")?"展柜":"木门"); }
     public override void Use() {
+        if(fixtureId=="police-holding-door"&&DemoApp.Instance.state.openingStage==0){DemoApp.Instance.CallOpeningGuard();return;}
         if(Moving)return;
         LastUseBlocked=false;
         float target=IsOpen?0:1;

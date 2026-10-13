@@ -1,0 +1,22 @@
+{
+  "first": "arrival",
+  "revisit": "arrival",
+  "nodes": [
+    {
+      "id": "arrival",
+      "speaker": "狱警",
+      "text": "醒了？你的律师来找你了。",
+      "next": "open-cell"
+    },
+    {
+      "id": "open-cell",
+      "speaker": "狱警",
+      "text": "我把门打开。穿过内院，到正楼门厅东边的会见室去，他在那里等你。"
+    },
+    {
+      "id": "directions",
+      "speaker": "狱警",
+      "text": "律师在正楼门厅东侧的会见室。出了牢门，沿内院回廊往南走，从院门进正楼。"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-13",
+  "engine": "Unity 6000.3.18f1",
+  "platform": "macOS Metal, Apple M5 Pro",
+  "assemblySha256": "3c7bb7f76a43608bc30f11d758ad6ba8bad53897c27ce585eb5566c50ddb8509",
+  "delivery": {
+    "oldAssemblySha256": "ea741469824d36cc44fa04a250fca0c03da98a3c241bd82937a8fbbc3607d5c8",
+    "newAssemblySha256": "3c7bb7f76a43608bc30f11d758ad6ba8bad53897c27ce585eb5566c50ddb8509",
+    "backup": "builds/opening/integrated/before-integration-20261013.app",
+    "target": "builds/macos-current/错日证词-新版.app"
+  },
+  "scriptedNativeChecks": [
+    {
+      "mode": "1080",
+      "exit": 0
+    },
+    {
+      "mode": "reload",
+      "exit": 0
+    },
+    {
+      "mode": "720",
+      "exit": 0
+    },
+    {
+      "mode": "reload",
+      "exit": 0
+    },
+    {
+      "mode": "opening-ride",
+      "exit": 0
+    },
+    {
+      "mode": "opening-ride-save",
+      "exit": 0
+    },
+    {
+      "mode": "opening-ride-interrupted",
+      "exit": 0
+    },
+    {
+      "mode": "opening-ride-interrupted-save",
+      "exit": 0
+    },
+    {
+      "mode": "station-clerk",
+      "exit": 0
+    },
+    {
+      "mode": "station-clerk-save",
+      "exit": 0
+    }
+  ],
+  "physicalInputs": false,
+  "blindPlaytest": false,
+  "allReviewsMuted": true,
+  "savesBefore": {
+    "slice-save.json": "706209e91efe85bfe9f3e84f0b10afe9ace99270ca1cf5b7af7b08c958283348",
+    "opening-playtest-save.json": null
+  },
+  "savesAfter": {
+    "slice-save.json": "706209e91efe85bfe9f3e84f0b10afe9ace99270ca1cf5b7af7b08c958283348",
+    "opening-playtest-save.json": null
+  },
+  "normalSaveUnchanged": true,
+  "openingPlaytestSaveUnchanged": true,
+  "newCastIntegrated": false,
+  "newCastReason": "Only rejected old DutyOfficer idle ZIP is local. Revised appearances remain 2D references; three-action packages were not downloaded. Tripo reference upload denied by browser approval; download previously stopped by Chrome ERR_BLOCKED_BY_CLIENT. No bypass attempted. Existing cast placeholders retained.",
+  "newCastVisualWalkTalkMouthAccepted": false,
+  "fullWorldRegression": false,
+  "reviewLogs": "builds/opening/integrated-*",
+  "screenshots": [
+    "opening-04-lawyer.jpg",
+    "opening-ride-audio-settings.jpg",
+    "opening-ride-04-goodbye.jpg"
+  ],
+  "browserHandoffScreenshot": "lawyer-export-handoff.jpg",
+  "entryPoints": {
+    "continueInvestigation": "builds/macos-current/错日证词-新版.app",
+    "firstAct": "builds/macos-current/第一幕试玩.command",
+    "restartFirstAct": "builds/macos-current/重新开始第一幕.command"
+  },
+  "entryNotes": "Ordinary entry preserves legacy investigation continuity. First-act launch uses the same app with --opening-playtest. Reset launcher backs up only its independent playtest save before --fresh. Launchers syntax-checked; not executed against user saves."
+}

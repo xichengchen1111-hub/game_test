@@ -101,6 +101,14 @@ wall('WW_N', 'x', 23.8, 0, 5.5, EXT_T, FOOT, WING_EAVES, 'ext', 'int', 'west')
 wall('EW_W', 'z', 17.7, 12, 23.6, EXT_T, FOOT, WING_EAVES, 'int', 'ext', 'east')
 wall('EW_E', 'z', 22.8, 12, 23.6, EXT_T, FOOT, WING_EAVES, 'ext', 'int', 'east')
 wall('EW_N', 'x', 23.8, 17.5, 23, EXT_T, FOOT, WING_EAVES, 'ext', 'int', 'east')
+# Court wall closing the north end between the wings (user request 2026-10-13: the court
+# must not stand open to the back land). Thinner than the house walls and set back 8 cm
+# from the wing gables, so the wing quoins and plinths stay proud of it; its court face
+# (z 23.72) clears the last loggia column shafts and beam ends. The top stays below the
+# column caps (3.0) and the loggia roofs sail over it.
+YARD_T = 0.2
+YARD_TOP = 2.9
+wall('C_N', 'x', 23.82, 5.5, 17.5, YARD_T, FOOT, YARD_TOP, 'ext', 'ext', 'court')
 
 # Exterior openings -----------------------------------------------------------
 WIN_G = (G + .9, G + 2.8)      # ground sash windows
@@ -142,6 +150,10 @@ opening('holding-door', 'EW_W', 20.6, .9, G, G + 2.1, 'door', 'iron', leaves=1, 
 opening('win-duty-east', 'EW_E', 14.0, 1.2, *WIN_G, 'window', 'sash', exterior=True)
 opening('win-evidence-e', 'EW_E', 17.8, 1.0, G + 1.9, G + 2.6, 'window', 'high', exterior=True)
 opening('win-holding-n', 'EW_N', 20.25, .8, G + 2.0, G + 2.5, 'window', 'barred', exterior=True)
+# Court wall: the barred yard gate on the court axis keeps the way north to the service yard
+# (plan-data B10 backgate). Both leaves start closed and open into the court.
+opening('yard-gate', 'C_N', 11.5, 1.8, COURT, COURT + 2.3, 'door', 'iron', leaves=2, hinge='both', swing=-1,
+        fixture='police-yard-gate', label='内院铁栅后门', exterior=True)
 
 # ---------------------------------------------------------------------------
 # Ground-floor partitions (floor to ceiling).

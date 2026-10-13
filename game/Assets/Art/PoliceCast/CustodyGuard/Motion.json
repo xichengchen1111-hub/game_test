@@ -1,0 +1,106 @@
+{
+  "walkMetresPerSecond": 1.1966832685487994,
+  "sourceWalkMetresPerSecond": 1.1966832685487994,
+  "calibrationRequired": false,
+  "sourceAction": "Armature|walk.001",
+  "sourceFrames": [
+    1.0,
+    57.0
+  ],
+  "sourceSeconds": 2.3333333333333335,
+  "bakedSeconds": 2.3333333333333335,
+  "sourceHorizontalTravelMetres": 2.792260959947199,
+  "minimumTravelForCalibrationMetres": 0.05,
+  "horizontalNetTravelRemoved": true,
+  "fixtureLabel": "",
+  "runtimeVerified": false,
+  "clips": [
+    {
+      "name": "01_Idle",
+      "sourceAction": "Armature|idle.001",
+      "sourceFrames": [
+        1.0,
+        369.0
+      ],
+      "sourceSeconds": 15.333333333333334,
+      "loopPositionErrorMetres": 0.0005156608927675438,
+      "loopRotationErrorDegrees": 0.10467831195095843,
+      "feet": {
+        "Left": {
+          "soleVertices": 65,
+          "lowestSurfaceMinMetres": -0.0063130976632237434,
+          "lowestSurfaceMaxMetres": 0.018421612679958344,
+          "nearGroundFrameFraction": 1.0,
+          "horizontalExcursionMetres": 0.17587078383910512,
+          "nearGroundHorizontalSpeedMaxMps": null
+        },
+        "Right": {
+          "soleVertices": 82,
+          "lowestSurfaceMinMetres": -0.001610727165825665,
+          "lowestSurfaceMaxMetres": 0.02449374459683895,
+          "nearGroundFrameFraction": 1.0,
+          "horizontalExcursionMetres": 0.2380108613434537,
+          "nearGroundHorizontalSpeedMaxMps": null
+        }
+      }
+    },
+    {
+      "name": "02_Walk",
+      "sourceAction": "Armature|walk.001",
+      "sourceFrames": [
+        1.0,
+        57.0
+      ],
+      "sourceSeconds": 2.3333333333333335,
+      "loopPositionErrorMetres": 0.0009648559171550685,
+      "loopRotationErrorDegrees": 0.08846931922527276,
+      "feet": {
+        "Left": {
+          "soleVertices": 65,
+          "lowestSurfaceMinMetres": 0.0021848096512258053,
+          "lowestSurfaceMaxMetres": 0.056409142911434174,
+          "nearGroundFrameFraction": 0.7887323943661971,
+          "horizontalExcursionMetres": 0.46645679096283726,
+          "nearGroundHorizontalSpeedMaxMps": 4.510099224891892
+        },
+        "Right": {
+          "soleVertices": 82,
+          "lowestSurfaceMinMetres": -0.0018487995257601142,
+          "lowestSurfaceMaxMetres": 0.060110170394182205,
+          "nearGroundFrameFraction": 0.6197183098591549,
+          "horizontalExcursionMetres": 0.5345150488428538,
+          "nearGroundHorizontalSpeedMaxMps": 0.3633861582544218
+        }
+      }
+    },
+    {
+      "name": "03_Talk",
+      "sourceAction": "Armature|A calm adult speaking to a person standing in front of",
+      "sourceFrames": [
+        1.0,
+        120.0
+      ],
+      "sourceSeconds": 4.958333333333333,
+      "loopPositionErrorMetres": 0.1391073323262075,
+      "loopRotationErrorDegrees": 30.225079473640072,
+      "feet": {
+        "Left": {
+          "soleVertices": 65,
+          "lowestSurfaceMinMetres": -0.0017658057622611523,
+          "lowestSurfaceMaxMetres": 0.0008431492024101317,
+          "nearGroundFrameFraction": 1.0,
+          "horizontalExcursionMetres": 0.011787936108818632,
+          "nearGroundHorizontalSpeedMaxMps": null
+        },
+        "Right": {
+          "soleVertices": 82,
+          "lowestSurfaceMinMetres": -0.001175846322439611,
+          "lowestSurfaceMaxMetres": 0.003270974848419428,
+          "nearGroundFrameFraction": 1.0,
+          "horizontalExcursionMetres": 0.011205294095382814,
+          "nearGroundHorizontalSpeedMaxMps": null
+        }
+      }
+    }
+  ]
+}

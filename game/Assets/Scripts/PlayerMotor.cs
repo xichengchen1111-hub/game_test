@@ -9,6 +9,14 @@ public class PlayerMotor : MonoBehaviour {
     // Older scenic reviews retain analogue speed for stairs and close-ups.
     internal bool scriptedSprint, scriptedPlayerInput;
     internal float reviewSprintSpeed = SprintSpeed;
+    public bool CreatorFlying { get; private set; }
+    public Vector3 CreatorReturnPoint { get; private set; }
+    float creatorReturnYaw;
+    public void SetCreatorFlying(bool value) {
+        if(value==CreatorFlying)return;
+        if(value){CreatorReturnPoint=transform.position;creatorReturnYaw=transform.eulerAngles.y;CreatorFlying=true;capsule.enabled=false;}
+        else {CreatorFlying=false;Place(CreatorReturnPoint,creatorReturnYaw);}
+    }
     CharacterController capsule;
     float falling, sway;
     void Awake() { capsule = GetComponent<CharacterController>(); }
@@ -18,7 +26,7 @@ public class PlayerMotor : MonoBehaviour {
         transform.rotation = Quaternion.Euler(0,yaw,0);
         pitch = 0;
         eye.transform.localRotation = Quaternion.identity;
-        capsule.enabled = true;
+        capsule.enabled = !CreatorFlying;
         falling = 0;
     }
     // Seat the player in a moving vehicle: the capsule is disabled and look stays relative to the seat.
@@ -62,6 +70,12 @@ public class PlayerMotor : MonoBehaviour {
         Vector3 movement = scripted ? scriptedDirection : transform.TransformDirection(new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")));
         if (!scripted || scriptedPlayerInput) movement = Vector3.ClampMagnitude(movement,1);
         float speed = sprint ? (scripted ? reviewSprintSpeed : SprintSpeed) : WalkSpeed;
+        if(CreatorFlying){
+            Vector3 direction=scripted?scriptedDirection:eye.transform.TransformDirection(new Vector3(Input.GetAxisRaw("Horizontal"),0,Input.GetAxisRaw("Vertical")));
+            if(!scripted){if(Input.GetKey(KeyCode.Space))direction+=Vector3.up;if(Input.GetKey(KeyCode.LeftControl)||Input.GetKey(KeyCode.RightControl))direction+=Vector3.down;}
+            transform.position+=Vector3.ClampMagnitude(direction,1)*(sprint?30f:10f)*Time.deltaTime;
+            eye.transform.localPosition=new Vector3(0,1.66f,0);eye.transform.localRotation=Quaternion.Euler(pitch,0,0);return;
+        }
         // Keep descending feet on slopes/steps at sprint speed. A fixed -1m/s
         // loses contact when the stairs drop faster than that beneath the player.
         falling = capsule.isGrounded ? -Mathf.Max(2f,speed) : falling-18f*Time.deltaTime;

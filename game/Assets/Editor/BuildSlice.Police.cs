@@ -147,7 +147,8 @@ public static partial class BuildSlice {
             var size=leaf.axis=="x"?new Vector3(leaf.width-.02f,leaf.height-.02f,.06f):new Vector3(.06f,leaf.height-.02f,leaf.width-.02f);
             var collision=Group("Leaf collision",local,pivot.transform);collision.AddComponent<BoxCollider>().size=size;
             var door=pivot.AddComponent<ShopMechanism>();door.fixtureId=id;door.movingPart=pivot.transform;door.protectPlayer=true;
-            door.startsOpen=leaf.count==2?leaf.index==0:opening.startsOpen;
+            // Only the street entrance stands with one leaf open; the yard gate starts shut.
+            door.startsOpen=leaf.count==2&&opening.style=="front"?leaf.index==0:opening.startsOpen;
             door.label=opening.label+(leaf.count==2?(leaf.index==0?"（左扇）":"（右扇）"):"");
             door.leafCentre=local;door.leafSize=size;
             // Swing toward the authored side: test the quarter turn instead of trusting axis signs.
@@ -230,6 +231,11 @@ public static partial class BuildSlice {
         }
     }
 
+    // Police-only rebuild after a layout/shell change. The Town scene holds this prefab as an
+    // instance with transform overrides only, so it follows without regenerating the town.
+    public static void RebuildPolice() {
+        AssetDatabase.Refresh();PolicePrefab();AssetDatabase.SaveAssets();
+    }
     static void PolicePrefab() {
         var layoutAsset=AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/PoliceLayout.json");
         var layout=PoliceLayout.Parse(layoutAsset.text);
@@ -244,10 +250,7 @@ public static partial class BuildSlice {
         var controllers=new Dictionary<string,DayNightLamp>();
         PoliceLights(root.transform,visual,layout,controllers);
         PoliceItems(root.transform,layout,controllers);
-        // Duty officer behind the reception hatch (clerk rig, navy uniform; placeholder model).
-        var officerSpot=layout.items.Single(i=>i.kind=="npc");
-        var officer=StationClerkAsset.Create(root.transform,new Vector3(officerSpot.x,officerSpot.y,officerSpot.z),true);
-        foreach(var r in officer.GetComponentsInChildren<Renderer>())r.renderingLayerMask|=PoliceInteriorLayer;
+        PoliceCastAuthoring.AddToPolice(root);
         // Rain clipping and per-room acoustic enclosures; loggias are roofed but open.
         var doors=root.GetComponentsInChildren<ShopMechanism>().Where(d=>d.protectPlayer).ToArray();
         foreach(var s in layout.shelters) {
@@ -257,6 +260,7 @@ public static partial class BuildSlice {
             shelter.exteriorDoors=doors.Where(d=>(s.doors??new string[0]).Any(f=>d.fixtureId==f||d.fixtureId.StartsWith(f+"-"))).ToArray();
             if((s.doors??new string[0]).Length>0&&shelter.exteriorDoors.Length==0)throw new Exception("Shelter without its doors: "+s.id);
         }
+        OpeningAuthoring.AddToPolice(root);
         PoliceChecks.Validate(root,layout,manifest);
         PrefabUtility.SaveAsPrefabAsset(root,PolicePrefabPath);UnityEngine.Object.DestroyImmediate(root);
         Debug.Log("POLICE_PREFAB_PASS: "+PolicePrefabPath);

@@ -53,7 +53,8 @@ public static class PoliceChecks {
         Need(seats.Length==layout.items.Count(i=>i.kind=="seat")&&seats.Select(s=>s.seatId).Distinct().Count()==seats.Length,"seat IDs");
         Need(root.GetComponentsInChildren<LampSwitch>().Length==layout.items.Count(i=>i.kind=="lampswitch"),"lamp switches");
         var officer=root.GetComponentsInChildren<Interactable>().Where(i=>i.title=="值班警员").ToArray();
-        Need(officer.Length==1&&officer[0].GetComponentInChildren<StationClerkPerformance>().speaker=="值班警员","duty officer actor");
+        // The placeholder clerk rig and the accepted period cast use different performance components.
+        Need(officer.Length==1&&(officer[0].GetComponentInChildren<StationClerkPerformance>()?.speaker=="值班警员"||officer[0].GetComponentInChildren<PeriodCharacterPerformance>()?.speaker=="值班警员"),"duty officer actor");
         var shelters=root.GetComponentsInChildren<WeatherShelter>();
         Need(shelters.Length==layout.shelters.Length&&shelters.Count(s=>s.acousticallyOpen)==2,"rain shelters / open loggias");
         // Agreement with the compiled town map: B10 footprint parts and both doors.

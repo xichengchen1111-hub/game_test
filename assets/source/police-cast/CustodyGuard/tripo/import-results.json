@@ -1,0 +1,30 @@
+{
+  "role": "CustodyGuard",
+  "tripoAsset": "54eb8481-4416-4fea-a026-7ae12e2840c2",
+  "archive": "assets/source/police-cast/CustodyGuard/tripo/original/CustodyGuard-Tripo-idle-walk-talk-4fc4778e86a9.zip",
+  "archiveSHA256": "4fc4778e86a95e4ba63a293b8609d3803565bd2e2a102c69d35038dd9f6ee27c",
+  "originalPreserved": true,
+  "heightMetres": 1.83,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/CustodyGuard/tripo/original/export-4fc4778e86a9/tripo_convert_58cb80b6-71d3-49d0-9ffa-e26e9aa4e97b.fbm/tripo_image_58cb80b6-71d3-49d0-9ffa-e26e9aa4e97b_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/CustodyGuard/tripo/original/export-4fc4778e86a9/tripo_convert_58cb80b6-71d3-49d0-9ffa-e26e9aa4e97b.fbm/tripo_image_58cb80b6-71d3-49d0-9ffa-e26e9aa4e97b_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/CustodyGuard/tripo/original/export-4fc4778e86a9/tripo_convert_58cb80b6-71d3-49d0-9ffa-e26e9aa4e97b.fbm/CustodyGuard-Tripo-idle-walk-talk_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/CustodyGuard/tripo/original/export-4fc4778e86a9/tripo_convert_58cb80b6-71d3-49d0-9ffa-e26e9aa4e97b.fbm/CustodyGuard-Tripo-idle-walk-talk_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/police-cast/CustodyGuard/tripo/Character.blend",
+  "unity": "game/Assets/Art/PoliceCast/CustodyGuard/Character.fbx",
+  "motion": "game/Assets/Art/PoliceCast/CustodyGuard/Motion.json",
+  "fixtureLabel": "",
+  "sourceSHA256": "92abb597f5572cae85e9268638b1065d19c2b9016163eb609a7282f8235645ca",
+  "fbxSHA256": "f1f550e91c7606d56924de8724ffdb04743614904a93f8a0f28ef788c3b8e7d4",
+  "license": "No third-party license inherited from existing characters; retain any license in original export.",
+  "runtimeVerified": false,
+  "meshSelfIntersectionVerified": false,
+  "appearanceAccepted": false,
+  "sourceCompressed": "Re-saved with Blender file compression on 2026-10-14; contents unchanged."
+}

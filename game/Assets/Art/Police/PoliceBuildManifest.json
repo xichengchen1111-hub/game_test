@@ -3,7 +3,7 @@
  "layoutVersion": 1,
  "objects": {
   "Int_Walls": 840,
-  "Ext_Facade": 2732,
+  "Ext_Facade": 2884,
   "Int_Trim": 2912,
   "Int_Floors": 46,
   "Int_Ceilings": 12,
@@ -11,7 +11,7 @@
   "Int_Stairs": 298,
   "Ext_Roof": 326,
   "Ext_Loggia": 312,
-  "Ext_Windows": 2862,
+  "Ext_Windows": 2868,
   "Leaf_front-door_0": 158,
   "Leaf_front-door_1": 158,
   "Glass": 64,
@@ -21,6 +21,8 @@
   "Leaf_duty-door_0": 180,
   "Leaf_evidence-door_0": 180,
   "Leaf_holding-door_0": 132,
+  "Leaf_yard-gate_0": 132,
+  "Leaf_yard-gate_1": 132,
   "Leaf_interview-door_0": 180,
   "Leaf_wc-door_0": 180,
   "Leaf_office-door_0": 180,
@@ -210,7 +212,7 @@
   "Furn_court-planter": 50,
   "Furn_court-drain": 2
  },
- "triangles": 40804,
+ "triangles": 41226,
  "leaves": [
   {
    "object": "Leaf_front-door_0",
@@ -387,6 +389,50 @@
    ],
    "width": 0.8399999999999963,
    "height": 2.06
+  },
+  {
+   "object": "Leaf_yard-gate_0",
+   "opening": "yard-gate",
+   "fixture": "police-yard-gate",
+   "index": 0,
+   "count": 2,
+   "hinge": [
+    10.632,
+    0.06999999999999999,
+    23.77
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 23.77,
+   "leafCentre": [
+    11.065,
+    1.2,
+    23.77
+   ],
+   "width": 0.870000000000001,
+   "height": 2.2600000000000002
+  },
+  {
+   "object": "Leaf_yard-gate_1",
+   "opening": "yard-gate",
+   "fixture": "police-yard-gate",
+   "index": 1,
+   "count": 2,
+   "hinge": [
+    12.368,
+    0.06999999999999999,
+    23.77
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 23.77,
+   "leafCentre": [
+    11.935,
+    1.2,
+    23.77
+   ],
+   "width": 0.870000000000001,
+   "height": 2.2600000000000002
   },
   {
    "object": "Leaf_interview-door_0",
@@ -839,5 +885,5 @@
    "tile": 0
   }
  ],
- "blender": "5.2.0 LTS"
+ "blender": "4.5.9 LTS"
 }

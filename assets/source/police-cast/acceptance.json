@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "note": "Round 2 (2026-10-13 evening). The user supplied the five revision-02 T-pose references and asked for them to be made in Tripo. Review basis: the three baked actions of each character rendered at five phases from front, side and back (45 frames each) and looked at; hand/forearm depth against torso, hips and legs measured on every frame with tools/cast/check_self_intersection.py. As exported by Tripo, hands entered the coat front in Talk and forearms sank 4-10 cm into the coat skirt in every action; the arm-clearance pass in prepare_period_character.py corrects the upper arms so that bare hands never enter cloth and sleeves press at most about 2 cm. Known trade-off: the stout characters stand with their arms slightly away from the body, most visibly on the last frames of Talk. Talk is a body gesture only: these rigs have no jaw or lip bones, so mouths do not move. Hashes bind this approval to the reviewed files; a new export must be reviewed again.",
+  "reviewer": "Claude Code session continuing the interrupted Codex work",
+  "characters": [
+    {
+      "role": "Lawyer",
+      "approved": true,
+      "characterSha256": "7a9c10218a757fde9452c8f7b63ca9a4eaca8d502e4bcaabc476683d1d1fbc32",
+      "baseColorSha256": "2e3e642a10eb91f03d1d515a03aa8175ffc7ff85549f30c029937a6e389db05d",
+      "normalSha256": "bcc29a47f5b12e48a4655d9c116ff3dca7e7d0c7bbda46cad9417aec604a0254",
+      "metallicSmoothnessSha256": "7b0b441da9d4ae7d0f53640f70167de5c61385a3fd84a85ff04531b9b8cea874",
+      "review": {
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0205,
+        "armCorrectionDegrees": {
+          "01_Idle": 12.11,
+          "02_Walk": 6.88,
+          "03_Talk": 40.0
+        }
+      }
+    },
+    {
+      "role": "CustodyGuard",
+      "approved": true,
+      "characterSha256": "f1f550e91c7606d56924de8724ffdb04743614904a93f8a0f28ef788c3b8e7d4",
+      "baseColorSha256": "5185c6202f962ff8cfe0e9e72dd4a89f993e20fb45353b6d0293b71495b24c5b",
+      "normalSha256": "8a072f2e826f758e7525115c879203bd6a9cb7168550836cd8b7d9609d32afe2",
+      "metallicSmoothnessSha256": "06da4f61f6f8208f56c439f895be8b883fb2b0aaf7f7a61f7e3cefed7158cbea",
+      "review": {
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0205,
+        "armCorrectionDegrees": {
+          "01_Idle": 18.83,
+          "02_Walk": 31.99,
+          "03_Talk": 18.27
+        }
+      }
+    },
+    {
+      "role": "DutyOfficer",
+      "approved": true,
+      "characterSha256": "8576ae4780432cf59753e9bd518e60fb80e6030933733e1e5c9bd55fe2c4cdcb",
+      "baseColorSha256": "a15a0e5609d149fa59977c1ee7991ee907e172655978dee85dd5e054eb88e10f",
+      "normalSha256": "a267cd5230f9b46da7878563509b915ae36d90b83ac2cacd0129244ef1d8829b",
+      "metallicSmoothnessSha256": "0c5b28e55aa17f3efe94c48f222f8641f198a6b04e00882b949414ac6fa4d168",
+      "review": {
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0205,
+        "armCorrectionDegrees": {
+          "01_Idle": 21.49,
+          "02_Walk": 6.48,
+          "03_Talk": 20.96
+        }
+      }
+    },
+    {
+      "role": "PatrolOfficer",
+      "approved": true,
+      "characterSha256": "a87f8e5ae4f0e196fab0549ad024d4854524a21e31af70d4414a48afc1ffc214",
+      "baseColorSha256": "f907622718a637bc2ba40d86c260168cabf55c74d8d9dbe8cdd72914d6fb4aed",
+      "normalSha256": "906491954dea0d2943fecc27d554be67835bf678b4756e69bed908219a19200f",
+      "metallicSmoothnessSha256": "cfc015be7d0c6b65a9e9ac7691d7271095dd1cdc3b0adae248be42b9c2a96138",
+      "review": {
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0204,
+        "armCorrectionDegrees": {
+          "01_Idle": 7.76,
+          "02_Walk": 5.83,
+          "03_Talk": 31.8
+        }
+      }
+    },
+    {
+      "role": "ReceptionOfficer",
+      "approved": true,
+      "characterSha256": "efd7daebf20903c22edb3d89d2b4508781e3073157043f3babb48e9270bf4b82",
+      "baseColorSha256": "cbd4826ea1f74e4f2479ba0c83e2edec364eb32e78fe7f4fb873b39fdcc07f74",
+      "normalSha256": "d11f51201ac6d074fc73649629dd27bf32caac6370482b6b9d4c98205bdb653a",
+      "metallicSmoothnessSha256": "c1ba0285dfc8798a7c41be40e5d9c2bc86ee09e763d7f5d26e4d77e3bf2d8bc5",
+      "review": {
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0212,
+        "armCorrectionDegrees": {
+          "01_Idle": 18.73,
+          "02_Walk": 14.53,
+          "03_Talk": 23.68
+        }
+      }
+    }
+  ]
+}

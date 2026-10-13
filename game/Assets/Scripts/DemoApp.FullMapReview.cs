@@ -107,14 +107,14 @@ public partial class DemoApp {
         player.Aim(milkShopRoot.TransformPoint(new Vector3(0,1.98f,1.75f)));yield return Capture("dairy-interior-rain");
         NeedMap(FindFirstObjectByType<WeatherEffects>().ListenerSheltered,"Moved dairy roof leaks rain");
         // Native 3D volume visibility, with ordinary collision; B12 is the shared playable house.
-        Vector3 neighbor=new Vector3(-40.8f,1.6f,-57),kitchen=new Vector3(-33,1.6f,-57),front=new Vector3(-15.5f,1.6f,-57);
+        Vector3 neighbor=new Vector3(-40.8f,1.6f,-57),kitchen=new Vector3(-33,1.6f,-57),front=HomeDeliveryStandingPoint()+Vector3.up*1.66f;
         NeedMap(!Physics.Linecast(neighbor,kitchen),"Neighbor-to-kitchen proxy view blocked by an item");
         NeedMap(Physics.Linecast(neighbor,front),"Home volume fails to hide east-door return");
         var dial=new Vector3(0,ClockTowerInteriorLayout.DialHeight,-ClockTowerInteriorLayout.DialPlaneDistance);
         bool obstructed=Physics.Linecast(front,dial,out var hit)&&!hit.collider.GetComponentInParent<ClockTowerInstance>();
         NeedMap(!obstructed,"Delivery point clock corridor blocked: "+(hit.collider?hit.collider.name:"none"));
         // Readable ground-player view of the real clock from the proposed delivery position.
-        player.Place(new Vector3(-15.5f,.1f,-57),0);player.Aim(dial);cycle.SetReviewWeather(TownWeather.Kind.Clear);DayReviewTime(1075);yield return Capture("home-delivery-clock-view");
+        player.Place(HomeDeliveryStandingPoint(),0);player.Aim(dial);cycle.SetReviewWeather(TownWeather.Kind.Clear);DayReviewTime(1075);yield return Capture("home-delivery-clock-view");
         player.Place(placement.inside,0);dayNightReviewFrozen=false;cycle.SetReviewWeather(null);Save();
         File.WriteAllText(Path.Combine(captures,"full-map-results.json"),JsonUtility.ToJson(new MapResult{passed=true,properties=70,roads=11,orders=6,migrations=4,pointLightLimit=12,source=plan.sourceSha256,verification=Application.platform+" native renderer and real controller at Shift speed on clear footways. Six finished buildings (tower, shop, dairy, station, police, home) preserved; other rooms, historical NPC schedules and coal vehicle turning remain unimplemented."},true));
         Debug.Log("FULL_MAP_REVIEW_PASS");Application.Quit();

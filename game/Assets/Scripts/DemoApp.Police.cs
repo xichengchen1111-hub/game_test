@@ -125,7 +125,7 @@ public partial class DemoApp {
     void OpenPoliceOfficerDialogue(Interactable item) {
         policeScript ??= DialogueScript.Load("PoliceOfficerDialogue");
         milkboyScript = policeScript;
-        stationClerkPerformance = item.GetComponentInChildren<StationClerkPerformance>();
+        BindDialoguePerformance(item);
         dialogueHistory.Clear(); dialogueHistoryOpen = false; player.scriptedDirection = Vector3.zero;
         VisitDialogue(milkboyScript.first); CursorMode(); Debug.Log("DIALOGUE_OPEN: police-officer");
     }

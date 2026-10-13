@@ -1,0 +1,453 @@
+{
+  "date": "2026-10-13",
+  "provider": "Tripo Studio",
+  "generation": "H3.1 text-to-model, 8K texture, separate original characters",
+  "retopology": "Smart Mesh P1.0 Quad, requested 10000 faces each",
+  "rigPreset": "Unity Humanoid Compatible",
+  "downloads": "Existing rejected DutyOfficer idle-only ZIP found locally; new Lawyer idle+walk export blocked by Chrome ERR_BLOCKED_BY_CLIENT; other four animation export panels prepared for manual handoff.",
+  "integration": "source preparation only; existing playable build has not been replaced",
+  "verification": "Five round-1 cloud body Talk clips (4.96s) played and export selections explicitly include idle, walk and Calm Conversation Gestures. Not local files, facial motion, clipping review or game acceptance.",
+  "startingCredits": 24655,
+  "observedCreditsAfterGenerationRetopoRig": 24030,
+  "characters": [
+    {
+      "role": "Lawyer",
+      "title": "律师",
+      "assetId": "4e0f23e6-34e3-4568-b578-caaa6dc53f66",
+      "quadFacesObserved": 9258,
+      "verticesObserved": 8715,
+      "targetHeight": 1.8,
+      "rigVerifiedInTripo": true,
+      "idlePreviewSeconds": 15.33,
+      "localArchiveAvailable": false,
+      "gameImported": false,
+      "acceptedForGame": false,
+      "reviewStatus": "on hold: align with corrected style and inspect deformation before acceptance",
+      "walkPreviewSeconds": 2.33,
+      "walkExportSelected": true,
+      "localWalkAvailable": false,
+      "walkRuntimeVerified": false,
+      "bodyTalkCloudAvailable": true,
+      "bodyTalkCloudName": "Calm Conversation Gestures",
+      "bodyTalkPreviewSeconds": 4.96,
+      "exportSelectedAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "localTalkAvailable": false,
+      "mouthMovementVerified": false,
+      "talkRuntimeVerified": false
+    },
+    {
+      "role": "CustodyGuard",
+      "title": "看守",
+      "assetId": "fd173583-e0ab-4986-a87f-f87fee06daa3",
+      "quadFacesObserved": 9797,
+      "verticesObserved": 9384,
+      "targetHeight": 1.83,
+      "rigVerifiedInTripo": true,
+      "idlePreviewSeconds": 15.33,
+      "localArchiveAvailable": false,
+      "gameImported": false,
+      "acceptedForGame": false,
+      "reviewStatus": "rejected by user: same cartoon style issue; rebuild as a European/American adult man with walk and conversation clips",
+      "walkPreviewSeconds": 2.33,
+      "walkExportSelected": true,
+      "localWalkAvailable": false,
+      "walkRuntimeVerified": false,
+      "bodyTalkCloudAvailable": true,
+      "bodyTalkCloudName": "Calm Conversation Gestures",
+      "bodyTalkPreviewSeconds": 4.96,
+      "exportSelectedAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "localTalkAvailable": false,
+      "mouthMovementVerified": false,
+      "talkRuntimeVerified": false
+    },
+    {
+      "role": "DutyOfficer",
+      "title": "值班警员",
+      "assetId": "78ef7946-a297-4d50-b3a2-6be375c9fa27",
+      "quadFacesObserved": 9470,
+      "verticesObserved": 8930,
+      "targetHeight": 1.65,
+      "rigVerifiedInTripo": true,
+      "idlePreviewSeconds": 15.33,
+      "localArchiveAvailable": true,
+      "gameImported": false,
+      "acceptedForGame": false,
+      "reviewStatus": "rejected by user: wrong cartoon style; arm intersects hip pouch",
+      "localArchive": {
+        "path": "/Users/wulizhi/Downloads/DutyOfficer-Tripo-idle.zip",
+        "sha256": "dcf355ed35f36dc3a0173e518d8d6c5455b7928a1bacd64a79da1b5ba2509039",
+        "animationStacks": [
+          "idle.001"
+        ],
+        "walkAvailable": false,
+        "scope": "Rejected round-1 appearance only; never approved for game"
+      },
+      "walkPreviewSeconds": 2.33,
+      "walkExportSelected": true,
+      "localWalkAvailable": false,
+      "walkRuntimeVerified": false,
+      "bodyTalkCloudAvailable": true,
+      "bodyTalkCloudName": "Calm Conversation Gestures",
+      "bodyTalkPreviewSeconds": 4.96,
+      "exportSelectedAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "localTalkAvailable": false,
+      "mouthMovementVerified": false,
+      "talkRuntimeVerified": false
+    },
+    {
+      "role": "PatrolOfficer",
+      "title": "巡警",
+      "assetId": "9278f1f2-df1e-4769-a661-0877d687206e",
+      "quadFacesObserved": 10089,
+      "verticesObserved": 9408,
+      "targetHeight": 1.76,
+      "rigVerifiedInTripo": true,
+      "idlePreviewSeconds": 15.33,
+      "localArchiveAvailable": false,
+      "gameImported": false,
+      "acceptedForGame": false,
+      "reviewStatus": "on hold: align with corrected style and inspect deformation before acceptance",
+      "walkPreviewSeconds": 2.33,
+      "walkExportSelected": true,
+      "localWalkAvailable": false,
+      "walkRuntimeVerified": false,
+      "bodyTalkCloudAvailable": true,
+      "bodyTalkCloudName": "Calm Conversation Gestures",
+      "bodyTalkPreviewSeconds": 4.96,
+      "exportSelectedAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "localTalkAvailable": false,
+      "mouthMovementVerified": false,
+      "talkRuntimeVerified": false
+    },
+    {
+      "role": "ReceptionOfficer",
+      "title": "接待女警",
+      "assetId": "d10d5915-0f86-42d8-aaaf-c0b2a051bf87",
+      "quadFacesObserved": 9648,
+      "verticesObserved": 9165,
+      "targetHeight": 1.6,
+      "rigVerifiedInTripo": true,
+      "idlePreviewSeconds": 15.33,
+      "localArchiveAvailable": false,
+      "gameImported": false,
+      "acceptedForGame": false,
+      "reviewStatus": "on hold: align with corrected style and inspect deformation before acceptance",
+      "walkPreviewSeconds": 2.33,
+      "walkExportSelected": true,
+      "localWalkAvailable": false,
+      "walkRuntimeVerified": false,
+      "bodyTalkCloudAvailable": true,
+      "bodyTalkCloudName": "Calm Conversation Gestures",
+      "bodyTalkPreviewSeconds": 4.96,
+      "exportSelectedAnimations": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "localTalkAvailable": false,
+      "mouthMovementVerified": false,
+      "talkRuntimeVerified": false
+    }
+  ],
+  "acceptance": "round 1 DutyOfficer and CustodyGuard rejected by user for wrong cartoon style; DutyOfficer arm/hip-pouch clipping. Other roles remain on hold for matching style and full animation review.",
+  "revision02": {
+    "date": "2026-10-13",
+    "operator": "Claude Code via the user's Chrome (Claude in Chrome extension)",
+    "userInstruction": "User re-sent the five revision-02 T-pose references and asked for them to be made in Tripo; the middle image is the lawyer.",
+    "generation": "H3.1 image-to-model, Ultra Mesh Quality, 8K PBR texture, Remove Lighting on, 65 credits each",
+    "creditsBefore": 24010,
+    "creditsAfterFiveGenerations": 23685,
+    "characters": [
+      {
+        "role": "Lawyer",
+        "reference": "revision-02/lawyer-reference.png",
+        "generationTaskId": "8a4b6e4d-4657-48b8-b97f-2b5cfcd6e3d4",
+        "assetId": "8a4b6e4d-4657-48b8-b97f-2b5cfcd6e3d4",
+        "animateUrl": "https://studio.tripo3d.ai/workspace/animate/8a4b6e4d-4657-48b8-b97f-2b5cfcd6e3d4",
+        "retopology": "Smart Mesh P1.0 Quad, 10000 requested",
+        "quadFacesObserved": 9612,
+        "verticesObserved": 9182,
+        "rigPreset": "Unity Humanoid Compatible",
+        "cloudAnimations": [
+          "idle",
+          "walk",
+          "Calm Conversation Gestures"
+        ],
+        "localArchiveAvailable": true,
+        "gameImported": true,
+        "acceptedForGame": true,
+        "localArchive": {
+          "path": "/Users/wulizhi/Downloads/Lawyer-Tripo-idle-walk-talk.zip",
+          "sha256": "5e51de65ee3ca13e5d7f8d854a34fe00dfe291e6ae2c9d7ff9bc53d27d06ab39",
+          "bytes": 7015019,
+          "actions": [
+            "idle.001",
+            "walk.001",
+            "A calm adult speaking to a person standing in front of"
+          ]
+        },
+        "armClearanceDegrees": {
+          "01_Idle": 12.11,
+          "02_Walk": 6.88,
+          "03_Talk": 40.0
+        },
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0205,
+        "mouthMovement": false
+      },
+      {
+        "role": "CustodyGuard",
+        "reference": "revision-02/custody-guard-reference.png",
+        "generationTaskId": "54eb8481-4416-4fea-a026-7ae12e2840c2",
+        "assetId": "54eb8481-4416-4fea-a026-7ae12e2840c2",
+        "animateUrl": "https://studio.tripo3d.ai/workspace/animate/54eb8481-4416-4fea-a026-7ae12e2840c2",
+        "retopology": "Smart Mesh P1.0 Quad, 10000 requested",
+        "quadFacesObserved": 9755,
+        "verticesObserved": 9296,
+        "rigPreset": "Unity Humanoid Compatible",
+        "cloudAnimations": [
+          "idle",
+          "walk",
+          "Calm Conversation Gestures"
+        ],
+        "localArchiveAvailable": true,
+        "gameImported": true,
+        "acceptedForGame": true,
+        "localArchive": {
+          "path": "/Users/wulizhi/Downloads/CustodyGuard-Tripo-idle-walk-talk.zip",
+          "sha256": "4fc4778e86a95e4ba63a293b8609d3803565bd2e2a102c69d35038dd9f6ee27c",
+          "bytes": 6476984,
+          "actions": [
+            "idle.001",
+            "walk.001",
+            "A calm adult speaking to a person standing in front of"
+          ]
+        },
+        "armClearanceDegrees": {
+          "01_Idle": 18.83,
+          "02_Walk": 31.99,
+          "03_Talk": 18.27
+        },
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0205,
+        "mouthMovement": false
+      },
+      {
+        "role": "DutyOfficer",
+        "reference": "revision-02/duty-officer-reference.png",
+        "generationTaskId": "5f034843-33ea-4b4d-8cc1-aa8c2d420630",
+        "assetId": "5f034843-33ea-4b4d-8cc1-aa8c2d420630",
+        "animateUrl": "https://studio.tripo3d.ai/workspace/animate/5f034843-33ea-4b4d-8cc1-aa8c2d420630",
+        "retopology": "Smart Mesh P1.0 Quad, 10000 requested",
+        "quadFacesObserved": 9967,
+        "verticesObserved": 9525,
+        "rigPreset": "Unity Humanoid Compatible",
+        "cloudAnimations": [
+          "idle",
+          "walk",
+          "Calm Conversation Gestures"
+        ],
+        "localArchiveAvailable": true,
+        "gameImported": true,
+        "acceptedForGame": true,
+        "localArchive": {
+          "path": "/Users/wulizhi/Downloads/DutyOfficer-Tripo-idle-walk-talk.zip",
+          "sha256": "ae52ea7cf8ee687ef26e28d6e240e84b48a4d7350ea6c4ad5537e90f7e66540a",
+          "bytes": 7100056,
+          "actions": [
+            "idle.001",
+            "walk.001",
+            "A calm adult speaking to a person standing in front of"
+          ]
+        },
+        "armClearanceDegrees": {
+          "01_Idle": 21.49,
+          "02_Walk": 6.48,
+          "03_Talk": 20.96
+        },
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0205,
+        "mouthMovement": false
+      },
+      {
+        "role": "PatrolOfficer",
+        "reference": "revision-02/patrol-officer-reference.png",
+        "generationTaskId": "4b078076-a8de-4e63-bd78-a564312cf4ab",
+        "assetId": "4b078076-a8de-4e63-bd78-a564312cf4ab",
+        "animateUrl": "https://studio.tripo3d.ai/workspace/animate/4b078076-a8de-4e63-bd78-a564312cf4ab",
+        "retopology": "Smart Mesh P1.0 Quad, 10000 requested",
+        "quadFacesObserved": 9533,
+        "verticesObserved": 9107,
+        "rigPreset": "Unity Humanoid Compatible",
+        "cloudAnimations": [
+          "idle",
+          "walk",
+          "Calm Conversation Gestures"
+        ],
+        "localArchiveAvailable": true,
+        "gameImported": true,
+        "acceptedForGame": true,
+        "localArchive": {
+          "path": "/Users/wulizhi/Downloads/PatrolOfficer-Tripo-idle-walk-talk.zip",
+          "sha256": "8bda03e956f00f7729ef1163e09b8411aadec2f98ea2ea348cf1357ce142f175",
+          "bytes": 6738801,
+          "actions": [
+            "idle.001",
+            "walk.001",
+            "A calm adult speaking to a person standing in front of"
+          ]
+        },
+        "armClearanceDegrees": {
+          "01_Idle": 7.76,
+          "02_Walk": 5.83,
+          "03_Talk": 31.8
+        },
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0204,
+        "mouthMovement": false
+      },
+      {
+        "role": "ReceptionOfficer",
+        "reference": "revision-02/reception-officer-reference.png",
+        "generationTaskId": "fe2ce97f-7b99-46ea-b2b2-7caf3e53e9ad",
+        "assetId": "fe2ce97f-7b99-46ea-b2b2-7caf3e53e9ad",
+        "animateUrl": "https://studio.tripo3d.ai/workspace/animate/fe2ce97f-7b99-46ea-b2b2-7caf3e53e9ad",
+        "retopology": "Smart Mesh P1.0 Quad, 10000 requested",
+        "quadFacesObserved": 10247,
+        "verticesObserved": 9679,
+        "rigPreset": "Unity Humanoid Compatible",
+        "cloudAnimations": [
+          "idle",
+          "walk",
+          "Calm Conversation Gestures"
+        ],
+        "localArchiveAvailable": true,
+        "gameImported": true,
+        "acceptedForGame": true,
+        "localArchive": {
+          "path": "/Users/wulizhi/Downloads/ReceptionOfficer-Tripo-idle-walk-talk.zip",
+          "sha256": "f6c894c2a204c79980bed55d4ae1d9c7894dd242cef85f1cd91f011a56e483d5",
+          "bytes": 6915142,
+          "actions": [
+            "idle.001",
+            "walk.001",
+            "A calm adult speaking to a person standing in front of"
+          ]
+        },
+        "armClearanceDegrees": {
+          "01_Idle": 18.73,
+          "02_Walk": 14.53,
+          "03_Talk": 23.68
+        },
+        "maxHandDepthMetres": 0.0,
+        "maxSleeveDepthMetres": 0.0212,
+        "mouthMovement": false
+      }
+    ],
+    "status": "All five exported (FBX, Blender preset, 2K, skeleton, three animations, root motion kept), downloaded with the user's permission, prepared with arm clearance, measured and rendered, approved in acceptance.json and built into the candidate game.",
+    "acceptedForGame": false,
+    "creditsAfterRetopologyAndRig": 23385,
+    "creditsUsedThisRound": 625,
+    "retopology": "Smart Mesh P1.0 Quad, 40 credits each",
+    "rig": "Humanoid, Unity Humanoid Compatible preset (the dropdown resets to Mixamo on every page load), 20 credits each",
+    "animations": "Saved AI animation Calm Conversation Gestures (4.96 s) retargeted without new credits; presets idle (15.33 s) and walk (2.33 s). The export dialog listed three animations for each character.",
+    "downloadPermission": "Asked in chat on 2026-10-13; the user allowed downloading these five packages.",
+    "knownLimits": [
+      "Talk is body gesture only; no jaw or lip bones, mouths do not move.",
+      "Stout characters stand with arms slightly away from the body after clearance; most visible at the end of Talk.",
+      "The lawyer's seated driving pose is a fixed IK pose, not a seated Talk clip."
+    ]
+  },
+  "walkCorrection20261013": {
+    "userFinding": "All five models lack walking animation; correct. Controller code and tests did not supply asset clips.",
+    "browserEvidence": "output/demo/police-cast/walk-web/handoff.json",
+    "sourceGeometry": "round 1 rejected/held models; revision 02 image-to-model upload still unresolved",
+    "preview": "Tripo preset walk applied individually to all five existing model rigs; 2.33-second playback timeline; export selector lists idle and walk",
+    "exportSelection": {
+      "animations": [
+        "idle",
+        "walk"
+      ],
+      "count": 2,
+      "format": "FBX",
+      "preset": "Blender",
+      "textureResolution": "2k",
+      "skeleton": true,
+      "currentFrame": false,
+      "stayInPlace": false
+    },
+    "exportPitfalls": [
+      "Preview does not select exported clips: default number can be 0.",
+      "Paused preview defaults to Export Current Frame and disables skeleton; explicitly turn current frame off."
+    ],
+    "actualDownloadAttempt": {
+      "role": "Lawyer",
+      "conversionId": "45919afd-dde9-4379-9102-1a9be248067e",
+      "outcome": "Chrome ERR_BLOCKED_BY_CLIENT; no local new ZIP; no bypass or subsequent download attempts"
+    },
+    "next": "User manual export on five prepared tabs; inspect actual downloaded actions, retarget/calibrate and review full gait/clipping. This does not approve rejected visuals or complete revised cast.",
+    "newTalkCreated": false,
+    "newGameBuild": false,
+    "normalSaveTouched": false,
+    "observedCredits": 24030
+  },
+  "talkCorrection20261013": {
+    "userFinding": "Conversation animation assets were missing too; user is correct.",
+    "bodyMotion": {
+      "name": "Calm Conversation Gestures",
+      "prompt": "talk-prompt.txt",
+      "requestedSeconds": 5,
+      "previewSeconds": 4.96,
+      "credits": 20,
+      "startingCredits": 24030,
+      "endingCredits": 24010
+    },
+    "cloudAppliedToAllFive": true,
+    "evidence": "output/demo/police-cast/talk-web/handoff.json",
+    "exportSelection": {
+      "format": "FBX",
+      "preset": "Blender",
+      "textureResolution": "2k",
+      "skeleton": true,
+      "currentFrame": false,
+      "stayInPlace": false
+    },
+    "selectedAnimationCount": 3,
+    "download": "Not retried this turn; earlier Chrome ERR_BLOCKED_BY_CLIENT unresolved; five export panels retained for manual download.",
+    "localThreeActionPackagesAvailable": false,
+    "facialAnimation": "DutyOfficer old ZIP has no jaw/lip bones or shape keys; cloud body Talk is not mouth animation. Other four rigs have not been locally inspected. Local character-specific facial support required.",
+    "seatedDriverTalk": "still not implemented",
+    "revisedAppearance": "still pending reference upload/new 3D model; these cloud motions use rejected/held round1 bodies, not accepted game assets",
+    "newGameBuild": false,
+    "normalSaveTouched": false,
+    "silentBrowserPreview": "builds/cast-talk-web/律师-对话手势网页预览.gif"
+  },
+  "gameIntegration20261013": {
+    "existingGameUpdated": true,
+    "entry": "builds/macos-current/错日证词-新版.app",
+    "assemblySha256": "3c7bb7f76a43608bc30f11d758ad6ba8bad53897c27ce585eb5566c50ddb8509",
+    "firstActRideCreatorAudioIntegrated": true,
+    "newCastIntegrated": false,
+    "revisedThreeDimensionalAppearanceAvailable": false,
+    "localThreeActionPackagesAvailable": false,
+    "mouthMovementVerified": false,
+    "evidence": "output/demo/game-integration/acceptance.json",
+    "note": "User requested consolidation into the existing game. Updated the ordinary desktop entry with tested implemented gameplay; retained temporary actors. Browser upload/download blockers prevent complete five-character integration. No newly accepted model was fabricated."
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "date": "2026-10-13",
+  "scope": "Round 1 rejected/held geometry; Tripo walk preview and export configuration only, not local files or gameplay acceptance",
+  "characters": [
+    {
+      "role": "Lawyer",
+      "tabId": "600117516",
+      "url": "https://studio.tripo3d.ai/workspace/animate/one-full-body-male-lawyer-age-46-for-a-grounded-stylized-1931-small-4e0f23e6-34e3-4568-b578-caaa6dc53f66",
+      "previewWalkSeconds": 2.33,
+      "selectedExportAnimations": [
+        "idle",
+        "walk"
+      ],
+      "localWalkPackageAvailable": false,
+      "gameWalkVerified": false,
+      "appearanceAccepted": false
+    },
+    {
+      "role": "CustodyGuard",
+      "tabId": "600117509",
+      "url": "https://studio.tripo3d.ai/workspace/animate/one-full-body-male-custody-officer-age-37-for-a-grounded-stylized-19-fd173583-e0ab-4986-a87f-f87fee06daa3",
+      "previewWalkSeconds": 2.33,
+      "selectedExportAnimations": [
+        "idle",
+        "walk"
+      ],
+      "localWalkPackageAvailable": false,
+      "gameWalkVerified": false,
+      "appearanceAccepted": false
+    },
+    {
+      "role": "DutyOfficer",
+      "tabId": "600117513",
+      "url": "https://studio.tripo3d.ai/workspace/animate/one-full-body-older-male-desk-police-officer-age-58-in-a-grounded-st-78ef7946-a297-4d50-b3a2-6be375c9fa27",
+      "previewWalkSeconds": 2.33,
+      "selectedExportAnimations": [
+        "idle",
+        "walk"
+      ],
+      "localWalkPackageAvailable": false,
+      "gameWalkVerified": false,
+      "appearanceAccepted": false
+    },
+    {
+      "role": "PatrolOfficer",
+      "tabId": "600117514",
+      "url": "https://studio.tripo3d.ai/workspace/animate/one-full-body-female-patrol-police-officer-age-28-grounded-stylized-9278f1f2-df1e-4769-a661-0877d687206e",
+      "previewWalkSeconds": 2.33,
+      "selectedExportAnimations": [
+        "idle",
+        "walk"
+      ],
+      "localWalkPackageAvailable": false,
+      "gameWalkVerified": false,
+      "appearanceAccepted": false
+    },
+    {
+      "role": "ReceptionOfficer",
+      "tabId": "600117515",
+      "url": "https://studio.tripo3d.ai/workspace/animate/full-body-female-reception-police-officer-age-50-grounded-stylized-1-d10d5915-0f86-42d8-aaaf-c0b2a051bf87",
+      "previewWalkSeconds": 2.33,
+      "selectedExportAnimations": [
+        "idle",
+        "walk"
+      ],
+      "localWalkPackageAvailable": false,
+      "gameWalkVerified": false,
+      "appearanceAccepted": false
+    }
+  ],
+  "downloadBlocked": "Lawyer export navigation reached Chrome ERR_BLOCKED_BY_CLIENT; no bypass attempted",
+  "export": {
+    "format": "FBX",
+    "preset": "Blender",
+    "textureResolution": "2k",
+    "skeleton": true,
+    "currentFrame": false,
+    "stayInPlace": false
+  },
+  "observedCredits": 24030
+}

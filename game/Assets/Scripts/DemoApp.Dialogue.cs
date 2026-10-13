@@ -7,6 +7,8 @@ public partial class DemoApp {
     DialogueScript milkboyScript;
     MilkboyPerformance milkboyPerformance;
     StationClerkPerformance stationClerkPerformance;
+    PeriodCharacterPerformance periodCharacterPerformance;
+    OpeningActor dialogueOpeningActor;
     DialogueNode dialogueNode;
     List<DialogueChoice> dialogueChoices=new List<DialogueChoice>();
     readonly List<string> dialogueHistory=new List<string>();
@@ -15,8 +17,20 @@ public partial class DemoApp {
     Texture2D dialogueGradient;
     GUIStyle dialogueSpeech,dialogueName,dialogueOption,dialogueMeta,dialogueLog,dialogueShadow;
     bool DialogueOpen => dialogueNode!=null;
+    public bool IsSpeakingWith(OpeningActor actor)=>DialogueOpen&&dialogueOpeningActor==actor;
+
+    void BindDialoguePerformance(Component actor) {
+        if(stationClerkPerformance)stationClerkPerformance.Listen();
+        if(milkboyPerformance)milkboyPerformance.Listen();
+        PeriodCharacterPerformance.Silence();
+        stationClerkPerformance=actor?actor.GetComponentInChildren<StationClerkPerformance>():null;
+        periodCharacterPerformance=actor?actor.GetComponentInChildren<PeriodCharacterPerformance>():null;
+        // Conversations stop queued locomotion until the existing route resumes.
+        dialogueOpeningActor=actor?actor.GetComponent<OpeningActor>():null;if(dialogueOpeningActor)dialogueOpeningActor.StopWalking();
+    }
 
     void OpenMilkboyDialogue() {
+        BindDialoguePerformance(null);
         milkboyScript=DialogueScript.Load("MilkboyDialogue");
         dialogueHistory.Clear(); dialogueHistoryOpen=false;
         player.scriptedDirection=Vector3.zero;
@@ -25,13 +39,14 @@ public partial class DemoApp {
         Debug.Log("DIALOGUE_OPEN: milkboy");
     }
     void OpenWatchmakerDialogue() {
+        BindDialoguePerformance(null);
         milkboyScript=DialogueScript.Load("WatchmakerDialogue");
         dialogueHistory.Clear();dialogueHistoryOpen=false;player.scriptedDirection=Vector3.zero;
         VisitDialogue(milkboyScript.first);CursorMode();Debug.Log("DIALOGUE_OPEN: watchmaker");
     }
     void OpenStationClerkDialogue(Interactable item) {
         milkboyScript=DialogueScript.Load("StationClerkDialogue");
-        stationClerkPerformance=item.GetComponentInChildren<StationClerkPerformance>();
+        BindDialoguePerformance(item);
         dialogueHistory.Clear();dialogueHistoryOpen=false;player.scriptedDirection=Vector3.zero;
         VisitDialogue(milkboyScript.first);CursorMode();Debug.Log("DIALOGUE_OPEN: station-clerk");
     }
@@ -56,6 +71,10 @@ public partial class DemoApp {
         Debug.Log("DIALOGUE_NODE: "+id);
     }
     void UpdateMilkboySpeech() {
+        if(periodCharacterPerformance) {
+            if(dialogueNode.speaker==periodCharacterPerformance.speaker)periodCharacterPerformance.Speak(dialogueNode.text);
+            else periodCharacterPerformance.Listen();
+        }
         if(stationClerkPerformance) {
             if(dialogueNode.speaker==stationClerkPerformance.speaker)stationClerkPerformance.Speak(dialogueNode.text);
             else stationClerkPerformance.Listen();
@@ -78,14 +97,18 @@ public partial class DemoApp {
     }
     void AdvanceDialogue() {
         if(!DialogueOpen||dialogueHistoryOpen||dialogueChoices.Count>0)return;
+        if(TryOpeningRideDialogueAction())return;
+        if(TryOpeningDialogueAction())return;
         if(TryPoliceDialogueAction())return;
         if(string.IsNullOrEmpty(dialogueNode.next))CloseDialogue();
         else VisitDialogue(dialogueNode.next);
     }
     void CloseDialogue() {
+        OpeningRideDialogueClosed();
         dialogueNode=null;dialogueChoices.Clear();dialogueHistoryOpen=false;
         if(milkboyPerformance)milkboyPerformance.Listen();
         if(stationClerkPerformance)stationClerkPerformance.Listen();
+        if(periodCharacterPerformance)periodCharacterPerformance.Listen();
         player.scriptedDirection=Vector3.zero;
         CursorMode();Save();
         Debug.Log("DIALOGUE_CLOSED");
@@ -94,6 +117,7 @@ public partial class DemoApp {
         dialogueHistoryOpen=!dialogueHistoryOpen;
         if(milkboyPerformance)milkboyPerformance.Listen();
         if(stationClerkPerformance)stationClerkPerformance.Listen();
+        if(periodCharacterPerformance)periodCharacterPerformance.Listen();
         dialogueHistoryScroll=new Vector2(0,float.MaxValue);
     }
     void UpdateDialogueInput() {

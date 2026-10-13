@@ -1028,3 +1028,112 @@ Antigravity在本地scratch做只读架构初稿；首调用读权限未授权�
 - **共面在源头处理**：新增 `tools/house/audit_coplanar.py`，规则与 Unity 检测一致：同向、≤0.6mm、≥1cm²。首轮加衬层和天花后共面对增到 80 组，Town 构建补丁 3326 对、改了 560 个网格；把衬层转角、天花伸进墙体、书架背板、钟壳背板、壁炉底座伸进墙体和踢脚线底面这几处在源头改掉后，降到 65 组，少于改前的 71 组。剩下的都是墙体或隔墙内部看不见的面，仍交给构建期 ZFightRepair 兜底。
 - **防回归**：audit_placement 新增踢脚线/衬层与家具的逐网格干涉检查，靠墙基准改为衬层面（±5.868/±7.868）或踢脚线前面（±5.832）；audit_stairs 新增平台必须到墙、楼梯间楼板层必须有壁纸、门槛与楼面/踏步不得同面重叠三项检查；run_review.py 支持 Windows（`builds/windows-staging` 播放器，正常存档在 LocalLow）。
 - **验收**：最终源 SHA256 0a5881c2…，FBX 9c609670…；Mac mini 来源校验、摆放、楼梯和共面审查均 PASS。Windows／Unity6000.3.18f1／D3D11 最终 staging 构建 SLICE_BUILD_PASS（HOME_LAYOUT、HOUSE_STORAGE_SWEEP、BUILDING_LAYOUT 均 PASS）。同包 7 项原生检查 PASS：完整住宅 1080p／720p、独立读档、物证查看 1080p／720p、31 视点摆放、楼梯，正常存档 SHA256 3220B646… 全程不变（builds/house-review/win08-*）。最终工程上 EditMode 85/85、ZFightScan EXACT 0／MOVING 0（near 1000）。精简前后对比图和游戏画面在 output/demo/house-model-fixes/。均为程序驱动，不算物理键鼠或盲测；Mac 玩家包未更新。
+
+### OPENING-01：创造者工具与第一幕可玩流程（2026-10-13）
+
+- 用户要求先 pull 最新、暂停扩展美化，先做飞行/传送测试工具及警署第一幕；明确狱警只通知律师来访，由律师带来报纸。CLI fetch 后干净 main 从 b0cd7a2 快进到 c8921a0，远端两项提交是 HOUSE-07 模型修复及其推送记忆。未提交、未推送本轮工作。
+- 新开局在共享 B10 羁押室醒来，狱警通知并打开真实铁栅门、让开通道；玩家穿过内院和正楼院门，步行到门厅东侧律师会见室。律师介绍案件、出示桌上实体报纸；E 拿起/E 正文/Esc 放回后继续对话，说明保释及允许查阅，进入自由调查。复用统一对话/回看与三维物证检查。报纸 opening-newspaper 是背景材料，不新增核心推理支持集或案件答案。律师和狱警暂复用站务员人物/动画，无新增配音。
+- openingRevision/Stage 保留中断阶段；旧调查存档迁移阶段4，证物、位置、门扇状态不重置。第一幕试玩应用默认隔离 opening-playtest-save.json，验收 opening-review-save.json，原 slice-save.json 保持。不要在初始化场景时强制重开牢門：这会覆盖旧存档的关闭状态，并破坏警署回归。
+- F2 创造者工具有八处传送，F3 开关飞行，WASD 沿视角/空格升/Ctrl降/Shift加速；关闭返回起飞点，存档只写地面起飞点，重新启动不恢复飞行。阅读/报告等模态界面不同时打开工具；飞行先返回地面再乘车、坐下或穿场景门户。普通2.5/6m/s、12倍时间及阅读时钟推进保持。
+- OpeningAuthoring.AddToPolice 为共享警署预制体追加演员、会见标牌、报纸，BuildSlice.PolicePrefab 重建也调用。报纸正反面/边缘网格及材质保存为资源；make_newspaper.py 使用本机完整中文字库生成排印贴图（TownSans 子集直接排印缺字）。
+- Mac Unity6000.3.18f1/Metal，最终交付程序集 SHA256 40873532dd3b07d39944fdd06dd0af93f58513f0d538980069327bb85e1aa06c，最终6项原生检查：看钟视线、全图室内独立读档、第一幕1080/独立读档、第一幕720/独立读档，全PASS；24项 EditMode 全PASS。真实控制器、普通E射线、共用对话/检查处理，程序驱动，不是物理键鼠或盲测；截图已目视。正常存档 SHA256 5465b593e6e79709acef397efbe676794ede09d0ad1effafc2731def58f92411 不变。
+- 原调查回归在上一程序集3ef919dd…运行：警署/读档、售票员/读档、牛奶店门声学/读档、地图/读档、钟表铺/读档、昼夜/读档全PASS；全图六种实际室外访问顺序全部PASS，但最后旧送奶看钟代理点(-15.5,1.6,-57)撞到本次pull前已存在的住宅东门打开门扇，整套最后报FAIL。只修改 FullMapReview/GreeneryReview 的测试站位为已有住宅普通东门验收点 local(10,.16,0)，不改房屋/路网/剧情时间；最终独立看钟检查验证实际可站立、玩家眼高视线、原邻居厨房代理和返家遮挡，渲染钟面可见，全图实际室内保存也独立恢复。未在此测试站位修正后重跑整套九分钟六路线；不得将原失败日志改写成整套通过或把代理视线称为历史路线证明。
+- 交付 builds/opening/final/错日证词-第一幕.app，双架构且深度签名验证通过；同目录重新开始第一幕.command 与说明。原桌面常规游戏未覆盖。证据JPG、精简验收与版本差异在 output/demo/opening-act/；完整日志/帧在忽略的 builds/opening/。
+
+### OPENING-02：律师送院、可中断乘车与声音设置（2026-10-13）
+
+- 用户要求在现有监所继续第一幕：律师出门后询问是否看孩子，选择同意后上车、律师开车送到现有医院大门，安慰道别后开走。后续明确先加声音设置、关闭游戏声音，检测必须无声音。开工CLI fetch，main/origin/main仍c8921a0，无新远端提交；保留OPENING-01全部未提交修改。
+- 独立openingRideStage 0–5（未放行/门外邀请/接受待上车/乘车中/医院道别/完成）。律师从会见室绕桌、穿真实会见门和警署正门走到门外；途中追问不会截断路径。暂缓可再接受；玩家必须从右前门附近按E登车，驾驶側/车头不触发穿车上车。第一人称经过开门、入座、关门，司机有临时固定坐姿；实际沿中街→南街→站西路→住宅街到医院北侧车道靠边，右侧下车到门前通道，道别后律师驶离。期间能环顾、Esc暂停，12倍统一时钟继续，暂停冻结；不授予证据、不承诺孩子病情。
+- 剧情车复用HotelCar几何，OpeningRideCarAuthoring在编辑期剥离旅馆车控制/物理/存档，保存独立Resources预制体；不注册HotelCar.Current、不改旅馆车位置或座位。头灯/顶灯单独占原12灯池预算。新剧本仍使用临时站务员人物及简易步行/驾驶姿势，无专用人物或配音；B11医院内部未新增。
+- 乘车中保存stage3及警署车边安全点，独立进程载入恢复stage2，可重新上车；到院先恢复控制器再保存stage4，关闭道别也完成，stage5跨场景/重启不重复车辆和律师。旧调查存档跳过；OPENING-01放行存档可从门外邀请继续。恢复清除旧步行队列；门户和列车返回Town均应用恢复。
+- 声音：DemoApp.Audio在首场景前先将AudioListener.volume置0，普通游戏默认总音量0；Esc暂停里的声音设置提供静音/开启及0–100%滑块，PlayerPrefs audio.masterVolume独立保存。任何--review始终强制0，改变测试音量也不发声、不改用户偏好。此要求持续有效，不能为满足旧音频断言打开声音。
+- 实测修复了室内提前接受后律师斜穿墙、错误侧上车镜头穿车、跨场景残留步行队列；歩行摆动改成从原姿势计算，避免逐帧累加。前两次窗口检测及一次背景检测均提前退出/没有PASS，不计完成；静音后的正式检测通过。
+- ride03程序集f4a36a8c39b407168d048979faa4e8e51d443f82de666be378d75e4b03ef6d3b：六项1080p原生检查全PASS（第一幕含实际律师出门/读档、完整送院/读档、途中退出/重入）；路线235次实际姿态检测、律师73次胶囊墙体检测。之前同功能代码54项EditMode全PASS（进度迁移、座椅瞄准、原车资源）。独立叙事/公平性只读审查未发现阻断，证据合同验证通过。
+- 最终仅补“首场景前静音”及静音偏好隔离检查后，交付程序集957a290289c7f321dd4588a16652b8263ea2c3ce186dde2cfd53390ee7a1e270：同六项以1280×720全PASS，实际截图目视、Mac双架构与深度签名检查通过。程序驱动真实控制器/射线/界面，非物理键鼠、盲测、Windows/Intel实机或音效听验。每项原调查存档SHA256 74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6 保持；独立第一幕玩家存档未被验收写入。
+- 交付更新原第一幕入口 builds/opening/final/错日证词-第一幕.app 及同目录试玩说明，常规macos-current包未覆盖。输出七张JPG、逐构建验收摘要在output/demo/opening-ride/；完整原图/日志在忽略builds。没有提交或push。
+- 旧音效检查限制：DemoApp.PropReview仍要求AudioListener.volume>0，DemoApp.RainReview要求最终混音非零，与最新检测静音冲突；本轮没有运行或宣称通过这两类检查。后续应制作不出声的后处理录音通路，不能打开扬声器来满足旧断言。已有的历史声学通过记录保持原程序集/规则，不移作本次通过证明。
+
+### NPC-07：警署多样人物与律师（2026-10-13，第一轮被拒，后续见 NPC-08）
+
+- 用户要求用Tripo制作律师与不同性别、年龄、胖瘦高矮的警员，制服可相近，继续在现有警署完善。CLI fetch成功，main/origin/main仍c8921a0，无远端新增；保留所有第一幕/送院/静音未提交改动，未提交推送。
+- 五个独立H3.1文字生成人物、8K纹理、P1.0约一万Quad减面、Unity Humanoid Compatible绑定成功，均实际网页预览15.33s idle。IDs/面数见assets/source/police-cast/production-status.json；625积分，余额24655→24030。律师棕灰三件套无帽，壮实方脸看守，年长灰胡须胖值班员，高挑短发裤装女巡警，圆脸裙装接待女警；不是原售票员换色复制。时代参考/原创制服取舍、站位与台词在docs/police-cast.md。
+- 阻塞：律师FBX+骨骼+idle的最终导出下载被browser security明确拒绝，返回user denied permission。用户通过提问明确回复“允许下载这五个模型”后，看守正常UI下载重试仍同样被拒。没有curl/内部API/其他浏览器绕过，没有本地3D原包。需用户亲自在Tripo导出窗口完成下载或处理浏览器许可，再恢复导入。最后页面已准备DutyOfficer-Tripo-idle的FBX/Blender/8K/Skeleton/1 Animation/StayInPlace导出；600117509及女警600117510/511保留。网站多个标签选中资产会同步，今后串行制作、导出前验证资产与文件内容。
+- 准备代码：tools/cast/import_period_character.py与prepare_period_character.py保留原包hash，计划输出assets/source/police-cast/<Role>/tripo/Character.blend、game/Assets/Art/PoliceCast/<Role>/Character.fbx及2048贴图；仅语法/CLI验证，未对新原包执行。PeriodCharacterAsset/PoliceCastAuthoring、PoliceStaff/Performance已接通主装配、开场与司机；AllPrepared只在全部5原包转换后替换，否则保留现有占位人物，避免半套替换。看守初始/退让x16.55→16.95，避开col-e3柱；女警候问(21,.15,2.9)、巡警室(19.6,.15,14)。接待/巡警短句无证物或进度门槛，旧档案职员缺席设定保留。
+- 严格原生验收代码DemoApp.PoliceCastReview.cs入口--review-police-cast及独立police-cast-review-save.json已接入；检查5独立mesh/material、落地/身高、合法玩家视点、正常E互动/动画/暂停、看守让路实碰撞、通道与旧证据。未运行此验收，因为实际模型还未下载，绝不把占位当新模型通过。所有review静音保持。
+- Unity6000.3.18f1本地最终代码编译退出0，builds/cast-compile-final.log，无C#错误；diff空白检查通过。五张Tripo外观及导出交接JPG在output/demo/police-cast，均已目视。现有可玩builds/opening/final/错日证词-第一幕.app未重建、正常存档未启动触碰。下一步必须下载→真实转换校准→构建→新角色/完整第一幕/送院与独立读档静音验收，不得将本轮记为人物已交付进游戏。
+
+### NPC-08：警员画风与穿模纠正（2026-10-13，参考已确认，三维制作受阻）
+
+- 用户截图指出第一轮 DutyOfficer 严重穿模、画风不对。图中圆头／黑豆眼与既有钟表匠、售票员不一致，硬腰包与放下的手臂相交。原始云端模型就有此问题，尚未经过本地转换；网页绑定成功及15.33秒idle可播不等于质量验收。DutyOfficer拒收，其他四人暂停接入；保留原始ID／截图作为历史，未删除云端资产。
+- CLI fetch完成，main/origin/main仍c8921a0，无远端新提交；所有前序第一幕／送院／静音未提交内容保留。对照已认可 watchmaker-tpose-front.png、station-clerk reference-tpose.png 与三张低模概念，使用内置imagegen生成 revision-02/duty-officer-reference.png：自然眼睑／虹膜／眼白、成年比例与年龄纹理、低饱和深灰蓝毛呢，取消腰包／枪套。用户明确回复“沿用这张，与现有人物一致”。这是画风参考获确认，不是三维网格或穿模已通过。
+- 新图通过Tripo正常Choose File上传时，fileChooser.setFiles再次被browser security拒绝，明确提示user denied permission。已请求“允许将这张新版参考图上传到Tripo”；截至本记录该许可仍待回复。没有替代通道／文字生成绕过，未开始新版三维生成，余额仍24030。当前主标签600117509停在 /workspace/generate，保留待上传。此前原包下载拒绝也未解除。
+- PeriodCharacterAsset.AllPrepared新增独立acceptance.json：五角色均approved:false；要求已记录实际三维外观／完整动作验收、四份FBX/贴图哈希吻合与Unity导入成功才整体启用。修改导出／贴图会失去放行条件，不再凭文件存在就接入。该字段是内部质量记录，不引入对已授权制作的重复用户审批。二维图确认、生成／下载／绑定／编译均不能自动置true。
+- 复查转换工具：它保留源权重与上肢idle，只固定髋腿；talk追加轻微头颈胸运动，仍会连带手臂。脚底／闭环数值和两张单角度静帧不证明自穿插通过。两份报告显式标记meshSelfIntersectionVerified=false、appearanceAccepted=false；revision-02/README要求完整idle/talk及过渡正侧背检查、步行摆臂、律师上下车／驾驶，再做静音实机流程。不能用抬手、扩大碰撞盒掩盖源穿模。
+- Unity6000.3.18f1仅脚本编译退出0（builds/cast-acceptance-compile.log），无C#错误；Python语法及diff空白检查通过。共享PoliceStation/OpeningRideCar预制体及现有第一幕app程序集哈希未变，未重建应用／启动正常存档／运行缺资源新人物验收。全部游戏测试继续静音，未提交或push。
+- 同轮按已确认值班警员方向完成另外四张内置imagegen参考与确切提示词：lawyer、custody-guard、patrol-officer、reception-officer，全部保存在assets/source/police-cast/revision-02，均1024×1536并已逐张目视。律师成熟瘦高炭灰三件套，看守宽肩方脸无胡须；女巡警较长脸修长体型，接待女警成熟圆脸较结实，两位女警均过膝宽裙。所有参考无腰包或手持物。其他四图是沿用已确认方向，未另获逐图用户确认；全部尚未上传或生成新版3D，不得把新图作为实际穿模通过。
+
+### NPC-09：看守欧美形象与真实行走／对话动作（2026-10-13，三维上传仍受阻）
+
+- 用户又指出第一轮看守画风不对，明确“这个也弄成欧美人”，并要求人物有走路和对话动作。针对看守修订 custody-guard-reference.png／.txt：欧美成年男性设计、37岁方脸／棕短发／灰蓝眼，保留已确认制服与成年人比例、无腰包；旧图／提示词保存为 custody-guard-reference-v1。未擅改其他人的脸。CLI fetch无新远端提交，保留所有已有改动，未提交推送。
+- 用户明确回答“允许上传这张参考图到 Tripo”。使用同一主标签、正常文件选择重试已确认值班警员图，仍被browser security拒绝：user denied permission。未绕过、未另行文字生模；需用户在主标签600117509 /workspace/generate 手动上传，本轮不再重复索要同项文字许可。无新3D原包、没有实际新人物实机验收。
+- 新PeriodCharacterPerformance只驱动实际01_Idle／02_Walk／03_Talk片段，Speaking/Walking状态与WalkRate步速参数分开；新人物不再使用OpeningActor的临时直腿摆动，旧占位保持兼容。移动优先，停步转Talk或Idle；真实发言者播放Talk，玩家发言／回看／退出停止；显式暂停冻结动作和位移。Motion.json标定实际移动m/s与源步速之比，缺可靠标定只保留1倍，不能记作步幅已校准。
+- 看守退让统一经WalkTowards并遵守GameTimePaused；律师路线保留真实门等待及路径队列。独立审查发现与其他NPC交谈时律师位移暂停却仍原地Walk，已修为任何DialogueOpen时StopWalking、关对话后继续队列。另移除PoliceCastReview错误的!Silent条件（Review本就强制Silent），保留AudioListener.volume==0；不能开声满足旧断言。tools/opening/run_review.py补police-cast→POLICE_CAST_REVIEW_PASS映射，避免误跑opening。
+- Unity6000.3.18f1 EditMode最终24/24通过：新增6项真实Animator机制测试（Idle／Walk／Talk优先级、暂停与说话时长、步速仅影响Walk、发言切换／回看、看守暂停且不叠加旧摆腿、与其他人交谈律师停步）＋18项现有进度／售票员对话；证据builds/cast-animation-tests-final.xml/log。诊断动作只用于机制测试，不代表新角色真实步态。最终仅编译builds/cast-animation-compile-final.log退出0无C#错。临时Assets测试目录已清；PoliceStation/OpeningRideCar预制体、既有app程序集在测试前后哈希相同；未构建或覆盖试玩包，5人acceptance仍false。
+- 边界：五人需要Walk资源，但本轮没有新增女警／值班警员巡逻路线；实际路径当前为看守退让与律师出门。车内司机仍剥离Performance、停Animator保留固定驾驶坐姿，车上台词与医院道别的专用坐姿Talk尚未完成，不把站姿Talk套进座椅。新模型到位后须另核对车内姿势与说话、完整三动作／过渡／裙摆／手臂穿插以及全第一幕、送院、读档静音验收。
+- 三动作转换工具已升级并在本机Blender4.5.9验证：真实三源动作及独立帧段，保留全骨骼和源皮肤／面部，不再冻结下肢或从idle合成talk；只消除水平首尾净平移，不清除所有根运动。输出三动作FBX、packed .blend、Motion.json、逐帧鞋底／接缝数值、30张正侧五相位JPG；保持runtime／appearance／selfIntersection=false。9/9工具检查通过（builds/cast-motion-tests/results.json）：缺Walk／Talk、重复动作、非法帧段、纯平移静态Walk拒绝，原地／前进源动作smoke及两套三段FBX回导。测试为旧Meshy隔离夹具，look-around仅测第三动作通路不是真正对话验收；前进旧源仍有约4cm／6.1°接缝、左脚悬空／右脚轻微穿地，报告如实保留失败指标，没有修数值或纳入正式PoliceCast。工具说明在tools/cast/README.md。
+- 最后对齐步速接口：Motion.json.walkMetresPerSecond按水平距离／导出30fps实际bakedSeconds供C#使用，sourceWalkMetresPerSecond单独记录原动作时长速度，避免重采样时长舍入误差；原地两者0且仍待标定。语法与数值检查通过，builds/cast-motion-tests/speed-interface-results.json；没有重复渲染或改动新人物放行状态。
+
+
+### NPC-10：五个模型缺少走路的纠正（2026-10-13，网页Walk已应用，下载受阻）
+
+- 用户再次指出“五个模型都没有走路动画”，确认属实。上轮只交付三态切换/校验代码，不能写成真实人物动画完成。只读核对新发现 `/Users/wulizhi/Downloads/DutyOfficer-Tripo-idle.zip`（10,373,256字节，SHA256 dcf355ed35f36dc3a0173e518d8d6c5455b7928a1bacd64a79da1b5ba2509039），内部只有idle.001；纠正此前完全没有本地包的记录。该包仍是被拒的第一轮外形，不放行。无正式PoliceCast资源。
+- CLI fetch无新main提交，保留全部已有改动，无提交/push。本轮未改C#/Blender程序、预制体或试玩app，未运行游戏/触碰正常存档，静音要求保持。
+- 通过正常Tripo Animate UI给律师/看守/值班警员/女巡警/接待女警五个既有云端骨架分别应用preset walk；各自出现2.33秒时间轴，网页可见迈步/摆臂。保留的是第一轮模型的动作检查，不是新版外观或完整变形合格。5个导出面板均显式选idle+walk两段，FBX Blender/2K/Export Skeleton on/Current Frame off/Stay In Place off。后者为保留源位移以供校准，进入游戏前须实测/转原地。
+- 关键陷阱：预览walk不会自动勾选导出，Number of Animations默认仍可能0；暂停后Export Current Frame默认on且骨架off。必须核对导出动画数量/名称，不能只看网页会动。新Talk/专用坐姿Talk仍没做，旧源重定向与质量门禁要求不变。
+- 律师正常Export得到转换45919afd-dde9-4379-9102-1a9be248067e，但跳转下载页被Chrome ERR_BLOCKED_BY_CLIENT阻止；下载等待超时。没有绕过拦截，不再触发另外四人的下载。五个页面均markHandoff供用户手动导出，Lawyer600117516、CustodyGuard600117509、Duty600117513、Patrol600117514、Reception600117515。余额24030，无新增生模/付费动作生成。本轮没有新的本地Walk包，不能称游戏里已会走路。
+- 页面JPG及精准链接/参数记录 output/demo/police-cast/walk-web/；浏览器截图只证明Walk选择和导出配置，不证明脚滑/穿插/循环/全身可见检查已通过。此前新参考上传的browser security拦截仍未解决，本轮未重复上传。后续需要真正本地三动作、新外观网格检查及静音实机验收，不可凭这几张网页图将acceptance改true。
+
+
+### NPC-11：缺少对话动作的纠正（2026-10-13，云端身体Talk已制，嘴部/下载未完成）
+
+- 用户说“还有对话模型也没有”，确认此前没有五人实际Talk资源。通过Tripo正常Text to Motion生成Calm Conversation Gestures，5秒请求/4.96秒实际，20积分，余额24030→24010。精确提示词与UI证据见output/demo/police-cast/talk-web。不是另买服务，也未上传文件或绕过已有下载/上传拦截。CLI fetch无新main提交；未提交/push。
+- 五个第一轮云端模型分别实际播放4.96秒身体交谈、抬手/头身变化，导出显式idle+walk+Calm Conversation Gestures三段，FBXBlender/2K/骨架on/当前帧off/保留源位移。已核对URL末端ID、人物截图、导出名字和3动画。开轮时主标签600117509已在接待女警，不能把旧handle昵称当当前人物；已明确导航回fd173583看守后重做并覆盖错误标记截图。接待女警由于重复应用有两份同名Talk，选择一份并保留另一份未选，不能Select All导出4段。
+- 五标签全部markHandoff，详细链接见talk-web/handoff.json。没有重试下载（上轮Chrome ERR_BLOCKED_BY_CLIENT尚未解决），没有新本地Walk/Talk文件、没有实际游戏更新。该证据属于被拒/暂停的旧画风骨架，acceptance五人false不变；不能把身体动作或导出选项当新版模型完成。
+- 独立Blender4.5.9只读检查旧DutyOfficer-Tripo-idle.zip：唯一Armature|idle.001 frames1–369，8930顶点；无Jaw/mouth/lip骨骼，无shape keys；面部权重仅Head，眼球骨骼无对应权重组。仅此人物实查，不能外推其余4人。Tripo身体Talk不等于嘴部开合；现有售票员的下颌、唇缝/口腔和Talk开合原本由prepare_tripo_station_clerk.py本地补制。新人物拿到本地文件后应逐脸型测唇线/下颌轴加局部权重，Idle/Walk闭口、Talk间歇开合，不能照搬坐标/冻结腿/强制闭环，不得称语音同步或原脸网格完全未变。
+- 保存律师连续5.417秒/116张网页截图至忽略builds/cast-talk-web，按实际时间采样成10fps静音GIF。真实身体动作可见，但不是口型、完整穿模或Unity验收。未运行Unity/游戏、未改代码/预制体/试玩app/正常存档/静音设置，车内专用坐姿Talk仍未实现。
+
+### NPC-12：整理至原游戏入口，人物文件传输仍受阻（2026-10-13）
+
+- 用户要求把此前内容全部整理放进现有游戏。CLI fetch 后 main=origin/main=c8921a0，没有远端新增；保留所有既有未提交改动，未 commit/push。重新查找只有旧 DutyOfficer-Tripo-idle.zip，没有新三动作包，正式 Art/PoliceCast 仍不存在。五人 acceptance 保持 false，修订外观仍为二维参考；不能称此次已全部完成人物接入。
+- 查到原桌面入口还指向 HOUSE-05 程序集 ea741469…，此前第一幕在另外的 opening/final 包。新增 OpeningAuthoring.BuildMacIntegrated，沿用现有生成场景，只刷新警署附加内容及剧情车，候选输出 builds/opening/integrated/错日证词-新版.app。使用普通产品名“错日证词 · 暮色小镇”和原 currentmac 应用标识，保留普通 slice-save 的连续调查；第一幕通过同一个应用的 --opening-playtest 进入独立存档，不能把普通产品直接换成第一幕试玩产品而失去旧调查入口。
+- 构建 Unity6000.3.18f1 成功。最终程序集 3c7bb7f76a43608bc30f11d758ad6ba8bad53897c27ce585eb5566c50ddb8509，Mac Metal / Apple M5 Pro，x86_64+arm64；签名严格检查通过。10次原生程序检查：1080第一幕/读档、720第一幕/读档、送院/到达读档、中途退出/恢复、既有售票员/读档。所有明确PASS、退出0。第一幕以真实控制器与射线并调用共用对话处理；律师出门74次胶囊采样。两分辨率六帧、送院及静音设置画面已检查。不是物理键鼠/盲测、全镇全路线或新五人动画验收。先前24项机制单元测试不冒充此轮新跑。
+- 当前台旧游戏正常退出保存后建立校验点，正常 slice-save SHA256 706209e91efe85bfe9f3e84f0b10afe9ace99270ca1cf5b7af7b08c958283348，第一幕玩家存档不存在；此后所有测试与整合均未改变两者。Review 始终 AudioListener=0，送院检查实际尝试调音量仍保持0且不写玩家偏好。普通 --silent 只关同伴提示，不能拿它代替静音保证。
+- 已将同一验证包更新至 builds/macos-current/错日证词-新版.app；桌面原链接解析到本仓库，未另改其他检出。旧包保留 builds/opening/integrated/before-integration-20261013.app。同目录新增 第一幕试玩.command（不重置独立进度）及 重新开始第一幕.command（先备份独立进度再--fresh），均检测已有游戏进程并提示先退出；语法检查通过，没有对玩家存档执行这两脚本。第一幕与声音说明.txt 明确当前临时人物及阻塞项。
+- 构建引起 ClerkHumanoid.asset 165行浮点序列化噪声：数字以外文本完全一致、最大数值差3e-7。保存实际构建版到忽略 builds/opening/integrated/ClerkHumanoid-built.asset，仅恢复本轮新增的该噪声，不改已有用户内容或编译交付包。
+- 紧凑实机 JPG 与 acceptance 在 output/demo/game-integration，原始PNG/日志/suite/promotion/saves 校验在忽略 builds/opening/integrated*。production-status 增加 gameIntegration20261013：已有玩法true，新人物false。浏览器五页重新markHandoff；律师页曾回首页，恢复实际律师URL并重设 FBX/Blender/2K/骨骼/idle+walk+Calm Conversation Gestures 三段导出，未再触发被拦截的下载/上传，没有绕过权限。参考图上传此前被自动权限检查拒绝，下载此前被 Chrome ERR_BLOCKED_BY_CLIENT 阻止，需用户手动处理文件传输后继续真正模型制作和接入。网页三段为被拒/暂缓的第一轮外形，不是已修复的新3D。
+
+### OPENING-03：Esc 菜单的音量与开发者模式、内院北墙与铁栅门（2026-10-13，由 Claude Code 接手 Codex 中断的工作）
+
+- 用户说明 Codex 停了，要求接手把正在做的开场部分做完。接手时 main=origin/main=c8921a0，保留全部未提交改动，未 commit/push。此前 integration_audit 留下的暂停菜单源改动（DemoApp.Creator.cs、DemoApp.cs 暂停段、DeveloperMenuTests）没有编译和运行过：本轮编译通过，8 项 DeveloperMenuTests 连同 OpeningProgress／PeriodCharacterAnimation／PlayerAim／HouseGeometry／StationClerkDialogue／HotelCarPrefab 共 82 项 EditMode 全过。
+- 从会话记录恢复用户 21:09 的截图：站在内院向北看，两翼之间完全敞开。按 police_enclosure 的只读结论在布局合同补院墙 `C_N` 与双扇铁栅门 `yard-gate`（`police-yard-gate-left/right`，首次都关，向内院开）。墙厚 0.2、高 2.9、中心 z 23.82：比山墙面退 8 cm，避开两翼转角石和勒脚；内侧面 23.72 让开最后一对回廊柱身与梁端；墙顶低于柱帽底 3.0，避免压顶底面与柱帽底面同高共面。生成器对两面都是 ext 的墙两面加勒脚（两端止于两翼勒脚面，不重叠）并加压顶。
+- Blender 4.5.9（原外壳由 Windows 的 5.2 生成）重出 FBX：只有 Ext_Facade、Ext_Windows 和两个新门扇的三角数变化，原 14 扇门的清单逐项相同。新增 `BuildSlice.RebuildPolice` 只重建警署预制体；Town.unity 对该预制体只有位置／名称覆盖，重建后三个引用 ID 均保留，未重生成全镇。PoliceChecks：53 洞口、14151 实墙探测、16 门扇、39 灯。
+- 第一次 ZFightScan 报 2 组 EXACT（Town 与橱窗街景各一）：门下墙基顶面 y=.06 与内院铺地同面。改为不输出该面（门槛覆盖），复扫 0 EXACT／0 MOVING，分组与改动前逐组相同。记住：院内铺地一直铺到 z 24，任何落在铺地上的水平面都会共面。
+- 新增 `--review-yard-gate`／`--verify-yard-gate-save`（DemoApp.YardGateReview.cs，独立存档）。候选包程序集 18ed79128c00208e60e289ef376fd1eb6c1f1d164c27405787e3a57cc1d15d85；14 项原生检查全部 PASS：院门与读档、第一幕 1080／720 与各自读档、送院四项、警署原流程与读档、售票员对话与读档。Review 始终静音；正常 slice-save 前后均为 706209e9…58283348。程序驱动的控制器与射线不是物理键鼠或盲测；未重跑全图六路线、昼夜、牛奶店、钟表铺、住宅。
+- 已更新 builds/macos-current/错日证词-新版.app（桌面链接不变），旧包移到 builds/opening/integrated/before-yard-gate-20261013.app。构建再次产生 ClerkHumanoid.asset 与两个警署材质的浮点序列化噪声，已恢复为提交版。
+- 人物：用户重新发来 revision-02 的五张 T 姿势参考并说「用这几个放到 Tripo 中制作」，中间是律师；五张参考全部获确认。本会话没有可用的带登录浏览器（Chrome 未装 Claude 扩展，应用内浏览器未登录且不能上传文件），未绕过，已请用户安装扩展或手动上传；未上传、未生成、未花积分。五人 acceptance 仍为 false，游戏继续使用临时人物，车内坐姿 Talk 仍未做。
+
+### NPC-13：五个新人物制作、穿模处理并接入（2026-10-13 深夜，Claude Code）
+
+- 用户在对话里重新发出 revision-02 五张参考图，说「用这几个放到 tripo 中制作」「中间的是律师」，随后追问「先确认这几个没有什么穿模问题吧」。Chrome 起初没有 Claude 扩展，用户安装后连接；应用内浏览器未登录且不能传文件，没有绕过。上传只能读会话目录内的文件：用仓库里与桌面逐字节相同的 revision-02 副本。
+- Tripo 流程与坑：生成后直接用 `/workspace/retopology|rigging|animate/<资产ID>` 换页；每次换页骨架预设会回到 Mixamo，必须重选 Unity Humanoid Compatible 并核对；换页后头一两次点击会被吃掉，关键点击前先看截图；导出对话框先改文件名、再在 Number of Animations 里 Select All，确认 3/3 后再点 Export，并等到「exported successfully」再离开页面（第一次律师的包因为过早换页没有下成）。五个生成任务 ID、面数和包哈希记在 production-status.json 的 revision02。积分 24010→23385。这次用户 Chrome 里下载没有被拦。
+- 新导出包的贴图命名是 `tripo_image_<id>_0_0`（底色）和 `_0_3`（法线），对话动作名是提示词原文；导入工具已适配，需 `--talk-action "Armature|A calm adult speaking to a person standing in front of"`。
+- 穿模：原样导出有手插进前襟、前臂陷进下摆。写了逐帧量化检测和 `arm_clearance` 修正。第一版把袖子也完全推开，五人全程手臂外张，自己否决；改为手 4 mm 净空、袖子最多压 2 cm。修正角度：律师 12/7/40°（待机／走路／对话），看守 19/32/18°，值班警员 21/6/21°，女巡警 8/6/32°，接待女警 19/15/24°。复测手部深度全 0。仍有手臂略外张和无口型两点不足，已告知用户，由用户决定是否再改下摆网格。
+- Unity 侧修了四处从未被真实新人物跑过的代码：PoseBounds／PCastBounds 的 BakeMesh 缩放重复（报高度 331 m）、空图层控制器越界、人物光照层 1u<<5 应为 PoliceInteriorLayer、Talk→Idle 不可被 Walk 打断；PoliceChecks 的值班警员检查兼容两种表演组件。police-cast 检查里对走路片段的采样点从 0.35 s 改到 0.7 s（脚本同帧连推两句台词造成的 Talk 重启混合）；院门检查的院内射线起点北移到 z 22.4（新看守的碰撞盒更宽，挡住了 x 17.2 的射线）。
+- 最终程序集 d1b279d4f5c0d13e896857f688c44fff28be4482806a5f52c6b08ea0619ce230，15 项静音原生检查全部 PASS，正常存档哈希不变。已更新桌面入口，旧包在 before-new-cast-20261013.app。未提交、未推送；人物资源体积大（116 MB＋290 MB）。未重跑全图、昼夜、牛奶店、钟表铺、住宅回归。
+
+### SOUND-01：开了声音却听不到（2026-10-14，Claude Code）
+
+- 用户：「我现在开启音量以后怎么也没有声音了」。玩家偏好里 `audio.masterVolume=1`，Player.log 无音频报错，系统输出 38%／未静音／内置扬声器。代码里只有 DemoApp.Audio.cs 写 AudioListener.volume，逻辑无误。
+- 写了 AudioProbe（`--audio-probe`、`--audio-probe-muted-start`，独立存档，不写偏好）。两种启动情形监听器都有输出：改动前风声 RMS 5.6e-3（−45 dBFS）。注意 `GetOutputData` 第一次调用只挂采集点、返回全零，不能当作静音证据；`AudioSource.GetOutputData` 的数值已含总音量。
+- 根因是内容而非管线：风声一阶低通约 18 Hz，脚步 125 Hz 且很轻；用户那一局只走路和对话，没有触发门、车、雨。把风声改为约 15–450 Hz 带限噪声（实测 RMS 2.6e-2，−32 dBFS），脚步提高并加噪声成分，滴答电平不变，「开启声音」改为 100%。未改雨声、门声、道具声和默认静音。
+- 这是电平与频段的测量，不是听感验收；是否合适要用户自己听。

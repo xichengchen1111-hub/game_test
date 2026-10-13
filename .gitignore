@@ -120,3 +120,8 @@ output/**/*.mov
 output/**/*.webm
 output/**/*.gif
 output/**/*.zip
+
+# Police cast (2026-10-14): the raw Tripo downloads and their unpacked copies stay local, like other
+# original download packages; production-status.json records their names and hashes.
+assets/source/police-cast/*/tripo/original/
+assets/source/police-cast/**/*.blend[0-9]

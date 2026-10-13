@@ -1,0 +1,30 @@
+{
+  "role": "ReceptionOfficer",
+  "tripoAsset": "fe2ce97f-7b99-46ea-b2b2-7caf3e53e9ad",
+  "archive": "assets/source/police-cast/ReceptionOfficer/tripo/original/ReceptionOfficer-Tripo-idle-walk-talk-f6c894c2a204.zip",
+  "archiveSHA256": "f6c894c2a204c79980bed55d4ae1d9c7894dd242cef85f1cd91f011a56e483d5",
+  "originalPreserved": true,
+  "heightMetres": 1.6,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/ReceptionOfficer/tripo/original/export-f6c894c2a204/tripo_convert_524e09d2-7f2a-4429-b7c8-229850da2521.fbm/tripo_image_524e09d2-7f2a-4429-b7c8-229850da2521_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/ReceptionOfficer/tripo/original/export-f6c894c2a204/tripo_convert_524e09d2-7f2a-4429-b7c8-229850da2521.fbm/tripo_image_524e09d2-7f2a-4429-b7c8-229850da2521_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/ReceptionOfficer/tripo/original/export-f6c894c2a204/tripo_convert_524e09d2-7f2a-4429-b7c8-229850da2521.fbm/ReceptionOfficer-Tripo-idle-walk-talk_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/police-cast/ReceptionOfficer/tripo/original/export-f6c894c2a204/tripo_convert_524e09d2-7f2a-4429-b7c8-229850da2521.fbm/ReceptionOfficer-Tripo-idle-walk-talk_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/police-cast/ReceptionOfficer/tripo/Character.blend",
+  "unity": "game/Assets/Art/PoliceCast/ReceptionOfficer/Character.fbx",
+  "motion": "game/Assets/Art/PoliceCast/ReceptionOfficer/Motion.json",
+  "fixtureLabel": "",
+  "sourceSHA256": "c1a66b8c5bb6356c544f8dae7652c846fb1dfbb6eb9e5de6e69ed3633182ca56",
+  "fbxSHA256": "efd7daebf20903c22edb3d89d2b4508781e3073157043f3babb48e9270bf4b82",
+  "license": "No third-party license inherited from existing characters; retain any license in original export.",
+  "runtimeVerified": false,
+  "meshSelfIntersectionVerified": false,
+  "appearanceAccepted": false,
+  "sourceCompressed": "Re-saved with Blender file compression on 2026-10-14; contents unchanged."
+}

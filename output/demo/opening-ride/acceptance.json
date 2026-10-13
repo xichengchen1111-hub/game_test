@@ -1,0 +1,114 @@
+{
+  "assemblySHA256": "957a290289c7f321dd4588a16652b8263ea2c3ce186dde2cfd53390ee7a1e270",
+  "resolution": [
+    1280,
+    720
+  ],
+  "runs": {
+    "opening-ride": {
+      "passed": true,
+      "marker": "OPENING_RIDE_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+    },
+    "opening-ride-save": {
+      "passed": true,
+      "marker": "OPENING_RIDE_SAVE_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+    },
+    "1080": {
+      "passed": true,
+      "marker": "OPENING_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+    },
+    "reload": {
+      "passed": true,
+      "marker": "OPENING_SAVE_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+    },
+    "opening-ride-interrupted": {
+      "passed": true,
+      "marker": "OPENING_RIDE_INTERRUPTED_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+    },
+    "opening-ride-interrupted-save": {
+      "passed": true,
+      "marker": "OPENING_RIDE_INTERRUPTED_SAVE_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+    }
+  },
+  "ride": {
+    "passed": true,
+    "stage": 5,
+    "checkpoint": "post-release",
+    "normalInteractionRays": true,
+    "realControllerWalking": true,
+    "physicalInputs": false,
+    "routeAuditSamples": 235
+  },
+  "note": "Mode name 1080 is overridden by OPENING_REVIEW_HEIGHT=720 for this final suite.",
+  "audio": "Default mute; all review output forced zero before first scene; pause controls cannot unmute review or change player preference.",
+  "physicalInputs": false,
+  "blindPlaytest": false,
+  "audibleAudioAcceptance": false,
+  "earlier1080Build": {
+    "assemblySHA256": "f4a36a8c39b407168d048979faa4e8e51d443f82de666be378d75e4b03ef6d3b",
+    "runs": {
+      "opening-ride": {
+        "passed": true,
+        "marker": "OPENING_RIDE_REVIEW_PASS",
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+      },
+      "opening-ride-save": {
+        "passed": true,
+        "marker": "OPENING_RIDE_SAVE_PASS",
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+      },
+      "1080": {
+        "passed": true,
+        "marker": "OPENING_REVIEW_PASS",
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+      },
+      "reload": {
+        "passed": true,
+        "marker": "OPENING_SAVE_PASS",
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+      },
+      "opening-ride-interrupted": {
+        "passed": true,
+        "marker": "OPENING_RIDE_INTERRUPTED_PASS",
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+      },
+      "opening-ride-interrupted-save": {
+        "passed": true,
+        "marker": "OPENING_RIDE_INTERRUPTED_SAVE_PASS",
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "normalSaveSHA256": "74e4c9ae56e0e28831fcbf5ecc85f42f23d269c02884d18082f4557a32c1abd6"
+      }
+    },
+    "editModeTests": 54,
+    "scope": "native scripted controls and rendered Metal player; no physical input or audible acceptance"
+  }
+}

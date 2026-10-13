@@ -85,7 +85,7 @@
 
 - 用户 2026-10-11 选定 D「内院回廊警署」，2026-10-12 要求开工并完整做完第一版。B10 改为两层前楼 23×12m＋西／东一层两翼各 5.5×12m＋12m 露天内院与 1.5m 回廊；地图名改「警署」。地图源 `docs/maps/town-current/build_plan.py` 的 B10 覆盖段与 `tools/police/police_layout.py` 互相断言轮廓、两门与 31 个外窗，改其一必须同步改另一份并重跑地图检查。
 - **唯一来源**：布局合同 `tools/police/police_layout.py` → `police-layout.json`／`Resources/PoliceLayout.json`；Blender `tools/police/build_police_station.py` → `assets/source/police/PoliceStation.blend/.fbx`；Unity `BuildSlice.Police.cs` 装配 `Assets/Generated/PoliceStation.prefab`。街景与室内是同一预制件，不另建室内场景；墙体视觉与碰撞用同一套「按洞口切列」算法。改门窗、房间、家具、灯或交互点先改合同，`tools/BuildPolice.ps1` 重建；不要手改预制件。`PoliceChecks` 拒绝堵住、缩小、错位或多出的洞口。
-- 门：14 扇 `ShopMechanism` 实体门（稳定 ID `police-*`，正门 `police-front-door-left/right`，首次左开右关；横厅后门、两翼五门关；室内门开）。三个分类抽屉 `police-index-drawer-0..2`，索引卡只在抽屉拉开时可读（`OpenDrawerTarget`）。门与抽屉有原创音效（`make_police_assets.py`）。
+- 门：16 扇 `ShopMechanism` 实体门（稳定 ID `police-*`，正门 `police-front-door-left/right`，首次左开右关；横厅后门、两翼五门关；室内门开；2026-10-13 新增内院北墙的双扇铁栅门 `police-yard-gate-left/right`，首次都关，向内院开）。三个分类抽屉 `police-index-drawer-0..2`，索引卡只在抽屉拉开时可读（`OpenDrawerTarget`）。门与抽屉有原创音效（`make_police_assets.py`）。
 - 雨与声学：前楼一个外壳，按正门两扇＋横厅后门判断闷雨；两翼每间房单独一个外门；回廊 `WeatherShelter.acousticallyOpen`＝有顶不闷声；内院露天。内院地面由预制件拥有，`build_full_town.py` 与 `plan_greenery.py` 已把 (6.5,39.7)-(18.5,51.7) 从街面／院落／草花中排除；`FullMapChecks` 对 `Ext_Court` 做共面检查。
 - 灯：33 盏室内点光只照 Light Layer 4（`PoliceInteriorLayer`），室内渲染器同时保留 Default；6 盏外墙／回廊灯为 Exterior 感光并占 12 处光池。无新增阴影灯。5 盏阅读灯 `LampSwitch` 手动关闭以 `police-*-lamp-off` 存档并优先于昼夜。
 - 叙事边界：E01 案卷摘要两份副本与 E08 巡警原簿副本沿用稳定 ID 去重；E08 正文与车站资料桌逐字一致，来源写明另一镇调取副本。案卷摘要只排版修订稿第一节与证据合同的事实，措辞待用户确认。分类索引、目录只记存放位置。值班警员只说程序与已有事实，不说钟差、正确日期或凶手。阶段报告由玩家选陈述、判断与调查簿材料，规则在 `Resources/PoliceReport.json`（D01–D04），只核对材料，不自动结案；两项核心（D02、D03）都成立才进入「需要重新调查」，仍可继续探索。
@@ -203,3 +203,30 @@ B12已完成两层八室、13窗、10门、20组搜索柜格与26条住宅相关
 - **实物**：纸质材料在场景和检查中都具有纸张网格、正反面、薄边和自然弯曲，不能以平面UI卡片替代。纸张放在真实桌面、层板、抽屉或文件盒承托上；E直接开柜，柜内有可见日用品，不弹物件列表。关闭的柜格不能隔门取证，打开后使用真实可见的三米交互射线与实体遮挡。E02为唯一随身未打孔车票，E03保留三处真实孔洞；E06铭牌、H17锁、H18挂钟使用对应立体模型。保持证据ID、正文、去重、推理与存档规则，不因检查界面新增调查门槛。
 - **实现入口**：`game/Assets/Scripts/DemoApp.EvidenceView.cs`、`EvidenceModel.cs`、`EvidenceSolidModel.cs`、独立同名组件`EvidencePhysical.cs`及`game/Assets/Resources/EvidenceStudy.shader`。检查用独立30°透视相机、透明sRGB ARGB32／MSAA4渲染目标，禁用HDR与后处理，由GUI单独画背景；使用检查专用材质，不新增世界灯或改变曝光。预览克隆对象并使用独立材质，共享源网格只读；退出释放自有网格、材质、相机和渲染目标，不能销毁共享资源或改动场景原件的位置、旋转、比例和材质引用。供预制体引用的纸张网格／材质必须保存为资源，不能仅留在编辑器内存。
 - **复验**：改检查系统后先构建，再用`tools/house/run_review.py <本次标签> --evidence`分别检查1080p及`--720`；覆盖纸张正背、无孔／有孔车票及实体模型、旋转、缩放边界、R复位、E详情、退出资源清理、原件未改、读时与移动锁定。受影响的柜格用实际射线复验，并跑完整住宅与独立`--reload`恢复；只接受明确PASS标记，保持正常存档不变。参考[HOUSE-03实机记录](output/demo/evidence-inspection/acceptance.json)，最新楼梯版完整流程见[HOUSE-05](output/demo/house-stairs/acceptance.json)；不同版本结果须分清，程序驱动验证不能称为物理键鼠或盲测。
+
+## 可玩优先与第一幕（用户要求，2026-10-13）
+
+优先完成可玩功能，暂不扩大美化和装饰。新开局为羁押室醒来、狱警通知律师来访、玩家步行至律师会见室、律师带来报纸、阅读后确认保释与开放调查；狱警不递报纸。旧调查存档保留进度并跳过第一幕。创造者工具仅供观察与快速传送，不授予证物或改变剧情阶段；飞行不保存半空位置。具体入口、隔离存档与临时人物模型见 docs/opening-act.md。后续扩展保持自由调查与证据规则。
+
+2026-10-13 已更新原桌面 `builds/macos-current/错日证词-新版.app`，普通入口继续原调查，同目录 `第一幕试玩.command` 通过同一应用的 `--opening-playtest` 使用独立存档。`OpeningAuthoring.BuildMacIntegrated` 为此生成候选包，必须静音检查后才更新原入口。`重新开始第一幕.command` 先备份独立第一幕存档，再从牢房开始，不能删除正常 `slice-save.json`。五个 Tripo 新人物仍未取得完整本地资源，玩法整合不代表人物已接入；见 NPC-12 与 `output/demo/game-integration/acceptance.json`。
+
+### 第一幕送院与检测静音（2026-10-13）
+
+- 用户要求继续使用现有监所：律师出门后邀请探望孩子，玩家可接受/暂缓；第一人称上车，经既有道路到 B11 医院大门，律师安慰道别后驾车离开。先做流程，医院内部本轮不扩展；不新增孩子诊断/病情结果或案件证据。
+- 剧情车由 OpeningRideCarAuthoring 从旅馆车资源剥离状态控制后生成，不得覆盖 HotelCar.Current 或旅馆车保存位置。openingRideStage 独立保存，途中读档回到已接受邀请的警署车旁，下车恢复真实控制器。完成后不可重复车/律师。
+- 用户明确要求检测无声音。游戏默认静音，Esc 暂停中的声音设置控制主音量并独立保存；所有 --review 始终 AudioListener.volume=0，不能把静音流程验收冒称可听音效验收。后续检测保留此要求。
+
+### Esc 菜单与内院北墙（2026-10-13）
+
+- 用户要求音量与开发者模式都在按 Esc 后的暂停菜单里；不要把开发者快捷键提示常驻在画面上。F2／F3 保留为快捷键。
+- 用户指出警署外轮廓有一大段没有墙不合理：内院北端已由院墙 `C_N` 和居中的铁栅门封闭，门保留通往北侧后院的路。不要再让内院直接敞向外面；改动仍从布局合同出发，用 `BuildSlice.RebuildPolice` 只重建警署，之后跑 `ZFightScan` 与 `--review-yard-gate`。细节见 docs/opening-act.md。
+
+### 警署新人物（2026-10-13）
+
+- 五个 Tripo 人物（律师、看守、值班警员、女巡警、接待女警）已接入，参考图为用户确认的 `assets/source/police-cast/revision-02`。用户对穿模和画风很在意：换模型或动作后必须跑 `tools/cast/check_self_intersection.py`（逐帧，手不得进衣服）并看正／侧／背渲染，再在 `acceptance.json` 按文件哈希放行；不能把手臂整段撑开来过检查。
+- 警署内的人物渲染层用 `BuildSlice.PoliceInteriorLayer`，否则室内灯照不到。对话只有身体动作，没有口型；不要对用户说成会说话的嘴部动画。
+- Tripo 网页操作需要用户的浏览器登录状态；上传参考图按用户指示进行，下载模型包前在对话里取得同意。
+
+### 声音可听性（2026-10-14）
+
+- 用户开了声音却听不到：管线没坏，是常驻风声全在次低音、脚步太轻，笔记本扬声器放不出。排查「没声音」先用 `--audio-probe` 量输出并看系统音量，再看内容电平和频段；不要只验证 `AudioListener.volume`。新增或调整常驻声音时确认小扬声器能放出（主要能量高于约 150 Hz）。详情见 docs/opening-act.md。

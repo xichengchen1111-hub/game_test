@@ -7,7 +7,7 @@ public partial class DemoApp {
     Interactable houseReturnContainer;
     int journalPage;
     void OpenHouseGuardDialogue(Interactable item){
-        milkboyScript=DialogueScript.Load("HouseGuardDialogue");stationClerkPerformance=item.GetComponentInChildren<StationClerkPerformance>();
+        milkboyScript=DialogueScript.Load("HouseGuardDialogue");BindDialoguePerformance(item);
         dialogueHistory.Clear();dialogueHistoryOpen=false;player.scriptedDirection=Vector3.zero;VisitDialogue(milkboyScript.first);CursorMode();
     }
     void DrawHouseContainer(HouseContainer c){

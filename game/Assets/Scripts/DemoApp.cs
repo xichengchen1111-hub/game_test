@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
     public float x=0,y=0.12f,z=-10,yaw=0;
     public float returnX=3.7f,returnY=0.05f,returnZ=1;
     public List<NotebookEntry> entries = new List<NotebookEntry>();
+    public int openingRevision, openingStage;
+    public int openingRideRevision, openingRideStage;
     public bool remarkSeen;
     public bool milkboyGreeted;
     public int milkboyGreetingRevision;
@@ -54,7 +56,7 @@ public partial class DemoApp : MonoBehaviour {
     public bool Review { get; private set; }
     public float Minutes => (float)gameClock.MinutesOfDay;
     public bool NPCAnimationPaused => opening || transitioning || paused;
-    public bool Blocked => opening || transitioning || inspected || journal || paused || DialogueOpen || MilkOrdersOpen || PoliceReportOpen;
+    public bool Blocked => creatorMenu || opening || transitioning || inspected || journal || paused || DialogueOpen || MilkOrdersOpen || PoliceReportOpen;
     public string CurrentScene { get; private set; } = "Town";
     public bool IsInsideShop { get; private set; }
     BuildingInstance seamlessShop;
@@ -90,6 +92,7 @@ public partial class DemoApp : MonoBehaviour {
         Application.targetFrameRate=60;
         var args=Environment.GetCommandLineArgs();
         Review=Array.IndexOf(args,"--review")>=0;
+        InitializeAudio();
         if(Review) {
             int widthIndex=Array.IndexOf(args,"-screen-width"),heightIndex=Array.IndexOf(args,"-screen-height");
             if(widthIndex>=0&&heightIndex>=0&&widthIndex+1<args.Length&&heightIndex+1<args.Length&&int.TryParse(args[widthIndex+1],out var width)&&int.TryParse(args[heightIndex+1],out var height))
@@ -129,6 +132,14 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&(Array.IndexOf(args,"--review-car")>=0||Array.IndexOf(args,"--verify-car-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"car-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-tower-night")>=0||Array.IndexOf(args,"--review-day-look")>=0))savePath=Path.Combine(Application.persistentDataPath,"look-gallery-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-police")>=0||Array.IndexOf(args,"--verify-police-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"police-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-opening")>=0||Array.IndexOf(args,"--verify-opening-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-review-save.json");
+        if(Review&&Array.IndexOf(args,"--review-police-cast")>=0)savePath=Path.Combine(Application.persistentDataPath,"police-cast-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-opening-ride")>=0||Array.IndexOf(args,"--verify-opening-ride-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-ride-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-opening-ride-interrupted")>=0||Array.IndexOf(args,"--verify-opening-ride-interrupted")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-ride-interrupted-review-save.json");
+        if(!Review&&(Application.productName.EndsWith("第一幕试玩")||Array.IndexOf(args,"--opening-playtest")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-playtest-save.json");
+        if(Review&&Array.IndexOf(args,"--review-map-sightlines")>=0)savePath=Path.Combine(Application.persistentDataPath,"map-sightline-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-yard-gate")>=0||Array.IndexOf(args,"--verify-yard-gate-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"yard-gate-review-save.json");
+        if(Array.IndexOf(args,"--audio-probe")>=0||Array.IndexOf(args,"--audio-probe-muted-start")>=0)savePath=Path.Combine(Application.persistentDataPath,"audio-probe-save.json");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
         Debug.Log("SAVE_LOCATION: "+savePath);
@@ -142,6 +153,7 @@ public partial class DemoApp : MonoBehaviour {
         if(state.initializedFixtures==null)state.initializedFixtures=new List<string>();
         if(state.reportSubmissions==null)state.reportSubmissions=new List<string>();
         if(state.reportSupported==null)state.reportSupported=new List<string>();
+        InitializeOpeningState(args,File.Exists(savePath)&&Array.IndexOf(args,"--fresh")<0);
         InitializeGameClock(File.Exists(savePath)&&Array.IndexOf(args,"--fresh")<0);
         if (state.scene!="Town" && state.scene!="ClockShop" && state.scene!="OtherTown") state.scene="Town";
         if(previewWindow){state.scene="ClockShop";state.x=0;state.y=.03f;state.z=-.6f;opening=false;}
@@ -191,6 +203,7 @@ public partial class DemoApp : MonoBehaviour {
         if(previewMilkboy)player.Aim(GameObject.Find("Milkboy").transform.position+Vector3.up*.94f);
         if(previewWatchmaker)player.Aim(GameObject.Find("Clockmaker").transform.position+Vector3.up*1.1f);
         InitializeTownMap();
+        InitializeOpeningScene();
         sceneReady=true;
         location=CurrentScene=="Town"?"青川 · 小镇广场":"邻镇 · 车站街区";
         locationAge=Time.time;
@@ -198,7 +211,17 @@ public partial class DemoApp : MonoBehaviour {
         if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--review-police")>=0)StartCoroutine(ReviewPolice());
+            if(Array.IndexOf(args,"--review-police-cast")>=0)StartCoroutine(ReviewPoliceCast());
+            else if(Array.IndexOf(args,"--review-opening-ride")>=0)StartCoroutine(ReviewOpeningRide());
+            else if(Array.IndexOf(args,"--verify-opening-ride-save")>=0)StartCoroutine(VerifyOpeningRideSave());
+            else if(Array.IndexOf(args,"--review-opening-ride-interrupted")>=0)StartCoroutine(ReviewOpeningRide(true));
+            else if(Array.IndexOf(args,"--verify-opening-ride-interrupted")>=0)StartCoroutine(VerifyOpeningRideInterrupted());
+            else if(Array.IndexOf(args,"--review-map-sightlines")>=0)StartCoroutine(ReviewMapSightlines());
+            else if(Array.IndexOf(args,"--review-yard-gate")>=0)StartCoroutine(ReviewYardGate());
+            else if(Array.IndexOf(args,"--verify-yard-gate-save")>=0)StartCoroutine(VerifyYardGateSave());
+            else if(Array.IndexOf(args,"--review-opening")>=0)StartCoroutine(ReviewOpening());
+            else if(Array.IndexOf(args,"--verify-opening-save")>=0)StartCoroutine(VerifyOpeningSave());
+            else if(Array.IndexOf(args,"--review-police")>=0)StartCoroutine(ReviewPolice());
             else if(Array.IndexOf(args,"--verify-police-save")>=0)StartCoroutine(VerifyPoliceSave());
             else if(Array.IndexOf(args,"--review-house")>=0)StartCoroutine(ReviewHouse());
             else if(Array.IndexOf(args,"--verify-house-save")>=0)StartCoroutine(VerifyHouseSave());
@@ -262,6 +285,7 @@ public partial class DemoApp : MonoBehaviour {
         if(TickRailSeat())return;
         if(TickFurnitureSeat())return;
         TickCar();
+        TickOpeningRide();
         if(sceneReady&&seamlessShop) {
             var p=seamlessShop.transform.InverseTransformPoint(player.transform.position);
             bool inside=Mathf.Abs(p.x)<seamlessShop.layout.footprint.x/2&&Mathf.Abs(p.z)<seamlessShop.layout.footprint.y/2;
@@ -273,6 +297,9 @@ public partial class DemoApp : MonoBehaviour {
         // Review coroutines invoke the same handlers; desktop shortcuts must not race them.
         if(Review)return;
         if (transitioning) return;
+        TickOpening();
+        if(openingRideActive){if(Input.GetKeyDown(KeyCode.Escape)){paused=!paused;CursorMode();}return;}
+        if(UpdateCreatorInput())return;
         bool mapKey=Input.GetKeyDown(KeyCode.M);
         if(mapKey&&!mapOpen&&HeldItemBlockedByDriving())mapKey=false;
         if(HandleMapKeys(mapKey,Input.GetKeyDown(KeyCode.Escape)))return;
@@ -304,11 +331,13 @@ public partial class DemoApp : MonoBehaviour {
     }
     void ToggleWatch() { SetWatchOpen(!watch); }
     public bool TryInteract() {
-        if(Blocked||FurnitureSeated||RailSeated) return false;
+        if(Blocked||FurnitureSeated||RailSeated||OpeningRideActive) return false;
         if(Physics.Raycast(player.eye.transform.position,player.eye.transform.forward,out var hit,3f)) {
             var item=hit.collider.GetComponentInParent<Interactable>();
             if(Review)Debug.Log("INTERACTION_RAY: hit="+hit.collider.name+" distance="+hit.distance+" item="+(item?item.title:"none")+" eye="+player.eye.transform.position+" direction="+player.eye.transform.forward);
-            if(item) { item.Use(); return true; }
+            if(item) {
+                if(player.CreatorFlying&&(item is RailSeat||item is FurnitureSeat||item is ScenePortal||item is CarControl carControl&&carControl.kind==CarControlKind.Seat)){OpeningReminder("先按 F3 返回地面，再乘车、坐下或进入其他场景。");return true;}
+                item.Use(); return true; }
         }
         else if(Review)Debug.Log("INTERACTION_RAY: no hit eye="+player.eye.transform.position+" direction="+player.eye.transform.forward);
         return false;
@@ -336,6 +365,7 @@ public partial class DemoApp : MonoBehaviour {
         if(inspected && inspected.evidenceId=="E07" && !state.remarkSeen && !Silent) {
             state.remarkSeen=true; remark="同行者  /  老街的事，店里总会留些纸。"; remarkUntil=Time.time+5;
         }
+        OpeningInspectionClosed();
         EndEvidenceModel();inspected=null; houseLetterOpen=false; houseReturnContainer=null; CursorMode(); Save();
     }
     public void Travel(ScenePortal portal) { if(!transitioning&&!CarSeated) StartCoroutine(Transition(portal)); }
@@ -354,6 +384,7 @@ public partial class DemoApp : MonoBehaviour {
         CurrentScene=target;
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(target));
         player.Place(spawn,yaw);
+        RestoreOpeningRideScene();
         location=target=="Town"?"青川 · 小镇广场":"青川 · 钟表铺";
         locationAge=Time.time; Save();
         yield return FadeTo(0,0.6f);
@@ -371,10 +402,11 @@ public partial class DemoApp : MonoBehaviour {
         StoreGameClock();
         state.towerLayoutRevision=1;
         state.scene=CurrentScene;
-        var p=FurnitureSeated?restingExit:CarSeated?CarStandingPoint():player.transform.position;
+        var p=OpeningRideActive?OpeningRideSafePoint(state.openingRideStage):FurnitureSeated?restingExit:CarSeated?CarStandingPoint():player.transform.position;
         state.furnitureSeatId=FurnitureSeated?restingSeat.seatId:"";
         state.carSeatId=CarSeated?carSeat.seatId:"";
         if(CurrentScene=="Town"&&HotelCar.Current)HotelCar.Current.StoreState(state);
+        if(player.CreatorFlying)p=player.CreatorReturnPoint;
         if(!SafePosition(p))p=SafeSpawn();
         state.x=p.x;state.y=p.y;state.z=p.z;state.yaw=player.transform.eulerAngles.y;
         string temporary=savePath+".tmp";
@@ -401,13 +433,14 @@ public partial class DemoApp : MonoBehaviour {
     }
     void LateUpdate() {
         // The car recovers itself (and its occupant) if it leaves the valid town area.
-        if(!sceneReady||transitioning||!player||CarSeated||SafePosition(player.transform.position))return;
+        if(!sceneReady||transitioning||!player||player.CreatorFlying||CarSeated||OpeningRideActive||SafePosition(player.transform.position))return;
         Debug.LogWarning("Recovered out-of-bounds player: "+player.transform.position);
         player.Place(SafeSpawn(),0);
         Save();
     }
     void OnDestroy() { Application.wantsToQuit-=WantsToQuit; }
     bool WantsToQuit() {
+        if(Review)Debug.Log("REVIEW_NATIVE_QUIT_REQUEST: "+Environment.StackTrace);
 #if UNITY_STANDALONE_WIN && !UNITY_EDITOR
         RequestQuit();return false;
 #else
@@ -464,15 +497,16 @@ public partial class DemoApp : MonoBehaviour {
             Label(new Rect(75,100,400,35),"青川  /  一九三一",italic);
             Label(new Rect(70,160,480,90),"错日证词",large);
             Box(new Rect(75,270,70,2),new Color(0.77f,0.57f,0.35f));
-            Label(new Rect(75,315,430,90),"暮色落在旧街上。\n钟声、灯光，还有没有说完的话。",text);
-            if(Button(new Rect(75,H-230,360,60),"开始漫步",true)) { opening=false; CursorMode(); }
+            Label(new Rect(75,315,430,90),state.openingStage<4?"你在警署的牢房里醒来。\n门外有人在等你。":"调查还在继续。\n重新走访，核对你手中的材料。",text);
+            if(Button(new Rect(75,H-230,360,60),state.openingStage<4?"在牢房醒来":"继续调查",true)) { opening=false; CursorMode(); Save(); }
             Label(new Rect(75,H-140,450,70),"自由走动，靠近物件按 E 查看。\nQ 怀表  ·  M 纸地图  ·  Tab 调查簿  ·  Esc 暂停",small);
         } else {
             Label(new Rect(36,26,250,35),"错日证词",text);
             Label(new Rect(36,62,300,30),CurrentScene=="OtherTown"?"邻镇  /  一九三一":"青川  /  一九三一",italic);
             var right=new GUIStyle(small){alignment=TextAnchor.UpperRight};
             Label(new Rect(W-350,32,310,32),location,right);
-            if(!Blocked) {
+            DrawOpeningObjective();
+            if(!Blocked&&!OpeningRideActive) {
                 if(!mapOpen||player.pitch<25){GUI.color=new Color(1,0.95f,0.85f,0.8f);GUI.DrawTexture(new Rect(W/2-3,H/2-3,6,6),circle);GUI.color=Color.white;}
                 if(focus&&(!mapOpen||player.pitch<25)) {
                     Rect p=new Rect(W/2-170,H/2+38,340,43);Box(p,new Color(0.04f,0.08f,0.11f,0.87f));
@@ -481,6 +515,7 @@ public partial class DemoApp : MonoBehaviour {
                 if(!mapOpen)Label(new Rect(36,H-50,W-72,30),CarSeated?CarHelpLine():RailSeated?"鼠标 观察    E 起身下车    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停":"WASD 行走    鼠标 观察    Shift 奔跑    E 互动    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停",small);
             }
             if(watch&&!mapOpen&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen) DrawWatch();
+            DrawOpeningRide();
             if(DialogueOpen) DrawDialogue();
             if(houseLetterOpen&&inspected) DrawHouseLetter();
             else if(inspected is ClockTowerAdjustment) DrawTowerAdjustment();
@@ -490,12 +525,17 @@ public partial class DemoApp : MonoBehaviour {
             if(MilkOrdersOpen) DrawMilkOrders();
             if(PoliceReportOpen) DrawPoliceReport();
             if(journal) DrawJournal();
-            if(paused) {
-                Box(new Rect(0,0,W,H),new Color(0,0,0,0.42f));Panel(new Rect(W/2-230,H/2-180,460,360));
-                Label(new Rect(W/2-180,H/2-135,360,50),"稍作停留",title);
-                if(Button(new Rect(W/2-180,H/2-50,360,55),"继续漫步")){paused=false;CursorMode();}
-                if(Button(new Rect(W/2-180,H/2+30,360,55),"保存并退出"))RequestQuit();
+            if(paused&&!creatorMenu) {
+                Box(new Rect(0,0,W,H),new Color(0,0,0,0.42f));Panel(new Rect(W/2-230,H/2-260,460,540));
+                Label(new Rect(W/2-180,H/2-222,360,50),"稍作停留",title);
+                if(Button(new Rect(W/2-180,H/2-155,360,55),"继续游戏")){paused=false;CursorMode();}
+                bool enabled=GUI.enabled;GUI.enabled=enabled&&CreatorActionsAvailable;
+                if(Button(new Rect(W/2-180,H/2-85,360,55),CreatorActionsAvailable?"开发者模式":"开发者模式 · 乘坐中不可用"))OpenCreatorMenu();
+                GUI.enabled=enabled;
+                if(Button(new Rect(W/2-180,H/2-15,360,55),"保存并退出"))RequestQuit();
+                DrawAudioSettings(W/2-180,H/2+84,360);
             }
+            DrawCreator();
             if(!mapOpen&&!Silent&&Time.time<remarkUntil&&!inspected&&!journal&&!DialogueOpen&&!MilkOrdersOpen) {
                 Rect r=new Rect(36,H-135,580,57);Box(r,new Color(0.05f,0.10f,0.13f,0.9f));Label(new Rect(r.x+16,r.y+14,r.width-32,40),remark,small);
             }

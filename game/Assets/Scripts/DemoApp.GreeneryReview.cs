@@ -56,9 +56,9 @@ public partial class DemoApp {
         var placement=milkShopRoot.GetComponent<MilkShopPlacement>();player.Place(placement.outside,0);yield return WalkTo(placement.inside);NeedMap(insideMilkShop,"Greenery blocks dairy entrance");yield return WalkTo(placement.outside);
         var sightA=new Vector3(-40.8f,1.6f,-57);var sightB=new Vector3(-33,1.6f,-57);
         NeedMap(!Physics.Linecast(sightA,sightB),"Kitchen sightline blocked");
-        var front=new Vector3(-15.5f,1.6f,-57);var dial=new Vector3(0,ClockTowerInteriorLayout.DialHeight,-ClockTowerInteriorLayout.DialPlaneDistance);
+        var front=HomeDeliveryStandingPoint()+Vector3.up*1.66f;var dial=new Vector3(0,ClockTowerInteriorLayout.DialHeight,-ClockTowerInteriorLayout.DialPlaneDistance);
         NeedMap(!Physics.Linecast(front,dial,out var block)||block.collider.GetComponentInParent<ClockTowerInstance>(),"Clock sightline blocked");
-        player.Place(front-Vector3.up*1.5f,0);player.Aim(dial);yield return Capture("clock-sightline");
+        player.Place(HomeDeliveryStandingPoint(),0);player.Aim(dial);yield return Capture("clock-sightline");
         // Detailed near-player bed and bark views, without changing live town lighting.
         player.Place(new Vector3(12,.1f,-70),0);player.Aim(new Vector3(8,.7f,-71.8f));yield return Capture("layered-roadside-border");
         player.Place(new Vector3(-30.8f,.1f,25.0f),0);player.Aim(new Vector3(-30,1.2f,23.5f));yield return new WaitForSeconds(.5f);yield return Capture("tree-bark-and-flowers");
