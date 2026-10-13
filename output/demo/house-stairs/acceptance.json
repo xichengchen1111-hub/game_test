@@ -1,0 +1,45 @@
+{
+  "passed": true,
+  "assemblySHA256": "ea741469824d36cc44fa04a250fca0c03da98a3c241bd82937a8fbbc3607d5c8",
+  "sourceSHA256": "5af0c744672ce3f57d4d65c50d5dbc98a46d41176706c5b4456bba42587f8730",
+  "fbxSHA256": "524768dcd38667209714d001684aeb9ea0a25fdb29a4216d13d9f29cfac9d16f",
+  "normalSaveSHA256": "6d1f303a8b57a92e1fb6bcafc2b0988075fc9a7da945134e2207c2a51914c30b",
+  "nativeRuns": {
+    "stairs02-1080": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "HOME_STAIRS_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/stairs02-1080",
+      "normalSaveSHA256": "6d1f303a8b57a92e1fb6bcafc2b0988075fc9a7da945134e2207c2a51914c30b"
+    },
+    "stairs02-full": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "HOME_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/stairs02-full",
+      "normalSaveSHA256": "6d1f303a8b57a92e1fb6bcafc2b0988075fc9a7da945134e2207c2a51914c30b"
+    },
+    "stairs02-reload": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "HOME_SAVE_PASS",
+      "normalSaveUnchanged": true,
+      "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/stairs02-reload",
+      "normalSaveSHA256": "6d1f303a8b57a92e1fb6bcafc2b0988075fc9a7da945134e2207c2a51914c30b"
+    }
+  },
+  "sourceChecks": {
+    "stairs-audit.json": true,
+    "source-verification.json": true,
+    "placement-audit.json": true
+  },
+  "editModeTests": 85,
+  "editModeScope": "Build01 code and stair/canopy/floor geometry; Build02 only shortens door casing visuals, source and native checks rerun.",
+  "coplanarExact": 0,
+  "coplanarMoving": 0,
+  "delivery": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app",
+  "backup": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/before-stairs-20261013.app",
+  "verification": "Mac Metal rendered screenshots and scripted actual controller: centre/left/right walking and centre sprint, ascent/descent; full home and separate process reload. Not physical input, blind playtesting, Windows or full town regression."
+}

@@ -20,7 +20,7 @@ public partial class DemoApp {
         public float walkSpeed=PlayerMotor.WalkSpeed,sprintSpeed=PlayerMotor.SprintSpeed;
         public double gameMinutesPerRealSecond=GameClock.GameMinutesPerRealSecond,stationWaitRealSeconds,roundTripGameMinutes,homeArrivalWatchMinutes;
         public List<SprintLeg> legs=new List<SprintLeg>();
-        public string scope="Native "+Application.platform+" renderer, real CharacterController, scripted normalized movement and Shift state; no physical keyboard or blind player claim. Endpoints are exterior door approaches, excluding station interior travel; home interior is unfinished. Historical lines are candidate routes, not proof of NPC actions. Old clock figures are projections of measured wall time. Passed means controller/rate/persistence checks succeeded; story-window feasibility is reported separately.";
+        public string scope="Native "+Application.platform+" renderer, real CharacterController, scripted normalized movement and Shift state; no physical keyboard or blind player claim. Endpoints are exterior door approaches, excluding station and home interior travel. Historical lines are candidate routes, not proof of NPC actions. Old clock figures are projections of measured wall time. Passed means controller/rate/persistence checks succeeded; story-window feasibility is reported separately.";
     }
     void NeedSprint(bool ok,string why) {if(ok)return;Debug.LogError("SPRINT_REVIEW_FAIL: "+why);Application.Quit(1);throw new InvalidOperationException(why);}
     static float SprintDistance(Vector3 a,Vector3 b)=>Vector2.Distance(new Vector2(a.x,a.z),new Vector2(b.x,b.z));

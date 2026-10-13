@@ -150,21 +150,21 @@
       "id": "E09",
       "label": "残信裁余片",
       "scene": "home",
-      "source": "住宅抽屉，与案卷残信照片对照",
+      "source": "住宅书房书桌抽屉，与案卷或会客室的残信照片对照",
       "admissible": true,
       "requires": [],
       "fact": "裁余片可以与现场残信拼合；支持布置现场的疑问，不能独自定罪",
-      "proposed_addition": true
+      "proposed_addition": false
     },
     {
       "id": "E10",
       "label": "家书",
       "scene": "home",
-      "source": "书桌上的病房来信",
+      "source": "住宅书房桌上的病房来信",
       "admissible": true,
       "requires": [],
       "fact": "妻子曾给孩子带苹果；保留死者的生活与情感",
-      "proposed_addition": true
+      "proposed_addition": false
     }
   ],
   "montage": [
@@ -767,5 +767,67 @@
       },
       "limits": "Local Mac rendered review timing includes screenshots/UI; not a formal GPU or long-duration performance benchmark."
     }
+  },
+  "house_1931": {
+    "approved": "2026-10-12 用户批准制作",
+    "layout": "B12 原16×12米主楼、两层8房间与西北后翼；同一外壳连续进出",
+    "new_record_ids": [
+      "H01",
+      "H03",
+      "H04",
+      "H05",
+      "H06",
+      "H09",
+      "H10",
+      "H11",
+      "H12",
+      "H13",
+      "H14",
+      "H15",
+      "H16",
+      "H17",
+      "H18",
+      "H19",
+      "H20",
+      "H21",
+      "H22",
+      "H23",
+      "H24",
+      "H25",
+      "H26",
+      "H27"
+    ],
+    "source_data": "game/Assets/Resources/HouseEvidence.json",
+    "safe": {
+      "code": "0614",
+      "clues": [
+        "H09",
+        "H22"
+      ],
+      "alternative_birthday": "H24",
+      "requires_reading_flags": false,
+      "contents": [
+        "H11",
+        "H12",
+        "H13",
+        "H14"
+      ]
+    },
+    "letter": {
+      "pieces": "E09",
+      "photo_alternatives": [
+        "E01",
+        "H06"
+      ],
+      "result": "H27"
+    },
+    "limits": [
+      "E02仍是随身原件；玄关只提供摊开比对",
+      "所有原扣押物以有出处的照片副本出现",
+      "取款合计100与申报150不能证明实际失窃数额",
+      "私奔来信与保险动机不是定罪证据",
+      "家庭债务不免除伤害责任；保留护士来信与照护笔记",
+      "H系列与两项原核心判断无强制依赖；不自动揭露凶手"
+    ]
   }
 }

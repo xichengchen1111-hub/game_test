@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class BuildingLayoutChecks {
+    public static void ValidateHouse(GameObject root,HomePlan plan)=>HouseAuthoring.Validate(root,plan);
     static void Require(bool condition,string message) {
         if(!condition)throw new InvalidOperationException("Building consistency: "+message);
     }

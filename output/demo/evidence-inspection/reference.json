@@ -1,0 +1,17 @@
+{
+  "reference": "Resident Evil 3 remake (2020), user confirmed",
+  "source": "https://www.gamepressure.com/resident-evil-3-remake/clock-tower-commemoration-puzzle/z9d230",
+  "examinedScreenshot": "https://www.gamepressure.com/resident-evil-3-remake/gfx/word/136685296.jpg",
+  "observed": [
+    "isolated angled 3D model against charcoal background",
+    "surface highlights and depth",
+    "small name and fine rule lower-right of the object",
+    "rotate, zoom, reset, return controls"
+  ],
+  "adaptation": [
+    "Only evidence name before E as requested; do not copy reference description or inventory HUD",
+    "E toggles detailed text; left drag rotates, wheel zooms, R resets, Esc returns",
+    "Preserve running game clock and original object/save state"
+  ],
+  "assets": "Original game geometry and textures; no Capcom assets copied"
+}

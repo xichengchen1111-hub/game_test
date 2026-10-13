@@ -113,7 +113,7 @@ public static partial class BuildSlice {
     static void TowerWallPlaque(Transform root) {
         var plaque=Box("Clock observation",new Vector3(1.06f,1.52f,-1.845f),new Vector3(.67f,.72f,.025f),Mat("TowerPlaqueBronze","#8D774D",0,.35f),root);
         Quad("Legible tower history",new Vector3(1.06f,1.52f,-1.862f),new Vector2(.63f,.68f),ImageMat("TowerHistory","TowerHistory.png",true),root);
-        var clock=plaque.AddComponent<Interactable>();clock.title="古钟塔铭牌";clock.evidenceId="E06";clock.source="广场古钟塔，外墙铭牌与钟面";
+        var clock=plaque.AddComponent<Interactable>();clock.title="古钟塔铭牌";clock.evidenceId="E06";clock.illustration=AssetDatabase.LoadAssetAtPath<Texture2D>("Assets/Art/Textures/TowerHistory.png");clock.source="广场古钟塔，外墙铭牌与钟面";
         clock.body="青川古钟塔\n\n建成于 1816 年，由钟表大师埃利亚斯·霍夫曼主持建造。\n百余年钟声，守候小镇晨昏。\n\n钟楼由钟表铺的匠人维护。抬头可以看见钟面。";
     }
 

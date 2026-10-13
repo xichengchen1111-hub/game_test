@@ -121,6 +121,7 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&(Array.IndexOf(args,"--review-rail")>=0||Array.IndexOf(args,"--verify-rail-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"rail-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-milkboy-tripo")>=0)savePath=Path.Combine(Application.persistentDataPath,"milkboy-tripo-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-station-clerk")>=0||Array.IndexOf(args,"--verify-station-clerk-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"station-clerk-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-house")>=0||Array.IndexOf(args,"--verify-house-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"house-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-period-streets")>=0)savePath=Path.Combine(Application.persistentDataPath,"period-street-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-greenery")>=0)savePath=Path.Combine(Application.persistentDataPath,"greenery-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-watchmaker-tripo")>=0||Array.IndexOf(args,"--review-watchmaker")>=0))savePath=Path.Combine(Application.persistentDataPath,"watchmaker-tripo-review-save.json");
@@ -180,6 +181,7 @@ public partial class DemoApp : MonoBehaviour {
             Debug.LogWarning("Recovered invalid saved position: "+savedPosition);
             savedPosition=SafeSpawn();
         }
+        if(CurrentScene=="Town"&&HouseInstance.Current)savedPosition=HouseInstance.Current.ResolveLoadedFurnitureOverlap(savedPosition);
         player.Place(savedPosition,float.IsNaN(state.yaw)||float.IsInfinity(state.yaw)?0:state.yaw);
         if(CurrentScene=="Town")player.Aim(previewWindow?seamlessShop.layout.ToTown(seamlessShop.layout.WallCentre(BuildingWall.Front)+Vector3.up*1.7f):new Vector3(0,ClockTowerInteriorLayout.DialHeight,-ClockTowerInteriorLayout.DialPlaneDistance));
         RestoreRailSeat();
@@ -198,6 +200,8 @@ public partial class DemoApp : MonoBehaviour {
             opening=false;
             if(Array.IndexOf(args,"--review-police")>=0)StartCoroutine(ReviewPolice());
             else if(Array.IndexOf(args,"--verify-police-save")>=0)StartCoroutine(VerifyPoliceSave());
+            else if(Array.IndexOf(args,"--review-house")>=0)StartCoroutine(ReviewHouse());
+            else if(Array.IndexOf(args,"--verify-house-save")>=0)StartCoroutine(VerifyHouseSave());
             else if(Array.IndexOf(args,"--review-car")>=0)StartCoroutine(ReviewCar());
             else if(Array.IndexOf(args,"--verify-car-save")>=0)StartCoroutine(VerifyCarSave());
             else if(Array.IndexOf(args,"--review-sprint-route")>=0)StartCoroutine(ReviewSprintRoute());
@@ -254,6 +258,7 @@ public partial class DemoApp : MonoBehaviour {
         UpdateGameClock();
         TickTowerAdjustment();
         TickHeldMap();
+        TickEvidenceModel();
         if(TickRailSeat())return;
         if(TickFurnitureSeat())return;
         TickCar();
@@ -309,11 +314,13 @@ public partial class DemoApp : MonoBehaviour {
         return false;
     }
     public void Inspect(Interactable item) {
+        if(item.title=="住宅看守"){OpenHouseGuardDialogue(item);return;}
+        if(item is HouseContainer){houseCode="";houseFeedback="";}
         if(item.evidenceId=="E04") { OpenMilkboyDialogue(); return; }
         if(item.title=="钟表匠") { OpenWatchmakerDialogue(); return; }
         if(item.title=="售票员") { OpenStationClerkDialogue(item); return; }
         if(item.title=="值班警员") { OpenPoliceOfficerDialogue(item); return; }
-        inspected=item; towerAdjustmentFeedback=""; CursorMode();
+        EndEvidenceModel();inspected=item;if(ModelEvidence)BeginEvidenceModel(item); houseLetterOpen=false; towerAdjustmentFeedback=""; CursorMode();
         if(item.evidenceId=="E02"||item.evidenceId=="E03") {
             var existing=state.entries.Find(e=>e.id==item.evidenceId);
             if(existing!=null){existing.title=item.title;existing.body=item.body;existing.source=item.source;Save();}
@@ -329,7 +336,7 @@ public partial class DemoApp : MonoBehaviour {
         if(inspected && inspected.evidenceId=="E07" && !state.remarkSeen && !Silent) {
             state.remarkSeen=true; remark="同行者  /  老街的事，店里总会留些纸。"; remarkUntil=Time.time+5;
         }
-        inspected=null; CursorMode(); Save();
+        EndEvidenceModel();inspected=null; houseLetterOpen=false; houseReturnContainer=null; CursorMode(); Save();
     }
     public void Travel(ScenePortal portal) { if(!transitioning&&!CarSeated) StartCoroutine(Transition(portal)); }
     IEnumerator Transition(ScenePortal portal) {
@@ -451,6 +458,7 @@ public partial class DemoApp : MonoBehaviour {
         Styles(); float scale=Mathf.Min(Screen.width/1600f,Screen.height/900f);
         W=Screen.width/scale;H=Screen.height/scale;
         GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
+        if(ModelEvidence&&!houseLetterOpen){DrawEvidenceModel();GUI.matrix=Matrix4x4.identity;return;}
         if(opening && !Review) {
             Box(new Rect(0,0,610,H),new Color(0.035f,0.07f,0.10f,0.72f));
             Label(new Rect(75,100,400,35),"青川  /  一九三一",italic);
@@ -474,8 +482,11 @@ public partial class DemoApp : MonoBehaviour {
             }
             if(watch&&!mapOpen&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen) DrawWatch();
             if(DialogueOpen) DrawDialogue();
-            if(inspected is ClockTowerAdjustment) DrawTowerAdjustment();
+            if(houseLetterOpen&&inspected) DrawHouseLetter();
+            else if(inspected is ClockTowerAdjustment) DrawTowerAdjustment();
+            else if(inspected is HouseContainer) DrawHouseContainer((HouseContainer)inspected);
             else if(inspected) DrawInspection(inspected.title,inspected.body,inspected.source,inspected.illustration);
+            DrawHousePaperBack();
             if(MilkOrdersOpen) DrawMilkOrders();
             if(PoliceReportOpen) DrawPoliceReport();
             if(journal) DrawJournal();
@@ -534,11 +545,16 @@ public partial class DemoApp : MonoBehaviour {
         Box(new Rect(p.x+40,p.y+153,1060,1),new Color(0.29f,0.37f,0.37f));
         if(state.entries.Count==0) Label(new Rect(p.x+45,p.y+205,990,180),"还没有记录。\n你可以从任意地方开始，看看街钟，或走进钟表铺。",text);
         else {
-            for(int i=0;i<state.entries.Count;i++) if(Button(new Rect(p.x+40,p.y+180+i*76,310,60),state.entries[i].title,i==selectedEntry)) selectedEntry=i;
+            journalPage=Mathf.Clamp(journalPage,0,Mathf.Max(0,(state.entries.Count-1)/4));
+            for(int i=journalPage*4;i<Mathf.Min(state.entries.Count,journalPage*4+4);i++) if(Button(new Rect(p.x+40,p.y+180+(i%4)*76,310,60),state.entries[i].title,i==selectedEntry)){selectedEntry=i;housePaperScroll=Vector2.zero;}
+            if(journalPage>0&&Button(new Rect(p.x+40,p.y+505,100,45),"上一页")){journalPage--;selectedEntry=journalPage*4;housePaperScroll=Vector2.zero;}
+            Label(new Rect(p.x+145,p.y+512,100,35),(journalPage+1)+" / "+Mathf.Max(1,(state.entries.Count+3)/4),small);
+            if((journalPage+1)*4<state.entries.Count&&Button(new Rect(p.x+250,p.y+505,100,45),"下一页")){journalPage++;selectedEntry=journalPage*4;housePaperScroll=Vector2.zero;}
             var e=state.entries[Mathf.Clamp(selectedEntry,0,state.entries.Count-1)];
             Label(new Rect(p.x+400,p.y+183,640,55),e.title,title);
             Label(new Rect(p.x+400,p.y+255,640,55),"出处  /  "+e.source,italic);
-            Label(new Rect(p.x+400,p.y+330,640,TicketImage(e.id)?46:180),TicketImage(e.id)?(e.id=="E02"?"纸面与票边完整。":"同线路废票，票面留有检票孔。"):e.body,text);
+            if(TicketImage(e.id))Label(new Rect(p.x+400,p.y+330,640,46),e.id=="E02"?"纸面与票边完整。":"同线路废票，票面留有检票孔。",text);
+            else {float height=Mathf.Max(180,text.CalcHeight(new GUIContent(e.body),615));housePaperScroll=GUI.BeginScrollView(new Rect(p.x+400,p.y+330,650,190),housePaperScroll,new Rect(0,0,615,height));Label(new Rect(0,0,615,height),e.body,text);GUI.EndScrollView();}
             DrawTicketOnJournal(e,p);
         }
         if(Button(new Rect(p.x+630,p.y+538,225,52),"整理阶段报告")){journal=false;OpenPoliceReport();}

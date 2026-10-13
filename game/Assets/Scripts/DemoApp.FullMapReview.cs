@@ -59,7 +59,7 @@ public partial class DemoApp {
     IEnumerator ReviewFullMap() {
         yield return new WaitForSeconds(.8f);
         var plan=TownPlan.Current;var markers=FindObjectsByType<TownMapBuilding>(FindObjectsSortMode.None);
-        NeedMap(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70&&markers.Count(m=>m.finished)==5,"Property identity/count (tower, shop, dairy, station, police)");
+        NeedMap(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70&&markers.Count(m=>m.finished)==6,"Property identity/count (tower, shop, dairy, station, police, home)");
         NeedMap(FindFirstObjectByType<ClockTowerInstance>().transform.position==Vector3.zero,"Clock tower map origin");
         NeedMap(FindObjectsByType<StreetSurfaceLayout>(FindObjectsSortMode.None).Length==11,"Street profiles missing");
         CheckMapMigrations();
@@ -106,7 +106,7 @@ public partial class DemoApp {
         yield return WalkTo(placement.inside);NeedMap(insideMilkShop,"Dairy real door blocked after relocation");
         player.Aim(milkShopRoot.TransformPoint(new Vector3(0,1.98f,1.75f)));yield return Capture("dairy-interior-rain");
         NeedMap(FindFirstObjectByType<WeatherEffects>().ListenerSheltered,"Moved dairy roof leaks rain");
-        // Native 3D volume visibility, with ordinary collision. Houses remain placeholders.
+        // Native 3D volume visibility, with ordinary collision; B12 is the shared playable house.
         Vector3 neighbor=new Vector3(-40.8f,1.6f,-57),kitchen=new Vector3(-33,1.6f,-57),front=new Vector3(-15.5f,1.6f,-57);
         NeedMap(!Physics.Linecast(neighbor,kitchen),"Neighbor-to-kitchen proxy view blocked by an item");
         NeedMap(Physics.Linecast(neighbor,front),"Home volume fails to hide east-door return");
@@ -116,7 +116,7 @@ public partial class DemoApp {
         // Readable ground-player view of the real clock from the proposed delivery position.
         player.Place(new Vector3(-15.5f,.1f,-57),0);player.Aim(dial);cycle.SetReviewWeather(TownWeather.Kind.Clear);DayReviewTime(1075);yield return Capture("home-delivery-clock-view");
         player.Place(placement.inside,0);dayNightReviewFrozen=false;cycle.SetReviewWeather(null);Save();
-        File.WriteAllText(Path.Combine(captures,"full-map-results.json"),JsonUtility.ToJson(new MapResult{passed=true,properties=70,roads=11,orders=6,migrations=4,pointLightLimit=12,source=plan.sourceSha256,verification=Application.platform+" native renderer and real controller at Shift speed on clear footways. Five finished buildings (tower, shop, dairy, station, police) preserved; other rooms, historical NPC schedules and coal vehicle turning remain unimplemented."},true));
+        File.WriteAllText(Path.Combine(captures,"full-map-results.json"),JsonUtility.ToJson(new MapResult{passed=true,properties=70,roads=11,orders=6,migrations=4,pointLightLimit=12,source=plan.sourceSha256,verification=Application.platform+" native renderer and real controller at Shift speed on clear footways. Six finished buildings (tower, shop, dairy, station, police, home) preserved; other rooms, historical NPC schedules and coal vehicle turning remain unimplemented."},true));
         Debug.Log("FULL_MAP_REVIEW_PASS");Application.Quit();
     }
     IEnumerator VerifyFullMapSave() {

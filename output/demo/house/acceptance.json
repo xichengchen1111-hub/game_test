@@ -1,0 +1,100 @@
+{
+  "passed": true,
+  "engine": "Unity 6000.3.18f1",
+  "device": "Apple M5 Pro / macOS Metal",
+  "identity": {
+    "assembly": "132db3fab39dc3b3e7cffb9e93243ef06925ad7900cc14f04f8d26eabf9c063f",
+    "model": "6dc3e2efec79af92efee6b1974b1d6450b4da14fbd7d3d1d98a750f0bb6cdaa4",
+    "source": "dd238651729eb31a2a0c200b85f984bf627cc6fb2cc2c199d21d1471e70e1581",
+    "bundle": "com.qingchuanstudio.wrongdatetest.currentmac"
+  },
+  "editMode": {
+    "total": 81,
+    "passed": 81,
+    "includesHouseGeometry": 7
+  },
+  "runtime": {
+    "delivery1080": {
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/delivery1080",
+        "normalSaveSHA256": "fa30ad1dfa201ba8a77f635f67d08c48ca761a5d39edf4e8afd11df9b3db5116"
+      },
+      "result": {
+        "passed": true,
+        "rooms": 8,
+        "containers": 20,
+        "stairAscent": true,
+        "safeWrongAndCorrect": true,
+        "readingClock": true,
+        "acoustics": true,
+        "verification": "Scripted actual controller and interaction rays; document selection and code entry call shared UI handlers. Not physical input or blind playtest."
+      }
+    },
+    "delivery-reload": {
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/delivery-reload",
+        "normalSaveSHA256": "fa30ad1dfa201ba8a77f635f67d08c48ca761a5d39edf4e8afd11df9b3db5116"
+      },
+      "result": {
+        "passed": true,
+        "separateProcess": true,
+        "upperFloor": true,
+        "safe": true,
+        "documents": true,
+        "stairDescent": true,
+        "bothDoorRoundTrips": true,
+        "guard": true
+      }
+    },
+    "delivery720": {
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/delivery720",
+        "normalSaveSHA256": "fa30ad1dfa201ba8a77f635f67d08c48ca761a5d39edf4e8afd11df9b3db5116"
+      },
+      "result": {
+        "passed": true,
+        "rooms": 8,
+        "containers": 20,
+        "stairAscent": true,
+        "safeWrongAndCorrect": true,
+        "readingClock": true,
+        "acoustics": true,
+        "verification": "Scripted actual controller and interaction rays; document selection and code entry call shared UI handlers. Not physical input or blind playtest."
+      }
+    }
+  },
+  "source": "source-verification.json",
+  "narrativeData": {
+    "originalEvidenceIds": 10,
+    "coreDeductions": 2,
+    "freeVisitOrders": 6,
+    "newHouseMaterials": 26,
+    "assembledLetter": "H27"
+  },
+  "visualReview": [
+    "1931 furnishing references and original textured assets",
+    "All room views, white outline, exterior cordon and guard",
+    "720p and 1080p patient birth date, letter puzzle and journal",
+    "Roof join no longer enters child room; wardrobe clears bedroom window",
+    "Door rendering follows the same collider; safe opens outward"
+  ],
+  "scope": "Scripted actual controller and normal three-metre rays; document selection, password entry and letter placement call shared handlers. Separate native relaunch. Not physical keyboard/mouse, blind-playtest, Windows or low-end performance acceptance. Whole-town route and unrelated old suites not rerun.",
+  "delivery": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app",
+  "previousApplicationBackup": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/previous-live-20261012-215242.app",
+  "normalSaveUnchanged": true,
+  "repositoryMedia": {
+    "keyFrames": [
+      "01-exterior-east.jpg",
+      "03-parlour.jpg",
+      "20-guard-dialogue.jpg"
+    ],
+    "originalMediaLocalOnly": "builds/house-review/push-source-media-20261013/house",
+    "note": "Selected native frames converted to JPEG for repository size; all original PNGs/video retained locally, not included in Git. Historical verification results unchanged."
+  }
+}

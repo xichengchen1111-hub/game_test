@@ -1,0 +1,479 @@
+{
+  "revision": "HOUSE-04",
+  "build": "placement-build03.log",
+  "assemblySHA256": "4295a7a63882dd362752a3e9dd06d666b3a90d8d6b15a8a74c401daf77c46285",
+  "modelSHA256": "8bfc63cf1ab48cc8b482acc2e094797db0587a733145dbc2430ef327fff67473",
+  "source": {
+    "passed": true,
+    "blender": "4.5.9 LTS",
+    "rooms": 8,
+    "storeys": 2,
+    "searchGroups": 20,
+    "openings": 13,
+    "doors": 10,
+    "editableMeshes": 1912,
+    "packedImages": 8,
+    "sourceSHA256": "7d395416684c0f8695cccbfda3b2e9db567c1daaa41852ebedefeb73d235ec0c",
+    "scope": "Reopened editable source, metre markers, moving part IDs, UV/materials, packed images. Runtime interaction and appearance tested separately."
+  },
+  "placementAudit": {
+    "passed": true,
+    "rearClearances": [
+      {
+        "object": "Parents bed",
+        "gapMetres": 0.038
+      },
+      {
+        "object": "Child bed",
+        "gapMetres": 0.038
+      },
+      {
+        "object": "Cabinet_bedside-a",
+        "gapMetres": 0.025
+      },
+      {
+        "object": "Cabinet_bedside-b",
+        "gapMetres": 0.025
+      },
+      {
+        "object": "Cabinet_child-bedside",
+        "gapMetres": 0.025
+      },
+      {
+        "object": "Cabinet_dressing",
+        "gapMetres": 0.08
+      },
+      {
+        "object": "Cabinet_wardrobe",
+        "gapMetres": 0.075
+      },
+      {
+        "object": "Cabinet_sideboard",
+        "gapMetres": 0.06
+      },
+      {
+        "object": "Three seat sofa",
+        "gapMetres": 0.12
+      },
+      {
+        "object": "Writing desk",
+        "gapMetres": 0.1
+      },
+      {
+        "object": "Cabinet_desk",
+        "gapMetres": 0.04
+      },
+      {
+        "object": "Cabinet_medical",
+        "gapMetres": 0.05
+      },
+      {
+        "object": "Bookcase",
+        "gapMetres": 0.06
+      },
+      {
+        "object": "Cabinet_stationery",
+        "gapMetres": 0.035
+      },
+      {
+        "object": "Cabinet_safe",
+        "gapMetres": 0.06
+      },
+      {
+        "object": "Cabinet_kitchen-bills",
+        "gapMetres": 0.06
+      },
+      {
+        "object": "Cabinet_kitchen-larder",
+        "gapMetres": 0.06
+      },
+      {
+        "object": "Cabinet_kitchen-crockery",
+        "gapMetres": 0.04
+      },
+      {
+        "object": "Deep sink",
+        "gapMetres": 0.045
+      },
+      {
+        "object": "Cast iron cooker",
+        "gapMetres": 0.065
+      },
+      {
+        "object": "Cabinet_utility",
+        "gapMetres": 0.04
+      },
+      {
+        "object": "Laundry washstand",
+        "gapMetres": 0.04
+      },
+      {
+        "object": "Child desk",
+        "gapMetres": 0.04
+      },
+      {
+        "object": "Cabinet_toys",
+        "gapMetres": 0.065
+      },
+      {
+        "object": "Clawfoot bath",
+        "gapMetres": 0.12
+      },
+      {
+        "object": "Pedestal basin",
+        "gapMetres": 0.05
+      },
+      {
+        "object": "Cabinet_linen",
+        "gapMetres": 0.03
+      },
+      {
+        "object": "Cabinet_old-trunk",
+        "gapMetres": 0.045
+      },
+      {
+        "object": "Treadle sewing table",
+        "gapMetres": 0.06
+      },
+      {
+        "object": "Cabinet_hall",
+        "gapMetres": 0.015
+      }
+    ],
+    "groundContacts": [
+      {
+        "object": "Parents bed",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Child bed",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_bedside-a",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_bedside-b",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_child-bedside",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_dressing",
+        "floorGapMetres": 0.0
+      },
+      {
+        "object": "Cabinet_wardrobe",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_sideboard",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Three seat sofa",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Writing desk",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_desk",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_medical",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Bookcase",
+        "floorGapMetres": 0.01
+      },
+      {
+        "object": "Cabinet_stationery",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_safe",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_kitchen-bills",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_kitchen-larder",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_kitchen-crockery",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Deep sink",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cast iron cooker",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_utility",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Laundry washstand",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Child desk",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_toys",
+        "floorGapMetres": 0.0
+      },
+      {
+        "object": "Clawfoot bath",
+        "floorGapMetres": 0.0
+      },
+      {
+        "object": "Pedestal basin",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_linen",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_old-trunk",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Treadle sewing table",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_hall",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Club armchair",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Cabinet_coffee",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Desk chair",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Kitchen table",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Kitchen chair A",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Kitchen chair B",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Child chair",
+        "floorGapMetres": -0.0
+      },
+      {
+        "object": "Sewing chair",
+        "floorGapMetres": -0.0
+      }
+    ],
+    "tabletopContacts": [
+      {
+        "object": "Bedside light",
+        "support": "Cabinet_bedside-a",
+        "gapMetres": -0.0
+      },
+      {
+        "object": "Desk light",
+        "support": "Writing desk",
+        "gapMetres": 0.0
+      },
+      {
+        "object": "Sitting room lamp",
+        "support": "Cabinet_sideboard",
+        "gapMetres": 0.0
+      },
+      {
+        "object": "Wash tub",
+        "support": "Laundry washstand",
+        "gapMetres": 0.0
+      },
+      {
+        "object": "Toy horse",
+        "support": "Cabinet_toys",
+        "gapMetres": 0.0
+      },
+      {
+        "object": "Sewing machine",
+        "support": "Treadle sewing table",
+        "gapMetres": 0.0
+      }
+    ],
+    "fixedFurnitureIntersections": [],
+    "curtainIntersections": [],
+    "failures": [],
+    "sourceSHA256": "7d395416684c0f8695cccbfda3b2e9db567c1daaa41852ebedefeb73d235ec0c",
+    "scope": "Authored source bounds; wall relations, ground and tabletop contacts, bedsides, fixed furniture pairs, and actual curtain-fold overlaps. Native visual and opening checks are separate."
+  },
+  "editMode": {
+    "id": "2",
+    "testcasecount": "83",
+    "result": "Passed",
+    "total": "83",
+    "passed": "83",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-12 15:02:09Z",
+    "end-time": "2026-10-12 15:02:10Z",
+    "duration": "0.723457"
+  },
+  "native": {
+    "placement03-storage": {
+      "process": {
+        "exit": 0,
+        "protocolPassed": true,
+        "expectedResult": "HOME_STORAGE_REVIEW_PASS",
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/placement03-storage",
+        "normalSaveSHA256": "d113945276d6c9c8867ed68031ed47af4af555eb061e22f431420d5a6fc2cd0e"
+      },
+      "result": {
+        "passed": true
+      }
+    },
+    "placement03-full": {
+      "process": {
+        "exit": 0,
+        "protocolPassed": true,
+        "expectedResult": "HOME_REVIEW_PASS",
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/placement03-full",
+        "normalSaveSHA256": "d113945276d6c9c8867ed68031ed47af4af555eb061e22f431420d5a6fc2cd0e"
+      },
+      "result": {
+        "passed": true,
+        "rooms": 8,
+        "containers": 20,
+        "stairAscent": true,
+        "safeWrongAndCorrect": true,
+        "readingClock": true,
+        "acoustics": true,
+        "verification": "Scripted actual controller and interaction rays; every stored paper uses an actual visible interaction ray; detail toggle and code entry call shared input handlers. Not physical input or blind playtest."
+      }
+    },
+    "placement03-reload": {
+      "process": {
+        "exit": 0,
+        "protocolPassed": true,
+        "expectedResult": "HOME_SAVE_PASS",
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/placement03-reload",
+        "normalSaveSHA256": "d113945276d6c9c8867ed68031ed47af4af555eb061e22f431420d5a6fc2cd0e"
+      },
+      "result": {
+        "passed": true,
+        "separateProcess": true,
+        "upperFloor": true,
+        "safe": true,
+        "documents": true,
+        "stairDescent": true,
+        "bothDoorRoundTrips": true,
+        "guard": true
+      }
+    },
+    "placement03-views720": {
+      "process": {
+        "exit": 0,
+        "protocolPassed": true,
+        "expectedResult": "HOME_PLACEMENT_VIEWS_PASS",
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/placement03-views720",
+        "normalSaveSHA256": "d113945276d6c9c8867ed68031ed47af4af555eb061e22f431420d5a6fc2cd0e"
+      },
+      "result": {
+        "passed": true,
+        "eyeHeightViews": 31,
+        "unobstructedCameraCapsules": true,
+        "oldBedroomPositionRecovered": true,
+        "verification": "Native screenshots from staged eye-height positions; visual assessment separate. No physical-input or blind-playtest claim."
+      }
+    },
+    "placement03-evidence720": {
+      "process": {
+        "exit": 0,
+        "protocolPassed": true,
+        "expectedResult": "EVIDENCE_REVIEW_PASS",
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/placement03-evidence720",
+        "normalSaveSHA256": "d113945276d6c9c8867ed68031ed47af4af555eb061e22f431420d5a6fc2cd0e"
+      },
+      "result": {
+        "passed": true,
+        "actualMedicalPaperRay": true,
+        "perspectiveModels": 10,
+        "rotationZoomReset": true,
+        "modelFirstAndDetails": true,
+        "readingClock": true,
+        "originalUnchanged": true,
+        "resourceCleanup": true,
+        "verification": "Native renderer; actual medical drawer ray; shared rotation/zoom/reset/detail input handlers. Other cases use Inspect directly. Not physical keyboard/mouse or blind testing."
+      }
+    },
+    "placement03-views1080": {
+      "process": {
+        "exit": 0,
+        "protocolPassed": true,
+        "expectedResult": "HOME_PLACEMENT_VIEWS_PASS",
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/placement03-views1080",
+        "normalSaveSHA256": "d113945276d6c9c8867ed68031ed47af4af555eb061e22f431420d5a6fc2cd0e"
+      },
+      "result": {
+        "passed": true,
+        "eyeHeightViews": 31,
+        "unobstructedCameraCapsules": true,
+        "oldBedroomPositionRecovered": true,
+        "verification": "Native screenshots from staged eye-height positions; visual assessment separate. No physical-input or blind-playtest claim."
+      }
+    }
+  },
+  "storageSweep": {
+    "sampledPoses": 5,
+    "broadPhasePairs": 21,
+    "penetrationsAbove18mm": 0
+  },
+  "visualReview": "31 room viewpoints plus recovered old bedroom position, 20 opened cabinet screenshots, inspected by the agent. Not exhaustive collision proof, physical-input testing, blind playtesting or Windows testing.",
+  "normalSaveSHA256": "d113945276d6c9c8867ed68031ed47af4af555eb061e22f431420d5a6fc2cd0e",
+  "installedApp": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app",
+  "previousAppBackup": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/before-placement-20261013.app",
+  "repositoryMedia": {
+    "keyFrames": [
+      "bedside-clearance.jpg",
+      "kitchen-crockery-open.jpg",
+      "master-bedroom.jpg"
+    ],
+    "originalMediaLocalOnly": "builds/house-review/push-source-media-20261013/house-placement",
+    "note": "Selected native frames converted to JPEG for repository size; all original PNGs/video retained locally, not included in Git. Historical verification results unchanged."
+  }
+}

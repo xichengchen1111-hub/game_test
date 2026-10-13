@@ -1,0 +1,12 @@
+[
+  {
+    "file": "builds/house-review/push-source-media-20261013/evidence-inspection/证据检查-纸张翻转.mp4",
+    "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/inspection04-1080/paper-rotation",
+    "seconds": 4.0270335,
+    "nativeFrames": 81,
+    "gameAudioChannels": 2,
+    "gameAudioSampleRate": 48000,
+    "audioStartSeconds": 0.0062879,
+    "storage": "local-only; ignored by Git"
+  }
+]

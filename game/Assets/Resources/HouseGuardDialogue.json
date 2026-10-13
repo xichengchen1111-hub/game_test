@@ -1,0 +1,50 @@
+{
+  "first": "greet",
+  "revisit": "greet",
+  "nodes": [
+    {
+      "id": "greet",
+      "speaker": "住宅看守",
+      "text": "许可上有你的名字。进去吧。已经取走的东西，照片和清点单都在里面。",
+      "next": "choices"
+    },
+    {
+      "id": "choices",
+      "speaker": "住宅看守",
+      "text": "看完把门带上就行。",
+      "choices": [
+        {
+          "text": "我可以查看哪些东西？",
+          "target": "rules",
+          "topic": "house-guard.rules"
+        },
+        {
+          "text": "原来的物证呢？",
+          "target": "evidence",
+          "topic": "house-guard.evidence"
+        },
+        {
+          "text": "我进去了。",
+          "target": "bye"
+        }
+      ]
+    },
+    {
+      "id": "rules",
+      "speaker": "住宅看守",
+      "text": "允许你查阅家属文书和现场副本。记下新发现，别把东西带走。楼上也可以去。",
+      "next": "choices"
+    },
+    {
+      "id": "evidence",
+      "speaker": "住宅看守",
+      "text": "外套、手套、工具牌，还有那片信纸，都已经封存。清点单写着出处。",
+      "next": "choices"
+    },
+    {
+      "id": "bye",
+      "speaker": "住宅看守",
+      "text": "嗯。我就在门口。"
+    }
+  ]
+}

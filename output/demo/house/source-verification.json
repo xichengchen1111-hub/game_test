@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "blender": "4.5.9 LTS",
+  "rooms": 8,
+  "storeys": 2,
+  "searchGroups": 20,
+  "openings": 13,
+  "doors": 10,
+  "editableMeshes": 1632,
+  "packedImages": 8,
+  "sourceSHA256": "dd238651729eb31a2a0c200b85f984bf627cc6fb2cc2c199d21d1471e70e1581",
+  "scope": "Reopened editable source, metre markers, moving part IDs, UV/materials, packed images. Runtime interaction and appearance tested separately."
+}

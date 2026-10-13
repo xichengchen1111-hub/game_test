@@ -1,0 +1,316 @@
+{
+  "passed": true,
+  "rearClearances": [
+    {
+      "object": "Parents bed",
+      "gapMetres": 0.038
+    },
+    {
+      "object": "Child bed",
+      "gapMetres": 0.038
+    },
+    {
+      "object": "Cabinet_bedside-a",
+      "gapMetres": 0.025
+    },
+    {
+      "object": "Cabinet_bedside-b",
+      "gapMetres": 0.025
+    },
+    {
+      "object": "Cabinet_child-bedside",
+      "gapMetres": 0.025
+    },
+    {
+      "object": "Cabinet_dressing",
+      "gapMetres": 0.08
+    },
+    {
+      "object": "Cabinet_wardrobe",
+      "gapMetres": 0.075
+    },
+    {
+      "object": "Cabinet_sideboard",
+      "gapMetres": 0.06
+    },
+    {
+      "object": "Three seat sofa",
+      "gapMetres": 0.12
+    },
+    {
+      "object": "Writing desk",
+      "gapMetres": 0.1
+    },
+    {
+      "object": "Cabinet_desk",
+      "gapMetres": 0.04
+    },
+    {
+      "object": "Cabinet_medical",
+      "gapMetres": 0.05
+    },
+    {
+      "object": "Bookcase",
+      "gapMetres": 0.06
+    },
+    {
+      "object": "Cabinet_stationery",
+      "gapMetres": 0.035
+    },
+    {
+      "object": "Cabinet_safe",
+      "gapMetres": 0.06
+    },
+    {
+      "object": "Cabinet_kitchen-bills",
+      "gapMetres": 0.06
+    },
+    {
+      "object": "Cabinet_kitchen-larder",
+      "gapMetres": 0.06
+    },
+    {
+      "object": "Cabinet_kitchen-crockery",
+      "gapMetres": 0.04
+    },
+    {
+      "object": "Deep sink",
+      "gapMetres": 0.045
+    },
+    {
+      "object": "Cast iron cooker",
+      "gapMetres": 0.065
+    },
+    {
+      "object": "Cabinet_utility",
+      "gapMetres": 0.04
+    },
+    {
+      "object": "Laundry washstand",
+      "gapMetres": 0.04
+    },
+    {
+      "object": "Child desk",
+      "gapMetres": 0.04
+    },
+    {
+      "object": "Cabinet_toys",
+      "gapMetres": 0.065
+    },
+    {
+      "object": "Clawfoot bath",
+      "gapMetres": 0.12
+    },
+    {
+      "object": "Pedestal basin",
+      "gapMetres": 0.05
+    },
+    {
+      "object": "Cabinet_linen",
+      "gapMetres": 0.03
+    },
+    {
+      "object": "Cabinet_old-trunk",
+      "gapMetres": 0.045
+    },
+    {
+      "object": "Treadle sewing table",
+      "gapMetres": 0.06
+    },
+    {
+      "object": "Cabinet_hall",
+      "gapMetres": 0.015
+    }
+  ],
+  "groundContacts": [
+    {
+      "object": "Parents bed",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Child bed",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_bedside-a",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_bedside-b",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_child-bedside",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_dressing",
+      "floorGapMetres": 0.0
+    },
+    {
+      "object": "Cabinet_wardrobe",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_sideboard",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Three seat sofa",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Writing desk",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_desk",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_medical",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Bookcase",
+      "floorGapMetres": 0.01
+    },
+    {
+      "object": "Cabinet_stationery",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_safe",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_kitchen-bills",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_kitchen-larder",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_kitchen-crockery",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Deep sink",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cast iron cooker",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_utility",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Laundry washstand",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Child desk",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_toys",
+      "floorGapMetres": 0.0
+    },
+    {
+      "object": "Clawfoot bath",
+      "floorGapMetres": 0.0
+    },
+    {
+      "object": "Pedestal basin",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_linen",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_old-trunk",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Treadle sewing table",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_hall",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Club armchair",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Cabinet_coffee",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Desk chair",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Kitchen table",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Kitchen chair A",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Kitchen chair B",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Child chair",
+      "floorGapMetres": -0.0
+    },
+    {
+      "object": "Sewing chair",
+      "floorGapMetres": -0.0
+    }
+  ],
+  "tabletopContacts": [
+    {
+      "object": "Bedside light",
+      "support": "Cabinet_bedside-a",
+      "gapMetres": -0.0
+    },
+    {
+      "object": "Desk light",
+      "support": "Writing desk",
+      "gapMetres": 0.0
+    },
+    {
+      "object": "Sitting room lamp",
+      "support": "Cabinet_sideboard",
+      "gapMetres": 0.0
+    },
+    {
+      "object": "Wash tub",
+      "support": "Laundry washstand",
+      "gapMetres": 0.0
+    },
+    {
+      "object": "Toy horse",
+      "support": "Cabinet_toys",
+      "gapMetres": 0.0
+    },
+    {
+      "object": "Sewing machine",
+      "support": "Treadle sewing table",
+      "gapMetres": 0.0
+    }
+  ],
+  "fixedFurnitureIntersections": [],
+  "curtainIntersections": [],
+  "failures": [],
+  "sourceSHA256": "5af0c744672ce3f57d4d65c50d5dbc98a46d41176706c5b4456bba42587f8730",
+  "scope": "Authored source bounds; wall relations, ground and tabletop contacts, bedsides, fixed furniture pairs, and actual curtain-fold overlaps. Native visual and opening checks are separate."
+}

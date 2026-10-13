@@ -321,6 +321,7 @@ public static partial class BuildSlice {
     static void Systems() {
         EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Single);
         var app=new GameObject("Persistent systems").AddComponent<DemoApp>();app.font=font;app.dialTexture=AssetDatabase.LoadAssetAtPath<Texture2D>(art+"WatchFace.png");
+        app.intactTicketStock=TicketMesh(false);app.punchedTicketStock=TicketMesh(true);
         app.intactTicketImage=RailTexture("E02.png",false,false,true);
         app.punchedTicketImage=RailTexture("E03.png",false,false,true);
         var renderer=AssetDatabase.LoadAssetAtPath<UniversalRendererData>("Assets/Settings/PC_Renderer.asset");

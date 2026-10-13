@@ -12,7 +12,7 @@ public static class FullMapChecks {
         }
         var markers=geometry.GetComponentsInChildren<TownMapBuilding>();
         Need(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70,"all 70 properties must appear once");
-        Need(markers.Count(m=>m.finished)==5,"finished tower/shop/dairy/station/police");
+        Need(markers.Count(m=>m.finished)==6,"finished tower/shop/dairy/station/police/home");
         foreach(var b in plan.buildings) {
             var marker=markers.Single(m=>m.mapId==b.id);
             Need(Vector3.Distance(marker.door,TownPlan.Point(b.door))<.001f,"door marker drift "+b.id);
@@ -44,7 +44,7 @@ public static class FullMapChecks {
         Need(geometry.GetComponentsInChildren<MeshRenderer>().Any(r=>r.name=="StationConcourseFlags"),"station concourse slab present for coplanarity check");
         Need(geometry.GetComponentsInChildren<MeshRenderer>().Any(r=>r.name=="Ext_Court"),"police court slab present for coplanarity check");
         string directory="../output/demo/full-map";Directory.CreateDirectory(directory);
-        File.WriteAllText(directory+"/authoring-checks.json",JsonUtility.ToJson(new Result{passed=true,mapVersion=plan.version,source=plan.sourceSha256,properties=markers.Length,finished=5,roads=11,lights=geometry.GetComponentsInChildren<Light>().Length,shadows=3},true));
+        File.WriteAllText(directory+"/authoring-checks.json",JsonUtility.ToJson(new Result{passed=true,mapVersion=plan.version,source=plan.sourceSha256,properties=markers.Length,finished=6,roads=11,lights=geometry.GetComponentsInChildren<Light>().Length,shadows=3},true));
         Debug.Log("FULL_MAP_AUTHORING_PASS: 70 property markers; finished proportions, origin/doors, roads and light budget");
     }
     [Serializable] class Result {public bool passed;public int mapVersion,properties,finished,roads,lights,shadows;public string source;}

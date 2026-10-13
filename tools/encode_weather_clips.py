@@ -8,6 +8,7 @@ names={'01-entry-idle-dialogue':'01-进店与送奶少年对话','02-hands-mouth
 names.update({'01-repair-variants':'01-钟表匠三段修表动作','02-hands-watch-detail':'02-双手与修表工具近景'})
 names.update({'01-idle-dialogue':'01-售票员待机与对话','02-face-talk-detail':'02-售票员嘴部动作近景'})
 names.update({'roadside-flower-walk':'07-沿路边花境行走','main-street':'01-主街行道树','residential-street':'02-住宅街绿化','station-garden':'03-车站花园','north-orchard':'04-北边果园','dairy-approach':'05-牛奶店门前','plaza-flowers':'06-广场花丛'})
+names.update({'paper-rotation':'证据检查-纸张翻转'})
 results=[]
 for folder in sorted(source.iterdir()):
  if folder.name not in names or not (folder/'capture.json').exists():continue

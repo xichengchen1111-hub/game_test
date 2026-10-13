@@ -1,0 +1,126 @@
+{
+  "revision": "HOUSE-02",
+  "buildLog": "builds/house-review/corrections-build13.log",
+  "assemblySHA256": "e864a8f8526a785e77e21fbb107861159c736e70b377889dc010739b20fcd907",
+  "modelSHA256": "01106e035f3a97808f9605fcea98fcc83ac5c99c4d5c8b582a24fd2da366a5dd",
+  "source": {
+    "passed": true,
+    "blender": "4.5.9 LTS",
+    "rooms": 8,
+    "storeys": 2,
+    "searchGroups": 20,
+    "openings": 13,
+    "doors": 10,
+    "editableMeshes": 1903,
+    "packedImages": 8,
+    "sourceSHA256": "1176784b119ad22ad40e6b826f43b6deea641668db7f27bb45917de4410acd51",
+    "scope": "Reopened editable source, metre markers, moving part IDs, UV/materials, packed images. Runtime interaction and appearance tested separately."
+  },
+  "editModeTests": {
+    "id": "2",
+    "testcasecount": "81",
+    "result": "Passed",
+    "total": "81",
+    "passed": "81",
+    "failed": "0",
+    "inconclusive": "0",
+    "skipped": "0",
+    "asserts": "0",
+    "engine-version": "3.5.0.0",
+    "clr-version": "4.0.30319.42000",
+    "start-time": "2026-10-12 13:36:12Z",
+    "end-time": "2026-10-12 13:36:12Z",
+    "duration": "0.8876836"
+  },
+  "storageSweep": {
+    "posesPerMovingPart": 5,
+    "intersectingBroadPhasePairs": 21,
+    "penetrationsAbove18mm": 0
+  },
+  "native": {
+    "final13-1080": {
+      "result": {
+        "passed": true,
+        "rooms": 8,
+        "containers": 20,
+        "stairAscent": true,
+        "safeWrongAndCorrect": true,
+        "readingClock": true,
+        "acoustics": true,
+        "verification": "Scripted actual controller and interaction rays; every stored paper uses an actual visible interaction ray; detail toggle and code entry call shared input handlers. Not physical input or blind playtest."
+      },
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/final13-1080",
+        "normalSaveSHA256": "c9803c462870906dc92862f5c074cbe27520c335a369992f6cc51238efb498df"
+      }
+    },
+    "final13-720": {
+      "result": {
+        "passed": true,
+        "rooms": 8,
+        "containers": 20,
+        "stairAscent": true,
+        "safeWrongAndCorrect": true,
+        "readingClock": true,
+        "acoustics": true,
+        "verification": "Scripted actual controller and interaction rays; every stored paper uses an actual visible interaction ray; detail toggle and code entry call shared input handlers. Not physical input or blind playtest."
+      },
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/final13-720",
+        "normalSaveSHA256": "c9803c462870906dc92862f5c074cbe27520c335a369992f6cc51238efb498df"
+      }
+    },
+    "final13-saved-relaunch": {
+      "result": {
+        "passed": true,
+        "separateProcess": true,
+        "upperFloor": true,
+        "safe": true,
+        "documents": true,
+        "stairDescent": true,
+        "bothDoorRoundTrips": true,
+        "guard": true
+      },
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/final13-saved-relaunch",
+        "normalSaveSHA256": "c9803c462870906dc92862f5c074cbe27520c335a369992f6cc51238efb498df"
+      }
+    }
+  },
+  "deployment": {
+    "installed": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app",
+    "backup": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/before-corrections-20261012.app",
+    "desktopResolvesToInstalled": true,
+    "assemblySHA256": "e864a8f8526a785e77e21fbb107861159c736e70b377889dc010739b20fcd907",
+    "normalSaveSHA256": "c9803c462870906dc92862f5c074cbe27520c335a369992f6cc51238efb498df",
+    "codesignStrict": true,
+    "time": "2026-10-12T23:42:13.022479"
+  },
+  "scope": "Mac/Metal scripted real CharacterController route, normal three-metre rays to all 20 storage groups and every stored document, plus 5 loose house targets; model rendering, detail handler, reading time and movement, wrong/correct safe, letter comparison shared handlers, dual-resolution captures; independent process reload and actual stair descent/door round trips. Not physical keyboard/mouse, blind playtesting, exhaustive collision certification, Windows or full town regression. Other town evidence preview cases call shared Inspect handler; discovery routes not rerun.",
+  "visualReview": [
+    "20 opened storage views",
+    "paper front/back/720 details",
+    "adult chalk outline and dark burgundy blood",
+    "stairs, room furnishings and night view",
+    "intact/punched physical ticket, E06 plaque, E07/E08 papers, H17/H18 solid models",
+    "cordon stake connection in guard close-up"
+  ],
+  "attachmentLimitation": "User supplied temporary .mov path returned macOS Operation not permitted; implementation follows explicit requested model-first interaction, no claim of frame-by-frame reference match.",
+  "repositoryMedia": {
+    "keyFrames": [
+      "04-chalk-outline.jpg",
+      "cabinet-home-cabinet-kitchen-larder.jpg",
+      "contact-final-0.jpg",
+      "contact-final-1.jpg",
+      "contact-final-2.jpg"
+    ],
+    "originalMediaLocalOnly": "builds/house-review/push-source-media-20261013/house-corrections",
+    "note": "Selected native frames converted to JPEG for repository size; all original PNGs/video retained locally, not included in Git. Historical verification results unchanged."
+  }
+}

@@ -1,0 +1,133 @@
+{
+  "reference": "Resident Evil 3 remake, confirmed by user",
+  "assemblySHA256": "183e9e17cc4d315bf29c1cd03b7f68fe9358ff6c907dd78c5b48f19e803e708f",
+  "shaderSHA256": "04dd1f00e097e335462b5282d14f726765cd7f5afadda567435b6c8d302575a1",
+  "nativeChecks": {
+    "inspection04-1080": {
+      "result": {
+        "passed": true,
+        "actualMedicalPaperRay": true,
+        "perspectiveModels": 10,
+        "rotationZoomReset": true,
+        "modelFirstAndDetails": true,
+        "readingClock": true,
+        "originalUnchanged": true,
+        "resourceCleanup": true,
+        "verification": "Native renderer; actual medical drawer ray; shared rotation/zoom/reset/detail input handlers. Other cases use Inspect directly. Not physical keyboard/mouse or blind testing."
+      },
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/inspection04-1080",
+        "normalSaveSHA256": "c9803c462870906dc92862f5c074cbe27520c335a369992f6cc51238efb498df"
+      }
+    },
+    "inspection04-720": {
+      "result": {
+        "passed": true,
+        "actualMedicalPaperRay": true,
+        "perspectiveModels": 10,
+        "rotationZoomReset": true,
+        "modelFirstAndDetails": true,
+        "readingClock": true,
+        "originalUnchanged": true,
+        "resourceCleanup": true,
+        "verification": "Native renderer; actual medical drawer ray; shared rotation/zoom/reset/detail input handlers. Other cases use Inspect directly. Not physical keyboard/mouse or blind testing."
+      },
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/inspection04-720",
+        "normalSaveSHA256": "c9803c462870906dc92862f5c074cbe27520c335a369992f6cc51238efb498df"
+      }
+    },
+    "inspection04-house": {
+      "result": {
+        "passed": true,
+        "rooms": 8,
+        "containers": 20,
+        "stairAscent": true,
+        "safeWrongAndCorrect": true,
+        "readingClock": true,
+        "acoustics": true,
+        "verification": "Scripted actual controller and interaction rays; every stored paper uses an actual visible interaction ray; detail toggle and code entry call shared input handlers. Not physical input or blind playtest."
+      },
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/inspection04-house",
+        "normalSaveSHA256": "c9803c462870906dc92862f5c074cbe27520c335a369992f6cc51238efb498df"
+      }
+    },
+    "inspection04-reload": {
+      "result": {
+        "passed": true,
+        "separateProcess": true,
+        "upperFloor": true,
+        "safe": true,
+        "documents": true,
+        "stairDescent": true,
+        "bothDoorRoundTrips": true,
+        "guard": true
+      },
+      "process": {
+        "exit": 0,
+        "normalSaveUnchanged": true,
+        "capture": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/inspection04-reload",
+        "normalSaveSHA256": "c9803c462870906dc92862f5c074cbe27520c335a369992f6cc51238efb498df"
+      }
+    }
+  },
+  "editMode": {
+    "xml": "builds/house-review/inspection-tests-final.xml",
+    "result": {
+      "id": "2",
+      "testcasecount": "81",
+      "result": "Passed",
+      "total": "81",
+      "passed": "81",
+      "failed": "0",
+      "inconclusive": "0",
+      "skipped": "0",
+      "asserts": "0",
+      "engine-version": "3.5.0.0",
+      "clr-version": "4.0.30319.42000",
+      "start-time": "2026-10-12 14:02:30Z",
+      "end-time": "2026-10-12 14:02:30Z",
+      "duration": "0.7149831"
+    },
+    "versionNote": "81 tests on build03; build04 only moves the name label from 77% to 84% viewport height. Final build04 tested natively in all four runs."
+  },
+  "deployment": {
+    "target": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/macos-current/错日证词-新版.app",
+    "backup": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/before-inspection-20261013.app",
+    "desktopResolved": true,
+    "strictSignature": true,
+    "normalSaveSHA256": "c9803c462870906dc92862f5c074cbe27520c335a369992f6cc51238efb498df"
+  },
+  "recording": [
+    {
+      "file": "builds/house-review/push-source-media-20261013/evidence-inspection/证据检查-纸张翻转.mp4",
+      "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/house-review/inspection04-1080/paper-rotation",
+      "seconds": 4.0270335,
+      "nativeFrames": 81,
+      "gameAudioChannels": 2,
+      "gameAudioSampleRate": 48000,
+      "audioStartSeconds": 0.0062879,
+      "storage": "local-only; ignored by Git"
+    }
+  ],
+  "scope": "Native Mac/Metal, scripted real medical-paper interaction ray; shared rotation/zoom/reset/E handlers, original mesh/material/transform retained, reading clock and movement, 10 model cases, 720/1080 visual review, full house route and independent reload. Not physical keyboard/mouse or blind gameplay. No full town, railway, car or Windows rerun.",
+  "time": "2026-10-13T00:09:52.752922",
+  "repositoryMedia": {
+    "keyFrames": [
+      "01-paper-front.jpg",
+      "02-paper-back.jpg",
+      "details-720.jpg",
+      "model-E03.jpg",
+      "model-H17.jpg"
+    ],
+    "originalMediaLocalOnly": "builds/house-review/push-source-media-20261013/evidence-inspection",
+    "note": "Selected native frames converted to JPEG for repository size; all original PNGs/video retained locally, not included in Git. Historical verification results unchanged."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "date": "2026-10-12",
+  "setting": "Fictional town, January 1931. Primarily British interwar domestic references; no country canon inferred.",
+  "sources": [
+    {
+      "url": "https://www.nationaltrust.org.uk/visit/nottinghamshire-lincolnshire/mr-straws-house",
+      "use": "Preserved 1923 grocer family house: older furniture, ordinary possessions, hall coats and mantel photographs."
+    },
+    {
+      "url": "https://www.vam.ac.uk/articles/art-deco-in-the-home",
+      "use": "1920s furnishing textiles; 1930-31 geometric tea services. Later 1932 radio and 1934 heater deliberately excluded."
+    },
+    {
+      "url": "https://www.nhbc.co.uk/kontentdocuments/9ba93546-3904-40d9-8ebb-28b64afa3f58/homes-through-the-decades.pdf",
+      "use": "Interwar layout context; PDF screenshot fetch unavailable, not used as a traced plan."
+    }
+  ],
+  "art": "Original geometry and procedural textures; sources used for reference, no museum photographs used as game textures."
+}

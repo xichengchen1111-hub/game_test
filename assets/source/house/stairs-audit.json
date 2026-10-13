@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "failures": [],
+  "porchInteriorClearance": 0.24,
+  "treadCount": 18,
+  "closedStringCount": 4,
+  "railEndsChecked": 24,
+  "upperThresholdHeight": 3.36,
+  "sourceSHA256": "5af0c744672ce3f57d4d65c50d5dbc98a46d41176706c5b4456bba42587f8730",
+  "scope": "Reopened geometry, canopy boundary, actual floor/landing joins, wall band coverage and rail endpoint support. Continuous native walking checked separately."
+}
