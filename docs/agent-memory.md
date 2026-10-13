@@ -1137,3 +1137,15 @@ Antigravity在本地scratch做只读架构初稿；首调用读权限未授权�
 - 写了 AudioProbe（`--audio-probe`、`--audio-probe-muted-start`，独立存档，不写偏好）。两种启动情形监听器都有输出：改动前风声 RMS 5.6e-3（−45 dBFS）。注意 `GetOutputData` 第一次调用只挂采集点、返回全零，不能当作静音证据；`AudioSource.GetOutputData` 的数值已含总音量。
 - 根因是内容而非管线：风声一阶低通约 18 Hz，脚步 125 Hz 且很轻；用户那一局只走路和对话，没有触发门、车、雨。把风声改为约 15–450 Hz 带限噪声（实测 RMS 2.6e-2，−32 dBFS），脚步提高并加噪声成分，滴答电平不变，「开启声音」改为 100%。未改雨声、门声、道具声和默认静音。
 - 这是电平与频段的测量，不是听感验收；是否合适要用户自己听。
+
+### SHOWCASE-01：开场实机录像、交给 Codex 做招募帖、会见室标牌（2026-10-14，Claude Code）
+
+- 用户：push 回 GitHub；录一段介绍用的开场实机画面交给 Codex，让 Codex 基于视频做一篇和之前一样找人加入的小红书帖子（文案＋封面）。先前的工作已作为 34fbd96 推到 main。
+- 新增 `--review --fresh --showcase-opening`（DemoApp.Showcase.cs＋ShowcaseRecorder.cs，独立存档）。第一遍 201 秒一次走通；看帧后改了三处再录：`--review` 不画标题页（加 `showcaseTitle`）、会见室标牌穿墙且过大（见下）、结尾医院立面漆黑（改为目送汽车离开即结束），并加了怀表和纸地图两个镜头。第二遍 6071 帧／205.9 秒，平均帧间隔约 34 ms。
+- 录音：监听器上的 `OnAudioFilterRead` 在总音量之后取样（5% 音量时 RMS 为满音量的 1/20），不能在静音下录；录制固定 5%，编码乘 20。别再假设这个回调在总音量之前。
+- 标牌：`TextMesh`＋`font.material` 不做深度测试，会透墙显示。改用 `WrongDate/RailWorldText` 材质和 `WallLettering`，缩小并移到门南侧墙面。
+- `tools/opening/encode_showcase.py` 出完整版 3 分 25 秒与精华版 84.8 秒（18 段硬切），均为录制原速、游戏原声。ffmpeg 的时长参数要写 `0.4` 不能写 `.4`。
+- Codex CLI 不在 PATH，在 `/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex`；用 `codex exec -C <目录> --skip-git-repo-check -s workspace-write` 把任务说明交给它，素材与产出在 `output/xhs-opening-recruit/`（仓库之外）。
+- 编码最初用 swscale 默认舍入，色度偏约 0.7 级；加 `accurate_rnd+full_chroma_int` 后亮度、色度均值与原始帧一致。核对颜色要比对视频里存的 YUV，不要比对再导出的 PNG（那条路径自己还会偏 1–3 级）。
+- 标牌修复后的候选包 8201aa27…：EditMode 114／114，15 项原生静音检查全过，正常存档未变；已更新桌面入口（备份 before-interview-sign-20261014.app）。Codex 用约 4 分钟产出文案、封面和使用说明；封面主体是「警署门口律师提出送行」那一帧，文字逐字核对无误。
+

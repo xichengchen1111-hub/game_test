@@ -28,8 +28,14 @@ public static class OpeningAuthoring {
         }
         foreach(var door in root.GetComponentsInChildren<ShopMechanism>())if(door.fixtureId=="police-interview-door")door.label="律师会见室门";
         // A visitor room in the existing shared police building, rather than a modern interrogation set.
-        var sign=new GameObject("律师会见室标牌");sign.transform.SetParent(group.transform,false);sign.transform.localPosition=new Vector3(12.88f,1.9f,3.72f);sign.transform.localRotation=Quaternion.Euler(0,90,0);
-        var tm=sign.AddComponent<TextMesh>();tm.text="律师会见室";tm.font=AssetDatabase.LoadAssetAtPath<Font>("Assets/Art/Fonts/TownSans.ttf");tm.fontSize=64;tm.characterSize=.035f;tm.anchor=TextAnchor.MiddleCenter;tm.color=new Color(.75f,.67f,.5f);sign.GetComponent<MeshRenderer>().sharedMaterial=tm.font.material;
+        var sign=new GameObject("律师会见室标牌");sign.transform.SetParent(group.transform,false);sign.transform.localPosition=new Vector3(12.912f,1.9f,3.5f);sign.transform.localRotation=Quaternion.Euler(0,90,0);
+        var tm=sign.AddComponent<TextMesh>();tm.text="律师会见室";tm.font=AssetDatabase.LoadAssetAtPath<Font>("Assets/Art/Fonts/TownSans.ttf");tm.fontSize=64;tm.characterSize=.02f;tm.anchor=TextAnchor.MiddleCenter;tm.color=new Color(.75f,.67f,.5f);
+        // Painted beside the door on the hall face of the wall; depth-tested so it no longer shows through walls.
+        const string signPath=Folder+"InterviewSignText.mat";var signMaterial=AssetDatabase.LoadAssetAtPath<Material>(signPath);
+        if(!signMaterial){signMaterial=new Material(Shader.Find("WrongDate/RailWorldText"));AssetDatabase.CreateAsset(signMaterial,signPath);}
+        tm.font.RequestCharactersInTexture(tm.text,64);signMaterial.mainTexture=tm.font.material.mainTexture;EditorUtility.SetDirty(signMaterial);
+        var signRenderer=sign.GetComponent<MeshRenderer>();signRenderer.sharedMaterial=signMaterial;signRenderer.shadowCastingMode=UnityEngine.Rendering.ShadowCastingMode.Off;
+        var lettering=sign.AddComponent<WallLettering>();lettering.font=tm.font;lettering.material=signMaterial;
     }
     static void Actor(Transform parent,string name,string role,Vector3 position,float yaw,bool police) {
         var g=PeriodCharacterAsset.AllPrepared?PeriodCharacterAsset.Create(parent,position,police?"CustodyGuard":"Lawyer",name):StationClerkAsset.Create(parent,position,police);

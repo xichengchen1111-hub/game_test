@@ -139,6 +139,7 @@ public partial class DemoApp : MonoBehaviour {
         if(!Review&&(Application.productName.EndsWith("第一幕试玩")||Array.IndexOf(args,"--opening-playtest")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-playtest-save.json");
         if(Review&&Array.IndexOf(args,"--review-map-sightlines")>=0)savePath=Path.Combine(Application.persistentDataPath,"map-sightline-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-yard-gate")>=0||Array.IndexOf(args,"--verify-yard-gate-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"yard-gate-review-save.json");
+        if(Review&&Array.IndexOf(args,"--showcase-opening")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-opening-save.json");
         if(Array.IndexOf(args,"--audio-probe")>=0||Array.IndexOf(args,"--audio-probe-muted-start")>=0)savePath=Path.Combine(Application.persistentDataPath,"audio-probe-save.json");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -217,6 +218,7 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--review-opening-ride-interrupted")>=0)StartCoroutine(ReviewOpeningRide(true));
             else if(Array.IndexOf(args,"--verify-opening-ride-interrupted")>=0)StartCoroutine(VerifyOpeningRideInterrupted());
             else if(Array.IndexOf(args,"--review-map-sightlines")>=0)StartCoroutine(ReviewMapSightlines());
+            else if(Array.IndexOf(args,"--showcase-opening")>=0)StartCoroutine(ShowcaseOpening());
             else if(Array.IndexOf(args,"--review-yard-gate")>=0)StartCoroutine(ReviewYardGate());
             else if(Array.IndexOf(args,"--verify-yard-gate-save")>=0)StartCoroutine(VerifyYardGateSave());
             else if(Array.IndexOf(args,"--review-opening")>=0)StartCoroutine(ReviewOpening());
@@ -492,7 +494,7 @@ public partial class DemoApp : MonoBehaviour {
         W=Screen.width/scale;H=Screen.height/scale;
         GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
         if(ModelEvidence&&!houseLetterOpen){DrawEvidenceModel();GUI.matrix=Matrix4x4.identity;return;}
-        if(opening && !Review) {
+        if(opening && (!Review||showcaseTitle)) {
             Box(new Rect(0,0,610,H),new Color(0.035f,0.07f,0.10f,0.72f));
             Label(new Rect(75,100,400,35),"青川  /  一九三一",italic);
             Label(new Rect(70,160,480,90),"错日证词",large);

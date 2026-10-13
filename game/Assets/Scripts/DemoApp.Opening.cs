@@ -4,7 +4,7 @@ public partial class DemoApp {
     DialogueScript openingScript;
     bool openingNoticePlayed;
     void InitializeOpeningState(string[] args,bool existing) {
-        bool actReview=Review&&(Array.IndexOf(args,"--review-opening")>=0||Array.IndexOf(args,"--verify-opening-save")>=0||Array.IndexOf(args,"--review-police-cast")>=0);
+        bool actReview=Review&&(Array.IndexOf(args,"--review-opening")>=0||Array.IndexOf(args,"--verify-opening-save")>=0||Array.IndexOf(args,"--review-police-cast")>=0||Array.IndexOf(args,"--showcase-opening")>=0);
         bool legacyInvestigation=state.openingRevision==0&&(existing||Review&&!actReview||previewWindow||previewStreet||previewMilkboy||previewWatchmaker);
         if(state.openingRevision==0){state.openingRevision=1;state.openingStage=existing||Review&&!actReview||previewWindow||previewStreet||previewMilkboy||previewWatchmaker?4:0;}
         InitializeOpeningRideState(legacyInvestigation);
