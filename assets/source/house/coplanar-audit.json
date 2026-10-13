@@ -1,0 +1,723 @@
+{
+ "source": "/Users/jasonzhang/Workspaces/wrongdate-house/assets/source/house/House1931.blend",
+ "triangles": 199282,
+ "pairsOver1cm2": 65,
+ "pairs": [
+  {
+   "a": "Roof tile course",
+   "b": "Roof tile course",
+   "area": 344494.7,
+   "count": 2400,
+   "at": [
+    -5.334,
+    7.352,
+    -5.984
+   ]
+  },
+  {
+   "a": "South corridor partition",
+   "b": "South corridor partition",
+   "area": 44800.2,
+   "count": 26,
+   "at": [
+    -4.8,
+    3.36,
+    -1.027
+   ]
+  },
+  {
+   "a": "North corridor partition",
+   "b": "North corridor partition",
+   "area": 42560.1,
+   "count": 34,
+   "at": [
+    -6.567,
+    3.36,
+    0.973
+   ]
+  },
+  {
+   "a": "South corridor partition",
+   "b": "Upper floor west",
+   "area": 35408.0,
+   "count": 20,
+   "at": [
+    -8.0,
+    3.305,
+    1.998
+   ]
+  },
+  {
+   "a": "North corridor partition",
+   "b": "Upper floor west",
+   "area": 35408.0,
+   "count": 28,
+   "at": [
+    -8.0,
+    3.305,
+    1.998
+   ]
+  },
+  {
+   "a": "North wall",
+   "b": "North wall",
+   "area": 24672.1,
+   "count": 34,
+   "at": [
+    -0.8,
+    0.753,
+    6.04
+   ]
+  },
+  {
+   "a": "South corridor partition",
+   "b": "Upper floor south",
+   "area": 14128.0,
+   "count": 16,
+   "at": [
+    4.668,
+    3.36,
+    -3.665
+   ]
+  },
+  {
+   "a": "North wall",
+   "b": "West wall",
+   "area": 11244.0,
+   "count": 58,
+   "at": [
+    -6.873,
+    5.75,
+    5.96
+   ]
+  },
+  {
+   "a": "South wall",
+   "b": "West wall",
+   "area": 10668.0,
+   "count": 48,
+   "at": [
+    -7.247,
+    5.75,
+    -5.96
+   ]
+  },
+  {
+   "a": "East wall",
+   "b": "North wall",
+   "area": 10092.0,
+   "count": 46,
+   "at": [
+    5.613,
+    5.75,
+    5.96
+   ]
+  },
+  {
+   "a": "East wall",
+   "b": "South wall",
+   "area": 9516.0,
+   "count": 33,
+   "at": [
+    7.247,
+    5.75,
+    -6.04
+   ]
+  },
+  {
+   "a": "North corridor partition",
+   "b": "Upper floor south",
+   "area": 6547.5,
+   "count": 24,
+   "at": [
+    3.767,
+    3.36,
+    0.973
+   ]
+  },
+  {
+   "a": "Utility east",
+   "b": "Utility north",
+   "area": 4272.0,
+   "count": 15,
+   "at": [
+    -4.44,
+    0.16,
+    12.96
+   ]
+  },
+  {
+   "a": "Utility north",
+   "b": "Utility west",
+   "area": 4272.0,
+   "count": 15,
+   "at": [
+    -4.44,
+    0.16,
+    12.96
+   ]
+  },
+  {
+   "a": "North wall",
+   "b": "Utility west",
+   "area": 3984.0,
+   "count": 16,
+   "at": [
+    -7.497,
+    0.16,
+    6.04
+   ]
+  },
+  {
+   "a": "North corridor partition",
+   "b": "Stair upper threshold",
+   "area": 1310.5,
+   "count": 9,
+   "at": [
+    5.7,
+    3.093,
+    1.027
+   ]
+  },
+  {
+   "a": "Fire surround",
+   "b": "Hearth",
+   "area": 1188.0,
+   "count": 6,
+   "at": [
+    0.412,
+    0.16,
+    -5.607
+   ]
+  },
+  {
+   "a": "Outer wall paper",
+   "b": "Outer wall paper",
+   "area": 1140.1,
+   "count": 38,
+   "at": [
+    -0.8,
+    2.557,
+    5.876
+   ]
+  },
+  {
+   "a": "Landing front fascia",
+   "b": "Stair landing",
+   "area": 1036.3,
+   "count": 9,
+   "at": [
+    3.34,
+    1.696,
+    4.791
+   ]
+  },
+  {
+   "a": "Door casing",
+   "b": "North corridor partition",
+   "area": 1024.0,
+   "count": 48,
+   "at": [
+    -5.837,
+    3.36,
+    0.955
+   ]
+  },
+  {
+   "a": "Stair closed string",
+   "b": "Stair newel",
+   "area": 853.4,
+   "count": 32,
+   "at": [
+    6.97,
+    2.409,
+    3.205
+   ]
+  },
+  {
+   "a": "Dried burgundy blood 0",
+   "b": "Dried burgundy blood 1",
+   "area": 754.5,
+   "count": 144,
+   "at": [
+    0.014,
+    0.162,
+    -2.41
+   ]
+  },
+  {
+   "a": "Rear wing roof",
+   "b": "Rear wing roof",
+   "area": 726.9,
+   "count": 6,
+   "at": [
+    -6.191,
+    3.641,
+    13.225
+   ]
+  },
+  {
+   "a": "Main pitched roof",
+   "b": "Main pitched roof",
+   "area": 712.8,
+   "count": 6,
+   "at": [
+    -2.618,
+    7.885,
+    6.225
+   ]
+  },
+  {
+   "a": "Cordon knot",
+   "b": "Cordon knot",
+   "area": 649.2,
+   "count": 448,
+   "at": [
+    -9.997,
+    1.033,
+    -7.012
+   ]
+  },
+  {
+   "a": "South corridor partition",
+   "b": "West wall",
+   "area": 576.0,
+   "count": 10,
+   "at": [
+    -7.96,
+    2.56,
+    -2.017
+   ]
+  },
+  {
+   "a": "North corridor partition",
+   "b": "West wall",
+   "area": 576.0,
+   "count": 8,
+   "at": [
+    -7.96,
+    2.56,
+    1.4
+   ]
+  },
+  {
+   "a": "East wall",
+   "b": "South corridor partition",
+   "area": 576.0,
+   "count": 8,
+   "at": [
+    7.96,
+    2.56,
+    -2.433
+   ]
+  },
+  {
+   "a": "East wall",
+   "b": "North corridor partition",
+   "area": 576.0,
+   "count": 10,
+   "at": [
+    8.04,
+    2.56,
+    1.333
+   ]
+  },
+  {
+   "a": "Door casing",
+   "b": "South corridor partition",
+   "area": 512.0,
+   "count": 20,
+   "at": [
+    -1.863,
+    3.36,
+    -0.955
+   ]
+  },
+  {
+   "a": "North corridor partition",
+   "b": "North room partition",
+   "area": 512.0,
+   "count": 12,
+   "at": [
+    -1.973,
+    0.16,
+    2.667
+   ]
+  },
+  {
+   "a": "Stair closed string",
+   "b": "Stair riser",
+   "area": 392.8,
+   "count": 10,
+   "at": [
+    6.612,
+    1.851,
+    4.255
+   ]
+  },
+  {
+   "a": "North room partition",
+   "b": "North wall",
+   "area": 384.0,
+   "count": 6,
+   "at": [
+    -1.973,
+    0.16,
+    2.667
+   ]
+  },
+  {
+   "a": "Bedroom partition",
+   "b": "South corridor partition",
+   "area": 384.0,
+   "count": 7,
+   "at": [
+    1.027,
+    3.36,
+    -4.333
+   ]
+  },
+  {
+   "a": "North room partition",
+   "b": "Upper floor west",
+   "area": 352.5,
+   "count": 6,
+   "at": [
+    -0.668,
+    3.305,
+    6.0
+   ]
+  },
+  {
+   "a": "Upper floor west",
+   "b": "West wall",
+   "area": 345.0,
+   "count": 5,
+   "at": [
+    -0.668,
+    3.305,
+    6.0
+   ]
+  },
+  {
+   "a": "Upper ceiling",
+   "b": "West wall",
+   "area": 345.0,
+   "count": 6,
+   "at": [
+    2.665,
+    6.545,
+    6.0
+   ]
+  },
+  {
+   "a": "East wall",
+   "b": "Upper ceiling",
+   "area": 345.0,
+   "count": 6,
+   "at": [
+    2.665,
+    6.545,
+    6.0
+   ]
+  },
+  {
+   "a": "Drawer rear",
+   "b": "Drawer side",
+   "area": 324.2,
+   "count": 340,
+   "at": [
+    -7.719,
+    3.989,
+    -5.711
+   ]
+  },
+  {
+   "a": "Dried burgundy blood 1",
+   "b": "Dried burgundy blood 2",
+   "area": 320.5,
+   "count": 178,
+   "at": [
+    0.29,
+    0.162,
+    -2.385
+   ]
+  },
+  {
+   "a": "Drawer side",
+   "b": "Stored folded linen",
+   "area": 313.3,
+   "count": 78,
+   "at": [
+    -1.766,
+    3.586,
+    -5.643
+   ]
+  },
+  {
+   "a": "Utility ceiling",
+   "b": "Utility west",
+   "area": 299.0,
+   "count": 6,
+   "at": [
+    -7.96,
+    2.993,
+    13.0
+   ]
+  },
+  {
+   "a": "Utility ceiling",
+   "b": "Utility east",
+   "area": 299.0,
+   "count": 6,
+   "at": [
+    -2.68,
+    2.993,
+    13.0
+   ]
+  },
+  {
+   "a": "North wall",
+   "b": "Utility east",
+   "area": 288.0,
+   "count": 3,
+   "at": [
+    -2.033,
+    0.16,
+    5.96
+   ]
+  },
+  {
+   "a": "Stair newel",
+   "b": "Stair tread",
+   "area": 255.4,
+   "count": 8,
+   "at": [
+    6.618,
+    3.31,
+    1.222
+   ]
+  },
+  {
+   "a": "Dried burgundy blood 0",
+   "b": "Dried burgundy blood 2",
+   "area": 216.1,
+   "count": 68,
+   "at": [
+    0.169,
+    0.162,
+    -2.331
+   ]
+  },
+  {
+   "a": "Outer wall paper",
+   "b": "South corridor partition",
+   "area": 192.0,
+   "count": 40,
+   "at": [
+    -7.872,
+    3.36,
+    -2.017
+   ]
+  },
+  {
+   "a": "North corridor partition",
+   "b": "Outer wall paper",
+   "area": 192.0,
+   "count": 40,
+   "at": [
+    -7.872,
+    3.36,
+    1.4
+   ]
+  },
+  {
+   "a": "Door casing",
+   "b": "West wall",
+   "area": 192.0,
+   "count": 8,
+   "at": [
+    -7.96,
+    0.16,
+    -2.017
+   ]
+  },
+  {
+   "a": "Door casing",
+   "b": "North wall",
+   "area": 192.0,
+   "count": 6,
+   "at": [
+    -6.873,
+    0.16,
+    5.96
+   ]
+  },
+  {
+   "a": "Door casing",
+   "b": "East wall",
+   "area": 192.0,
+   "count": 8,
+   "at": [
+    8.04,
+    0.16,
+    -4.217
+   ]
+  },
+  {
+   "a": "East wall",
+   "b": "Upper floor south",
+   "area": 172.5,
+   "count": 3,
+   "at": [
+    4.668,
+    3.305,
+    -6.0
+   ]
+  },
+  {
+   "a": "Cabinet base",
+   "b": "Cabinet stile",
+   "area": 100.7,
+   "count": 86,
+   "at": [
+    7.18,
+    0.292,
+    -3.305
+   ]
+  },
+  {
+   "a": "Parcel cotton tie",
+   "b": "Stored tied parcel",
+   "area": 99.5,
+   "count": 24,
+   "at": [
+    -2.964,
+    1.529,
+    5.596
+   ]
+  },
+  {
+   "a": "Drawer bottom",
+   "b": "Drawer rear",
+   "area": 54.5,
+   "count": 165,
+   "at": [
+    5.56,
+    0.354,
+    -0.598
+   ]
+  },
+  {
+   "a": "North room partition",
+   "b": "Outer wall paper",
+   "area": 38.4,
+   "count": 8,
+   "at": [
+    -1.973,
+    0.16,
+    2.667
+   ]
+  },
+  {
+   "a": "Door casing",
+   "b": "Outer wall paper",
+   "area": 28.8,
+   "count": 16,
+   "at": [
+    -6.789,
+    0.16,
+    5.872
+   ]
+  },
+  {
+   "a": "Bed frame",
+   "b": "Footboard",
+   "area": 26.3,
+   "count": 8,
+   "at": [
+    -3.8,
+    3.76,
+    -4.36
+   ]
+  },
+  {
+   "a": "Bedroom partition",
+   "b": "Outer wall paper",
+   "area": 19.2,
+   "count": 4,
+   "at": [
+    1.027,
+    3.36,
+    -4.333
+   ]
+  },
+  {
+   "a": "Sewing arm",
+   "b": "Sewing upright",
+   "area": 12.8,
+   "count": 5,
+   "at": [
+    3.345,
+    4.549,
+    -5.375
+   ]
+  },
+  {
+   "a": "North wall",
+   "b": "Window_6 transom",
+   "area": 9.5,
+   "count": 2,
+   "at": [
+    -0.8,
+    1.954,
+    6.007
+   ]
+  },
+  {
+   "a": "North wall",
+   "b": "Window_8 transom",
+   "area": 9.5,
+   "count": 2,
+   "at": [
+    -0.8,
+    5.174,
+    6.007
+   ]
+  },
+  {
+   "a": "Stove flue",
+   "b": "Stove flue",
+   "area": 9.4,
+   "count": 4,
+   "at": [
+    -3.397,
+    2.773,
+    1.313
+   ]
+  },
+  {
+   "a": "Drawer side",
+   "b": "Stored tied parcel",
+   "area": 5.2,
+   "count": 9,
+   "at": [
+    -5.898,
+    3.586,
+    5.725
+   ]
+  },
+  {
+   "a": "Stair handrail",
+   "b": "Stair handrail",
+   "area": 2.1,
+   "count": 12,
+   "at": [
+    6.982,
+    3.348,
+    3.145
+   ]
+  }
+ ],
+ "units": "area cm2; object base names"
+}

@@ -18,7 +18,13 @@ public static class EvidenceSolidModel {
             Part("Clock dial",PrimitiveType.Cylinder,new Vector3(0,.1f,-.094f),new Vector3(.42f,.018f,.42f),cream,new Vector3(90,0,0));
             for(int i=0;i<12;i++){float a=i*Mathf.PI/6;Part("Hour marker",PrimitiveType.Cube,new Vector3(Mathf.Sin(a)*.17f,.1f+Mathf.Cos(a)*.17f,-.117f),new Vector3(.016f,.033f,.006f),iron,new Vector3(0,0,-i*30));}
             Part("Hour hand",PrimitiveType.Cube,new Vector3(.04f,.14f,-.13f),new Vector3(.014f,.12f,.007f),iron,new Vector3(0,0,-45));Part("Minute hand",PrimitiveType.Cube,new Vector3(-.065f,.08f,-.137f),new Vector3(.15f,.012f,.007f),iron,new Vector3(0,0,18));
-            Part("Pendulum",PrimitiveType.Cylinder,new Vector3(0,-.21f,-.1f),new Vector3(.10f,.012f,.10f),brass,new Vector3(90,0,0));
+            // Same build as the kitchen clock: a framed lower door with the stopped pendulum resting to one side inside the case.
+            var recess=new Color(.16f,.09f,.04f);
+            Part("Pendulum recess",PrimitiveType.Cube,new Vector3(0,-.238f,-.074f),new Vector3(.42f,.2f,.01f),recess,Vector3.zero);
+            foreach(float y in new[]{-.13f,-.346f})Part("Glazed door rail",PrimitiveType.Cube,new Vector3(0,y,-.088f),new Vector3(.44f,.024f,.016f),new Color(.32f,.19f,.09f),Vector3.zero);
+            foreach(float x in new[]{-.21f,.21f})Part("Glazed door stile",PrimitiveType.Cube,new Vector3(x,-.238f,-.088f),new Vector3(.024f,.24f,.016f),new Color(.32f,.19f,.09f),Vector3.zero);
+            Part("Pendulum rod",PrimitiveType.Cube,new Vector3(.014f,-.2f,-.08f),new Vector3(.01f,.15f,.006f),brass,new Vector3(0,0,10));
+            Part("Pendulum bob",PrimitiveType.Cylinder,new Vector3(.028f,-.285f,-.08f),new Vector3(.08f,.008f,.08f),brass,new Vector3(90,0,0));
         }
         return root;
     }

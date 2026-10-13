@@ -1,0 +1,81 @@
+{
+  "id": "HOUSE-07",
+  "date": "2026-10-13",
+  "platform": "Windows 11 / Unity 6000.3.18f1 / D3D11 (staging build); Blender 5.2.2 on Mac mini (Apple M4) for source generation and audits",
+  "sourceSHA256": "0a5881c28a875a2cb120d7bd7c2d0cbf23fda6354afa9ece4a08696b49b8e9e7",
+  "fbxSHA256": "9c6096703e1fdc1b88d9f2aec23846bd2b9041f7f94f1ab1b0d4891d8ceb93fc",
+  "assemblyCSharpSHA256": "eb945685f5c8c8b9001b4285e97c554028214f07f10963a5a1eff073584a0a59",
+  "sourceAudits": {
+    "sourceVerification": true,
+    "placement": true,
+    "stairs": true,
+    "coplanarObjectPairs": {
+      "before": 71,
+      "after": 65
+    }
+  },
+  "buildChecks": [
+    "HOME_LAYOUT_PASS",
+    "HOUSE_STORAGE_SWEEP_PASS",
+    "BUILDING_LAYOUT_PASS",
+    "SLICE_BUILD_PASS"
+  ],
+  "editMode": "85/85 passed on the final project",
+  "zfightScan": "EXACT 0, MOVING 0, near 1000",
+  "nativeReviews": {
+    "full": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "HOME_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "3220b64642f664df0f9e4e4da99acc0c40ccec016977b49788dfc4cd123047d5"
+    },
+    "reload": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "HOME_SAVE_PASS",
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "3220b64642f664df0f9e4e4da99acc0c40ccec016977b49788dfc4cd123047d5"
+    },
+    "full720": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "HOME_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "3220b64642f664df0f9e4e4da99acc0c40ccec016977b49788dfc4cd123047d5"
+    },
+    "evidence": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "EVIDENCE_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "3220b64642f664df0f9e4e4da99acc0c40ccec016977b49788dfc4cd123047d5"
+    },
+    "evidence720": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "EVIDENCE_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "3220b64642f664df0f9e4e4da99acc0c40ccec016977b49788dfc4cd123047d5"
+    },
+    "placement": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "HOME_PLACEMENT_VIEWS_PASS",
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "3220b64642f664df0f9e4e4da99acc0c40ccec016977b49788dfc4cd123047d5"
+    },
+    "stairs": {
+      "exit": 0,
+      "protocolPassed": true,
+      "expectedResult": "HOME_STAIRS_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "3220b64642f664df0f9e4e4da99acc0c40ccec016977b49788dfc4cd123047d5"
+    }
+  },
+  "repositoryMedia": {
+    "blender-*.jpg": "Blender before/after renders, mirrored to game handedness",
+    "game-*.jpg": "native Windows captures from the final-build reviews (win07/win08 frames of unchanged rooms)"
+  },
+  "limits": "Scripted actual-controller reviews, not physical keyboard/mouse or blind play testing. Mac player not rebuilt. Full frames and logs stay in ignored builds/house-review/win07*, win08*."
+}

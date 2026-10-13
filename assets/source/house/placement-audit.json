@@ -3,27 +3,27 @@
   "rearClearances": [
     {
       "object": "Parents bed",
-      "gapMetres": 0.038
+      "gapMetres": 0.04
     },
     {
       "object": "Child bed",
-      "gapMetres": 0.038
+      "gapMetres": 0.04
     },
     {
       "object": "Cabinet_bedside-a",
-      "gapMetres": 0.025
+      "gapMetres": 0.027
     },
     {
       "object": "Cabinet_bedside-b",
-      "gapMetres": 0.025
+      "gapMetres": 0.027
     },
     {
       "object": "Cabinet_child-bedside",
-      "gapMetres": 0.025
+      "gapMetres": 0.027
     },
     {
       "object": "Cabinet_dressing",
-      "gapMetres": 0.08
+      "gapMetres": 0.068
     },
     {
       "object": "Cabinet_wardrobe",
@@ -31,27 +31,27 @@
     },
     {
       "object": "Cabinet_sideboard",
-      "gapMetres": 0.06
+      "gapMetres": 0.048
     },
     {
       "object": "Three seat sofa",
-      "gapMetres": 0.12
+      "gapMetres": 0.108
     },
     {
       "object": "Writing desk",
-      "gapMetres": 0.1
+      "gapMetres": 0.088
     },
     {
       "object": "Cabinet_desk",
-      "gapMetres": 0.04
+      "gapMetres": 0.042
     },
     {
       "object": "Cabinet_medical",
-      "gapMetres": 0.05
+      "gapMetres": 0.052
     },
     {
       "object": "Bookcase",
-      "gapMetres": 0.06
+      "gapMetres": 0.05
     },
     {
       "object": "Cabinet_stationery",
@@ -63,19 +63,19 @@
     },
     {
       "object": "Cabinet_kitchen-bills",
-      "gapMetres": 0.06
+      "gapMetres": 0.062
     },
     {
       "object": "Cabinet_kitchen-larder",
-      "gapMetres": 0.06
+      "gapMetres": 0.062
     },
     {
       "object": "Cabinet_kitchen-crockery",
-      "gapMetres": 0.04
+      "gapMetres": 0.028
     },
     {
       "object": "Deep sink",
-      "gapMetres": 0.045
+      "gapMetres": 0.033
     },
     {
       "object": "Cast iron cooker",
@@ -91,7 +91,7 @@
     },
     {
       "object": "Child desk",
-      "gapMetres": 0.04
+      "gapMetres": 0.042
     },
     {
       "object": "Cabinet_toys",
@@ -99,37 +99,37 @@
     },
     {
       "object": "Clawfoot bath",
-      "gapMetres": 0.12
+      "gapMetres": 0.108
     },
     {
       "object": "Pedestal basin",
-      "gapMetres": 0.05
+      "gapMetres": 0.078
     },
     {
       "object": "Cabinet_linen",
-      "gapMetres": 0.03
+      "gapMetres": 0.032
     },
     {
       "object": "Cabinet_old-trunk",
-      "gapMetres": 0.045
+      "gapMetres": 0.033
     },
     {
       "object": "Treadle sewing table",
-      "gapMetres": 0.06
+      "gapMetres": 0.062
     },
     {
       "object": "Cabinet_hall",
-      "gapMetres": 0.015
+      "gapMetres": 0.04
     }
   ],
   "groundContacts": [
     {
       "object": "Parents bed",
-      "floorGapMetres": -0.0
+      "floorGapMetres": 0.0
     },
     {
       "object": "Child bed",
-      "floorGapMetres": -0.0
+      "floorGapMetres": 0.0
     },
     {
       "object": "Cabinet_bedside-a",
@@ -173,7 +173,7 @@
     },
     {
       "object": "Bookcase",
-      "floorGapMetres": 0.01
+      "floorGapMetres": -0.0
     },
     {
       "object": "Cabinet_stationery",
@@ -197,7 +197,7 @@
     },
     {
       "object": "Deep sink",
-      "floorGapMetres": -0.0
+      "floorGapMetres": 0.0
     },
     {
       "object": "Cast iron cooker",
@@ -221,7 +221,7 @@
     },
     {
       "object": "Clawfoot bath",
-      "floorGapMetres": 0.0
+      "floorGapMetres": -0.0
     },
     {
       "object": "Pedestal basin",
@@ -310,7 +310,8 @@
   ],
   "fixedFurnitureIntersections": [],
   "curtainIntersections": [],
+  "skirtingOrPaperIntersections": [],
   "failures": [],
-  "sourceSHA256": "5af0c744672ce3f57d4d65c50d5dbc98a46d41176706c5b4456bba42587f8730",
+  "sourceSHA256": "0a5881c28a875a2cb120d7bd7c2d0cbf23fda6354afa9ece4a08696b49b8e9e7",
   "scope": "Authored source bounds; wall relations, ground and tabletop contacts, bedsides, fixed furniture pairs, and actual curtain-fold overlaps. Native visual and opening checks are separate."
 }

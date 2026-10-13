@@ -1,8 +1,8 @@
 {
-    "triangles": 10982731,
-    "renderers": 12830,
+    "triangles": 11011515,
+    "renderers": 13592,
     "visibleExact": 0,
-    "visibleNear": 960,
+    "visibleNear": 1000,
     "movingExact": 0,
     "groups": [
         {
@@ -117,17 +117,17 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/Staircase/Stair upper threshold",
-            "materialA": "Walnut",
-            "b": "主角住宅/House1931/Staircase/Stair tread.017",
+            "a": "Town geometry/主角住宅/House1931/North corridor partition.031",
+            "materialA": "Wallpaper",
+            "b": "主角住宅/House1931/Staircase/Stair upper threshold",
             "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.11902735382318497,
+            "kind": "material",
+            "area": 0.1073429211974144,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -18.221511840820314,
+                -17.783641815185548,
                 3.3580000400543215,
-                -55.84121322631836
+                -55.9456672668457
             ],
             "normal": [
                 0.0,
@@ -848,12 +848,12 @@
             "b": "Town geometry/主角住宅/House1931/Dried burgundy blood 0",
             "materialB": "Blood",
             "kind": "material",
-            "area": 0.1405555009841919,
-            "offsetMm": 1.9999984502792359,
+            "area": 0.14125403761863709,
+            "offsetMm": 1.9999982118606568,
             "at": [
-                -24.42807388305664,
+                -24.430320739746095,
                 0.160030797123909,
-                -59.409576416015628
+                -59.411590576171878
             ],
             "normal": [
                 0.0,
@@ -870,12 +870,12 @@
             "b": "Town geometry/主角住宅/House1931/Dried burgundy blood 3",
             "materialB": "Blood",
             "kind": "material",
-            "area": 0.0006728360895067453,
+            "area": 0.000673984526656568,
             "offsetMm": 1.9999942779541016,
             "at": [
-                -24.704730987548829,
+                -24.69812774658203,
                 0.159999281167984,
-                -59.278011322021487
+                -59.278751373291019
             ],
             "normal": [
                 0.0,
@@ -931,6 +931,28 @@
         },
         {
             "scene": "Town",
+            "a": "主角住宅/House1931/Child bed/Footboard.001",
+            "materialA": "Walnut",
+            "b": "主角住宅/House1931/Child bed/Bed frame.001",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0013147478457540274,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -31.873001098632814,
+                3.755156993865967,
+                -53.3177375793457
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Parcel cotton tie.028",
             "materialA": "Cream",
             "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Stored tied parcel.034",
@@ -941,7 +963,7 @@
             "at": [
                 -17.765859603881837,
                 0.6284999251365662,
-                -57.757389068603519
+                -57.732391357421878
             ],
             "normal": [
                 0.0,
@@ -1195,6 +1217,28 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Outer wall paper.162",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.036",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.0018632074352353812,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -16.624774932861329,
+                3.361999750137329,
+                -55.93109130859375
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1630157104036698e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
             "materialA": "Walnut",
             "b": "Town geometry/主角住宅/House1931/North corridor partition.019",
@@ -1239,6 +1283,28 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Outer wall paper.147",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.003",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.0018076342530548573,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -32.37305450439453,
+                3.361999750137329,
+                -55.99528121948242
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.059638137235197e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.006",
             "materialA": "Walnut",
             "b": "Town geometry/主角住宅/House1931/North corridor partition.003",
@@ -1247,9 +1313,9 @@
             "area": 0.0063409022986888889,
             "offsetMm": 1.9996166229248047,
             "at": [
-                -30.37074089050293,
+                -30.357900619506837,
                 3.361999750137329,
-                -56.00059127807617
+                -56.05332946777344
             ],
             "normal": [
                 0.0,
@@ -1277,6 +1343,28 @@
                 0.0,
                 1.0,
                 0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Outer wall paper.141",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/South corridor partition.003",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.0018697601044550539,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -32.3690185546875,
+                3.361999750137329,
+                -57.99781799316406
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1630157104036698e-7
             ],
             "pairs": 2,
             "moving": false
@@ -1313,9 +1401,9 @@
             "area": 0.006375284865498543,
             "offsetMm": 1.9996166229248047,
             "at": [
-                -21.170740127563478,
+                -21.157901763916017,
                 3.361999750137329,
-                -58.000247955322269
+                -58.0533332824707
             ],
             "normal": [
                 0.0,
@@ -1657,17 +1745,105 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.006",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
             "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.002",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.014",
             "materialB": "Wallpaper",
             "kind": "material",
-            "area": 0.006341053172945976,
+            "area": 0.00630152877420187,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -30.37074089050293,
+                -24.070741653442384,
                 3.361999750137329,
-                -56.00059509277344
+                -56.00098419189453
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.014",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006301824934780598,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -25.329259872436525,
+                3.361999750137329,
+                -55.99901580810547
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.010",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365695968270302,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -25.35790252685547,
+                3.361999750137329,
+                -56.0533332824707
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.007",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.010",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365997716784477,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -29.029258728027345,
+                3.361999750137329,
+                -55.999656677246097
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.007",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.006",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.00630152877420187,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -29.05790138244629,
+                3.361999750137329,
+                -56.05333709716797
             ],
             "normal": [
                 0.0,
@@ -1701,105 +1877,17 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.007",
+            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.006",
             "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.006",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.002",
             "materialB": "Wallpaper",
             "kind": "material",
-            "area": 0.00630152877420187,
+            "area": 0.006341053172945976,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -29.070741653442384,
+                -30.37074089050293,
                 3.361999750137329,
-                -56.00098419189453
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.007",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.010",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365997716784477,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                -29.042098999023439,
-                3.361999750137329,
-                -55.9466667175293
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.010",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365695968270302,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                -25.37074089050293,
-                3.361999750137329,
-                -56.00034713745117
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.014",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006301824934780598,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                -25.342098236083986,
-                3.361999750137329,
-                -55.9466667175293
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.014",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.00630152877420187,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                -24.070741653442384,
-                3.361999750137329,
-                -56.00098419189453
+                -56.00059509277344
             ],
             "normal": [
                 0.0,
@@ -1841,9 +1929,9 @@
             "area": 0.006361779756844044,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -19.82925796508789,
+                -19.842098236083986,
                 3.361999750137329,
-                -57.99961853027344
+                -57.94666290283203
             ],
             "normal": [
                 0.0,
@@ -1973,9 +2061,9 @@
             "area": 0.008280416950583458,
             "offsetMm": 1.0000512599945069,
             "at": [
-                157.64907836914063,
+                157.6495819091797,
                 1.048999547958374,
-                71.58341217041016
+                71.56841278076172
             ],
             "normal": [
                 0.0,
@@ -1992,7 +2080,7 @@
             "b": "RailTrain/TrainSet/Module_Coach1_Static/Module_Coach1_Static_RailGreen",
             "materialB": "RailGreen",
             "kind": "uv",
-            "area": 0.008280416950583458,
+            "area": 0.008280417881906033,
             "offsetMm": 1.0000512599945069,
             "at": [
                 188.3494873046875,
@@ -2024,7 +2112,7 @@
             "normal": [
                 0.0,
                 -1.0,
-                0.0000023844040697440507
+                0.0000023844040697440506
             ],
             "pairs": 2,
             "moving": false
@@ -3246,19 +3334,19 @@
             "b": "Town geometry/主角住宅/House1931/East wall.017",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.028745410963892938,
+            "area": 0.05759989097714424,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -16.560001373291017,
+                -16.47903060913086,
                 5.75,
-                -51.05999755859375
+                -51.04800033569336
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 4,
+            "pairs": 6,
             "moving": false
         },
         {
@@ -3268,19 +3356,19 @@
             "b": "Town geometry/主角住宅/House1931/West wall.036",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.02879948727786541,
+            "area": 0.16559796035289765,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -32.384971618652347,
+                -32.503204345703128,
                 5.75,
-                -51.06970977783203
+                -51.052711486816409
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 5,
+            "pairs": 9,
             "moving": false
         },
         {
@@ -3290,10 +3378,10 @@
             "b": "Town geometry/主角住宅/House1931/South wall.004",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.02879948541522026,
+            "area": 0.16559796035289765,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -32.44000244140625,
+                -32.496212005615237,
                 5.751999855041504,
                 -62.94000244140625
             ],
@@ -3302,7 +3390,7 @@
                 1.0,
                 0.0
             ],
-            "pairs": 5,
+            "pairs": 9,
             "moving": false
         },
         {
@@ -3747,24 +3835,24 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/Staircase/Stair upper threshold",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/Upper floor south",
-            "materialB": "Floor",
+            "a": "Town geometry/主角住宅/House1931/West wall.036",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Upper ceiling",
+            "materialB": "Cream",
             "kind": "material",
-            "area": 0.12824678421020509,
-            "offsetMm": 1.9996259212493897,
+            "area": 0.017187662422657014,
+            "offsetMm": 1.9989013671875,
             "at": [
-                -17.99094581604004,
-                3.2019999027252199,
-                -56.051002502441409
+                -32.4375,
+                6.519731044769287,
+                -51.00199890136719
             ],
             "normal": [
                 0.0,
-                1.0,
-                0.0
+                0.0,
+                -1.0
             ],
-            "pairs": 2,
+            "pairs": 1,
             "moving": false
         },
         {
@@ -3787,28 +3875,6 @@
                 -1.0
             ],
             "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/West wall.036",
-            "materialA": "Plaster",
-            "b": "Town geometry/主角住宅/House1931/Upper ceiling",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.00862476322799921,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                -32.4375,
-                6.482500076293945,
-                -51.00199890136719
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 1,
             "moving": false
         },
         {
@@ -3862,17 +3928,17 @@
             "b": "Town geometry/主角住宅/House1931/Adult woman chalk outline",
             "materialB": "Chalk",
             "kind": "material",
-            "area": 0.004907173570245504,
-            "offsetMm": 1.9999984502792359,
+            "area": 0.005244230851531029,
+            "offsetMm": 2.0,
             "at": [
-                -24.34975242614746,
+                -24.340003967285158,
                 0.16399969160556794,
-                -59.30691909790039
+                -59.303627014160159
             ],
             "normal": [
-                8.073433122035567e-8,
+                -1.4830728645165437e-8,
                 1.0,
-                -1.3995493475249533e-7
+                -1.6827573290356669e-7
             ],
             "pairs": 29,
             "moving": false
@@ -3887,8 +3953,8 @@
             "area": 0.017249910160899164,
             "offsetMm": 1.9989013671875,
             "at": [
-                -16.568878173828126,
-                3.2791194915771486,
+                -16.563552856445314,
+                3.3541195392608644,
                 -62.99800109863281
             ],
             "normal": [
@@ -3906,11 +3972,11 @@
             "b": "Town geometry/主角住宅/House1931/Upper ceiling",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.008625015616416932,
+            "area": 0.017187945544719697,
             "offsetMm": 1.9989013671875,
             "at": [
                 -16.5625,
-                6.482499122619629,
+                6.5197296142578129,
                 -62.99800109863281
             ],
             "normal": [
@@ -3923,17 +3989,303 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Bedroom partition",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/Wall-attached skirting.029",
+            "materialB": "Walnut",
+            "kind": "material",
+            "area": 0.004392168950289488,
+            "offsetMm": 1.9993942975997925,
+            "at": [
+                -23.501441955566408,
+                3.3620007038116457,
+                -58.09031295776367
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.4305115314527939e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North wall",
+            "materialB": "Plaster",
+            "kind": "material",
+            "area": 0.009600134566426278,
+            "offsetMm": 1.999365210533142,
+            "at": [
+                -30.77666664123535,
+                0.16000066697597505,
+                -50.8817138671875
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1038034131161112e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/North wall",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/West wall.031",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.13559852540493012,
+            "offsetMm": 1.9999146461486817,
+            "at": [
+                -32.503204345703128,
+                0.16200001537799836,
+                -51.052711486816409
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.2417744699178002e-7
+            ],
+            "pairs": 7,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/Outer wall paper.019",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.0004433536378201097,
+            "offsetMm": 1.999377965927124,
+            "at": [
+                -30.768686294555665,
+                0.16000063717365266,
+                -51.12606430053711
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1038034131161112e-7
+            ],
+            "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.008",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365845911204815,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                -29.029258728027345,
+                0.16200007498264314,
+                -55.99965286254883
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1038034131161112e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.008",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365544628351927,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                -25.35790252685547,
+                0.16200007498264314,
+                -56.0533332824707
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1038034131161112e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.003",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006355226039886475,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                -24.029258728027345,
+                0.16200007498264314,
+                -55.999549865722659
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1038034131161112e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/Outer wall paper.071",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.00047826211084611714,
+            "offsetMm": 1.999418020248413,
+            "at": [
+                -16.626022338867189,
+                0.16199982166290284,
+                -57.66999816894531
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.8626025166668115e-7
+            ],
+            "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/East wall",
+            "materialB": "Plaster",
+            "kind": "material",
+            "area": 0.009564396925270558,
+            "offsetMm": 1.999418020248413,
+            "at": [
+                -16.500673294067384,
+                0.16199982166290284,
+                -57.67301940917969
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.8626025166668115e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Outer wall paper.071",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/South corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.001847943291068077,
+            "offsetMm": 1.9998699426651,
+            "at": [
+                -16.62640380859375,
+                0.16000036895275117,
+                -58.003013610839847
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1966517377004494e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/East wall",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/South corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.019200116395950319,
+            "offsetMm": 1.9997426271438599,
+            "at": [
+                -16.560001373291017,
+                0.16000036895275117,
+                -58.00143051147461
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1976636926647189e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.028",
+            "materialA": "Paper",
+            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.023",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016930620186030865,
+            "offsetMm": 1.999946117401123,
+            "at": [
+                -31.936113357543947,
+                0.7289336919784546,
+                -53.729000091552737
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.4738758952480568e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_desk_2/Drawer_desk_2/Drawer bottom.008",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_desk_2/Record E09/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05721646547317505,
+            "offsetMm": 1.9998443126678467,
+            "at": [
+                -25.94985008239746,
+                0.7306665182113648,
+                -51.66865539550781
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.2323979464999867e-7
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_hall_2/Drawer_hall_2/Drawer bottom.020",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_hall_2/Record H01/Document storage box",
             "materialB": "Paper",
             "kind": "material",
-            "area": 0.03951564431190491,
+            "area": 0.039514511823654178,
             "offsetMm": 1.9999146461486817,
             "at": [
-                -17.91144371032715,
+                -17.911441802978517,
                 0.7839999794960022,
-                -57.58429718017578
+                -57.55929946899414
             ],
             "normal": [
                 0.0,
@@ -3950,39 +4302,17 @@
             "b": "主角住宅/Storage pivot Drawer_hall_2/Record H03/Document storage box",
             "materialB": "Paper",
             "kind": "material",
-            "area": 0.039515648037195209,
+            "area": 0.039514511823654178,
             "offsetMm": 1.9999146461486817,
             "at": [
-                -18.658845901489259,
+                -18.65884017944336,
                 0.7839999794960022,
-                -57.55311584472656
+                -57.52811813354492
             ],
             "normal": [
                 0.0,
                 -1.0,
                 0.0
-            ],
-            "pairs": 4,
-            "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_utility_1/Drawer_utility_1/Stored tied parcel.037",
-            "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_utility_1/Drawer_utility_1/Parcel cotton tie.031",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016239553224295378,
-            "offsetMm": 1.9999463558197022,
-            "at": [
-                -32.2148551940918,
-                0.8189999461174011,
-                -45.478939056396487
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.5256198910028618e-7
             ],
             "pairs": 4,
             "moving": true
@@ -4253,160 +4583,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North wall",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.009600133635103703,
-            "offsetMm": 1.999365210533142,
-            "at": [
-                -30.77666664123535,
-                0.16000066697597505,
-                -50.88182830810547
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1038034131161112e-7
-            ],
-            "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/North wall",
-            "materialA": "Plaster",
-            "b": "Town geometry/主角住宅/House1931/West wall.031",
-            "materialB": "Plaster",
-            "kind": "uv",
-            "area": 0.014399743638932705,
-            "offsetMm": 1.9999146461486817,
-            "at": [
-                -32.4437255859375,
-                0.16200001537799836,
-                -51.056396484375
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.2417744699178002e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.003",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.016",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006355226039886475,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                -24.042097091674806,
-                0.16200008988380433,
-                -55.9466667175293
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1038034131161112e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.008",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365544628351927,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                -25.37074089050293,
-                0.16200007498264314,
-                -56.000343322753909
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1038034131161112e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.008",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365845911204815,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                -29.042098999023439,
-                0.16200008988380433,
-                -55.9466667175293
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1038034131161112e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/East wall",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.009564396925270558,
-            "offsetMm": 1.999418020248413,
-            "at": [
-                -16.500673294067384,
-                0.16199982166290284,
-                -57.67301940917969
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.8626025166668115e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/East wall",
-            "materialA": "Plaster",
-            "b": "Town geometry/主角住宅/House1931/South corridor partition.016",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.019200116395950319,
-            "offsetMm": 1.9997426271438599,
-            "at": [
-                -16.579999923706056,
-                0.16000044345855714,
-                -57.92190933227539
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1976636926647189e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/House1931/Cabinet_desk/Cabinet stile.004",
             "materialA": "Walnut",
             "b": "主角住宅/House1931/Cabinet_desk/Cabinet base.002",
@@ -4593,7 +4769,7 @@
             "at": [
                 -17.41590118408203,
                 0.27997979521751406,
-                -57.862998962402347
+                -57.8380012512207
             ],
             "normal": [
                 0.0,
@@ -4615,7 +4791,7 @@
             "at": [
                 -18.984100341796876,
                 0.28001993894577029,
-                -57.86499786376953
+                -57.84000015258789
             ],
             "normal": [
                 0.0,
@@ -4712,50 +4888,6 @@
             ],
             "pairs": 2,
             "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.028",
-            "materialA": "Paper",
-            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.023",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016930620186030865,
-            "offsetMm": 1.999946117401123,
-            "at": [
-                -31.936113357543947,
-                0.7289336919784546,
-                -53.729000091552737
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.4738758952480568e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_desk_2/Drawer_desk_2/Drawer bottom.008",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_desk_2/Record E09/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05721646547317505,
-            "offsetMm": 1.9998443126678467,
-            "at": [
-                -25.94985008239746,
-                0.7306665182113648,
-                -51.66865539550781
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.2323979464999867e-7
-            ],
-            "pairs": 3,
-            "moving": true
         },
         {
             "scene": "Town",
@@ -5111,28 +5243,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_utility_2/Drawer_utility_2/Drawer rear.023",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_utility_2/Drawer_utility_2/Drawer side.046",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.00018530695524532348,
-            "offsetMm": 1.9999749660491944,
-            "at": [
-                -32.249046325683597,
-                1.157999873161316,
-                -45.681175231933597
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1099587737817274e-7
-            ],
-            "pairs": 1,
-            "moving": true
-        },
-        {
-            "scene": "Town",
             "a": "Town geometry/主角住宅/House1931/North wall.029",
             "materialA": "Plaster",
             "b": "主角住宅/House1931/Window_6/Window_6 transom",
@@ -5177,6 +5287,28 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/StationB/Rail sign board · 候车厅  →  站台/Brass side border",
+            "materialA": "RailBrass",
+            "b": "Town geometry/StationB/Rail sign board · 候车厅  →  站台/Solid painted sign face",
+            "materialB": "RailGreen",
+            "kind": "material",
+            "area": 0.005151956807821989,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                186.46128845214845,
+                3.5880000591278078,
+                51.82340621948242
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 7,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Parcel cotton tie.017",
             "materialA": "Cream",
             "b": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Stored tied parcel.017",
@@ -5199,88 +5331,176 @@
         },
         {
             "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/Dried burgundy blood 0",
-            "materialA": "Blood",
-            "b": "Town geometry/主角住宅/House1931/Dried burgundy blood 1",
-            "materialB": "Blood",
-            "kind": "uv",
-            "area": 0.00034200469963252544,
-            "offsetMm": 1.9999947547912598,
-            "at": [
-                -24.336965560913087,
-                0.1619996875524521,
-                -59.42625045776367
-            ],
-            "normal": [
-                4.851897728030963e-8,
-                1.0,
-                -4.705073308741703e-8
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/Fireplace/Fire surround.001",
-            "materialA": "Cream",
-            "b": "Town geometry/主角住宅/House1931/Wall-attached skirting",
+            "a": "主角住宅/House1931/Staircase/Landing front fascia",
+            "materialA": "Walnut",
+            "b": "主角住宅/House1931/Staircase/Stair landing",
             "materialB": "Walnut",
-            "kind": "material",
-            "area": 0.004318390041589737,
-            "offsetMm": 1.9993036985397339,
+            "kind": "uv",
+            "area": 0.10000777989625931,
+            "offsetMm": 1.9989013671875,
             "at": [
-                -23.649551391601564,
-                0.1639992743730545,
-                -62.8491325378418
+                -20.755142211914064,
+                1.6860004663467408,
+                -52.75
             ],
             "normal": [
                 0.0,
-                1.0,
-                -1.3546434729505564e-7
+                0.0,
+                1.0
             ],
             "pairs": 3,
             "moving": false
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/Fireplace/Fire surround",
-            "materialA": "Cream",
-            "b": "Town geometry/主角住宅/House1931/Wall-attached skirting",
+            "a": "Town geometry/主角住宅/House1931/North room partition",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/Wall-attached skirting.003",
             "materialB": "Walnut",
             "kind": "material",
-            "area": 0.004319694358855486,
-            "offsetMm": 1.9993036985397339,
+            "area": 0.004446499515324831,
+            "offsetMm": 1.9993232488632203,
             "at": [
-                -25.478456497192384,
-                0.1639992743730545,
-                -62.839332580566409
+                -26.50257110595703,
+                0.16200099885463715,
+                -51.16083526611328
             ],
             "normal": [
                 0.0,
                 1.0,
-                -1.3546434729505564e-7
+                -1.1920928955078126e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/North room partition.001",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/Wall-attached skirting.003",
+            "materialB": "Walnut",
+            "kind": "material",
+            "area": 0.004345575347542763,
+            "offsetMm": 1.9993232488632203,
+            "at": [
+                -21.502483367919923,
+                0.16200101375579835,
+                -51.15534591674805
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1920928955078126e-7
             ],
             "pairs": 2,
             "moving": false
         },
         {
             "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/West wall.033",
-            "materialA": "Plaster",
-            "b": "Town geometry/主角住宅/House1931/North wall.002",
-            "materialB": "Plaster",
-            "kind": "uv",
-            "area": 0.014399743638932705,
-            "offsetMm": 1.999974250793457,
+            "a": "Town geometry/主角住宅/House1931/North room partition.001",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/Wall-attached skirting.018",
+            "materialB": "Walnut",
+            "kind": "material",
+            "area": 0.004392168950289488,
+            "offsetMm": 1.9998897314071656,
             "at": [
-                -32.44000244140625,
-                2.557999849319458,
-                -51.05999755859375
+                -21.498462677001954,
+                0.1620001196861267,
+                -55.903480529785159
             ],
             "normal": [
                 0.0,
-                -1.0,
-                1.402464704369777e-7
+                1.0,
+                -1.1920928955078126e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/North room partition",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/Wall-attached skirting.017",
+            "materialB": "Walnut",
+            "kind": "material",
+            "area": 0.004392168950289488,
+            "offsetMm": 1.9998897314071656,
+            "at": [
+                -26.498504638671876,
+                0.1620001196861267,
+                -55.90625
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1920928955078126e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Wall-attached skirting.005",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.004468228202313185,
+            "offsetMm": 1.999755620956421,
+            "at": [
+                -32.349422454833987,
+                0.1639997512102127,
+                -56.07439422607422
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1946573863497179e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Wall-attached skirting.007",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.033",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.004424180835485458,
+            "offsetMm": 1.999755620956421,
+            "at": [
+                -16.649036407470704,
+                0.1639997661113739,
+                -55.933250427246097
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1946573863497179e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Dried burgundy blood 0",
+            "materialA": "Blood",
+            "b": "Town geometry/主角住宅/House1931/Dried burgundy blood 1",
+            "materialB": "Blood",
+            "kind": "uv",
+            "area": 0.00019538524793460965,
+            "offsetMm": 1.9999977350234986,
+            "at": [
+                -24.319169998168947,
+                0.1619996875524521,
+                -59.41164016723633
+            ],
+            "normal": [
+                -1.9316524912937894e-7,
+                1.0,
+                -2.8892071668451538e-7
             ],
             "pairs": 1,
             "moving": false
@@ -5292,19 +5512,41 @@
             "b": "Town geometry/主角住宅/House1931/North wall.051",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.014345439150929451,
+            "area": 0.02879994362592697,
             "offsetMm": 1.9997358322143555,
             "at": [
-                -16.61509132385254,
+                -16.61264991760254,
                 2.558000087738037,
-                -51.07756423950195
+                -51.11628341674805
             ],
             "normal": [
                 0.0,
                 -1.0,
                 1.2548336769668823e-7
             ],
-            "pairs": 3,
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/West wall.033",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/North wall.002",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.029957102611660959,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -32.61435317993164,
+                2.557999849319458,
+                -51.07999801635742
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.402464704369777e-7
+            ],
+            "pairs": 4,
             "moving": false
         },
         {
@@ -5336,63 +5578,19 @@
             "b": "Town geometry/主角住宅/House1931/East wall.002",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.01439997274428606,
+            "area": 0.028799716383218766,
             "offsetMm": 1.999833583831787,
             "at": [
-                -16.560001373291017,
+                -16.381793975830079,
                 5.747999668121338,
-                -62.94000244140625
+                -62.919986724853519
             ],
             "normal": [
                 0.0,
                 -1.0,
                 0.0000019868391518684804
             ],
-            "pairs": 1,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/South wall.002",
-            "materialA": "Plaster",
-            "b": "Town geometry/主角住宅/House1931/Upper floor west",
-            "materialB": "Floor",
-            "kind": "material",
-            "area": 0.017166968435049058,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                -32.49800109863281,
-                3.279635429382324,
-                -62.9315299987793
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
             "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/South wall.004",
-            "materialA": "Plaster",
-            "b": "Town geometry/主角住宅/House1931/Upper ceiling",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.00862487219274044,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                -32.49800109863281,
-                6.482499122619629,
-                -62.9375
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 1,
             "moving": false
         },
         {
@@ -5424,100 +5622,12 @@
             "b": "Town geometry/主角住宅/House1931/North corridor partition.001",
             "materialB": "Wallpaper",
             "kind": "material",
-            "area": 0.024000564590096475,
+            "area": 0.024000562727451326,
             "offsetMm": 1.9989013671875,
             "at": [
                 -32.5,
-                3.23618745803833,
-                -55.98766326904297
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/Upper ceiling",
-            "materialA": "Cream",
-            "b": "Town geometry/主角住宅/House1931/North wall.007",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.008541986346244812,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                -32.5,
-                6.482787609100342,
-                -51.05674743652344
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/Upper floor west",
-            "materialA": "Floor",
-            "b": "Town geometry/主角住宅/House1931/North wall.003",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.017166968435049058,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                -32.5,
-                3.280360460281372,
-                -51.0625
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 1,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/North wall.003",
-            "materialA": "Plaster",
-            "b": "Town geometry/主角住宅/House1931/Utility ceiling",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.014941822737455368,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                -32.49800109863281,
-                3.1643292903900148,
-                -50.92293930053711
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/Utility ceiling",
-            "materialA": "Cream",
-            "b": "Town geometry/主角住宅/House1931/Utility north",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.014938710257411003,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                -32.5,
-                3.058060884475708,
-                -44.1182861328125
+                3.2366878986358644,
+                -56.067665100097659
             ],
             "normal": [
                 1.0,
@@ -5538,8 +5648,30 @@
             "offsetMm": 1.9989013671875,
             "at": [
                 -16.5,
-                3.3344032764434816,
-                -57.92256164550781
+                3.258544921875,
+                -58.01006317138672
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Record H16/Box lid rim",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Record H16/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.0027070287615060808,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -28.51099967956543,
+                1.3073995113372803,
+                -51.640010833740237
             ],
             "normal": [
                 -1.0,
@@ -5569,6 +5701,28 @@
                 0.0
             ],
             "pairs": 6,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/Parents bed/Footboard",
+            "materialA": "Walnut",
+            "b": "主角住宅/House1931/Parents bed/Bed frame",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0013140147784724832,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -26.501998901367189,
+                3.795403480529785,
+                -60.68339920043945
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
             "moving": false
         },
         {
@@ -5604,15 +5758,15 @@
             "offsetMm": 1.9989013671875,
             "at": [
                 -21.06999969482422,
-                0.36042624711990359,
-                -55.71773910522461
+                0.3506077229976654,
+                -55.71806335449219
             ],
             "normal": [
                 -1.0,
                 0.0,
                 0.0
             ],
-            "pairs": 2,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -5626,15 +5780,15 @@
             "offsetMm": 1.9989013671875,
             "at": [
                 -19.93000030517578,
-                0.39268866181373598,
-                -55.6818962097168
+                0.3777289390563965,
+                -55.68130874633789
             ],
             "normal": [
                 1.0,
                 0.0,
                 0.0
             ],
-            "pairs": 2,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -5644,19 +5798,19 @@
             "b": "主角住宅/House1931/Staircase/Stair newel.004",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.010667960159480572,
+            "area": 0.010580931790173054,
             "offsetMm": 1.9989013671875,
             "at": [
                 -18.670000076293947,
-                3.380016803741455,
-                -55.717079162597659
+                3.3751134872436525,
+                -55.71723937988281
             ],
             "normal": [
                 -1.0,
                 0.0,
                 0.0
             ],
-            "pairs": 2,
+            "pairs": 3,
             "moving": false
         },
         {
@@ -5669,8 +5823,8 @@
             "area": 0.00981933157891035,
             "offsetMm": 1.9989013671875,
             "at": [
-                -19.921850204467775,
-                0.30492955446243288,
+                -19.908000946044923,
+                0.3058030605316162,
                 -55.893001556396487
             ],
             "normal": [
@@ -5678,7 +5832,7 @@
                 0.0,
                 1.0
             ],
-            "pairs": 4,
+            "pairs": 3,
             "moving": false
         },
         {
@@ -5688,11 +5842,11 @@
             "b": "主角住宅/House1931/Staircase/Stair closed string",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.00981933157891035,
+            "area": 0.009819330647587777,
             "offsetMm": 1.9989013671875,
             "at": [
-                -21.11400032043457,
-                0.1982555091381073,
+                -21.118812561035158,
+                0.2788928747177124,
                 -55.89500045776367
             ],
             "normal": [
@@ -5710,19 +5864,19 @@
             "b": "主角住宅/House1931/Staircase/Stair newel.006",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.010667960159480572,
+            "area": 0.010580931790173054,
             "offsetMm": 1.9989013671875,
             "at": [
                 -17.43000030517578,
-                3.380016803741455,
-                -55.717079162597659
+                3.3751134872436525,
+                -55.71723937988281
             ],
             "normal": [
                 -1.0,
                 0.0,
                 0.0
             ],
-            "pairs": 2,
+            "pairs": 3,
             "moving": false
         },
         {
@@ -5749,46 +5903,420 @@
         },
         {
             "scene": "Town",
-            "a": "Town geometry/StationB/Rail sign board · 候车厅  →  站台/Brass side border",
-            "materialA": "RailBrass",
-            "b": "Town geometry/StationB/Rail sign board · 候车厅  →  站台/Solid painted sign face",
-            "materialB": "RailGreen",
-            "kind": "material",
-            "area": 0.005151956807821989,
-            "offsetMm": 1.9998550415039063,
+            "a": "Town geometry/主角住宅/House1931/South wall.002",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/West wall.003",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.20279820263385774,
+            "offsetMm": 1.9989013671875,
             "at": [
-                186.46128845214845,
-                3.5880000591278078,
-                51.82340621948242
+                -32.61800003051758,
+                3.5272107124328615,
+                -62.94023513793945
             ],
             "normal": [
+                1.0,
                 0.0,
-                -1.0,
                 0.0
             ],
-            "pairs": 7,
+            "pairs": 3,
             "moving": false
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Record H16/Box lid rim",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Record H16/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.0027070287615060808,
+            "a": "Town geometry/主角住宅/House1931/South wall.001",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/West wall.001",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.17999836802482606,
             "offsetMm": 1.9989013671875,
             "at": [
-                -28.51099967956543,
-                1.3029992580413819,
-                -51.64141845703125
+                -32.61800003051758,
+                1.9638159275054932,
+                -62.94000244140625
             ],
             "normal": [
-                -1.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/South wall",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/West wall",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.10679902881383896,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.61800003051758,
+                1.0312631130218506,
+                -62.92000198364258
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/South wall.003",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/West wall.004",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.17999839782714845,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.61800003051758,
+                5.718421459197998,
+                -62.92000198364258
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/South wall.002",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/West wall.002",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.0011558668920770288,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.61800003051758,
+                2.5548436641693117,
+                -62.940330505371097
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/West wall.035",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/North wall.005",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.14399869740009309,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.619998931884769,
+                4.900000095367432,
+                -51.05999755859375
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/West wall.034",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/North wall.003",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.20279817283153535,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.619998931884769,
+                3.9683332443237306,
+                -51.040000915527347
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/West wall.032",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/North wall.001",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.17999839782714845,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.619998931884769,
+                2.299999952316284,
+                -51.040000915527347
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/West wall.035",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/North wall.004",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.023999763652682306,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.619998931884769,
+                4.285294055938721,
+                -51.07999801635742
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/West wall.035",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/North wall.006",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.011999938637018204,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.619998931884769,
+                5.699999809265137,
+                -51.071998596191409
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/North wall",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Utility west",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.1007990762591362,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.61800003051758,
+                0.3083333373069763,
+                -50.959999084472659
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/North wall.001",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Utility west.001",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.1739984154701233,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.61800003051758,
+                1.9488637447357178,
+                -50.94000244140625
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/North wall",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Utility west.001",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.005999954417347908,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.61800003051758,
+                1.0249998569488526,
+                -50.94000244140625
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/North wall.003",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Utility west.002",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.08153566718101502,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.61800003051758,
+                3.002554416656494,
+                -50.91193389892578
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/North wall.002",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Utility west.002",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.0011999881826341153,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.61800003051758,
+                2.5562498569488527,
+                -50.94000244140625
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/North wall.001",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Utility west.002",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.0059999688528478149,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.61800003051758,
+                2.5249998569488527,
+                -50.94000244140625
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Utility west.007",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Utility north",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.08879917860031128,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.619998931884769,
+                2.7663934230804445,
+                -44.101314544677737
+            ],
+            "normal": [
+                1.0,
                 0.0,
                 0.0
             ],
             "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Utility west.005",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Utility north",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.10079909861087799,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.619998931884769,
+                0.17460869252681733,
+                -44.07999801635742
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Utility west.006",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/Utility north",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.17999836802482606,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -32.619998931884769,
+                1.0260869264602662,
+                -44.07999801635742
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
             "moving": false
         },
         {
@@ -6705,29 +7233,7 @@
             "at": [
                 -17.46700096130371,
                 0.38666194677352908,
-                -57.82500076293945
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 3,
-            "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer side.038",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer rear.019",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.001776580000296235,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                -17.46700096130371,
-                0.5966618657112122,
-                -57.82500076293945
+                -57.80000305175781
             ],
             "normal": [
                 0.0,
@@ -6749,7 +7255,7 @@
             "at": [
                 -17.4689998626709,
                 0.8580511212348938,
-                -57.82500076293945
+                -57.80000305175781
             ],
             "normal": [
                 0.0,
@@ -6761,39 +7267,17 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer rear.019",
+            "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer side.038",
             "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer side.039",
+            "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer rear.019",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.0017682830803096295,
+            "area": 0.001776580000296235,
             "offsetMm": 1.999974250793457,
             "at": [
-                -18.933000564575197,
-                0.670333206653595,
-                -57.82699966430664
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 3,
-            "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_hall_0/Drawer_hall_0/Drawer rear.018",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_hall_0/Drawer_hall_0/Drawer side.037",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.0017682837788015605,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                -18.930999755859376,
-                0.40894654393196108,
-                -57.82699966430664
+                -17.46900177001953,
+                0.6553264856338501,
+                -57.80000305175781
             ],
             "normal": [
                 0.0,
@@ -6815,7 +7299,7 @@
             "at": [
                 -18.929800033569337,
                 0.8392959237098694,
-                -57.82699966430664
+                -57.802001953125
             ],
             "normal": [
                 0.0,
@@ -6823,6 +7307,50 @@
                 1.0
             ],
             "pairs": 2,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_hall_0/Drawer_hall_0/Drawer rear.018",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_hall_0/Drawer_hall_0/Drawer side.037",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0017682837788015605,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -18.930999755859376,
+                0.40894654393196108,
+                -57.802001953125
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer rear.019",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer side.039",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0017682830803096295,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -18.929800033569337,
+                0.6292957663536072,
+                -57.802001953125
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 3,
             "moving": true
         },
         {
@@ -6837,7 +7365,7 @@
             "at": [
                 -17.686500549316408,
                 0.92499840259552,
-                -57.58195495605469
+                -57.55695343017578
             ],
             "normal": [
                 1.0,
@@ -6859,7 +7387,7 @@
             "at": [
                 -18.411500930786134,
                 0.92499840259552,
-                -57.58195495605469
+                -57.55695343017578
             ],
             "normal": [
                 1.0,
@@ -6868,6 +7396,50 @@
             ],
             "pairs": 4,
             "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_utility_1/Drawer_utility_1/Stored tied parcel.037",
+            "materialA": "Paper",
+            "b": "主角住宅/Storage pivot Drawer_utility_1/Drawer_utility_1/Parcel cotton tie.031",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016239553224295378,
+            "offsetMm": 1.9999463558197022,
+            "at": [
+                -32.2148551940918,
+                0.8189998269081116,
+                -45.478939056396487
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.5256198910028618e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_utility_2/Drawer_utility_2/Drawer rear.023",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_utility_2/Drawer_utility_2/Drawer side.046",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0001853069697972387,
+            "offsetMm": 1.9999749660491944,
+            "at": [
+                -32.249046325683597,
+                1.1579997539520264,
+                -45.681175231933597
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1099587737817274e-7
+            ],
+            "pairs": 1,
+            "moving": true
         },
         {
             "scene": "Town",
@@ -7377,28 +7949,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_dressing_1/Drawer_dressing_1/Drawer side.062",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_dressing_1/Drawer_dressing_1/Drawer rear.031",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.0018216551980003715,
-            "offsetMm": 1.9998562335968018,
-            "at": [
-                -32.220001220703128,
-                3.8575100898742677,
-                -62.711002349853519
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 3,
-            "moving": true
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_dressing_2/Drawer_dressing_2/Drawer side.064",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_dressing_2/Drawer_dressing_2/Drawer rear.032",
@@ -7421,17 +7971,17 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_dressing_1/Drawer_dressing_1/Drawer rear.031",
+            "a": "主角住宅/Storage pivot Drawer_dressing_1/Drawer_dressing_1/Drawer side.062",
             "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_dressing_1/Drawer_dressing_1/Drawer side.063",
+            "b": "主角住宅/Storage pivot Drawer_dressing_1/Drawer_dressing_1/Drawer rear.031",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.001827820437029004,
-            "offsetMm": 1.9998574256896973,
+            "area": 0.0018216551980003715,
+            "offsetMm": 1.9998562335968018,
             "at": [
-                -32.22200012207031,
-                3.838193416595459,
-                -61.450199127197269
+                -32.220001220703128,
+                3.804450750350952,
+                -62.7130012512207
             ],
             "normal": [
                 1.0,
@@ -7453,6 +8003,28 @@
             "at": [
                 -32.22200012207031,
                 4.097225189208984,
+                -61.446998596191409
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_dressing_1/Drawer_dressing_1/Drawer rear.031",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_dressing_1/Drawer_dressing_1/Drawer side.063",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.001827820437029004,
+            "offsetMm": 1.9998574256896973,
+            "at": [
+                -32.22200012207031,
+                3.880558729171753,
                 -61.446998596191409
             ],
             "normal": [
@@ -8046,8 +8618,8 @@
             "offsetMm": 1.9989013671875,
             "at": [
                 -30.400999069213868,
-                3.9629979133605959,
-                -51.57101058959961
+                3.9669978618621828,
+                -51.56804275512695
             ],
             "normal": [
                 -1.0,
@@ -11394,7 +11966,7 @@
                 0.3969997465610504
             ],
             "normal": [
-                0.0000074520089583529629,
+                0.0000074520089583529628,
                 5.731210990234104e-7,
                 1.0
             ],
@@ -11667,17 +12239,17 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/House1931/Staircase/Stair upper threshold",
-            "materialA": "Walnut",
-            "b": "主角住宅/House1931/Staircase/Stair tread.017",
+            "a": "Window street geometry/主角住宅/House1931/North corridor partition.031",
+            "materialA": "Wallpaper",
+            "b": "主角住宅/House1931/Staircase/Stair upper threshold",
             "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.11904232203960419,
+            "kind": "material",
+            "area": 0.10733228921890259,
             "offsetMm": 1.9998550415039063,
             "at": [
-                16.77849006652832,
+                17.216365814208986,
                 3.3580000400543215,
-                -87.6412124633789
+                -87.74566650390625
             ],
             "normal": [
                 0.0,
@@ -12354,12 +12926,12 @@
             "b": "Window street geometry/主角住宅/House1931/Dried burgundy blood 0",
             "materialB": "Blood",
             "kind": "material",
-            "area": 0.14055536687374116,
-            "offsetMm": 1.9999984502792359,
+            "area": 0.14125420153141023,
+            "offsetMm": 1.9999982118606568,
             "at": [
-                10.57192611694336,
+                10.569679260253907,
                 0.1600012630224228,
-                -91.20957946777344
+                -91.21159362792969
             ],
             "normal": [
                 0.0,
@@ -12376,12 +12948,12 @@
             "b": "Window street geometry/主角住宅/House1931/Dried burgundy blood 3",
             "materialB": "Blood",
             "kind": "material",
-            "area": 0.0006728012813255191,
+            "area": 0.0006741094985045493,
             "offsetMm": 1.9999942779541016,
             "at": [
-                10.295269012451172,
+                10.301871299743653,
                 0.159999281167984,
-                -91.07801818847656
+                -91.07875061035156
             ],
             "normal": [
                 0.0,
@@ -12437,6 +13009,28 @@
         },
         {
             "scene": "ClockShop",
+            "a": "主角住宅/House1931/Child bed/Footboard.001",
+            "materialA": "Walnut",
+            "b": "主角住宅/House1931/Child bed/Bed frame.001",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0006559864268638194,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                3.126999616622925,
+                3.755139112472534,
+                -85.11773681640625
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Parcel cotton tie.028",
             "materialA": "Cream",
             "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Stored tied parcel.034",
@@ -12447,7 +13041,7 @@
             "at": [
                 17.229856491088868,
                 0.6284999251365662,
-                -89.59780883789063
+                -89.57280731201172
             ],
             "normal": [
                 0.0,
@@ -12511,9 +13105,9 @@
             "area": 0.0016248769825324417,
             "offsetMm": 1.9999463558197022,
             "at": [
-                2.786863088607788,
+                2.785141706466675,
                 0.8189998865127564,
-                -77.27194213867188
+                -77.27894592285156
             ],
             "normal": [
                 0.0,
@@ -12767,6 +13361,28 @@
         },
         {
             "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Outer wall paper.162",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.036",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.0018632523715496064,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                18.368989944458009,
+                3.361999750137329,
+                -87.81163024902344
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1630157104036698e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
             "materialA": "Walnut",
             "b": "Window street geometry/主角住宅/House1931/North corridor partition.019",
@@ -12775,9 +13391,9 @@
             "area": 0.006355377845466137,
             "offsetMm": 1.9996166229248047,
             "at": [
-                10.957901000976563,
+                10.970741271972657,
                 3.361999750137329,
-                -87.74666595458985
+                -87.79955291748047
             ],
             "normal": [
                 0.0,
@@ -12797,14 +13413,36 @@
             "area": 0.006365545094013214,
             "offsetMm": 1.9996166229248047,
             "at": [
-                9.62925910949707,
+                9.642098426818848,
                 3.361999750137329,
-                -87.80034637451172
+                -87.85334014892578
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Outer wall paper.147",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.003",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.001807534135878086,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                2.6269447803497316,
+                3.361999750137329,
+                -87.7952880859375
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.059638137235197e-7
             ],
             "pairs": 2,
             "moving": false
@@ -12841,14 +13479,36 @@
             "area": 0.006365771405398846,
             "offsetMm": 1.9996166229248047,
             "at": [
-                5.9579010009765629,
+                5.970740795135498,
                 3.361999750137329,
-                -87.74667358398438
+                -87.7996597290039
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Outer wall paper.141",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/South corridor partition.003",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.0018696559127420188,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                2.6309814453125,
+                3.361999750137329,
+                -89.79782104492188
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1630157814579434e-7
             ],
             "pairs": 2,
             "moving": false
@@ -12885,9 +13545,9 @@
             "area": 0.006375133991241455,
             "offsetMm": 1.9996166229248047,
             "at": [
-                13.829258918762207,
+                13.842098236083985,
                 3.361999750137329,
-                -89.80025482177735
+                -89.85334014892578
             ],
             "normal": [
                 0.0,
@@ -13295,17 +13955,17 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.006",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
             "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.002",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.010",
             "materialB": "Wallpaper",
             "kind": "material",
-            "area": 0.006340754218399525,
+            "area": 0.006365545094013214,
             "offsetMm": 1.9998550415039063,
             "at": [
-                4.62925910949707,
+                9.642098426818848,
                 3.361999750137329,
-                -87.80059814453125
+                -87.85334014892578
             ],
             "normal": [
                 0.0,
@@ -13325,9 +13985,9 @@
             "area": 0.006301750894635916,
             "offsetMm": 1.9998550415039063,
             "at": [
-                4.657900810241699,
+                4.670740127563477,
                 3.361999750137329,
-                -87.74666595458985
+                -87.79901885986328
             ],
             "normal": [
                 0.0,
@@ -13347,9 +14007,9 @@
             "area": 0.006301455199718475,
             "offsetMm": 1.9998550415039063,
             "at": [
-                5.929259300231934,
+                5.942098617553711,
                 3.361999750137329,
-                -87.80098724365235
+                -87.85334014892578
             ],
             "normal": [
                 0.0,
@@ -13369,31 +14029,9 @@
             "area": 0.006365771405398846,
             "offsetMm": 1.9998550415039063,
             "at": [
-                5.9579010009765629,
+                5.970740795135498,
                 3.361999750137329,
-                -87.74667358398438
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.010",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365545094013214,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                9.62925910949707,
-                3.361999750137329,
-                -87.80034637451172
+                -87.7996597290039
             ],
             "normal": [
                 0.0,
@@ -13413,9 +14051,9 @@
             "area": 0.006301676854491234,
             "offsetMm": 1.9998550415039063,
             "at": [
-                9.6579008102417,
+                9.670740127563477,
                 3.361999750137329,
-                -87.74666595458985
+                -87.79901885986328
             ],
             "normal": [
                 0.0,
@@ -13435,9 +14073,9 @@
             "area": 0.006301380693912506,
             "offsetMm": 1.9998550415039063,
             "at": [
-                10.929259300231934,
+                10.942098617553711,
                 3.361999750137329,
-                -87.80098724365235
+                -87.85334014892578
             ],
             "normal": [
                 0.0,
@@ -13457,9 +14095,31 @@
             "area": 0.006355377845466137,
             "offsetMm": 1.9998550415039063,
             "at": [
-                10.957901000976563,
+                10.970741271972657,
                 3.361999750137329,
-                -87.74666595458985
+                -87.79955291748047
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.006",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.002",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006340754218399525,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                4.642098903656006,
+                3.361999750137329,
+                -87.85334014892578
             ],
             "normal": [
                 0.0,
@@ -13479,9 +14139,31 @@
             "area": 0.006361779756844044,
             "offsetMm": 1.9998550415039063,
             "at": [
-                15.170741081237793,
+                15.157901763916016,
                 3.361999750137329,
-                -89.79962158203125
+                -89.74666595458985
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_storage/Door casing.013",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/South corridor partition.010",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006375133991241455,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                13.829258918762207,
+                3.361999750137329,
+                -89.80025482177735
             ],
             "normal": [
                 0.0,
@@ -13533,28 +14215,6 @@
                 0.0
             ],
             "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_storage/Door casing.013",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/South corridor partition.010",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006375133991241455,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                13.829258918762207,
-                3.361999750137329,
-                -89.80025482177735
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
             "moving": false
         },
         {
@@ -13611,9 +14271,9 @@
             "area": 0.008279380388557911,
             "offsetMm": 1.0000512599945069,
             "at": [
-                192.64907836914063,
+                192.6495819091797,
                 1.048999547958374,
-                39.783409118652347
+                39.768409729003909
             ],
             "normal": [
                 0.0,
@@ -13630,12 +14290,12 @@
             "b": "RailTrain/TrainSet/Module_Coach1_Static/Module_Coach1_Static_RailGreen",
             "materialB": "RailGreen",
             "kind": "uv",
-            "area": 0.008279381319880486,
+            "area": 0.008279380388557911,
             "offsetMm": 1.0000512599945069,
             "at": [
-                223.3494873046875,
+                208.6495819091797,
                 1.048999547958374,
-                39.77000427246094
+                39.768409729003909
             ],
             "normal": [
                 0.0,
@@ -14818,19 +15478,19 @@
             "b": "Window street geometry/主角住宅/House1931/West wall.036",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.02880246192216873,
+            "area": 0.05760481208562851,
             "offsetMm": 1.9998550415039063,
             "at": [
-                2.615030527114868,
+                2.5300769805908205,
                 5.75,
-                -82.86971282958985
+                -82.91028594970703
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 5,
+            "pairs": 6,
             "moving": false
         },
         {
@@ -14840,19 +15500,19 @@
             "b": "Window street geometry/主角住宅/House1931/East wall.017",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.02874632552266121,
+            "area": 0.057601720094680789,
             "offsetMm": 1.9998550415039063,
             "at": [
-                18.439998626708986,
+                18.614948272705079,
                 5.75,
-                -82.86000061035156
+                -82.8800048828125
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 4,
+            "pairs": 6,
             "moving": false
         },
         {
@@ -14862,19 +15522,19 @@
             "b": "Window street geometry/主角住宅/House1931/South wall.004",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.028798799961805345,
+            "area": 0.05759749189019203,
             "offsetMm": 1.9998550415039063,
             "at": [
-                2.559999942779541,
+                2.3850529193878176,
                 5.751999855041504,
-                -94.73999786376953
+                -94.72000122070313
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 5,
+            "pairs": 6,
             "moving": false
         },
         {
@@ -15236,12 +15896,12 @@
             "b": "主角住宅/Storage pivot Drawer_sideboard_2/Drawer_sideboard_2/Parcel cotton tie.002",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.0016248938627541066,
+            "area": 0.0016248937463387848,
             "offsetMm": 1.999974250793457,
             "at": [
-                18.17013931274414,
+                18.17186164855957,
                 1.0190000534057618,
-                -91.85406494140625
+                -91.84706115722656
             ],
             "normal": [
                 0.0,
@@ -15250,28 +15910,6 @@
             ],
             "pairs": 4,
             "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/Staircase/Stair upper threshold",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/Upper floor south",
-            "materialB": "Floor",
-            "kind": "material",
-            "area": 0.1282520890235901,
-            "offsetMm": 1.9996259212493897,
-            "at": [
-                17.009056091308595,
-                3.2019999027252199,
-                -87.85099792480469
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
         },
         {
             "scene": "ClockShop",
@@ -15302,11 +15940,11 @@
             "b": "Window street geometry/主角住宅/House1931/Upper ceiling",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.008624888025224209,
+            "area": 0.01718791015446186,
             "offsetMm": 1.99127197265625,
             "at": [
                 2.5625,
-                6.482500076293945,
+                6.519731044769287,
                 -82.80199432373047
             ],
             "normal": [
@@ -15368,11 +16006,11 @@
             "b": "Window street geometry/主角住宅/House1931/East wall.017",
             "materialB": "Plaster",
             "kind": "material",
-            "area": 0.008562874980270863,
+            "area": 0.017187945544719697,
             "offsetMm": 1.9989013671875,
             "at": [
-                18.3877010345459,
-                6.47064733505249,
+                18.397294998168947,
+                6.520412445068359,
                 -82.80000305175781
             ],
             "normal": [
@@ -15390,20 +16028,306 @@
             "b": "Window street geometry/主角住宅/House1931/Adult woman chalk outline",
             "materialB": "Chalk",
             "kind": "material",
-            "area": 0.004907211754471064,
-            "offsetMm": 1.9999984502792359,
+            "area": 0.005244337022304535,
+            "offsetMm": 2.0,
             "at": [
-                10.685537338256836,
+                10.663836479187012,
                 0.16399969160556794,
-                -91.10525512695313
+                -91.10938262939453
             ],
             "normal": [
-                -1.940280469625577e-8,
+                -1.4852536089904334e-8,
                 1.0,
-                -1.6790133372523997e-7
+                -1.6828194304707723e-7
             ],
             "pairs": 29,
             "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Bedroom partition",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/Wall-attached skirting.029",
+            "materialB": "Walnut",
+            "kind": "material",
+            "area": 0.0043921759352087978,
+            "offsetMm": 1.9993942975997925,
+            "at": [
+                11.49855899810791,
+                3.3620007038116457,
+                -89.89031219482422
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.4305115314527939e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North wall",
+            "materialB": "Plaster",
+            "kind": "material",
+            "area": 0.009600324556231499,
+            "offsetMm": 1.999365210533142,
+            "at": [
+                4.238148212432861,
+                0.16000063717365266,
+                -82.8800048828125
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/North wall",
+            "materialA": "Plaster",
+            "b": "Window street geometry/主角住宅/House1931/West wall.031",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.028802404180169107,
+            "offsetMm": 1.9999146461486817,
+            "at": [
+                2.5300769805908205,
+                0.16200000047683717,
+                -82.91028594970703
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.241734963741692e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/Outer wall paper.019",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.00044302214519120753,
+            "offsetMm": 1.999377965927124,
+            "at": [
+                4.2313151359558109,
+                0.16000063717365266,
+                -82.92606353759766
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365771405398846,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                5.970740795135498,
+                0.16200007498264314,
+                -87.7996597290039
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365545094013214,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                9.62925910949707,
+                0.16200007498264314,
+                -87.80034637451172
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.003",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006355377845466137,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                10.970741271972657,
+                0.16200007498264314,
+                -87.79955291748047
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/East wall",
+            "materialB": "Plaster",
+            "kind": "material",
+            "area": 0.009564396925270558,
+            "offsetMm": 1.999418020248413,
+            "at": [
+                18.57947540283203,
+                0.16199982166290284,
+                -89.4616928100586
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.8626025166668115e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/Outer wall paper.071",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.00047812581760808825,
+            "offsetMm": 1.999418020248413,
+            "at": [
+                18.373977661132814,
+                0.16199982166290284,
+                -89.47000122070313
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.8626025166668115e-7
+            ],
+            "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/East wall",
+            "materialA": "Plaster",
+            "b": "Window street geometry/主角住宅/House1931/South corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.01920057274401188,
+            "offsetMm": 1.9997426271438599,
+            "at": [
+                18.420000076293947,
+                0.16000038385391236,
+                -89.72190856933594
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1976621294707002e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Outer wall paper.071",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/South corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.0018479874124750496,
+            "offsetMm": 1.9998699426651,
+            "at": [
+                18.37359619140625,
+                0.16000036895275117,
+                -89.80301666259766
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1966525903517323e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.028",
+            "materialA": "Paper",
+            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.023",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016939814668148757,
+            "offsetMm": 1.999946117401123,
+            "at": [
+                3.063887119293213,
+                0.7289336919784546,
+                -85.52900695800781
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.4738758952480568e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_desk_2/Drawer_desk_2/Drawer bottom.008",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_desk_2/Record E09/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05721646547317505,
+            "offsetMm": 1.9998443126678467,
+            "at": [
+                9.050149917602539,
+                0.7306665182113648,
+                -83.46865844726563
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.2323979464999867e-7
+            ],
+            "pairs": 3,
+            "moving": true
         },
         {
             "scene": "ClockShop",
@@ -15412,12 +16336,12 @@
             "b": "主角住宅/Storage pivot Drawer_hall_2/Record H01/Document storage box",
             "materialB": "Paper",
             "kind": "material",
-            "area": 0.03951678425073624,
+            "area": 0.039514508098363879,
             "offsetMm": 1.9999146461486817,
             "at": [
-                17.088558197021486,
+                17.08856201171875,
                 0.7839999794960022,
-                -89.38430786132813
+                -89.35929870605469
             ],
             "normal": [
                 0.0,
@@ -15434,12 +16358,12 @@
             "b": "主角住宅/Storage pivot Drawer_hall_2/Record H03/Document storage box",
             "materialB": "Paper",
             "kind": "material",
-            "area": 0.03951678052544594,
+            "area": 0.039514511823654178,
             "offsetMm": 1.9999146461486817,
             "at": [
-                16.34115219116211,
+                16.34116554260254,
                 0.7839999794960022,
-                -89.35311889648438
+                -89.32811737060547
             ],
             "normal": [
                 0.0,
@@ -15448,6 +16372,28 @@
             ],
             "pairs": 4,
             "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
+            "materialA": "RailIron",
+            "b": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
+            "materialB": "RailIron",
+            "kind": "uv",
+            "area": 0.2115161269903183,
+            "offsetMm": 1.007080078125,
+            "at": [
+                236.25201416015626,
+                1.2599997520446778,
+                40.253814697265628
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.9478535762118555e-7
+            ],
+            "pairs": 24,
+            "moving": false
         },
         {
             "scene": "ClockShop",
@@ -15715,160 +16661,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North wall",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.009600210003554821,
-            "offsetMm": 1.999365210533142,
-            "at": [
-                4.226888656616211,
-                0.16000065207481385,
-                -82.80110168457031
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/North wall",
-            "materialA": "Plaster",
-            "b": "Window street geometry/主角住宅/House1931/West wall.031",
-            "materialB": "Plaster",
-            "kind": "uv",
-            "area": 0.01440123189240694,
-            "offsetMm": 1.9999146461486817,
-            "at": [
-                2.569383144378662,
-                0.16200000047683717,
-                -82.91519927978516
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.241734963741692e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365771405398846,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                5.9579010009765629,
-                0.16200008988380433,
-                -87.74667358398438
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.003",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.016",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006355377845466137,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                10.970741271972657,
-                0.16200007498264314,
-                -87.79955291748047
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365545094013214,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                9.62925910949707,
-                0.16200007498264314,
-                -87.80034637451172
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/East wall",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.009564396925270558,
-            "offsetMm": 1.999418020248413,
-            "at": [
-                18.57947540283203,
-                0.16199982166290284,
-                -89.4616928100586
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.8626025166668115e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/East wall",
-            "materialA": "Plaster",
-            "b": "Window street geometry/主角住宅/House1931/South corridor partition.016",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.01920057274401188,
-            "offsetMm": 1.9997426271438599,
-            "at": [
-                18.439998626708986,
-                0.16000044345855714,
-                -89.80143737792969
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1976621294707002e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "主角住宅/House1931/Cabinet_dressing/Cabinet stile.029",
             "materialA": "Walnut",
             "b": "主角住宅/House1931/Cabinet_dressing/Cabinet base.014",
@@ -15923,7 +16715,7 @@
             "at": [
                 17.58409881591797,
                 0.27997979521751406,
-                -89.66300201416016
+                -89.63800048828125
             ],
             "normal": [
                 0.0,
@@ -15945,7 +16737,7 @@
             "at": [
                 16.015899658203126,
                 0.28001993894577029,
-                -89.66500091552735
+                -89.63999938964844
             ],
             "normal": [
                 0.0,
@@ -16086,50 +16878,6 @@
             ],
             "pairs": 1,
             "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.028",
-            "materialA": "Paper",
-            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.023",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016939814668148757,
-            "offsetMm": 1.999946117401123,
-            "at": [
-                3.063887119293213,
-                0.7289336919784546,
-                -85.52900695800781
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.4738758952480568e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_desk_2/Drawer_desk_2/Drawer bottom.008",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_desk_2/Record E09/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05721646547317505,
-            "offsetMm": 1.9998443126678467,
-            "at": [
-                9.050149917602539,
-                0.7306665182113648,
-                -83.46865844726563
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.2323979464999867e-7
-            ],
-            "pairs": 3,
-            "moving": true
         },
         {
             "scene": "ClockShop",
@@ -16353,28 +17101,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
-            "materialA": "RailIron",
-            "b": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
-            "materialB": "RailIron",
-            "kind": "uv",
-            "area": 0.2115161418914795,
-            "offsetMm": 1.007080078125,
-            "at": [
-                236.2666778564453,
-                1.2599997520446778,
-                40.13508605957031
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.9478535762118555e-7
-            ],
-            "pairs": 24,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "主角住宅/House1931/Cabinet_stationery/Cabinet base.008",
             "materialA": "Walnut",
             "b": "主角住宅/House1931/Cabinet_stationery/Cabinet stile.016",
@@ -16507,28 +17233,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_utility_2/Drawer_utility_2/Drawer rear.023",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_utility_2/Drawer_utility_2/Drawer side.046",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.00018537287542130798,
-            "offsetMm": 1.9999749660491944,
-            "at": [
-                2.750953197479248,
-                1.157999873161316,
-                -77.48117065429688
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1099508157030869e-7
-            ],
-            "pairs": 1,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
             "a": "Window street geometry/主角住宅/House1931/North wall.029",
             "materialA": "Plaster",
             "b": "主角住宅/House1931/Window_6/Window_6 transom",
@@ -16573,6 +17277,72 @@
         },
         {
             "scene": "ClockShop",
+            "a": "Window street geometry/StationB/Rail sign board · 候车厅  →  站台/Brass side border",
+            "materialA": "RailBrass",
+            "b": "Window street geometry/StationB/Rail sign board · 候车厅  →  站台/Solid painted sign face",
+            "materialB": "RailGreen",
+            "kind": "material",
+            "area": 0.005153583362698555,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                221.46128845214845,
+                3.5880000591278078,
+                20.023408889770509
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 7,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Box lid rim",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05851198360323906,
+            "offsetMm": 1.9999756813049317,
+            "at": [
+                12.962518692016602,
+                1.1899994611740113,
+                -83.34200286865235
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 10,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Box lid rim",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05851198732852936,
+            "offsetMm": 1.9999756813049317,
+            "at": [
+                12.537519454956055,
+                1.1899994611740113,
+                -83.34200286865235
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 10,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Parcel cotton tie.017",
             "materialA": "Cream",
             "b": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Stored tied parcel.017",
@@ -16581,9 +17351,9 @@
             "area": 0.0016239553224295378,
             "offsetMm": 1.999974250793457,
             "at": [
-                5.973439693450928,
+                5.98043966293335,
                 1.121000051498413,
-                -83.213134765625
+                -83.21485900878906
             ],
             "normal": [
                 0.0,
@@ -16600,7 +17370,7 @@
             "b": "主角住宅/House1931/Staircase/Stair landing",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.10175149142742157,
+            "area": 0.10175155848264694,
             "offsetMm": 1.9998550415039063,
             "at": [
                 14.244856834411621,
@@ -16617,88 +17387,154 @@
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/Dried burgundy blood 0",
-            "materialA": "Blood",
-            "b": "Window street geometry/主角住宅/House1931/Dried burgundy blood 1",
-            "materialB": "Blood",
-            "kind": "uv",
-            "area": 0.00034212597529403865,
-            "offsetMm": 1.9999947547912598,
+            "a": "Window street geometry/主角住宅/House1931/North room partition.001",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/Wall-attached skirting.003",
+            "materialB": "Walnut",
+            "kind": "material",
+            "area": 0.004345582332462072,
+            "offsetMm": 1.9993232488632203,
             "at": [
-                10.663032531738282,
-                0.1619996875524521,
-                -91.22624969482422
+                13.497515678405762,
+                0.16200101375579835,
+                -82.95533752441406
             ],
             "normal": [
-                4.851712986919665e-8,
+                0.0,
                 1.0,
-                -4.7051518237140047e-8
+                -1.1920928955078126e-7
             ],
             "pairs": 2,
             "moving": false
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/House1931/Fireplace/Fire surround.001",
-            "materialA": "Cream",
-            "b": "Window street geometry/主角住宅/House1931/Wall-attached skirting",
+            "a": "Window street geometry/主角住宅/House1931/North room partition",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/Wall-attached skirting.003",
             "materialB": "Walnut",
             "kind": "material",
-            "area": 0.00431838957592845,
-            "offsetMm": 1.9993036985397339,
+            "area": 0.004446500912308693,
+            "offsetMm": 1.9993232488632203,
             "at": [
-                11.350448608398438,
-                0.1639992743730545,
-                -94.64912414550781
+                8.497427940368653,
+                0.16200099885463715,
+                -82.96083068847656
             ],
             "normal": [
                 0.0,
                 1.0,
-                -1.3546434729505564e-7
+                -1.1920928955078126e-7
             ],
             "pairs": 3,
             "moving": false
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/House1931/Fireplace/Fire surround",
-            "materialA": "Cream",
-            "b": "Window street geometry/主角住宅/House1931/Wall-attached skirting",
+            "a": "Window street geometry/主角住宅/House1931/North room partition.001",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/Wall-attached skirting.018",
             "materialB": "Walnut",
             "kind": "material",
-            "area": 0.004319694358855486,
-            "offsetMm": 1.9993036985397339,
+            "area": 0.0043921624310314659,
+            "offsetMm": 1.9998897314071656,
             "at": [
-                9.521544456481934,
-                0.1639992743730545,
-                -94.63932800292969
+                13.501538276672364,
+                0.1620001196861267,
+                -87.70347595214844
             ],
             "normal": [
                 0.0,
                 1.0,
-                -1.3546434729505564e-7
+                -1.1920928955078126e-7
             ],
             "pairs": 2,
             "moving": false
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/West wall.033",
-            "materialA": "Plaster",
-            "b": "Window street geometry/主角住宅/House1931/North wall.002",
-            "materialB": "Plaster",
-            "kind": "uv",
-            "area": 0.014401230961084366,
-            "offsetMm": 1.999974250793457,
+            "a": "Window street geometry/主角住宅/House1931/North room partition",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/Wall-attached skirting.017",
+            "materialB": "Walnut",
+            "kind": "material",
+            "area": 0.004392161965370178,
+            "offsetMm": 1.9998897314071656,
             "at": [
-                2.559999942779541,
-                2.557999849319458,
-                -82.86000061035156
+                8.501495361328125,
+                0.1620001196861267,
+                -87.70624542236328
             ],
             "normal": [
                 0.0,
-                -1.0,
-                1.402464704369777e-7
+                1.0,
+                -1.1920928955078126e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Wall-attached skirting.005",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.004468335770070553,
+            "offsetMm": 1.999755620956421,
+            "at": [
+                2.6505794525146486,
+                0.1639997512102127,
+                -87.87440490722656
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1946573863497179e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Wall-attached skirting.007",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.033",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.0044242870062589649,
+            "offsetMm": 1.999755620956421,
+            "at": [
+                18.350963592529298,
+                0.1639997661113739,
+                -87.7332534790039
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1946573863497179e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Dried burgundy blood 0",
+            "materialA": "Blood",
+            "b": "Window street geometry/主角住宅/House1931/Dried burgundy blood 1",
+            "materialB": "Blood",
+            "kind": "uv",
+            "area": 0.000195415283087641,
+            "offsetMm": 1.9999977350234986,
+            "at": [
+                10.680830001831055,
+                0.1619996875524521,
+                -91.21163940429688
+            ],
+            "normal": [
+                -1.9314329335884396e-7,
+                1.0,
+                -2.889048573706532e-7
             ],
             "pairs": 1,
             "moving": false
@@ -16710,19 +17546,41 @@
             "b": "Window street geometry/主角住宅/House1931/North wall.051",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.014345893636345864,
+            "area": 0.028800860047340394,
             "offsetMm": 1.9997358322143555,
             "at": [
-                18.38490867614746,
+                18.38735008239746,
                 2.558000087738037,
-                -82.87757110595703
+                -82.91629028320313
             ],
             "normal": [
                 0.0,
                 -1.0,
                 1.2548386507660326e-7
             ],
-            "pairs": 3,
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/West wall.033",
+            "materialA": "Plaster",
+            "b": "Window street geometry/主角住宅/House1931/North wall.002",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.028802406042814256,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                2.385648012161255,
+                2.557999849319458,
+                -82.8800048828125
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.402464704369777e-7
+            ],
+            "pairs": 2,
             "moving": false
         },
         {
@@ -16754,41 +17612,63 @@
             "b": "Window street geometry/主角住宅/House1931/East wall.002",
             "materialB": "Plaster",
             "kind": "uv",
-            "area": 0.014400430023670197,
+            "area": 0.028800630941987039,
             "offsetMm": 1.999833583831787,
             "at": [
-                18.439998626708986,
+                18.618206024169923,
                 5.747999668121338,
-                -94.74000549316406
+                -94.71998596191406
             ],
             "normal": [
                 0.0,
                 -1.0,
                 0.000001986775941986707
             ],
-            "pairs": 1,
+            "pairs": 2,
             "moving": false
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/South wall.004",
-            "materialA": "Plaster",
-            "b": "Window street geometry/主角住宅/House1931/Upper ceiling",
-            "materialB": "Cream",
+            "a": "主角住宅/House1931/Fireplace/Fire surround",
+            "materialA": "Cream",
+            "b": "主角住宅/House1931/Fireplace/Hearth",
+            "materialB": "Tile",
             "kind": "material",
-            "area": 0.008625444024801255,
-            "offsetMm": 1.9998550415039063,
+            "area": 0.002349490998312831,
+            "offsetMm": 1.1505146026611329,
             "at": [
-                2.502000093460083,
-                6.482499122619629,
-                -94.73750305175781
+                9.58322525024414,
+                0.1621723622083664,
+                -94.65524291992188
             ],
             "normal": [
-                1.0,
                 0.0,
-                0.0
+                0.9238568544387817,
+                0.38273829221725466
             ],
-            "pairs": 1,
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/Fireplace/Fire surround.001",
+            "materialA": "Cream",
+            "b": "主角住宅/House1931/Fireplace/Hearth",
+            "materialB": "Tile",
+            "kind": "material",
+            "area": 0.0023494907654821874,
+            "offsetMm": 1.1505146026611329,
+            "at": [
+                11.30766487121582,
+                0.1614508479833603,
+                -94.65349578857422
+            ],
+            "normal": [
+                0.0,
+                0.9238568544387817,
+                0.38273829221725466
+            ],
+            "pairs": 4,
             "moving": false
         },
         {
@@ -16802,8 +17682,8 @@
             "offsetMm": 1.9996166229248047,
             "at": [
                 2.5,
-                3.248713254928589,
-                -89.7889175415039
+                3.324213743209839,
+                -89.87641906738281
             ],
             "normal": [
                 1.0,
@@ -16811,28 +17691,6 @@
                 0.0
             ],
             "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/Upper ceiling",
-            "materialA": "Cream",
-            "b": "Window street geometry/主角住宅/House1931/North wall.007",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.008542547933757306,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                2.500000238418579,
-                6.482787609100342,
-                -82.85675048828125
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 2,
             "moving": false
         },
         {
@@ -16846,8 +17704,8 @@
             "offsetMm": 1.9989013671875,
             "at": [
                 18.5,
-                3.333544969558716,
-                -89.80256652832031
+                3.3344032764434816,
+                -89.72256469726563
             ],
             "normal": [
                 -1.0,
@@ -16856,6 +17714,94 @@
             ],
             "pairs": 4,
             "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_1/Drawer_medical_1/Drawer side.020",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_medical_1/Drawer_medical_1/Drawer rear.010",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.002340636681765318,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                12.316999435424805,
+                0.709445595741272,
+                -83.0999984741211
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 2,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer side.018",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer rear.009",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0025258290115743877,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                12.316999435424805,
+                0.4027789235115051,
+                -83.0999984741211
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer rear.009",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer side.019",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0025327152106910946,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                13.180999755859375,
+                0.42527326941490176,
+                -83.0979995727539
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_1/Drawer_medical_1/Drawer rear.010",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_medical_1/Drawer_medical_1/Drawer side.021",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.002340637380257249,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                13.180999755859375,
+                0.7426266074180603,
+                -83.0979995727539
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 2,
+            "moving": true
         },
         {
             "scene": "ClockShop",
@@ -16881,22 +17827,44 @@
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/Rear wing roof.001",
+            "a": "主角住宅/House1931/Parents bed/Footboard",
+            "materialA": "Walnut",
+            "b": "主角住宅/House1931/Parents bed/Bed frame",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0006559879402630031,
+            "offsetMm": 1.9998582601547242,
+            "at": [
+                8.498000144958496,
+                3.795403480529785,
+                -92.48340606689453
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Rear wing roof",
             "materialA": "Slate",
-            "b": "Window street geometry/主角住宅/House1931/Rear wing roof",
+            "b": "Window street geometry/主角住宅/House1931/Rear wing roof.001",
             "materialB": "Slate",
             "kind": "uv",
-            "area": 0.06323900073766709,
+            "area": 0.07269028574228287,
             "offsetMm": 1.9989013671875,
             "at": [
-                5.1431660652160648,
-                4.088603496551514,
-                -82.66299438476563
+                5.191007614135742,
+                3.732287883758545,
+                -75.57499694824219
             ],
             "normal": [
                 0.0,
                 0.0,
-                1.0
+                -1.0
             ],
             "pairs": 6,
             "moving": false
@@ -16925,46 +17893,24 @@
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/Utility ceiling",
-            "materialA": "Cream",
-            "b": "Window street geometry/主角住宅/House1931/Utility north",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.014939701184630394,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                2.499999523162842,
-                3.058060884475708,
-                -75.91828918457031
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "主角住宅/House1931/Staircase/Stair closed string",
             "materialA": "Walnut",
             "b": "主角住宅/House1931/Staircase/Stair newel",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.01066777016967535,
+            "area": 0.010667769238352776,
             "offsetMm": 1.9989013671875,
             "at": [
                 13.930000305175782,
-                0.36042535305023196,
-                -87.51774597167969
+                0.3506070375442505,
+                -87.51806640625
             ],
             "normal": [
                 -1.0,
                 0.0,
                 0.0
             ],
-            "pairs": 2,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -16977,8 +17923,8 @@
             "area": 0.00981931947171688,
             "offsetMm": 1.9989013671875,
             "at": [
-                16.279945373535158,
-                1.8767367601394654,
+                16.285999298095704,
+                1.7982558012008668,
                 -84.54700469970703
             ],
             "normal": [
@@ -16986,7 +17932,7 @@
                 0.0,
                 -1.0
             ],
-            "pairs": 4,
+            "pairs": 3,
             "moving": false
         },
         {
@@ -16999,8 +17945,8 @@
             "area": 0.00981931947171688,
             "offsetMm": 1.9989013671875,
             "at": [
-                17.50299835205078,
-                1.8630807399749756,
+                17.499286651611329,
+                1.8313359022140504,
                 -84.54500579833985
             ],
             "normal": [
@@ -17022,15 +17968,15 @@
             "offsetMm": 1.9979476928710938,
             "at": [
                 15.070000648498536,
-                0.3926875591278076,
-                -87.48189544677735
+                0.3777279853820801,
+                -87.48130798339844
             ],
             "normal": [
                 1.0,
                 0.0,
                 0.0
             ],
-            "pairs": 2,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -17040,19 +17986,19 @@
             "b": "主角住宅/House1931/Staircase/Stair newel.004",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.010667798109352589,
+            "area": 0.010580768808722496,
             "offsetMm": 1.9989013671875,
             "at": [
                 16.329999923706056,
-                3.3800158500671388,
-                -87.51708221435547
+                3.375112533569336,
+                -87.51724243164063
             ],
             "normal": [
                 -1.0,
                 0.0,
                 0.0
             ],
-            "pairs": 2,
+            "pairs": 3,
             "moving": false
         },
         {
@@ -17062,11 +18008,11 @@
             "b": "主角住宅/House1931/Staircase/Stair riser",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.009819189086556435,
+            "area": 0.00981919001787901,
             "offsetMm": 1.9989013671875,
             "at": [
-                15.078150749206543,
-                0.30492961406707766,
+                15.092000007629395,
+                0.3058030903339386,
                 -87.69300079345703
             ],
             "normal": [
@@ -17074,7 +18020,7 @@
                 0.0,
                 1.0
             ],
-            "pairs": 4,
+            "pairs": 3,
             "moving": false
         },
         {
@@ -17084,11 +18030,11 @@
             "b": "主角住宅/House1931/Staircase/Stair closed string",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.00981933157891035,
+            "area": 0.009819330647587777,
             "offsetMm": 1.9989013671875,
             "at": [
-                13.886000633239746,
-                0.1982555091381073,
+                13.881186485290528,
+                0.2788928747177124,
                 -87.69499969482422
             ],
             "normal": [
@@ -17106,19 +18052,19 @@
             "b": "主角住宅/House1931/Staircase/Stair newel.006",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.010667798109352589,
+            "area": 0.010580768808722496,
             "offsetMm": 1.9989013671875,
             "at": [
                 17.56999969482422,
-                3.3800158500671388,
-                -87.51708221435547
+                3.375112533569336,
+                -87.51724243164063
             ],
             "normal": [
                 -1.0,
                 0.0,
                 0.0
             ],
-            "pairs": 2,
+            "pairs": 3,
             "moving": false
         },
         {
@@ -17145,60 +18091,16 @@
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/StationB/Rail sign board · 候车厅  →  站台/Brass side border",
-            "materialA": "RailBrass",
-            "b": "Window street geometry/StationB/Rail sign board · 候车厅  →  站台/Solid painted sign face",
-            "materialB": "RailGreen",
-            "kind": "material",
-            "area": 0.005153583362698555,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                221.46128845214845,
-                3.5880000591278078,
-                20.023408889770509
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 7,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_toys_2/Record H24/Box lid rim",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_toys_2/Record H24/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.0534239262342453,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                7.499972820281982,
-                4.146999359130859,
-                -87.36199951171875
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 10,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "Window street geometry/主角住宅/House1931/Utility west.007",
             "materialA": "Plaster",
             "b": "Window street geometry/主角住宅/House1931/Utility ceiling",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.007475010585039854,
+            "area": 0.014950049109756947,
             "offsetMm": 1.99127197265625,
             "at": [
-                2.562499523162842,
-                3.067500114440918,
+                2.5816664695739748,
+                3.1640546321868898,
                 -75.80199432373047
             ],
             "normal": [
@@ -17206,7 +18108,7 @@
                 0.0,
                 -1.0
             ],
-            "pairs": 1,
+            "pairs": 2,
             "moving": false
         },
         {
@@ -17216,17 +18118,83 @@
             "b": "Window street geometry/主角住宅/House1931/Utility east.007",
             "materialB": "Plaster",
             "kind": "material",
-            "area": 0.007311759516596794,
+            "area": 0.014920508489012719,
             "offsetMm": 1.99127197265625,
             "at": [
-                7.668371677398682,
-                3.058351516723633,
+                7.682605743408203,
+                3.101011037826538,
                 -75.80000305175781
             ],
             "normal": [
                 0.0,
                 0.0,
                 -1.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Utility west.007",
+            "materialA": "Plaster",
+            "b": "Window street geometry/主角住宅/House1931/Utility north",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.08880764991044998,
+            "offsetMm": 1.9991397857666016,
+            "at": [
+                2.380000114440918,
+                2.8751437664031984,
+                -75.84598541259766
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Utility west.006",
+            "materialA": "Plaster",
+            "b": "Window street geometry/主角住宅/House1931/Utility north",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.18001553416252137,
+            "offsetMm": 1.9991397857666016,
+            "at": [
+                2.380000114440918,
+                2.2333006858825685,
+                -75.8207778930664
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Utility west.005",
+            "materialA": "Plaster",
+            "b": "Window street geometry/主角住宅/House1931/Utility north",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.10080870985984802,
+            "offsetMm": 1.9991397857666016,
+            "at": [
+                2.380000114440918,
+                0.5909575819969177,
+                -75.86000061035156
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
             ],
             "pairs": 2,
             "moving": false
@@ -17242,8 +18210,8 @@
             "offsetMm": 1.9998550415039063,
             "at": [
                 6.488999366760254,
-                1.3029992580413819,
-                -83.44142150878906
+                1.3073995113372803,
+                -83.44001770019531
             ],
             "normal": [
                 -1.0,
@@ -17317,50 +18285,6 @@
                 1.0484536261401445e-7
             ],
             "pairs": 1,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer rear.009",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer side.018",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.0025258290115743877,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                12.318828582763672,
-                0.3561333417892456,
-                -83.1109390258789
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 3,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer rear.009",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer side.019",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.002532715443521738,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                13.180999755859375,
-                0.3561333417892456,
-                -83.11100006103516
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 3,
             "moving": true
         },
         {
@@ -17783,50 +18707,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_1/Drawer_medical_1/Drawer side.020",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_medical_1/Drawer_medical_1/Drawer rear.010",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.002340636681765318,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                12.316999435424805,
-                0.709445595741272,
-                -83.0999984741211
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 2,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_1/Drawer_medical_1/Drawer rear.010",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_medical_1/Drawer_medical_1/Drawer side.021",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.002340637380257249,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                13.183000564575196,
-                0.8185544013977051,
-                -83.0979995727539
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 2,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
             "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Drawer bottom.011",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
@@ -17912,50 +18792,6 @@
             ],
             "pairs": 1,
             "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Box lid rim",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05851198360323906,
-            "offsetMm": 1.9999756813049317,
-            "at": [
-                12.962518692016602,
-                1.1899994611740113,
-                -83.34200286865235
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 10,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Box lid rim",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05851198732852936,
-            "offsetMm": 1.9999756813049317,
-            "at": [
-                12.537519454956055,
-                1.1899994611740113,
-                -83.34200286865235
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 10,
-            "moving": false
         },
         {
             "scene": "ClockShop",
@@ -18123,29 +18959,7 @@
             "at": [
                 17.53299903869629,
                 0.38666194677352908,
-                -89.625
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 3,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer side.038",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer rear.019",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.0017766716191545129,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                17.53299903869629,
-                0.5966618657112122,
-                -89.625
+                -89.5999984741211
             ],
             "normal": [
                 0.0,
@@ -18167,7 +18981,7 @@
             "at": [
                 17.5310001373291,
                 0.8580511212348938,
-                -89.625
+                -89.5999984741211
             ],
             "normal": [
                 0.0,
@@ -18179,39 +18993,17 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer rear.019",
+            "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer side.038",
             "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer side.039",
+            "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer rear.019",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.0017683671321719885,
+            "area": 0.0017766716191545129,
             "offsetMm": 1.999974250793457,
             "at": [
-                16.066999435424806,
-                0.670333206653595,
-                -89.62699890136719
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 3,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_hall_0/Drawer_hall_0/Drawer rear.018",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_hall_0/Drawer_hall_0/Drawer side.037",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.0017683678306639195,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                16.069000244140626,
-                0.40894654393196108,
-                -89.62699890136719
+                17.53099822998047,
+                0.6553264856338501,
+                -89.5999984741211
             ],
             "normal": [
                 0.0,
@@ -18233,7 +19025,7 @@
             "at": [
                 16.070199966430665,
                 0.8392959237098694,
-                -89.62699890136719
+                -89.60199737548828
             ],
             "normal": [
                 0.0,
@@ -18241,6 +19033,50 @@
                 1.0
             ],
             "pairs": 2,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_hall_0/Drawer_hall_0/Drawer rear.018",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_hall_0/Drawer_hall_0/Drawer side.037",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0017683678306639195,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                16.069000244140626,
+                0.40894654393196108,
+                -89.60199737548828
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer rear.019",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_hall_1/Drawer_hall_1/Drawer side.039",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0017683671321719885,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                16.070199966430665,
+                0.6292957663536072,
+                -89.60199737548828
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 3,
             "moving": true
         },
         {
@@ -18255,7 +19091,7 @@
             "at": [
                 16.437471389770509,
                 0.9289993047714233,
-                -89.45260620117188
+                -89.42759704589844
             ],
             "normal": [
                 0.0,
@@ -18277,7 +19113,7 @@
             "at": [
                 17.162471771240236,
                 0.9289993047714233,
-                -89.45260620117188
+                -89.42759704589844
             ],
             "normal": [
                 0.0,
@@ -18286,6 +19122,28 @@
             ],
             "pairs": 8,
             "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_utility_2/Drawer_utility_2/Drawer rear.023",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_utility_2/Drawer_utility_2/Drawer side.046",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.00018537287542130798,
+            "offsetMm": 1.9999749660491944,
+            "at": [
+                2.750953197479248,
+                1.1579997539520264,
+                -77.48117065429688
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1099508157030869e-7
+            ],
+            "pairs": 1,
+            "moving": true
         },
         {
             "scene": "ClockShop",
@@ -18813,6 +19671,28 @@
                 -1.0
             ],
             "pairs": 6,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_toys_2/Record H24/Box lid rim",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_toys_2/Record H24/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.0534239262342453,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                7.462306499481201,
+                4.149000644683838,
+                -87.26249694824219
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 10,
             "moving": false
         },
         {

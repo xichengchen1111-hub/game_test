@@ -1,13 +1,14 @@
-import bpy,math,json,sys,random
+import bpy,bmesh,math,json,sys,random
 from pathlib import Path
 from mathutils import Vector
 ROOT=Path(__file__).resolve().parents[2];ART=ROOT/'game/Assets/Art/House1931';SRC=ROOT/'assets/source/house'
 bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
 random.seed(1931); mats={}; coll=[]; openings=[]; doors=[]; cabinets=[]; lights=[]
-colors={'Walnut':(.35,.22,.12,1),'Floor':(.4,.3,.18,1),'Wallpaper':(.64,.6,.49,1),'Plaster':(.65,.62,.54,1),'Fabric':(.36,.42,.28,1),'Rug':(.4,.18,.13,1),'Tile':(.45,.51,.42,1),'Slate':(.2,.24,.26,1),'Cream':(.76,.73,.61,1),'Green':(.16,.24,.19,1),'Iron':(.075,.085,.08,1),'Brass':(.48,.34,.14,1),'Enamel':(.72,.76,.69,1),'Paper':(.8,.74,.58,1),'Glass':(.4,.55,.6,.15),'Chalk':(.8,.8,.73,1),'Blood':(.29,.018,.027,1),'Bulb':(1,.78,.4,1)}
+colors={'Walnut':(.35,.22,.12,1),'Floor':(.4,.3,.18,1),'Wallpaper':(.64,.6,.49,1),'Plaster':(.65,.62,.54,1),'Fabric':(.36,.42,.28,1),'Rug':(.4,.18,.13,1),'Tile':(.45,.51,.42,1),'Slate':(.2,.24,.26,1),'Cream':(.76,.73,.61,1),'Green':(.16,.24,.19,1),'Iron':(.075,.085,.08,1),'Brass':(.48,.34,.14,1),'Enamel':(.72,.76,.69,1),'Paper':(.8,.74,.58,1),'Glass':(.4,.55,.6,.15),'Mirror':(.55,.58,.58,1),'Chalk':(.8,.8,.73,1),'Blood':(.29,.018,.027,1),'Bulb':(1,.78,.4,1)}
 for n,c in colors.items():
- m=bpy.data.materials.new('House_'+n);m.diffuse_color=c;m.use_nodes=True;bs=m.node_tree.nodes.get('Principled BSDF');bs.inputs['Base Color'].default_value=c;bs.inputs['Roughness'].default_value=.35 if n in ['Walnut','Brass','Enamel'] else .75
+ m=bpy.data.materials.new('House_'+n);m.diffuse_color=c;m.use_nodes=True;bs=m.node_tree.nodes.get('Principled BSDF');bs.inputs['Base Color'].default_value=c;bs.inputs['Roughness'].default_value=.06 if n=='Mirror' else .35 if n in ['Walnut','Brass','Enamel'] else .75
  if n in ['Brass','Iron']:bs.inputs['Metallic'].default_value=.7
+ if n=='Mirror':bs.inputs['Metallic'].default_value=1
  if (ART/(n+'.png')).exists():
   im=bpy.data.images.load(str(ART/(n+'.png')));im.pack();t=m.node_tree.nodes.new('ShaderNodeTexImage');t.image=im;m.node_tree.links.new(t.outputs['Color'],bs.inputs['Base Color'])
  mats[n]=m
@@ -51,6 +52,22 @@ def sphere(n,p,s,mat):
  return o
 def rod(n,a,b,r,mat):
  a,b=Vector(cv(pos(a))),Vector(cv(pos(b)));v=b-a;bpy.ops.mesh.primitive_cylinder_add(vertices=10,radius=r,depth=v.length,location=(a+b)/2);o=bpy.context.object;assign(o,n,mat);o.rotation_euler=v.to_track_quat('Z','Y').to_euler();return o
+def prism(n,pts,z0,z1,mat):
+ # Closed extrusion of a game-space XY outline between two Z planes; outward normals, metric UVs.
+ verts=[cv((x,y,z)) for z in [z0,z1] for x,y in pts];k=len(pts)
+ faces=[tuple(range(k)),tuple(range(2*k-1,k-1,-1))]+[(i,(i+1)%k,(i+1)%k+k,i+k) for i in range(k)]
+ mesh=bpy.data.meshes.new(n);mesh.from_pydata(verts,[],faces);bm=bmesh.new();bm.from_mesh(mesh);bmesh.ops.recalc_face_normals(bm,faces=bm.faces);bm.to_mesh(mesh);bm.free()
+ uv=mesh.uv_layers.new().data
+ for f in mesh.polygons:
+  axis=max(range(3),key=lambda q:abs(f.normal[q]));a,b=[q for q in range(3) if q!=axis]
+  for li in f.loop_indices:co=mesh.vertices[mesh.loops[li].vertex_index].co;uv[li].uv=(co[a],co[b])
+ mesh.materials.append(mats[mat]);o=bpy.data.objects.new(n,mesh);bpy.context.collection.objects.link(o);return o
+def carve(o,cutter):
+ # Bake an editable hollow (tub, basin, sink) instead of laying a dark plate on a solid block.
+ bpy.context.view_layer.objects.active=o
+ for m in list(o.modifiers):bpy.ops.object.modifier_apply(modifier=m.name)
+ m=o.modifiers.new('Carved hollow','BOOLEAN');m.operation='DIFFERENCE';m.object=cutter;m.solver='EXACT';bpy.ops.object.modifier_apply(modifier=m.name)
+ bpy.data.objects.remove(cutter,do_unlink=True);o.modifiers.new('Weighted corner normals','WEIGHTED_NORMAL');return o
 def furniture(n,p,a=0):
  global base,yaw,parent
  base=p;yaw=a;parent=empty(n)
@@ -58,7 +75,7 @@ def reset():
  global base,yaw,parent
  base=(0,0,0);yaw=0;parent=None
 # Thick exterior walls built by rectangular partitions around real apertures.
-def wall(n,axis,fixed,lo,hi,bottom,height,holes,material='Plaster',thick=.24):
+def wall(n,axis,fixed,lo,hi,bottom,height,holes,material='Plaster',thick=.24,solid=True):
  reset();us=sorted(set([lo,hi]+[v for h in holes for v in (h[0]-h[1]/2,h[0]+h[1]/2)]));vs=sorted(set([bottom,bottom+height]+[v for h in holes for v in (h[2],h[2]+h[3])]))
  for u0,u1 in zip(us,us[1:]):
   for v0,v1 in zip(vs,vs[1:]):
@@ -66,16 +83,16 @@ def wall(n,axis,fixed,lo,hi,bottom,height,holes,material='Plaster',thick=.24):
    u=(u0+u1)/2;v=(v0+v1)/2
    if any(abs(u-h[0])<h[1]/2-.001 and h[2]<v<h[2]+h[3] for h in holes):continue
    p=(u,v,fixed) if axis=='x' else (fixed,v,u);s=(u1-u0,v1-v0,thick) if axis=='x' else (thick,v1-v0,u1-u0)
-   box(n,p,s,material,0,True)
-def window(n,axis,fixed,u,bottom,w=1.4,h=1.5):
+   box(n,p,s,material,0,solid)
+def window(n,axis,fixed,u,bottom,w=1.4,h=1.5,side=None):
  reset();a=0 if axis=='x' else 90;p=(u,bottom,fixed) if axis=='x' else (fixed,bottom,u);furniture(n,p,a)
  for xx in [-w/2,w/2]:box(n+' jamb',(xx,h/2,0),(.095,h+.15,.27),'Cream')
  for yy in [0,h]:box(n+' sill',(0,yy,0),(w+.18,.085,.31),'Cream')
  box(n+' mullion',(0,h/2,0),(.045,h,.055),'Green');box(n+' transom',(0,h*.6,0),(w,.04,.06),'Green')
  box(n+' glazing',(0,h/2,0),(w-.07,h-.07,.014),'Glass',0,True)
  openings.append(dict(name=n,centre=list(pos((0,h/2,0))),size=[w,h,.24],yaw=a))
- # Curtains have folds and a rail, only on interior face chosen by wall orientation.
- side=1 if (axis=='x' and fixed<0) or (axis=='z' and fixed<0) else -1
+ # Curtains have folds and a rail on the interior face; walls whose room lies on their positive side pass it explicitly.
+ if side is None:side=1 if fixed<0 else -1
  rod(n+' curtain rail',(-w*.65,h+.13,side*.24),(w*.65,h+.13,side*.24),.017,'Walnut')
  for x0 in [-w*.52,w*.52]:
   for j in range(5):box(n+' curtain fold',(x0+(j-2)*.056,h*.46,side*(.25+(.025 if j%2 else 0))),(.061,h*.95,.035),'Fabric',.012)
@@ -104,15 +121,28 @@ box('Utility ceiling',(-5.36,3.1,9.5),(5.28,.14,7),'Cream',.005,True)
 south=[(-4.8,1.4,1.05,1.5),(4.8,1.4,1.05,1.5)]+[(u,1.4,4.25,1.5) for u in [-4.8,-.8,4.8]]
 north=[(-5.6,1.3,.16,2.4),(-.1,1.4,1.05,1.5),(-5.2,1.4,4.25,1.5),(-.2,1.2,4.45,1.2)]
 side=[(0,1.3,.16,2.4),(3.6,1.4,1.05,1.5),(-3.4,1.4,4.25,1.5)]
-wall('South wall','x',-6,-8,8,.16,6.36,south);wall('North wall','x',6,-8,8,.16,6.36,north)
-wall('West wall','z',-8,-6,6,.16,6.36,side);wall('East wall','z',8,-6,6,.16,6.36,[(0,1.3,.16,2.4),(3.4,1.4,4.25,1.5)])
+east=[(0,1.3,.16,2.4),(3.4,1.4,4.25,1.5)]
+# Gable walls run through the corners and every outer wall rises to the roof line (6.65), leaving no corner notch or eaves slit.
+wall('South wall','x',-6,-8.12,8.12,.16,6.49,south);wall('North wall','x',6,-8.12,8.12,.16,6.49,north)
+wall('West wall','z',-8,-6,6,.16,6.49,side);wall('East wall','z',8,-6,6,.16,6.49,east)
 for axis,fixed,holes in [('x',-6,south),('x',6,north),('z',-8,side),('z',8,[(3.4,1.4,4.25,1.5)])]:
  for i,(u,w,b,h) in enumerate(holes):
   if b>.2:window('Window_'+str(len(openings)+1),axis,fixed,u,b,w,h)
-wall('Utility west','z',-8,-0+6,13,.16,2.94,[(10,1.4,1,1.5)])
-wall('Utility east','z',-2.72,6,13,.16,2.94,[(10,1.4,1,1.5)])
-wall('Utility north','x',13,-8,-2.72,.16,2.94,[])
-window('Window_utility_w','z',-8,10,1);window('Window_utility_e','z',-2.72,10,1)
+wall('Utility west','z',-8,-0+6,13,.16,3.08,[(10,1.4,1,1.5)])
+wall('Utility east','z',-2.72,6,13,.16,3.08,[(10,1.4,1,1.5)])
+wall('Utility north','x',13,-8.12,-2.6,.16,3.08,[])
+# The utility room lies west of its east wall, so that window's curtains hang on the negative side.
+window('Window_utility_w','z',-8,10,1);window('Window_utility_e','z',-2.72,10,1,side=-1)
+# Every main-block room is papered on all walls; the outer walls get a thin non-colliding lining with the same apertures.
+# South/north linings stop at the east/west linings' faces and the ground band stops under the plaster ceiling,
+# so no two lining or ceiling faces share a plane.
+for bottom,top in [(.16,3.18),(3.36,6.44)]:
+ for axis,fixed,lo,hi,holes in [('x',-5.874,-7.868,7.868,south),('x',5.874,-7.868,7.868,north),('z',-7.874,-5.88,5.88,side),('z',7.874,-5.88,5.88,east)]:wall('Outer wall paper',axis,fixed,lo,hi,bottom,top-bottom,holes,'Wallpaper',.012,False)
+# The stairwell is open through both storeys: carry the paper across the floor band on its two outer walls,
+# otherwise an 18 cm plaster stripe shows between the ground and upper linings.
+for axis,fixed,lo,hi in [('x',5.874,3.08,7.868),('z',7.874,1.08,5.88)]:wall('Outer wall paper',axis,fixed,lo,hi,3.18,.18,[],'Wallpaper',.012,False)
+# Ground-floor rooms get a plaster ceiling under the timber upper floor; the stairwell stays open.
+reset();box('Plaster ceiling',(-2.44,3.19,0),(10.88,.02,11.76),'Cream',0);box('Plaster ceiling',(5.44,3.19,-2.44),(4.88,.02,6.88),'Cream',0)
 # Hall walls; eight room openings have timber architraves.
 # Stairwell partitions continue through the slab band; no exposed horizontal slit.
 wall('North corridor partition','x',1,-8,8,.16,6.24,[(u,1.3,.16+level,2.4) for level in [0,3.2] for u in [-5.2,-.2]]+[(4,1.4,.16,2.4),(6.4,1.4,3.36,2.4)],'Wallpaper',.16)
@@ -124,13 +154,27 @@ for level in [0,3.2]:
  doorway(('upper-' if level else 'lower-')+'south',(-2.5,.16+level,-1),180,True)
  if level:doorway('storage',(4,3.36,-1),180,True)
 doorway('east',(8,.16,0),90);doorway('west',(-8,.16,0),90);doorway('utility',(-5.6,.16,6),0,True)
-# Continuous skirting on actual wall faces; omit stairwell where the upper floor is void.
-reset()
-for lev in [.16,3.36]:
- for z in [-5.85,5.85]:
-  spans=[(-7.86,7.86)] if z<0 else ([(-7.86,-6.35),(-4.85,2.86)] if lev<1 else [(-7.86,2.86)])
-  for x0,x1 in spans:
-   box('Wall-attached skirting',((x0+x1)/2,lev+.075,z),(x1-x0,.15,.04),'Walnut',.004)
+# Skirting on every room wall face: (axis, face, room side, span, door/fireplace cuts). The upper stairwell void has none.
+# Runs along z stop one board thickness short of their corners and partition runs stop at the end walls' boards,
+# so crossing boards never share a top face.
+reset();SK=.036;W,E,S,N=-7.868,7.868,-5.868,5.868;door=.71
+skirting={.16:[('x',S,1,W,E,[(0,1.26)]),('x',N,-1,W,E,[(-5.6,door)]),('z',W,1,S,N,[(0,door)]),('z',E,-1,S,N,[(0,door)]),
+ ('x',-1.08,-1,W,E,[(-2.5,door)]),('x',-.92,1,W,E,[(-2.5,door)]),('x',.92,-1,W,E,[(-5.2,door),(-.2,door),(4,.7)]),('x',1.08,1,W,E,[(-5.2,door),(-.2,door),(4,.7)]),
+ ('z',-2.08,-1,1.08,N,[]),('z',-1.92,1,1.08,N,[]),('z',2.92,-1,1.08,N,[]),('z',3.08,1,1.08,N,[])],
+ 3.36:[('x',S,1,W,E,[]),('x',N,-1,W,2.92,[]),('z',W,1,S,N,[]),('z',E,-1,S,.92,[]),
+ ('x',-1.08,-1,W,E,[(-2.5,door),(4,door)]),('x',-.92,1,W,E,[(-2.5,door),(4,door)]),('x',.92,-1,W,E,[(-5.2,door),(-.2,door),(6.4,.7)]),('x',1.08,1,W,2.92,[(-5.2,door),(-.2,door)]),
+ ('z',-2.08,-1,1.08,N,[]),('z',-1.92,1,1.08,N,[]),('z',2.92,-1,1.08,N,[]),('z',.92,-1,S,-1.08,[]),('z',1.08,1,S,-1.08,[])]}
+for lev,faces in skirting.items():
+ for axis,face,sign,lo,hi,cuts in faces:
+  if axis=='z':lo,hi=lo+SK,hi-SK
+  elif face not in (S,N):lo,hi=lo+SK*(lo==W),hi-SK*(hi==E)
+  edges=[lo]+[v for c,h in sorted(cuts) for v in (c-h,c+h)]+[hi]
+  for a,b in zip(edges[::2],edges[1::2]):
+   a,b=max(a,lo),min(b,hi)
+   if b-a<.02:continue
+   mid=face+sign*SK/2
+   # 2 mm above the floor datum so the board's underside never shares a plane with slab or partition faces.
+   box('Wall-attached skirting',((a+b)/2,lev+.077,mid) if axis=='x' else (mid,lev+.077,(a+b)/2),(b-a,.15,SK) if axis=='x' else (SK,.15,b-a),'Walnut',.004)
 # Two closed flights share exact tread/landing/rail datum points. All joinery lives in source.
 stair=empty('Staircase');parent=stair
 for i in range(9):
@@ -138,9 +182,11 @@ for i in range(9):
   box('Stair tread',(xx,top-.025,z),(1.32,.05,.36),'Walnut',.006,True)
   front=z+(.155 if xx>5 else -.155)
   box('Stair riser',(xx,top-.115,front),(1.28,.18,.04),'Walnut',.004,True)
-box('Stair landing',(5.2,1.71,4.95),(3.72,.10,1.4),'Walnut',.008,True)
-# The top tread previously stopped 10 cm short of the upper floor.
-box('Stair upper threshold',(6.4,3.28,1.05),(1.4,.16,.30),'Walnut',.003,True)
+# The landing runs back to the papered north wall; no open slot is left behind it.
+box('Stair landing',(5.2,1.71,5.058),(3.72,.10,1.616),'Walnut',.008,True)
+# The top tread previously stopped 10 cm short of the upper floor. The infill now ends where that tread begins,
+# so the floor, infill and tread tops meet edge to edge instead of overlapping in one plane.
+box('Stair upper threshold',(6.4,3.28,1.05),(1.4,.16,.10),'Walnut',.003,True)
 # Continuous closed strings cover exposed riser ends. The cap follows the rise/run exactly.
 def stair_string(x,reverse):
  z0,z1=1.105,4.255
@@ -173,11 +219,10 @@ for xx,rev in [(3.38,False),(4.62,False),(5.78,True),(7.02,True)]:
  rail((xx,end+.94,4.08),(xx,2.85,4.43))
  # A short baluster at the last tread supports the bend before its landing newel.
  rod('Stair seated baluster',(xx,upper(4.08)-.018,4.08),(xx,end+.94,4.08),.021,'Walnut')
+# Side guards run to wall newels; the old rail across the back of the landing guarded a slot that no longer exists.
 for xx in [3.38,7.02]:
- rail((xx,2.85,4.43),(xx,2.85,5.48));newel(xx,1.71,5.48,1.20)
- for zz in [4.75,5.12]:rod('Landing baluster',(xx,1.76,zz),(xx,2.85,zz),.022,'Walnut')
-rail((3.38,2.85,5.48),(7.02,2.85,5.48))
-for xx in [3.75,4.12,4.49,4.86,5.23,5.6,5.97,6.34,6.71]:rod('Landing baluster',(xx,1.76,5.48),(xx,2.85,5.48),.022,'Walnut')
+ rail((xx,2.85,4.43),(xx,2.85,5.80));newel(xx,1.71,5.80,1.20)
+ for zz in [4.76,5.10,5.44]:rod('Landing baluster',(xx,1.76,zz),(xx,2.85,zz),.022,'Walnut')
 # Guard the open centre well without crossing the walkable turn behind it.
 rail((4.62,2.85,4.43),(5.78,2.85,4.43))
 for xx in [4.91,5.20,5.49]:rod('Landing baluster',(xx,1.76,4.43),(xx,2.85,4.43),.022,'Walnut')
@@ -193,14 +238,32 @@ def roof(name,cx,cz,width,depth,eaves,rise):
    z=cz-depth/2+(.14 if name=='Rear wing roof' else 0)+j*(depth-(.14 if name=='Rear wing roof' else 0))/14
    rod('Roof tile course',(cx-width/2,eaves+.1,z),(cx,eaves+rise+.1,z),.017,'Slate');rod('Roof tile course',(cx,eaves+rise+.1,z),(cx+width/2,eaves+.1,z),.017,'Slate')
  rod('Ridge cap',(cx,eaves+rise+.14,cz-depth/2+(.14 if name=='Rear wing roof' else -.2)),(cx,eaves+rise+.14,cz+depth/2+.2),.11,'Slate')
-roof('Main pitched roof',0,0,16,12,6.65,1.8);roof('Rear wing roof',-5.36,9.5,5.28,7,3.24,.85)
-box('Chimney',(-3,7.8,-4.9),(.72,2.1,.78),'Plaster',.025);box('Chimney coping',(-3,8.84,-4.9),(.89,.14,.95),'Cream')
-for z in [-5.85,5.85]:rod('Rain gutter',(-8.1,6.58,z),(8.1,6.58,z),.07,'Iron')
-for xx in [-8.14,8.14]:rod('Rain pipe',(xx,.3,-5.85),(xx,6.58,-5.85),.04,'Iron')
-box('East porch canopy',(8.86,2.8,0),(1.48,.15,2.8),'Slate',.012)
+# The rear wing is pitched low enough that its ridge cap stays clear of the child's-room window above it.
+roof('Main pitched roof',0,0,16,12,6.65,1.8);roof('Rear wing roof',-5.36,9.5,5.28,7,3.24,.55)
 reset()
-for z in [-6,6]:
- mesh=bpy.data.meshes.new('Gable profile');verts=[cv((-8,6.65,z)),cv((8,6.65,z)),cv((0,8.45,z))];mesh.from_pydata(verts,[],[(0,1,2),(2,1,0)]);mesh.materials.append(mats['Plaster']);mesh.uv_layers.new();o=bpy.data.objects.new('Closed gable',mesh);bpy.context.collection.objects.link(o)
+# Solid gables flush with the walls below (both main ends and the rear wing's north end); their slopes sit inside the roof slabs.
+for z in [-6,6]:prism('Closed gable',[(-8.12,6.65),(8.12,6.65),(0,8.45)],z-.12,z+.12,'Plaster')
+prism('Closed gable',[(-8.12,3.24),(-2.6,3.24),(-5.36,3.79)],12.88,13.12,'Plaster')
+# Chimney rises on the ridge above the parlour fireplace, from the attic floor through the south gable.
+box('Chimney',(0,7.9,-5.72),(.72,2.6,.78),'Plaster',.025);box('Chimney coping',(0,9.24,-5.72),(.89,.14,.95),'Cream')
+# Gutters hang under the actual eaves (east/west on the main roof and the rear wing); downpipes swan-neck into them and end in shoes.
+def downpipe(face,out,z,top,gutter_x,gutter_y):
+ # face: outer wall plane; the pipe clears the stone plinth and is held by brackets fixed into the wall.
+ x=face+out*.085;rod('Rain pipe',(x,.14,z),(x,top,z),.04,'Iron');rod('Rain pipe swan neck',(x,top,z),(gutter_x,gutter_y,z),.04,'Iron')
+ rod('Rain pipe shoe',(x,.14,z),(x+out*.13,.06,z),.04,'Iron')
+ for y in [1.2,top*.5+.6,top-.3]:box('Rain pipe bracket',(face+out*.045,y,z),(.09,.03,.1),'Iron',0)
+for out in [-1,1]:rod('Eaves gutter',(out*8.27,6.5,-6.22),(out*8.27,6.5,6.22),.065,'Iron');downpipe(out*8.12,out,-5.9,6.3,out*8.27,6.46)
+for xx,face,out in [(-8.24,-8.12,-1),(-2.48,-2.6,1)]:rod('Eaves gutter',(xx,3.12,6.12),(xx,3.12,13.2),.055,'Iron');downpipe(face,out,12.95,2.96,xx,3.09)
+box('East porch canopy',(8.86,2.8,0),(1.48,.15,2.8),'Slate',.012)
+for zz in [-1.15,1.15]:rod('Porch canopy bracket',(8.13,2.2,zz),(9.3,2.72,zz),.03,'Walnut');rod('Porch canopy bracket',(8.13,2.72,zz),(9.3,2.72,zz),.025,'Walnut')
+reset()
+# Stone base course over the floor-slab recess under every outer wall, broken only by the two door steps.
+def plinth(x0,x1,z0,z1):
+ if x1-x0>.01 and z1-z0>.01:box('Stone plinth',((x0+x1)/2,.13,(z0+z1)/2),(x1-x0,.34,z1-z0),'Slate',.006)
+plinth(-8.16,8.16,-6.16,-6.11);plinth(-2.56,8.16,6.11,6.16);plinth(-8.16,-2.56,13.11,13.16);plinth(-2.61,-2.56,6.11,13.11)
+for x0,x1 in [(8.11,8.16),(-8.16,-8.11)]:
+ top=6.11 if x0>0 else 13.11;plinth(x0,x1,-6.11,-.8);plinth(x0,x1,.8,top)
+for sign in [-1,1]:box('Door step',(sign*8.3,.06,0),(.6,.2,1.6),'Slate',.01,True)
 # Furniture tools, turned legs, framed door panels and drawer trays.
 def table(n,p,w=1.5,d=.75,h=.8,a=0):
  furniture(n,p,a);box(n+' top',(0,h,0),(w,.065,d),'Walnut',.02)
@@ -226,9 +289,10 @@ def cabinet(n,p,ids,w=1.3,h=1.25,d=.5,a=0,safe=False):
  if hinged or safe:
   for side in ([-1] if safe else [-1,1]):
    pivot=empty('Drawer_'+n+'_'+str(side),pos((side*w/2,0,-d/2)));moving.append(pivot.name)
-   x=0 if safe else side*w/4;ww=w-.07 if safe else w/2-.045
-   attach(box('Cupboard framed leaf',(x,h/2+.04,-d/2-.025),(ww,h-.18,.055),mat),pivot)
-   attach(box('Inset door panel',(x,h/2+.04,-d/2-.061),(ww-.12,h-.34,.025),mat),pivot)
+   # Leaves fill the carcass front between base and top: 4 mm meeting gap, 4 mm top/bottom reveal.
+   x=0 if safe else side*(w/4-.005);ww=w-.024 if safe else w/2-.014;lh=h-.178
+   attach(box('Cupboard framed leaf',(x,h/2+.085,-d/2-.025),(ww,lh,.055),mat),pivot)
+   attach(box('Inset door panel',(x,h/2+.085,-d/2-.061),(ww-.12,lh-.16,.025),'Mirror' if n=='bath-mirror' else mat),pivot)
    attach(sphere('Attached brass pull',(.28 if safe else side*.09,h*.53,-d/2-.10),(.025,.025,.025),'Brass'),pivot)
    if safe:
     for k in range(4):attach(cyl('Mechanical number wheel',(-.24+k*.13,h*.62,-d/2-.09),.047,.035,'Brass','z'),pivot)
@@ -287,19 +351,24 @@ def sofa(n,p,w=2.4,a=0):
   for z in [-.3,.3]:sphere('Sofa turned foot',(x,.12,z),(.065,.12,.065),'Walnut')
  coll.append(dict(name=n,centre=list(pos((0,.6,0))),size=[w,1.15,1],yaw=a));reset()
 def bed(n,p,w=1.55,a=0):
- furniture(n,p,a);box('Bed frame',(0,.37,0),(w,.24,2.1),'Walnut',.03);box('Mattress',(0,.55,0),(w-.07,.23,2.02),'Cream',.07);box('Wool cover',(0,.68,-.34),(w-.02,.06,1.35),'Fabric',.03)
+ furniture(n,p,a);box('Bed frame',(0,.37,0),(w,.24,2.1),'Walnut',.03);box('Mattress',(0,.55,0),(w-.07,.23,2.02),'Cream',.07)
+ # The blanket is tucked between the posts and drapes over the mattress sides instead of a slab hitting the finials.
+ cover=w-.13;box('Wool cover',(0,.685,-.31),(cover,.05,1.28),'Fabric',.02)
+ for xx in [-1,1]:box('Wool cover drape',(xx*(w/2-.03),.6,-.31),(.025,.19,1.28),'Fabric',.01)
+ box('Wool cover fold',(0,.715,.31),(cover,.035,.14),'Fabric',.015)
  for xx in [-w/2,w/2]:
   for zz in [-1.02,1.02]:
-   height=1.30 if zz>0 else .65
+   height=1.30 if zz>0 else .95
    cyl('Bedpost',(xx,height/2,zz),.055,height,'Walnut');sphere('Bed finial',(xx,height+.045,zz),(.072,.065,.072),'Walnut')
- box('Headboard',(0,.95,1.03),(w,.6,.065),'Walnut',.03)
- box('Pillow',(0,.72,.65),(w*.68,.14,.46),'Cream',.06)
+ box('Headboard',(0,.95,1.03),(w,.6,.065),'Walnut',.03);box('Footboard',(0,.6,-1.03),(w,.5,.06),'Walnut',.025)
+ for xx in ([-w*.22,w*.22] if w>1.3 else [0]):box('Pillow',(xx,.725,.66),(w*.38 if w>1.3 else w*.68,.13,.42),'Cream',.06)
  coll.append(dict(name=n,centre=list(pos((0,.52,0))),size=[w+.15,1.05,2.2],yaw=a));reset()
 def lamp(n,p):
  furniture(n,p);cyl('Lamp foot',(0,.04,0),.12,.05);rod('Lamp stem',(0,.07,0),(0,.42,0),.018,'Brass')
  bpy.ops.mesh.primitive_cone_add(vertices=24,radius1=.2,radius2=.10,depth=.22,location=cv(pos((0,.49,0))));assign(bpy.context.object,'Pleated lampshade','Cream');sphere('Lamp bulb',(0,.43,0),(.045,.065,.045),'Bulb');reset()
 def bowl(n,p):
- furniture(n,p);cyl('Cup foot',(0,.014,0),.055,.02,'Enamel');cyl('Cup body',(0,.08,0),.068,.13,'Enamel');cyl('Tea surface',(0,.147,0),.056,.005,'Walnut');rod('Cup handle',(.067,.04,0),(.09,.115,0),.012,'Brass');reset()
+ # Teacup on a saucer at real scale (8.4 cm cup); the base point sits 4 mm below the supporting surface datum.
+ furniture(n,p);cyl('Cup saucer',(0,.0085,0),.075,.009,'Enamel');cyl('Cup foot',(0,.017,0),.03,.008,'Enamel');cyl('Cup body',(0,.052,0),.042,.062,'Enamel');cyl('Tea surface',(0,.078,0),.037,.003,'Walnut');rod('Cup handle',(.04,.035,0),(.058,.068,0),.006,'Brass');reset()
 # Furniture and its tabletop objects share anchors; rear clearances are measured to wall/skirting.
 def at(p,dx=0,dy=0,dz=0):return (p[0]+dx,p[1]+dy,p[2]+dz)
 SIDEBOARD=(7.48,.16,-3.7);DESK=(.2,.16,5.38);LAUNDRY=(-4.5,.16,12.44)
@@ -310,7 +379,7 @@ sofa('Three seat sofa',(-7.30,.16,-3.1),2.5,270);sofa('Club armchair',(-3.9,.16,
 reset();box('Woven sitting room rug',(-5.5,.171,-3.25),(4.6,.018,3.25),'Rug',0)
 cabinet('sideboard',SIDEBOARD,['H05','H06'],2.4,1.1,.6,90);cabinet('coffee',(-5.6,.16,-3.2),[],1.25,.44,.7)
 # Fireplace surround, tiled hearth and empty grate.
-furniture('Fireplace',(0,.16,-5.82),0);box('Hearth',(0,.04,.22),(2.5,.08,1),'Tile')
+furniture('Fireplace',(0,.16,-5.82),0);box('Hearth',(0,.04,.336),(2.5,.08,.768),'Tile')
 for xx in [-.85,.85]:box('Fire surround',(xx,.73,.08),(.3,1.46,.25),'Cream')
 box('Mantel',(0,1.48,.11),(2.2,.12,.48),'Walnut');box('Fireback',(0,.64,.02),(1.4,1.2,.08),'Iron')
 for xx in [-.55,-.3,-.05,.2,.45]:rod('Fire grate',(xx,.18,.38),(xx,.65,.38),.015,'Iron')
@@ -319,13 +388,18 @@ reset();lamp('Sitting room lamp',at(SIDEBOARD,dy=1.165,dz=-.45))
 table('Writing desk',DESK,2,.8,.8,180);chair('Desk chair',(.2,.16,4.48),180)
 cabinet('desk',(-1.5,.16,5.45),['E09'],.7,.75,.6,0);cabinet('medical',(2.25,.16,5.49),['H09','H10'],1,1.12,.5,0)
 cabinet('safe',(1.9,.16,1.53),['H11','H12','H13','H14'],.95,1.25,.7,180,True)
+# Bookcase stands on the floor with a back board, cornice and plinth; each shelf is packed with volumes of varied size.
 furniture('Bookcase',(-1.69,.16,3.5),90)
 for yy in [.2,.7,1.2,1.7,2.2]:box('Shelf',(0,yy,0),(1.7,.06,.3),'Walnut')
-for xx in [-.85,.85]:box('Bookcase stile',(xx,1.16,0),(.06,2.3,.34),'Walnut')
+for xx in [-.85,.85]:box('Bookcase stile',(xx,1.15,0),(.06,2.3,.34),'Walnut')
+box('Bookcase back board',(0,1.15,-.155),(1.70,2.26,.02),'Walnut',.004);box('Bookcase cornice',(0,2.33,.01),(1.84,.06,.38),'Walnut',.012);box('Bookcase plinth',(0,.085,.02),(1.64,.17,.26),'Walnut',.006)
 for row in range(4):
- for i in range(14):
-  height=.38+random.random()*.07
-  box('Bound volume',(-.73+i*.112,.23+row*.5+height/2,0),(.07,height,.23),'Green' if i%3 else 'Fabric',.004)
+ x=-.81
+ while True:
+  wide=.026+random.random()*.03;height=.29+random.random()*.12
+  if x+wide>.81:break
+  box('Bound volume',(x+wide/2,.23+row*.5+height/2,.005+random.random()*.012),(wide,height,.19+random.random()*.04),random.choice(['Green','Green','Fabric','Slate','Walnut']),.003)
+  x+=wide+.0015+(.06 if random.random()<.04 else 0)
 reset();lamp('Desk light',at(DESK,dx=.7,dy=.8175,dz=-.05))
 # Kitchen: freestanding range, sink and larder, rather than modern fitted kitchen.
 table('Kitchen table',(-3.9,.16,3),1.6,.85,.78);chair('Kitchen chair A',(-3.9,.16,2.2),180);chair('Kitchen chair B',(-3.9,.16,3.85),0)
@@ -333,43 +407,69 @@ cabinet('kitchen-bills',(-4.16,.16,5.48),['H15','H16'],1.35,1.25,.5,0);cabinet('
 furniture('Cast iron cooker',(-3.0,.16,1.47),180);box('Range body',(0,.49,0),(.9,.98,.65),'Enamel',.04,True);box('Oven door',(0,.48,-.343),(.68,.48,.045),'Iron',.03)
 for xx in [-.22,.22]:
  for zz in [-.15,.15]:cyl('Hotplate',(xx,.98,zz),.13,.012,'Iron')
-rod('Stove flue',(.33,1,0),(.33,2.88,0),.07,'Iron');reset()
-furniture('Deep sink',(-7.51,.16,1.72),270);box('Sink cupboard',(0,.43,0),(.9,.86,.6),'Green',.025,True);box('Enamel sink',(0,.88,0),(1,.16,.65),'Enamel',.035)
-box('Sink basin',(0,.973,0),(.65,.01,.43),'Iron',.04);rod('Tap',(0,.97,.25),(0,1.23,.25),.023,'Brass');rod('Spout',(0,1.23,.25),(0,1.23,.05),.023,'Brass');reset()
+# Flue rises, elbows back and enters the wall behind the range through a collar instead of stopping in mid-air.
+rod('Stove flue',(.33,1,0),(.33,2.62,0),.07,'Iron');sphere('Stove flue elbow',(.33,2.62,0),(.07,.07,.07),'Iron');rod('Stove flue',(.33,2.62,0),(.33,2.62,.47),.07,'Iron');cyl('Flue wall collar',(.33,2.62,.385),.115,.02,'Iron','z');reset()
+furniture('Deep sink',(-7.51,.16,1.72),270);box('Sink cupboard',(0,.38,0),(.9,.76,.6),'Green',.025,True)
+carve(box('Enamel sink',(0,.86,0),(1,.2,.65),'Enamel',.035),box('Sink basin cutter',(0,.895,-.04),(.84,.21,.47),'Enamel',.03));cyl('Sink drain',(0,.792,-.04),.035,.006,'Iron')
+rod('Tap',(0,.95,.25),(0,1.23,.25),.023,'Brass');rod('Spout',(0,1.23,.25),(0,1.23,.05),.023,'Brass');reset()
 for p in [(-3.6,.9685,3),(-4.2,.9685,3),at(SIDEBOARD,dy=1.176)]:bowl('Tea cup',p)
 cabinet('stationery',(2.62,.16,3.65),[],.9,.9,.45,90)
 # Hall and rear wing.
-cabinet('hall',(6.3,.16,-.675),['H01','H03'],1.6,.83,.38,180)
+cabinet('hall',(6.3,.16,-.65),['H01','H03'],1.6,.83,.38,180)
 cabinet('utility',(-7.55,.16,11.85),['H19'],1.2,1.4,.5,270);table('Laundry washstand',LAUNDRY,1.8,.8,.82)
-furniture('Wash tub',at(LAUNDRY,dy=.8525));cyl('Galvanised tub',(0,.19,0),.38,.38,'Enamel');cyl('Tub dark opening',(0,.385,0),.33,.008,'Iron');reset()
+furniture('Wash tub',at(LAUNDRY,dy=.8525));carve(cyl('Galvanised tub',(0,.19,0),.38,.38,'Enamel'),cyl('Wash tub cutter',(0,.27,0),.35,.38,'Enamel'));reset()
 for i in range(3):reset();box('Stacked linen',at(LAUNDRY,dx=-.6,dy=.875+i*.045),(.43,.045,.36),'Cream',.015)
 # Upstairs bedrooms.
 bed('Parents bed',MASTER_BED,1.8,180)
 cabinet('bedside-a',BEDSIDE_A,['H22'],.6,.65,.45,180);cabinet('bedside-b',BEDSIDE_B,[],.6,.65,.45,180)
 cabinet('wardrobe',(.48,3.36,-2.5),['H21'],1.8,2.15,.65,90);cabinet('dressing',DRESSING,['H20','H23'],1.4,.85,.48,270)
-furniture('Dressing mirror',at(DRESSING,dx=-.18,dy=.92),270);box('Mirror frame',(0,.48,0),(.95,1,.08),'Walnut',.04);box('Mirror silver',(0,.48,-.05),(.82,.84,.012),'Glass',.035);reset();lamp('Bedside light',at(BEDSIDE_A,dy=.715,dz=.075))
+furniture('Dressing mirror',at(DRESSING,dx=-.18,dy=.92),270);box('Mirror frame',(0,.48,0),(.95,1,.08),'Walnut',.04);box('Mirror silver',(0,.48,-.05),(.82,.84,.012),'Mirror',.035)
+for xx in [-.5,.5]:rod('Mirror swing post',(xx,-.02,0),(xx,.74,0),.02,'Walnut');sphere('Mirror pivot knob',(xx,.48,0),(.03,.03,.03),'Brass')
+reset();lamp('Bedside light',at(BEDSIDE_A,dy=.715,dz=.075))
 bed('Child bed',(-6.85,3.36,4.70),1.05,0);table('Child desk',CHILD_DESK,1.25,.62,.68,180);chair('Child chair',(-3.55,3.36,4.58),180)
 cabinet('toys',TOYS,['H24'],1.3,.85,.45,180);cabinet('child-bedside',(-5.75,3.36,5.54),['H26'],.65,.65,.45,0)
 # Original wooden horse toy.
-furniture('Toy horse',at(TOYS,dx=-.2,dy=.905));sphere('Horse body',(0,.13,0),(.13,.1,.065),'Walnut');rod('Horse neck',(.1,.15,0),(.15,.27,0),.03,'Walnut');sphere('Horse head',(.17,.28,0),(.06,.04,.04),'Walnut')
-for xx in [-.07,.08]:
- for zz in [-.035,.035]:rod('Horse leg',(xx,.1,zz),(xx,.025,zz),.011,'Walnut')
+# Original wooden pull-along horse on a wheeled board, its wheels resting on the toy cupboard top.
+furniture('Toy horse',at(TOYS,dx=-.2,dy=.905));box('Horse wheel board',(0,.06,0),(.26,.02,.09),'Walnut',.004)
+for xx in [-.09,.09]:
+ for zz in [-.052,.052]:cyl('Horse wheel',(xx,.05,zz),.025,.012,'Iron','z')
+sphere('Horse body',(0,.165,0),(.105,.045,.038),'Walnut');rod('Horse neck',(.075,.18,0),(.12,.255,0),.022,'Walnut');sphere('Horse head',(.145,.258,0),(.052,.026,.024),'Walnut')
+rod('Horse tail',(-.1,.175,0),(-.135,.13,0),.008,'Fabric')
+for xx in [-.065,.065]:
+ for zz in [-.022,.022]:rod('Horse leg',(xx,.14,zz),(xx,.07,zz),.011,'Walnut')
 reset()
 # Bathroom with rolled rim tub, pedestal basin, mirror cabinet.
-furniture('Clawfoot bath',(.1,3.36,5.38),0);box('Bath shell',(0,.43,0),(1.8,.65,.76),'Enamel',.17,True);box('Bath hollow',(0,.76,0),(1.5,.015,.53),'Iron',.08)
+# Roll-top tub is a real hollow shell raised on four visible iron feet, with drain and end taps.
+furniture('Clawfoot bath',(.1,3.36,5.38),0)
+carve(box('Bath shell',(0,.45,0),(1.8,.56,.76),'Enamel',.12),box('Bath hollow cutter',(0,.51,0),(1.62,.56,.58),'Enamel',.1))
+cyl('Bath drain',(-.62,.232,0),.03,.006,'Iron')
+for zz in [-.09,.09]:rod('Bath tap',(-.84,.72,zz),(-.84,.84,zz),.017,'Brass');rod('Bath tap spout',(-.84,.84,zz),(-.74,.82,zz),.014,'Brass')
 for xx in [-.65,.65]:
- for zz in [-.25,.25]:sphere('Bath foot',(xx,.12,zz),(.075,.12,.075),'Iron')
-reset();cabinet('bath-mirror',(2.1,4.6,5.72),[],.8,.75,.18,0)
-furniture('Pedestal basin',(2.1,3.36,5.53));cyl('Basin pedestal',(0,.45,0),.11,.9,'Enamel');sphere('Basin bowl',(0,.84,0),(.4,.14,.3),'Enamel');reset()
+ for zz in [-.25,.25]:sphere('Bath foot',(xx,.095,zz),(.07,.095,.07),'Iron')
+coll.append(dict(name='Clawfoot bath',centre=list(pos((0,.39,0))),size=[1.8,.78,.76],yaw=0));reset();cabinet('bath-mirror',(2.1,4.6,5.72),[],.8,.75,.18,0)
+furniture('Pedestal basin',(2.1,3.36,5.53));cyl('Basin pedestal',(0,.40,0),.11,.8,'Enamel')
+carve(box('Basin bowl',(0,.86,.02),(.58,.15,.48),'Enamel',.05),sphere('Basin bowl cutter',(0,.96,-.01),(.23,.15,.16),'Enamel'))
+for xx in [-.13,.13]:rod('Basin tap',(xx,.935,.19),(xx,1.0,.19),.014,'Brass');rod('Basin tap spout',(xx,1.0,.19),(xx,.985,.11),.011,'Brass')
+reset()
 cabinet('linen',(6.9,3.36,-5.46),[],1.5,1.6,.6,180);cabinet('old-trunk',(7.47,3.36,-2.65),[],1.4,.55,.65,90)
 table('Treadle sewing table',SEWING,1.25,.62,.79,180);chair('Sewing chair',at(SEWING,dz=.88),0)
 furniture('Sewing machine',at(SEWING,dy=.8175));box('Sewing base',(0,.03,0),(.58,.05,.24),'Iron');box('Sewing upright',(.17,.2,0),(.12,.34,.17),'Iron',.03);box('Sewing arm',(-.02,.36,0),(.44,.12,.17),'Iron',.045);rod('Sewing needle',(-.22,.13,0),(-.22,.35,0),.008,'Iron');cyl('Hand wheel',(.28,.3,0),.15,.055,'Iron','x');reset()
 # Stopped kitchen clock; not a historical timing reference.
-furniture('Kitchen clock',(-4.2,2.1,5.8));box('Clock case',(0,0,0),(.43,.65,.14),'Walnut',.04);cyl('Clock face',(0,.12,-.09),.17,.02,'Cream','z');rod('Clock hand',(0,.12,-.11),(.08,.2,-.11),.008,'Iron');rod('Clock hand',(0,.12,-.112),(-.11,.09,-.112),.007,'Iron');rod('Clock pendulum',(0,-.05,-.09),(0,-.23,-.09),.012,'Brass');sphere('Pendulum bob',(0,-.24,-.09),(.06,.06,.025),'Brass');reset()
+# Wall clock: hollow case with the dial above and the stopped pendulum hanging, off-centre, behind a glazed lower door.
+furniture('Kitchen clock',(-4.2,2.1,5.79))
+box('Clock case',(0,0,.06),(.38,.59,.02),'Walnut',.006)
+for xx in [-.2025,.2025]:box('Clock case',(xx,0,0),(.025,.65,.14),'Walnut',.006)
+for yy in [-.31,.31]:box('Clock case',(0,yy,0),(.38,.03,.14),'Walnut',.006)
+box('Clock dial board',(0,.145,-.06),(.38,.29,.02),'Walnut',.006);box('Clock door rail',(0,-.01,-.062),(.38,.03,.024),'Walnut',.004)
+box('Clock door glass',(0,-.16,-.064),(.36,.27,.006),'Glass',0)
+cyl('Clock face',(0,.145,-.077),.135,.014,'Cream','z');rod('Clock hand',(0,.145,-.088),(.055,.215,-.088),.006,'Iron');rod('Clock hand',(0,.145,-.091),(-.085,.12,-.091),.005,'Iron')
+rod('Clock pendulum',(0,-.02,0),(.035,-.21,0),.008,'Brass');sphere('Pendulum bob',(.038,-.225,0),(.045,.045,.016),'Brass');reset()
 # Table-top paperwork, family pictures, lamps and ceiling roses.
 loose=[('E10',at(DESK,dx=-.15,dy=.839,dz=-.07)),('H04',at(SIDEBOARD,dy=1.1865,dz=.9)),('H17',(-7.82,1.25,.65)),('H18',(-4.2,2.1,5.83)),('H25',at(CHILD_DESK,dy=.719,dz=-.05))]
 for i,p in enumerate([(-4,2.85,-3),(4,2.85,-3),(-4.9,2.85,3),(.5,2.85,3),(5.1,6.05,3),(-4.5,6.05,-3),(4.5,6.05,-3),(-4.9,6.05,3),(.3,6.05,3),(-5.2,2.8,10),(4.5,2.85,0)]):
- furniture('Pendant_'+str(i),p);cyl('Ceiling rose',(0,.22,0),.16,.035,'Cream');rod('Pendant cord',(0,.2,0),(0,-.05,0),.013,'Iron');sphere('Milk glass shade',(0,-.16,0),(.22,.14,.22),'Cream');sphere('Warm bulb',(0,-.25,0),(.055,.065,.055),'Bulb');lights.append(list(pos((0,-.3,0))));reset()
+ # Rose sits flush on the actual ceiling above it (plaster ceiling, upper ceiling or utility ceiling); the cord spans to the shade.
+ ceiling=(3.03 if p[2]>6.2 else 3.18) if p[1]<3 else 6.44;top=ceiling-p[1]
+ furniture('Pendant_'+str(i),p);cyl('Ceiling rose',(0,top-.0175,0),.16,.035,'Cream');rod('Pendant cord',(0,top-.03,0),(0,-.03,0),.013,'Iron');sphere('Milk glass shade',(0,-.16,0),(.22,.14,.22),'Cream');sphere('Warm bulb',(0,-.25,0),(.055,.065,.055),'Bulb');lights.append(list(pos((0,-.3,0))));reset()
 # Adult female, 1.68 m head-to-heel; rounded head, neck, shoulders, waist, hips and relaxed limbs.
 outline=[(-.07,.84),(.065,.84),(.11,.78),(.105,.65),(.065,.60),(.07,.55),(.18,.51),(.25,.34),(.34,.20),(.42,.14),(.43,.09),(.38,.065),(.32,.12),(.20,.22),(.14,.35),(.13,.12),(.17,-.06),(.17,-.23),(.12,-.47),(.17,-.72),(.23,-.79),(.21,-.84),(.105,-.83),(.08,-.76),(.02,-.48),(-.015,-.25),(-.055,-.48),(-.18,-.72),(-.18,-.80),(-.26,-.82),(-.30,-.77),(-.25,-.69),(-.14,-.43),(-.17,-.19),(-.16,-.05),(-.12,.12),(-.14,.34),(-.24,.25),(-.35,.30),(-.44,.34),(-.46,.39),(-.42,.42),(-.35,.37),(-.25,.34),(-.19,.50),(-.075,.55),(-.06,.60),(-.11,.67),(-.115,.77)]
 furniture('Chalk outline',(.25,.166,-2.85),-25)

@@ -15,15 +15,22 @@ lo,hi=exact('East porch canopy');need(lo[0]>=8.115,'Exterior porch roof intrudes
 fl,fh=exact('Upper floor south');tl,th=exact('Stair upper threshold')
 steps=[bounds(o) for o in bpy.data.objects if o.name.startswith('Stair tread')]
 last=max((b for b in steps if b[0][0]>5),key=lambda b:b[1][1])
-need(th[2]>=last[0][2] and tl[2]<=fh[2],'Upper outlet has an open floor gap')
+need(th[2]>=last[0][2]-.001 and tl[2]<=fh[2]+.001,'Upper outlet has an open floor gap')
+# Floor, infill and top tread meet edge to edge: no two of them may overlap in the walking plane (z-fighting).
+need(tl[2]>=fh[2]-.001 and th[2]<=last[0][2]+.001,'Upper outlet infill overlaps floor or tread in one plane')
 need(max(abs(th[1]-fh[1]),abs(th[1]-last[1][1]))<.002,'Upper outlet floor levels differ')
 ll,lh=exact('Stair landing');lower=max((b for b in steps if b[0][0]<5),key=lambda b:b[1][1])
 need(lower[1][2]>=ll[2] and abs(lower[1][1]-lh[1])<.002,'Lower flight does not join landing')
+need(lh[2]>=5.86,'Landing leaves an open slot before the north wall')
 # Sample the wall/slab junction specifically where the old mesh had a 16 cm slit.
 def covered(v,prefix):
  return any(b['name']==prefix and all(abs(v[i]-b['centre'][i])<=b['size'][i]/2+.0001 for i in range(3)) for b in p['colliders'])
 for z in [1.5,2.5,3.5,4.5,5.5]:need(covered((3,3.28,z),'North room partition'),'Stair west partition has storey slit')
 for x in [3.2,4.2,5.2,6.4,7.6]:need(covered((x,3.28,1),'North corridor partition'),'Stair south partition has storey slit')
+# The double-height stairwell must show paper, not a plaster stripe, across the floor band of its outer walls.
+paper=[bounds(o) for o in bpy.data.objects if o.name.startswith('Outer wall paper')]
+for pt in [(x,y,5.874) for x in [3.5,5.2,7.5] for y in [3.19,3.27,3.35]]+[(7.874,y,z) for z in [1.5,3.4,5.5] for y in [3.19,3.27,3.35]]:
+ need(any(all(lo[k]-.001<=pt[k]<=hi[k]+.001 for k in range(3)) for lo,hi in paper),'Stairwell wall paper gap at '+str(pt))
 need(not any(o.name.startswith('Continuous stair string') or o.name=='Landing handrail transition' for o in bpy.data.objects),'Legacy floating rail/string remains')
 for o in bpy.data.objects:
  if o.name.startswith('Stair closed string'):
