@@ -1003,7 +1003,7 @@ Antigravity在本地scratch做只读架构初稿；首调用读权限未授权�
 
 ### HOUSE-07：主角住宅模型问题全面修复（2026-10-13）
 
-- **起因与分工**：用户要求“修一下最新的主角的家，有很多模型bug”，并指定重活放在 Mac mini 上做。开工 CLI pull：main 由 4fafaed 快进到 b0cd7a2，无本地改动。Mac mini（melbourne-mac-mini，Apple M4，Blender 5.2.2，现已装 Blender，仍无 Unity）负责每轮住宅生成（约 12.5 分钟）、来源校验、摆放/楼梯/共面审查、全屋穿插扫描和 152 个眼高视角加外观渲染；本机 Windows 负责 Unity 6000.3.18f1 构建、EditMode、共面扫描和实机验收。未提交、未推送。
+- **起因与分工**：用户要求“修一下最新的主角的家，有很多模型bug”，并指定重活放在 Mac mini 上做。开工 CLI pull：main 由 4fafaed 快进到 b0cd7a2，无本地改动。Mac mini（melbourne-mac-mini，Apple M4，Blender 5.2.2，现已装 Blender，仍无 Unity）负责每轮住宅生成（约 12.5 分钟）、来源校验、摆放/楼梯/共面审查、全屋穿插扫描和 152 个眼高视角加外观渲染；本机 Windows 负责 Unity 6000.3.18f1 构建、EditMode、共面扫描和实机验收。用户要求做完直接推送，已提交为 7ea1902 并推送到 origin/main。
 - **查找方法**：已有审查全部通过，但看不出问题，于是另做两件事：逐网格的穿插/悬空扫描，以及 18 个室内点位各 8 个方向加外观的渲染。注意：生成器把游戏坐标 (x,y,z) 映射成 Blender (x,−z,y)，所以 Blender 画面与游戏左右镜像，对照前要先翻转。
 - **找到并在 tools/house/build_house.py 源头修复的问题**：
   1. 外墙只建到墙中线，四个墙角各缺 12×12cm 的通高凹槽。现在南北墙跨到 ±8.12，东西墙夹在中间。
