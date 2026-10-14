@@ -335,15 +335,17 @@ item('w02', 'evidence', 3.05, DT + .02, 11.12, .36, .06, .25, doc='w02', evidenc
 item('rec-ledgers', 'document', 4.68, G + 1.2, 9.4, .3, 1.2, 2.0, doc='old-registers')
 item('truck', 'document', 13.4, G + 1.0, 7.2, 1.8, 1.8, 4.3, doc='work-truck')
 item('hoist', 'document', 13.4, 2.9, 5.9, .5, 1.6, .5, doc='chain-hoist')
-item('motorcycle', 'document', 15.95, G + .6, 11.25, .7, 1.0, 1.9, doc='motorcycle')
+item('motorcycle', 'document', 15.95, G + .6, 11.25, .8, 1.0, 2.1, doc='motorcycle')
 item('vise', 'document', 16.55, G + 1.02, 8.05, .3, .26, .45, doc='bench-vise')
 item('toolboard', 'document', 16.98, G + 1.7, 5.8, .1, 1.1, 2.3, doc='tool-wall')
 item('tag-board', 'document', 7.6, G + 1.6, 14.66, .9, .6, .1, doc='tag-board')
 item('rag-bin', 'document', 12.0, G + .45, 13.9, .55, .5, .55, doc='oil-rags')
-item('tyres', 'document', 16.55, G + .5, 15.6, .8, .9, .8, doc='tyres')
+item('tyres', 'document', 16.55, G + .5, 15.6, .9, .9, .9, doc='tyres')
 item('store-shelf', 'document', 8.2, G + 1.2, 18.0, 3.0, 1.8, .2, doc='tool-store')
-item('loft-crates', 'document', 7.0, LOFT + .45, 17.7, 1.0, .7, .8, doc='loft-crates')
-item('shed-rack', 'document', 6.3, YARD + .8, 20.4, .7, 1.4, 2.0, doc='shed-rack')
+item('loft-crates', 'document', 7.0, LOFT + .45, 17.7, 1.1, .8, .9, doc='loft-crates')
+item('shed-rack', 'document', 6.3, YARD + .8, 20.4, .8, 1.5, 2.1, doc='shed-rack')
+# Inspection triggers must stand proud of the furniture collider they label: a coincident face
+# makes the E ray hit the solid box first on some frames (seen at 720p on the shed rack).
 # Parts cabinet: the bottom-right drawer pulls out; its card is readable only when open.
 item('drawer-0', 'drawer', 12.3, G + .2, 17.9, .3, .2, .3, doc='tag-blanks', title='零件抽屉', target='garage-parts-drawer')
 # Lamp switches
@@ -461,6 +463,17 @@ for o in openings:
 for o in openings:
     if o['kind'] == 'door' and o['top'] - o['bottom'] < 1.95 and o['top'] < W[o['wall']]['y1'] - 1e-6:
         errors.append(f"door {o['id']} head too low for the 1.78 m player capsule")
+for it in items:
+    if it['kind'] != 'document':
+        continue
+    for f in furniture:
+        if not f['collide'] or min(f['y'] + f['h'], it['y'] + it['h'] / 2) - max(f['y'], it['y'] - it['h'] / 2) < .05:
+            continue
+        fx0, fz0, fx1, fz1 = footprint(f)
+        ix0, ix1, iz0, iz1 = it['x'] - it['w'] / 2, it['x'] + it['w'] / 2, it['z'] - it['d'] / 2, it['z'] + it['d'] / 2
+        if min(fx1, ix1) - max(fx0, ix0) > .05 and min(fz1, iz1) - max(fz0, iz0) > .05:
+            if any(abs(a_ - b_) < .02 for a_, b_ in ((fx0, ix0), (fx1, ix1), (fz0, iz0), (fz1, iz1))) and not (ix0 < fx0 - .02 or ix1 > fx1 + .02 or iz0 < fz0 - .02 or iz1 > fz1 + .02):
+                errors.append(f"trigger {it['id']} shares a face with collider {f['id']}")
 # Stair: the flight must arrive exactly at the loft edge, clear of furniture.
 if abs(stairs[-1]['z1'] - 14.72) > .01 or abs(G + RISE * 15 - LOFT) > .002:
     errors.append('stair does not meet the loft edge')

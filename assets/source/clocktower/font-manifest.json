@@ -1,10 +1,10 @@
 {
   "fontSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/notosanssc/NotoSansSC%5Bwght%5D.ttf",
   "sourceSha256": "a3041811a78c361b1de50f953c805e0244951c21c5bd412f7232ef0d899af0da",
-  "subsetSha256": "1f635801bff936e7e0ba30ad16d481d7d36944b64d1d16683d6b7625de178361",
+  "subsetSha256": "05fff72a2f75e354b0e9f11f3dab837be7588b79ba77afe732e00f049f6f15d0",
   "weight": 400,
   "retainedPreviousGlyphs": true,
-  "subsetGlyphCount": 1242,
+  "subsetGlyphCount": 1308,
   "requiredPlaqueGlyphsPresent": true,
   "license": "game/Assets/Art/Fonts/OFL.txt"
 }

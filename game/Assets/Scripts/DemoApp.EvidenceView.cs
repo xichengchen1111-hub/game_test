@@ -25,7 +25,7 @@ public partial class DemoApp {
             payload.transform.localRotation=Quaternion.Euler(-90,0,0);
         }else if(item.evidenceId=="H17"||item.evidenceId=="H18"||item.evidenceId=="E06")payload=EvidenceSolidModel.Create(item.evidenceId,item.illustration);
         else if(physical){payload=Instantiate(physical.gameObject);foreach(var c in payload.GetComponentsInChildren<Collider>())Destroy(c);foreach(var c in payload.GetComponentsInChildren<MonoBehaviour>())Destroy(c);payload.transform.localRotation=Quaternion.identity;}
-        else{var texture=item.illustration?item.illustration:TicketImage(item.evidenceId);float aspect=texture?texture.width/(float)texture.height:1.33f;payload=EvidenceModel.Paper("Observed evidence",texture,1,1/aspect);}
+        else{var texture=item.illustration?item.illustration:TicketImage(item.evidenceId);float aspect=texture?texture.width/(float)texture.height:1.33f;payload=EvidenceModel.Paper("Observed evidence",texture,1,1/aspect,item.reverse);}
         // Centre the complete model before rotating, including imported meshes with an offset origin.
         payload.transform.SetParent(evidenceStage.transform,false);payload.transform.localPosition=Vector3.zero;
         var bounds=new Bounds();bool first=true;foreach(var r in payload.GetComponentsInChildren<Renderer>()){if(first){bounds=r.bounds;first=false;}else bounds.Encapsulate(r.bounds);}

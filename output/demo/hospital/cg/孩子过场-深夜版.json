@@ -1,0 +1,39 @@
+{
+  "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/hospital/showcase/showcase-hospital-cg",
+  "video": "孩子过场-深夜版.mp4",
+  "seconds": 99.48,
+  "nativeFrames": 2930,
+  "size": [
+    1920,
+    1077
+  ],
+  "audioGain": 20.0,
+  "marks": [
+    {
+      "name": "ward",
+      "frame": 0,
+      "time": 0.0005009
+    },
+    {
+      "name": "cinematic",
+      "frame": 163,
+      "time": 5.5842475
+    },
+    {
+      "name": "card",
+      "frame": 2629,
+      "time": 89.4172721
+    },
+    {
+      "name": "bedside",
+      "frame": 2736,
+      "time": 93.0838771
+    },
+    {
+      "name": "end",
+      "frame": 2906,
+      "time": 98.8874683
+    }
+  ],
+  "method": "Native game window and listener mix of a scripted run with the real controller and the ordinary E ray; recorded speed. Scripted inputs are not physical keyboard play."
+}

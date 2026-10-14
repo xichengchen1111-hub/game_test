@@ -67,6 +67,7 @@ public partial class DemoApp {
             else { previous.title=entry.title;previous.body=entry.body;previous.source=entry.source; }
             Debug.Log("Recorded evidence: "+entry.id+" after testimony");
         }
+        HospitalDialogueVisited();
         Save();
         Debug.Log("DIALOGUE_NODE: "+id);
     }
@@ -104,7 +105,7 @@ public partial class DemoApp {
         else VisitDialogue(dialogueNode.next);
     }
     void CloseDialogue() {
-        OpeningRideDialogueClosed();
+        OpeningRideDialogueClosed();HospitalDialogueClosed();
         dialogueNode=null;dialogueChoices.Clear();dialogueHistoryOpen=false;
         if(milkboyPerformance)milkboyPerformance.Listen();
         if(stationClerkPerformance)stationClerkPerformance.Listen();

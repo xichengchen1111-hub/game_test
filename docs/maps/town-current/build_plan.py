@@ -103,6 +103,18 @@ for a,b,bid,k,v in [(-114,-94,None,'garden',2),(-94,-76,None,'semi',0),(-76,-58,
 # Hospital wings and courtyard occupy one intentional institutional site.
 h=plot(73,129,-68,-34,'S','civic','B11',variant=0)
 h['parts']=[dict(role='门诊楼',rect=rect(101,-59,42,12)),dict(role='西病房翼',rect=rect(84,-44,8,18)),dict(role='东病房翼',rect=rect(118,-44,8,18))];h['door']=[101,-65];h['rearDoor']=[101,-53];h['windows']=[[90,-65,2,'诊室窗'],[112,-65,2,'诊室窗']];h['type']='U形医院 · 内向康复庭院';h['note']='三翼围合院子；病房朝内院；侧面保留后勤通道。';Paths[-2]['points']=[[101,-65],[101,-68]];h['backgate']=[101,-34];Paths[-1]['points']=[[101,-34],[101,-53]]
+# 2026-10-14 enterable single-storey cottage hospital (user request: the second act's hospital).
+# 42x12m front range, two 8x18m pavilion wards, court open to the north; 3.8m rooms under one ridge height.
+# Exact rooms/openings live in tools/hospital/hospital_layout.py, which asserts these parts, doors and windows.
+h['storeys']=1;h['type']='单层前楼＋东西病房翼 · 庭院式小镇医院';h['status']='已建成可进入：青川医院（2026-10-14）'
+h['note']='前楼单层：门厅问讯处、候诊室、诊室、药房、事务室、护士长室、手术室与北侧走廊；西翼儿童病房、东翼普通病房；南正门(101,-65)，走廊后门通庭院(101,-53)，两间病房各有一扇庭院门。'
+WARDZ=[round(-65+z,2) for z in (15.05,17.8,20.6,23.4,26.2)]
+h['windows']=[[round(80+x,2),-65,1.2,'前楼'+n+'窗','S'] for x,n in ((3.2,'诊室'),(8.5,'药房'),(12.6,'候诊室'),(15.4,'候诊室'),(18.4,'门厅'),(23.6,'门厅'),(27.5,'事务室'),(32.5,'护士长室'),(36.8,'手术室'),(39.9,'手术室'))]+\
+ [[80,-60.6,1.2,'诊室侧窗','W'],[80,-54.9,1.1,'走廊西端窗','W'],[122,-60.6,1.2,'手术室侧窗','E'],[122,-54.9,1.1,'走廊东端窗','E']]+\
+ [[round(80+x,2),-53,1.2,'走廊朝院窗','N'] for x in (10.5,13.5,16.5,25.5,28.5,31.5)]+\
+ [[80,z,1.2,'儿童病房西窗','W'] for z in WARDZ]+[[88,z,1.2,'儿童病房朝院窗','E'] for z in WARDZ]+\
+ [[114,z,1.2,'普通病房朝院窗','W'] for z in WARDZ]+[[122,z,1.2,'普通病房东窗','E'] for z in WARDZ]+\
+ [[84,-35,1.6,'儿童病房北窗','N'],[118,-35,1.6,'普通病房北窗','N']]
 # South residential band: rows / paired / different house footprints.
 for a,b,bid,k,v in [(-114,-102,None,'terrace',0),(-102,-90,None,'terrace',1),(-90,-65,'B16','garden',2),(-65,-53,None,'terrace',1),(-53,-41,None,'terrace',0),(-41,-29,None,'terrace',2),(-29,-17,None,'terrace',1),(-17,3,None,'semi',0),(3,24,None,'semi',0)]:plot(a,b,-113,-82,'N',k,bid,variant=v)
 # church cruciform footprint + walled garden

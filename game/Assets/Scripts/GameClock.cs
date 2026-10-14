@@ -4,6 +4,11 @@ using System;
 // Store elapsed game minutes, never wall-clock timestamps or a wrapped time of day.
 public sealed class GameClock {
     public const double InitialMinutes = 17 * 60 + 55;
+    // A new game opens at 21:00 (user, 2026-10-14: the first act and the arrival at the hospital are late
+    // at night). It starts with these minutes already elapsed, so saved games, whose elapsed minutes
+    // count from 17:55, keep their time of day.
+    public const double OpeningMinutes = 21 * 60;
+    public const double OpeningElapsed = OpeningMinutes - InitialMinutes;
     // Twelve game seconds per real second: one complete 24-hour day takes
     // two real hours. Existing saves retain their cumulative game minutes.
     public const double GameMinutesPerRealSecond = 12.0 / 60.0;

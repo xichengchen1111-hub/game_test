@@ -14,7 +14,7 @@ public partial class DemoApp {
         public bool passed, archStartsOpen, archClosedFromStreet, officeDoorBothSides, closedBuildingMuffles, registerRead, lampSwitchedOff,
             w01Recorded, w02Recorded, recordsArePhysical, recordsDeduplicated, seatedAndStood, mechanicTopics, mechanicSpeaks, copiesQuestionNeedsW01,
             truckRead, viseRead, tagBoardRead, storeEntered, loftReached, loftDescended, drawerCardRead, rearDoorKeepsRain, yardUncovered,
-            shedCoveredButOpen, yardGateOpened, unsupportedWithoutE01, supportedD05, noReinvestigation, roomLabels;
+            shedCoveredButOpen, yardGateOpened, unsupportedWithoutE01, supportedD06, noReinvestigation, roomLabels;
         public float loftY, reviewSeconds, gameMinutesStart, gameMinutesEnd;
         public int entries, reportSubmissions, mechanicChoices;
         public List<string> labels = new List<string>(), captures = new List<string>(), log = new List<string>();
@@ -197,15 +197,15 @@ public partial class DemoApp {
         player.Aim(GW(13.0f, 1.0f, 8.0f)); yield return GCapture("loft-over-hall");
         yield return GWalk(GW(7.6f, G, 15.1f), GW(6.0f, G, 14.95f), GW(6.0f, G, 10.6f));
         GNeed(player.transform.position.y < G + .2f, "back down on the hall floor"); garageResult.loftDescended = true;
-        // 15. Stage report from the notebook: S5 "trip" with W01+W02 needs the case summary E01 as well.
+        // 15. Stage report from the notebook: S6 "trip" with W01+W02 needs the case summary E01 as well.
         OpenPoliceReport(); GNeed(PoliceReportOpen, "report opens");
-        SelectReportStatement(4); SelectReportKind(2); ToggleReportCard("W01"); ToggleReportCard("W02");
-        GNeed(SubmitPoliceReport() == null, "S5 without the case summary is not supported"); garageResult.unsupportedWithoutE01 = true;
+        SelectReportStatement(5); SelectReportKind(2); ToggleReportCard("W01"); ToggleReportCard("W02");
+        GNeed(SubmitPoliceReport() == null, "S6 without the case summary is not supported"); garageResult.unsupportedWithoutE01 = true;
         ClosePoliceReport();
         // Review fixture: the E01 case summary normally comes from the police reading room.
         state.entries.Add(new NotebookEntry { id = "E01", title = "案卷摘要（副本）", source = "garage review fixture", body = "review fixture" }); Save();
-        OpenPoliceReport(); SelectReportStatement(4); SelectReportKind(2); ToggleReportCard("E01"); ToggleReportCard("W01"); ToggleReportCard("W02");
-        GNeed(SubmitPoliceReport() == "D05" && state.reportSupported.Contains("D05"), "S5 supported by E01+W01+W02"); garageResult.supportedD05 = true;
+        OpenPoliceReport(); SelectReportStatement(5); SelectReportKind(2); ToggleReportCard("E01"); ToggleReportCard("W01"); ToggleReportCard("W02");
+        GNeed(SubmitPoliceReport() == "D06" && state.reportSupported.Contains("D06"), "S6 supported by E01+W01+W02"); garageResult.supportedD06 = true;
         GNeed(!state.reportReinvestigation, "a non-core rule never closes the case"); garageResult.noReinvestigation = true;
         yield return GCapture("report-d05"); ClosePoliceReport();
         // 16. East lane view of the cross gables, then finish in the loft for the relaunch check.
@@ -258,7 +258,7 @@ public partial class DemoApp {
         yield return new WaitForSeconds(1.5f);
         GNeed(RepairGarage.Current, "repair garage prefab missing");
         GNeed(state.entries.Count(e => e.id == "W01") == 1 && state.entries.Count(e => e.id == "W02") == 1, "W01/W02 persisted once");
-        GNeed(state.reportSupported.Contains("D05") && !state.reportReinvestigation, "report progress persisted");
+        GNeed(state.reportSupported.Contains("D06") && !state.reportReinvestigation, "report progress persisted");
         GNeed(state.dialogueTopics.Contains("mechanic.where") && state.dialogueTopics.Contains("mechanic.copies"), "mechanic topics persisted");
         var lamp = RepairGarage.Current.GetComponentsInChildren<LampSwitch>().Single(s => s.offId == "garage-office-lamp-off");
         GNeed(!lamp.LampOn && lamp.lamps.All(l => !l.RequestedOn), "manual lamp off survives relaunch");

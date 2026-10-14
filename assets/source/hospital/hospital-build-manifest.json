@@ -1,0 +1,1055 @@
+{
+ "version": 1,
+ "layoutVersion": 1,
+ "objects": {
+  "Int_Walls": 676,
+  "Ext_Facade": 3315,
+  "Int_Trim": 4804,
+  "Int_Floors": 20,
+  "Int_Ceilings": 6,
+  "Ext_Roof": 514,
+  "Ext_Loggia": 71,
+  "Ext_Windows": 4092,
+  "Leaf_front-door_0": 158,
+  "Leaf_front-door_1": 158,
+  "Glass": 86,
+  "Leaf_court-door_0": 158,
+  "Leaf_cw-garden-door_0": 158,
+  "Leaf_gw-garden-door_0": 158,
+  "Leaf_consult-door_0": 180,
+  "Leaf_dispensary-door_0": 180,
+  "Leaf_office-door_0": 180,
+  "Leaf_matron-door_0": 180,
+  "Leaf_theatre-door_0": 180,
+  "Leaf_theatre-door_1": 180,
+  "Leaf_children-door_0": 158,
+  "Leaf_children-door_1": 158,
+  "Leaf_general-door_0": 158,
+  "Leaf_general-door_1": 158,
+  "Lamp_lamp-hall-1": 70,
+  "Bulb_lamp-hall-1": 130,
+  "Lamp_lamp-hall-2": 70,
+  "Bulb_lamp-hall-2": 130,
+  "Lamp_lamp-wait": 70,
+  "Bulb_lamp-wait": 130,
+  "Lamp_lamp-consult": 70,
+  "Bulb_lamp-consult": 130,
+  "Lamp_lamp-disp": 70,
+  "Bulb_lamp-disp": 130,
+  "Lamp_lamp-office": 70,
+  "Bulb_lamp-office": 130,
+  "Lamp_lamp-matron": 70,
+  "Bulb_lamp-matron": 130,
+  "Lamp_lamp-theatre-1": 70,
+  "Bulb_lamp-theatre-1": 130,
+  "Lamp_lamp-theatre-2": 70,
+  "Bulb_lamp-theatre-2": 130,
+  "Lamp_lamp-theatre-op": 82,
+  "Bulb_lamp-theatre-op": 34,
+  "Lamp_lamp-corr-0": 70,
+  "Bulb_lamp-corr-0": 130,
+  "Lamp_lamp-corr-1": 70,
+  "Bulb_lamp-corr-1": 130,
+  "Lamp_lamp-corr-2": 70,
+  "Bulb_lamp-corr-2": 130,
+  "Lamp_lamp-corr-3": 70,
+  "Bulb_lamp-corr-3": 130,
+  "Lamp_lamp-corr-4": 70,
+  "Bulb_lamp-corr-4": 130,
+  "Lamp_lamp-corr-5": 70,
+  "Bulb_lamp-corr-5": 130,
+  "Lamp_lamp-corr-6": 70,
+  "Bulb_lamp-corr-6": 130,
+  "Lamp_lamp-cw-0": 70,
+  "Bulb_lamp-cw-0": 130,
+  "Lamp_lamp-gw-0": 70,
+  "Bulb_lamp-gw-0": 130,
+  "Lamp_lamp-cw-1": 70,
+  "Bulb_lamp-cw-1": 130,
+  "Lamp_lamp-gw-1": 70,
+  "Bulb_lamp-gw-1": 130,
+  "Lamp_lamp-cw-2": 70,
+  "Bulb_lamp-cw-2": 130,
+  "Lamp_lamp-gw-2": 70,
+  "Bulb_lamp-gw-2": 130,
+  "Lamp_lamp-cw-3": 70,
+  "Bulb_lamp-cw-3": 130,
+  "Lamp_lamp-gw-3": 70,
+  "Bulb_lamp-gw-3": 130,
+  "Lamp_lamp-cw-desk": 62,
+  "Bulb_lamp-cw-desk": 24,
+  "Lamp_lamp-matron-desk": 62,
+  "Bulb_lamp-matron-desk": 24,
+  "Lamp_lantern-front-w": 96,
+  "Bulb_lantern-front-w": 12,
+  "Lamp_lantern-front-e": 96,
+  "Bulb_lantern-front-e": 12,
+  "Lamp_lantern-court": 96,
+  "Bulb_lantern-court": 12,
+  "Furn_hall-counter": 124,
+  "Furn_hall-ledger": 18,
+  "Furn_hall-bell": 46,
+  "Furn_hall-phone": 68,
+  "Furn_hall-keys": 384,
+  "Furn_hall-stool": 110,
+  "Furn_hall-bench-1": 60,
+  "Furn_hall-bench-2": 60,
+  "Furn_hall-palm-1": 87,
+  "Furn_hall-palm-2": 87,
+  "Furn_hall-umbrella": 60,
+  "Furn_hall-coat": 138,
+  "Furn_hall-notice": 20,
+  "Furn_hall-donors": 70,
+  "Furn_hall-sign": 16,
+  "Furn_hall-radiator-1": 216,
+  "Furn_hall-radiator-2": 216,
+  "Furn_wait-bench-0": 60,
+  "Furn_wait-bench-1": 60,
+  "Furn_wait-bench-2": 60,
+  "Furn_wait-bench-wall": 60,
+  "Furn_wait-stove": 104,
+  "Furn_wait-table": 70,
+  "Furn_wait-papers": 10,
+  "Furn_wait-notice": 20,
+  "Furn_wait-radiator-1": 216,
+  "Furn_wait-radiator-2": 216,
+  "Furn_consult-desk": 148,
+  "Furn_consult-chair": 108,
+  "Furn_consult-patient": 108,
+  "Furn_consult-book": 18,
+  "Furn_consult-couch": 90,
+  "Furn_consult-screen": 354,
+  "Furn_consult-cabinet": 1084,
+  "Furn_consult-sink": 118,
+  "Furn_consult-scale": 58,
+  "Furn_consult-chart": 92,
+  "Furn_consult-radiator": 216,
+  "Furn_disp-shelf-1": 8479,
+  "Furn_disp-shelf-2": 8363,
+  "Furn_disp-table": 70,
+  "Furn_disp-scales": 116,
+  "Furn_disp-mortar": 32,
+  "Furn_disp-counter": 112,
+  "Furn_disp-sink": 118,
+  "Furn_off-desk": 148,
+  "Furn_off-chair": 108,
+  "Furn_off-typewriter": 66,
+  "Furn_off-stool": 110,
+  "Furn_off-ledger": 18,
+  "Furn_off-cashbox": 36,
+  "Furn_off-files-1": 100,
+  "Furn_off-files-2": 100,
+  "Furn_off-safe": 94,
+  "Furn_off-phone": 68,
+  "Furn_off-radiator": 216,
+  "Furn_matron-desk": 148,
+  "Furn_matron-chair": 108,
+  "Furn_matron-visitor-1": 108,
+  "Furn_matron-visitor-2": 108,
+  "Furn_matron-shelf": 1818,
+  "Furn_matron-wardrobe": 60,
+  "Furn_matron-roster": 20,
+  "Furn_matron-radiator": 216,
+  "Furn_th-table": 110,
+  "Furn_th-cabinet": 286,
+  "Furn_th-sterilizer": 108,
+  "Furn_th-sink-1": 118,
+  "Furn_th-sink-2": 118,
+  "Furn_th-trolley": 312,
+  "Furn_th-stool": 110,
+  "Furn_th-cylinder": 150,
+  "Furn_corr-linen": 60,
+  "Furn_corr-buckets": 198,
+  "Furn_corr-bench-1": 60,
+  "Furn_corr-bench-2": 60,
+  "Furn_corr-radiator-0": 216,
+  "Furn_corr-radiator-1": 216,
+  "Furn_corr-radiator-2": 216,
+  "Furn_corr-radiator-3": 216,
+  "Furn_corr-stretcher": 304,
+  "Furn_corr-wheelchair": 290,
+  "Furn_corr-sign-children": 16,
+  "Furn_corr-sign-general": 16,
+  "Furn_corr-notice": 20,
+  "Furn_corr-palm": 87,
+  "Furn_cw-bed-w0": 560,
+  "Furn_cw-locker-w0": 132,
+  "Furn_cw-bed-w1": 566,
+  "Furn_cw-bed-w1-occupied": 38,
+  "Furn_cw-locker-w1": 132,
+  "Furn_cw-bed-w2": 560,
+  "Furn_cw-locker-w2": 132,
+  "Furn_cw-bed-w3": 560,
+  "Furn_cw-locker-w3": 132,
+  "Furn_cw-bed-w4": 560,
+  "Furn_cw-locker-w4": 132,
+  "Furn_cw-bed-w5": 560,
+  "Furn_cw-locker-w5": 132,
+  "Furn_cw-bed-e0": 560,
+  "Furn_cw-locker-e0": 132,
+  "Furn_cw-bed-e1": 560,
+  "Furn_cw-locker-e1": 132,
+  "Furn_cw-bed-e2": 576,
+  "Furn_cw-bed-e2-occupied": 38,
+  "Furn_cw-locker-e2": 132,
+  "Furn_cw-bed-e3": 560,
+  "Furn_cw-locker-e3": 132,
+  "Furn_cw-bed-e4": 560,
+  "Furn_cw-locker-e4": 132,
+  "Furn_cw-apples": 1624,
+  "Furn_cw-overbed": 172,
+  "Furn_cw-drawing": 37,
+  "Furn_cw-crayons": 48,
+  "Furn_cw-chair": 108,
+  "Furn_cw-flowers": 226,
+  "Furn_cw-centre": 70,
+  "Furn_cw-centre-flowers": 226,
+  "Furn_cw-desk": 148,
+  "Furn_cw-desk-chair": 108,
+  "Furn_cw-desk-book": 18,
+  "Furn_cw-cabinet": 1084,
+  "Furn_cw-sink": 118,
+  "Furn_cw-screen": 354,
+  "Furn_cw-toybox": 100,
+  "Furn_cw-horse": 176,
+  "Furn_cw-smalltable": 60,
+  "Furn_cw-smallchair-1": 96,
+  "Furn_cw-smallchair-2": 96,
+  "Furn_cw-blocks": 48,
+  "Furn_cw-frieze": 65,
+  "Furn_gw-bed-w0": 560,
+  "Furn_gw-locker-w0": 132,
+  "Furn_gw-bed-w1": 560,
+  "Furn_gw-locker-w1": 132,
+  "Furn_gw-bed-w2": 560,
+  "Furn_gw-locker-w2": 132,
+  "Furn_gw-bed-w3": 566,
+  "Furn_gw-bed-w3-occupied": 38,
+  "Furn_gw-locker-w3": 132,
+  "Furn_gw-bed-w4": 560,
+  "Furn_gw-locker-w4": 132,
+  "Furn_gw-bed-e0": 560,
+  "Furn_gw-locker-e0": 132,
+  "Furn_gw-bed-e1": 560,
+  "Furn_gw-bed-e1-occupied": 38,
+  "Furn_gw-locker-e1": 132,
+  "Furn_gw-bed-e2": 560,
+  "Furn_gw-locker-e2": 132,
+  "Furn_gw-bed-e3": 560,
+  "Furn_gw-locker-e3": 132,
+  "Furn_gw-bed-e4": 560,
+  "Furn_gw-locker-e4": 132,
+  "Furn_gw-bed-e5": 560,
+  "Furn_gw-locker-e5": 132,
+  "Furn_gw-centre": 70,
+  "Furn_gw-centre-palm": 87,
+  "Furn_gw-desk": 148,
+  "Furn_gw-desk-chair": 108,
+  "Furn_gw-cabinet": 1084,
+  "Furn_gw-sink": 118,
+  "Furn_gw-screen-1": 354,
+  "Furn_gw-screen-2": 354,
+  "Furn_cw-radiator-w0": 192,
+  "Furn_cw-radiator-e0": 192,
+  "Furn_gw-radiator-w0": 192,
+  "Furn_gw-radiator-e0": 192,
+  "Furn_cw-radiator-w1": 192,
+  "Furn_cw-radiator-e1": 192,
+  "Furn_gw-radiator-w1": 192,
+  "Furn_gw-radiator-e1": 192,
+  "Furn_cw-radiator-w2": 192,
+  "Furn_cw-radiator-e2": 192,
+  "Furn_gw-radiator-w2": 192,
+  "Furn_gw-radiator-e2": 192,
+  "Furn_cw-radiator-w3": 192,
+  "Furn_cw-radiator-e3": 192,
+  "Furn_gw-radiator-w3": 192,
+  "Furn_gw-radiator-e3": 192,
+  "Furn_cw-radiator-w4": 192,
+  "Furn_cw-radiator-e4": 192,
+  "Furn_gw-radiator-w4": 192,
+  "Furn_gw-radiator-e4": 192,
+  "Furn_gw-trolley": 444,
+  "Furn_gw-table": 70,
+  "Furn_gw-flowers": 226,
+  "Furn_gw-wheelchair": 290
+ },
+ "triangles": 78354,
+ "leaves": [
+  {
+   "object": "Leaf_front-door_0",
+   "opening": "front-door",
+   "fixture": "hospital-front-door",
+   "index": 0,
+   "count": 2,
+   "hinge": [
+    20.132,
+    0.16,
+    0.35000000000000003
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 0.35000000000000003,
+   "leafCentre": [
+    20.565,
+    1.3850000000000002,
+    0.35000000000000003
+   ],
+   "width": 0.8699999999999974,
+   "height": 2.45
+  },
+  {
+   "object": "Leaf_front-door_1",
+   "opening": "front-door",
+   "fixture": "hospital-front-door",
+   "index": 1,
+   "count": 2,
+   "hinge": [
+    21.868,
+    0.16,
+    0.35000000000000003
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 0.35000000000000003,
+   "leafCentre": [
+    21.435,
+    1.3850000000000002,
+    0.35000000000000003
+   ],
+   "width": 0.8699999999999974,
+   "height": 2.45
+  },
+  {
+   "object": "Leaf_court-door_0",
+   "opening": "court-door",
+   "fixture": "hospital-court-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    20.482,
+    0.16,
+    11.65
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 11.65,
+   "leafCentre": [
+    21.0,
+    1.29,
+    11.65
+   ],
+   "width": 1.0399999999999991,
+   "height": 2.26
+  },
+  {
+   "object": "Leaf_cw-garden-door_0",
+   "opening": "cw-garden-door",
+   "fixture": "hospital-children-garden-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    7.6499999999999995,
+    0.16,
+    27.732
+   ],
+   "lowEnd": true,
+   "axis": "z",
+   "plane": 7.6499999999999995,
+   "leafCentre": [
+    28.2,
+    1.29,
+    7.6499999999999995
+   ],
+   "width": 0.9399999999999977,
+   "height": 2.26
+  },
+  {
+   "object": "Leaf_gw-garden-door_0",
+   "opening": "gw-garden-door",
+   "fixture": "hospital-general-garden-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    34.35,
+    0.16,
+    27.732
+   ],
+   "lowEnd": true,
+   "axis": "z",
+   "plane": 34.35,
+   "leafCentre": [
+    28.2,
+    1.29,
+    34.35
+   ],
+   "width": 0.9399999999999977,
+   "height": 2.26
+  },
+  {
+   "object": "Leaf_consult-door_0",
+   "opening": "consult-door",
+   "fixture": "hospital-consult-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    2.7569999999999997,
+    0.16,
+    8.5
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 8.5,
+   "leafCentre": [
+    3.2,
+    1.215,
+    8.5
+   ],
+   "width": 0.8900000000000006,
+   "height": 2.11
+  },
+  {
+   "object": "Leaf_dispensary-door_0",
+   "opening": "dispensary-door",
+   "fixture": "hospital-dispensary-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    10.593,
+    0.16,
+    8.5
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 8.5,
+   "leafCentre": [
+    10.2,
+    1.215,
+    8.5
+   ],
+   "width": 0.7900000000000027,
+   "height": 2.11
+  },
+  {
+   "object": "Leaf_office-door_0",
+   "opening": "office-door",
+   "fixture": "hospital-office-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    27.057,
+    0.16,
+    8.5
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 8.5,
+   "leafCentre": [
+    27.5,
+    1.215,
+    8.5
+   ],
+   "width": 0.8900000000000006,
+   "height": 2.11
+  },
+  {
+   "object": "Leaf_matron-door_0",
+   "opening": "matron-door",
+   "fixture": "hospital-matron-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    32.943,
+    0.16,
+    8.5
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 8.5,
+   "leafCentre": [
+    32.5,
+    1.215,
+    8.5
+   ],
+   "width": 0.8900000000000006,
+   "height": 2.11
+  },
+  {
+   "object": "Leaf_theatre-door_0",
+   "opening": "theatre-door",
+   "fixture": "hospital-theatre-door",
+   "index": 0,
+   "count": 2,
+   "hinge": [
+    37.582,
+    0.16,
+    8.5
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 8.5,
+   "leafCentre": [
+    37.94,
+    1.29,
+    8.5
+   ],
+   "width": 0.7199999999999989,
+   "height": 2.26
+  },
+  {
+   "object": "Leaf_theatre-door_1",
+   "opening": "theatre-door",
+   "fixture": "hospital-theatre-door",
+   "index": 1,
+   "count": 2,
+   "hinge": [
+    39.017999999999994,
+    0.16,
+    8.5
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 8.5,
+   "leafCentre": [
+    38.66,
+    1.29,
+    8.5
+   ],
+   "width": 0.7199999999999989,
+   "height": 2.26
+  },
+  {
+   "object": "Leaf_children-door_0",
+   "opening": "children-door",
+   "fixture": "hospital-children-door",
+   "index": 0,
+   "count": 2,
+   "hinge": [
+    3.2819999999999996,
+    0.16,
+    11.8
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 11.8,
+   "leafCentre": [
+    3.6399999999999997,
+    1.29,
+    11.8
+   ],
+   "width": 0.72,
+   "height": 2.26
+  },
+  {
+   "object": "Leaf_children-door_1",
+   "opening": "children-door",
+   "fixture": "hospital-children-door",
+   "index": 1,
+   "count": 2,
+   "hinge": [
+    4.718,
+    0.16,
+    11.8
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 11.8,
+   "leafCentre": [
+    4.359999999999999,
+    1.29,
+    11.8
+   ],
+   "width": 0.72,
+   "height": 2.26
+  },
+  {
+   "object": "Leaf_general-door_0",
+   "opening": "general-door",
+   "fixture": "hospital-general-door",
+   "index": 0,
+   "count": 2,
+   "hinge": [
+    37.282000000000004,
+    0.16,
+    11.8
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 11.8,
+   "leafCentre": [
+    37.64,
+    1.29,
+    11.8
+   ],
+   "width": 0.7199999999999989,
+   "height": 2.26
+  },
+  {
+   "object": "Leaf_general-door_1",
+   "opening": "general-door",
+   "fixture": "hospital-general-door",
+   "index": 1,
+   "count": 2,
+   "hinge": [
+    38.717999999999996,
+    0.16,
+    11.8
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 11.8,
+   "leafCentre": [
+    38.36,
+    1.29,
+    11.8
+   ],
+   "width": 0.7199999999999989,
+   "height": 2.26
+  }
+ ],
+ "drawers": [],
+ "materials": [
+  {
+   "name": "HExt_Door",
+   "hex": "2f4a3f",
+   "metallic": 0,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "HExt_Gutter",
+   "hex": "33393b",
+   "metallic": 0.5,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "HExt_Iron",
+   "hex": "2c3133",
+   "metallic": 0.6,
+   "roughness": 0.45,
+   "tile": 0
+  },
+  {
+   "name": "HExt_Louvre",
+   "hex": "3a3d3b",
+   "metallic": 0,
+   "roughness": 0.7,
+   "tile": 0
+  },
+  {
+   "name": "HExt_Paint",
+   "hex": "e2dccd",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "HExt_Render",
+   "hex": "cfc9ba",
+   "metallic": 0,
+   "roughness": 0.92,
+   "tile": 3.0
+  },
+  {
+   "name": "HExt_Slate",
+   "hex": "474d55",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 1.5
+  },
+  {
+   "name": "HExt_Stone",
+   "hex": "8f908b",
+   "metallic": 0,
+   "roughness": 0.85,
+   "tile": 1.2
+  },
+  {
+   "name": "HExt_Timber",
+   "hex": "4f4034",
+   "metallic": 0,
+   "roughness": 0.7,
+   "tile": 1.0
+  },
+  {
+   "name": "HInt_Apple",
+   "hex": "a8342c",
+   "metallic": 0,
+   "roughness": 0.35,
+   "tile": 0
+  },
+  {
+   "name": "HInt_AppleGreen",
+   "hex": "93a54c",
+   "metallic": 0,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Black",
+   "hex": "1e1e1e",
+   "metallic": 0.2,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "HInt_BlanketRed",
+   "hex": "8a3a31",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 0
+  },
+  {
+   "name": "HInt_BookBlue",
+   "hex": "2e3a4a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "HInt_BookBrown",
+   "hex": "6a5a3a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "HInt_BookGreen",
+   "hex": "3e4a3a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "HInt_BookRed",
+   "hex": "6a3a2c",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "HInt_BottleBlue",
+   "hex": "27406b",
+   "metallic": 0,
+   "roughness": 0.18,
+   "tile": 0
+  },
+  {
+   "name": "HInt_BottleBrown",
+   "hex": "5a3a1e",
+   "metallic": 0,
+   "roughness": 0.18,
+   "tile": 0
+  },
+  {
+   "name": "HInt_BottleClear",
+   "hex": "cfd8d6",
+   "metallic": 0,
+   "roughness": 0.12,
+   "tile": 0
+  },
+  {
+   "name": "HInt_BottleGreen",
+   "hex": "2f5a40",
+   "metallic": 0,
+   "roughness": 0.18,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Brass",
+   "hex": "b38a49",
+   "metallic": 0.8,
+   "roughness": 0.35,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Ceiling",
+   "hex": "ebe6d8",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 3.0
+  },
+  {
+   "name": "HInt_Cloth",
+   "hex": "cbd5c6",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Cork",
+   "hex": "a37c55",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "HInt_DadoBand",
+   "hex": "2e3d35",
+   "metallic": 0,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "HInt_DadoBlue",
+   "hex": "86a0ad",
+   "metallic": 0,
+   "roughness": 0.32,
+   "tile": 0
+  },
+  {
+   "name": "HInt_DadoBrown",
+   "hex": "735a44",
+   "metallic": 0,
+   "roughness": 0.38,
+   "tile": 0
+  },
+  {
+   "name": "HInt_DadoGreen",
+   "hex": "5f7765",
+   "metallic": 0,
+   "roughness": 0.32,
+   "tile": 0
+  },
+  {
+   "name": "HInt_DadoTile",
+   "hex": "e3e6e0",
+   "metallic": 0,
+   "roughness": 0.14,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Enamel",
+   "hex": "edece5",
+   "metallic": 0,
+   "roughness": 0.2,
+   "tile": 0
+  },
+  {
+   "name": "HInt_FireRed",
+   "hex": "9a2d25",
+   "metallic": 0,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "HInt_FurnLight",
+   "hex": "9a7c58",
+   "metallic": 0,
+   "roughness": 0.45,
+   "tile": 1.0
+  },
+  {
+   "name": "HInt_Furniture",
+   "hex": "6a4f37",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 1.0
+  },
+  {
+   "name": "HInt_Gold",
+   "hex": "c0a25a",
+   "metallic": 0.6,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "HInt_HorseGrey",
+   "hex": "c9c4b8",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Iron",
+   "hex": "2b2f31",
+   "metallic": 0.5,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Joinery",
+   "hex": "6b5038",
+   "metallic": 0,
+   "roughness": 0.45,
+   "tile": 1.0
+  },
+  {
+   "name": "HInt_LampGreen",
+   "hex": "3f5a47",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Leaf",
+   "hex": "47613f",
+   "metallic": 0,
+   "roughness": 0.7,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Leather",
+   "hex": "4a3328",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Linen",
+   "hex": "ebe8de",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Lino",
+   "hex": "7c5d47",
+   "metallic": 0,
+   "roughness": 0.33,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Paper",
+   "hex": "e8dfc8",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Pot",
+   "hex": "8a5a3c",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "HInt_QuiltBlue",
+   "hex": "8496ab",
+   "metallic": 0,
+   "roughness": 0.92,
+   "tile": 0
+  },
+  {
+   "name": "HInt_QuiltCream",
+   "hex": "d3c8aa",
+   "metallic": 0,
+   "roughness": 0.92,
+   "tile": 0
+  },
+  {
+   "name": "HInt_QuiltRose",
+   "hex": "b88c8a",
+   "metallic": 0,
+   "roughness": 0.92,
+   "tile": 0
+  },
+  {
+   "name": "HInt_QuiltSage",
+   "hex": "95a68d",
+   "metallic": 0,
+   "roughness": 0.92,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Rubber",
+   "hex": "35383a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "HInt_SignGreen",
+   "hex": "2c4a3d",
+   "metallic": 0,
+   "roughness": 0.25,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Steel",
+   "hex": "aeb4b6",
+   "metallic": 0.8,
+   "roughness": 0.3,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Ticking",
+   "hex": "c9c6b8",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Tiles",
+   "hex": "ad9d86",
+   "metallic": 0,
+   "roughness": 0.42,
+   "tile": 1.0
+  },
+  {
+   "name": "HInt_ToyBlue",
+   "hex": "3f6a9a",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "HInt_ToyRed",
+   "hex": "b0483a",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "HInt_ToyYellow",
+   "hex": "d2aa3c",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Wall",
+   "hex": "e1dac4",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 3.0
+  },
+  {
+   "name": "HInt_Wicker",
+   "hex": "b08c58",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Wood",
+   "hex": "8f7350",
+   "metallic": 0,
+   "roughness": 0.38,
+   "tile": 2.0
+  },
+  {
+   "name": "H_Bulb",
+   "hex": "fff3d9",
+   "metallic": 0,
+   "roughness": 0.2,
+   "tile": 0
+  },
+  {
+   "name": "H_Glass",
+   "hex": "9fb3be",
+   "metallic": 0,
+   "roughness": 0.05,
+   "tile": 0
+  },
+  {
+   "name": "H_LampGlass",
+   "hex": "ffd9a0",
+   "metallic": 0,
+   "roughness": 0.2,
+   "tile": 0
+  }
+ ],
+ "blender": "4.5.9 LTS"
+}

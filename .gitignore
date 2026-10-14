@@ -125,3 +125,7 @@ output/**/*.zip
 # original download packages; production-status.json records their names and hashes.
 assets/source/police-cast/*/tripo/original/
 assets/source/police-cast/**/*.blend[0-9]
+# Hospital cast (2026-10-14): the same rule; the archive names and hashes are in
+# assets/source/hospital-cast/production-status.json, acceptance.json and each import-results.json.
+assets/source/hospital-cast/*/tripo/original/
+assets/source/hospital-cast/**/*.blend[0-9]

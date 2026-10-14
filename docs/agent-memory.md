@@ -4,11 +4,11 @@
 
 - **用户要求**：拉取最新（`c8921a0..fe0adc8`，第一幕监所与律师送院、警署新人物、开场录像）后，用户发来概念图 E「旧石仓修车院」，要求“按照这个设计，和我们的剧情走，完整实现这个修车厂”。依据修订稿第五节地点H与第七节修车匠／邻市顾客台词。
 - **实现**：见 AGENTS.md「修车铺」一节。B07 改为接待室账房 5×12m＋毛石车间 12.6×19m（工具库上方阁楼在车间屋面下，plan-data 记单层）＋木栅后院与零件棚；`build_plan.py` B07 覆盖段，`check_town_map.py --write` 通过，20 人 17 条路线汇总不变。布局合同 `tools/garage/garage_layout.py`，Blender `build_garage.py`（导入警署生成器的几何原语、开洞切列、家具与门扇），Unity `BuildSlice.Garage.cs`／`GarageChecks.cs`／`GarageLayout.cs`／`RepairGarage.cs`，运行 `DemoApp.Garage.cs`，验收 `DemoApp.GarageReview.cs` 与 `tools/ReviewGarage.ps1`，重建 `tools/BuildGarage.ps1`。全镇编译与绿化排除 B07 前沿石板带和后院铺地；`FullMapChecks` 完成建筑改为 7 座并对 `Ext_Ground` 做共面检查；`build_period_streets.py` 因地图哈希变化需重跑（贴图像素不变，已还原 PNG）。
-- **剧情边界**：修车匠＝情夫，当前探索站在车间货车旁；三问为原句，另加“抄件来历”（需 W01）与“工具牌平时挂处”。W01 凯恩车间工单抄件、W02 两位顾客证词抄件为调查簿记录（实体纸张）；`PoliceReport.json` 新增 S5／D05（行程，需 E01＋W01＋W02，非核心）。`mvp-evidence.json` 新增 `repair_shop_1931`，核心 10 证物与 D01–D04 不动。工作车改成墨绿轻便货车，避免与旅馆暗栗红轿车混淆；登记本与便条措辞是提案，待用户确认。
+- **剧情边界**：修车匠＝情夫，当前探索站在车间货车旁；三问为原句，另加“抄件来历”（需 W01）与“工具牌平时挂处”。W01 凯恩车间工单抄件、W02 两位顾客证词抄件为调查簿记录（实体纸张）；`PoliceReport.json` 新增 S6／D06（行程（医院一幕先占用了 S5／D05），需 E01＋W01＋W02，非核心）。`mvp-evidence.json` 新增 `repair_shop_1931`，核心 10 证物与 D01–D04 不动。工作车改成墨绿轻便货车，避免与旅馆暗栗红轿车混淆；登记本与便条措辞是提案，待用户确认。
 - **实测发现并修复**：零件柜抽屉拉开后内容检查区挡住面板（移到面板后方）；后院门门洞顶 1.8m 的门梁碰撞挡住 1.78m 胶囊（门洞开到栅栏顶，合同加门洞净高检查）；货车车灯误用发光材质；占位改色过暗像警服；纸面行首标点；账房朝车间墙误用石灰毛石；构建期局部变量重名。
-- **证据**：Windows／Unity 6000.3.18f1／D3D11 staging 构建 `SLICE_BUILD_PASS`；`--review-garage` 1080p、720p 各 30 项检查通过（拱门内外开关、接待室门两侧、整栋闷雨与开后门听雨、登记本、台灯手动关存档、W01/W02 三维纸张与去重、坐椅、修车匠六问与说话动作、货车／台虎钳／工具牌挂板、工具库、抽屉、后院与零件棚、后院门、真实楼梯上下阁楼、D05 报告不自动结案、七个房间标签），独立进程 `--verify-garage-save` 两档通过（阁楼位置、记录、报告、话题、灯与门状态）。回归：警署验收与读档、全镇六种访问顺序、`ZFightScan` 精确 0／运动 0、地图检查、剧情数据检查均通过。精简证据 `output/demo/garage/`（acceptance.json）；完整日志在忽略的 `builds/review/garage/`。
+- **证据**：Windows／Unity 6000.3.18f1／D3D11 staging 构建 `SLICE_BUILD_PASS`；`--review-garage` 1080p、720p 各 30 项检查通过（拱门内外开关、接待室门两侧、整栋闷雨与开后门听雨、登记本、台灯手动关存档、W01/W02 三维纸张与去重、坐椅、修车匠六问与说话动作、货车／台虎钳／工具牌挂板、工具库、抽屉、后院与零件棚、后院门、真实楼梯上下阁楼、D06 报告不自动结案、七个房间标签），独立进程 `--verify-garage-save` 两档通过（阁楼位置、记录、报告、话题、灯与门状态）。回归：警署验收与读档、全镇六种访问顺序、`ZFightScan` 精确 0／运动 0、地图检查、剧情数据检查均通过。精简证据 `output/demo/garage/`（acceptance.json）；完整日志在忽略的 `builds/review/garage/`。
 - **打磨轮（用户：“polish 一下细节就交吧”）**：新增白天定时定天气取景 `--review --fresh --review-garage-day`（阴天 13:05 十个机位、晴天 14:35 六个外景，只供目视）；看出横山墙屋面法线写反（外看木板底、内看漏天），改正；毛石贴图改为不规则乱石砌；验收脚本 `GUse` 瞄准后等 .12s 再检测、落空重瞄一次并记录诊断（原两帧等待在 720p 高帧率下漏检零件棚）。终版 staging 上 1080p／720p 各 30 项与两次独立读档、警署回归、全镇六顺序、ZFightScan 精确 0／运动 0 均通过；证据已替换为终版截图并加 `daylight/`。
-- **限制**：程序驱动，不是物理键鼠或盲测；D05 检查中 E01 为标注的验收夹具；修车匠是售票员改色占位（同脸），正式人物需用户在 Tripo 制作；静音验收；未构建 Mac、未更新 Mac 入口；本机 `builds/windows/TownDemo.exe` 已用终版重建（SLICE_BUILD_PASS）。用户说“polish一下细节就交吧”后，fetch 确认 main＝origin/main＝fe0adc8，修车铺与构建重新生成的资源一并直接提交推送到 main（同 PUBLISH-06 惯例）。
+- **限制**：程序驱动，不是物理键鼠或盲测；D06 检查中 E01 为标注的验收夹具；修车匠是售票员改色占位（同脸），正式人物需用户在 Tripo 制作；静音验收；未构建 Mac、未更新 Mac 入口；本机 `builds/windows/TownDemo.exe` 已用终版重建（SLICE_BUILD_PASS）。用户说“polish一下细节就交吧”后提交 ac7cfb8；推送时远端已有医院一幕 3c36bdc/fd22029，于是合并：医院先占 S5/D05，修车铺改为 S6/D06；完成建筑 8 座；生成文件取远端后按合并源重新生成并整体重建。合并后验收：修车铺 1080p/720p 与两次读档、警署与读档、医院与读档、全镇六顺序、ZFightScan 精确 0／运动 0 均通过；720p 期间发现检查区与碰撞盒共面（零件棚等四处），已外扩并加合同检查。正式 `builds/windows` 已用合并后版本重建。合并提交直接推送到 main（同 PUBLISH-06 惯例）。
 
 ### ART-07：修车铺五案概念设计（2026-10-14，用户选 E，已实施见 GARAGE-01）
 
@@ -1166,3 +1166,91 @@ Antigravity在本地scratch做只读架构初稿；首调用读权限未授权�
 - 编码最初用 swscale 默认舍入，色度偏约 0.7 级；加 `accurate_rnd+full_chroma_int` 后亮度、色度均值与原始帧一致。核对颜色要比对视频里存的 YUV，不要比对再导出的 PNG（那条路径自己还会偏 1–3 级）。
 - 标牌修复后的候选包 8201aa27…：EditMode 114／114，15 项原生静音检查全过，正常存档未变；已更新桌面入口（备份 before-interview-sign-20261014.app）。Codex 用约 4 分钟产出文案、封面和使用说明；封面主体是「警署门口律师提出送行」那一帧，文字逐字核对无误。
 
+
+### HOSPITAL-01：第二幕医院——问路、病床前的孩子与承诺；Tripo 批量医院人物（2026-10-14，Claude Code）
+
+- 用户：先看 GitHub 有无更新（无新提交，main=fe0adc8），再做第二幕医院：律师送到后走进医院、问前台孩子在哪间病房、到病床前见孩子聊家常，对话要让玩家觉得「为了孩子和这个家一定要找到真凶」；医院做大做丰富，批量用 Tripo 做医护、病人、家属，主线优先；开工前找能用的 skill、考据 1930 年代欧美小镇医院。
+- Skill：用户的 skill 库里没有相关的；插件目录推荐了 Unity 官方、unity-perf、image-generation（只显示了安装卡片，要用户自己装）。考据见 docs/research/hospital-1931.md（问讯处门房、儿童病房探视极严、双色油漆墙裙、打蜡木地板、乳白吊灯、暖气片、护士制服、要避免的年代错误）。
+- 建筑：B11 改为单层 U 形小镇医院，布局合同 `tools/hospital/hospital_layout.py` → Blender `build_hospital.py`（借用警署生成器做墙、窗、门） → `BuildSlice.Hospital.cs`。42 外窗、15 门扇、30 灯（27 室内用 Light Layer 4）、22 张病床、185 件陈设。地图源 build_plan.py 的 B11 段与合同互相断言。共面在源头修：首轮 ZFightRepair 报 82 对（水池挡板与墙裙压条、画上的笔迹、檐壁画层），全部改源头后为 0。
+- 主线：门房／病房护士／孩子三段对话（Resources/Hospital*Dialogue.json），`hospitalStage` 0–3；三个人都不是关卡，不授予证物，不写诊断预后，孩子不起名（8 岁女孩是制作时的选择）。企划里涉及案发当天的三样（护士说妻子星期二下午离开、缴费记录、画背面日期）没做，要先进证据合同。
+- 人群：合同里 11 个 `person` 条目（站、靠枕坐、躺、坐长凳），台词在 Resources/HospitalPeople.json，`HospitalPerson` 只显示字幕和交谈动作。没放行的人直接不出现；为人隆起的被子是 Blender 单独物体 `Furn_<床>-occupied`，只在那张床的人放行后显示，避免「有被子没人」。姿势由 `HospitalBedPose`（在 Animator 之后按身体坐标系弯腿、收臂、转头）处理，角度要等真模型截图再调。
+- Tripo（用户账号，23385→21530 积分）：14 人全部做到 H3.1 模型＋约 1 万四边面＋Unity Humanoid Compatible 骨架＋idle／walk／Calm Conversation Gestures，编号在 `assets/source/hospital-cast/production-status.json`；**都没有导出下载**（规则要求先在对话里取得同意）。教训：一次排 11 个出图有 6 个失败，改为三个一批；两个女性角色的措辞连续两次被拒，改成平实的病房用语后成功；探视工人第一次减面在「Retopologizing」卡了一个多小时，用同一张参考图重建模型后正常（作废编号也记在状态文件里）；Rig 页刚加载时预设下拉常不响应，选完要放大确认是 Unity Humanoid Compatible 再点 Auto Rig；浏览器窗口变矮后左栏底部主按钮从 y≈742 移到 y≈685。
+- 字体：新增台词用 `expand_ui_font.py`（源 builds/house-review/NotoSansSC.ttf）扩到 1269 字形。
+- 验证（Mac／Unity 6000.3.18f1／Metal，程序集 8b834e95…）：25 项静音原生检查全过——医院主线＋独立读档、第一幕 1080／720 各＋读档、警署＋读档、律师乘车四项、后院门两项、警署人物、售票员两项、全图两项、钟表铺两项、昼夜两项、地图两项；EditMode 114／114；正常存档 c71b6de4… 未变。截图在 output/demo/hospital/review（JPG）。牛奶店门检测在静音下失败（「Rain layers produced no output」），旧桌面版 8201aa27… 同样失败——它要测雨声输出，与「检测一律静音」冲突，不是本次改动造成的。
+- 桌面入口已更新为 8b834e95…（旧版备份 builds/opening/integrated/before-hospital-20261014.app，记录在 promotion.json）。游戏里门房、护士暂时是警署人物替身，孩子床位只有对话没有人，其余 11 人不出现，直到用户同意下载、逐人看过并写入 acceptance.json。
+- 生成物：只还原了 11 个纯浮点噪声文件；全镇重建带来的其他生成物改动（场景、若干预制件、绿化网格）保留。未提交、未推送。
+- 后续（同日）：用户同意下载并在看过 `output/demo/hospital/cast/` 三张验收图后批准全部 14 人。导出流程：动画页底部 Export → 改文件名为 `<Role>-Tripo-idle-walk-talk` → Number of Animations → Select All（3/3）→ Animation stay in Place 保持关闭 → Export，约 20–35 秒下载到 ~/Downloads，再移入 `builds/hospital/downloads/<Role>/` 单独目录后用 `import_period_character.py --cast hospital` 导入（`builds/hospital/import_one.sh`）。新导航后的页面在同一批操作里点击常被吞掉，先截一次图再点。前臂深度检测 13 人约 2 cm，与警署五人相同；出诊医生待机一帧 6.2 cm，特写看是手在口袋前，无可见穿模。
+- 真模型进游戏后看截图改了三处：床上隆起的被子两头收窄像棺材 → 改成铺满床宽到床尾；躺着的老人待机手臂微张、从被子两侧伸出 → `HospitalBedPose.armsIn` 先把手臂收到身侧；坐床的人手抬在胸前 → 肩 16°、肘 76°，手落到腿上的被子。医院检测加了 11 人逐个取景和一次 E 键寒暄（不改进度）。
+- 最终候选 df4c69b6…：17 项静音原生检查（医院＋读档、第一幕 1080／720 各＋读档、警署＋读档、警署人物、乘车＋读档、全图两项、昼夜两项、地图两项）与 EditMode 114／114 全过，正常存档未变；已更新桌面入口（前一版备份 before-hospital-cast-20261014.app）。截图 `output/demo/hospital/review/`。未提交、未推送。
+
+### HOSPITAL-02：医院证据、见到孩子时的过场、人物口型（2026-10-14，Claude Code）
+
+- 用户：先结合悬疑小说和电影，再结合本案设计证据内容并放进游戏；见到孩子、她开口说话时进入 CG，让玩家坚定找出凶手的决心；把人物说话时嘴不动的问题解决。
+- 设计：docs/research/mystery-evidence-design.md。参考了克里斯蒂、松本清张《点与线》、克罗夫茨、塞耶斯《五条红鲱鱼》、东野圭吾、可伦坡、《记忆碎片》《禁闭岛》《天使心》、《罗生门》，以及奥伯拉丁／她的故事／逆转裁判。核心原则：每份记录写明按哪只钟记时，但记录本身不说哪只钟错了。
+- 材料：Y01 登记簿（门房的表，准）、Y02 收据存根（事务室挂钟，跟着镇钟快约半小时）、Y03 孩子的画（背面有日期）、Y04 护士证言。合同在 `docs/mvp-evidence.json` 的 `hospital_1931`，生成器是 `tools/hospital/evidence.py`。报告新增 D02 医院版（不需要 E05，核心推理第一次能真正完成）和 D05（新增陈述 S5：失窃申报的数额）。顺带修了两处既有设定冲突：H09 的出生年 1919 改为 1922，E10 的「他」改为「她」。
+- 过场：`DemoApp.HospitalCinematic.cs`，复用同一套对话和存档。两个坑：协程在 StartCoroutine 时会同步跑到第一个 yield，所以对话还没打开就被判成「提前关闭」，改为先 yield 一帧；过场结束后把玩家放回床边固定点会卡在椅子和床之间，改为放回开始说话时站的位置。看截图后又改了三处：近景太近、选项挡住脸、苹果是八棱柱（改成 16 段圆苹果加果柄）。
+- 口型：`Editor/PeriodCharacterMouth.cs`。第一版按几何唇缝切开网格，结果有锯齿、嘴角白三角，PatientBoy 和 VisitorGranny 的嘴开在唇线上方。改成：从 BaseColor 贴图找唇线（要求上下两侧都比它亮，胡子边缘就不算），以侧面轮廓的唇间凹处为先验，每米扣 4 分；网格不切开，唇线上贴一条深色口缝，上沿跟头、下沿跟下颌。19 人都通过。门房的唇线被胡子遮住，嘴在下唇下方张开，可以接受。对照图用 `PeriodCharacterMouthReview.Render` 生成。
+- 验证（程序集 209c66d4…）：17 项静音原生检查全过，EditMode 114／114，正常存档 c71b6de4… 未变。桌面版已更新，`promotion.json` 已记录。截图在 `output/demo/hospital/cg/`。
+- 用户中途装好了 GitHub CLI（在 `~/.local/bin/gh`，PATH 写在 `.zprofile` 里，非交互 shell 要写全路径），已登录 xichengchen1111-hub。未提交、未推送。
+
+### HOSPITAL-03：过场字幕进黑边、床上的人不做手势；学分镜（2026-10-14，Claude Code）
+
+- 用户反馈（附两张截图）：过场的选项框在画面正中挡视线；孩子手臂穿模严重。用户还要求先搜分镜和台词相关的 skill 学习，有必要再下载。
+- Skill：用户的 skill 库和插件目录里都没有。网上找到开源的「山音超级导演大师」（Shanyin-ai/shanyin-director-master，MIT 许可，583 星），用 gh api 只读了 SKILL.md 和 shot-design、core-methodology、storyboard-format 几份参考，没有安装也没有运行。学到的方法（叙事目的、对白处理不只正反打、景别推近对应情感推近、空间介入、出彩镜头只用一两次、克制、台词口语化）和 15 镜分镜表写进了 docs/research/mystery-evidence-design.md 第四节。
+- 选项：字幕和选项都放进下方黑边。等待选择时，黑边加深到画面高度的 22%，选项横排在字幕下面。操作与全游戏统一的对话规范一致：右下角小箭头、右下四分之一区域点击继续、H 回看、Esc 退出。坑：黑边刚开始滑入时，选项会短暂盖在画面上（检测抓到了这一点），改为选项栏单独展开、选项随它淡入。
+- 穿模的原因：`HospitalBedPose` 是在动画之上再弯肩、弯肘，说话时的手势片段前臂本来就抬着，叠加 76° 弯肘后手进了脸里。改法：给床上和长凳上的人设 `PeriodCharacterPerformance.gestures=false`，说话时保持待机姿势，只有口型和轻微点头。`IsSpeaking` 改为不依赖动画参数。
+- 新检测（医院过场内）：孩子不进 Talk 状态、双手离头部骨骼超过 20 cm（实测 28 cm，后来半躺后是 39 cm）、选项全部在画面以下。
+- 第一次重跑时过场一开始就被判成「提前关闭」：StartCoroutine 会同步跑到第一个 yield，那时对话还没打开。改为先 yield 一帧。过场结束后把玩家放到床边固定点会卡在椅子和床之间，改为放回开始说话时站的位置。
+
+### HOSPITAL-04：孩子第二版——病号服、虚弱、半躺、动作少（2026-10-14，Claude Code）
+
+- 用户：孩子要看起来虚弱、累，穿病服，让人一看就觉得可怜；重病所以动作少，不要一说话手就动来动去；躺低一点。问用哪种做法时，用户选了「Tripo 重做孩子」，这个选项包含同意下载。
+- Tripo（用户 Chrome 已登录，积分 21570→21445）：
+  - 参考图用 GPT Image 2.5 生成（免费），风格图仍是值班警员。第一版措辞（gravely ill、very slight and frail、nightgown slightly too big）生成失败，改成平实的病房用语后成功。
+  - 两张里选了左边那张，眼下阴影更重。生成用 H3.1＋8K（65 积分），四边面减到 10005 面（40），Unity Humanoid Compatible（20），套 idle、walk 和保存过的 Calm Conversation Gestures。导出 2k、3/3 动画。
+  - 图片生成和减面完成后页面不会自己刷新，要重新载入才看得到结果。
+  - 资产号 8a7479b7-5b25-47b1-8509-8588a048a233，记在 production-status.json 的 revisions。
+- 新角色名 `ChildGown`，单独导入，没有覆盖第一版 `Child`。`HospitalCastAuthoring.ChildId` 只在 ChildGown 放行时用它，`-childPreview` 可以在批准前预览。自穿插检测：手 0 cm，袖子 2.04 cm，与第一版相同。用户看过 output/demo/hospital/cast/childgown-approval.jpg 后回答「通过，换上」，acceptance.json 已按哈希放行。
+- 半躺：
+  - 后仰 30°，枕头改成斜垫（build_hospital.py 里 child 专用的两块枕头和法线计算）。人物位置往床尾挪 16 cm，被子翻边在 -d/2+.6。
+  - 下巴压低 22°（`headForward`），头歪 7°，转头又慢又小（turnRate 1.3，左右 30°，上下 10°／8°），手放在被子边上（肩 3、肘 26、内收 12）。
+  - 待机放慢到 0.55（`PeriodCharacterPerformance.pace`），嘴张合乘 0.65。过场里父亲的位置改从床边椅子算，不再相对孩子。
+  - `HospitalChildReview.Render` 不用出包就能出侧面、床尾、父亲视角三个角度的静帧。批处理里第一张图偶尔贴图还没加载，人是全黑的，第二张以后正常。
+
+### HOSPITAL-05：深夜开局、孩子会眨眼、笑和流泪、嘴型修正（2026-10-14，Claude Code）
+
+- 用户看了过场录像后的反馈：
+  - 小女孩在床上平移；
+  - 不会眨眼；
+  - 光源要处理：第一幕和进医院都在深夜，开局是晚上 9 点，光更暖更柔；
+  - 见到父亲时嘴角带笑，然后微微流泪，眼角可以有泪；
+  - 嘴巴动得有点怪。
+- 平移：待机动画在挪髋部。`HospitalBedPose` 把髋部固定在制作时的位置（`hips`／`hipsRest`）。
+- 嘴型：之前每个字都完全闭合，一秒开合五次，像木偶；口缝又是纯黑，像一道切口。改成整句话里最小保持约三分之一张开，只在标点处闭合，跟随速度从 28 降到 15，口腔改成深红棕色（.15, .05, .045）。
+- 深夜开局：
+  - 时钟存的是从 17:55 起算的累计分钟，直接改起点常量会让所有旧存档往后跳 3 小时 5 分。改为新开局（没有存档、第一幕 stage 0）预先走过 185 分钟（`GameClock.OpeningElapsed`）。
+  - 检测里没有依赖开局时刻的地方，计时类检测都用自建的 GameClock。
+  - 医院检测和过场录像改在 22:40 进行。
+- 光：病房吊灯改成 #FFD8A8，强度 2.7，范围 7.8 m；过场主光改为椅子一侧上方的暖光（1, .79, .56），强度 .65，范围 3.4 m。
+- 台词改成夜里的说法：「今晚会来」「你多晚来都让你进来」，走廊里那句改成「孩子们都睡下了」。字体字形已覆盖，仍是 1280 个。
+- 表情（只给 ChildGown，`PeriodCharacterMouth.Expressive`），都在构建期加在同一网格上：
+  - 眼睛位置：按贴图颜色找，皮肤偏暖（红明显高于蓝），眼白和虹膜偏灰绿，瞳孔和睫毛偏暗，眼白也比皮肤亮。
+  - 三个坑：
+    - 骨架的眼睛标记比眼睛高约 1 cm，而且偏内侧，所以搜索窗口要往下、往外放宽。
+    - 只看亮度找不到灰绿色的虹膜。
+    - 调试图第一次被我上下翻转看反了。
+  - 调试图写在 `builds/cast-review/face-debug/`。
+  - 上眼睑：一块单一皮肤纹理加一行睫毛色。最初逐点取纹理会跨到图集接缝，眼睑上出现了病号服的条纹。眼睑用 Blink 形变闭合，平时停在 16%，显得累。
+  - 笑：Smile 形变把嘴角抬高约 2.6 mm、向外 1 mm。
+  - 泪：下眼睑一条泪膜（TearFilm），左眼内眼角一道泪痕（TearFlow，8 帧沿脸颊展开）。材质是 URP Lit 透明、保留高光、关掉环境反射；开着环境反射时泪痕映出夜空，看起来像一道蓝色划痕。
+  - 运行时由 `PeriodCharacterExpression` 驱动：每 2.5–6 秒眨一次眼，偶尔连眨两下。情绪由 `ChildMoods` 按台词设定。
+- 验证（程序集 f60823a0…）：
+  - 17 项静音原生检查全过，EditMode 114/114。
+  - 第一幕检测的存档里，开局 6 游戏分钟后怀表是 21:06。乘车检测是直接从律师邀请那一步开始的，不走新开局，仍在 18 点左右，不影响它检测的内容。
+  - 正常存档 c87ab80d… 未变，桌面版已更新（备份 before-night-face-20261014.app）。
+  - 深夜版过场录像 99.7 秒，在 output/demo/hospital/cg/。
+- 本轮之前的两次桌面更新：ff218900…（ChildGown 第二版加录像模式），b31e220d…（字幕放进黑边、床上不做手势）。
+- 推送：用户要求 push（gh 已登录，CLI 在 ~/.local/bin/gh）。HOSPITAL-01 到 05 的全部本地改动作为 3c36bdc 推到 main（fe0adc8..3c36bdc），共 802 个文件、约 678 MB。
+  - 提交前沿用警署人物的做法，在 .gitignore 里加了 `assets/source/hospital-cast/*/tripo/original/` 和 `*.blend[0-9]`。Tripo 原始下载包和解包副本（约 214 MB）留在本地，名称和哈希记在 production-status.json、acceptance.json 和各角色的 import-results.json 里。
+  - 空的 ZFightRepair/Hospital 文件夹加了 .gitkeep，让它的 .meta 有对应的文件夹。
+  - pre-commit 只提示了超过 10 MB 的文件（各角色的 Character.blend 约 10–11 MB，Town／ClockShop 场景 26–31 MB），没有超过 45 MB 的，output/ 下也没有 PNG 或视频。

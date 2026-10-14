@@ -1,0 +1,168 @@
+{
+ "first": "greeting",
+ "revisit": "again",
+ "nodes": [
+  {
+   "id": "greeting",
+   "speaker": "护士",
+   "text": "您来了。孩子醒着，一直在等您。",
+   "next": "topics"
+  },
+  {
+   "id": "topics",
+   "speaker": "护士",
+   "text": "探视的时候，尽量说些平常的话。孩子最怕的，是大人也慌。",
+   "choices": [
+    {
+     "text": "孩子这几天怎么样？",
+     "target": "ask-child",
+     "topic": "hospital.sister.child"
+    },
+    {
+     "text": "孩子是怎么住进来的？",
+     "target": "ask-accident",
+     "topic": "hospital.sister.accident"
+    },
+    {
+     "text": "我太太平时……是个怎样的人？",
+     "target": "ask-wife",
+     "topic": "hospital.sister.wife"
+    },
+    {
+     "text": "她最后一次来医院，是什么时候？",
+     "target": "ask-left",
+     "topic": "hospital.sister.left"
+    },
+    {
+     "text": "我该怎么同孩子说？",
+     "target": "ask-how",
+     "topic": "hospital.sister.how"
+    },
+    {
+     "text": "谢谢。我过去了。",
+     "target": "bye"
+    }
+   ]
+  },
+  {
+   "id": "ask-child",
+   "speaker": "你",
+   "text": "孩子这几天怎么样？",
+   "next": "child"
+  },
+  {
+   "id": "child",
+   "speaker": "护士",
+   "text": "吃得比平时少，夜里醒过两回。白天倒是一直在画画。",
+   "next": "child-doctor"
+  },
+  {
+   "id": "child-doctor",
+   "speaker": "护士",
+   "text": "病情上的事，得等医生查房时再同您讲。我能说的只有一句：孩子很懂事，懂事得叫人心疼。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-accident",
+   "speaker": "你",
+   "text": "孩子是怎么住进来的？",
+   "next": "accident"
+  },
+  {
+   "id": "accident",
+   "speaker": "护士",
+   "text": "……您不记得了？一九二八年五月，车祸。是您开的车。",
+   "next": "accident-wife"
+  },
+  {
+   "id": "accident-wife",
+   "speaker": "护士",
+   "text": "您太太觉得，只要您那时没有分心，孩子就不会躺在这里。她这么想了很多年了。",
+   "next": "accident-seen"
+  },
+  {
+   "id": "accident-seen",
+   "speaker": "护士",
+   "text": "可每个探视日都来的，也是您。这两件事，我都看在眼里。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-wife",
+   "speaker": "你",
+   "text": "我太太平时……是个怎样的人？",
+   "next": "wife"
+  },
+  {
+   "id": "wife",
+   "speaker": "护士",
+   "text": "嘴上不饶人，对我们也一样。可也有时候，她给孩子带一整篮苹果，自己一个都不吃。",
+   "next": "wife-angry"
+  },
+  {
+   "id": "wife-angry",
+   "speaker": "护士",
+   "text": "她最生气的时候，会说是您毁了这个家。这话，孩子多半也听见过。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-left",
+   "speaker": "你",
+   "text": "她最后一次来医院，是什么时候？",
+   "next": "left"
+  },
+  {
+   "id": "left",
+   "speaker": "护士",
+   "text": "礼拜二下午。那天本来不让探视，护士长给了特许。她坐了一个多钟头，把苹果削成小块喂孩子。",
+   "next": "left-pay",
+   "grantEvidence": "Y04"
+  },
+  {
+   "id": "left-pay",
+   "speaker": "护士",
+   "text": "走的时候说要去缴费窗口。后来听事务室说，她把护理费一直付到了四月底——从前她总是拖着。",
+   "next": "left-where"
+  },
+  {
+   "id": "left-where",
+   "speaker": "护士",
+   "text": "她走时没说去哪。门房那儿有登记簿，事务室有收据存根，您要看，就去看吧。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-how",
+   "speaker": "你",
+   "text": "我该怎么同孩子说？",
+   "next": "how"
+  },
+  {
+   "id": "how",
+   "speaker": "护士",
+   "text": "照实说您能说的。别许您做不到的愿——孩子记性好，会一直等下去。",
+   "next": "topics"
+  },
+  {
+   "id": "bye",
+   "speaker": "护士",
+   "text": "去吧。靠院子那一侧，第三张床。"
+  },
+  {
+   "id": "again",
+   "speaker": "护士",
+   "text": "孩子在等您。靠院子那一侧，第三张床。",
+   "next": "topics"
+  },
+  {
+   "id": "after",
+   "speaker": "护士",
+   "text": "孩子今天多吃了半碗粥。您答应过的事，孩子一个字都没忘。",
+   "next": "topics"
+  }
+ ],
+ "evidence": {
+  "id": "Y04",
+  "title": "病房护士的证言",
+  "source": "儿童病房 · 病房护士（谈话记录）",
+  "body": "“礼拜二下午她来过。那天本来不让探视，护士长给了特许。她坐了一个多钟头，把苹果削成小块喂孩子。走的时候说要去缴费窗口。后来听事务室说，她把护理费一直付到了四月底——从前她总是拖着。她走时没说去哪。”"
+ }
+}

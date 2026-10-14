@@ -1,0 +1,29 @@
+{
+  "role": "PatientMan",
+  "tripoAsset": "104f7c78-4101-4cae-ade6-79da26fb68b0",
+  "archive": "assets/source/hospital-cast/PatientMan/tripo/original/PatientMan-Tripo-idle-walk-talk-c4e4bcd8d886.zip",
+  "archiveSHA256": "c4e4bcd8d8869bed6ae12f98285ac54e7f06298d59ec2b6effe4bdac77aa5af4",
+  "originalPreserved": true,
+  "heightMetres": 1.69,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/PatientMan/tripo/original/export-c4e4bcd8d886/tripo_convert_046be5d5-4665-4ae2-af02-afe61b272ac6.fbm/tripo_image_046be5d5-4665-4ae2-af02-afe61b272ac6_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/PatientMan/tripo/original/export-c4e4bcd8d886/tripo_convert_046be5d5-4665-4ae2-af02-afe61b272ac6.fbm/tripo_image_046be5d5-4665-4ae2-af02-afe61b272ac6_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/PatientMan/tripo/original/export-c4e4bcd8d886/tripo_convert_046be5d5-4665-4ae2-af02-afe61b272ac6.fbm/PatientMan-Tripo-idle-walk-talk_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/PatientMan/tripo/original/export-c4e4bcd8d886/tripo_convert_046be5d5-4665-4ae2-af02-afe61b272ac6.fbm/PatientMan-Tripo-idle-walk-talk_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/hospital-cast/PatientMan/tripo/Character.blend",
+  "unity": "game/Assets/Art/HospitalCast/PatientMan/Character.fbx",
+  "motion": "game/Assets/Art/HospitalCast/PatientMan/Motion.json",
+  "fixtureLabel": "",
+  "sourceSHA256": "54021025f0b82710836c5d29ff52c8797695d822cd1959db10cdfbb6b06bdbc1",
+  "fbxSHA256": "0c13e655ac759a87a3f6c3c06a5d48e14c75e6a0f82c57791e1eae24f1487e38",
+  "license": "No third-party license inherited from existing characters; retain any license in original export.",
+  "runtimeVerified": false,
+  "meshSelfIntersectionVerified": false,
+  "appearanceAccepted": false
+}

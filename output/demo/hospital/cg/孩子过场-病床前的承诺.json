@@ -1,0 +1,39 @@
+{
+  "source": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/builds/hospital/showcase/showcase-hospital-cg",
+  "video": "孩子过场-病床前的承诺.mp4",
+  "seconds": 99.56,
+  "nativeFrames": 2947,
+  "size": [
+    1920,
+    1080
+  ],
+  "audioGain": 20.0,
+  "marks": [
+    {
+      "name": "ward",
+      "frame": 0,
+      "time": 0.0006605
+    },
+    {
+      "name": "cinematic",
+      "frame": 163,
+      "time": 5.5288812
+    },
+    {
+      "name": "card",
+      "frame": 2643,
+      "time": 89.4608044
+    },
+    {
+      "name": "bedside",
+      "frame": 2751,
+      "time": 93.128604
+    },
+    {
+      "name": "end",
+      "frame": 2923,
+      "time": 98.9619645
+    }
+  ],
+  "method": "Native game window and listener mix of a scripted run with the real controller and the ordinary E ray; recorded speed. Scripted inputs are not physical keyboard play."
+}

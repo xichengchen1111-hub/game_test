@@ -1,0 +1,346 @@
+{
+  "first": "greeting",
+  "revisit": "revisit",
+  "nodes": [
+    {
+      "id": "greeting",
+      "speaker": "孩子",
+      "text": "……爸爸。",
+      "next": "waited"
+    },
+    {
+      "id": "waited",
+      "speaker": "孩子",
+      "text": "护士说你今晚会来。我一直没敢睡，怕一睡着，你就走了。",
+      "choices": [
+        {
+          "text": "我来了。对不起，来晚了。",
+          "target": "late"
+        },
+        {
+          "text": "让我好好看看你。",
+          "target": "look"
+        }
+      ]
+    },
+    {
+      "id": "late",
+      "speaker": "孩子",
+      "text": "不晚。护士长说了，你多晚来，都让你进来。",
+      "next": "mother"
+    },
+    {
+      "id": "look",
+      "speaker": "孩子",
+      "text": "我没变样。就是辫子是护士扎的，没有妈妈扎得紧。",
+      "next": "mother"
+    },
+    {
+      "id": "mother",
+      "speaker": "孩子",
+      "text": "护士长说，妈妈不会再来了。",
+      "next": "mother-apples"
+    },
+    {
+      "id": "mother-apples",
+      "speaker": "孩子",
+      "text": "她上回来，带了一整篮苹果，说下回再带。苹果还在柜子上，我没舍得吃完。",
+      "next": "mother-ask"
+    },
+    {
+      "id": "mother-ask",
+      "speaker": "孩子",
+      "text": "爸爸，是有人害了妈妈吗？",
+      "choices": [
+        {
+          "text": "是。有人害了她。我还不知道是谁。",
+          "target": "who"
+        },
+        {
+          "text": "这些事，本不该让你听见的。",
+          "target": "heard"
+        }
+      ]
+    },
+    {
+      "id": "who",
+      "speaker": "孩子",
+      "text": "那警察知道吗？",
+      "next": "police"
+    },
+    {
+      "id": "heard",
+      "speaker": "孩子",
+      "text": "我听得见。夜里护士们在门口说话，以为我睡着了。",
+      "next": "police"
+    },
+    {
+      "id": "police",
+      "speaker": "孩子",
+      "text": "她们还说，警察把你也带走了。",
+      "next": "police-fear"
+    },
+    {
+      "id": "police-fear",
+      "speaker": "孩子",
+      "text": "你会不会也不回来了？",
+      "choices": [
+        {
+          "text": "不会。我保证。",
+          "target": "stay-promise"
+        },
+        {
+          "text": "我不敢保证。可只要能来，我一定来。",
+          "target": "stay-honest"
+        }
+      ]
+    },
+    {
+      "id": "stay-promise",
+      "speaker": "孩子",
+      "text": "你保证的。我记下了。",
+      "next": "ask"
+    },
+    {
+      "id": "stay-honest",
+      "speaker": "孩子",
+      "text": "……嗯。你从来不骗我。那你能来的时候，一定要来。",
+      "next": "ask"
+    },
+    {
+      "id": "ask",
+      "speaker": "孩子",
+      "text": "那你再答应我一件事，好不好？",
+      "next": "ask-find"
+    },
+    {
+      "id": "ask-find",
+      "speaker": "孩子",
+      "text": "把害妈妈的那个人找出来。不然我一闭上眼，就觉得他还在外面走来走去。",
+      "choices": [
+        {
+          "text": "我答应你。我会把那个人找出来。",
+          "target": "promise"
+        },
+        {
+          "text": "我会查清楚。不管查到的是什么。",
+          "target": "promise-truth"
+        }
+      ]
+    },
+    {
+      "id": "promise",
+      "speaker": "孩子",
+      "text": "嗯。你答应的事，从来都做到。",
+      "next": "promise-mother"
+    },
+    {
+      "id": "promise-truth",
+      "speaker": "孩子",
+      "text": "嗯。查清楚了，你要第一个告诉我。",
+      "next": "promise-mother"
+    },
+    {
+      "id": "promise-mother",
+      "speaker": "孩子",
+      "text": "妈妈有时候很凶，对你最凶。可她给我削苹果，皮从头到尾都不断。",
+      "next": "promise-end"
+    },
+    {
+      "id": "promise-end",
+      "speaker": "孩子",
+      "text": "她不该就这么没有了。",
+      "next": "resolve"
+    },
+    {
+      "id": "resolve",
+      "speaker": "你",
+      "text": "不管那个人是谁，我都会找到他。",
+      "next": "stay"
+    },
+    {
+      "id": "stay",
+      "speaker": "孩子",
+      "text": "你坐一会儿再走，好吗？说点别的也行。",
+      "choices": [
+        {
+          "text": "今天吃了些什么？",
+          "target": "ask-eat",
+          "topic": "hospital.child.eat"
+        },
+        {
+          "text": "你在画什么？",
+          "target": "ask-draw",
+          "topic": "hospital.child.draw"
+        },
+        {
+          "text": "夜里睡得好吗？",
+          "target": "ask-sleep",
+          "topic": "hospital.child.sleep"
+        },
+        {
+          "text": "等你好些了，想去哪里？",
+          "target": "ask-wish",
+          "topic": "hospital.child.wish"
+        },
+        {
+          "text": "我该走了。下回再来看你。",
+          "target": "leave"
+        }
+      ]
+    },
+    {
+      "id": "more",
+      "speaker": "孩子",
+      "text": "还有吗？我不困。",
+      "choices": [
+        {
+          "text": "今天吃了些什么？",
+          "target": "ask-eat",
+          "topic": "hospital.child.eat"
+        },
+        {
+          "text": "你在画什么？",
+          "target": "ask-draw",
+          "topic": "hospital.child.draw"
+        },
+        {
+          "text": "夜里睡得好吗？",
+          "target": "ask-sleep",
+          "topic": "hospital.child.sleep"
+        },
+        {
+          "text": "等你好些了，想去哪里？",
+          "target": "ask-wish",
+          "topic": "hospital.child.wish"
+        },
+        {
+          "text": "我该走了。下回再来看你。",
+          "target": "leave"
+        }
+      ]
+    },
+    {
+      "id": "ask-eat",
+      "speaker": "你",
+      "text": "今天吃了些什么？",
+      "next": "eat"
+    },
+    {
+      "id": "eat",
+      "speaker": "孩子",
+      "text": "燕麦粥，还有半个煮鸡蛋。护士说吃完了才给看画册，我就都吃完了。",
+      "next": "more"
+    },
+    {
+      "id": "ask-draw",
+      "speaker": "你",
+      "text": "你在画什么？",
+      "next": "draw"
+    },
+    {
+      "id": "draw",
+      "speaker": "孩子",
+      "text": "我们家。这是你，这是妈妈，提着一篮苹果；最小的这个是我。",
+      "next": "draw-sun"
+    },
+    {
+      "id": "draw-sun",
+      "speaker": "孩子",
+      "text": "太阳还没涂。妈妈说，下回给我带金色的蜡笔来。",
+      "next": "draw-back"
+    },
+    {
+      "id": "draw-back",
+      "speaker": "孩子",
+      "text": "背面写着画的那天。护士教的：画完了，要把日子写上。妈妈也说，日子要写清楚。",
+      "next": "draw-car"
+    },
+    {
+      "id": "draw-car",
+      "speaker": "孩子",
+      "text": "车我涂成了蓝色。其实我已经不记得它是什么颜色了。",
+      "next": "draw-home"
+    },
+    {
+      "id": "draw-home",
+      "speaker": "孩子",
+      "text": "等我画完，你把它带回家，贴在厨房里，好不好？",
+      "next": "more"
+    },
+    {
+      "id": "ask-sleep",
+      "speaker": "你",
+      "text": "夜里睡得好吗？",
+      "next": "sleep"
+    },
+    {
+      "id": "sleep",
+      "speaker": "孩子",
+      "text": "有时候会疼醒。醒了我就数窗户，这一边一共五扇，数到第三遍就又睡着了。",
+      "next": "more"
+    },
+    {
+      "id": "ask-wish",
+      "speaker": "你",
+      "text": "等你好些了，想去哪里？",
+      "next": "wish"
+    },
+    {
+      "id": "wish",
+      "speaker": "孩子",
+      "text": "妈妈说，等我能自己坐满一个钟头，就带我去坐火车。",
+      "next": "wish-yet"
+    },
+    {
+      "id": "wish-yet",
+      "speaker": "孩子",
+      "text": "我还坐不满。可我每天都多坐一会儿。爸爸，等我坐满了，你带我去，好吗？",
+      "next": "wish-answer"
+    },
+    {
+      "id": "wish-answer",
+      "speaker": "你",
+      "text": "好。等这些事过去，我带你去。",
+      "next": "wish-seat"
+    },
+    {
+      "id": "wish-seat",
+      "speaker": "孩子",
+      "text": "那说好了。要靠窗的位子。",
+      "next": "more"
+    },
+    {
+      "id": "leave",
+      "speaker": "孩子",
+      "text": "嗯。",
+      "next": "leave-apple"
+    },
+    {
+      "id": "leave-apple",
+      "speaker": "孩子",
+      "text": "爸爸，最红的那个苹果，我给你留着。你找到那个人，就回来吃。"
+    },
+    {
+      "id": "revisit",
+      "speaker": "孩子",
+      "text": "爸爸，你又来了。……找到那个人了吗？",
+      "choices": [
+        {
+          "text": "还没有。可我没有停下。",
+          "target": "revisit-wait"
+        },
+        {
+          "text": "我在查。一步一步来。",
+          "target": "revisit-wait"
+        }
+      ]
+    },
+    {
+      "id": "revisit-wait",
+      "speaker": "孩子",
+      "text": "嗯。我等着。苹果也等着。",
+      "next": "more"
+    }
+  ]
+}

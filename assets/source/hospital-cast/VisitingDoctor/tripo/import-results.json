@@ -1,0 +1,29 @@
+{
+  "role": "VisitingDoctor",
+  "tripoAsset": "c118f6b7-4e1a-4ea4-91dd-c8c67a73e6c2",
+  "archive": "assets/source/hospital-cast/VisitingDoctor/tripo/original/VisitingDoctor-Tripo-idle-walk-talk-fa5619421165.zip",
+  "archiveSHA256": "fa5619421165315aa4fb2053866d9ede80e6617457d41eaa8ebbc66547aafa63",
+  "originalPreserved": true,
+  "heightMetres": 1.72,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/VisitingDoctor/tripo/original/export-fa5619421165/tripo_convert_18cb12db-05d4-419b-81ff-beb56dfab6c5.fbm/tripo_image_18cb12db-05d4-419b-81ff-beb56dfab6c5_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/VisitingDoctor/tripo/original/export-fa5619421165/tripo_convert_18cb12db-05d4-419b-81ff-beb56dfab6c5.fbm/tripo_image_18cb12db-05d4-419b-81ff-beb56dfab6c5_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/VisitingDoctor/tripo/original/export-fa5619421165/tripo_convert_18cb12db-05d4-419b-81ff-beb56dfab6c5.fbm/VisitingDoctor-Tripo-idle-walk-talk_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/VisitingDoctor/tripo/original/export-fa5619421165/tripo_convert_18cb12db-05d4-419b-81ff-beb56dfab6c5.fbm/VisitingDoctor-Tripo-idle-walk-talk_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/hospital-cast/VisitingDoctor/tripo/Character.blend",
+  "unity": "game/Assets/Art/HospitalCast/VisitingDoctor/Character.fbx",
+  "motion": "game/Assets/Art/HospitalCast/VisitingDoctor/Motion.json",
+  "fixtureLabel": "",
+  "sourceSHA256": "a91ddf29f6004a0c52c4c899f2b9a170d3000d7c977b152233a275237f61daa7",
+  "fbxSHA256": "bed934f5a609ee84b9cb7d7980cef221ec22c7293e33b521d137449b147c4272",
+  "license": "No third-party license inherited from existing characters; retain any license in original export.",
+  "runtimeVerified": false,
+  "meshSelfIntersectionVerified": false,
+  "appearanceAccepted": false
+}

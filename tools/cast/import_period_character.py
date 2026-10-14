@@ -77,7 +77,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--archive", type=Path, required=True)
     parser.add_argument("--blender", type=Path, required=True)
-    parser.add_argument("--role", choices=HEIGHTS, required=True)
+    parser.add_argument("--role", required=True)
+    parser.add_argument("--cast", choices=("police", "hospital"), default="police", help="Which cast folder receives the character")
     parser.add_argument("--height", type=float)
     parser.add_argument("--model", help="Relative FBX path inside archive, required if several FBXs exist")
     for kind in ("idle", "walk", "talk"):
@@ -88,11 +89,14 @@ def main():
     parser.add_argument("--skip-renders", action="store_true", help="Diagnostic export only; not visual acceptance")
     parser.add_argument("--fixture-label", default="", help="Label an isolated test; never use a fixture as an accepted character")
     args = parser.parse_args()
-    root = args.root.resolve(); height = args.height or HEIGHTS[args.role]
-    if not 1.2 <= height <= 2.1:
-        raise ValueError("Character height must be metres in [1.2, 2.1].")
-    source = root / "assets/source/police-cast" / args.role / "tripo"
-    art = root / "game/Assets/Art/PoliceCast" / args.role
+    root = args.root.resolve(); height = args.height or HEIGHTS.get(args.role)
+    if height is None:
+        raise ValueError("Give --height for a role outside the police cast.")
+    # Children of the hospital cast stand as low as 1.1 m.
+    if not 1.0 <= height <= 2.1:
+        raise ValueError("Character height must be metres in [1.0, 2.1].")
+    source = root / "assets/source" / (args.cast + "-cast") / args.role / "tripo"
+    art = root / "game/Assets/Art" / (args.cast.capitalize() + "Cast") / args.role
     review = root / "builds/cast-review" / args.role
     saved, unpacked, signature = preserve_archive(args.archive.resolve(), source / "original")
     models = sorted(unpacked.rglob("*.fbx")) + sorted(unpacked.rglob("*.FBX"))

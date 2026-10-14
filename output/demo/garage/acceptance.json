@@ -6,13 +6,14 @@
     "method": "BuildSlice.BuildStaging",
     "markers": [
       "GARAGE_AUTHORING_PASS: 16 apertures, 6053 solid wall probes, 8 doors, 16 lamps",
-      "FULL_MAP_AUTHORING_PASS: 70 property markers (7 finished)",
+      "HOSPITAL_AUTHORING_PASS (merged hospital act)",
+      "FULL_MAP_AUTHORING_PASS: 70 property markers (8 finished)",
       "BUILDING_LAYOUT_PASS",
       "SLICE_BUILD_PASS"
     ]
   },
   "sources": {
-    "layout": "0131d7ce77927c4499b0642102eb4e7dc7d5d1c2f63aaca8e4ed0444be2079e8",
+    "layout": "5f5c229956abe4aa2eaa48d2e07b64cbcfdd12d9bdb17d8b814a69f73e63357b",
     "fbx": "2f0a6ba92b5338cd4fb720f208d118d4c35bde2246037d065e02ef1a669dd1ae",
     "blend": "72784e932d196a5086cdeb4445b6afb52b52da79ffb8af40052d44e65818b1e5"
   },
@@ -22,7 +23,7 @@
       "resolution": "1920x1080",
       "marker": "GARAGE_REVIEW_PASS",
       "checks": 30,
-      "reviewSeconds": 87.8,
+      "reviewSeconds": 87.9,
       "loftY": 2.77,
       "mechanicChoices": 6,
       "labels": [
@@ -54,12 +55,16 @@
   ],
   "regressions": [
     {
-      "mode": "--review --fresh --review-police + --verify-police-save",
+      "mode": "--review-police + --verify-police-save",
       "marker": "POLICE_REVIEW_PASS / POLICE_SAVE_PASS"
     },
     {
-      "mode": "--review --fresh --review-full-map",
+      "mode": "--review-full-map",
       "marker": "FULL_MAP_REVIEW_PASS (six outdoor visit orders)"
+    },
+    {
+      "mode": "--review-hospital + --verify-hospital-save",
+      "marker": "HOSPITAL_REVIEW_PASS / HOSPITAL_SAVE_PASS"
     },
     {
       "mode": "ZFightScan.Run",
@@ -67,7 +72,7 @@
     },
     {
       "mode": "tools/check_town_map.py",
-      "result": "MAP_CHECK_PASS; 20 actors, 17 routes, route summary unchanged"
+      "result": "MAP_CHECK_PASS"
     },
     {
       "mode": "validate_story.py docs/mvp-evidence.json",
@@ -80,7 +85,8 @@
     "货车车灯误用发光材质；修车匠占位改色过暗像警服；纸面句号落到行首；账房朝车间墙面误用石灰毛石",
     "打磨轮：横山墙屋面法线写反（从外面看到木板底面、从车间里往上看能看到天空），已改正",
     "打磨轮：毛石贴图改为不规则乱石砌（行高、石块长短、圆角与灰缝宽度随机）",
-    "打磨轮：验收脚本瞄准后等待改为与帧率无关，720p 下不再漏检"
+    "打磨轮：验收脚本瞄准后等待改为与帧率无关，720p 下不再漏检",
+    "合并后：零件棚等四处检查区与家具碰撞盒外表面重合，720p 下射线先打中碰撞盒；检查区外扩 5cm，布局合同新增共面检查"
   ],
   "limits": [
     "程序驱动真实控制器与 E 射线，不是物理键鼠或陌生玩家盲测",
@@ -95,5 +101,6 @@
     "resolution": "1920x1080",
     "marker": "GARAGE_GALLERY_PASS",
     "views": "daylight/*.jpg: staged overcast 13:05 (10 views) and clear 14:35 (6 exterior views); visual review only, not a gameplay check"
-  }
+  },
+  "merge": "Merged origin/main fd22029 (hospital act B11). The hospital took report S5/D05, so the garage rule is S6/D06; finished buildings are 8. Capture file names still read report-d05."
 }

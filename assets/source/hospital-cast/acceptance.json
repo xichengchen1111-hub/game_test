@@ -1,0 +1,236 @@
+{
+  "schemaVersion": 1,
+  "note": "Approved by the user in the conversation on 2026-10-14 (\"全部 14 个通过\") after looking at the three review sheets in output/demo/hospital/cast/ (front, side, back, walk and talk of every character, rendered from the prepared source). Forearm depth against the body was measured on every second frame with tools/cast/check_self_intersection.py: about 2 cm for all, the same sleeve-against-coat contact as the approved police cast; the visiting doctor reads 6.2 cm on one idle frame where the close-up shows the hand in front of the coat pocket with nothing visible. A new export or texture revokes the approval until its hashes are reviewed again.",
+  "reviewer": "user (in conversation), 2026-10-14",
+  "characters": [
+    {
+      "role": "Child",
+      "approved": true,
+      "characterSha256": "e5cb6cad86778f838c98183dfab115f0d0636ab84801489d269d2d7de85d1f20",
+      "baseColorSha256": "db1543fb16d1465d72185660b9a51d282b52c11c27e360eb0d8c223dfd2b638a",
+      "normalSha256": "a9bd54190356338dbb6d6dc264d1cbbfd2d7d073cf0d5a71eeb6d04413644e01",
+      "metallicSmoothnessSha256": "aa66766b4cb699c245b0d8302f849e281a8736452a41261012eef6742f3dcd9b",
+      "tripoAsset": "e05f0b5a-4479-49c8-a696-6bbb98272fd3",
+      "archiveSHA256": "88c47b410de44952729a1667fc61192f08931356f8586ed5e3fbb8aee66344a3",
+      "review": {
+        "maxForearmDepthMetres": 0.0205,
+        "renders": "builds/cast-review/Child/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "Porter",
+      "approved": true,
+      "characterSha256": "5dcce3a7daff8f91ebe54419eeef4e5f8ea82b550342a9d75429d36e4c2f14f7",
+      "baseColorSha256": "2ebf0c837238d058e6c4a55b4234e8a47b7c6c5839440f94e07e375d043f3f9d",
+      "normalSha256": "09ca5ab2e1b02f9bb73146554a0013bae8029d60ea4e212c55fbf9d65b8ea3d2",
+      "metallicSmoothnessSha256": "76a54890baf2150061033a415a75f1bc5c70dc4c6d6092171f6d45490db401c3",
+      "tripoAsset": "69afa4ae-ba03-4105-a120-4c5c054425c6",
+      "archiveSHA256": "dd7f48c5e60d74f81366aaa9f94ee09f054710e824fbfe5d02e2303d9722880d",
+      "review": {
+        "maxForearmDepthMetres": 0.0205,
+        "renders": "builds/cast-review/Porter/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "WardSister",
+      "approved": true,
+      "characterSha256": "5721812354f13ffc848755022d5f08f8a258d80d37d9aec06fb8ed4b0f68512b",
+      "baseColorSha256": "d59e9727bc2a03ea5acd87bfc7c9a23c4d2873099b827c1ddb1a5949b29746cd",
+      "normalSha256": "07b54faac8e2c2179c33331bf3959c2869e6cb020ffa8e7b8b469b5f3d32b75d",
+      "metallicSmoothnessSha256": "6026f73b77ebc44dc73a574f21309fe14b53498c94e083930d15be345d314597",
+      "tripoAsset": "7b3b03f3-88d0-473e-afbc-dedcbbac20f0",
+      "archiveSHA256": "c87a081d7b25aeaf138eabd026e0ea2004e26bae11f65895fe756246d9dc7c94",
+      "review": {
+        "maxForearmDepthMetres": 0.0203,
+        "renders": "builds/cast-review/WardSister/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "StaffNurse",
+      "approved": true,
+      "characterSha256": "aa981c4fda00cdc2b57511d5bbbae8531b7e7640fd450f41c7a2f0a24e1423df",
+      "baseColorSha256": "05e0f6212db98d4a457a7e1ca224b563808c85c2eaed720af3aba1947c850f35",
+      "normalSha256": "298cf56edcddf6a5977473b40c976128307e177b814d63048c31e0c31c17432f",
+      "metallicSmoothnessSha256": "c7ab7323a39f72c651b474cf525c39b63eae9dc332648a113eba9cb4f8dd18ea",
+      "tripoAsset": "52621e72-cea4-491f-9839-d88185b20573",
+      "archiveSHA256": "443257350c6444b4506db8f59a3b50bac33e36fe785ba71fd77e9ceb87afc357",
+      "review": {
+        "maxForearmDepthMetres": 0.0202,
+        "renders": "builds/cast-review/StaffNurse/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "Probationer",
+      "approved": true,
+      "characterSha256": "c21d50b90c0a0a5a7d6f4d2d0b1f4518f87e4e2ea1ea86091729bb8dc830d1db",
+      "baseColorSha256": "0b429f6dc63ffd94f413333210fe5f69af82b825d40bb6804828daa0b74fe7d3",
+      "normalSha256": "e14527aef08d058fa5a9fc9c941545d2e1b2c9727e1b405225114a2b686109d5",
+      "metallicSmoothnessSha256": "84a9e912a5a57125a92bf8f2c7231cd66efc358bd0c405870192f7ab10f319f5",
+      "tripoAsset": "93d9228a-27cc-48a5-8a62-9a7df8708be5",
+      "archiveSHA256": "14c8685e2f258fcc35946d992caf979babac09ba70d925fdc2eae02b7792011f",
+      "review": {
+        "maxForearmDepthMetres": 0.0199,
+        "renders": "builds/cast-review/Probationer/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "Matron",
+      "approved": true,
+      "characterSha256": "eeb8f1f571c73808c6e891cf0ef3df174fb118ebefa9cfe566ce16ae9f1487a7",
+      "baseColorSha256": "8022a2598e8906522bc089b91d781401b31bb772a0606f1636f2d6583ea9b056",
+      "normalSha256": "09ffe56d1fca6a88dca5610db4a5dc7d2d4432b96dd44bc263f1971f3871f29a",
+      "metallicSmoothnessSha256": "2e51fd97713a9965a47645a490df00a2785580453ba943ba6988a01e704b1503",
+      "tripoAsset": "30081598-ddce-4208-9faf-4f42024bd758",
+      "archiveSHA256": "787f08e1338edbcb6f9bf168120cbd71b0f11569c9cddf025bbf10b113b6d014",
+      "review": {
+        "maxForearmDepthMetres": 0.0205,
+        "renders": "builds/cast-review/Matron/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "HouseSurgeon",
+      "approved": true,
+      "characterSha256": "bc0efdceca50d4a8268a3586fe2f0a163796eb55e354cf94cc904e1032703b05",
+      "baseColorSha256": "8c38946fdd574cc563600185e22bdf640a10c87b15c646a1975e59c0032f2ed3",
+      "normalSha256": "ede99411eb2c455c525e8545f2973bd46a2bd04e8c9433df49efbbd44257d58b",
+      "metallicSmoothnessSha256": "6abf9117164c6c420e95f4a9eb5be6879b4f64fc5eea2cb4a0c9f245e06f7582",
+      "tripoAsset": "a3cf736b-41c9-4df6-b56b-1e2eabb3cba2",
+      "archiveSHA256": "1eda96b6c5f07a27d7205ac70ca3628a7944ea5dbc1acba53968cf5f68f3419a",
+      "review": {
+        "maxForearmDepthMetres": 0.0203,
+        "renders": "builds/cast-review/HouseSurgeon/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "VisitingDoctor",
+      "approved": true,
+      "characterSha256": "bed934f5a609ee84b9cb7d7980cef221ec22c7293e33b521d137449b147c4272",
+      "baseColorSha256": "0732759c26e163febf2cbf2e96d8c4166c8160f951ce3193cb5832d5c60c4eb4",
+      "normalSha256": "01d6be992cec9f42ce0e4fe1886e9915a5482ee4ef67fd858abbcb403c228ccb",
+      "metallicSmoothnessSha256": "2b2d73a22ccc1877a577ff603309c8888277033c8c0271fa24e02a85694fce2f",
+      "tripoAsset": "c118f6b7-4e1a-4ea4-91dd-c8c67a73e6c2",
+      "archiveSHA256": "fa5619421165315aa4fb2053866d9ede80e6617457d41eaa8ebbc66547aafa63",
+      "review": {
+        "maxForearmDepthMetres": 0.0621,
+        "renders": "builds/cast-review/VisitingDoctor/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "PatientMan",
+      "approved": true,
+      "characterSha256": "0c13e655ac759a87a3f6c3c06a5d48e14c75e6a0f82c57791e1eae24f1487e38",
+      "baseColorSha256": "945d434de24ab997a239ba8a3e35f01c664f8314adbb2eac511522b1063a900a",
+      "normalSha256": "49a455869b1254e59860940c74f3f84b357e6d81e3a405922839dc583e3fc03a",
+      "metallicSmoothnessSha256": "521877774ff33f8501d50b70295ac4fb5e13bc6d8192212bf766d5c89612a8fd",
+      "tripoAsset": "104f7c78-4101-4cae-ade6-79da26fb68b0",
+      "archiveSHA256": "c4e4bcd8d8869bed6ae12f98285ac54e7f06298d59ec2b6effe4bdac77aa5af4",
+      "review": {
+        "maxForearmDepthMetres": 0.0204,
+        "renders": "builds/cast-review/PatientMan/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "PatientWoman",
+      "approved": true,
+      "characterSha256": "e77ddb63baa6273a237641b44e668c308d2d2df342f82bce4e67d6bf5596b3e6",
+      "baseColorSha256": "297a56fa333b3a0494a0f67d2be5e10d453e3132904fb5c208a0d810f994b027",
+      "normalSha256": "9168be35628c6cf5bdf1106e493bff6849e773207802d0a3b84b2004dafbd967",
+      "metallicSmoothnessSha256": "847bdffa68a587bdf8b3d7df88567dfe67beadbcb48aad0eae446dcf22282c69",
+      "tripoAsset": "57bf8d79-c004-4bc6-b1d0-9550b0f11f1f",
+      "archiveSHA256": "82d191782d2bdebb0045b26ed10db4e11aca17065c74c2dcbb724051f6eb7931",
+      "review": {
+        "maxForearmDepthMetres": 0.0205,
+        "renders": "builds/cast-review/PatientWoman/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "PatientBoy",
+      "approved": true,
+      "characterSha256": "29dbce29131f1778d10d5f0c0846e8e093f2962d93e4ad36ff4c4b0e0b87821f",
+      "baseColorSha256": "51d8aed10042990dcb5a95948affb17aafae38df7588141cb0ef60c0849f2ce0",
+      "normalSha256": "99b895680a482c481604244fde438e7fe185e0bd699a1ebf017f6c0e3220f163",
+      "metallicSmoothnessSha256": "cdf8dca6bbec6220d95d412fe8460602029a6efb54fc095258cbfd1c9f3204a7",
+      "tripoAsset": "a3c72fc8-c151-448b-a135-781bf48b7575",
+      "archiveSHA256": "77a8deb981556ef5b2e3ae5ae3038e93b62b1ab0a19a4478c68306e203b91079",
+      "review": {
+        "maxForearmDepthMetres": 0.0214,
+        "renders": "builds/cast-review/PatientBoy/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "VisitorWoman",
+      "approved": true,
+      "characterSha256": "4957910d38c7479f363b7d27c10640b6972a33144100e32d0538782a16c96173",
+      "baseColorSha256": "30928c78f828b72c0ca0ad0cf0a221e7800b7eeaa2d6de0cecddddce4379862e",
+      "normalSha256": "073cad5573d0cac95e7c700b6dff112d8280b9383c59acc8fa80e4ce1f73294e",
+      "metallicSmoothnessSha256": "5d9be42d03c4c5c0383785f88fa9ef7cff79fe12949077de750fc456b859d5b3",
+      "tripoAsset": "edde7ace-8b13-445c-9c69-59c914e12e73",
+      "archiveSHA256": "0e7512d709ae1e5b1f822375f3b8fdfc7e0b37d42044575b176d8f7cbf4ff1b8",
+      "review": {
+        "maxForearmDepthMetres": 0.0205,
+        "renders": "builds/cast-review/VisitorWoman/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "VisitorMan",
+      "approved": true,
+      "characterSha256": "f4a0a03c46bd40884f7d9f82dbf4cd1a105006336ef2bdaae64e2bdf5ad2f20e",
+      "baseColorSha256": "04e845dd071b1381f57bad608eae568f5ce211bf20cbd8e114c3735b3fe2aa44",
+      "normalSha256": "4c8f6e8e17032dfc8029083cb72a774fbc417cba6c7e39dcc170b06c578f5c0c",
+      "metallicSmoothnessSha256": "9d18c74005fde00ece23061f4169c144bba8a118d5e801cdc9395600323eba9c",
+      "tripoAsset": "173ae688-6469-4542-9256-de53440f64d7",
+      "archiveSHA256": "0d506f164a7e34b10db1bb4ae594d574036b9d8ca079b5ec36f6e102e85b695a",
+      "review": {
+        "maxForearmDepthMetres": 0.0205,
+        "renders": "builds/cast-review/VisitorMan/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "VisitorGranny",
+      "approved": true,
+      "characterSha256": "0f6ebc6a4bf69576a58f4b6d96105d2c8d07b8b5bd8a5fba98c18e22b97dc471",
+      "baseColorSha256": "d352697c3c55e4532ad02c1e4b478465c719828d947f41da22fa3e76459bc2d3",
+      "normalSha256": "274c74c67ac6e329d8f7fd5da35782c1c833551436a8590459d82e019cc9cd47",
+      "metallicSmoothnessSha256": "9ffc90a83c1d472fcf80105fdadad2faee1e31b9805dbc1297adfd1d15081320",
+      "tripoAsset": "80c991ab-fb22-411e-9f39-5ece43e1839a",
+      "archiveSHA256": "069155dbf002eb577a9bd95a085a49fb1631795dbc8363630a3e4dd571238df6",
+      "review": {
+        "maxForearmDepthMetres": 0.0204,
+        "renders": "builds/cast-review/VisitorGranny/",
+        "sheet": "output/demo/hospital/cast/"
+      }
+    },
+    {
+      "role": "ChildGown",
+      "approved": true,
+      "characterSha256": "e58a370ee28108f0a1b2294e0cc12278aad6d6457a42e02a833e46bca534782d",
+      "baseColorSha256": "70a3e12afa6ffc67c6c0bf7fb718f8607d047a3a0af2fe3c54f100d4c5aa0750",
+      "normalSha256": "3a87a6e9bef3f484e2302be30f17cd24c3de4ceb145938eda6143f1723556155",
+      "metallicSmoothnessSha256": "90fede07423ff8f87c5528e9f078da2386f3e4f0dae180c09d83254bd2d21852",
+      "tripoAsset": "8a7479b7-5b25-47b1-8509-8588a048a233",
+      "archiveSHA256": "c0743658144bbe8ffc2ac2f65f3bf5b4ad37ba03ce726745be4f237b7984d369",
+      "replaces": "Child",
+      "review": {
+        "maxForearmDepthMetres": 0.0204,
+        "maxHandDepthMetres": 0.0,
+        "renders": "builds/cast-review/ChildGown/",
+        "inBed": "builds/hospital/child-pose-ChildGown/",
+        "sheet": "output/demo/hospital/cast/childgown-approval.jpg"
+      },
+      "note": "Approved by the user in conversation on 2026-10-14 after seeing the sheet ('通过，换上'): revision 2 of the child, hospital gown, pale and tired, half lying in bed."
+    }
+  ]
+}

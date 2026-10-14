@@ -52,6 +52,29 @@ public static class PeriodCharacterAsset {
             }
         }
     }
+    // One character of any cast: explicit approval bound to the reviewed files, as AllPrepared
+    // demands of the police five together. A missing or malformed manifest approves nobody.
+    public static bool Approved(string manifestRelative,string castFolder,string id) {
+        try {
+            string repository=Path.GetFullPath(Path.Combine(Application.dataPath,"../.."));
+            string manifest=Path.Combine(repository,manifestRelative);
+            if(!File.Exists(manifest))return false;
+            var acceptance=JsonUtility.FromJson<CastAcceptance>(File.ReadAllText(manifest));
+            if(acceptance==null||acceptance.schemaVersion!=1||acceptance.characters==null)return false;
+            var matches=acceptance.characters.Where(c=>c!=null&&c.role==id).ToArray();
+            if(matches.Length!=1||!matches[0].approved)return false;
+            string[] files={"Character.fbx","BaseColor.png","Normal.png","MetallicSmoothness.png"};
+            string[] hashes={matches[0].characterSha256,matches[0].baseColorSha256,matches[0].normalSha256,matches[0].metallicSmoothnessSha256};
+            for(int i=0;i<files.Length;i++)if(!ApprovedContent(Path.Combine(repository,"game",castFolder,id,files[i]),hashes[i]))return false;
+            if(!AssetDatabase.LoadAssetAtPath<GameObject>(castFolder+id+"/Character.fbx"))return false;
+            var clips=AssetDatabase.LoadAllAssetsAtPath(castFolder+id+"/Character.fbx").OfType<AnimationClip>().Where(c=>!c.name.StartsWith("__preview__")).ToArray();
+            if(!HasRequiredClips(clips))return false;
+            foreach(string texture in files.Skip(1))if(!AssetDatabase.LoadAssetAtPath<Texture2D>(castFolder+id+"/"+texture))return false;
+            return true;
+        } catch(Exception error) when(error is IOException||error is UnauthorizedAccessException||error is ArgumentException||error is CryptographicException) {
+            return false;
+        }
+    }
     static bool ApprovedContent(string path,string expected) {
         if(expected==null||expected.Length!=64||!expected.All(Uri.IsHexDigit)||!File.Exists(path))return false;
         using(var stream=File.OpenRead(path))using(var algorithm=SHA256.Create()) {
@@ -67,9 +90,10 @@ public static class PeriodCharacterAsset {
         "Lawyer"=>.46f,"CustodyGuard"=>.62f,"DutyOfficer"=>.68f,"PatrolOfficer"=>.46f,"ReceptionOfficer"=>.54f,
         _=>throw new ArgumentException("Unknown period character: "+id)
     };
-    public static GameObject Create(Transform parent,Vector3 position,string id,string title) {
-        float height=Height(id),width=Width(id);
-        string folder=CastFolder+id+"/",model=folder+"Character.fbx";
+    public static GameObject Create(Transform parent,Vector3 position,string id,string title)=>Create(parent,position,CastFolder,id,title,Height(id),Width(id));
+    // Another cast (the hospital's) keeps its own folder and measurements; the import rules are the same.
+    public static GameObject Create(Transform parent,Vector3 position,string castFolder,string id,string title,float height,float width) {
+        string folder=castFolder+id+"/",model=folder+"Character.fbx";
         ImportModel(model);
         var clips=AssetDatabase.LoadAllAssetsAtPath(model).OfType<AnimationClip>().Where(c=>!c.name.StartsWith("__preview__")).ToArray();
         if(!HasRequiredClips(clips))throw new Exception(id+" requires distinct non-empty Idle, Walk and Talk clips from the source export.");
@@ -85,8 +109,15 @@ public static class PeriodCharacterAsset {
             if(direction.sqrMagnitude<.0001f)throw new Exception(id+" has no usable face direction marker.");
             visual.transform.localRotation=Quaternion.AngleAxis(Vector3.SignedAngle(direction,Vector3.back,Vector3.up),Vector3.up)*visual.transform.localRotation;
             var body=CharacterMaterial(folder,false);var mouth=CharacterMaterial(folder,true);
+            // A jaw and a dark mouth opening so the character's mouth moves while speaking (the FBX is untouched).
+            var mouthReport=PeriodCharacterMouth.Add(visual,folder,id);if(!mouthReport.rigged)Debug.LogWarning("PERIOD_CHARACTER_MOUTH_SKIPPED: "+id+" ("+mouthReport.why+")");
             foreach(var renderer in visual.GetComponentsInChildren<Renderer>(true)) {
-                renderer.sharedMaterials=renderer.sharedMaterials.Select((_,i)=>i==0?body:mouth).ToArray();
+                int slots=renderer is SkinnedMeshRenderer skinned&&skinned.sharedMesh?skinned.sharedMesh.subMeshCount:renderer.sharedMaterials.Length;
+                // The speaking mouth adds a submesh for the dark opening after the body's own, and for an
+                // expressive face one more for the tears (PeriodCharacterMouth.Report).
+                bool speaking=renderer is SkinnedMeshRenderer withMouth&&withMouth.sharedMesh&&withMouth.sharedMesh.name.EndsWith("(speaking mouth)");
+                var tears=speaking&&mouthReport.tearSubmesh>=0?TearMaterial(folder):null;
+                renderer.sharedMaterials=Enumerable.Range(0,slots).Select(i=>speaking&&i==mouthReport.mouthSubmesh?mouth:speaking&&i==mouthReport.tearSubmesh?tears:body).ToArray();
                 renderer.shadowCastingMode=ShadowCastingMode.On;renderer.receiveShadows=true;
                 if(renderer is SkinnedMeshRenderer skin)skin.updateWhenOffscreen=true;
             }
@@ -209,10 +240,22 @@ public static class PeriodCharacterAsset {
         }
         return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
     }
+    // Tears: an almost clear, very smooth film whose highlights stay bright (URP Lit, transparent,
+    // preserve specular). It shows only where the TearFilm and TearFlow shapes open it.
+    static Material TearMaterial(string folder) {
+        var path=folder+"Tears.mat";var material=AssetDatabase.LoadAssetAtPath<Material>(path);
+        if(!material){var shader=Shader.Find("Universal Render Pipeline/Lit");if(!shader)throw new Exception("URP Lit shader is required.");material=new Material(shader);AssetDatabase.CreateAsset(material,path);}
+        material.SetFloat("_Surface",1);material.SetFloat("_Blend",0);material.SetFloat("_BlendModePreserveSpecular",1);material.SetFloat("_ZWrite",0);
+        // Only the lamps' highlights: reflecting the night sky made the tear read as a cold blue scratch.
+        material.SetColor("_BaseColor",new Color(1f,.97f,.94f,.1f));material.SetFloat("_Smoothness",.92f);material.SetFloat("_Metallic",0);
+        material.SetFloat("_EnvironmentReflections",0);material.SetFloat("_SpecularHighlights",1);
+        BaseShaderGUI.SetMaterialKeywords(material,UnityEditor.Rendering.Universal.ShaderGUI.LitGUI.SetMaterialKeywords);EditorUtility.SetDirty(material);
+        return material;
+    }
     static Material CharacterMaterial(string folder,bool mouth) {
         var path=folder+(mouth?"MouthInterior.mat":"Body.mat");var material=AssetDatabase.LoadAssetAtPath<Material>(path);
         if(!material){var shader=Shader.Find("Universal Render Pipeline/Lit");if(!shader)throw new Exception("URP Lit shader is required.");material=new Material(shader);AssetDatabase.CreateAsset(material,path);}
-        if(mouth){material.SetColor("_BaseColor",new Color(.065f,.008f,.012f));material.SetFloat("_Smoothness",.1f);}
+        if(mouth){material.SetColor("_BaseColor",new Color(.15f,.05f,.045f));material.SetFloat("_Smoothness",.3f);}
         else {
             material.SetColor("_BaseColor",Color.white);material.SetTexture("_BaseMap",Texture(folder,"BaseColor.png",TextureImporterType.Default,true));
             material.SetTexture("_BumpMap",Texture(folder,"Normal.png",TextureImporterType.NormalMap,false));material.SetFloat("_BumpScale",1);material.EnableKeyword("_NORMALMAP");

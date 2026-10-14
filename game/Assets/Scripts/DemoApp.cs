@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
     public List<NotebookEntry> entries = new List<NotebookEntry>();
     public int openingRevision, openingStage;
     public int openingRideRevision, openingRideStage;
+    public int hospitalRevision, hospitalStage;
     public bool remarkSeen;
     public bool milkboyGreeted;
     public int milkboyGreetingRevision;
@@ -56,7 +57,7 @@ public partial class DemoApp : MonoBehaviour {
     public bool Review { get; private set; }
     public float Minutes => (float)gameClock.MinutesOfDay;
     public bool NPCAnimationPaused => opening || transitioning || paused;
-    public bool Blocked => creatorMenu || opening || transitioning || inspected || journal || paused || DialogueOpen || MilkOrdersOpen || PoliceReportOpen;
+    public bool Blocked => creatorMenu || opening || transitioning || inspected || journal || paused || DialogueOpen || MilkOrdersOpen || PoliceReportOpen || ChildCinematicActive;
     public string CurrentScene { get; private set; } = "Town";
     public bool IsInsideShop { get; private set; }
     BuildingInstance seamlessShop;
@@ -140,7 +141,9 @@ public partial class DemoApp : MonoBehaviour {
         if(!Review&&(Application.productName.EndsWith("第一幕试玩")||Array.IndexOf(args,"--opening-playtest")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-playtest-save.json");
         if(Review&&Array.IndexOf(args,"--review-map-sightlines")>=0)savePath=Path.Combine(Application.persistentDataPath,"map-sightline-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-yard-gate")>=0||Array.IndexOf(args,"--verify-yard-gate-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"yard-gate-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-hospital")>=0||Array.IndexOf(args,"--verify-hospital-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"hospital-review-save.json");
         if(Review&&Array.IndexOf(args,"--showcase-opening")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-opening-save.json");
+        if(Review&&Array.IndexOf(args,"--showcase-hospital-cg")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-hospital-cg-save.json");
         if(Array.IndexOf(args,"--audio-probe")>=0||Array.IndexOf(args,"--audio-probe-muted-start")>=0)savePath=Path.Combine(Application.persistentDataPath,"audio-probe-save.json");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -156,6 +159,7 @@ public partial class DemoApp : MonoBehaviour {
         if(state.reportSubmissions==null)state.reportSubmissions=new List<string>();
         if(state.reportSupported==null)state.reportSupported=new List<string>();
         InitializeOpeningState(args,File.Exists(savePath)&&Array.IndexOf(args,"--fresh")<0);
+        InitializeHospitalState();
         InitializeGameClock(File.Exists(savePath)&&Array.IndexOf(args,"--fresh")<0);
         if (state.scene!="Town" && state.scene!="ClockShop" && state.scene!="OtherTown") state.scene="Town";
         if(previewWindow){state.scene="ClockShop";state.x=0;state.y=.03f;state.z=-.6f;opening=false;}
@@ -220,6 +224,9 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--verify-opening-ride-interrupted")>=0)StartCoroutine(VerifyOpeningRideInterrupted());
             else if(Array.IndexOf(args,"--review-map-sightlines")>=0)StartCoroutine(ReviewMapSightlines());
             else if(Array.IndexOf(args,"--showcase-opening")>=0)StartCoroutine(ShowcaseOpening());
+            else if(Array.IndexOf(args,"--showcase-hospital-cg")>=0)StartCoroutine(ShowcaseHospitalCinematic());
+            else if(Array.IndexOf(args,"--review-hospital")>=0)StartCoroutine(ReviewHospital());
+            else if(Array.IndexOf(args,"--verify-hospital-save")>=0)StartCoroutine(VerifyHospitalSave());
             else if(Array.IndexOf(args,"--review-yard-gate")>=0)StartCoroutine(ReviewYardGate());
             else if(Array.IndexOf(args,"--verify-yard-gate-save")>=0)StartCoroutine(VerifyYardGateSave());
             else if(Array.IndexOf(args,"--review-opening")>=0)StartCoroutine(ReviewOpening());
@@ -523,7 +530,7 @@ public partial class DemoApp : MonoBehaviour {
             }
             if(watch&&!mapOpen&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen) DrawWatch();
             DrawOpeningRide();
-            if(DialogueOpen) DrawDialogue();
+            if(ChildCinematicActive) DrawChildCinematic(); else if(DialogueOpen) DrawDialogue();
             if(houseLetterOpen&&inspected) DrawHouseLetter();
             else if(inspected is ClockTowerAdjustment) DrawTowerAdjustment();
             else if(inspected is HouseContainer) DrawHouseContainer((HouseContainer)inspected);
@@ -552,6 +559,7 @@ public partial class DemoApp : MonoBehaviour {
         DrawFurnitureStatus();
         DrawCarStatus();
         if(fade>0) Box(new Rect(0,0,W,H),new Color(0.018f,0.022f,0.03f,fade));
+        DrawChildCinematicCard();
         GUI.matrix=Matrix4x4.identity;
     }
     void DrawWatch() {
