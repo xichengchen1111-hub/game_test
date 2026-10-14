@@ -10,7 +10,9 @@ public static class StationClerkAsset {
     const string Model=Folder+"StationClerk.fbx";
     // policeOfficer: the D police station's duty officer reuses this approved rig and clips with a
     // navy-recoloured uniform (tools/police/make_officer_texture.py) until a dedicated model exists.
-    public static GameObject Create(Transform parent,Vector3 position,bool policeOfficer=false) {
+    // mechanic: the E garage's 修车匠 (B07) uses the same placeholder approach with a faded brown
+    // work-canvas recolour (tools/garage/make_mechanic_texture.py) until a dedicated model is made.
+    public static GameObject Create(Transform parent,Vector3 position,bool policeOfficer=false,bool mechanic=false) {
         var importer=AssetImporter.GetAtPath(Model) as ModelImporter;
         if(!importer)throw new Exception("Import the approved Tripo station clerk before building.");
         if(!importer.importAnimation||importer.importCameras||importer.importLights||!importer.isReadable||
@@ -29,7 +31,7 @@ public static class StationClerkAsset {
         var clips=AssetDatabase.LoadAllAssetsAtPath(Model).OfType<AnimationClip>().Where(c=>!c.name.StartsWith("__preview__")).ToArray();
         if(clips.Length!=2)throw new Exception("Station clerk requires exactly idle and talk clips.");
         var idle=clips.Single(c=>c.name.Contains("Idle"));var talk=clips.Single(c=>c.name.Contains("Talk"));
-        var root=new GameObject(policeOfficer?"值班警员":"车站售票员");root.transform.SetParent(parent,false);root.transform.localPosition=position;
+        var root=new GameObject(mechanic?"修车匠":policeOfficer?"值班警员":"车站售票员");root.transform.SetParent(parent,false);root.transform.localPosition=position;
         var visual=(GameObject)PrefabUtility.InstantiatePrefab(AssetDatabase.LoadAssetAtPath<GameObject>(Model));visual.transform.SetParent(root.transform,false);
         var bones=visual.GetComponentsInChildren<Transform>();var head=bones.Single(t=>t.name=="Head");var front=bones.Single(t=>t.name=="headfront");
         SaveAvatar(visual,bones);
@@ -37,14 +39,15 @@ public static class StationClerkAsset {
         if(direction.sqrMagnitude<.0001f)throw new Exception("Station clerk face marker is missing.");
         visual.transform.rotation=Quaternion.AngleAxis(Vector3.SignedAngle(direction,Vector3.back,Vector3.up),Vector3.up)*visual.transform.rotation;
         foreach(var skin in visual.GetComponentsInChildren<SkinnedMeshRenderer>()) {
-            skin.sharedMaterials=skin.sharedMaterials.Select((m,i)=>Material(i==0?(policeOfficer?"OfficerBody":"ClerkBody"):"MouthInterior")).ToArray();
+            skin.sharedMaterials=skin.sharedMaterials.Select((m,i)=>Material(i==0?(mechanic?"MechanicBody":policeOfficer?"OfficerBody":"ClerkBody"):"MouthInterior")).ToArray();
             skin.updateWhenOffscreen=true;skin.shadowCastingMode=ShadowCastingMode.On;skin.receiveShadows=true;
         }
         var animator=visual.GetComponent<Animator>();if(!animator)animator=visual.AddComponent<Animator>();
         animator.runtimeAnimatorController=Controller(idle,talk);animator.applyRootMotion=false;animator.cullingMode=AnimatorCullingMode.AlwaysAnimate;
-        var performance=visual.AddComponent<StationClerkPerformance>();performance.animator=animator;if(policeOfficer)performance.speaker="值班警员";
+        var performance=visual.AddComponent<StationClerkPerformance>();performance.animator=animator;if(policeOfficer)performance.speaker="值班警员";if(mechanic)performance.speaker="修车匠";
         idle.SampleAnimation(visual,0);
         var solid=root.AddComponent<BoxCollider>();solid.center=new Vector3(0,.95f,0);solid.size=new Vector3(.46f,1.85f,.36f);
+        if(mechanic){var mechanicTalk=root.AddComponent<Interactable>();mechanicTalk.title="修车匠";mechanicTalk.source="青川修车铺修理车间";mechanicTalk.body="修车匠站在货车旁，手上还有机油。";Debug.Log("GARAGE_MECHANIC_IMPORT_PASS: clerk rig placeholder, work-canvas texture, two in-place animations");return root;}
         if(policeOfficer){var officerTalk=root.AddComponent<Interactable>();officerTalk.title="值班警员";officerTalk.source="青川警署值班接待窗口";officerTalk.body="值班警员在窗口后整理文书。";Debug.Log("POLICE_OFFICER_IMPORT_PASS: clerk rig, navy uniform texture, two in-place animations");return root;}
         var conversation=root.AddComponent<Interactable>();conversation.title="售票员";conversation.source="青川车站售票处";
         conversation.body="检票的时候，会用检票钳在票上打孔。旁边废票桶里的同线路旧票，你可以拿起来看看。\n\n请从候车厅后门前往站台，车厢靠站台的一侧可以登车。坐稳后，列车便会出发。";
@@ -85,11 +88,17 @@ public static class StationClerkAsset {
         if(i.maxTextureSize!=2048||!i.sRGBTexture||!i.mipmapEnabled){i.maxTextureSize=2048;i.sRGBTexture=true;i.mipmapEnabled=true;i.SaveAndReimport();}
         return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
     }
+    static Texture2D MechanicTexture() {
+        const string path="Assets/Art/Garage/Mechanic/BaseColor.png";var i=AssetImporter.GetAtPath(path) as TextureImporter;
+        if(!i)throw new Exception("Run tools/garage/make_mechanic_texture.py first: "+path);
+        if(i.maxTextureSize!=2048||!i.sRGBTexture||!i.mipmapEnabled){i.maxTextureSize=2048;i.sRGBTexture=true;i.mipmapEnabled=true;i.SaveAndReimport();}
+        return AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+    }
     static Material Material(string name) {
         var path=Folder+name+".mat";var m=AssetDatabase.LoadAssetAtPath<Material>(path);
         if(!m){m=new Material(Shader.Find("Universal Render Pipeline/Lit"));AssetDatabase.CreateAsset(m,path);}
-        if(name=="ClerkBody"||name=="OfficerBody") {
-            m.SetColor("_BaseColor",Color.white);m.SetTexture("_BaseMap",name=="OfficerBody"?OfficerTexture():Texture("BaseColor.png",TextureImporterType.Default,true));
+        if(name=="ClerkBody"||name=="OfficerBody"||name=="MechanicBody") {
+            m.SetColor("_BaseColor",Color.white);m.SetTexture("_BaseMap",name=="OfficerBody"?OfficerTexture():name=="MechanicBody"?MechanicTexture():Texture("BaseColor.png",TextureImporterType.Default,true));
             m.SetTexture("_BumpMap",Texture("Normal.png",TextureImporterType.NormalMap,false));m.SetFloat("_BumpScale",1);m.EnableKeyword("_NORMALMAP");
             m.SetTexture("_MetallicGlossMap",Texture("MetallicSmoothness.png",TextureImporterType.Default,false));m.SetFloat("_Metallic",1);m.SetFloat("_Smoothness",1);m.EnableKeyword("_METALLICSPECGLOSSMAP");
         } else {m.SetColor("_BaseColor",new Color(.065f,.008f,.012f));m.SetFloat("_Smoothness",.1f);}

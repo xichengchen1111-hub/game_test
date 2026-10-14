@@ -36,6 +36,10 @@ covers=[box(188-34,46+11.775-11.55/2,188+34,46+11.775+11.55/2)]
 # BuildSlice.Police PoliceCourtyard: the D police station owns its court and loggia floors
 # between the two wings (B10 local x 5.5..17.5, z 12..24; root at world (1, 27.7)).
 covers.append(box(6.5,39.7,18.5,51.7))
+# BuildSlice.Garage: the E stone-barn garage owns its street-front flags (B07 local z -0.7..0,
+# x 0..17.6) and its fenced rear yard paving (local x .1..17.75, z 12..30); root at world (-144, 27.7).
+covers.append(box(-144,27.0,-126.4,27.7))
+covers.append(box(-143.9,39.7,-126.25,57.7))
 holes=unary_union(holes+covers)
 road=unary_union([corridor(r['points'],r['lane']) for r in p['roads'] if r['lane']])
 public=unary_union([corridor(r['points'],r['width']) for r in p['roads']])

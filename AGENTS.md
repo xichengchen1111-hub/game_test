@@ -93,6 +93,16 @@
 - 字体：新增中文后用 `tools/clocktower/expand_ui_font.py builds/review/milk-interior-a/NotoSansSC.ttf` 扩充 TownSans（保留旧字形，源 SHA256 与 `font-manifest.json` 一致）。
 - 验收：`tools/ReviewPolice.ps1 -Mode police` 与 `-Mode verify`（独立 `police-review-save.json`），1080p／720p。结果与回归见 `output/demo/police-station/` 与记忆 POLICE-01。
 
+### 修车铺（E 旧石仓修车院，用户要求完整实现，2026-10-14）
+
+- 用户 2026-10-14 选定 `docs/concepts/repair-shop/round-01/e-stone-barn-garage.png`，要求“按照这个设计，和我们的剧情走，完整实现”。B07 改为临街奶白接待室与账房（5×12m，单层）＋毛石修理车间（12.6×19m，单层通高，车间屋面下有工具库上方的储物阁楼与直跑楼梯，不是第二层楼）＋木栅后院与零件棚。东侧临西巷三扇高窄弧拱铁框窗，窗上各起一个木板横向小山墙；临街山墙低弧拱车门（两扇深胡桃木门，首次都开、向街外开），山墙高窗照亮车间屋架空间。
+- **唯一来源**：布局合同 `tools/garage/garage_layout.py` → `garage-layout.json`／`Resources/GarageLayout.json`（与 `docs/maps/town-current/build_plan.py` 的 B07 覆盖段互相断言轮廓、两门与 10 个外窗）；Blender `tools/garage/build_garage.py`（几何原语、开洞切列、家具与门扇共用警署生成器）→ `assets/source/garage/RepairGarage.blend/.fbx`；Unity `BuildSlice.Garage.cs` 装配 `Assets/Generated/RepairGarage.prefab`，街景与室内同一预制件。贴图 `make_garage_assets.py`，文字与纸面 `write_garage_texts.py`，全部由 `tools/BuildGarage.ps1` 依次重建；不要手改预制件。`GarageChecks` 拒绝堵住、缩小、错位或多出的洞口。全镇编译与绿化把 B07 前沿石板带和后院铺地排除（`build_full_town.py` covers、`plan_greenery.py` protected）。
+- 门：8 扇 `ShopMechanism`（`garage-carriage-door-left/right`、`garage-office-door`、`garage-hall-door`、`garage-records-door`、`garage-store-door`、`garage-rear-door`、`garage-yard-gate`）和零件柜抽屉 `garage-parts-drawer`（牌坯只在拉开后可读）。整栋（车间＋接待室）一个闷雨外壳：拱门两扇、接待室门、后门任一打开即室外雨声；零件棚与门廊雨棚有顶不闷声。
+- 灯：13 盏室内灯只照 Light Layer 4（与警署／住宅共用，相距一百米以上），3 盏外墙灯感光并占 12 处光池；无新增阴影灯。接待桌与账房台灯可手动关，存 `garage-*-lamp-off`。
+- 叙事：修车匠就是情夫，站在车间货车旁（当前探索站位，不是 1 月 20 日位置）。对话 `Resources/MechanicDialogue.json` 沿用修订稿第七节三问原句，另加“抄件来历”（需已读 W01）与“工具牌平时挂在哪里”；不说钟差、日期或凶手，不授予证物。账房书桌上是凯恩车间寄来的 W01 工单抄件与 W02 两位顾客证词抄件（调查簿新记录，实体纸张，按物证检查规范查看）；阶段报告新增非核心规则 D05（S5×行程，需 E01＋W01＋W02），不进入两项核心判断、不自动结案。客户登记本、价目、工具牌挂板空钩、油污手套等只是生活痕迹；登记本与便条措辞待用户确认。合同见 `docs/mvp-evidence.json` 的 `repair_shop_1931`。
+- 修车匠暂用已认可售票员 Tripo 模型改褐色帆布工装（`make_mechanic_texture.py`），脸与售票员、旧值班警员占位相同，是占位；正式人物需用户在 Tripo 制作。
+- 验收：`tools/ReviewGarage.ps1 -Mode garage` 与 `-Mode verify`（独立 `garage-review-save.json`），1080p／720p；白天外观用 `--review --fresh --review-garage-day` 固定机位目视。结果见 `output/demo/garage/` 与记忆 GARAGE-01。
+
 ### 仓库体积与证据文件（用户确认，2026-10-12）
 
 - 仓库开工一周已约 1.7GB：验收截图与录屏约占 54%，美术原始文件与导入美术约 39%，构建生成的网格只有约 1.4%。GitHub 建议仓库最好在 1GB 以内、不超过 5GB，所以按下面的规则控制增长；已在历史中的文件不改写、不强推。

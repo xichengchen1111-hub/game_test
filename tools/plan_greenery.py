@@ -23,6 +23,9 @@ entrances=unary_union([Point(*b[k]).buffer(1.65) for b in p['buildings'] for k i
 protected=[box(143,30,231,95),rect(town['milkRect']).buffer(1.7),box(143,-26,184,18)]
 # The D police court (paved, own tree and benches in BuildSlice.Police) is not a lawn.
 protected.append(box(6.5,39.7,18.5,51.7).buffer(.3))
+# The E garage's flagged street front and fenced cobbled yard (BuildSlice.Garage) are not lawns.
+protected.append(box(-144,27.0,-126.4,27.7).buffer(.3))
+protected.append(box(-143.9,39.7,-126.25,57.7).buffer(.3))
 protected += [rect(d['rect']).buffer(.3) for d in p['details'] if d['kind'] in ['service','shed']]
 protected += [rect(d['rect']).buffer(.3) for d in p['land'] if d['kind'] in ['rail','court','workyard']]
 protected += [Point(*f['point']).buffer(max(f['width'],f['depth'])/2+.8) for f in p['facilities']]

@@ -80,7 +80,7 @@ public static partial class BuildSlice {
         var shop=InstantiateShop(false);MapMarker(shop.gameObject,plan.Building("B02"),true);
         var tower=InstantiateClockTower();MapMarker(tower,plan.Building("B01"),true);
         StreetSurfaces.BuildFull(plan);
-        foreach(var b in plan.buildings)if(b.id=="B12"){var home=HouseAuthoring.Create();MapMarker(home,b,true);}else if(b.id=="B17")StationTown(b);else if(b.id=="B10")PoliceTown(b);else if(b.id!="B01"&&b.id!="B02")PlaceholderBuilding(b);
+        foreach(var b in plan.buildings)if(b.id=="B12"){var home=HouseAuthoring.Create();MapMarker(home,b,true);}else if(b.id=="B17")StationTown(b);else if(b.id=="B10")PoliceTown(b);else if(b.id=="B07")GarageTown(b);else if(b.id!="B01"&&b.id!="B02")PlaceholderBuilding(b);
         var dairy=plan.Building("B04");var boy=Milkboy(TownPlan.Point(dairy.gate)+new Vector3(2,0,-.8f),180);boy.transform.localScale=Vector3.one*.88f;
         Collider(boy,new Vector3(0,.8f,0),new Vector3(.65f,1.65f,.55f));
         var testimony=DialogueScript.Load("MilkboyDialogue").evidence;var milk=boy.AddComponent<Interactable>();milk.title="送奶少年";milk.evidenceId=testimony.id;milk.source=testimony.source;milk.body=testimony.body;
@@ -101,6 +101,7 @@ public static partial class BuildSlice {
         TowerFloodlights(squareStandards);
         GreeneryAuthoring.Build(plan);
         PoliceCourtTree();
+        GarageYardTree();
         // Actual silhouettes for the two-home sightline, with the specified lower fence.
         Box("Two homes low fence",new Vector3(-37,.425f,-57),new Vector3(.12f,.85f,11),Mat("MapFence","#766E5C"));
         foreach(var detail in plan.details.Where(d=>d.kind=="bed"||d.kind=="shed")) {

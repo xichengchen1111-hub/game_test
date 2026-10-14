@@ -1,0 +1,99 @@
+{
+  "feature": "E 旧石仓修车院（B07）第一版",
+  "date": "2026-10-14",
+  "platform": "Windows 11 / Unity 6000.3.18f1 / D3D11 staging player builds/windows-staging (not committed)",
+  "build": {
+    "method": "BuildSlice.BuildStaging",
+    "markers": [
+      "GARAGE_AUTHORING_PASS: 16 apertures, 6053 solid wall probes, 8 doors, 16 lamps",
+      "FULL_MAP_AUTHORING_PASS: 70 property markers (7 finished)",
+      "BUILDING_LAYOUT_PASS",
+      "SLICE_BUILD_PASS"
+    ]
+  },
+  "sources": {
+    "layout": "0131d7ce77927c4499b0642102eb4e7dc7d5d1c2f63aaca8e4ed0444be2079e8",
+    "fbx": "2f0a6ba92b5338cd4fb720f208d118d4c35bde2246037d065e02ef1a669dd1ae",
+    "blend": "72784e932d196a5086cdeb4445b6afb52b52da79ffb8af40052d44e65818b1e5"
+  },
+  "runs": [
+    {
+      "mode": "--review --fresh --review-garage",
+      "resolution": "1920x1080",
+      "marker": "GARAGE_REVIEW_PASS",
+      "checks": 30,
+      "reviewSeconds": 87.8,
+      "loftY": 2.77,
+      "mechanicChoices": 6,
+      "labels": [
+        "青川 · 修车铺 · 接待室",
+        "青川 · 修车铺 · 账房",
+        "青川 · 修车铺 · 修理车间",
+        "青川 · 修车铺 · 工具库",
+        "青川 · 修车铺 · 车间后场",
+        "青川 · 修车铺 · 后院",
+        "青川 · 修车铺 · 储物阁楼"
+      ]
+    },
+    {
+      "mode": "--review --verify-garage-save (separate process)",
+      "resolution": "1920x1080",
+      "marker": "GARAGE_SAVE_PASS"
+    },
+    {
+      "mode": "--review --fresh --review-garage",
+      "resolution": "1280x720",
+      "marker": "GARAGE_REVIEW_PASS",
+      "checks": 30
+    },
+    {
+      "mode": "--review --verify-garage-save (separate process)",
+      "resolution": "1280x720",
+      "marker": "GARAGE_SAVE_PASS"
+    }
+  ],
+  "regressions": [
+    {
+      "mode": "--review --fresh --review-police + --verify-police-save",
+      "marker": "POLICE_REVIEW_PASS / POLICE_SAVE_PASS"
+    },
+    {
+      "mode": "--review --fresh --review-full-map",
+      "marker": "FULL_MAP_REVIEW_PASS (six outdoor visit orders)"
+    },
+    {
+      "mode": "ZFightScan.Run",
+      "result": "visible exact groups=0, moving-part exact groups=0"
+    },
+    {
+      "mode": "tools/check_town_map.py",
+      "result": "MAP_CHECK_PASS; 20 actors, 17 routes, route summary unchanged"
+    },
+    {
+      "mode": "validate_story.py docs/mvp-evidence.json",
+      "result": "10 cards, D02/D03 core, six visit orders"
+    }
+  ],
+  "fixes_found_by_runtime": [
+    "零件柜抽屉拉开后内容检查区挡住面板，无法推回：检查区移到面板后方",
+    "后院木栅门顶 1.8 m 的门梁碰撞体挡住 1.78 m 人物胶囊：门洞开到栅栏顶，并在布局合同加入门洞净高检查",
+    "货车车灯误用发光材质；修车匠占位改色过暗像警服；纸面句号落到行首；账房朝车间墙面误用石灰毛石",
+    "打磨轮：横山墙屋面法线写反（从外面看到木板底面、从车间里往上看能看到天空），已改正",
+    "打磨轮：毛石贴图改为不规则乱石砌（行高、石块长短、圆角与灰缝宽度随机）",
+    "打磨轮：验收脚本瞄准后等待改为与帧率无关，720p 下不再漏检"
+  ],
+  "limits": [
+    "程序驱动真实控制器与 E 射线，不是物理键鼠或陌生玩家盲测",
+    "E01 在报告检查中以标注过的验收夹具注入，实际来自警署阅览室",
+    "修车匠为售票员模型改色占位，与旧值班警员占位同脸；对话为身体动作与通用嘴部开合，无配音",
+    "所有验收静音（AudioListener.volume=0），声学只检查闷雨判定，不是可听音效验收",
+    "未在 Mac 上构建或验收；未更新桌面 Mac 入口"
+  ],
+  "captures": "review-1080/*.jpg, review-720/*.jpg, verify/*.jpg, daylight/*.jpg, blender/preview-*.jpg (Blender workbench previews, textured materials shown in preview colours)",
+  "daylight_gallery": {
+    "mode": "--review --fresh --review-garage-day",
+    "resolution": "1920x1080",
+    "marker": "GARAGE_GALLERY_PASS",
+    "views": "daylight/*.jpg: staged overcast 13:05 (10 views) and clear 14:35 (6 exterior views); visual review only, not a gameplay check"
+  }
+}

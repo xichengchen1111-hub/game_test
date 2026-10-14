@@ -78,6 +78,23 @@ pb['windows']=[[x,27.7,1.2,'首层前窗','S'] for x in (3.4,6.2,9.0,16.0,18.8,2
  [[7.0,39.7,.7,'誊录室朝廊窗','N'],[10.35,39.7,.7,'盥洗高窗','N'],[13.4,39.7,1.2,'值班室朝院窗','N'],[15.8,39.7,1.2,'值班室朝院窗','N']]+\
  [[x,39.7,1.1,'二层档案朝院窗','N'] for x in (9.6,12.0,14.4)]+[[17.9,39.7,.7,'二层盥洗朝院窗','N']]+\
  [[6.5,43.5,1.4,'资料分馆朝廊窗','E'],[6.5,49.5,1.0,'档案库朝廊窗','E'],[18.5,42.5,1.2,'巡警值班朝院窗','W'],[3.75,51.7,1.2,'档案库北高窗','N'],[21.25,51.7,.8,'旧羁押室北高窗','N']]
+# 2026-10-14 user-selected E「旧石仓修车院」(docs/concepts/repair-shop/round-01/e-stone-barn-garage.png):
+# a 12.6x19m single-volume stone hall (its storage loft lies under the hall roof) and a 5x12m cream
+# office range at the street end; boarded rear yard with a lean-to parts shed. Exact rooms/openings
+# live in tools/garage/garage_layout.py, which asserts these parts, doors and windows.
+gb=next(b for b in B if b['id']=='B07')
+gb['parts']=[dict(role='接待室与账房',rect=box(-144,-139,27.7,39.7)),dict(role='石仓修理车间',rect=box(-139,-126.4,27.7,46.7))]
+gb['storeys']=1;gb['type']='旧石仓修理车间＋临街接待室 · 修车铺';gb['yard']='木栅后院＋零件棚'
+gb['door']=[-140.3,27.7];gb['gate']=[-140.3,27];gb['rearDoor']=[-129.5,46.7];gb['backgate']=[-129.5,66]
+gb['status']='已建成可进入：E旧石仓修车院（2026-10-14）'
+gb['note']='接待室正门(-140.3,27.7)朝车站路；石仓拱车门居中(-132.7,27.7)；车间后门(-129.5,46.7)经木栅后院与后院门到北后巷。'
+gb['windows']=[[-142.4,27.7,1.4,'接待室前窗','S'],[-132.7,27.7,1.0,'山墙高窗','S'],[-141.5,39.7,1.0,'账房北窗','N'],
+ [-139.0,44.3,.8,'工具库西窗','W'],[-135.7,46.7,.9,'阁楼北窗','N'],[-127.7,46.7,.9,'车间北窗','N']]+\
+ [[-126.4,z,1.0,'车间东侧拱窗','E'] for z in (30.7,36.3,41.9)]
+for p in Paths:
+ if p['owner']=='B07' and p['kind']=='front':p['points']=[[-140.3,27.7],[-140.3,27]]
+ if p['owner']=='B07' and p['kind']=='rear':p['points']=[[-129.5,66],[-129.5,46.7]]
+Details=[d for d in Details if d['owner']!='B07']
 for a,b,n,v in [(-114,-100,'转角住宅',1),(-100,-87,'沿街住宅',2),(-87,-73,'沿街住宅',0),(-73,-60,'沿街住宅',1),(-60,-47,'沿街住宅',2),(-47,-33,'沿街住宅',0),(-33,-18,'沿街住宅',2),(36,51,'转角商住',1),(51,65,'沿街住宅',2),(65,79,'沿街住宅',0),(79,94,'沿街住宅',1),(94,110,'沿街住宅',2),(110,129,'转角住宅',0)]:plot(a,b,-27,13,'N','shop',name=n,variant=v)
 # Western working edge, dairy yard directly opens to west lane.
 b=plot(-160,-127,-27,13,'N','work','B04',variant=1)

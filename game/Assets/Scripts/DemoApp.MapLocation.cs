@@ -8,6 +8,7 @@ public partial class DemoApp {
         var p=player.transform.position;string name;
         if(IsInsideShop)name="钟表铺";
         else if(PoliceStation.Current&&PoliceStation.Current.RoomAt(p,out var policeRoom))name="警署 · "+(policeRoom.id=="interview"?"律师会见室":policeRoom.name);
+        else if(RepairGarage.Current&&RepairGarage.Current.RoomAt(p,out var garageRoom))name="修车铺 · "+garageRoom.name;
         else if(insideMilkShop)name="牛奶屋";
         else if(Mathf.Abs(p.x)<13&&p.z>-13.5f&&p.z<14)name="小镇广场";
         else {

@@ -89,7 +89,8 @@ public partial class DemoApp {
         var small2 = new GUIStyle(small) { wordWrap = true };
         Label(new Rect(p.x + 40, p.y + 132, 460, 26), "一 · 质疑哪句陈述", small);
         for (int i = 0; i < reportData.statements.Length; i++) {
-            var r = new Rect(p.x + 40, p.y + 162 + i * 62, 460, 56);
+            // Five statements fit above the divider at 51 px rows (two wrapped lines each).
+            var r = new Rect(p.x + 40, p.y + 162 + i * 51, 460, 46);
             if (i == reportStatement) Box(new Rect(r.x - 4, r.y - 4, r.width + 8, r.height + 8), new Color(0.68f, 0.5f, 0.3f, .55f));
             if (Button(r, "", i == reportStatement)) reportStatement = i;
             Label(new Rect(r.x + 12, r.y + 6, r.width - 24, r.height - 8), reportData.statements[i].text, small2);

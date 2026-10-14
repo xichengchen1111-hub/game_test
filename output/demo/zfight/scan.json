@@ -1,8 +1,8 @@
 {
-    "triangles": 11013267,
-    "renderers": 13597,
+    "triangles": 11188327,
+    "renderers": 13808,
     "visibleExact": 0,
-    "visibleNear": 1000,
+    "visibleNear": 1028,
     "movingExact": 0,
     "groups": [
         {
@@ -848,7 +848,7 @@
             "b": "Town geometry/主角住宅/House1931/Dried burgundy blood 0",
             "materialB": "Blood",
             "kind": "material",
-            "area": 0.14125403761863709,
+            "area": 0.14125405251979829,
             "offsetMm": 1.9999982118606568,
             "at": [
                 -24.430320739746095,
@@ -887,6 +887,28 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialA": "GInt_Steel",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.01640208065509796,
+            "offsetMm": 1.2025408744812012,
+            "at": [
+                -131.32313537597657,
+                0.2637987434864044,
+                33.59492492675781
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 48,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "ClockShop/Walnut shop joinery/PartsDrawer/Drawer velvet",
             "materialA": "ShopFelt",
             "b": "ClockShop/Walnut shop joinery/Module_RepairBay/Module_RepairBay_ShopWalnut",
@@ -917,9 +939,9 @@
             "area": 0.0016930620186030865,
             "offsetMm": 1.9999901056289673,
             "at": [
-                -31.934354782104493,
+                -31.936113357543947,
                 0.39333367347717287,
-                -53.72200012207031
+                -53.729000091552737
             ],
             "normal": [
                 0.0,
@@ -1049,9 +1071,9 @@
             "area": 0.002450245665386319,
             "offsetMm": 1.999974250793457,
             "at": [
-                178.17117309570313,
+                178.18621826171876,
                 1.1980000734329224,
-                47.385833740234378
+                47.37287521362305
             ],
             "normal": [
                 0.0,
@@ -2061,9 +2083,9 @@
             "area": 0.008280416950583458,
             "offsetMm": 1.0000512599945069,
             "at": [
-                157.6495819091797,
+                157.64907836914063,
                 1.048999547958374,
-                71.56841278076172
+                71.58341217041016
             ],
             "normal": [
                 0.0,
@@ -3241,6 +3263,974 @@
         },
         {
             "scene": "Town",
+            "a": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
+            "materialA": "RailIron",
+            "b": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
+            "materialB": "RailIron",
+            "kind": "uv",
+            "area": 0.2115144431591034,
+            "offsetMm": 1.007080078125,
+            "at": [
+                202.5479736328125,
+                1.2599997520446778,
+                72.04618835449219
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.9478657975469106e-7
+            ],
+            "pairs": 24,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_dressing_2/Drawer_dressing_2/Drawer bottom.032",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_dressing_2/Record H20/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.049348171800374988,
+            "offsetMm": 1.999943733215332,
+            "at": [
+                -31.93239974975586,
+                3.997333288192749,
+                -62.34283447265625
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.871414525567161e-7
+            ],
+            "pairs": 2,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_toys_2/Drawer_toys_2/Drawer bottom.035",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_toys_2/Record H24/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.04648752510547638,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -27.5601806640625,
+                3.997333288192749,
+                -55.51631546020508
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_motorcycle",
+            "materialA": "GInt_Steel",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_motorcycle",
+            "materialB": "GInt_Chrome",
+            "kind": "material",
+            "area": 0.00294026848860085,
+            "offsetMm": 1.2981092929840088,
+            "at": [
+                -128.046630859375,
+                0.7458994388580322,
+                39.64625549316406
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -6.356535209306458e-7
+            ],
+            "pairs": 8,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Ext_Ground",
+            "materialA": "GExt_Flags",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Ext_Ground",
+            "materialB": "GExt_Ashlar",
+            "kind": "material",
+            "area": 0.8799998760223389,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -132.96875,
+                -0.07726572453975678,
+                27.0
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Ext_Ground",
+            "materialA": "GExt_Cobble",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Ext_Yard",
+            "materialB": "GExt_Boards",
+            "kind": "material",
+            "area": 0.0051279934123158459,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -126.25,
+                0.005003571510314941,
+                57.669654846191409
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/StationB/Rail sign board · 检 票 口/Brass side border",
+            "materialA": "RailBrass",
+            "b": "Town geometry/StationB/Rail sign board · 检 票 口/Solid painted sign face",
+            "materialB": "RailGreen",
+            "kind": "material",
+            "area": 0.010043777525424958,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                186.96128845214845,
+                2.9119999408721926,
+                63.68159103393555
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 16,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_old-trunk_0/Drawer_old-trunk_0/Drawer side.078",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_old-trunk_0/Drawer_old-trunk_0/Drawer rear.039",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.0001869252446340397,
+            "offsetMm": 1.9998574256896973,
+            "at": [
+                -16.75596046447754,
+                3.554333448410034,
+                -59.01887130737305
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 1,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_Rear_CoveredWay/RearWayGlass",
+            "materialA": "RailShedGlass",
+            "b": "StationB/StationB/Module_Station_Masonry/Module_Station_Masonry_RailStone",
+            "materialB": "RailStone",
+            "kind": "material",
+            "area": 0.0027357558719813825,
+            "offsetMm": 1.4998916387557984,
+            "at": [
+                187.94532775878907,
+                3.7825005054473879,
+                52.21799850463867
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -8.638347992473428e-8
+            ],
+            "pairs": 6,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_bench-b",
+            "materialA": "PInt_Iron",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_bench-b",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.0007249773479998112,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -127.3600082397461,
+                1.0583343505859376,
+                36.79999923706055
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_4",
+            "materialA": "RailOfficeWalnut",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
+            "materialB": "RailOfficeWalnut",
+            "kind": "uv",
+            "area": 0.01022664550691843,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                178.55984497070313,
+                2.505675792694092,
+                48.49800109863281
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 40,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_0",
+            "materialA": "RailOfficeWalnut",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
+            "materialB": "RailOfficeWalnut",
+            "kind": "uv",
+            "area": 0.005099029745906591,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                178.5595245361328,
+                1.3141762018203736,
+                48.49800109863281
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 20,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_1",
+            "materialA": "RailOfficeWalnut",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
+            "materialB": "RailOfficeWalnut",
+            "kind": "uv",
+            "area": 0.010198131203651429,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                178.56028747558595,
+                1.591500163078308,
+                48.49800109863281
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 40,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_2",
+            "materialA": "RailOfficeWalnut",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
+            "materialB": "RailOfficeWalnut",
+            "kind": "uv",
+            "area": 0.010198129341006279,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                178.56028747558595,
+                1.8915001153945923,
+                48.49800109863281
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 40,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_3",
+            "materialA": "RailOfficeWalnut",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
+            "materialB": "RailOfficeWalnut",
+            "kind": "uv",
+            "area": 0.010198080912232399,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                178.5595245361328,
+                2.2141761779785158,
+                48.49800109863281
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 40,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_5",
+            "materialA": "RailOfficeWalnut",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
+            "materialB": "RailOfficeWalnut",
+            "kind": "uv",
+            "area": 0.005127661861479282,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                178.5602264404297,
+                2.861499786376953,
+                48.49800109863281
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 20,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Ext_Yard",
+            "materialA": "GExt_Timber",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Ext_Yard",
+            "materialB": "GExt_Boards",
+            "kind": "material",
+            "area": 0.09360063821077347,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -143.89999389648438,
+                0.6516231298446655,
+                57.67407989501953
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 8,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_rag-bin",
+            "materialA": "GInt_Rag",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_rag-bin",
+            "materialB": "PInt_Leather",
+            "kind": "material",
+            "area": 0.005482107400894165,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -131.9309844970703,
+                0.6500015258789063,
+                41.58296203613281
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_bench-a",
+            "materialA": "PInt_FurnLight",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_bench-a",
+            "materialB": "PInt_Iron",
+            "kind": "material",
+            "area": 0.001478863414376974,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -127.3644790649414,
+                1.0500003099441529,
+                31.18598747253418
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_bench-c",
+            "materialA": "PInt_Iron",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_bench-c",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.0007249773479998112,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -127.3600082397461,
+                1.0583349466323853,
+                41.95000076293945
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_loft-wheels",
+            "materialA": "GInt_Steel",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_loft-wheels",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.005079527385532856,
+            "offsetMm": 1.2030242681503297,
+            "at": [
+                -137.4862518310547,
+                3.2388668060302736,
+                43.521095275878909
+            ],
+            "normal": [
+                0.8564882278442383,
+                0.4999249577522278,
+                -0.12846370041370393
+            ],
+            "pairs": 22,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.028",
+            "materialA": "Paper",
+            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.023",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016930620186030865,
+            "offsetMm": 1.999946117401123,
+            "at": [
+                -31.875646591186525,
+                0.7289336919784546,
+                -53.72599792480469
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.4738758952480568e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_desk_2/Drawer_desk_2/Drawer bottom.008",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_desk_2/Record E09/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05721646547317505,
+            "offsetMm": 1.9998443126678467,
+            "at": [
+                -26.049667358398439,
+                0.7306665182113648,
+                -51.72600173950195
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.2323979464999867e-7
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailRed",
+            "materialA": "RailRed",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailIvory",
+            "materialB": "RailIvory",
+            "kind": "material",
+            "area": 0.031359728425741199,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                181.68350219726563,
+                1.4110002517700196,
+                48.59302520751953
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 16,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/Cabinet_kitchen-larder/Parcel cotton tie.018",
+            "materialA": "Cream",
+            "b": "主角住宅/House1931/Cabinet_kitchen-larder/Stored tied parcel.019",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.0016239553224295378,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -27.50555992126465,
+                0.4070005714893341,
+                -51.35686111450195
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -2.113657160407456e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialA": "PInt_Black",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.01856573484838009,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -131.3323211669922,
+                1.0164871215820313,
+                35.49800109863281
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 48,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/Cabinet_safe/Parcel cotton tie.014",
+            "materialA": "Cream",
+            "b": "主角住宅/House1931/Cabinet_safe/Stored tied parcel.014",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.0016239553224295378,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -22.34556007385254,
+                1.1295000314712525,
+                -55.68714141845703
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Parcel cotton tie.017",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Stored tied parcel.017",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.0016239553224295378,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -29.019559860229493,
+                1.121000051498413,
+                -51.414859771728519
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Drawer rear",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Drawer side",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.00019200274255126715,
+            "offsetMm": 1.9999749660491944,
+            "at": [
+                -16.770999908447267,
+                0.5540000796318054,
+                -59.569000244140628
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.0484536261401445e-7
+            ],
+            "pairs": 1,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.026",
+            "materialA": "Paper",
+            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.022",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016930620186030865,
+            "offsetMm": 1.9998865127563477,
+            "at": [
+                -31.875646591186525,
+                0.548933744430542,
+                -53.72599792480469
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.4738758952480568e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_vise",
+            "materialA": "PInt_Iron",
+            "b": "Town geometry/RepairGarage/Garage shell and furnishings/Furn_vise",
+            "materialB": "GInt_Steel",
+            "kind": "material",
+            "area": 0.0011399888899177313,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -127.41799926757813,
+                1.2442317008972169,
+                35.75673294067383
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Drawer bottom.011",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05125518515706062,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -22.412832260131837,
+                0.977333128452301,
+                -51.60133361816406
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Drawer bottom.011",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05125518515706062,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -22.036256790161134,
+                0.977333128452301,
+                -51.62337875366211
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Box lid rim",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.053832218050956729,
+            "offsetMm": 1.9999756813049317,
+            "at": [
+                -22.424890518188478,
+                1.191999912261963,
+                -51.6515007019043
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                6.773158816031355e-7
+            ],
+            "pairs": 6,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Box lid rim",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.053832218050956729,
+            "offsetMm": 1.9999756813049317,
+            "at": [
+                -21.99989128112793,
+                1.191999912261963,
+                -51.6515007019043
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                6.773158816031355e-7
+            ],
+            "pairs": 6,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailGreen",
+            "materialA": "RailGreen",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailIvory",
+            "materialB": "RailIvory",
+            "kind": "material",
+            "area": 0.039208196103572848,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                179.75650024414063,
+                1.7110002040863038,
+                48.72697830200195
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 20,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_coffee_0/Drawer_coffee_0/Parcel cotton tie.003",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_coffee_0/Drawer_coffee_0/Stored tied parcel.003",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.0018368298187851906,
+            "offsetMm": 1.9999754428863526,
+            "at": [
+                -30.432371139526368,
+                0.38599997758865359,
+                -60.373714447021487
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.113657160407456e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/StationB/RailTrain/Boarding step",
+            "materialA": "RailIron",
+            "b": "Town geometry/StationB/RailTrain/Boarding step",
+            "materialB": "RailIron",
+            "kind": "uv",
+            "area": 0.1927414983510971,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                186.35142517089845,
+                0.41999995708465578,
+                70.95166778564453
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 52,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Stored tied parcel",
+            "materialA": "Paper",
+            "b": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Parcel cotton tie",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016240086406469346,
+            "offsetMm": 1.9999901056289673,
+            "at": [
+                -16.886140823364259,
+                0.4190000593662262,
+                -60.04994201660156
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.2628099455014309e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_stationery_0/Drawer_stationery_0/Stored tied parcel.030",
+            "materialA": "Paper",
+            "b": "主角住宅/Storage pivot Drawer_stationery_0/Drawer_stationery_0/Parcel cotton tie.024",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0014280104078352452,
+            "offsetMm": 1.9999901056289673,
+            "at": [
+                -21.99471664428711,
+                0.41899994015693667,
+                -53.10490798950195
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.307137580397466e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/Storage pivot Drawer_utility_0/Drawer_utility_0/Stored tied parcel.036",
+            "materialA": "Paper",
+            "b": "主角住宅/Storage pivot Drawer_utility_0/Drawer_utility_0/Parcel cotton tie.030",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016239553224295378,
+            "offsetMm": 1.9999901056289673,
+            "at": [
+                -32.213138580322269,
+                0.41899991035461428,
+                -45.47193908691406
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.2628099455014309e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/StationB/Platform sign foot",
+            "materialA": "RailIron",
+            "b": "Town geometry/StationB/Platform sign iron post",
+            "materialB": "RailIron",
+            "kind": "uv",
+            "area": 0.0098018953576684,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                201.9287567138672,
+                0.4200000464916229,
+                67.10375213623047
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.025",
+            "materialA": "Paper",
+            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.021",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016930620186030865,
+            "offsetMm": 1.9999901056289673,
+            "at": [
+                -31.936113357543947,
+                0.39333370327949526,
+                -53.718997955322269
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.2369379476240284e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/RepairGarage/Rail sign board · 修 车 铺/Solid painted sign face",
+            "materialA": "RailGreen",
+            "b": "Town geometry/RepairGarage/Rail sign board · 修 车 铺/Brass side border",
+            "materialB": "RailBrass",
+            "kind": "material",
+            "area": 0.0055052293464541439,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -140.21128845214845,
+                3.9600000381469728,
+                27.643409729003908
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 8,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "StationB/StationB/Module_Hall_Interior/Module_Hall_Interior_RailWalnut",
             "materialA": "RailWalnut",
             "b": "StationB/StationB/Module_Hall_Interior/Module_Hall_Interior_RailFelt",
@@ -3257,28 +4247,6 @@
                 0.0,
                 0.0,
                 -1.0
-            ],
-            "pairs": 24,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
-            "materialA": "RailIron",
-            "b": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
-            "materialB": "RailIron",
-            "kind": "uv",
-            "area": 0.2115144431591034,
-            "offsetMm": 1.007080078125,
-            "at": [
-                202.53330993652345,
-                1.2599999904632569,
-                72.1649169921875
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.9478657975469106e-7
             ],
             "pairs": 24,
             "moving": false
@@ -3395,50 +4363,6 @@
         },
         {
             "scene": "Town",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailRed",
-            "materialA": "RailRed",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailIvory",
-            "materialB": "RailIvory",
-            "kind": "material",
-            "area": 0.031359728425741199,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                178.79067993164063,
-                1.7390002012252808,
-                48.60931396484375
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 16,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailGreen",
-            "materialA": "RailGreen",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailIvory",
-            "materialB": "RailIvory",
-            "kind": "material",
-            "area": 0.03920820355415344,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                179.75650024414063,
-                1.7110002040863038,
-                48.72697830200195
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 20,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Parcel cotton tie.011",
             "materialA": "Cream",
             "b": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Stored tied parcel.011",
@@ -3527,160 +4451,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.026",
-            "materialA": "Paper",
-            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.022",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016930620186030865,
-            "offsetMm": 1.9998865127563477,
-            "at": [
-                -31.936113357543947,
-                0.548933744430542,
-                -53.729000091552737
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.4738758952480568e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_2",
-            "materialA": "RailOfficeWalnut",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
-            "materialB": "RailOfficeWalnut",
-            "kind": "uv",
-            "area": 0.010198128409683705,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                178.5595245361328,
-                1.914176106452942,
-                48.49800109863281
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 40,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_0",
-            "materialA": "RailOfficeWalnut",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
-            "materialB": "RailOfficeWalnut",
-            "kind": "uv",
-            "area": 0.005099029280245304,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                178.5595245361328,
-                1.3141762018203736,
-                48.49800109863281
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 20,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_1",
-            "materialA": "RailOfficeWalnut",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
-            "materialB": "RailOfficeWalnut",
-            "kind": "uv",
-            "area": 0.010198132134974003,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                178.56028747558595,
-                1.5915002822875977,
-                48.49800109863281
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 40,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_4",
-            "materialA": "RailOfficeWalnut",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
-            "materialB": "RailOfficeWalnut",
-            "kind": "uv",
-            "area": 0.01022664550691843,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                178.56028747558595,
-                2.491499900817871,
-                48.49800109863281
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 40,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_3",
-            "materialA": "RailOfficeWalnut",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
-            "materialB": "RailOfficeWalnut",
-            "kind": "uv",
-            "area": 0.010198080912232399,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                178.5595245361328,
-                2.2141761779785158,
-                48.49800109863281
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 40,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/PigeonShelf_5",
-            "materialA": "RailOfficeWalnut",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailOfficeWalnut",
-            "materialB": "RailOfficeWalnut",
-            "kind": "uv",
-            "area": 0.005127662792801857,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                178.5602264404297,
-                2.861499786376953,
-                48.49800109863281
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                -1.0
-            ],
-            "pairs": 20,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_old-trunk_1/Drawer_old-trunk_1/Drawer side.080",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_old-trunk_1/Drawer_old-trunk_1/Drawer rear.040",
@@ -3700,116 +4470,6 @@
             ],
             "pairs": 1,
             "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/StationB/RailTrain/Boarding step",
-            "materialA": "RailIron",
-            "b": "Town geometry/StationB/RailTrain/Boarding step",
-            "materialB": "RailIron",
-            "kind": "uv",
-            "area": 0.1927414983510971,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                186.35142517089845,
-                0.41999995708465578,
-                70.95166778564453
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 52,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Stored tied parcel",
-            "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Parcel cotton tie",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016240086406469346,
-            "offsetMm": 1.9999901056289673,
-            "at": [
-                -16.886140823364259,
-                0.4190000593662262,
-                -60.04994201660156
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.2628099455014309e-7
-            ],
-            "pairs": 4,
-            "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_stationery_0/Drawer_stationery_0/Stored tied parcel.030",
-            "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_stationery_0/Drawer_stationery_0/Parcel cotton tie.024",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0014280104078352452,
-            "offsetMm": 1.9999901056289673,
-            "at": [
-                -21.99471664428711,
-                0.41899994015693667,
-                -53.10490798950195
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.307137580397466e-7
-            ],
-            "pairs": 4,
-            "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_utility_0/Drawer_utility_0/Stored tied parcel.036",
-            "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_utility_0/Drawer_utility_0/Parcel cotton tie.030",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016239553224295378,
-            "offsetMm": 1.9999901056289673,
-            "at": [
-                -32.156856536865237,
-                0.41899991035461428,
-                -45.47605895996094
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.2628099455014309e-7
-            ],
-            "pairs": 4,
-            "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/StationB/Platform sign foot",
-            "materialA": "RailIron",
-            "b": "Town geometry/StationB/Platform sign iron post",
-            "materialB": "RailIron",
-            "kind": "uv",
-            "area": 0.0098018953576684,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                201.9287567138672,
-                0.4200000464916229,
-                67.10375213623047
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 4,
-            "moving": false
         },
         {
             "scene": "Town",
@@ -4228,50 +4888,6 @@
             ],
             "pairs": 2,
             "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.028",
-            "materialA": "Paper",
-            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.023",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016930620186030865,
-            "offsetMm": 1.999946117401123,
-            "at": [
-                -31.936113357543947,
-                0.7289336919784546,
-                -53.729000091552737
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.4738758952480568e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_desk_2/Drawer_desk_2/Drawer bottom.008",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_desk_2/Record E09/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05721646547317505,
-            "offsetMm": 1.9998443126678467,
-            "at": [
-                -25.94985008239746,
-                0.7306665182113648,
-                -51.66865539550781
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.2323979464999867e-7
-            ],
-            "pairs": 3,
-            "moving": true
         },
         {
             "scene": "Town",
@@ -4891,28 +5507,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.025",
-            "materialA": "Paper",
-            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.021",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016930620186030865,
-            "offsetMm": 1.9999901056289673,
-            "at": [
-                -31.936113357543947,
-                0.39333370327949526,
-                -53.718997955322269
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.2369379476240284e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/House1931/Cabinet_kitchen-larder/Parcel cotton tie.018",
             "materialA": "Cream",
             "b": "主角住宅/House1931/Cabinet_kitchen-larder/Stored tied parcel.018",
@@ -4951,28 +5545,6 @@
                 0.0,
                 -1.0,
                 0.0
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/Cabinet_kitchen-larder/Parcel cotton tie.018",
-            "materialA": "Cream",
-            "b": "主角住宅/House1931/Cabinet_kitchen-larder/Stored tied parcel.019",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.0016239553224295378,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                -27.501440048217775,
-                0.4070005714893341,
-                -51.413143157958987
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -2.113657160407456e-7
             ],
             "pairs": 4,
             "moving": false
@@ -5107,28 +5679,6 @@
                 -1.0
             ],
             "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/Cabinet_safe/Parcel cotton tie.014",
-            "materialA": "Cream",
-            "b": "主角住宅/House1931/Cabinet_safe/Stored tied parcel.014",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.0016239553224295378,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                -22.34556007385254,
-                1.1295000314712525,
-                -55.68714141845703
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 4,
             "moving": false
         },
         {
@@ -5306,28 +5856,6 @@
             ],
             "pairs": 7,
             "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Parcel cotton tie.017",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Stored tied parcel.017",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.0016239553224295378,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                -29.02943992614746,
-                1.121000051498413,
-                -51.35514450073242
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 4,
-            "moving": true
         },
         {
             "scene": "Town",
@@ -5881,28 +6409,6 @@
         },
         {
             "scene": "Town",
-            "a": "Town geometry/StationB/Rail sign board · 检 票 口/Brass side border",
-            "materialA": "RailBrass",
-            "b": "Town geometry/StationB/Rail sign board · 检 票 口/Solid painted sign face",
-            "materialB": "RailGreen",
-            "kind": "material",
-            "area": 0.010043777525424958,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                186.96128845214845,
-                2.9119999408721926,
-                63.68159103393555
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 16,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "Town geometry/主角住宅/House1931/South wall.002",
             "materialA": "Plaster",
             "b": "Town geometry/主角住宅/House1931/West wall.003",
@@ -6365,28 +6871,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Drawer rear",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Drawer side",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.00019200274255126715,
-            "offsetMm": 1.9999749660491944,
-            "at": [
-                -16.770999908447267,
-                0.5540000796318054,
-                -59.569000244140628
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.0484536261401445e-7
-            ],
-            "pairs": 1,
-            "moving": true
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer rear.009",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_medical_0/Drawer_medical_0/Drawer side.018",
@@ -6805,28 +7289,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_coffee_0/Drawer_coffee_0/Parcel cotton tie.003",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_coffee_0/Drawer_coffee_0/Stored tied parcel.003",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.0018368298187851906,
-            "offsetMm": 1.9999754428863526,
-            "at": [
-                -30.432371139526368,
-                0.38599997758865359,
-                -60.373714447021487
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.113657160407456e-7
-            ],
-            "pairs": 4,
-            "moving": true
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_desk_1/Drawer_desk_1/Drawer side.014",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_desk_1/Drawer_desk_1/Drawer rear.007",
@@ -6937,50 +7399,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Drawer bottom.011",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05125518515706062,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                -22.412832260131837,
-                0.977333128452301,
-                -51.60133361816406
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Drawer bottom.011",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05125518515706062,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                -22.036256790161134,
-                0.977333128452301,
-                -51.62337875366211
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 3,
-            "moving": true
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_stationery_2/Drawer_stationery_2/Drawer side.035",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_stationery_2/Drawer_stationery_2/Drawer rear.017",
@@ -7022,50 +7440,6 @@
             ],
             "pairs": 1,
             "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Box lid rim",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.053832221776247028,
-            "offsetMm": 1.9999756813049317,
-            "at": [
-                -22.61349868774414,
-                1.1859991550445557,
-                -51.631622314453128
-            ],
-            "normal": [
-                -1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 6,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Box lid rim",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.053832218050956729,
-            "offsetMm": 1.9999756813049317,
-            "at": [
-                -21.99989128112793,
-                1.1920000314712525,
-                -51.6515007019043
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                6.773158816031355e-7
-            ],
-            "pairs": 6,
-            "moving": false
         },
         {
             "scene": "Town",
@@ -7575,28 +7949,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_old-trunk_0/Drawer_old-trunk_0/Drawer side.078",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_old-trunk_0/Drawer_old-trunk_0/Drawer rear.039",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.0001869252446340397,
-            "offsetMm": 1.9998574256896973,
-            "at": [
-                -16.75596046447754,
-                3.554333448410034,
-                -59.01887130737305
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 1,
-            "moving": true
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_bedside-a_0/Drawer_bedside-a_0/Drawer side.048",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_bedside-a_0/Drawer_bedside-a_0/Stored folded linen.039",
@@ -8100,50 +8452,6 @@
             ],
             "pairs": 3,
             "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_dressing_2/Drawer_dressing_2/Drawer bottom.032",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_dressing_2/Record H20/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.049348171800374988,
-            "offsetMm": 1.999943733215332,
-            "at": [
-                -31.93239974975586,
-                3.997333288192749,
-                -62.34283447265625
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.871414525567161e-7
-            ],
-            "pairs": 2,
-            "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_toys_2/Drawer_toys_2/Drawer bottom.035",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_toys_2/Record H24/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.04648752510547638,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                -27.5601806640625,
-                3.997333288192749,
-                -55.51631546020508
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 3,
-            "moving": true
         },
         {
             "scene": "Town",
@@ -9089,28 +9397,6 @@
                 -1.0
             ],
             "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "StationB/StationB/Module_Rear_CoveredWay/RearWayGlass",
-            "materialA": "RailShedGlass",
-            "b": "StationB/StationB/Module_Station_Masonry/Module_Station_Masonry_RailStone",
-            "materialB": "RailStone",
-            "kind": "material",
-            "area": 0.0027357558719813825,
-            "offsetMm": 1.4998916387557984,
-            "at": [
-                188.05467224121095,
-                3.7825005054473879,
-                52.21599578857422
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -8.638347992473428e-8
-            ],
-            "pairs": 6,
             "moving": false
         },
         {
@@ -12310,7 +12596,7 @@
             "b": "ClockShop/Walnut shop joinery/Module_RepairBay/Module_RepairBay_ShopWalnut",
             "materialB": "ShopWalnut",
             "kind": "uv",
-            "area": 0.1290908008813858,
+            "area": 0.129090815782547,
             "offsetMm": 1.999995470046997,
             "at": [
                 0.8270000219345093,
@@ -12486,7 +12772,7 @@
             "b": "ClockShop/Walnut shop joinery/Module_RightCabinet/Module_RightCabinet_ShopWalnut",
             "materialB": "ShopWalnut",
             "kind": "uv",
-            "area": 0.03630528226494789,
+            "area": 0.03630528599023819,
             "offsetMm": 1.0001659393310547,
             "at": [
                 2.451218366622925,
@@ -12965,6 +13251,28 @@
         },
         {
             "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialA": "GInt_Steel",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.016408221796154977,
+            "offsetMm": 1.2023695707321168,
+            "at": [
+                -96.32312774658203,
+                0.2637987434864044,
+                1.7949223518371583
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 48,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "ClockShop/Walnut shop joinery/PartsDrawer/Drawer velvet",
             "materialA": "ShopFelt",
             "b": "ClockShop/Walnut shop joinery/Module_RepairBay/Module_RepairBay_ShopWalnut",
@@ -12992,12 +13300,12 @@
             "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.021",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.0016939813503995538,
+            "area": 0.0016939814668148757,
             "offsetMm": 1.9999901056289673,
             "at": [
-                3.0656447410583498,
+                3.063887119293213,
                 0.39333367347717287,
-                -85.52200317382813
+                -85.52900695800781
             ],
             "normal": [
                 0.0,
@@ -13171,9 +13479,9 @@
             "area": 0.002450245665386319,
             "offsetMm": 1.999974250793457,
             "at": [
-                213.18621826171876,
+                213.17955017089845,
                 1.1980000734329224,
-                15.57287311553955
+                15.57903003692627
             ],
             "normal": [
                 0.0,
@@ -14219,28 +14527,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "RailTrain/TrainSet/Module_Coach1_Static/Module_Coach1_Static_RailGreen",
-            "materialA": "RailGreen",
-            "b": "RailTrain/TrainSet/Module_Coach1_Static/Module_Coach1_Static_RailWalnut",
-            "materialB": "RailWalnut",
-            "kind": "material",
-            "area": 0.006240967195481062,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                210.7996368408203,
-                1.0499995946884156,
-                39.76894760131836
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "RailTrain/TrainSet/Module_Coach2_Static/Module_Coach2_Static_RailGreen",
             "materialA": "RailGreen",
             "b": "RailTrain/TrainSet/Module_Coach2_Static/Module_Coach2_Static_RailWalnut",
@@ -14263,17 +14549,39 @@
         },
         {
             "scene": "ClockShop",
+            "a": "RailTrain/TrainSet/Module_Coach1_Static/Module_Coach1_Static_RailGreen",
+            "materialA": "RailGreen",
+            "b": "RailTrain/TrainSet/Module_Coach1_Static/Module_Coach1_Static_RailWalnut",
+            "materialB": "RailWalnut",
+            "kind": "material",
+            "area": 0.006240967195481062,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                221.19961547851563,
+                1.0499995946884156,
+                39.769500732421878
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "RailTrain/TrainSet/Module_Coach2_Static/Module_Coach2_Static_RailGreen",
             "materialA": "RailGreen",
             "b": "RailTrain/TrainSet/Module_Coach2_Static/Module_Coach2_Static_RailGreen",
             "materialB": "RailGreen",
             "kind": "uv",
-            "area": 0.008279380388557911,
+            "area": 0.008279381319880486,
             "offsetMm": 1.0000512599945069,
             "at": [
-                192.6495819091797,
+                207.3494873046875,
                 1.048999547958374,
-                39.768409729003909
+                39.77000427246094
             ],
             "normal": [
                 0.0,
@@ -14293,9 +14601,9 @@
             "area": 0.008279380388557911,
             "offsetMm": 1.0000512599945069,
             "at": [
-                208.6495819091797,
+                223.3494873046875,
                 1.048999547958374,
-                39.768409729003909
+                39.77000427246094
             ],
             "normal": [
                 0.0,
@@ -15429,6 +15737,1084 @@
         },
         {
             "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialA": "PInt_FurnLight",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialB": "GInt_Truck",
+            "kind": "material",
+            "area": 0.0011803335510194302,
+            "offsetMm": 1.9999772310256959,
+            "at": [
+                -94.89500427246094,
+                1.2500008344650269,
+                3.7100024223327638
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.5381844775674836e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
+            "materialA": "RailIron",
+            "b": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
+            "materialB": "RailIron",
+            "kind": "uv",
+            "area": 0.2115161418914795,
+            "offsetMm": 1.007080078125,
+            "at": [
+                236.25201416015626,
+                1.2599997520446778,
+                40.253814697265628
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.9478535762118555e-7
+            ],
+            "pairs": 24,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_dressing_2/Drawer_dressing_2/Drawer bottom.032",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_dressing_2/Record H20/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.04934943467378616,
+            "offsetMm": 1.999943733215332,
+            "at": [
+                3.0675995349884035,
+                3.997333288192749,
+                -94.14283752441406
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.871414383458614e-7
+            ],
+            "pairs": 2,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_toys_2/Drawer_toys_2/Drawer bottom.035",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_toys_2/Record H24/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.04648979753255844,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                7.439821243286133,
+                3.997333288192749,
+                -87.31631469726563
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_motorcycle",
+            "materialA": "GInt_Steel",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_motorcycle",
+            "materialB": "GInt_Chrome",
+            "kind": "material",
+            "area": 0.002940530190244317,
+            "offsetMm": 1.2981092929840088,
+            "at": [
+                -93.046630859375,
+                0.7458994388580322,
+                7.846251964569092
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -6.356470976243145e-7
+            ],
+            "pairs": 8,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Ext_Yard",
+            "materialA": "GExt_Timber",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Ext_Yard",
+            "materialB": "GExt_Boards",
+            "kind": "material",
+            "area": 0.18720871210098267,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -108.8620834350586,
+                0.5316902995109558,
+                14.899999618530274
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 16,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Ext_Ground",
+            "materialA": "GExt_Cobble",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Ext_Yard",
+            "materialB": "GExt_Boards",
+            "kind": "material",
+            "area": 0.005128197371959686,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -91.25,
+                0.005003571510314941,
+                25.869653701782228
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/StationB/Rail sign board · 检 票 口/Brass side border",
+            "materialA": "RailBrass",
+            "b": "Window street geometry/StationB/Rail sign board · 检 票 口/Solid painted sign face",
+            "materialB": "RailGreen",
+            "kind": "material",
+            "area": 0.010046924464404583,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                221.96128845214845,
+                2.9119999408721926,
+                31.881589889526368
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 16,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_old-trunk_0/Drawer_old-trunk_0/Drawer side.078",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_old-trunk_0/Drawer_old-trunk_0/Drawer rear.039",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.00018698394706007093,
+            "offsetMm": 1.9998574256896973,
+            "at": [
+                18.24403953552246,
+                3.554333448410034,
+                -90.8188705444336
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 1,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "StationB/StationB/Module_Rear_CoveredWay/RearWayGlass",
+            "materialA": "RailShedGlass",
+            "b": "StationB/StationB/Module_Station_Masonry/Module_Station_Masonry_RailStone",
+            "materialB": "RailStone",
+            "kind": "material",
+            "area": 0.0027357330545783045,
+            "offsetMm": 1.4998916387557984,
+            "at": [
+                222.94532775878907,
+                3.7825005054473879,
+                20.417997360229493
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -8.6383593611572e-8
+            ],
+            "pairs": 6,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_bench-b",
+            "materialA": "PInt_Iron",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_bench-b",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.0007249773479998112,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -92.37200927734375,
+                1.064001202583313,
+                5.0
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_rag-bin",
+            "materialA": "GInt_Rag",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_rag-bin",
+            "materialB": "PInt_Leather",
+            "kind": "material",
+            "area": 0.005481624510139227,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -96.93097686767578,
+                0.6500015258789063,
+                9.782963752746582
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_bench-a",
+            "materialA": "PInt_FurnLight",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_bench-a",
+            "materialB": "PInt_Iron",
+            "kind": "material",
+            "area": 0.0014788841363042594,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -92.3644790649414,
+                1.0500003099441529,
+                -0.6140120625495911
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_bench-c",
+            "materialA": "PInt_Iron",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_bench-c",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.0007249773479998112,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -92.3600082397461,
+                1.0583349466323853,
+                10.150001525878907
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_grinder",
+            "materialA": "GInt_Grind",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_grinder",
+            "materialB": "PInt_Iron",
+            "kind": "material",
+            "area": 0.007545040920376778,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                -102.0699691772461,
+                1.0950309038162232,
+                1.97000253200531
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 6,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North wall",
+            "materialB": "Plaster",
+            "kind": "material",
+            "area": 0.009600324556231499,
+            "offsetMm": 1.999365210533142,
+            "at": [
+                4.226889133453369,
+                0.16000065207481385,
+                -82.80103302001953
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/North wall",
+            "materialA": "Plaster",
+            "b": "Window street geometry/主角住宅/House1931/West wall.031",
+            "materialB": "Plaster",
+            "kind": "uv",
+            "area": 0.028802404180169107,
+            "offsetMm": 1.9999146461486817,
+            "at": [
+                2.5300769805908205,
+                0.16200000047683717,
+                -82.91028594970703
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.241734963741692e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/Outer wall paper.019",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.00044302214519120753,
+            "offsetMm": 1.999377965927124,
+            "at": [
+                4.2313151359558109,
+                0.16000063717365266,
+                -82.92606353759766
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365771405398846,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                5.9579010009765629,
+                0.16200008988380433,
+                -87.74667358398438
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.003",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006355377845466137,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                10.957901000976563,
+                0.16200008988380433,
+                -87.74666595458985
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365545094013214,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                9.642098426818848,
+                0.16200007498264314,
+                -87.85334014892578
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/East wall",
+            "materialB": "Plaster",
+            "kind": "material",
+            "area": 0.009564396925270558,
+            "offsetMm": 1.999418020248413,
+            "at": [
+                18.57947540283203,
+                0.16199982166290284,
+                -89.4616928100586
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.8626025166668115e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/Outer wall paper.071",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.00047812581760808825,
+            "offsetMm": 1.999418020248413,
+            "at": [
+                18.373977661132814,
+                0.16199982166290284,
+                -89.47000122070313
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.8626025166668115e-7
+            ],
+            "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/East wall",
+            "materialA": "Plaster",
+            "b": "Window street geometry/主角住宅/House1931/South corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.01920057274401188,
+            "offsetMm": 1.9997426271438599,
+            "at": [
+                18.439998626708986,
+                0.16000036895275117,
+                -89.80143737792969
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1976621294707002e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Outer wall paper.071",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/South corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.0018479874124750496,
+            "offsetMm": 1.9998699426651,
+            "at": [
+                18.37359619140625,
+                0.16000036895275117,
+                -89.80301666259766
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1966525903517323e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_loft-wheels",
+            "materialA": "GInt_Steel",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_loft-wheels",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.005885270424187183,
+            "offsetMm": 1.2018680572509766,
+            "at": [
+                -102.912841796875,
+                3.2417848110198976,
+                12.026496887207032
+            ],
+            "normal": [
+                -0.856450617313385,
+                0.4999901354312897,
+                -0.12846045196056367
+            ],
+            "pairs": 28,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.028",
+            "materialA": "Paper",
+            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.023",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016939813503995538,
+            "offsetMm": 1.999946117401123,
+            "at": [
+                3.1243538856506349,
+                0.7289336919784546,
+                -85.5260009765625
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.4738758952480568e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_desk_2/Drawer_desk_2/Drawer bottom.008",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_desk_2/Record E09/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05721646547317505,
+            "offsetMm": 1.9998443126678467,
+            "at": [
+                8.950333595275879,
+                0.7306665182113648,
+                -83.5260009765625
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.2323979464999867e-7
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.026",
+            "materialA": "Paper",
+            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.022",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016939814668148757,
+            "offsetMm": 1.9998865127563477,
+            "at": [
+                3.1261115074157717,
+                0.548933744430542,
+                -85.51899719238281
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.4738758952480568e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailRed",
+            "materialA": "RailRed",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailIvory",
+            "materialB": "RailIvory",
+            "kind": "material",
+            "area": 0.031359728425741199,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                216.68350219726563,
+                1.4110002517700196,
+                16.793027877807618
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 16,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/Cabinet_kitchen-larder/Parcel cotton tie.018",
+            "materialA": "Cream",
+            "b": "主角住宅/House1931/Cabinet_kitchen-larder/Stored tied parcel.019",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.0016239553224295378,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                7.501439571380615,
+                0.4070005714893341,
+                -83.15513610839844
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -2.1135427630269988e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_tag-board",
+            "materialA": "PInt_Panel",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_tag-board",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.004159694537520409,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -101.34716033935547,
+                1.7048901319503785,
+                10.595000267028809
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialA": "PInt_Black",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.018564818426966668,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -96.33232116699219,
+                1.0164861679077149,
+                3.698002576828003
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 48,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Parcel cotton tie.017",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Stored tied parcel.017",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.0016239553224295378,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                5.98043966293335,
+                1.121000051498413,
+                -83.21485900878906
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Drawer rear",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Drawer side",
+            "materialB": "Walnut",
+            "kind": "uv",
+            "area": 0.00019200274255126715,
+            "offsetMm": 1.9999749660491944,
+            "at": [
+                18.229000091552736,
+                0.5540000796318054,
+                -91.36900329589844
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.0484536261401445e-7
+            ],
+            "pairs": 1,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_vise",
+            "materialA": "PInt_Iron",
+            "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_vise",
+            "materialB": "GInt_Steel",
+            "kind": "material",
+            "area": 0.001139997853897512,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                -92.41799926757813,
+                1.2442315816879273,
+                3.9567337036132814
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Drawer bottom.011",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05125518515706062,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                12.587166786193848,
+                0.977333128452301,
+                -83.40133666992188
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Drawer bottom.011",
+            "materialA": "Walnut",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.051255181431770328,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                12.963744163513184,
+                0.977333128452301,
+                -83.42337799072266
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Box lid rim",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05851198360323906,
+            "offsetMm": 1.9999756813049317,
+            "at": [
+                12.57510757446289,
+                1.191999912261963,
+                -83.45149993896485
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                6.773452128072677e-7
+            ],
+            "pairs": 10,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Box lid rim",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.05851198360323906,
+            "offsetMm": 1.9999756813049317,
+            "at": [
+                13.000106811523438,
+                1.191999912261963,
+                -83.45149993896485
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                6.773452128072677e-7
+            ],
+            "pairs": 10,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailGreen",
+            "materialA": "RailGreen",
+            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailIvory",
+            "materialB": "RailIvory",
+            "kind": "material",
+            "area": 0.03920820355415344,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                214.75650024414063,
+                1.7110002040863038,
+                16.926977157592775
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 20,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_coffee_0/Drawer_coffee_0/Parcel cotton tie.003",
+            "materialA": "Cream",
+            "b": "主角住宅/Storage pivot Drawer_coffee_0/Drawer_coffee_0/Stored tied parcel.003",
+            "materialB": "Paper",
+            "kind": "material",
+            "area": 0.0018367230659350753,
+            "offsetMm": 1.9999754428863526,
+            "at": [
+                4.567628383636475,
+                0.38599997758865359,
+                -92.17371368408203
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.1135427630269988e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/StationB/RailTrain/Boarding step",
+            "materialA": "RailIron",
+            "b": "Window street geometry/StationB/RailTrain/Boarding step",
+            "materialB": "RailIron",
+            "kind": "uv",
+            "area": 0.19281502068042756,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                209.55145263671876,
+                0.41999995708465578,
+                39.15166473388672
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 52,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Stored tied parcel",
+            "materialA": "Paper",
+            "b": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Parcel cotton tie",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016248937463387848,
+            "offsetMm": 1.9999901056289673,
+            "at": [
+                18.113859176635743,
+                0.4190000593662262,
+                -91.84994506835938
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.2628507306544635e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_stationery_0/Drawer_stationery_0/Stored tied parcel.030",
+            "materialA": "Paper",
+            "b": "主角住宅/Storage pivot Drawer_stationery_0/Drawer_stationery_0/Parcel cotton tie.024",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0014287619851529599,
+            "offsetMm": 1.9999901056289673,
+            "at": [
+                13.003717422485352,
+                0.41899994015693667,
+                -84.91190338134766
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.307137580397466e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/Storage pivot Drawer_utility_0/Drawer_utility_0/Stored tied parcel.036",
+            "materialA": "Paper",
+            "b": "主角住宅/Storage pivot Drawer_utility_0/Drawer_utility_0/Parcel cotton tie.030",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016248769825324417,
+            "offsetMm": 1.9999901056289673,
+            "at": [
+                2.786863088607788,
+                0.41899991035461428,
+                -77.27194213867188
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.2628507306544635e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/StationB/Platform sign foot",
+            "materialA": "RailIron",
+            "b": "Window street geometry/StationB/Platform sign iron post",
+            "materialB": "RailIron",
+            "kind": "uv",
+            "area": 0.009800638072192669,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                239.0712432861328,
+                0.4200000464916229,
+                35.286251068115237
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.025",
+            "materialA": "Paper",
+            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.021",
+            "materialB": "Cream",
+            "kind": "material",
+            "area": 0.0016939813503995538,
+            "offsetMm": 1.9999901056289673,
+            "at": [
+                3.063887119293213,
+                0.39333370327949526,
+                -85.51899719238281
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.2369379476240284e-7
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/RepairGarage/Rail sign board · 修 车 铺/Solid painted sign face",
+            "materialA": "RailGreen",
+            "b": "Window street geometry/RepairGarage/Rail sign board · 修 车 铺/Brass side border",
+            "materialB": "RailBrass",
+            "kind": "material",
+            "area": 0.00550435995683074,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -105.21129608154297,
+                3.9600000381469728,
+                -4.156590461730957
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 8,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "Window street geometry/PoliceStation/Rail sign board · 青 川 警 署/Solid painted sign face",
             "materialA": "RailGreen",
             "b": "Window street geometry/PoliceStation/Rail sign board · 青 川 警 署/Brass top bottom border",
@@ -15535,50 +16921,6 @@
                 0.0
             ],
             "pairs": 6,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailRed",
-            "materialA": "RailRed",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailIvory",
-            "materialB": "RailIvory",
-            "kind": "material",
-            "area": 0.0313597247004509,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                213.79067993164063,
-                1.7390002012252808,
-                16.80931282043457
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 16,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailGreen",
-            "materialA": "RailGreen",
-            "b": "StationB/StationB/Module_TicketOffice_Storage/Module_TicketOffice_Storage_RailIvory",
-            "materialB": "RailIvory",
-            "kind": "material",
-            "area": 0.03920820355415344,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                214.75650024414063,
-                1.7110002040863038,
-                16.926977157592775
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 20,
             "moving": false
         },
         {
@@ -15693,28 +17035,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.026",
-            "materialA": "Paper",
-            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.022",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016939813503995538,
-            "offsetMm": 1.9998865127563477,
-            "at": [
-                3.1243538856506349,
-                0.548933744430542,
-                -85.5260009765625
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.4738758952480568e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "StationB/StationB/Module_Station_InteriorDetail/Module_Station_InteriorDetail_RailWalnut",
             "materialA": "RailWalnut",
             "b": "StationB/StationB/Module_Station_InteriorDetail/Module_Station_InteriorDetail_RailWalnut",
@@ -15778,116 +17098,6 @@
             ],
             "pairs": 1,
             "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/StationB/RailTrain/Boarding step",
-            "materialA": "RailIron",
-            "b": "Window street geometry/StationB/RailTrain/Boarding step",
-            "materialB": "RailIron",
-            "kind": "uv",
-            "area": 0.19281502068042756,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                209.55145263671876,
-                0.41999995708465578,
-                39.15166473388672
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 52,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Stored tied parcel",
-            "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Parcel cotton tie",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016248938627541066,
-            "offsetMm": 1.9999901056289673,
-            "at": [
-                18.112136840820314,
-                0.4190000593662262,
-                -91.85694885253906
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.2628507306544635e-7
-            ],
-            "pairs": 4,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_stationery_0/Drawer_stationery_0/Stored tied parcel.030",
-            "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_stationery_0/Drawer_stationery_0/Parcel cotton tie.024",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.001428761868737638,
-            "offsetMm": 1.9999901056289673,
-            "at": [
-                13.005284309387207,
-                0.41899994015693667,
-                -84.90489959716797
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.307137580397466e-7
-            ],
-            "pairs": 4,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_utility_0/Drawer_utility_0/Stored tied parcel.036",
-            "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_utility_0/Drawer_utility_0/Parcel cotton tie.030",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016248769825324417,
-            "offsetMm": 1.9999901056289673,
-            "at": [
-                2.843141794204712,
-                0.41899991035461428,
-                -77.27606201171875
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.2628507306544635e-7
-            ],
-            "pairs": 4,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/StationB/Platform sign foot",
-            "materialA": "RailIron",
-            "b": "Window street geometry/StationB/Platform sign iron post",
-            "materialB": "RailIron",
-            "kind": "uv",
-            "area": 0.009800638072192669,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                239.0712432861328,
-                0.4200000464916229,
-                35.286251068115237
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 4,
-            "moving": false
         },
         {
             "scene": "ClockShop",
@@ -16067,270 +17277,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North wall",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.009600324556231499,
-            "offsetMm": 1.999365210533142,
-            "at": [
-                4.238148212432861,
-                0.16000063717365266,
-                -82.8800048828125
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/North wall",
-            "materialA": "Plaster",
-            "b": "Window street geometry/主角住宅/House1931/West wall.031",
-            "materialB": "Plaster",
-            "kind": "uv",
-            "area": 0.028802404180169107,
-            "offsetMm": 1.9999146461486817,
-            "at": [
-                2.5300769805908205,
-                0.16200000047683717,
-                -82.91028594970703
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.241734963741692e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_utility/Door casing.018",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/Outer wall paper.019",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.00044302214519120753,
-            "offsetMm": 1.999377965927124,
-            "at": [
-                4.2313151359558109,
-                0.16000063717365266,
-                -82.92606353759766
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 1,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365771405398846,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                5.970740795135498,
-                0.16200007498264314,
-                -87.7996597290039
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365545094013214,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                9.62925910949707,
-                0.16200007498264314,
-                -87.80034637451172
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.003",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.016",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006355377845466137,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                10.970741271972657,
-                0.16200007498264314,
-                -87.79955291748047
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/East wall",
-            "materialB": "Plaster",
-            "kind": "material",
-            "area": 0.009564396925270558,
-            "offsetMm": 1.999418020248413,
-            "at": [
-                18.57947540283203,
-                0.16199982166290284,
-                -89.4616928100586
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.8626025166668115e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_east/Door casing.015",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/Outer wall paper.071",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.00047812581760808825,
-            "offsetMm": 1.999418020248413,
-            "at": [
-                18.373977661132814,
-                0.16199982166290284,
-                -89.47000122070313
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.8626025166668115e-7
-            ],
-            "pairs": 1,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/East wall",
-            "materialA": "Plaster",
-            "b": "Window street geometry/主角住宅/House1931/South corridor partition.016",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.01920057274401188,
-            "offsetMm": 1.9997426271438599,
-            "at": [
-                18.420000076293947,
-                0.16000038385391236,
-                -89.72190856933594
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1976621294707002e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/Outer wall paper.071",
-            "materialA": "Wallpaper",
-            "b": "Window street geometry/主角住宅/House1931/South corridor partition.016",
-            "materialB": "Wallpaper",
-            "kind": "uv",
-            "area": 0.0018479874124750496,
-            "offsetMm": 1.9998699426651,
-            "at": [
-                18.37359619140625,
-                0.16000036895275117,
-                -89.80301666259766
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1966525903517323e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.028",
-            "materialA": "Paper",
-            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.023",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016939814668148757,
-            "offsetMm": 1.999946117401123,
-            "at": [
-                3.063887119293213,
-                0.7289336919784546,
-                -85.52900695800781
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.4738758952480568e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_desk_2/Drawer_desk_2/Drawer bottom.008",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_desk_2/Record E09/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05721646547317505,
-            "offsetMm": 1.9998443126678467,
-            "at": [
-                9.050149917602539,
-                0.7306665182113648,
-                -83.46865844726563
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.2323979464999867e-7
-            ],
-            "pairs": 3,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
             "a": "主角住宅/Storage pivot Drawer_hall_2/Drawer_hall_2/Drawer bottom.020",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_hall_2/Record H01/Document storage box",
@@ -16372,28 +17318,6 @@
             ],
             "pairs": 4,
             "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
-            "materialA": "RailIron",
-            "b": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
-            "materialB": "RailIron",
-            "kind": "uv",
-            "area": 0.2115161269903183,
-            "offsetMm": 1.007080078125,
-            "at": [
-                236.25201416015626,
-                1.2599997520446778,
-                40.253814697265628
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.9478535762118555e-7
-            ],
-            "pairs": 24,
-            "moving": false
         },
         {
             "scene": "ClockShop",
@@ -16881,28 +17805,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/House1931/Cabinet_kitchen-crockery/Stored tied parcel.025",
-            "materialA": "Paper",
-            "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.021",
-            "materialB": "Cream",
-            "kind": "material",
-            "area": 0.0016939813503995538,
-            "offsetMm": 1.9999901056289673,
-            "at": [
-                3.063887119293213,
-                0.39333370327949526,
-                -85.51899719238281
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.2369379476240284e-7
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "主角住宅/House1931/Cabinet_kitchen-larder/Parcel cotton tie.018",
             "materialA": "Cream",
             "b": "主角住宅/House1931/Cabinet_kitchen-larder/Stored tied parcel.018",
@@ -16941,28 +17843,6 @@
                 0.0,
                 -1.0,
                 0.0
-            ],
-            "pairs": 4,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/Cabinet_kitchen-larder/Parcel cotton tie.018",
-            "materialA": "Cream",
-            "b": "主角住宅/House1931/Cabinet_kitchen-larder/Stored tied parcel.019",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.0016239553224295378,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                7.498560428619385,
-                0.4070005714893341,
-                -83.213134765625
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -2.1135427630269988e-7
             ],
             "pairs": 4,
             "moving": false
@@ -17296,72 +18176,6 @@
             ],
             "pairs": 7,
             "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Box lid rim",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05851198360323906,
-            "offsetMm": 1.9999756813049317,
-            "at": [
-                12.962518692016602,
-                1.1899994611740113,
-                -83.34200286865235
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 10,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Box lid rim",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05851198732852936,
-            "offsetMm": 1.9999756813049317,
-            "at": [
-                12.537519454956055,
-                1.1899994611740113,
-                -83.34200286865235
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 10,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Parcel cotton tie.017",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_2/Drawer_kitchen-bills_2/Stored tied parcel.017",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.0016239553224295378,
-            "offsetMm": 1.999974250793457,
-            "at": [
-                5.98043966293335,
-                1.121000051498413,
-                -83.21485900878906
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 4,
-            "moving": true
         },
         {
             "scene": "ClockShop",
@@ -18069,28 +18883,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/StationB/Rail sign board · 检 票 口/Brass side border",
-            "materialA": "RailBrass",
-            "b": "Window street geometry/StationB/Rail sign board · 检 票 口/Solid painted sign face",
-            "materialB": "RailGreen",
-            "kind": "material",
-            "area": 0.010046924464404583,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                221.96128845214845,
-                2.9119999408721926,
-                31.881589889526368
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 16,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "Window street geometry/主角住宅/House1931/Utility west.007",
             "materialA": "Plaster",
             "b": "Window street geometry/主角住宅/House1931/Utility ceiling",
@@ -18261,28 +19053,6 @@
                 0.0,
                 1.0,
                 -1.0484536261401445e-7
-            ],
-            "pairs": 1,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Drawer rear",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_sideboard_0/Drawer_sideboard_0/Drawer side",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.00019200274255126715,
-            "offsetMm": 1.9999749660491944,
-            "at": [
-                18.229000091552736,
-                0.5540000796318054,
-                -91.36900329589844
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.0484536261401445e-7
             ],
             "pairs": 1,
             "moving": true
@@ -18531,28 +19301,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_coffee_0/Drawer_coffee_0/Parcel cotton tie.003",
-            "materialA": "Cream",
-            "b": "主角住宅/Storage pivot Drawer_coffee_0/Drawer_coffee_0/Stored tied parcel.003",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.0018367230659350753,
-            "offsetMm": 1.9999754428863526,
-            "at": [
-                4.567628383636475,
-                0.38599997758865359,
-                -92.17371368408203
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.1135427630269988e-7
-            ],
-            "pairs": 4,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
             "a": "主角住宅/Storage pivot Drawer_desk_0/Drawer_desk_0/Drawer side.012",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_desk_0/Drawer_desk_0/Drawer rear.006",
@@ -18704,50 +19452,6 @@
             ],
             "pairs": 8,
             "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Drawer bottom.011",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H09/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.05125518515706062,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                12.587166786193848,
-                0.977333128452301,
-                -83.40133666992188
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_medical_2/Drawer_medical_2/Drawer bottom.011",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_medical_2/Record H10/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.051255181431770328,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                12.963744163513184,
-                0.977333128452301,
-                -83.42337799072266
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 3,
-            "moving": true
         },
         {
             "scene": "ClockShop",
@@ -19169,28 +19873,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_old-trunk_0/Drawer_old-trunk_0/Drawer side.078",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_old-trunk_0/Drawer_old-trunk_0/Drawer rear.039",
-            "materialB": "Walnut",
-            "kind": "uv",
-            "area": 0.00018698396161198616,
-            "offsetMm": 1.9998574256896973,
-            "at": [
-                18.24403953552246,
-                3.554333448410034,
-                -90.8188705444336
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 1,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
             "a": "主角住宅/Storage pivot Drawer_dressing_0/Drawer_dressing_0/Drawer side.061",
             "materialA": "Walnut",
             "b": "主角住宅/Storage pivot Drawer_dressing_0/Drawer_dressing_0/Drawer rear.030",
@@ -19562,50 +20244,6 @@
             ],
             "pairs": 3,
             "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_dressing_2/Drawer_dressing_2/Drawer bottom.032",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_dressing_2/Record H20/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.04934943467378616,
-            "offsetMm": 1.999943733215332,
-            "at": [
-                3.0675995349884035,
-                3.997333288192749,
-                -94.14283752441406
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                1.871414383458614e-7
-            ],
-            "pairs": 2,
-            "moving": true
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_toys_2/Drawer_toys_2/Drawer bottom.035",
-            "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_toys_2/Record H24/Document storage box",
-            "materialB": "Paper",
-            "kind": "material",
-            "area": 0.04648979753255844,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                7.439821243286133,
-                3.997333288192749,
-                -87.31631469726563
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 3,
-            "moving": true
         },
         {
             "scene": "ClockShop",
@@ -20463,28 +21101,6 @@
                 -1.0
             ],
             "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "StationB/StationB/Module_Rear_CoveredWay/RearWayGlass",
-            "materialA": "RailShedGlass",
-            "b": "StationB/StationB/Module_Station_Masonry/Module_Station_Masonry_RailStone",
-            "materialB": "RailStone",
-            "kind": "material",
-            "area": 0.0027357330545783045,
-            "offsetMm": 1.4998916387557984,
-            "at": [
-                223.05467224121095,
-                3.7825005054473879,
-                20.415998458862306
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -8.6383593611572e-8
-            ],
-            "pairs": 6,
             "moving": false
         },
         {

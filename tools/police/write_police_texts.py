@@ -68,7 +68,8 @@ REPORT = dict(
     statements=[dict(id='S1', text='送奶少年：二十日傍晚六点二十五分，他把牛奶交给了妻子。'),
                 dict(id='S2', text='丈夫：二十日傍晚，他乘车到另一镇南区问东街。'),
                 dict(id='S3', text='丈夫：二十日的车票证明他当天乘车离镇。'),
-                dict(id='S4', text='现场：被裁去上下文的信，指向修车匠到过住宅。')],
+                dict(id='S4', text='现场：被裁去上下文的信，指向修车匠到过住宅。'),
+                dict(id='S5', text='现场：工具牌和机油手套说明修车匠二十日傍晚到过住宅。')],
     kinds=[dict(id='time', text='时刻需要校正'), dict(id='date', text='日期需要校正'),
            dict(id='trip', text='行程无法由此证明'), dict(id='scene', text='现场布置存疑')],
     rules=[dict(id='D01', statement='S3', kind='trip', required=['E01', 'E02', 'E03'], supporting=[], core=False,
@@ -78,7 +79,10 @@ REPORT = dict(
            dict(id='D03', statement='S2', kind='date', required=['E01', 'E08'], supporting=['E07'], core=True,
                 boundary='原簿把问路记在十九日；陈述里的日期需要重新核对。往事片段不能作为提交依据。'),
            dict(id='D04', statement='S4', kind='scene', required=['E01', 'E09'], supporting=[], core=False,
-                boundary='这只是布置现场的疑问，不能单独证明谁杀了人。')],
+                boundary='这只是布置现场的疑问，不能单独证明谁杀了人。'),
+           # E garage (2026-10-14): the neighbouring-city work order and the two customers' copies.
+           dict(id='D05', statement='S5', kind='trip', required=['E01', 'W01', 'W02'], supporting=[], core=False,
+                boundary='两份独立记录把修车匠二十日傍晚放在邻市车间；现场物件不能证明他到过住宅。这本身不能说明是谁把物件带进屋里。')],
     unsupported='警署收下了你的判断，但目前附上的材料还不足以核对这一点。',
     unresolved='尚未解决：需要能独立核对这句陈述的记录。',
     closing='警署收下了两组可以核对的材料：送奶证言的钟点需要校正，问路的日期被放进了二十日。原陈述将被重新审查，案件进入重新调查。\n\n你仍然可以继续在镇上查看。')

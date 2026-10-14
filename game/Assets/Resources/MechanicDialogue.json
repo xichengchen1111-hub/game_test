@@ -1,0 +1,121 @@
+{
+ "first": "greeting",
+ "revisit": "greeting",
+ "nodes": [
+  {
+   "id": "greeting",
+   "speaker": "修车匠",
+   "text": "……是你。你来这儿做什么？",
+   "next": "topics"
+  },
+  {
+   "id": "topics",
+   "speaker": "修车匠",
+   "text": "要问就问吧。",
+   "choices": [
+    {
+     "text": "你和她打算离开小镇？",
+     "target": "ask-leave",
+     "topic": "mechanic.leave"
+    },
+    {
+     "text": "星期二晚上，你在哪里？",
+     "target": "ask-where",
+     "topic": "mechanic.where"
+    },
+    {
+     "text": "你有工具留在她家吗？",
+     "target": "ask-tools",
+     "topic": "mechanic.tools"
+    },
+    {
+     "text": "凯恩车间寄来的抄件是怎么回事？",
+     "target": "ask-copies",
+     "topic": "mechanic.copies",
+     "requiresEvidence": "W01"
+    },
+    {
+     "text": "你的工具牌平时挂在哪里？",
+     "target": "ask-board",
+     "topic": "mechanic.board"
+    },
+    {
+     "text": "先这样。",
+     "target": "ask-goodbye",
+     "topic": "mechanic.goodbye"
+    }
+   ]
+  },
+  {
+   "id": "ask-leave",
+   "speaker": "你",
+   "text": "你和她打算离开小镇？",
+   "next": "leave"
+  },
+  {
+   "id": "leave",
+   "speaker": "修车匠",
+   "text": "打算。她说那笔钱是她自己的。她欠那么多人，我不信她每句话，可我确实爱过她。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-where",
+   "speaker": "你",
+   "text": "星期二晚上，你在哪里？",
+   "next": "where"
+  },
+  {
+   "id": "where",
+   "speaker": "修车匠",
+   "text": "邻市的凯恩车间。那天下午我接了两辆车，两个客人都认得我。车间关门后我住在临城旅店，登记簿上有名字。你手里那些东西要是说我在她家，就是有人想让你相信我去过。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-tools",
+   "speaker": "你",
+   "text": "你有工具留在她家吗？",
+   "next": "tools"
+  },
+  {
+   "id": "tools",
+   "speaker": "修车匠",
+   "text": "那块牌子是我的。工具不在她家。有人拿走牌子，不等于我拿走了她的命。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-copies",
+   "speaker": "你",
+   "text": "凯恩车间寄来的抄件是怎么回事？",
+   "next": "copies"
+  },
+  {
+   "id": "copies",
+   "speaker": "修车匠",
+   "text": "车间把那天的工单抄了一份寄给我，两个客人的话也抄在后面。原件在车间和警署，警察已经去问过。你不信，就自己去核。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-board",
+   "speaker": "你",
+   "text": "你的工具牌平时挂在哪里？",
+   "next": "board"
+  },
+  {
+   "id": "board",
+   "speaker": "修车匠",
+   "text": "后面那块挂板上，借工具的人拿牌子换，我自己的也挂在那儿。什么时候少的，我说不上来。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-goodbye",
+   "speaker": "你",
+   "text": "先这样。",
+   "next": "goodbye"
+  },
+  {
+   "id": "goodbye",
+   "speaker": "修车匠",
+   "text": "……走吧。"
+  }
+ ]
+}

@@ -132,6 +132,7 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&(Array.IndexOf(args,"--review-car")>=0||Array.IndexOf(args,"--verify-car-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"car-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-tower-night")>=0||Array.IndexOf(args,"--review-day-look")>=0))savePath=Path.Combine(Application.persistentDataPath,"look-gallery-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-police")>=0||Array.IndexOf(args,"--verify-police-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"police-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-garage")>=0||Array.IndexOf(args,"--verify-garage-save")>=0||Array.IndexOf(args,"--review-garage-day")>=0))savePath=Path.Combine(Application.persistentDataPath,"garage-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-opening")>=0||Array.IndexOf(args,"--verify-opening-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-police-cast")>=0)savePath=Path.Combine(Application.persistentDataPath,"police-cast-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-opening-ride")>=0||Array.IndexOf(args,"--verify-opening-ride-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-ride-review-save.json");
@@ -223,6 +224,9 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--verify-yard-gate-save")>=0)StartCoroutine(VerifyYardGateSave());
             else if(Array.IndexOf(args,"--review-opening")>=0)StartCoroutine(ReviewOpening());
             else if(Array.IndexOf(args,"--verify-opening-save")>=0)StartCoroutine(VerifyOpeningSave());
+            else if(Array.IndexOf(args,"--review-garage-day")>=0)StartCoroutine(ReviewGarageGallery());
+            else if(Array.IndexOf(args,"--review-garage")>=0)StartCoroutine(ReviewGarage());
+            else if(Array.IndexOf(args,"--verify-garage-save")>=0)StartCoroutine(VerifyGarageSave());
             else if(Array.IndexOf(args,"--review-police")>=0)StartCoroutine(ReviewPolice());
             else if(Array.IndexOf(args,"--verify-police-save")>=0)StartCoroutine(VerifyPoliceSave());
             else if(Array.IndexOf(args,"--review-house")>=0)StartCoroutine(ReviewHouse());
@@ -351,6 +355,7 @@ public partial class DemoApp : MonoBehaviour {
         if(item.title=="钟表匠") { OpenWatchmakerDialogue(); return; }
         if(item.title=="售票员") { OpenStationClerkDialogue(item); return; }
         if(item.title=="值班警员") { OpenPoliceOfficerDialogue(item); return; }
+        if(item.title=="修车匠") { OpenMechanicDialogue(item); return; }
         EndEvidenceModel();inspected=item;if(ModelEvidence)BeginEvidenceModel(item); houseLetterOpen=false; towerAdjustmentFeedback=""; CursorMode();
         if(item.evidenceId=="E02"||item.evidenceId=="E03") {
             var existing=state.entries.Find(e=>e.id==item.evidenceId);

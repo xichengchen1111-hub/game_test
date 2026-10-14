@@ -12,7 +12,7 @@ public static class FullMapChecks {
         }
         var markers=geometry.GetComponentsInChildren<TownMapBuilding>();
         Need(markers.Length==70&&markers.Select(m=>m.mapId).Distinct().Count()==70,"all 70 properties must appear once");
-        Need(markers.Count(m=>m.finished)==6,"finished tower/shop/dairy/station/police/home");
+        Need(markers.Count(m=>m.finished)==7,"finished tower/shop/dairy/station/police/home/garage");
         foreach(var b in plan.buildings) {
             var marker=markers.Single(m=>m.mapId==b.id);
             Need(Vector3.Distance(marker.door,TownPlan.Point(b.door))<.001f,"door marker drift "+b.id);
@@ -33,7 +33,7 @@ public static class FullMapChecks {
         Need(geometry.GetComponentsInChildren<WeatherShelter>().Length>70,"finished and placeholder roofs shelter rain");
         // A finished prefab's own ground slab owns its footprint: no street triangle may lie
         // coplanar beneath it (2026-10-11, rear footpath z-fighting the station concourse).
-        foreach(var slab in geometry.GetComponentsInChildren<MeshRenderer>().Where(r=>r.name=="StationConcourseFlags"||r.name=="Ext_Court")) {
+        foreach(var slab in geometry.GetComponentsInChildren<MeshRenderer>().Where(r=>r.name=="StationConcourseFlags"||r.name=="Ext_Court"||r.name=="Ext_Ground")) {
             var b=slab.bounds;int coplanar=0;
             foreach(var surface in plan.surfaces)for(int i=0;i+8<surface.vertices.Length;i+=9) {
                 float x=(surface.vertices[i]+surface.vertices[i+3]+surface.vertices[i+6])/3,y=surface.vertices[i+1],z=(surface.vertices[i+2]+surface.vertices[i+5]+surface.vertices[i+8])/3;
@@ -43,9 +43,10 @@ public static class FullMapChecks {
         }
         Need(geometry.GetComponentsInChildren<MeshRenderer>().Any(r=>r.name=="StationConcourseFlags"),"station concourse slab present for coplanarity check");
         Need(geometry.GetComponentsInChildren<MeshRenderer>().Any(r=>r.name=="Ext_Court"),"police court slab present for coplanarity check");
+        Need(geometry.GetComponentsInChildren<MeshRenderer>().Any(r=>r.name=="Ext_Ground"&&r.GetComponentInParent<RepairGarage>()),"garage front flags and yard present for coplanarity check");
         string directory="../output/demo/full-map";Directory.CreateDirectory(directory);
-        File.WriteAllText(directory+"/authoring-checks.json",JsonUtility.ToJson(new Result{passed=true,mapVersion=plan.version,source=plan.sourceSha256,properties=markers.Length,finished=6,roads=11,lights=geometry.GetComponentsInChildren<Light>().Length,shadows=3},true));
-        Debug.Log("FULL_MAP_AUTHORING_PASS: 70 property markers; finished proportions, origin/doors, roads and light budget");
+        File.WriteAllText(directory+"/authoring-checks.json",JsonUtility.ToJson(new Result{passed=true,mapVersion=plan.version,source=plan.sourceSha256,properties=markers.Length,finished=7,roads=11,lights=geometry.GetComponentsInChildren<Light>().Length,shadows=3},true));
+        Debug.Log("FULL_MAP_AUTHORING_PASS: 70 property markers (7 finished); finished proportions, origin/doors, roads and light budget");
     }
     [Serializable] class Result {public bool passed;public int mapVersion,properties,finished,roads,lights,shadows;public string source;}
 }

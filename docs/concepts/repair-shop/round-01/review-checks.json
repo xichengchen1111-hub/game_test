@@ -1,0 +1,62 @@
+{
+  "count": 5,
+  "images": [
+    {
+      "id": "a-brick-street-shop",
+      "file": "a-brick-street-shop.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "2ff1ed393c6ff15ae0d1c9a54e271b7508e79b2f8e844f0ebd9db93cf926762f",
+      "visual_review": "reviewed; concept only"
+    },
+    {
+      "id": "b-coach-court",
+      "file": "b-coach-court.png",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "sha256": "0643f4f7f5008d4ed8f9692e91ea4d4427aebcbbdd23fc516a88483fd2634f87",
+      "visual_review": "reviewed; concept only"
+    },
+    {
+      "id": "c-ivory-geometric-garage",
+      "file": "c-ivory-geometric-garage.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "ac4a662c0ae6a93fdd33b06149f6d186dc4da1a3a0c71ebd16ebbcf4c30a03db",
+      "visual_review": "reviewed; concept only"
+    },
+    {
+      "id": "d-sawtooth-workshop",
+      "file": "d-sawtooth-workshop.png",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "sha256": "1eba2c6bb3d28e330e21e842151d8cf13073e25354c3ffe172b9e4121b7d935b",
+      "visual_review": "reviewed; concept only"
+    },
+    {
+      "id": "e-stone-barn-garage",
+      "file": "e-stone-barn-garage.png",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "sha256": "8dfdbdff2b869eaef673b7dceb4a1c5ec97539419349518510839280693238d0",
+      "visual_review": "reviewed; concept only"
+    }
+  ],
+  "a_exterior_roof_reframed": true,
+  "selected_scheme": null,
+  "implementation_authorized": false,
+  "limitations": [
+    "多视图尚非严格投影一致施工图",
+    "装饰钟、纸字和雪点不构成剧情事实"
+  ]
+}
