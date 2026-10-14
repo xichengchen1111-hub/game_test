@@ -1,0 +1,29 @@
+{
+  "role": "HouseSurgeon",
+  "tripoAsset": "a3cf736b-41c9-4df6-b56b-1e2eabb3cba2",
+  "archive": "assets/source/hospital-cast/HouseSurgeon/tripo/original/HouseSurgeon-Tripo-idle-walk-talk-1eda96b6c5f0.zip",
+  "archiveSHA256": "1eda96b6c5f07a27d7205ac70ca3628a7944ea5dbc1acba53968cf5f68f3419a",
+  "originalPreserved": true,
+  "heightMetres": 1.78,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/HouseSurgeon/tripo/original/export-1eda96b6c5f0/tripo_convert_c819ec69-6bb9-422c-b2d8-ea9911c2e9f6.fbm/tripo_image_c819ec69-6bb9-422c-b2d8-ea9911c2e9f6_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/HouseSurgeon/tripo/original/export-1eda96b6c5f0/tripo_convert_c819ec69-6bb9-422c-b2d8-ea9911c2e9f6.fbm/tripo_image_c819ec69-6bb9-422c-b2d8-ea9911c2e9f6_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/HouseSurgeon/tripo/original/export-1eda96b6c5f0/tripo_convert_c819ec69-6bb9-422c-b2d8-ea9911c2e9f6.fbm/HouseSurgeon-Tripo-idle-walk-talk_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/HouseSurgeon/tripo/original/export-1eda96b6c5f0/tripo_convert_c819ec69-6bb9-422c-b2d8-ea9911c2e9f6.fbm/HouseSurgeon-Tripo-idle-walk-talk_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/hospital-cast/HouseSurgeon/tripo/Character.blend",
+  "unity": "game/Assets/Art/HospitalCast/HouseSurgeon/Character.fbx",
+  "motion": "game/Assets/Art/HospitalCast/HouseSurgeon/Motion.json",
+  "fixtureLabel": "",
+  "sourceSHA256": "67b94ebc6dcb601149ad2caa6a4527257ef7818124867682a22420ff82bb8491",
+  "fbxSHA256": "bc0efdceca50d4a8268a3586fe2f0a163796eb55e354cf94cc904e1032703b05",
+  "license": "No third-party license inherited from existing characters; retain any license in original export.",
+  "runtimeVerified": false,
+  "meshSelfIntersectionVerified": false,
+  "appearanceAccepted": false
+}

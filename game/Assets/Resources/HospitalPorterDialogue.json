@@ -1,0 +1,144 @@
+{
+  "first": "greeting",
+  "revisit": "again",
+  "nodes": [
+    {
+      "id": "greeting",
+      "speaker": "门房",
+      "text": "……先生。您来了。",
+      "next": "condolence"
+    },
+    {
+      "id": "condolence",
+      "speaker": "门房",
+      "text": "报上的事，我们都看到了。请您节哀。",
+      "next": "topics"
+    },
+    {
+      "id": "topics",
+      "speaker": "门房",
+      "text": "有什么我能帮上的，您尽管说。",
+      "choices": [
+        {
+          "text": "我来看我的孩子。请问在哪间病房？",
+          "target": "ask-ward",
+          "topic": "hospital.porter.ward"
+        },
+        {
+          "text": "孩子……知道母亲的事了吗？",
+          "target": "ask-knows",
+          "topic": "hospital.porter.knows"
+        },
+        {
+          "text": "现在能探视吗？",
+          "target": "ask-visit",
+          "topic": "hospital.porter.visit"
+        },
+        {
+          "text": "谢谢。我先过去了。",
+          "target": "bye"
+        }
+      ]
+    },
+    {
+      "id": "ask-ward",
+      "speaker": "你",
+      "text": "我来看我的孩子。请问在哪间病房？",
+      "next": "ward"
+    },
+    {
+      "id": "ward",
+      "speaker": "门房",
+      "text": "……还是儿童病房，先生。进了走廊往左，一直走到头就是。靠院子那一侧，第三张床。",
+      "next": "ward-habit"
+    },
+    {
+      "id": "ward-habit",
+      "speaker": "门房",
+      "text": "两年多了，每个探视日您都来，从来不用问路。这几天，您是太累了。",
+      "next": "ward-you"
+    },
+    {
+      "id": "ward-you",
+      "speaker": "你",
+      "text": "这几天的事，我有很多都记不清了。",
+      "next": "ward-end"
+    },
+    {
+      "id": "ward-end",
+      "speaker": "门房",
+      "text": "这也难怪。去吧，孩子从早上起，就一直朝门口看。",
+      "next": "topics"
+    },
+    {
+      "id": "ask-knows",
+      "speaker": "你",
+      "text": "孩子……知道母亲的事了吗？",
+      "next": "knows"
+    },
+    {
+      "id": "knows",
+      "speaker": "门房",
+      "text": "护士长已经亲自去说过了。说母亲不会再来了。",
+      "next": "knows-asked"
+    },
+    {
+      "id": "knows-asked",
+      "speaker": "门房",
+      "text": "听病房的护士讲，孩子没有哭出声，只问了一句——“那爸爸呢？”",
+      "next": "knows-yours"
+    },
+    {
+      "id": "knows-yours",
+      "speaker": "门房",
+      "text": "这句话，我们谁也答不了。得您自己去答。",
+      "next": "topics"
+    },
+    {
+      "id": "ask-visit",
+      "speaker": "你",
+      "text": "现在能探视吗？",
+      "next": "visit"
+    },
+    {
+      "id": "visit",
+      "speaker": "门房",
+      "text": "照规矩，儿童病房只在星期三和星期日下午探视，每回半个钟头，只许父母进去。",
+      "next": "visit-today"
+    },
+    {
+      "id": "visit-today",
+      "speaker": "门房",
+      "text": "今天护士长特别交代过：您什么时候到，就什么时候放行，不限钟点。别让孩子太累就好。",
+      "next": "topics"
+    },
+    {
+      "id": "bye",
+      "speaker": "门房",
+      "text": "去吧，先生。走廊往左，走到头。"
+    },
+    {
+      "id": "again",
+      "speaker": "门房",
+      "text": "儿童病房在走廊往左走到头，靠院子那一侧，第三张床。",
+      "next": "topics"
+    },
+    {
+      "id": "after",
+      "speaker": "门房",
+      "text": "看过孩子了？……那就好。",
+      "next": "after-word"
+    },
+    {
+      "id": "after-word",
+      "speaker": "门房",
+      "text": "镇上说什么的都有。我只晓得这两年多，每个探视日站在这张台子前头的是谁。",
+      "next": "after-child"
+    },
+    {
+      "id": "after-child",
+      "speaker": "门房",
+      "text": "孩子如今只剩您了，先生。您可得好好的。"
+    }
+  ]
+}

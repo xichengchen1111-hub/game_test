@@ -42,9 +42,11 @@ public partial class DemoApp {
             if(milkShopRoot&&Button(new Rect(p.x+345,p.y+315,285,44),"牛奶店门前"))CreatorTeleport(milkShopRoot.TransformPoint(new Vector3(0,.1f,-4)));
             if(Button(new Rect(p.x+345,p.y+369,285,44),"车站门前"))CreatorTeleport(new Vector3(188,.12f,33));
             if(HouseInstance.Current&&Button(new Rect(p.x+30,p.y+369,285,44),"住宅门前"))CreatorTeleport(HouseInstance.Current.transform.TransformPoint(new Vector3(10,.16f,0)));
+            if(HospitalBuilding.Current&&Button(new Rect(p.x+30,p.y+423,285,44),"医院门前"))CreatorTeleport(HospitalDropoff,0);
+            if(HospitalBuilding.Current&&Button(new Rect(p.x+345,p.y+423,285,44),"医院 · 儿童病房"))CreatorTeleport(HospitalPoint(4,13.4f),0);
         } else Label(new Rect(p.x+30,p.y+220,600,80),"当前场景可使用飞行观察。回到青川后可使用地点传送。",text);
         GUI.enabled=enabled;
-        Label(new Rect(p.x+30,p.y+437,600,90),"第一幕需重新体验时，从独立“第一幕试玩”入口启动；现有调查存档保留。",small);
+        Label(new Rect(p.x+30,p.y+478,600,62),"第一幕需重新体验时，从独立“第一幕试玩”入口启动；现有调查存档保留。",small);
         if(Button(new Rect(p.x+30,p.y+548,600,44),creatorReturnToPause?"返回暂停菜单 · Esc":"返回游戏 · F2 / Esc"))CloseCreatorMenu();
     }
 }

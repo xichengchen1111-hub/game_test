@@ -56,7 +56,7 @@ public partial class DemoApp {
     }
     void DrawOpeningObjective() {
         if(opening||creatorMenu||OpeningRideActive)return;
-        if(state.openingStage>=4){if(state.openingRideStage==1||state.openingRideStage==2)Label(new Rect(36,102,720,65),state.openingRideStage==1?"可选 · 律师在警署门外等你，靠近按 E 交谈。":"去看孩子 · 车停在警署东侧中街，靠近右侧前门按 E 上车。",small);return;}
+        if(state.openingStage>=4){if(state.openingRideStage==1||state.openingRideStage==2)Label(new Rect(36,102,720,65),state.openingRideStage==1?"可选 · 律师在警署门外等你，靠近按 E 交谈。":"去看孩子 · 车停在警署东侧中街，靠近右侧前门按 E 上车。",small);else DrawHospitalObjective();return;}
         string[] goals={"门外的狱警有话要说。靠近按 E 交谈。","会见律师：出牢门穿过内院，进入正楼横厅，再到门厅东侧会见室。","查看会见桌上的报纸：E 拿起，再按 E 阅读正文。","放回报纸，和律师继续谈话。"};
         Label(new Rect(36,102,720,65),goals[Mathf.Clamp(state.openingStage,0,3)],small);
     }

@@ -18,7 +18,7 @@
 
 ### 统一时间与人物速度
 
-- 唯一时间源是 `GameClock` 保存的累计游戏分钟。怀表、塔钟、昼夜和天气共用它，不各自计时。新开局准确怀表为 **17:55**；塔钟默认快 **30 游戏分钟**，另保存玩家调时偏移，调塔钟不改变怀表或天气。
+- 唯一时间源是 `GameClock` 保存的累计游戏分钟。怀表、塔钟、昼夜和天气共用它，不各自计时。**新开局（从第一幕牢房开始、没有存档）准确怀表为 21:00**：用户 2026-10-14 要求第一幕和到医院都在深夜。实现方式是开局时已经过去 185 分钟（`GameClock.OpeningElapsed`），起点常量仍是 17:55，所以旧存档的时刻不变，没有时钟字段的旧存档仍从 17:55 起。下文说的 17:55 是这个起点常量；塔钟默认快 **30 游戏分钟**，另保存玩家调时偏移，调塔钟不改变怀表或天气。
 - **现实 1 秒 = 游戏 12 秒**，即 **现实 50 秒 = 游戏 10 分钟**，完整 24 小时昼夜为 **现实 2 小时（7200 秒）**。实现常量为 `GameMinutesPerRealSecond = 12.0 / 60.0`。这是用户最新要求，取代此前 4 倍／6 小时；旧“7 秒／10 分钟”及 4 倍校准只属于历史版本。读档保留累计分钟，不清零、不按新倍率重算、不补算离线时间；每 15 秒活跃现实时间自动保存。
 - 查看材料、对话及回看、调查簿、送奶记录、钟楼调时、怀表和手持地图时，时间、昼夜、天气和雨声继续推进。阅读类模态界面只锁定移动／视角；手持地图仍可走跑。只有显式暂停、开场和场景加载冻结正常游玩时间与天气；隔离验收的定时定天气功能不得进入普通模式。
 - `PlayerMotor.WalkSpeed = 2.5f`、`SprintSpeed = 6f`，单位为米／现实秒。按住左或右 **Shift** 持续奔跑，无体力限制；斜向输入归一化，不额外加速。保持真实 CharacterController、碰撞和楼梯约束；接地向下速度为 `-Mathf.Max(2f, speed)`，离地重力 18m/s²，避免全速下楼悬空，不能用放宽穿墙／离阶阈值解决。
@@ -225,8 +225,23 @@ B12已完成两层八室、13窗、10门、20组搜索柜格与26条住宅相关
 ### 警署新人物（2026-10-13）
 
 - 五个 Tripo 人物（律师、看守、值班警员、女巡警、接待女警）已接入，参考图为用户确认的 `assets/source/police-cast/revision-02`。用户对穿模和画风很在意：换模型或动作后必须跑 `tools/cast/check_self_intersection.py`（逐帧，手不得进衣服）并看正／侧／背渲染，再在 `acceptance.json` 按文件哈希放行；不能把手臂整段撑开来过检查。
-- 警署内的人物渲染层用 `BuildSlice.PoliceInteriorLayer`，否则室内灯照不到。对话只有身体动作，没有口型；不要对用户说成会说话的嘴部动画。
+- 警署内的人物渲染层用 `BuildSlice.PoliceInteriorLayer`，否则室内灯照不到。说话时有身体动作，也有构建期补上的口型（按字逐个开合的通用嘴型，没有配音，也不是逐音素对口型）。
 - Tripo 网页操作需要用户的浏览器登录状态；上传参考图按用户指示进行，下载模型包前在对话里取得同意。
+
+### 第二幕医院（用户要求，2026-10-14）
+
+- 用户要求：律师送到医院后，玩家走进医院、向前台问孩子在哪间病房、去病床前见孩子并聊家常；对话要让玩家觉得「为了孩子和这个家，一定要找到害死妻子的真凶」；医院做大做丰富，人物批量用 Tripo；主线优先；开工前先查 1930 年代欧美小镇医院。细节、叙事边界与入口见 docs/hospital-act.md，考据见 docs/research/hospital-1931.md。
+- B11 是可进入的单层 U 形医院，做法与警署相同：布局合同 `tools/hospital/hospital_layout.py` → Blender `tools/hospital/build_hospital.py` → `BuildSlice.Hospital.cs` 装配 `Assets/Generated/Hospital.prefab`，街景与室内同一预制件。改房间、门窗、家具、灯和人物站位先改合同，用 `tools/hospital/build.sh` 重建；不要手改预制件。合同与地图源 `build_plan.py` 的 B11 段互相断言轮廓、两门、42 扇外窗和单层；改地图后 `build_full_town.py`、`plan_greenery.py`、`build_period_streets.py` 都要重跑（输出里带地图校验值，过期会让构建失败）。
+- 主线三个人（问讯处门房、病房护士、病床上的孩子）都不是关卡：不问路也能直接找到孩子，提前关对话不卡进度。人物不写诊断和预后、不说钟差／凶手。孩子没有名字，只叫「爸爸」；孩子设定为 8 岁女孩，是制作时的选择，用户可改（账单 H09 的出生年和来信 E10 的「她」已与此对齐）。
+- 医院证据 Y01–Y04（登记簿、收据存根、孩子的画及背面日期、护士证言）在证据合同 `hospital_1931` 里，文字和纸面由 `tools/hospital/evidence.py` 生成，设计依据见 docs/research/mystery-evidence-design.md。每份记录写明按哪只钟记时，但不说哪只钟错了。三件实物按 E 直接查看；报告新增 D02 医院版和 D05。
+- 第一次和孩子说话是电影式过场（`DemoApp.HospitalCinematic.cs`），用同一套对话节点和存档，镜头只在父亲一侧。过场以玩家的决心和字卡「你答应了她。」收尾。分镜表在 docs/research/mystery-evidence-design.md 第四节。
+- 孩子的表情（用户 2026-10-14）：会眨眼，上眼睑平时略垂（显得累）；见到父亲时嘴角带笑，说到母亲时眼里含泪，提出请求时流下一滴泪。眼睑、笑和眼泪都是构建期在同一网格上加的几何和形变（`PeriodCharacterMouth.Expressive`，眼睛按贴图颜色找，FBX 不改），运行时由 `PeriodCharacterExpression` 驱动，过场按台词设定情绪。只给 ChildGown 开；给别的角色开之前要先看 `builds/cast-review/face-debug/` 和表情近景。床上的人髋部固定在制作时的位置，不随待机平移。
+- 用户反馈过两点：选项不能摆在画面中间挡视线，人物不能穿模。所以过场的字幕和选项都放在下方黑边里，操作沿用全游戏统一的对话规范。床上和长凳上的人说话时不播交谈手势（`PeriodCharacterPerformance.gestures=false`），因为姿势是在动画上再弯手臂，叠加手势会让手进到脸里。医院检测会核对孩子不进 Talk、双手离头部超过 20 cm、选项在画面以下。
+- 人物口型由构建期 `Editor/PeriodCharacterMouth.cs` 生成：从贴图找唇线，补 MouthJaw 骨和一条唇线上的深色口缝，网格不切开、FBX 不改，验收哈希不变。张合对照图用 `PeriodCharacterMouthReview.Render` 重出到 `builds/cast-review/mouth/`。
+- 孩子现在用第二版 `ChildGown`（病号服、苍白疲惫、半躺、动作少；用户 2026-10-14 要求并在看过验收图后批准）。`HospitalCastAuthoring.ChildId` 只有在 ChildGown 的哈希仍然放行时才用它，否则退回第一版 `Child`。
+- 医院人物按 `assets/source/hospital-cast/acceptance.json` 逐人放行（与警署人物同一套哈希规则）；没放行的门房、护士用已放行的警署人物顶替并标「临时模型」，孩子的床位宁可空着也不放错误的人。孩子坐床姿态由 `HospitalBedPose` 处理。Tripo 出图、生成、减面、绑骨按用户「批量用 Tripo」的指示进行；导出下载仍须先在对话里取得同意。
+- 其余 11 位医护、病人、家属是合同里的 `person` 条目（`doc` 角色、`target` 姿势 stand／propped／lying／sit），台词在 `Resources/HospitalPeople.json`，只寒暄、不碰案情和孩子病情。没放行的人直接不出现（不用替身）；床上为人隆起的被子是 Blender 单独物体 `Furn_<床>-occupied`，只在那张床的人放行后显示。Tripo 一次排太多出图会成批失败，要几张一批；同一提示词连续失败时多半是措辞触发审核，改成平实说法再试。
+- 医院里不放挂钟。室内灯与警署共用 Light Layer 4（两栋楼相距九十米）。检测 `--review-hospital`／`--verify-hospital-save`（`tools/opening/run_review.py hospital`／`hospital-save`），始终静音、独立存档。
 
 ### 声音可听性（2026-10-14）
 

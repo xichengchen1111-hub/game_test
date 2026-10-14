@@ -88,8 +88,10 @@ public partial class DemoApp {
         Box(new Rect(p.x + 40, p.y + 120, 1120, 1), new Color(0.29f, 0.37f, 0.37f));
         var small2 = new GUIStyle(small) { wordWrap = true };
         Label(new Rect(p.x + 40, p.y + 132, 460, 26), "一 · 质疑哪句陈述", small);
+        // Five statements share the column above the history line.
+        float step = Mathf.Min(62f, 256f / reportData.statements.Length);
         for (int i = 0; i < reportData.statements.Length; i++) {
-            var r = new Rect(p.x + 40, p.y + 162 + i * 62, 460, 56);
+            var r = new Rect(p.x + 40, p.y + 162 + i * step, 460, step - 6);
             if (i == reportStatement) Box(new Rect(r.x - 4, r.y - 4, r.width + 8, r.height + 8), new Color(0.68f, 0.5f, 0.3f, .55f));
             if (Button(r, "", i == reportStatement)) reportStatement = i;
             Label(new Rect(r.x + 12, r.y + 6, r.width - 24, r.height - 8), reportData.statements[i].text, small2);
@@ -114,7 +116,7 @@ public partial class DemoApp {
             GUI.EndScrollView();
         }
         Box(new Rect(p.x + 40, p.y + 420, 1120, 1), new Color(0.29f, 0.37f, 0.37f));
-        string history = state.reportSupported.Count == 0 ? "" : "已核对：" + string.Join("、", reportData.rules.Where(r => state.reportSupported.Contains(r.id)).Select(r => reportData.statements.First(s => s.id == r.statement).text.Split('：')[0] + "的" + reportData.kinds.First(k => k.id == r.kind).text));
+        string history = state.reportSupported.Count == 0 ? "" : "已核对：" + string.Join("、", reportData.rules.Where(r => state.reportSupported.Contains(r.id)).Select(r => reportData.statements.First(s => s.id == r.statement).text.Split('：')[0] + "的" + reportData.kinds.First(k => k.id == r.kind).text).Distinct());
         if (state.reportReinvestigation) history += (history.Length > 0 ? "　·　" : "") + "案件已进入重新调查";
         Label(new Rect(p.x + 40, p.y + 430, 1120, 28), history, italic);
         Label(new Rect(p.x + 40, p.y + 462, 820, 180), reportFeedback, small2);

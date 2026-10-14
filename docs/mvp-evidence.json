@@ -829,5 +829,117 @@
       "家庭债务不免除伤害责任；保留护士来信与照护笔记",
       "H系列与两项原核心判断无强制依赖；不自动揭露凶手"
     ]
+  },
+  "hospital_1931": {
+    "design": "docs/research/mystery-evidence-design.md",
+    "scene": "hospital (B11); extension like house_1931, outside the MVP core evidence budget",
+    "new_record_ids": [
+      "Y01",
+      "Y02",
+      "Y03",
+      "Y04"
+    ],
+    "source_data": "tools/hospital/evidence.py -> game/Assets/Resources/HospitalEvidence.json",
+    "timeline_additions": [
+      {
+        "at": "1931-01-20T14:10:00",
+        "description": "母亲凭护士长特许条进儿童病房，带一篮苹果",
+        "record": "Y01, Y03, Y04"
+      },
+      {
+        "at": "1931-01-20T15:35:00",
+        "description": "母亲出病房，往缴费窗口",
+        "record": "Y01 (porter's watch, set daily at the station)"
+      },
+      {
+        "at": "1931-01-20T15:37:00",
+        "reported_clock": "16:07",
+        "clock_offset_minutes": 30,
+        "description": "母亲在缴费窗口预付四十元护理费至四月底",
+        "record": "Y02 (office clock, set daily at the noon chime of the tower clock)"
+      },
+      {
+        "at": "1931-01-20T16:20:00",
+        "description": "父亲凭陪护证探视",
+        "record": "Y01"
+      },
+      {
+        "at": "1931-01-20T16:55:00",
+        "description": "父亲离院，离院前借看车站时刻表",
+        "record": "Y01"
+      }
+    ],
+    "records": [
+      {
+        "id": "Y01",
+        "label": "探视登记簿 · 一月二十日",
+        "admissible": true,
+        "requires": [],
+        "fact": "门房按准确的表记录母亲15:35离开病房往缴费窗口、父亲16:20—16:55探视"
+      },
+      {
+        "id": "Y02",
+        "label": "缴费收据存根",
+        "admissible": true,
+        "requires": [],
+        "fact": "事务室按随镇钟校准的挂钟记16:07收到母亲四十元现款，预付护理费至四月底"
+      },
+      {
+        "id": "Y03",
+        "label": "孩子的画",
+        "admissible": true,
+        "requires": [],
+        "fact": "背面孩子写明一月二十日下午母亲带苹果来过"
+      },
+      {
+        "id": "Y04",
+        "label": "病房护士的证言",
+        "admissible": true,
+        "requires": [],
+        "fact": "母亲礼拜二下午来过，走时去缴费窗口，付清到四月底的护理费"
+      }
+    ],
+    "report_rules": [
+      {
+        "id": "D02",
+        "route": "hospital",
+        "statement": "S1",
+        "kind": "time",
+        "required": [
+          "E01",
+          "E04",
+          "Y01",
+          "Y02"
+        ],
+        "supporting": [
+          "E06",
+          "Y04"
+        ],
+        "core": true,
+        "reason": "同一段几十步的路，准确的表记15:35，随镇钟的挂钟记16:07：二十日下午镇钟已快约半小时。与原D02(E05路线)任选其一。"
+      },
+      {
+        "id": "D05",
+        "statement": "S5",
+        "kind": "scene",
+        "required": [
+          "H05",
+          "H13",
+          "Y02"
+        ],
+        "supporting": [
+          "Y04",
+          "H23"
+        ],
+        "core": false,
+        "reason": "十九日取出一百元，二十日下午四十元已交医院；口述的一百五十元没有凭证。只说明数额对不上。"
+      }
+    ],
+    "limits": [
+      "记录不写钟差、更正后的时刻或凶手",
+      "护士只说她看见和听说的事；时刻看记录",
+      "孩子的画只证明母亲那天来过",
+      "见孩子的过场不授予证物，不新增露脸或施害镜头"
+    ]
   }
 }

@@ -58,7 +58,11 @@ public static class OpeningAuthoring {
         OpeningRideCarAuthoring.BuildPrefab();
         string path="Assets/Generated/PoliceStation.prefab";var root=PrefabUtility.LoadPrefabContents(path);
         try{PoliceCastAuthoring.AddToPolice(root);AddToPolice(root);PrefabUtility.SaveAsPrefabAsset(root,path);}finally{PrefabUtility.UnloadPrefabContents(root);}
+        // The hospital's people follow their own approvals the same way: a newly approved figure replaces its stand-in here.
+        const string hospitalPath="Assets/Generated/Hospital.prefab";var hospital=PrefabUtility.LoadPrefabContents(hospitalPath);
+        try{HospitalCastAuthoring.AddToHospital(hospital);PrefabUtility.SaveAsPrefabAsset(hospital,hospitalPath);}finally{PrefabUtility.UnloadPrefabContents(hospital);}
         DialogueScript.Load("OpeningGuardDialogue").Validate();DialogueScript.Load("OpeningLawyerDialogue").Validate();DialogueScript.Load("OpeningRideDialogue").Validate();
+        foreach(string script in new[]{"HospitalPorterDialogue","HospitalSisterDialogue","HospitalChildDialogue"})DialogueScript.Load(script).Validate();
         AssetDatabase.SaveAssets();
         string product=PlayerSettings.productName;PlayerSettings.productName=buildProduct;
         string identifier=PlayerSettings.GetApplicationIdentifier(NamedBuildTarget.Standalone);

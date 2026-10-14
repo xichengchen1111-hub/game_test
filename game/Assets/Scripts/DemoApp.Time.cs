@@ -23,6 +23,8 @@ public partial class DemoApp {
         clockLoadedElapsedMinutes = ReadElapsedGameMinutes(state);
         if (state.gameClockRevision > 0 && !GameClock.ValidElapsed(state.elapsedGameMinutes))
             Debug.LogWarning("Invalid saved clock repaired; position, evidence and dialogue retained.");
+        // A new game that begins with the first act starts at 21:00.
+        if (!loadedFromDisk && state.gameClockRevision == 0 && state.openingStage == 0) clockLoadedElapsedMinutes = GameClock.OpeningElapsed;
         gameClock = new GameClock(clockLoadedElapsedMinutes);
         // Missing fields in older saves begin at 17:55. No offline elapsed time is added.
         StoreGameClock();

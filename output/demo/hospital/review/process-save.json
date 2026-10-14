@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "marker": "HOSPITAL_SAVE_PASS",
+  "exit": 0,
+  "normalSaveUnchanged": true,
+  "normalSaveSHA256": "c71b6de4a38e0c2e65fee25d300d44f04c78cd322b0417005ed9b3bbaeaca2f4"
+}

@@ -1,0 +1,29 @@
+{
+  "role": "WardSister",
+  "tripoAsset": "7b3b03f3-88d0-473e-afbc-dedcbbac20f0",
+  "archive": "assets/source/hospital-cast/WardSister/tripo/original/WardSister-Tripo-idle-walk-talk-c87a081d7b25.zip",
+  "archiveSHA256": "c87a081d7b25aeaf138eabd026e0ea2004e26bae11f65895fe756246d9dc7c94",
+  "originalPreserved": true,
+  "heightMetres": 1.63,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/WardSister/tripo/original/export-c87a081d7b25/tripo_convert_42102d66-352a-42a1-9119-1e582ddeead5.fbm/tripo_image_42102d66-352a-42a1-9119-1e582ddeead5_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/WardSister/tripo/original/export-c87a081d7b25/tripo_convert_42102d66-352a-42a1-9119-1e582ddeead5.fbm/tripo_image_42102d66-352a-42a1-9119-1e582ddeead5_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/WardSister/tripo/original/export-c87a081d7b25/tripo_convert_42102d66-352a-42a1-9119-1e582ddeead5.fbm/WardSister-Tripo-idle-walk-talk_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/WardSister/tripo/original/export-c87a081d7b25/tripo_convert_42102d66-352a-42a1-9119-1e582ddeead5.fbm/WardSister-Tripo-idle-walk-talk_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/hospital-cast/WardSister/tripo/Character.blend",
+  "unity": "game/Assets/Art/HospitalCast/WardSister/Character.fbx",
+  "motion": "game/Assets/Art/HospitalCast/WardSister/Motion.json",
+  "fixtureLabel": "",
+  "sourceSHA256": "6d8837eb379c6d6d6139c4b1e0d0e5a8fa50fdd08621956d5f3b881789849b27",
+  "fbxSHA256": "5721812354f13ffc848755022d5f08f8a258d80d37d9aec06fb8ed4b0f68512b",
+  "license": "No third-party license inherited from existing characters; retain any license in original export.",
+  "runtimeVerified": false,
+  "meshSelfIntersectionVerified": false,
+  "appearanceAccepted": false
+}

@@ -1,0 +1,273 @@
+{
+  "note": "Hospital cast, made in the user's Tripo account on 2026-10-14 at the user's request (batch production of hospital people; main line first). Reference images come from Tripo's own image generator (GPT Image 2.5, free at the time) with the approved police duty-officer reference as the style image; exact prompts are in references/<Role>.txt (tools/hospital/cast_prompts.py). Then, as for the police five: image-to-model H3.1 with 8K texture (65 credits), Smart Mesh quad retopology to about ten thousand faces (40), Unity Humanoid Compatible auto rig (20), preset idle and walk plus the saved Calm Conversation Gestures motion. Export is a download to this Mac and waits for the user's consent in the conversation; the user consented to the download on 2026-10-14 and approved all fourteen after review.",
+  "creditsBefore": 23385,
+  "characters": [
+    {
+      "role": "Child",
+      "title": "病床上的孩子",
+      "tripoAsset": "e05f0b5a-4479-49c8-a696-6bbb98272fd3",
+      "referenceGenerated": "2026-10-14 12:26",
+      "retopologyFaces": 10038,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "exported": true,
+      "heightMetres": 1.22,
+      "approved": true
+    },
+    {
+      "role": "Porter",
+      "title": "问讯处门房",
+      "tripoAsset": "69afa4ae-ba03-4105-a120-4c5c054425c6",
+      "referenceGenerated": "2026-10-14 12:39",
+      "retopologyFaces": 9912,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "exported": true,
+      "heightMetres": 1.7,
+      "approved": true
+    },
+    {
+      "role": "WardSister",
+      "title": "病房护士",
+      "tripoAsset": "7b3b03f3-88d0-473e-afbc-dedcbbac20f0",
+      "referenceGenerated": "2026-10-14 12:50",
+      "credits": 125,
+      "exported": true,
+      "heightMetres": 1.63,
+      "retopologyFaces": 9975,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "approved": true
+    },
+    {
+      "role": "StaffNurse",
+      "title": "护士",
+      "tripoAsset": "52621e72-cea4-491f-9839-d88185b20573",
+      "referenceGenerated": "2026-10-14 13:01",
+      "exported": true,
+      "heightMetres": 1.68,
+      "retopologyFaces": 10185,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "approved": true
+    },
+    {
+      "role": "Probationer",
+      "title": "见习护士",
+      "tripoAsset": "93d9228a-27cc-48a5-8a62-9a7df8708be5",
+      "referenceGenerated": "2026-10-14 13:16",
+      "exported": true,
+      "heightMetres": 1.57,
+      "retopologyFaces": 9932,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "approved": true
+    },
+    {
+      "role": "Matron",
+      "title": "护士长",
+      "tripoAsset": "30081598-ddce-4208-9faf-4f42024bd758",
+      "referenceGenerated": "2026-10-14 13:01",
+      "exported": true,
+      "heightMetres": 1.66,
+      "retopologyFaces": 9825,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "approved": true
+    },
+    {
+      "role": "HouseSurgeon",
+      "title": "住院医生",
+      "tripoAsset": "a3cf736b-41c9-4df6-b56b-1e2eabb3cba2",
+      "referenceGenerated": "2026-10-14 13:02",
+      "exported": true,
+      "heightMetres": 1.78,
+      "retopologyFaces": 9602,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "approved": true
+    },
+    {
+      "role": "VisitingDoctor",
+      "title": "出诊医生",
+      "tripoAsset": "c118f6b7-4e1a-4ea4-91dd-c8c67a73e6c2",
+      "referenceGenerated": "2026-10-14 13:04",
+      "exported": true,
+      "heightMetres": 1.72,
+      "retopologyFaces": 9796,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "approved": true
+    },
+    {
+      "role": "PatientMan",
+      "title": "老病人",
+      "tripoAsset": "104f7c78-4101-4cae-ade6-79da26fb68b0",
+      "referenceGenerated": "2026-10-14 13:20",
+      "exported": true,
+      "heightMetres": 1.69,
+      "retopologyFaces": 10363,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "approved": true
+    },
+    {
+      "role": "PatientBoy",
+      "title": "小病人",
+      "tripoAsset": "a3c72fc8-c151-448b-a135-781bf48b7575",
+      "referenceGenerated": "2026-10-14 13:02",
+      "exported": true,
+      "heightMetres": 1.12,
+      "retopologyFaces": 10289,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "approved": true
+    },
+    {
+      "role": "VisitorGranny",
+      "title": "老妇人",
+      "tripoAsset": "80c991ab-fb22-411e-9f39-5ece43e1839a",
+      "referenceGenerated": "2026-10-14 13:16",
+      "exported": true,
+      "heightMetres": 1.52,
+      "retopologyFaces": 10296,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "credits": 125,
+      "approved": true
+    },
+    {
+      "role": "VisitorMan",
+      "title": "探视的工人",
+      "tripoAsset": "173ae688-6469-4542-9256-de53440f64d7",
+      "referenceGenerated": "2026-10-14 13:17",
+      "exported": true,
+      "heightMetres": 1.74,
+      "credits": 230,
+      "retopologyFaces": 10508,
+      "abandonedAsset": "1031e465-0d0e-4f54-a166-d2a0ad5c0af1",
+      "note": "The first model's quad retopology stayed at \"Retopologizing\" for over an hour; a second model was made from the same reference image (#2) and used instead. Do not export the abandoned asset.",
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "approved": true
+    },
+    {
+      "role": "VisitorWoman",
+      "title": "探视的母亲",
+      "tripoAsset": "edde7ace-8b13-445c-9c69-59c914e12e73",
+      "referenceGenerated": "2026-10-14 13:28",
+      "exported": true,
+      "heightMetres": 1.62,
+      "credits": 125,
+      "note": "The first wording was refused by the image generator twice; reworded to plain hospital-ward terms (tools/hospital/cast_prompts.py).",
+      "retopologyFaces": 9612,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "approved": true
+    },
+    {
+      "role": "PatientWoman",
+      "title": "女病人",
+      "tripoAsset": "57bf8d79-c004-4bc6-b1d0-9550b0f11f1f",
+      "referenceGenerated": "2026-10-14 13:28",
+      "exported": true,
+      "heightMetres": 1.6,
+      "credits": 125,
+      "note": "The first wording was refused by the image generator twice; reworded to plain hospital-ward terms (tools/hospital/cast_prompts.py).",
+      "retopologyFaces": 9533,
+      "skeleton": "Unity Humanoid Compatible",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "approved": true
+    }
+  ],
+  "creditsAfter": 21530,
+  "batchNote": "Batch of eleven made 2026-10-14 13:00-14:15 in the user's Tripo account. Six of the first eleven reference jobs failed when queued together and were regenerated three at a time; two wordings were refused twice and reworded. All eleven have model, ~10k quad retopology, Unity Humanoid Compatible rig and idle/walk/Calm Conversation Gestures. Nothing exported or downloaded; models stay in the account until the user consents to the download.",
+  "revisions": [
+    {
+      "role": "ChildGown",
+      "replaces": "Child",
+      "date": "2026-10-14",
+      "reason": "User: the child should look weak and tired, wear a hospital gown so the player pities her at first sight, move little, and lie lower.",
+      "tripoAsset": "8a7479b7-5b25-47b1-8509-8588a048a233",
+      "reference": "GPT Image 2.5 in Tripo with the approved duty-officer style image; prompt assets/source/hospital-cast/references/Child.txt (revision 2). The first wording ('gravely ill', 'very slight and frail', 'nightgown slightly too big') failed generation; the plain ward wording succeeded. Left of the two images chosen (deeper shadows under the eyes).",
+      "model": "H3.1, 8K texture (65 credits)",
+      "retopologyFaces": 10005,
+      "retopology": "quad, Smart Mesh, 10000 (40 credits)",
+      "skeleton": "Unity Humanoid Compatible (20 credits)",
+      "animationsApplied": [
+        "idle",
+        "walk",
+        "Calm Conversation Gestures"
+      ],
+      "export": "FBX, Blender, 2k textures, skeleton, 3/3 animations, not in place; downloaded with the user's consent (chose 'Tripo 重做孩子', which included the download)",
+      "creditsBefore": 21570,
+      "creditsAfter": 21445,
+      "appearanceAccepted": true
+    }
+  ]
+}

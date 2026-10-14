@@ -1,0 +1,29 @@
+{
+  "role": "Child",
+  "tripoAsset": "e05f0b5a-4479-49c8-a696-6bbb98272fd3",
+  "archive": "assets/source/hospital-cast/Child/tripo/original/Child-Tripo-idle-walk-talk-88c47b410de4.zip",
+  "archiveSHA256": "88c47b410de44952729a1667fc61192f08931356f8586ed5e3fbb8aee66344a3",
+  "originalPreserved": true,
+  "heightMetres": 1.22,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/Child/tripo/original/export-88c47b410de4/tripo_convert_6a60bf15-dfe3-4dc5-a743-ae2ae70fdac6.fbm/tripo_image_6a60bf15-dfe3-4dc5-a743-ae2ae70fdac6_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/Child/tripo/original/export-88c47b410de4/tripo_convert_6a60bf15-dfe3-4dc5-a743-ae2ae70fdac6.fbm/tripo_image_6a60bf15-dfe3-4dc5-a743-ae2ae70fdac6_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/Child/tripo/original/export-88c47b410de4/tripo_convert_6a60bf15-dfe3-4dc5-a743-ae2ae70fdac6.fbm/Child-Tripo-idle-walk-talk_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/hospital-cast/Child/tripo/original/export-88c47b410de4/tripo_convert_6a60bf15-dfe3-4dc5-a743-ae2ae70fdac6.fbm/Child-Tripo-idle-walk-talk_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/hospital-cast/Child/tripo/Character.blend",
+  "unity": "game/Assets/Art/HospitalCast/Child/Character.fbx",
+  "motion": "game/Assets/Art/HospitalCast/Child/Motion.json",
+  "fixtureLabel": "",
+  "sourceSHA256": "6263c0f735967365314a92339195cfa500bf8faf2746cf55197fa974e13d47bd",
+  "fbxSHA256": "e5cb6cad86778f838c98183dfab115f0d0636ab84801489d269d2d7de85d1f20",
+  "license": "No third-party license inherited from existing characters; retain any license in original export.",
+  "runtimeVerified": false,
+  "meshSelfIntersectionVerified": false,
+  "appearanceAccepted": false
+}
