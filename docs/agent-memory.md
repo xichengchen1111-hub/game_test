@@ -1232,4 +1232,8 @@ Antigravity在本地scratch做只读架构初稿；首调用读权限未授权�
   - 第一幕检测的存档里，开局 6 游戏分钟后怀表是 21:06。乘车检测是直接从律师邀请那一步开始的，不走新开局，仍在 18 点左右，不影响它检测的内容。
   - 正常存档 c87ab80d… 未变，桌面版已更新（备份 before-night-face-20261014.app）。
   - 深夜版过场录像 99.7 秒，在 output/demo/hospital/cg/。
-- 本轮之前的两次桌面更新：ff218900…（ChildGown 第二版加录像模式），b31e220d…（字幕放进黑边、床上不做手势）。未提交、未推送。
+- 本轮之前的两次桌面更新：ff218900…（ChildGown 第二版加录像模式），b31e220d…（字幕放进黑边、床上不做手势）。
+- 推送：用户要求 push（gh 已登录，CLI 在 ~/.local/bin/gh）。HOSPITAL-01 到 05 的全部本地改动作为 3c36bdc 推到 main（fe0adc8..3c36bdc），共 802 个文件、约 678 MB。
+  - 提交前沿用警署人物的做法，在 .gitignore 里加了 `assets/source/hospital-cast/*/tripo/original/` 和 `*.blend[0-9]`。Tripo 原始下载包和解包副本（约 214 MB）留在本地，名称和哈希记在 production-status.json、acceptance.json 和各角色的 import-results.json 里。
+  - 空的 ZFightRepair/Hospital 文件夹加了 .gitkeep，让它的 .meta 有对应的文件夹。
+  - pre-commit 只提示了超过 10 MB 的文件（各角色的 Character.blend 约 10–11 MB，Town／ClockShop 场景 26–31 MB），没有超过 45 MB 的，output/ 下也没有 PNG 或视频。
