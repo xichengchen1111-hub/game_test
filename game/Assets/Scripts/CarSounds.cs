@@ -15,6 +15,11 @@ public sealed class CarSounds : MonoBehaviour {
     public float HornVolume => horn ? horn.volume : 0;
     public float StarterVolume => starter ? starter.volume : 0;
 
+    // Town traffic shares one copy of each loop (StreetLife).
+    static AudioClip sharedEngine,sharedRoad,sharedHorn;
+    public static AudioClip SharedEngine=>sharedEngine?sharedEngine:(sharedEngine=EngineLoop());
+    public static AudioClip SharedRoad=>sharedRoad?sharedRoad:(sharedRoad=RoadLoop());
+    public static AudioClip SharedHorn=>sharedHorn?sharedHorn:(sharedHorn=HornLoop());
     public void Initialize(Vector3 enginePoint) {
         if (engine) return;
         engine = Source("Inline four engine", enginePoint, EngineLoop(), true, out engineFilter);

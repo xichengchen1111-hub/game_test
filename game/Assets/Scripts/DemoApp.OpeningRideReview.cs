@@ -57,6 +57,25 @@ public partial class DemoApp {
             ORNeed(false,"vehicle body intersects collider: "+ORPath(hit.transform)+" bounds="+hit.bounds+" car="+rideCar.transform.position.ToString("F3")+" yaw="+rideCar.transform.eulerAngles.y.ToString("F2"));
         }
     }
+    // Heading rate of the moving story car, smoothed over a quarter second (frame jitter is not a jolt).
+    float turnRate,maxTurnRate,maxTurnAccel,maxRoll,maxPitch;int turnSamples;
+    IEnumerator ORSampleTurning() {
+        float lastYaw=rideCar?rideCar.transform.eulerAngles.y:0,clock=0,windowTurn=0,lastRate=0;bool primed=false;
+        while(rideCar&&state.openingRideStage<4) {
+            if(!GameTimePaused&&rideCar.Speed>.3f) {
+                float dt=Time.deltaTime,yaw=rideCar.transform.eulerAngles.y;
+                windowTurn+=Mathf.DeltaAngle(lastYaw,yaw);clock+=dt;
+                if(clock>=.25f){
+                    turnRate=windowTurn/clock;turnSamples++;
+                    if(primed)maxTurnAccel=Mathf.Max(maxTurnAccel,Mathf.Abs(turnRate-lastRate)/clock);
+                    maxTurnRate=Mathf.Max(maxTurnRate,Mathf.Abs(turnRate));lastRate=turnRate;primed=true;windowTurn=0;clock=0;
+                }
+                maxRoll=Mathf.Max(maxRoll,Mathf.Abs(rideCar.BodyRoll));maxPitch=Mathf.Max(maxPitch,Mathf.Abs(rideCar.BodyPitch));
+            }
+            if(rideCar)lastYaw=rideCar.transform.eulerAngles.y;
+            yield return null;
+        }
+    }
     // Called by the original prison/newspaper review immediately after release.
     // This observes the real lawyer route started by dialogue; it does not place
     // the actor outside or invoke the departure routine itself.
@@ -66,6 +85,9 @@ public partial class DemoApp {
         int queued=lawyerWalk.Count;ORNeed(queued>0,"release queued the actual indoor-to-outside walk");
         OpenOpeningActor(actor);
         ORNeed(state.openingRideStage==1&&!DialogueOpen&&lawyerWalk.Count==queued,"speaking before lawyer exits cannot replace the indoor route with car boarding");
+        // He gets up from the meeting table before the walk; the chair and table are no obstruction then.
+        float standing=Time.unscaledTime+5;while(lawyerSitting&&Time.unscaledTime<standing)yield return null;
+        ORNeed(!lawyerSitting,"lawyer stands up before leaving");
         float deadline=Time.unscaledTime+35,next=0;int samples=0;
         while(Vector3.Distance(actor.transform.position,PoliceRideWaiting)>.1f&&Time.unscaledTime<deadline) {
             if(!GameTimePaused&&Time.unscaledTime>=next) {
@@ -131,7 +153,14 @@ public partial class DemoApp {
         ORNeed(state.openingRideStage==2&&!OpeningRideActive&&!MovementLocked,"driver-side E refuses boarding through the car body");
         player.Place(passengerPosition,0);yield return ORUse(boarding);
         ORNeed(OpeningRideActive&&MovementLocked,"boarding locks locomotion");
-        yield return new WaitForSeconds(1.05f);yield return Capture("opening-ride-02-boarding");
+        // Frames through getting in: the turn to the door, the step to the sill, ducking under the
+        // roof line, sliding round into the seat, and the glance as the door is pulled shut.
+        float boarded=Time.unscaledTime;int frame=0;
+        foreach(float at in new[]{.55f,1.25f,1.75f,2.25f,2.75f,3.35f,4.0f}) {
+            while(Time.unscaledTime-boarded<at)yield return null;
+            yield return Capture("opening-ride-02-boarding-"+(++frame));
+        }
+        StartCoroutine(ORSampleTurning());
         yield return ORUntil(()=>rideCar&&rideCar.Occupied&&rideCar.Speed>.5f,20,"passenger boards and lawyer starts driving");
         ORNeed(player.transform.IsChildOf(rideCar.PassengerSeat),"player is seated relative to the moving car");
         ORNeed(!player.GetComponent<CharacterController>().enabled,"passenger capsule is disabled while mounted");
@@ -166,11 +195,32 @@ public partial class DemoApp {
         ORNeed(head,"driver head is available for passenger viewpoint");
         player.Aim(head.position);yield return Capture("opening-ride-03c-driver");
         player.transform.localRotation=Quaternion.identity;player.pitch=0;player.eye.transform.localRotation=Quaternion.identity;
+        // A frame in the first real bend, and the frames of getting out at the hospital.
+        yield return ORUntil(()=>Mathf.Abs(turnRate)>18||state.openingRideStage>=4,90,"the car takes a bend");
+        if(state.openingRideStage<4)yield return Capture("opening-ride-03d-bend");
+        yield return ORUntil(()=>OpeningRideCameraMoving&&rideCar&&rideCar.Speed<.01f||state.openingRideStage>=4,90,"the passenger starts getting out");
+        float leaving=Time.unscaledTime;int exitFrame=0;
+        foreach(float at in new[]{.5f,1.2f,1.8f,2.5f,3.2f}) {
+            while(Time.unscaledTime-leaving<at&&OpeningRideCameraMoving)yield return null;
+            if(!OpeningRideCameraMoving)break;
+            yield return Capture("opening-ride-04-leaving-"+(++exitFrame));
+        }
         yield return ORUntil(()=>state.openingRideStage==4&&!OpeningRideCameraMoving,110,"ride arrives and passenger gets out at the existing hospital");
         ORNeed(openingRideAuditSamples>100,"route footprint and body checked throughout actual drive; samples="+openingRideAuditSamples);
+        // Smooth bends: the heading changes without jolts and the body leans a little on its springs.
+        Debug.Log("OPENING_RIDE_TURNING: maxTurnRate="+maxTurnRate.ToString("F1")+"deg/s maxTurnAccel="+maxTurnAccel.ToString("F1")+"deg/s2 maxRoll="+maxRoll.ToString("F2")+"deg maxPitch="+maxPitch.ToString("F2")+"deg samples="+turnSamples);
+        ORNeed(turnSamples>200&&maxTurnRate>15,"the drive includes real bends");
+        ORNeed(maxTurnAccel<90,"the car winds into and out of each bend without a jolt (max "+maxTurnAccel.ToString("F1")+" deg/s2)");
+        ORNeed(maxRoll>.3f&&maxRoll<2f,"the body leans a little out of the bends (max "+maxRoll.ToString("F2")+" deg)");
         ORNeed(!OpeningRideActive&&player.GetComponent<CharacterController>().enabled,"hospital dropoff restores walking capsule");
         ORNeed(Vector3.Distance(player.transform.position,HospitalDropoff)<.6f,"dropoff is on the hospital entrance pavement");
-        ORNeed(DialogueOpen,"lawyer delivers hospital farewell");yield return Capture("opening-ride-04-goodbye");
+        ORNeed(DialogueOpen,"lawyer delivers hospital farewell");
+        // He turns from the wheel to look at the player while he speaks, his mouth moving with the words.
+        var driverLook=rideCar.driver?rideCar.driver.GetComponent<SeatedLook>():null;var driverVoice=rideCar.driver?rideCar.driver.GetComponentInChildren<PeriodCharacterPerformance>():null;
+        yield return ORUntil(()=>driverLook&&driverLook.Weight>.95f,3,"the lawyer turns his head toward the player");
+        ORNeed(Mathf.Abs(driverLook.Yaw)>30&&driverLook.Facing(player.eye.transform.position)<28,"he faces the player (yaw "+driverLook.Yaw.ToString("F0")+", off "+driverLook.Facing(player.eye.transform.position).ToString("F0")+" deg)");
+        ORNeed(driverVoice&&driverVoice.IsSpeaking&&!driverVoice.gestures,"he says goodbye from the seat, speaking without gestures");
+        yield return Capture("opening-ride-04-goodbye");
         CloseDialogue();
         ORNeed(state.openingRideStage==5&&!Blocked&&!MovementLocked,"closing farewell finishes trip without trapping controls");
         var parked=rideCar.transform.position;

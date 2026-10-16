@@ -15,6 +15,7 @@
     "rooms": 23,
     "e01Copies": 2,
     "e08Copies": 1,
+    "printedDeskCopies": 2,
     "layoutRule": "One shared prefab for street exterior and interior; no second scene shell. Openings are cut from the layout contract that also generated the Blender shell.",
     "verification": "Editor authoring check only; native rendering, controller walking and saves are verified by --review-police."
 }

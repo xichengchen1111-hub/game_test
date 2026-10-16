@@ -29,6 +29,22 @@ Unity -batchmode -quit -projectPath game -executeMethod ZFightScan.Run -logFile 
 
 near 组大多是修复后有意留下的 2mm 档。深度附件格式为 Auto（URP 桌面默认 32 位浮点、反向 Z），近裁剪面 0.08m；360m 处深度分辨约 0.03mm，2mm 远大于此，不会闪。逐组明细见 `scan.txt`（EXACT／MOVING 在前，按面积排序）与 `scan.json`。
 
+## 2026-10-16 复扫（第一幕保管柜）
+
+上表是 2026-10-12 build-z8 的数字；之后全镇加了医院、修车铺、街道人物等，`scan.txt`／`scan.json` 现在是下表「修复后」那次扫描。
+
+第一幕保管柜（`OpeningAuthoring.PropertyCage`，OPENING-05）是在 Town 场景那次修复之后才追加进警署预制件的，没有扫过。2026-10-16 01:49 的扫描报 9 组 EXACT，全在这个柜子：角柱穿过顶板、底板，横铁丝伸进角柱，横竖铁丝交叉，柜门横档压在立梃上（同为 PInt_Iron，各面贴图坐标不同，偏移 0mm）。在生成器源头改成互不共面后，用同一工程重新 `BuildMacIntegrated` 并扫描：
+
+| 项目 | 修复前（01:49） | 修复后 |
+| --- | --- | --- |
+| 三角形 | 11,344,295 | 11,344,303 |
+| 渲染器 | 14,377 | 14,377 |
+| EXACT（静态） | 9 | 0 |
+| MOVING | 0 | 0 |
+| near（0.5–2mm） | 1045 组 | 1043 组 |
+
+两次扫描逐组比较，只少了柜子的 9 组 EXACT 和柜门横铁丝与立梃的 2 组 near（2mm），没有新增的组。三角形多 8 个，是角柱底面抬到了底板上面，不再按「贴地的底面」跳过。做法与验证见 `docs/agent-memory.md` 的 OPENING-05。
+
 ## 修复前后
 
 构建期 `ZFightRepair` 每一步在修复前检测到的可见共面三角形对（检测阈值 0.6mm），修复后全部为 0：

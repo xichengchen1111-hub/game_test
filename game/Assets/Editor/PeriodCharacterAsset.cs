@@ -75,7 +75,7 @@ public static class PeriodCharacterAsset {
             return false;
         }
     }
-    static bool ApprovedContent(string path,string expected) {
+    internal static bool ApprovedContent(string path,string expected) {
         if(expected==null||expected.Length!=64||!expected.All(Uri.IsHexDigit)||!File.Exists(path))return false;
         using(var stream=File.OpenRead(path))using(var algorithm=SHA256.Create()) {
             string actual=BitConverter.ToString(algorithm.ComputeHash(stream)).Replace("-","");
@@ -252,7 +252,7 @@ public static class PeriodCharacterAsset {
         BaseShaderGUI.SetMaterialKeywords(material,UnityEditor.Rendering.Universal.ShaderGUI.LitGUI.SetMaterialKeywords);EditorUtility.SetDirty(material);
         return material;
     }
-    static Material CharacterMaterial(string folder,bool mouth) {
+    internal static Material CharacterMaterial(string folder,bool mouth) {
         var path=folder+(mouth?"MouthInterior.mat":"Body.mat");var material=AssetDatabase.LoadAssetAtPath<Material>(path);
         if(!material){var shader=Shader.Find("Universal Render Pipeline/Lit");if(!shader)throw new Exception("URP Lit shader is required.");material=new Material(shader);AssetDatabase.CreateAsset(material,path);}
         if(mouth){material.SetColor("_BaseColor",new Color(.15f,.05f,.045f));material.SetFloat("_Smoothness",.3f);}

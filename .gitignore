@@ -129,3 +129,7 @@ assets/source/police-cast/**/*.blend[0-9]
 # assets/source/hospital-cast/production-status.json, acceptance.json and each import-results.json.
 assets/source/hospital-cast/*/tripo/original/
 assets/source/hospital-cast/**/*.blend[0-9]
+# Street cast (2026-10-15): the same rule; archive names and hashes are in
+# assets/source/street-cast/production-status.json, acceptance.json and each import-results.json.
+assets/source/street-cast/*/tripo/original/
+assets/source/street-cast/**/*.blend[0-9]

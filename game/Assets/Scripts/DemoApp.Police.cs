@@ -102,9 +102,9 @@ public partial class DemoApp {
             if (i == reportKind) Box(new Rect(r.x - 4, r.y - 4, r.width + 8, r.height + 8), new Color(0.68f, 0.5f, 0.3f, .55f));
             if (Button(r, reportData.kinds[i].text, i == reportKind)) reportKind = i;
         }
-        Label(new Rect(p.x + 810, p.y + 132, 350, 26), "三 · 附上材料（调查簿）", small);
+        Label(new Rect(p.x + 810, p.y + 132, 350, 26), "三 · 附上材料（公文包与档案）", small);
         var area = new Rect(p.x + 810, p.y + 162, 350, 244);
-        if (state.entries.Count == 0) Label(new Rect(area.x, area.y + 8, area.width, 80), "调查簿里还没有材料。", small2);
+        if (state.entries.Count == 0) Label(new Rect(area.x, area.y + 8, area.width, 80), "还没有可以附上的材料。", small2);
         else {
             reportCardScroll = GUI.BeginScrollView(area, reportCardScroll, new Rect(0, 0, area.width - 20, state.entries.Count * 50));
             for (int i = 0; i < state.entries.Count; i++) {

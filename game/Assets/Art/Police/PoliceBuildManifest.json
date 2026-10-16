@@ -114,9 +114,9 @@
   "Furn_hall-notice": 20,
   "Furn_read-t1": 70,
   "Furn_read-t2": 70,
-  "Furn_read-stand-1": 40,
+  "Furn_read-stand-1": 38,
   "Furn_read-stand-2": 40,
-  "Furn_read-folder-1": 14,
+  "Furn_read-folder-1": 12,
   "Furn_read-page-2": 10,
   "Furn_read-photo-3": 4,
   "Furn_read-cabinet": 30,
@@ -212,7 +212,7 @@
   "Furn_court-planter": 50,
   "Furn_court-drain": 2
  },
- "triangles": 41226,
+ "triangles": 41222,
  "leaves": [
   {
    "object": "Leaf_front-door_0",

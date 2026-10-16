@@ -17,38 +17,51 @@ public partial class DemoApp {
         evidenceCamera.orthographic=false;evidenceCamera.fieldOfView=30;evidenceCamera.nearClipPlane=.05f;evidenceCamera.farClipPlane=8;evidenceCamera.allowMSAA=true;evidenceCamera.allowHDR=false;
         var data=evidenceCamera.GetUniversalAdditionalCameraData();data.renderPostProcessing=false;data.renderShadows=false;
         ResizeEvidenceRender();
-        var physical=item.GetComponentInChildren<EvidencePhysical>();bool ownMeshes=!physical;GameObject payload;
+        var payload=EvidencePayload(item,out bool paper,out bool ownMeshes);
+        evidenceObject=StudyPivot(payload,evidenceStage.transform,paper,ownMeshes,evidenceOwnedMaterials,evidenceOwnedMeshes,"Examined evidence pivot");
+        evidenceRestRotation=StudyRest(paper);evidenceTargetRotation=evidenceRestRotation;evidenceObject.transform.localRotation=evidenceRestRotation;
+        foreach(var t in evidenceStage.GetComponentsInChildren<Transform>())t.gameObject.layer=31;
+        focus=null;UpdateEvidencePose(true);
+    }
+    // The object as it is examined: the actual ticket stock, a solid model, a clone of the paper in the
+    // world, or a paper made from its image. Shared by the inspection and the briefcase preview.
+    GameObject EvidencePayload(Interactable item,out bool paper,out bool ownMeshes) {
+        var physical=item.GetComponentInChildren<EvidencePhysical>();ownMeshes=!physical;GameObject payload;
         bool ticket=(item.evidenceId=="E02"||item.evidenceId=="E03")&&intactTicketStock&&punchedTicketStock;
+        bool solid=EvidenceSolidModel.Handles(item.evidenceId);
         if(ticket){
             payload=new GameObject("Actual ticket stock");payload.AddComponent<MeshFilter>().sharedMesh=item.evidenceId=="E03"?punchedTicketStock:intactTicketStock;
             var mat=new Material(Shader.Find("Universal Render Pipeline/Unlit"));mat.SetTexture("_BaseMap",TicketImage(item.evidenceId));payload.AddComponent<MeshRenderer>().sharedMaterial=mat;
             payload.transform.localRotation=Quaternion.Euler(-90,0,0);
-        }else if(item.evidenceId=="H17"||item.evidenceId=="H18"||item.evidenceId=="E06")payload=EvidenceSolidModel.Create(item.evidenceId,item.illustration);
+        }else if(solid)payload=EvidenceSolidModel.Create(item.evidenceId,item.illustration,Minutes);
         else if(physical){payload=Instantiate(physical.gameObject);foreach(var c in payload.GetComponentsInChildren<Collider>())Destroy(c);foreach(var c in payload.GetComponentsInChildren<MonoBehaviour>())Destroy(c);payload.transform.localRotation=Quaternion.identity;}
         else{var texture=item.illustration?item.illustration:TicketImage(item.evidenceId);float aspect=texture?texture.width/(float)texture.height:1.33f;payload=EvidenceModel.Paper("Observed evidence",texture,1,1/aspect,item.reverse);}
+        paper=ticket||(physical&&physical.paper)||!solid;
+        return payload;
+    }
+    // Centres and scales the payload on a pivot under the stage and gives it the study materials.
+    GameObject StudyPivot(GameObject payload,Transform stage,bool paper,bool ownMeshes,HashSet<Material> ownedMaterials,HashSet<Mesh> ownedMeshes,string name) {
         // Centre the complete model before rotating, including imported meshes with an offset origin.
-        payload.transform.SetParent(evidenceStage.transform,false);payload.transform.localPosition=Vector3.zero;
+        payload.transform.SetParent(stage,false);payload.transform.localPosition=Vector3.zero;
         var bounds=new Bounds();bool first=true;foreach(var r in payload.GetComponentsInChildren<Renderer>()){if(first){bounds=r.bounds;first=false;}else bounds.Encapsulate(r.bounds);}
-        float size=Mathf.Max(bounds.size.x,bounds.size.y,bounds.size.z);var centre=evidenceStage.transform.InverseTransformPoint(bounds.center);
-        evidenceObject=new GameObject("Examined evidence pivot");evidenceObject.transform.SetParent(evidenceStage.transform,false);payload.transform.SetParent(evidenceObject.transform,true);payload.transform.localPosition-=centre;
+        float size=Mathf.Max(bounds.size.x,bounds.size.y,bounds.size.z);var centre=stage.InverseTransformPoint(bounds.center);
+        var pivot=new GameObject(name);pivot.transform.SetParent(stage,false);payload.transform.SetParent(pivot.transform,true);payload.transform.localPosition-=centre;
         payload.transform.localScale*=1.12f/Mathf.Max(.01f,size);payload.transform.localPosition*=1.12f/Mathf.Max(.01f,size);
-        bool paper=ticket||(physical&&physical.paper)||!(item.evidenceId=="H17"||item.evidenceId=="H18"||item.evidenceId=="E06");
         var shader=Resources.Load<Shader>("EvidenceStudy");
         foreach(var r in payload.GetComponentsInChildren<Renderer>()){
             var old=r.sharedMaterials;var materials=new Material[old.Length];
             for(int i=0;i<old.Length;i++){
                 var m=new Material(shader);m.SetColor("_BaseColor",old[i].HasProperty("_BaseColor")?old[i].GetColor("_BaseColor"):Color.white);
                 if(old[i].HasProperty("_BaseMap"))m.SetTexture("_BaseMap",old[i].GetTexture("_BaseMap"));m.SetFloat("_Paper",paper?1:0);
-                string n=r.name.ToLowerInvariant();m.SetFloat("_Metallic",paper?0:n.Contains("plate")||n.Contains("bronze")||n.Contains("screw")||n.Contains("pendulum")?.65f:.08f);
-                materials[i]=m;evidenceOwnedMaterials.Add(m);if(ownMeshes)evidenceOwnedMaterials.Add(old[i]);
+                string n=r.name.ToLowerInvariant();m.SetFloat("_Metallic",paper?0:n.Contains("plate")||n.Contains("bronze")||n.Contains("screw")||n.Contains("pendulum")||n.Contains("watch")||n.Contains("bezel")||n.Contains("crown")?.65f:.08f);
+                materials[i]=m;ownedMaterials.Add(m);if(ownMeshes)ownedMaterials.Add(old[i]);
             }
             r.sharedMaterials=materials;
         }
-        if(ownMeshes)foreach(var f in payload.GetComponentsInChildren<MeshFilter>())if(f.sharedMesh&&f.sharedMesh!=intactTicketStock&&f.sharedMesh!=punchedTicketStock&&f.sharedMesh.name!="Cube"&&f.sharedMesh.name!="Sphere"&&f.sharedMesh.name!="Cylinder"&&f.sharedMesh.name!="Quad")evidenceOwnedMeshes.Add(f.sharedMesh);
-        evidenceRestRotation=Quaternion.Euler(paper?9:12,paper?-16:-25,paper?-3:0);evidenceTargetRotation=evidenceRestRotation;evidenceObject.transform.localRotation=evidenceRestRotation;
-        foreach(var t in evidenceStage.GetComponentsInChildren<Transform>())t.gameObject.layer=31;
-        focus=null;UpdateEvidencePose(true);
+        if(ownMeshes)foreach(var f in payload.GetComponentsInChildren<MeshFilter>())if(f.sharedMesh&&f.sharedMesh!=intactTicketStock&&f.sharedMesh!=punchedTicketStock&&f.sharedMesh.name!="Cube"&&f.sharedMesh.name!="Sphere"&&f.sharedMesh.name!="Cylinder"&&f.sharedMesh.name!="Quad")ownedMeshes.Add(f.sharedMesh);
+        return pivot;
     }
+    static Quaternion StudyRest(bool paper)=>Quaternion.Euler(paper?9:12,paper?-16:-25,paper?-3:0);
     void ResizeEvidenceRender(){
         int w=Mathf.Min(1920,Screen.width),h=Mathf.Min(1080,Screen.height);
         if(evidenceRender&&evidenceRender.width==w&&evidenceRender.height==h)return;

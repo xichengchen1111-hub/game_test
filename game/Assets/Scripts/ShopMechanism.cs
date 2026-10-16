@@ -13,6 +13,8 @@ public class ShopMechanism : Interactable {
     public AudioSource sound;
     public AudioClip openClip, closeClip;
     public float OpenFraction => Mathf.SmoothStep(0,1,progress);
+    // Swing rate (full turns per second); the heavy cell door is slower than a panelled one.
+    public float swingSpeed=1.6f;
     public Vector3 leafCentre,leafSize;
     public bool IsOpen { get; private set; }
     public bool Moving => Mathf.Abs(progress-(IsOpen?1:0))>.001f;
@@ -34,7 +36,8 @@ public class ShopMechanism : Interactable {
     }
     void SetTitle() { title=(IsOpen?"关闭":"打开")+(!string.IsNullOrEmpty(label)?label:fixtureId.Contains("drawer")?"零件抽屉":fixtureId.Contains("vitrine")?"展柜":"木门"); }
     public override void Use() {
-        if(fixtureId=="police-holding-door"&&DemoApp.Instance.state.openingStage==0){DemoApp.Instance.CallOpeningGuard();return;}
+        // Before the release the cell door answers with the guard; the cinematic itself unlocks it.
+        if(fixtureId=="police-holding-door"&&DemoApp.Instance.state.openingStage==0&&DemoApp.Instance.state.openingEscort==0&&!DemoApp.Instance.CellCinematicActive){DemoApp.Instance.CallOpeningGuard();return;}
         if(Moving)return;
         LastUseBlocked=false;
         float target=IsOpen?0:1;
@@ -61,6 +64,13 @@ public class ShopMechanism : Interactable {
             if(collider.GetComponentInParent<PlayerMotor>())return true;
         return false;
     }
+    // For people who open it by hand (user, 2026-10-15), in world space. The leaf runs from the hinge
+    // (the moving part's origin) to its free edge, where the handle or the lock is.
+    Vector3 LeafRun{get{var c=leafCentre;c.y=0;return c*2;}}
+    public Vector3 EdgePoint(float worldHeight,float inset=.08f){var run=LeafRun;var p=movingPart.TransformPoint(run.normalized*Mathf.Max(0,run.magnitude-inset));p.y=worldHeight;return p;}
+    public Vector3 DoorwayCentre=>movingPart.parent.TransformPoint(closedPosition+closedRotation*(LeafRun*.5f));
+    public Vector3 ClosedAlong=>movingPart.parent.TransformDirection(closedRotation*LeafRun.normalized);
+    public float LeafWidth=>LeafRun.magnitude;
     void Apply(float t) {
         movingPart.localPosition=closedPosition+openOffset*t;
         movingPart.localRotation=Quaternion.AngleAxis(openEuler.y*t,movingPart.parent.InverseTransformDirection(Vector3.up))*closedRotation;
@@ -70,7 +80,7 @@ public class ShopMechanism : Interactable {
         if(blockedUntil>0&&Time.time>=blockedUntil){blockedUntil=0;SetTitle();}
         float target=IsOpen?1:0;
         if(Mathf.Abs(target-progress)<.001f)return;
-        float next=Mathf.MoveTowards(progress,target,Time.deltaTime*1.6f);
+        float next=Mathf.MoveTowards(progress,target,Time.deltaTime*swingSpeed);
         // A player entering the sweep while the leaf is moving pauses it safely.
         if(protectPlayer&&Occupied(Mathf.SmoothStep(0,1,next)))return;
         progress=next;Apply(Mathf.SmoothStep(0,1,progress));

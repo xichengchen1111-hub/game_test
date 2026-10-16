@@ -1,0 +1,157 @@
+{
+ "schemaVersion": 1,
+ "note": "Approved by the user in the conversation on 2026-10-16 (\"全部通过\") after looking at the four review sheets in output/demo/street-life/cast/ (idle front, side and back, a walking step and a conversation gesture of each figure, rendered from the prepared source; the dog in its rest pose from four sides). Forearm depth against the body was measured on every second frame with tools/cast/check_self_intersection.py: about 2 cm for all nine, the sleeve-against-coat contact of the approved police and hospital casts. The dog has no clips; its approval covers the model only. A new export or texture revokes the approval until its hashes are reviewed again.",
+ "reviewer": "user (in conversation), 2026-10-16",
+ "characters": [
+  {
+   "role": "StreetBoy",
+   "approved": true,
+   "characterSha256": "13c298c95e26e568bcb060ea289761dd1f2e019c81730a55af2a6b3719021356",
+   "baseColorSha256": "4bbbe3ace3e656ff7eb7884d23057f317600308c98bbbfb51748dca207fb69aa",
+   "normalSha256": "62c93a13de3ecbc0f54f86e98e24c6f182be9b76078c8d13a70b705e8a82098a",
+   "metallicSmoothnessSha256": "250b47eb3367e1842abc9a52c2b277d67558fe32e97176ae9b8141129a9a52fd",
+   "tripoAsset": "e4b3b232-f381-49a7-9efc-e114df70904b",
+   "archiveSHA256": "6aba16e443857d5b4663f554a23d7d5d6c9a17b4d9f651f163c5280b5c304e0e",
+   "review": {
+    "maxForearmDepthMetres": 0.0204,
+    "renders": "builds/cast-review/StreetBoy/",
+    "sheet": "output/demo/street-life/cast/children-and-dog.jpg"
+   }
+  },
+  {
+   "role": "StreetGirl",
+   "approved": true,
+   "characterSha256": "c47fdeae3c948b276d4ea634cc4e87bd313af855f8e11cfd624f27b7f0c10b1b",
+   "baseColorSha256": "77d64304b46b90a78c7df119a3c130d0f83f57990bd0a159b0feb829cc6f11e8",
+   "normalSha256": "e94f653bf00d844360137d86c1c762e05ff648fdaf558907285f028e02fb3bf6",
+   "metallicSmoothnessSha256": "363bd13d533d36da4b4d44d5fad9f768a2f2d5d2928fe1c56fab2c24c9e8de91",
+   "tripoAsset": "c69806c6-54d8-4783-a47f-1daefe53008b",
+   "archiveSHA256": "6aefa64630f11bd09816318bf1d007746b8b34e67e2c5ba6dc56ba57b5b23144",
+   "review": {
+    "maxForearmDepthMetres": 0.0204,
+    "renders": "builds/cast-review/StreetGirl/",
+    "sheet": "output/demo/street-life/cast/children-and-dog.jpg"
+   }
+  },
+  {
+   "role": "DogWalker",
+   "approved": true,
+   "characterSha256": "ad7277815c36d24e4f8f8417a36cc7dba47c5c21f4a19407d8ba51f138da238e",
+   "baseColorSha256": "3228310d23544661be9e1ad9bda60bfe49699194d4b10a496d988254045a9897",
+   "normalSha256": "38badf878941f619bfc593c9da3b36a92eefa3b26e40e30af2222b845cbd91bb",
+   "metallicSmoothnessSha256": "3c9983ec41162c2304cfa073e139dfb36829909c94031198661fab95368bde3f",
+   "tripoAsset": "55af0043-007f-430b-a6ab-12237f2a70e5",
+   "archiveSHA256": "c72a827ebdfe246714d9627e67edad11d768787ccc07e7437871a8811c6c46d2",
+   "review": {
+    "maxForearmDepthMetres": 0.0204,
+    "renders": "builds/cast-review/DogWalker/",
+    "sheet": "output/demo/street-life/cast/children-and-dog.jpg"
+   }
+  },
+  {
+   "role": "Businessman",
+   "approved": true,
+   "characterSha256": "367e87b1a7b03067cfc36888929431e3fe91281fad7e977dbac002eae4662630",
+   "baseColorSha256": "8fa98d6376636017abc640c055276760dec9f2fe7034697e7833b13d6a609352",
+   "normalSha256": "74bc8917ae8363afda1467e9df6bdb370250970e2b4627f924bea952ade4e1a7",
+   "metallicSmoothnessSha256": "209e2cf9bc42334960f844468bacdb461ce54654dbe6fdee1b22365b04933767",
+   "tripoAsset": "2e47a02c-6de0-4301-b34b-a7cd83e34ad1",
+   "archiveSHA256": "73a98806206363dee5f9e3ff6af012be5839a6c8dbfcb98ed7f7fc9f627c6392",
+   "review": {
+    "maxForearmDepthMetres": 0.0204,
+    "renders": "builds/cast-review/Businessman/",
+    "sheet": "output/demo/street-life/cast/adults.jpg"
+   }
+  },
+  {
+   "role": "YoungWoman",
+   "approved": true,
+   "characterSha256": "965b5279c54a1237d67cf011dae2b7b41ae255a0159121516984987bbae21e20",
+   "baseColorSha256": "71cc4a825d9ecc99ad9d88e51f24ae4321a137a2b87dd58a48097f175edbf539",
+   "normalSha256": "90d26864c4ee49c58259307282e28afe472e38af2afefbf20bdc7ad947de8220",
+   "metallicSmoothnessSha256": "5cc23c87f793ebaa91577bdfe14e3dfa776670203608ad3b3801dd480c545238",
+   "tripoAsset": "7e1daa8a-501e-46ae-ae2a-beb379f7d480",
+   "archiveSHA256": "89dd3ba234516a6b8e8017c25579f257db6c309bbb7dd12b47e93f5c7e3bd31a",
+   "review": {
+    "maxForearmDepthMetres": 0.0203,
+    "renders": "builds/cast-review/YoungWoman/",
+    "sheet": "output/demo/street-life/cast/adults.jpg"
+   }
+  },
+  {
+   "role": "Labourer",
+   "approved": true,
+   "characterSha256": "aa46bcd7db4258b380cc77ca8429148936c38fc408a6f1dc69db33e9c01e42a7",
+   "baseColorSha256": "005084cb953f00a783585e6494722931d66336aa2ff3ad5f08a551c7ee7f3222",
+   "normalSha256": "fc69e7933df6c4f5e4ae740cb472143997c9bce6bcea881281af3b043869e24a",
+   "metallicSmoothnessSha256": "95a33ae8dbc14d50cf917d106c98073bd7356c02694e6588d5f8bd1cac1e23a2",
+   "tripoAsset": "510e7ee7-b86b-4154-a51c-b99f78463d29",
+   "archiveSHA256": "4033f399c19619d4f8b049ffaeee5627e9fba338feea5d4e2e71528e064b13c2",
+   "review": {
+    "maxForearmDepthMetres": 0.0205,
+    "renders": "builds/cast-review/Labourer/",
+    "sheet": "output/demo/street-life/cast/adults.jpg"
+   }
+  },
+  {
+   "role": "OldGentleman",
+   "approved": true,
+   "characterSha256": "c6e2c7925da79168584124d97afd21ea0d86db7faa357b2c2fd0054af06b61b6",
+   "baseColorSha256": "8b63b1e6ffb8215a3e1f98f27613f73900da7df0e829c7be3584559cc4308dc3",
+   "normalSha256": "c610229ef9e59d9ad3f7249420a2bfdd11f68dc239b8546355bff443f721d07e",
+   "metallicSmoothnessSha256": "df0010b18928de0ba6b6f292a3dceb0451055da8fe566cbc66b8bc00e5286f0b",
+   "tripoAsset": "288e6423-cc4b-4259-8767-84a929187e1c",
+   "archiveSHA256": "24c254db6412b53cdee12752e9825688b6e87c9368e12d8a1aef12b66ea91212",
+   "review": {
+    "maxForearmDepthMetres": 0.0204,
+    "renders": "builds/cast-review/OldGentleman/",
+    "sheet": "output/demo/street-life/cast/old-and-poor.jpg"
+   }
+  },
+  {
+   "role": "Housewife",
+   "approved": true,
+   "characterSha256": "8277ee03f8f24050066d2fb03ec1fb552355734543c3eace9dc03d3669a8ebc1",
+   "baseColorSha256": "23f146c492c72d0f240e8578b1a6795eb57c75dfdf1f4e6f7f347432fdc4f1d9",
+   "normalSha256": "20b7982b9d8b52904fc657b4316366b4fa04de252041d0d9f89e53728bcf0507",
+   "metallicSmoothnessSha256": "c478f40d5dcdd2d3a015f0aa6db47a8f6a5883c2cfbf6b3979f1b3a6287e28c8",
+   "tripoAsset": "0ef9125d-d064-4fce-944d-8102d8e228ef",
+   "archiveSHA256": "f1635ac2de5ed7f7f2f2864cb4585373bd7f859f732423108e8b423f6e7454fc",
+   "review": {
+    "maxForearmDepthMetres": 0.0204,
+    "renders": "builds/cast-review/Housewife/",
+    "sheet": "output/demo/street-life/cast/old-and-poor.jpg"
+   }
+  },
+  {
+   "role": "Transient",
+   "approved": true,
+   "characterSha256": "28a912b0aa01b05037922e2c64c565e9576e2e1e65d8d3e829409bfceed1e610",
+   "baseColorSha256": "2526ee72a94c0fadb8595b41720f1c3d5174f0382b40a223a5786a2990d9bf6f",
+   "normalSha256": "68cc68f1f61ad4ec5622ccbb7fe64d1440299a07563a5eacca1017b53660b8b2",
+   "metallicSmoothnessSha256": "5b03844b935f56fa6a3689797f869e708dd2093428d85730a1e2ca12f394bf80",
+   "tripoAsset": "8a893e3e-2cb0-4d57-84e9-220121d88913",
+   "archiveSHA256": "84e28ab3c062ec83f9e8c033f104fe9b04395515e9ac188a7aad0a5c785ec5d9",
+   "review": {
+    "maxForearmDepthMetres": 0.0205,
+    "renders": "builds/cast-review/Transient/",
+    "sheet": "output/demo/street-life/cast/old-and-poor.jpg"
+   }
+  },
+  {
+   "role": "Terrier",
+   "approved": true,
+   "characterSha256": "006b7691983977ad749ec742e4bbde62d92603e29aa9f574ff16f49ede2edbc0",
+   "baseColorSha256": "e0076631ac6d4b5d905860ba58b572ce89814c55c780dda0953c41b5b14ac338",
+   "normalSha256": "74a4f31502d93ea846991a17919c20ac47335bebd1637553976e5a129813f3b1",
+   "metallicSmoothnessSha256": "5d3e8333a65d3b5853577dc164d961000d2d85614cea0e1a63025a14480f4e6a",
+   "tripoAsset": "c0c71b26-165b-4e69-a046-356f13f96c94",
+   "archiveSHA256": "f7cee1f723aa4fdc40387598f3a9bc37b763699c84c8b22ff7560594300c745a",
+   "review": {
+    "renders": "builds/cast-review/Terrier/",
+    "sheet": "output/demo/street-life/cast/terrier.jpg",
+    "scope": "Model, texture and rest pose only; the gait is StreetDog at runtime and is reviewed in the game."
+   }
+  }
+ ]
+}

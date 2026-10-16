@@ -5,16 +5,39 @@ using NUnit.Framework;
 using UnityEngine;
 public class OpeningProgressTests {
     static Type T(string name)=>AppDomain.CurrentDomain.GetAssemblies().Select(a=>a.GetType(name)).First(t=>t!=null);
-    [TestCase(false,0)] [TestCase(true,4)]
-    public void ExistingInvestigationSkipsOpeningButFreshSaveStartsInCell(bool existing,int stage) {
+    static object Migrate(int revision,int stage,int escort,bool belongings,bool existing) {
         var g=new GameObject("Opening migration test");g.SetActive(false);
         try {
             var app=g.AddComponent(T("DemoApp"));var state=Activator.CreateInstance(T("SliceSave"));
+            T("SliceSave").GetField("openingRevision").SetValue(state,revision);T("SliceSave").GetField("openingStage").SetValue(state,stage);
+            T("SliceSave").GetField("openingEscort").SetValue(state,escort);T("SliceSave").GetField("belongingsCollected").SetValue(state,belongings);
             T("DemoApp").GetField("state").SetValue(app,state);
             T("DemoApp").GetMethod("InitializeOpeningState",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(app,new object[]{new string[0],existing});
-            Assert.AreEqual(stage,T("SliceSave").GetField("openingStage").GetValue(state));
-            Assert.AreEqual(1,T("SliceSave").GetField("openingRevision").GetValue(state));
+            return state;
         }finally{UnityEngine.Object.DestroyImmediate(g);}
+    }
+    static object Get(object state,string field)=>T("SliceSave").GetField(field).GetValue(state);
+    [TestCase(false,0)] [TestCase(true,4)]
+    public void ExistingInvestigationSkipsOpeningButFreshSaveStartsInCell(bool existing,int stage) {
+        var state=Migrate(0,0,0,false,existing);
+        Assert.AreEqual(stage,Get(state,"openingStage"));
+        Assert.AreEqual(2,Get(state,"openingRevision"));
+        // A fresh story wakes up with nothing on him; an old investigation keeps everything.
+        Assert.AreEqual(existing?4:0,Get(state,"openingEscort"));
+        Assert.AreEqual(existing,Get(state,"belongingsCollected"));
+    }
+    // Revision 1 had no property room: a save still in the cell plays the new wake-up, one past it keeps its things.
+    [TestCase(0,0,false)] [TestCase(1,4,true)] [TestCase(3,4,true)] [TestCase(4,4,true)]
+    public void FirstRevisionSavesMoveToThePropertyRoomRevision(int stage,int escort,bool belongings) {
+        var state=Migrate(1,stage,0,false,true);
+        Assert.AreEqual(2,Get(state,"openingRevision"));Assert.AreEqual(stage,Get(state,"openingStage"));
+        Assert.AreEqual(escort,Get(state,"openingEscort"));Assert.AreEqual(belongings,Get(state,"belongingsCollected"));
+    }
+    // A save on the way to or in the property room resumes there, with or without the briefcase.
+    [TestCase(1,false)] [TestCase(2,false)] [TestCase(3,true)]
+    public void EscortInProgressKeepsItsStep(int escort,bool belongings) {
+        var state=Migrate(2,0,escort,belongings,true);
+        Assert.AreEqual(0,Get(state,"openingStage"));Assert.AreEqual(escort,Get(state,"openingEscort"));Assert.AreEqual(belongings,Get(state,"belongingsCollected"));
     }
     [TestCase(1)] [TestCase(2)] [TestCase(3)]
     public void InterruptedOpeningKeepsItsStage(int stage) {
@@ -25,6 +48,12 @@ public class OpeningProgressTests {
             T("DemoApp").GetMethod("InitializeOpeningState",BindingFlags.Instance|BindingFlags.NonPublic).Invoke(app,new object[]{new string[0],true});
             Assert.AreEqual(stage,T("SliceSave").GetField("openingStage").GetValue(state));
         }finally{UnityEngine.Object.DestroyImmediate(g);}
+    }
+    // Every node the escort opens exists in the guard's script.
+    [TestCase("follow")] [TestCase("handover")] [TestCase("take")] [TestCase("collected")] [TestCase("to-lawyer")] [TestCase("delivered")] [TestCase("directions")] [TestCase("idle")]
+    public void GuardScriptHasEveryEscortLine(string node) {
+        var script=T("DialogueScript").GetMethod("Load").Invoke(null,new object[]{"OpeningGuardDialogue"});
+        Assert.IsNotNull(T("DialogueScript").GetMethod("Get").Invoke(script,new object[]{node}));
     }
     [TestCase("OpeningGuardDialogue")] [TestCase("OpeningLawyerDialogue")] [TestCase("OpeningRideDialogue")]
     public void OpeningConversationDoesNotGrantDeductionCards(string resource) {

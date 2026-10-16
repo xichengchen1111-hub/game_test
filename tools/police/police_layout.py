@@ -65,11 +65,13 @@ def lamp(lid, kind, x, y, z, room, role='Interior', intensity=3.0, rng=5.0, acce
                       range=rng, access=access, switchId=switch, shade=shade))
 
 
-def item(iid, kind, x, y, z, w, h, d, doc='', evidence='', title='', target='', yaw=0, seat=None):
+def item(iid, kind, x, y, z, w, h, d, doc='', evidence='', title='', target='', yaw=0, seat=None, paper=None):
     entry = dict(id=iid, kind=kind, x=x, y=y, z=z, w=w, h=h, d=d, doc=doc, evidence=evidence, title=title,
                  target=target, yaw=yaw, sitX=0, sitZ=0, standX=0, standZ=0, eye=1.15, sitY=0)
     if seat:
         entry.update(seat)
+    if paper:
+        entry['paper'] = paper
     items.append(entry)
 
 
@@ -144,7 +146,7 @@ opening('duty-door', 'EW_W', 13.0, 1.05, G, G + 2.2, 'door', 'panel', leaves=1, 
         fixture='police-duty-door', label='巡警值班室门', exterior=True, enclosure='duty')
 opening('win-duty-court', 'EW_W', 14.8, 1.2, *WIN_G, 'window', 'sash', exterior=True)
 opening('evidence-door', 'EW_W', 17.0, 1.05, G, G + 2.2, 'door', 'panel', leaves=1, hinge='a0', swing=1,
-        fixture='police-evidence-door', label='物证室门', exterior=True, enclosure='evidence')
+        fixture='police-evidence-door', label='保管室门', exterior=True, enclosure='evidence')
 opening('holding-door', 'EW_W', 20.6, .9, G, G + 2.1, 'door', 'iron', leaves=1, hinge='a0', swing=1,
         fixture='police-holding-door', label='旧羁押室铁栅门', exterior=True, enclosure='holding')
 opening('win-duty-east', 'EW_E', 14.0, 1.2, *WIN_G, 'window', 'sash', exterior=True)
@@ -225,7 +227,7 @@ room('office', '值班接待室', 0, 10.58, 9.08, 18.92, 11.6, 'oak', .55, 'fron
 room('annex', '资料分馆', 0, 0.4, 12.0, 5.1, 17.92, 'oak', .55, 'annex')
 room('archive', '装订档案库', 0, 0.4, 18.08, 5.1, 23.6, 'oak', .35, 'archive')
 room('duty', '巡警值班室', 0, 17.9, 12.0, 22.6, 15.92, 'oak', .60, 'duty', public=False)
-room('evidence', '物证室', 0, 17.9, 16.08, 22.6, 19.52, 'tiles', .20, 'evidence', public=False)
+room('evidence', '保管室', 0, 17.9, 16.08, 22.6, 19.52, 'tiles', .20, 'evidence', public=False)
 room('holding', '旧羁押室', 0, 17.9, 19.68, 22.6, 23.6, 'stone', .15, 'holding')
 room('chief', '负责人办公室', 1, 0.4, 0.4, 7.42, 5.92, 'oak', .70, 'front', public=False)
 room('work', '调查办公／誊录', 1, 7.58, 0.4, 15.82, 5.92, 'oak', .70, 'front', public=False)
@@ -302,7 +304,7 @@ furn('read-t1', 'longtable', 2.6, 2.3, 0, 3.0, 1.0, .76, room='read')
 furn('read-t2', 'longtable', 7.2, 2.3, 0, 2.4, 1.0, .76, room='read')
 furn('read-stand-1', 'docstand', 6.75, 2.2, 0, .45, .32, .32, y=G + .76, room='read', collide=False)
 furn('read-stand-2', 'docstand', 7.65, 2.2, 0, .45, .32, .32, y=G + .76, room='read', collide=False)
-furn('read-folder-1', 'folder', 1.75, 2.25, 0, .34, .26, .03, y=G + .76, room='read', collide=False)
+furn('read-folder-1', 'folder', 1.75, 2.25, 0, .29, .36, .03, y=G + .76, room='read', collide=False)
 furn('read-page-2', 'paper', 2.5, 2.3, 8, .24, .32, .01, y=G + .76, room='read', collide=False)
 furn('read-photo-3', 'photo', 3.15, 2.28, -6, .22, .17, .01, y=G + .76, room='read', collide=False)
 furn('read-lamp-1', 'desklamp', 3.9, 2.55, 0, .3, .3, .48, y=G + .76, room='read', collide=False)
@@ -449,13 +451,47 @@ lamp('lantern-loggia-e1', 'wall', 17.22, G + 2.45, 15.0, 'court', role='Exterior
 lamp('lantern-loggia-e2', 'wall', 17.22, G + 2.45, 21.2, 'court', role='Exterior', intensity=2.0, rng=6.0, access=.85)
 
 # ---------------------------------------------------------------------------
+# Printed desk copies. Each E01 copy lies on its desk as the typeset page itself: Unity lays
+# EvidenceModel.Paper (curled sheet with printed face, reverse and cut edge) at this pose and
+# the Blender shell leaves that support's blank sheet out. The sheet keeps the proportions of its
+# typeset face (E01.png 1024x1320; PoliceChecks compares them). Its side edges curl .012*w below
+# the centre plane and the reverse lies .0014 under the face, so the root sits that far plus a
+# .9 mm gap above the support: the edges just clear the surface and the printed face stays more
+# than 2 mm above it (no coplanar flicker, ZFightScan).
+# ---------------------------------------------------------------------------
+PAGE_ASPECT = 1320 / 1024
+PAPER_GAP = .0009
+
+
+def desk_paper(support, width):
+    """Pose of a printed page resting on furniture `support`, its top edge away from the user side.
+    folder: flat on the cover; docstand: on the slanted board (same slope as build_police_station.py,
+    .04 high at the front edge rising to the full height .03 from the back), centred on the stand."""
+    f = next(x for x in furniture if x['id'] == support)
+    d, h = f['d'], f['h']
+    if f['kind'] == 'folder':
+        tilt, ly = 0.0, h
+    elif f['kind'] == 'docstand':
+        tilt, ly = math.atan2(h - .04, d - .03), .04 + d / 2 * (h - .04) / (d - .03)
+    else:
+        raise ValueError('printed paper on unsupported furniture ' + support)
+    yaw = math.radians(f['yaw'] + 180)
+    n = (-math.sin(tilt) * math.sin(yaw), math.cos(tilt), -math.sin(tilt) * math.cos(yaw))
+    lift = .012 * width + .0014 + PAPER_GAP
+    base = (f['x'], f['y'] + ly, f['z'])
+    return dict(support=support, w=round(width, 5), h=round(width * PAGE_ASPECT, 5),
+                x=round(base[0] + n[0] * lift, 5), y=round(base[1] + n[1] * lift, 5), z=round(base[2] + n[2] * lift, 5),
+                yaw=round((f['yaw'] + 180) % 360, 3), tilt=round(math.degrees(tilt), 4), lift=round(lift, 5))
+
+
+# ---------------------------------------------------------------------------
 # Interaction points (Unity trigger boxes). Texts live in Resources/PoliceDocuments.json.
 # ---------------------------------------------------------------------------
 T = G + .76
-item('doc-e01', 'evidence', 1.75, T + .03, 2.25, .38, .08, .3, doc='e01-copy', evidence='E01')
+item('doc-e01', 'evidence', 1.75, T + .03, 2.25, .32, .08, .38, doc='e01-copy', evidence='E01', paper=desk_paper('read-folder-1', .24))
 item('doc-statement', 'document', 2.5, T + .03, 2.3, .3, .08, .36, doc='husband-statement')
 item('doc-letter-photo', 'document', 3.15, T + .03, 2.28, .28, .08, .24, doc='letter-photo')
-item('doc-compare-e01', 'evidence', 6.75, T + .2, 2.2, .46, .36, .3, doc='e01-compare', evidence='E01')
+item('doc-compare-e01', 'evidence', 6.75, T + .2, 2.2, .46, .36, .3, doc='e01-compare', evidence='E01', paper=desk_paper('read-stand-1', .24))
 item('doc-compare-e08', 'evidence', 7.65, T + .2, 2.2, .46, .36, .3, doc='e08-copy', evidence='E08')
 item('report-desk', 'report', 10.38, G + .9, 2.3, .55, .3, .9, title='整理阶段报告')
 item('notice-hall', 'document', 10.12, G + 1.6, 5.4, .08, .8, 1.0, doc='hall-notice')
@@ -597,6 +633,20 @@ for o in openings:
             x0, z0, x1, z1 = footprint(f)
             if min(x1, bx1) - max(x0, bx0) > .02 and min(z1, bz1) - max(z0, bz0) > .02:
                 errors.append(f"furniture {f['id']} blocks {o['id']}")
+# Printed desk copies: one evidence page per support, inside its face with a 1 cm margin
+# (the docstand board also keeps clear of its front ledge and back rail).
+printed = [it for it in items if it.get('paper')]
+if len({it['paper']['support'] for it in printed}) != len(printed):
+    errors.append('two printed papers on one support')
+for it in printed:
+    p = it['paper']
+    f = next((x for x in furniture if x['id'] == p['support']), None)
+    if it['kind'] != 'evidence' or not it['evidence'] or not f:
+        errors.append(f"printed paper needs an evidence item and its support: {it['id']}")
+        continue
+    reach = f['d'] / 2 - (.01 if f['kind'] == 'folder' else .04)
+    if p['w'] > f['w'] - .02 or p['h'] / 2 * math.cos(math.radians(p['tilt'])) > reach:
+        errors.append(f"printed paper {it['id']} overhangs {f['id']}")
 
 # Agreement with the town map (B10 parts, doors, windows) in world coordinates.
 plan = json.loads((ROOT / 'docs/maps/town-current/plan-data.json').read_text(encoding='utf-8'))

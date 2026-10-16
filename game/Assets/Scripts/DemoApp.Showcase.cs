@@ -37,6 +37,41 @@ public partial class DemoApp {
         player.scriptedDirection=Vector3.zero;if(showcase)showcase.End();AudioListener.volume=0;Application.Quit();return true;
     }
     IEnumerator ShowHold(float seconds){for(float t=0;t<seconds;t+=Time.deltaTime)yield return null;}
+    // Moments inside the act itself (the knock, the key, the cage), for cutting the short version.
+    void ShowMark(string name){if(showcase)showcase.Mark(name);}
+    // Walk behind the guard along the way he actually took, looking where he goes.
+    IEnumerator ShowFollow(OpeningActor guard,Func<bool> done,float timeout) {
+        var trail=new System.Collections.Generic.Queue<Vector3>();Vector3 last=guard.transform.position;trail.Enqueue(last);
+        float until=Time.time+timeout;
+        while(!done()&&Time.time<until) {
+            if(Vector3.Distance(Flat(guard.transform.position),Flat(last))>.3f){last=guard.transform.position;trail.Enqueue(last);}
+            if(DialogueOpen){player.scriptedDirection=Vector3.zero;yield return null;continue;}
+            // While he opens a door, step out to one side of it and watch his hand on the handle,
+            // instead of following straight behind him and seeing the wall beside the doorway.
+            if(guardTask==GuardTask.Route&&(guardDoorStep==DoorStep.Turn||guardDoorStep==DoorStep.Open)&&guardRouteDoors.TryGetValue(guardRouteIndex,out var doorId)&&PoliceStation.Current.Door(doorId)) {
+                var door=PoliceStation.Current.Door(doorId);var hands=guard.GetComponent<NpcHands>();
+                // Just behind him on the side of the hand that takes the handle: the line of sight runs in
+                // through the doorway (the leaf sits deep in the wall), past his shoulder to the handle.
+                var view=guardDoorStand+guardDoorToward*1.1f+door.ClosedAlong*.35f;var dv=Flat(view)-Flat(player.transform.position);
+                player.scriptedDirection=dv.magnitude>.12f?dv.normalized*.6f:Vector3.zero;
+                var watch=Vector3.Lerp(guard.transform.position+Vector3.up*1.2f,hands?hands.Palm(guardDoorRight):door.DoorwayCentre+Vector3.up,.8f)-player.eye.transform.position;
+                float watchYaw=Mathf.MoveTowardsAngle(player.transform.localEulerAngles.y,Mathf.Atan2(watch.x,watch.z)*Mathf.Rad2Deg,Time.deltaTime*120);
+                ShowLook(watchYaw,Mathf.MoveTowards(player.pitch,-Mathf.Atan2(watch.y,new Vector2(watch.x,watch.z).magnitude)*Mathf.Rad2Deg,Time.deltaTime*40));
+                yield return null;continue;
+            }
+            while(trail.Count>1&&Vector3.Distance(Flat(player.transform.position),Flat(trail.Peek()))<.35f)trail.Dequeue();
+            if(TrailBlocked(trail)){yield return null;continue;}
+            var d=Flat(trail.Peek())-Flat(player.transform.position);
+            bool close=Vector3.Distance(Flat(player.transform.position),Flat(guard.transform.position))<2.0f;
+            player.scriptedDirection=close||d.sqrMagnitude<.01f?Vector3.zero:d.normalized*.75f;
+            var to=guard.transform.position+Vector3.up*1.4f-player.eye.transform.position;
+            float yaw=Mathf.MoveTowardsAngle(player.transform.localEulerAngles.y,Mathf.Atan2(to.x,to.z)*Mathf.Rad2Deg,Time.deltaTime*120);
+            ShowLook(yaw,Mathf.MoveTowards(player.pitch,4,Time.deltaTime*40));
+            yield return null;
+        }
+        player.scriptedDirection=Vector3.zero;
+        if(!done())ShowAbort("lost the guard at "+player.transform.position);
+    }
     // Reading time grows with the line, as a player would take.
     IEnumerator ShowLine(float extra=0){yield return ShowHold(Mathf.Clamp(1.4f+(dialogueNode!=null?dialogueNode.text.Length:0)*.085f,2.4f,6.5f)+extra);}
     IEnumerator ShowUse(Interactable item,Vector3 point,float turn=.7f) {
@@ -69,47 +104,62 @@ public partial class DemoApp {
         yield return ShowHold(4.2f);
         opening=false;showcaseTitle=false;CursorMode();showcase.Mark("cell");
         var guard=FindOpeningActor("guard");var lawyer=FindOpeningActor("lawyer");
-        yield return ShowHold(.8f);
-        yield return ShowLookAt(OpeningPoint(20.25f,23.6f)+Vector3.up*2.1f,1.6f);yield return ShowHold(.9f);
-        yield return ShowLookAt(guard.transform.position+Vector3.up*1.55f,1.5f);yield return ShowHold(.5f);
-        showcase.Mark("guard");OpenOpeningActor(guard);yield return ShowLine();
-        AdvanceDialogue();yield return ShowLine();
-        AdvanceDialogue();showcase.Mark("cell-door");
-        if(state.openingStage!=1){ShowAbort("guard did not release the cell");yield break;}
-        yield return ShowHold(1.9f);
-        yield return ShowWalk(OpeningPoint(18.25f,20.6f),.8f);yield return ShowWalk(OpeningPoint(16.3f,20.5f),.8f);
-        yield return ShowLookAt(guard.transform.position+Vector3.up*1.55f,.7f);yield return ShowHold(.5f);
-        showcase.Mark("court");
-        yield return ShowWalk(OpeningPoint(15,17));
-        // Glance across the court to its closed north end before turning to the main range.
-        yield return ShowLookAt(OpeningPoint(11.5f,23.8f)+Vector3.up*1.4f,1.2f);yield return ShowHold(1.1f);
-        // Q: the pocket watch.
-        showcase.Mark("watch");yield return ShowLookAt(OpeningPoint(9.5f,14.5f)+Vector3.up*1.5f,1.0f);
-        SetWatchOpen(true);yield return ShowHold(3.4f);SetWatchOpen(false);yield return ShowHold(.5f);
-        yield return ShowWalk(OpeningPoint(7.5f,13.3f));
-        yield return ShowDoor(PoliceStation.Current.Door("police-court-door"));
-        showcase.Mark("front-range");
-        yield return ShowWalk(OpeningPoint(7.4f,10));yield return ShowWalk(OpeningPoint(7.4f,8));yield return ShowWalk(OpeningPoint(11.5f,8));
-        yield return ShowDoor(PoliceStation.Current.Door("police-hall-door"));
-        // Stand west of the table, clear of the route the lawyer later takes to the door.
-        yield return ShowWalk(OpeningPoint(11.5f,4.6f));yield return ShowWalk(OpeningPoint(14,4.6f));yield return ShowWalk(OpeningPoint(14.7f,3.7f),.8f);
+        // The cinematic plays itself: waking up, the knock, the release and out into the cloister.
+        StartCoroutine(CellCinematic());yield return null;
+        float wait=Time.time+80;while(cellCinematic&&Time.time<wait)yield return null;
+        if(cellCinematic||state.openingEscort!=1){ShowAbort("the cell cinematic did not hand over to the escort");yield break;}
+        showcase.Mark("escort");yield return ShowHold(.5f);
+        yield return ShowFollow(guard,()=>guardTask==GuardTask.Fetch||guardTask==GuardTask.Await,60);
+        if(showcaseFailed)yield break;
+        // At the property-room table, watching the guard take the case out of the cage.
+        showcase.Mark("property-room");
+        yield return ShowWalk(PoliceStation.Current.transform.TransformPoint(PlayerTableSpot),.7f);
+        // Watching his hands: the padlock, the cage door, the case lifted out and carried to the table.
+        var guardHands=guard.GetComponent<NpcHands>();
+        Vector3 Watch()=>guardHands&&guardHands.Busy?Vector3.Lerp(guard.transform.position+Vector3.up*1.3f,guardHands.Palm(true),.55f):guard.transform.position+Vector3.up*1.35f;
+        yield return ShowLookAt(Watch(),.8f);
+        wait=Time.time+40;while(!(DialogueOpen&&dialogueNode.id=="handover")&&Time.time<wait)yield return ShowLookAt(Watch(),.3f);
+        if(!DialogueOpen){ShowAbort("the guard did not hand the case over");yield break;}
+        yield return ShowLine();AdvanceDialogue();yield return ShowLine();AdvanceDialogue();
+        showcase.Mark("briefcase");
+        yield return ShowUse(briefcase,briefcase.GetComponent<Collider>().bounds.center,.9f);
+        if(!state.belongingsCollected){ShowAbort("E did not take the briefcase");yield break;}
+        yield return ShowHold(2.0f);
+        wait=Time.time+5;while(!(DialogueOpen&&dialogueNode.id=="collected")&&Time.time<wait)yield return null;
+        if(DialogueOpen){yield return ShowLine();AdvanceDialogue();}
+        // Q: the pocket watch, now that it is back.
+        showcase.Mark("watch");yield return ShowHold(.5f);SetWatchOpen(true);yield return ShowHold(3.2f);SetWatchOpen(false);yield return ShowHold(.4f);
+        // The briefcase stays with him: B opens it, the ticket and the rest inside.
+        showcase.Mark("pack");OpenBackpack();yield return ShowHold(2.2f);MovePackSelection(1,0);yield return ShowHold(.8f);MovePackSelection(1,0);yield return ShowHold(1.4f);CloseBackpack();yield return ShowHold(.5f);
+        showcase.Mark("to-lawyer");
+        yield return ShowFollow(guard,()=>state.openingEscort==4,90);
+        if(showcaseFailed)yield break;
+        if(DialogueOpen){yield return ShowLine();AdvanceDialogue();}
+        // The lawyer greets him, goes round to his chair and sits; the player takes the chair opposite.
+        yield return ShowWalk(OpeningPoint(11.5f,4.6f),.8f);yield return ShowWalk(OpeningPoint(14,4.6f),.8f);
         showcase.Mark("lawyer");
-        yield return ShowUse(lawyer,lawyer.transform.position+Vector3.up*1.5f);
-        for(int i=0;i<4;i++){yield return ShowLine();AdvanceDialogue();}
-        if(state.openingStage!=2){ShowAbort("lawyer did not offer the newspaper");yield break;}
+        wait=Time.time+12;while(!(lawyerSitting&&lawyerSitBlend>=1)&&Time.time<wait)yield return ShowLookAt(lawyer.transform.position+Vector3.up*1.3f,.25f);
+        yield return ShowHold(.6f);yield return ShowWalk(OpeningPoint(15.4f,4.42f),.7f);
+        FurnitureSeat chair=null;foreach(var seat in FindObjectsByType<FurnitureSeat>(FindObjectsSortMode.None))if(seat.seatId=="police-seat-int")chair=seat;
+        if(!chair){ShowAbort("no meeting chair");yield break;}
+        yield return ShowUse(chair,chair.GetComponent<Collider>().bounds.center,.8f);
+        wait=Time.time+4;while(!(DialogueOpen&&dialogueNode.id=="greeting")&&Time.time<wait)yield return null;
+        if(!DialogueOpen){ShowAbort("sitting down did not begin the meeting");yield break;}
+        for(int i=0;i<10&&DialogueOpen&&state.openingStage<2;i++){yield return ShowLine();AdvanceDialogue();}
+        if(state.openingStage!=2||!(inspected is OpeningNewspaper)){ShowAbort("the lawyer did not hand over the newspaper");yield break;}
         showcase.Mark("newspaper");
-        var paper=FindFirstObjectByType<OpeningNewspaper>();
-        yield return ShowUse(paper,paper.GetComponent<Collider>().bounds.center,.9f);
         yield return ShowHold(2.6f);ToggleEvidenceDetails();showcase.Mark("newspaper-text");yield return ShowHold(6.5f);
         CloseInspect();yield return ShowHold(.6f);
         if(state.openingStage!=3){ShowAbort("reading did not advance the act");yield break;}
         showcase.Mark("questions");
-        yield return ShowUse(lawyer,lawyer.transform.position+Vector3.up*1.5f);
+        wait=Time.time+4;while(!(DialogueOpen&&dialogueNode.id=="after")&&Time.time<wait)yield return null;
         yield return ShowLine();AdvanceDialogue();yield return ShowHold(2.2f);
         ShowChoose("suspect");yield return ShowLine(.4f);AdvanceDialogue();yield return ShowHold(1.4f);
+        ShowChoose("child");showcase.Mark("child");yield return ShowLine(.6f);AdvanceDialogue();yield return ShowHold(1.4f);
         ShowChoose("release");showcase.Mark("release");yield return ShowLine(.4f);AdvanceDialogue();
         if(state.openingStage!=4||state.openingRideStage!=1){ShowAbort("release did not open the investigation");yield break;}
-        // Watch the lawyer round the table and leave, then follow him through the hall.
+        yield return ShowHold(.8f);RiseFromFurnitureSeat();
+        // Watch the lawyer get up and leave, then follow him through the hall.
         showcase.Mark("follow-out");
         float patience=Time.time+12;
         while(Time.time<patience&&PoliceStation.Current.transform.InverseTransformPoint(lawyer.transform.position).x>13.4f)yield return ShowLookAt(lawyer.transform.position+Vector3.up*1.45f,.25f);

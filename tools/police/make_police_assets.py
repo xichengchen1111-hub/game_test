@@ -412,9 +412,8 @@ def main():
         for name in pool.imap_unordered(build_texture, [(k, tex, a.size) for k in TEXTURES]):
             print('texture', name, flush=True)
     letter_photo(tex); print('texture PoliceLetterPhoto', flush=True)
-    write_wav(os.path.join(snd, 'PoliceDoorOpen.wav'), door_wood(True, 3))
-    write_wav(os.path.join(snd, 'PoliceDoorClose.wav'), door_wood(False, 4))
-    write_wav(os.path.join(snd, 'PoliceIronDoor.wav'), iron_gate(5))
+    # The door sounds come from tools/opening/make_door_sounds.py (physically modelled, 2026-10-15);
+    # door_wood and iron_gate above are the superseded first versions and are no longer written.
     write_wav(os.path.join(snd, 'PoliceDrawer.wav'), drawer(6))
     write_wav(os.path.join(snd, 'PolicePaper.wav'), paper(8))
     print('POLICE_ASSETS_PASS', a.size, flush=True)

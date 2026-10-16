@@ -45,8 +45,10 @@ public static class OpeningRideCarAuthoring {
         foreach (var collider in actor.GetComponentsInChildren<Collider>(true)) UnityEngine.Object.DestroyImmediate(collider);
         foreach (var interaction in actor.GetComponentsInChildren<Interactable>(true)) UnityEngine.Object.DestroyImmediate(interaction);
         foreach (var performance in actor.GetComponentsInChildren<StationClerkPerformance>(true)) UnityEngine.Object.DestroyImmediate(performance);
-        foreach (var performance in actor.GetComponentsInChildren<PeriodCharacterPerformance>(true)) UnityEngine.Object.DestroyImmediate(performance);
+        // The posed driver still speaks (mouth only) and turns his head to the player at the hospital.
+        foreach (var performance in actor.GetComponentsInChildren<PeriodCharacterPerformance>(true)) { performance.gestures = false; performance.speaker = "律师"; }
         foreach (var animator in actor.GetComponentsInChildren<Animator>(true)) animator.enabled = false;
+        if (!actor.GetComponent<SeatedLook>()) actor.AddComponent<SeatedLook>();
         if(!newCast)actor.transform.localScale=Vector3.one*.86f;
         actor.transform.localRotation = Quaternion.Euler(0, 180, 0); // authored front is -Z
         var bones = actor.GetComponentsInChildren<Transform>(true);

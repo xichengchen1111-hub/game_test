@@ -469,7 +469,7 @@ public sealed class HotelCar : MonoBehaviour {
     }
     bool GroundAt(Vector3 p, out float ground) {
         ground = 0;
-        var hits = Physics.RaycastAll(p + Vector3.up * 1.4f, Vector3.down, 3.4f, ~(1 << 2), QueryTriggerInteraction.Ignore);
+        var hits = Physics.RaycastAll(p + Vector3.up * 1.4f, Vector3.down, 3.4f, ~((1 << 2) | (1 << StreetLife.Layer)), QueryTriggerInteraction.Ignore);
         float best = float.MaxValue;
         foreach (var h in hits) { if (OwnCollider(h.collider)) continue; if (h.distance < best) { best = h.distance; ground = h.point.y; } }
         return best < float.MaxValue;

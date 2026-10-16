@@ -1,0 +1,55 @@
+{
+  "feature": "OPENING-04 first-act revision 2: cell cinematic, property-room briefcase and escort, seated lawyer, police officer rounds, story-car bends and boarding",
+  "platform": "macOS Metal, Apple Silicon, Unity 6000.3.18f1; muted native runs with isolated review saves",
+  "normalSaveSha256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728 (unchanged by every run)",
+  "deliveredAssemblySha256": "cc86ab2721c4d4f1efac5df1d024eb82bea7adc20d6697ff98c652299c489a34",
+  "runs": {
+    "cc86ab27 (delivered)": {
+      "EditMode": "129/129",
+      "police-npc": "PASS (all four sat on their own rounds; cross-hall meeting closest 0.70 m, 3 sidesteps)",
+      "opening 1080": "PASS",
+      "opening reload": "PASS"
+    },
+    "a913c328 (same sources except PoliceStaffRoutine and review code)": {
+      "EditMode": "129/129",
+      "opening-ride": "PASS (max heading-rate change 47.7 deg/s2, body roll 1.44 deg, pitch 0.85 deg)",
+      "opening-ride-save": "PASS",
+      "opening-ride-interrupted": "PASS",
+      "opening-ride-interrupted-save": "PASS",
+      "police": "PASS",
+      "police-reload": "PASS",
+      "police-cast": "PASS",
+      "yard-gate": "PASS",
+      "yard-gate-save": "PASS",
+      "opening 1080": "PASS",
+      "opening reload": "PASS",
+      "police-npc": "FAIL (reception officer did not happen to choose her only seat in 95 s; fixed by utility choice and a directed seat check)"
+    },
+    "b305eddd": {
+      "EditMode": "129/129",
+      "opening 1080": "PASS",
+      "opening reload": "PASS",
+      "police-npc": "FAIL (staged meeting: over-cautious side-step clearance; fixed with a body clearance check and a give-way rule)"
+    },
+    "97e8d14a": {
+      "opening 720": "PASS",
+      "opening 720 reload": "PASS",
+      "hospital": "PASS",
+      "hospital-save": "PASS",
+      "station-clerk": "PASS",
+      "station-clerk-save": "PASS",
+      "full-map": "PASS",
+      "full-map-save": "PASS",
+      "police / police-reload / police-cast": "FAIL (released guard stood in the cell doorway with rounds disabled; cast review still tested the old notification flow) - fixed, passed on a913c328"
+    }
+  },
+  "sheets": [
+    "cinematic.jpg",
+    "property-room-escort.jpg",
+    "lawyer-seated.jpg",
+    "ride-boarding-bend.jpg",
+    "ride-leaving.jpg",
+    "police-rounds.jpg"
+  ],
+  "limits": "Scripted real controller, E rays and shared UI; not physical keyboard/mouse or a blind playtest. All muted: the new ringing, knock and lock sounds were not listened to. The guard does not open the cage door (the case appears in his hand). NPC side-stepping measured in one staged meeting. --showcase-opening rewritten for the new flow but not recorded."
+}

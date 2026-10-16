@@ -1,22 +1,52 @@
 {
-  "first": "arrival",
-  "revisit": "arrival",
+  "first": "follow",
+  "revisit": "follow",
   "nodes": [
     {
-      "id": "arrival",
+      "id": "follow",
       "speaker": "狱警",
-      "text": "醒了？你的律师来找你了。",
-      "next": "open-cell"
+      "text": "跟上，别磨蹭。"
     },
     {
-      "id": "open-cell",
+      "id": "handover",
       "speaker": "狱警",
-      "text": "我把门打开。穿过内院，到正楼门厅东边的会见室去，他在那里等你。"
+      "text": "你的东西，都在这包里。怀表、地图、钱夹、车票，还有个本子。",
+      "next": "handover-2"
+    },
+    {
+      "id": "handover-2",
+      "speaker": "狱警",
+      "text": "自己点清楚。出了这个门，少了什么别来找我。"
+    },
+    {
+      "id": "take",
+      "speaker": "狱警",
+      "text": "包在桌上。拿上。"
+    },
+    {
+      "id": "collected",
+      "speaker": "狱警",
+      "text": "齐了？走，律师在前楼等着。"
+    },
+    {
+      "id": "to-lawyer",
+      "speaker": "狱警",
+      "text": "跟紧点，别乱转。"
+    },
+    {
+      "id": "delivered",
+      "speaker": "狱警",
+      "text": "就这间。进去吧。"
     },
     {
       "id": "directions",
       "speaker": "狱警",
-      "text": "律师在正楼门厅东侧的会见室。出了牢门，沿内院回廊往南走，从院门进正楼。"
+      "text": "会见室在正楼门厅东边。自己去。"
+    },
+    {
+      "id": "idle",
+      "speaker": "狱警",
+      "text": "保释了就别在这儿晃。有事找前楼值班窗口。"
     }
   ]
 }

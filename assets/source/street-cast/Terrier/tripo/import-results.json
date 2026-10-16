@@ -1,0 +1,27 @@
+{
+  "role": "Terrier",
+  "tripoAsset": "c0c71b26-165b-4e69-a046-356f13f96c94",
+  "archive": "assets/source/street-cast/Terrier/tripo/original/Terrier-Tripo-rig-f7cee1f723aa.zip",
+  "archiveSHA256": "f7cee1f723aa4fdc40387598f3a9bc37b763699c84c8b22ff7560594300c745a",
+  "originalPreserved": true,
+  "withersMetres": 0.39,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/street-cast/Terrier/tripo/original/export-f7cee1f723aa/tripo_convert_0e4b2ea2-fcfd-470b-b99b-9a03cca40154.fbm/tripo_image_0e4b2ea2-fcfd-470b-b99b-9a03cca40154_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/street-cast/Terrier/tripo/original/export-f7cee1f723aa/tripo_convert_0e4b2ea2-fcfd-470b-b99b-9a03cca40154.fbm/tripo_image_0e4b2ea2-fcfd-470b-b99b-9a03cca40154_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/street-cast/Terrier/tripo/original/export-f7cee1f723aa/tripo_convert_0e4b2ea2-fcfd-470b-b99b-9a03cca40154.fbm/Terrier-Tripo-rig_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/street-cast/Terrier/tripo/original/export-f7cee1f723aa/tripo_convert_0e4b2ea2-fcfd-470b-b99b-9a03cca40154.fbm/Terrier-Tripo-rig_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/street-cast/Terrier/tripo/Character.blend",
+  "unity": "game/Assets/Art/StreetCast/Terrier/Dog.fbx",
+  "rig": "game/Assets/Art/StreetCast/Terrier/DogRig.json",
+  "sourceSHA256": "700cd984d42847878af41b275ad7bb5975830da12dd07c0bb08632576597edd0",
+  "fbxSHA256": "006b7691983977ad749ec742e4bbde62d92603e29aa9f574ff16f49ede2edbc0",
+  "license": "No third-party license inherited; retain any license in the original export.",
+  "runtimeVerified": false,
+  "appearanceAccepted": false
+}

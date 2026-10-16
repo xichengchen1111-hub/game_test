@@ -11,7 +11,7 @@ using UnityEngine;
 // Programmatic inputs, not physical keyboard/mouse; not a blind playtest.
 public partial class DemoApp {
     [Serializable] class PoliceReviewResult {
-        public bool passed, frontDoorsOpened, e01Recorded, e01Deduplicated, e08Recorded, drawerCardRead, lampSwitchedOff,
+        public bool passed, frontDoorsOpened, e01Recorded, e01Deduplicated, e08Recorded, e01DeskSheetsPrinted, e01CloseUpIsDeskSheet, drawerCardRead, lampSwitchedOff,
             seatedAndStood, officerDialogue, unsupportedReportKept, supportedDateReport, courtDoorBothSides, openDoorKeepsRain,
             courtUncovered, loggiaCoveredButOpen, holdingDoorOpened, upperFloorReached, permitRead, roomLabel;
         public float upperFloorY, reviewSeconds, gameMinutesStart, gameMinutesEnd;
@@ -68,12 +68,27 @@ public partial class DemoApp {
         // 3. Reading room: E01 copies deduplicate, E08 copy from the comparison desk.
         yield return PWalk(PW(11.5f, G, 4.0f), PW(8.6f, G, 4.0f), PW(2.6f, G, 3.95f));
         yield return PCapture("reading-room");
+        // Both desk copies lie on their desks as the typeset sheet itself (layout item paper), not a blank FBX sheet.
+        var deskCopies = PoliceStation.Current.GetComponentsInChildren<PoliceDocumentItem>().Where(d => d.evidenceId == "E01").ToArray();
+        PNeed(deskCopies.Length == 2 && deskCopies.All(d => d.GetComponentInChildren<EvidencePhysical>() && d.GetComponentsInChildren<MeshRenderer>().Any(r => r.name == "Paper printed face" && r.enabled && r.sharedMaterial.GetTexture("_BaseMap") == d.illustration)), "both E01 desk copies are printed sheets in the world");
+        policeResult.e01DeskSheetsPrinted = true;
+        PolicePaper Pose(string id) => L.Item(id).paper;
+        yield return PWalk(PW(1.25f, G, 3.95f), PW(1.25f, G, 3.25f));
+        player.Aim(PoliceStation.Current.transform.TransformPoint(Pose("doc-e01").Position)); yield return new WaitForSeconds(.4f); yield return PCapture("e01-desk-public");
+        yield return PWalk(PW(1.25f, G, 3.95f), PW(2.6f, G, 3.95f));
         yield return PUse(PW(1.75f, G + .79f, 2.25f), i => i.evidenceId == "E01", "public desk E01 copy");
         PNeed(inspected && state.entries.Count(e => e.id == "E01") == 1, "E01 recorded once"); policeResult.e01Recorded = true;
+        // The close-up takes the sheet's proportions from its printed face (tools/police/write_police_texts.py).
+        PNeed(inspected.illustration && inspected.illustration.height > inspected.illustration.width, "E01 copy printed as a portrait page");
+        PNeed(ModelEvidence && evidenceObject && inspected.GetComponentInChildren<EvidencePhysical>(), "E01 close-up examines the desk sheet"); policeResult.e01CloseUpIsDeskSheet = true;
         yield return PCapture("e01-copy"); CloseInspect();
         yield return PUse(PW(3.15f, G + .79f, 2.28f), i => i is PoliceDocumentItem d && d.documentId == "letter-photo", "letter photograph");
         PNeed(inspected && inspected.illustration, "letter photograph illustration"); yield return PCapture("letter-photo"); CloseInspect();
-        yield return PWalk(PW(7.2f, G, 3.95f));
+        yield return PUse(PW(2.5f, G + .79f, 2.3f), i => i is PoliceDocumentItem d && d.documentId == "husband-statement", "statement transcript");
+        PNeed(inspected && inspected.illustration, "statement transcript printed"); yield return PCapture("statement"); CloseInspect();
+        yield return PWalk(PW(6.5f, G, 3.95f), PW(6.5f, G, 3.25f));
+        player.Aim(PoliceStation.Current.transform.TransformPoint(Pose("doc-compare-e01").Position)); yield return new WaitForSeconds(.4f); yield return PCapture("e01-desk-compare");
+        yield return PWalk(PW(6.5f, G, 3.95f), PW(7.2f, G, 3.95f));
         yield return PUse(PW(6.75f, G + .96f, 2.2f), i => i.evidenceId == "E01", "comparison E01 copy");
         CloseInspect(); PNeed(state.entries.Count(e => e.id == "E01") == 1, "E01 copy deduplicated"); policeResult.e01Deduplicated = true;
         yield return PUse(PW(7.65f, G + .96f, 2.2f), i => i.evidenceId == "E08", "comparison E08 copy");
@@ -85,6 +100,8 @@ public partial class DemoApp {
         yield return PUse(PW(3.9f, G + .9f, 2.55f), i => i == lampSwitch, "reading lamp switch");
         PNeed(!lampSwitch.LampOn && lampSwitch.lamps.All(l => !l.RequestedOn) && state.openFixtures.Contains("police-read-lamp-1-off"), "lamp switched off and saved");
         policeResult.lampSwitchedOff = true;
+        // The public desk with its reading lamp off: the darkest view of the printed copy.
+        player.Aim(PoliceStation.Current.transform.TransformPoint(Pose("doc-e01").Position)); yield return new WaitForSeconds(.4f); yield return PCapture("e01-desk-lamp-off");
         yield return PWalk(PW(3.4f, G, 4.1f));
         yield return PUse(PW(3.4f, G + .47f, 3.15f), i => i is FurnitureSeat, "reading chair");
         PNeed(FurnitureSeated, "sat on the reading chair"); yield return new WaitForSeconds(.4f); yield return PCapture("seated-reading");
@@ -96,7 +113,7 @@ public partial class DemoApp {
         yield return new WaitForSeconds(1.0f); PNeed(drawer.IsOpen && !drawer.Moving, "drawer opened");
         var front = drawer.transform.position;
         yield return PUse(front + new Vector3(-.2f, .55f, 0), i => i is PoliceDocumentItem d && d.documentId == "index-date", "date index card");
-        PNeed(inspected, "index card readable"); policeResult.drawerCardRead = true; yield return PCapture("index-card"); CloseInspect();
+        PNeed(inspected && inspected.illustration, "index card readable and printed"); policeResult.drawerCardRead = true; yield return PCapture("index-card"); CloseInspect();
         yield return PUse(drawer.transform.position + new Vector3(0, -.05f, 0), i => i == drawer, "close drawer"); yield return new WaitForSeconds(1.0f);
         PNeed(!drawer.IsOpen, "drawer pushed back");
         // 6. Duty officer through the hatch; dialogue hands over the report; supported date report.
@@ -150,6 +167,7 @@ public partial class DemoApp {
         yield return new WaitForSeconds(.5f); PNeed(location.Contains("负责人办公室"), "upper room label: " + location);
         player.Aim(PW(3.8f, U + .8f, 1.0f)); yield return PCapture("chief-office");
         yield return PUse(PW(3.6f, U + .79f, 1.5f), i => i is PoliceDocumentItem d && d.documentId == "permit-stub", "permit stub");
+        PNeed(inspected && inspected.illustration, "permit stub printed"); yield return PCapture("permit-stub");
         policeResult.permitRead = true; CloseInspect();
         Save();
         policeResult.entries = state.entries.Count; policeResult.reportSubmissions = state.reportSubmissions.Count;

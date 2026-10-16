@@ -833,6 +833,29 @@ def fill_books(f, x0, x1, y, z0, z1, depth_front, boxes=False):
         x += wv
 
 
+def printed_paper(F, L, face, z_range):
+    """True when Unity lays a typeset page on this support (layout item `paper`); the shell then
+    leaves its blank sheet out. The pose must rest on the face built here: page corners, edge
+    midpoints and centre, taken on the support plane (root minus lift along the page normal), lie
+    on face(lz) within .1 mm and inside the face (|lx| <= w/2 - .01, z_range[0] <= lz <= z_range[1])."""
+    paper = next((i['paper'] for i in L['items'] if i.get('paper') and i['paper']['support'] == F['id']), None)
+    if not paper:
+        return False
+    t, a = math.radians(paper['tilt']), math.radians(paper['yaw'])
+    n = (-math.sin(t) * math.sin(a), math.cos(t), -math.sin(t) * math.cos(a))
+    top = (math.cos(t) * math.sin(a), math.sin(t), math.cos(t) * math.cos(a))
+    right = (math.cos(a), 0, -math.sin(a))
+    c, s = math.cos(math.radians(F['yaw'])), math.sin(math.radians(F['yaw']))
+    for kx in (-1, 0, 1):
+        for ky in (-1, 0, 1):
+            p = [paper[k] - n[i] * paper['lift'] + right[i] * kx * paper['w'] / 2 + top[i] * ky * paper['h'] / 2 for i, k in enumerate('xyz')]
+            dx, dz = p[0] - F['x'], p[2] - F['z']
+            lx, ly, lz = dx * c - dz * s, p[1] - F['y'], dx * s + dz * c
+            if abs(ly - face(lz)) > 1e-4 or abs(lx) > F['w'] / 2 - .01 or not z_range[0] <= lz <= z_range[1]:
+                raise ValueError(f"printed paper on {F['id']} does not rest on its face ({kx},{ky}): local {lx:.4f},{ly:.4f},{lz:.4f}")
+    return True
+
+
 def build_furniture_piece(F, L):
     kind = F['kind']
     if kind == 'desklamp':
@@ -1002,7 +1025,8 @@ def build_furniture_piece(F, L):
         f.bb(-w / 2 + .01, .005, -d / 2 + .01, w / 2 - .005, h - .005, d / 2 - .01, 'PInt_Paper', faces=['+x', '+z', '-z'])
     elif kind == 'folder':
         f.bb(-w / 2, 0, -d / 2, w / 2, h, d / 2, 'PInt_Folder')
-        f.bb(-w / 2 + .02, h, -d / 2 + .02, w / 2 - .02, h + .004, d / 2 - .02, 'PInt_Paper', faces=['+y'])
+        if not printed_paper(F, L, lambda lz: h, (-d / 2 + .01, d / 2 - .01)):
+            f.bb(-w / 2 + .02, h, -d / 2 + .02, w / 2 - .02, h + .004, d / 2 - .02, 'PInt_Paper', faces=['+y'])
     elif kind == 'paper':
         f.bb(-w / 2, 0, -d / 2, w / 2, .004, d / 2, 'PInt_Paper', faces=['+y', '+x', '-x', '+z', '-z'])
     elif kind == 'photo':
@@ -1016,9 +1040,10 @@ def build_furniture_piece(F, L):
         slope_top = [f.pt(-w / 2, .04, d / 2), f.pt(w / 2, .04, d / 2), f.pt(w / 2, h, -d / 2 + .03), f.pt(-w / 2, h, -d / 2 + .03)]
         nrm = f.dir(0, math.cos(math.atan2(h, d)), math.sin(math.atan2(h, d)))
         p.quad(slope_top, nrm, wood)
-        sheet = [f.pt(-w / 2 + .04, .07, d / 2 - .03), f.pt(w / 2 - .04, .07, d / 2 - .03), f.pt(w / 2 - .04, h - .02, -d / 2 + .06), f.pt(-w / 2 + .04, h - .02, -d / 2 + .06)]
-        sheet = [(v[0] + nrm[0] * .004, v[1] + nrm[1] * .004, v[2] + nrm[2] * .004) for v in sheet]
-        p.quad(sheet, nrm, 'PInt_Paper')
+        if not printed_paper(F, L, lambda lz: .04 + (d / 2 - lz) * (h - .04) / (d - .03), (-d / 2 + .04, d / 2 - .04)):
+            sheet = [f.pt(-w / 2 + .04, .07, d / 2 - .03), f.pt(w / 2 - .04, .07, d / 2 - .03), f.pt(w / 2 - .04, h - .02, -d / 2 + .06), f.pt(-w / 2 + .04, h - .02, -d / 2 + .06)]
+            sheet = [(v[0] + nrm[0] * .004, v[1] + nrm[1] * .004, v[2] + nrm[2] * .004) for v in sheet]
+            p.quad(sheet, nrm, 'PInt_Paper')
         f.bb(-w / 2, .02, d / 2 - .03, w / 2, .07, d / 2, wood)
     elif kind == 'washstand' or kind == 'basinstand':
         if kind == 'washstand':
