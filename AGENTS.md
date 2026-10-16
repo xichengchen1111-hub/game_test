@@ -103,7 +103,7 @@
 - 灯：13 盏室内灯只照 Light Layer 4（与警署／住宅共用，相距一百米以上），3 盏外墙灯感光并占 12 处光池；无新增阴影灯。接待桌与账房台灯可手动关，存 `garage-*-lamp-off`。
 - 叙事：修车匠就是情夫，站在车间货车旁（当前探索站位，不是 1 月 20 日位置）。对话 `Resources/MechanicDialogue.json` 沿用修订稿第七节三问原句，另加“抄件来历”（需已读 W01）与“工具牌平时挂在哪里”；不说钟差、日期或凶手，不授予证物。账房书桌上是凯恩车间寄来的 W01 工单抄件与 W02 两位顾客证词抄件（调查簿新记录，实体纸张，按物证检查规范查看）；阶段报告新增非核心规则 D06（S6×行程，需 E01＋W01＋W02），不进入两项核心判断、不自动结案。客户登记本、价目、工具牌挂板空钩、油污手套等只是生活痕迹；登记本与便条措辞待用户确认。合同见 `docs/mvp-evidence.json` 的 `repair_shop_1931`。
 - 修车匠暂用已认可售票员 Tripo 模型改褐色帆布工装（`make_mechanic_texture.py`），脸与售票员、旧值班警员占位相同，是占位；正式人物需用户在 Tripo 制作。
-- 验收：`tools/ReviewGarage.ps1 -Mode garage` 与 `-Mode verify`（独立 `garage-review-save.json`），1080p／720p；白天外观用 `--review --fresh --review-garage-day` 固定机位目视。结果见 `output/demo/garage/` 与记忆 GARAGE-01。
+- 验收：`tools/ReviewGarage.ps1 -Mode garage` 与 `-Mode verify`（独立 `garage-review-save.json`），1080p／720p；Mac 上用 `tools/opening/run_review.py garage`／`garage-save`（720p 加环境变量 `OPENING_REVIEW_HEIGHT=720`）。白天外观用 `--review --fresh --review-garage-day`（Mac：`run_review.py garage-day`）固定机位目视。结果见 `output/demo/garage/` 与记忆 GARAGE-01、CHECK-01。
 
 ### 旅馆（A 山墙老客栈，用户要求完整呈现，2026-10-16）
 
@@ -114,7 +114,7 @@
 - 灯：21 盏室内灯只照 Light Layer 4（医院最近，相距约 50 米），5 盏外灯感光并占 12 处光池，外加斜光一盏；无新增阴影灯。账房台灯与账桌台灯可手动关，存 `hotel-*-lamp-off`。
 - 叙事（修订稿地点 I）：I01 登记页（“H·华德”，六号房，候夜车；到店钟点墨迹晕开，能认出“八时十五分”）、I02 下一页压痕（“六时三十五分”、房号“六”）、I03 餐厅账本（六时五十分六号房预付房费、晚餐不用）、I04 门房证言（问二十日晚上时记录：六点半刚过来、不到半个钟头走、问了晚上进站的车，门房凭记忆认出是你）。每份记录写明按门房的表记时（门房每早到车站对表），不说哪只钟错。阶段报告新增非核心规则 D07（S2×行程，需 E01＋I01＋I02＋I04，I03 辅助），不进核心、不自动结案。合同见 `docs/mvp-evidence.json` 的 `hotel_1931`；假名、其他住客与账本措辞是制作提案，待用户确认。旅馆用车仍不进证据或证词，门房说的“车”只指进站列车，不给任何车次时刻。
 - **人物占位**：门房（柜台后）与老板娘（餐厅账桌旁）是灰色站位标记＋完整对话入口（`HotelActor`，`HotelPorterDialogue.json`／`HotelKeeperDialogue.json`），不是人物模型；队友交付人物后在同一站位替换，`HotelChecks` 目前断言两处都是占位。
-- 验收：`tools/ReviewHotel.ps1 -Mode hotel` 与 `-Mode verify`（独立 `hotel-review-save.json`），1080p／720p；Mac 上用 `tools/opening/run_review.py hotel`／`hotel-save`。白天外观用 `--review --fresh --review-hotel-day` 固定机位目视。结果见 `output/demo/hotel/` 与记忆 HOTEL-01。
+- 验收：`tools/ReviewHotel.ps1 -Mode hotel` 与 `-Mode verify`（独立 `hotel-review-save.json`），1080p／720p；Mac 上用 `tools/opening/run_review.py hotel`／`hotel-save`。白天外观用 `--review --fresh --review-hotel-day`（Mac：`run_review.py hotel-day`）固定机位目视。介绍录像入口 `--review --fresh --showcase-hotel`（独立存档，录制时 5% 音量，不是检测）。结果见 `output/demo/hotel/` 与记忆 HOTEL-01、CHECK-01。
 
 ### 仓库体积与证据文件（用户确认，2026-10-12）
 

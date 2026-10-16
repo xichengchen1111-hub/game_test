@@ -160,6 +160,7 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&Array.IndexOf(args,"--review-street-traffic")>=0)savePath=Path.Combine(Application.persistentDataPath,"street-traffic-review-save.json");
         if(Review&&Array.IndexOf(args,"--showcase-street")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-street-save.json");
         if(Review&&Array.IndexOf(args,"--showcase-hospital-cg")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-hospital-cg-save.json");
+        if(Review&&Array.IndexOf(args,"--showcase-hotel")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-hotel-save.json");
         if(Array.IndexOf(args,"--audio-probe")>=0||Array.IndexOf(args,"--audio-probe-muted-start")>=0)savePath=Path.Combine(Application.persistentDataPath,"audio-probe-save.json");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -246,6 +247,7 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--review-map-sightlines")>=0)StartCoroutine(ReviewMapSightlines());
             else if(Array.IndexOf(args,"--showcase-opening")>=0)StartCoroutine(ShowcaseOpening());
             else if(Array.IndexOf(args,"--showcase-hospital-cg")>=0)StartCoroutine(ShowcaseHospitalCinematic());
+            else if(Array.IndexOf(args,"--showcase-hotel")>=0)StartCoroutine(ShowcaseHotel());
             else if(Array.IndexOf(args,"--review-hospital")>=0)StartCoroutine(ReviewHospital());
             else if(Array.IndexOf(args,"--verify-hospital-save")>=0)StartCoroutine(VerifyHospitalSave());
             else if(Array.IndexOf(args,"--review-yard-gate")>=0)StartCoroutine(ReviewYardGate());

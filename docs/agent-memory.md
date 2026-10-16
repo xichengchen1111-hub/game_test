@@ -1,5 +1,26 @@
 # Agent 持久记忆：错日证词
 
+### CHECK-01：在 Mac 上检查修车铺与旅馆（2026-10-16，Claude Code）
+
+- **用户**：录实机视频之后说「然后在帮我检查一下修车店和旅馆」。修车铺（GARAGE-01）此前只在 Windows 上验过；旅馆（HOTEL-01）在 Windows 做成，合并后在 Mac 上只跑过 1080p 走查与读档（PUBLISH-07）。
+- **跑了什么**：v8 录像包（`OpeningAuthoring.BuildMacIntegrated`，Assembly-CSharp 56459073…＝810b96f＋客栈录像脚本），`tools/opening/run_review.py` 新增 `garage`、`garage-save`、`garage-day`、`hotel-day` 四项（原来只有 hotel／hotel-save）。两处各跑 1080p 与 720p（`OPENING_REVIEW_HEIGHT=720`）完整走查＋独立进程读档，再加 1080p 白天定点取景。全部静音、独立 review 存档，正常存档 c87ab80d… 前后不变。
+- **结果**：10 项全部通过。修车铺两档 29 个检查项全真（拱门内外开关、接待室门两侧、整栋闷雨、W01／W02、修车匠六问、抽屉、后院与零件棚、阁楼楼梯、D06），没有瞄准落空，p95 17 ms；旅馆两档 30 项全真。逐张看过截图（走查每档 25 张、白天 16＋17 张）：外立面、门、室内、纸张、对话、车棚与旅馆用车、楼梯与客房都正常；与 `output/demo/` 里 Windows 同机位截图并排比，构图和亮度一致，Mac／Metal 没有渲染差异。两份布局合同在本机重跑，输出与仓库逐字节相同。记录在 `output/demo/garage/`、`output/demo/hotel/` 的 `mac-check-20261016.json`（只放 JSON，截图留在忽略的 `builds/opening/check8*`）。
+- **发现与处理**：
+  - `tools/check_town_map.py` 在 Mac 上报 `verification.json` 过期（ROAD-01、PLATFORM-04 记过的换行问题）：Windows 在 CRLF 工作副本上算源文件哈希（记录的 build_plan.py 92ae9f81… 正是 LF 内容转成 CRLF 后的哈希），客栈提交改了证据合同后也没重写 contractHash。检查器改为把 CRLF 归一成 LF 后再算哈希、再比较输出；`--write` 后只有 verification.json 的三个哈希变了，其余导出逐字节不变，复检 MAP_CHECK_PASS，叙事校验通过。
+  - 旅馆登记大堂南半边（门房柜台 (14.55, 25.6)、钥匙架、楼梯口）和二楼平台夜里很暗：大堂两盏吊灯都挂在北半边 (9.4, 28.4)、(13.4, 29.6)，射程 6 m，柜台离灯 4 m 多，按 URP 衰减只剩灯下约 6%。Windows 截图同样暗，是灯位问题，不是 Mac 渲染。补灯要在合同里加灯具、用 Blender 5.2 重出 FBX（本机只有 4.5.9）；只放大射程又会因室内灯不投影而透过楼板照亮楼上客房。没改，留给用户决定。
+  - 门房、老板娘仍是灰色占位（人物交给队友）；修车匠仍是售票员改色占位（同脸）。
+- **限制**：程序驱动的真实控制器与 E 射线，不是物理键鼠或盲测；静音；白天只有定点取景，没有白天完整走查；没在 Mac 上重跑构建期 `HotelChecks`／`GarageChecks`（Windows 生成预制件时跑过，预制件之后没变）。
+
+### SHOWCASE-02：实机录像 v8——第一幕、街道、医院过场、老客栈（2026-10-16，Claude Code）
+
+- **用户**：「先pull最新看有没有change总结一下然后push 吧，先帮我录一些实机视频」。拉取时 main＝origin/main＝810b96f，没有新提交。
+- **录制**：1920×1080，录制时游戏音量 5%、编码乘回（同 SHOWCASE-01）。`--showcase-opening` 323.6 s、`--showcase-street` 186.5 s、`--showcase-hospital-cg` 99.8 s 在程序集 56459073… 上录；新增 `--showcase-hotel`（`DemoApp.HotelShowcase.cs`，独立存档 `showcase-hotel-save.json`）：傍晚 18:05 雨中从街上看两座山墙→穿过门廊进登记大堂→查阅桌登记簿 I01→下一页看似空白→压低台灯，斜光显出压痕 I02→餐厅账本 I03→上楼经平台、走廊到六号房的炉子。门房与老板娘是占位，镜头不停在他们身上（读账本后有一两秒拍到老板娘的灰色占位）。
+- **客栈录了三次**：①读完账本后直线走向楼梯，被餐桌椅挡住 30 秒，`SHOWCASE_FAIL: walk blocked`；改为先退回餐厅走道（与 ReviewHotel 同路）。②检视纸张时 `RotateEvidence` 是按“每次加多少度”累加的，36 帧共俯仰 79°、偏转 50°，登记簿和账本在详情画面里成了一条侧边；改为共约 15°／24° 轻转，打开详情前 `ResetEvidencePose` 正对镜头。③一次走通（135.3 s），程序集 33828e98…（与 56459073… 只差这两处录像脚本）。
+- **成片**（`builds/opening/showcase-v8/video/`，不进 Git）：01 第一幕完整版 5:24（183 MB）、02 精华版 2:17（66 MB）、03 街道与公文包 3:06（109 MB）、04 医院病床前过场 1:40（67 MB）、05 老客栈 2:15（75 MB）；`720p/` 小文件 32／12／19／9／14 MB，另有 01 的压缩版 19 MB（远程查看上限 30 MiB）。`录像说明.json`、`素材来源.json`。逐段抽帧看过，内容与标记一致；客栈视频里楼梯口一段很暗，就是 CHECK-01 记下的灯位问题。
+- **编码教训**：用 `taskpolicy -b` 启动的进程之后用 `taskpolicy -B -p` 提不回正常优先级（一直是 PRI 4），第一幕编码因此卡了约 20 分钟，只能停掉重编。录像时要让编码让路，就在录制前暂停或晚点再启动编码，别用 `-b` 启动。
+- 正常存档 c87ab80d… 不变；桌面入口没换（新包与桌面 03bc25e0 只差录像脚本）。录像是程序安排的实机画面，不是物理键鼠。
+- **推送**：提交前再 fetch，main＝origin/main＝810b96f 没有新提交；CHECK-01 与本条的代码、工具和文档作为一个提交，按 PUBLISH-06 惯例直接推到 main（录像不进库）。
+
 ### PUBLISH-07：街道生活、街头人物、第一幕第二版与警署印字纸推到 main，并入远端客栈（2026-10-16，Claude Code）
 
 - **用户**：三个子会话（重录街道录像、修车辆重叠、修保管柜闪烁）开始后说「弄完后push」。等三个都结束、各自的检测通过，再统一提交推送；按 PUBLISH-06 惯例直接推到 main。
@@ -401,7 +422,7 @@
 - **灯光与通行**：近街灯位于 x=±3.62，广场段仍为 ±5.7，脚底高 0.10m。灯池 intensity=14、range=7.2，保留冷色暮光与暖光层次，不新增带阴影点灯。街面使用三线性 mipmap、8倍各向异性过滤；128px 环境反射探针只在初次启用时捕获一次，不每帧重绘。长椅未移动；`StreetSurfaceLayout.FootwayInnerEdge` 按长椅所在广场段测量通道，不能用南部较宽 mesh 的整体 bounds 虚增净空。
 - **室内外共用**：`BuildSlice.Town → StreetSurfaces.Build` 先生成实际小镇街面，再由既有 `WindowStreet` 复制同一几何并变换坐标、删除本栋副本及副本碰撞/交互。不要另做室内窗景路面。新路面在生成时按钟表铺实际地板 footprint 裁切；旧 `TrimStreetFloor` 不再是本轮街面入口。Prefab/场景构建 ID 会共同更新，不能只恢复旧 Prefab 而留下引用新 fileID 的场景。
 - **真实验收**：Windows/D3D11、Unity 6000.3.18f1，最终构建通过 `STREET_SURFACE_BUILD_PASS`、`BUILDING_LAYOUT_PASS`、`SLICE_BUILD_PASS`；可见玩家以 `--review --fresh --review-roads --review-window --record` 运行，1600×900 下通过 `ROAD_REVIEW_PASS`、`STREET_REVIEW_PASS`、`WINDOW_REVIEW_PASS`、`SLICE_REVIEW_PASS`。真实控制器跨路缘并走两侧人行道，长椅旁约 0.95m 通道实际走过；两窗/碰撞/E07/店门往返正常，窗景视差约 0.31266。原生截图和精简报告在 `output/demo/roads/`；道路运动样本由 179 张原生帧按约 5fps 编码，另有 50 张窗景运动帧留在忽略的构建目录。采样频率不是游戏 FPS；不是物理键鼠或陌生玩家盲测，也没有证明全场所有光照均无闪烁。当前怀表截图已复核两根指针可见。
-- **平面验证的 Windows 限制**：原 `tools/check_town_map.py` 在默认 GBK 下先发生解码错误，设 `PYTHONUTF8=1` 后仍因 CSV 换行和原始字节哈希报告过期。未覆盖原地图；在独立临时副本执行原检查与重新生成，70宅地、20角色、17路线、6顺序及剧情断言通过，所有导出内容归一化换行后相同。详见 `map-compatibility.json`；不能将此写成原仓库 CLI 原始字节检查通过。后续需单独处理检查器的跨平台换行/哈希可移植性。
+- **平面验证的 Windows 限制**：原 `tools/check_town_map.py` 在默认 GBK 下先发生解码错误，设 `PYTHONUTF8=1` 后仍因 CSV 换行和原始字节哈希报告过期。未覆盖原地图；在独立临时副本执行原检查与重新生成，70宅地、20角色、17路线、6顺序及剧情断言通过，所有导出内容归一化换行后相同。详见 `map-compatibility.json`；不能将此写成原仓库 CLI 原始字节检查通过。后续需单独处理检查器的跨平台换行/哈希可移植性（2026-10-16 已处理：检查器把 CRLF 归一为 LF 后再算哈希、比较输出，见 CHECK-01）。
 - **协作与范围**：Antigravity 在 scratch 起草纹理脚本；首轮因工具权限未产出，隔离目录重试后返回 SUCCESS，主 agent 阅读代码、查看纹理、减弱缝色并接入实机。可编辑来源为 Python/C# 生成源与命名 mesh 资产；本轮不新增复杂建模。未重新构建 Mac，保留用户此前 Mac 能运行的确认；完整全镇/完整 MVP、连续净宽与目标设备性能仍不在本次验收范围。
 
 ### ROAD-02：人行道出现笔直的明显色差（已修复）

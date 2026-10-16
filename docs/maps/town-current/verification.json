@@ -2,7 +2,7 @@
   "status": "PASS",
   "version": 4,
   "sourceHashes": {
-    "build_plan.py": "92ae9f81817ce0602a0814c0b4937898516e80749b21c733d5460d9acd795093",
+    "build_plan.py": "11250899608fa321d28ebbb8bb54a09029e04aef2cde8ee6eda461c7db3edf53",
     "story_layout.py": "17595a115ff1c4eb4c15294418b0d5e160b750ddd7eca57f5be8ff484a0a2875",
     "check_plan.py": "d8a1fb021582600dd1e3cf7024a21ffcd254b382d3833c3e02b6f7291097481a",
     "audit_actors.py": "56e5503f03fad2c7f7e170f28092ca306575a218469248fcec22527405f2b4b5",
@@ -14,8 +14,8 @@
     "style.css": "633f7b3de81fc7b6d0646fdc7a32fa65dc1cd58dfb49da4603f8e878d33199bf",
     "actors.css": "d685311c4f40819be9a2885ba4dff20df0a79aaff50c109a89c3379a4371870d"
   },
-  "contractHash": "4a1156c2313ceff804591a98b6a1f7a386aa24772b21be4a3e2b6aa67e6b1a2e",
-  "checkerHash": "cddea7e2d78ffce224c8cecd8a8063fb6f0d5e8613a6d2822048f06430420faf",
+  "contractHash": "3f55fe09c1391372f78fe70eb3d01b1949c4c92f99184bdae317295e763ba918",
+  "checkerHash": "1ce0d8233f46b2c1629a2caf4b9ee0e7484c068278c0015631d9b1842a53020e",
   "properties": 70,
   "trees": 217,
   "actors": 20,

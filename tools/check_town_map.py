@@ -5,6 +5,10 @@ ROOT=Path(__file__).resolve().parents[1]
 MAP=ROOT/'docs/maps/town-current'
 SOURCES=['build_plan.py','story_layout.py','check_plan.py','audit_actors.py','export_plan.py','make_viewer.py','make_actor_view.py','viewer.js','actors.js','style.css','actors.css']
 GENERATED=['plan-data.json','plan-data.js','town-plan.svg','building-schedule.csv','checks.json','actor-audit.json','actor-audit.js','actor-routes.csv','building-parts.csv','trees.csv','roads.csv','openings.csv','town-plan.tmj','index.html','actors.html','home-relations.svg']
+# Hash and compare text with LF line endings, so a CRLF working copy (Windows) records the same
+# hashes as an LF one (Mac) and neither reports the other's outputs as stale.
+def lf(path):return Path(path).read_bytes().replace(b'\r\n',b'\n')
+def digest(path):return hashlib.sha256(lf(path)).hexdigest()
 def require(ok,message):
     if not ok: raise ValueError(message)
 def validate(d,a,c):
@@ -44,12 +48,12 @@ def main():
         d=json.loads((tmp/'plan-data.json').read_text());a=json.loads((tmp/'actor-audit.json').read_text());c=json.loads((tmp/'checks.json').read_text());validate(d,a,c)
         result=subprocess.run([sys.executable,'-X','utf8',str(ROOT/'skills/wrong-date-narrative/scripts/validate_story.py'),str(ROOT/'docs/mvp-evidence.json')],check=True,capture_output=True,text=True,encoding='utf-8')
         story=json.loads(result.stdout)
-        report=dict(status='PASS',version=d['version'],sourceHashes={n:hashlib.sha256((MAP/n).read_bytes()).hexdigest() for n in SOURCES},contractHash=hashlib.sha256((ROOT/'docs/mvp-evidence.json').read_bytes()).hexdigest(),checkerHash=hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),properties=len(d['buildings']),trees=len(d['trees']),actors=len(a['actors']),routes=len(a['routes']),summary=a['summary'],storyValidation=story,limitations=c['limitations']+['Public road centerlines, not pedestrian swept width','No other-town route or train timetable','Positive time budgets are unallocated, not proven activity'])
+        report=dict(status='PASS',version=d['version'],sourceHashes={n:digest(MAP/n) for n in SOURCES},contractHash=digest(ROOT/'docs/mvp-evidence.json'),checkerHash=digest(__file__),properties=len(d['buildings']),trees=len(d['trees']),actors=len(a['actors']),routes=len(a['routes']),summary=a['summary'],storyValidation=story,limitations=c['limitations']+['Public road centerlines, not pedestrian swept width','No other-town route or train timetable','Positive time budgets are unallocated, not proven activity'])
         (tmp/'verification.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
         stale=[]
         for n in GENERATED+['verification.json']:
             if args.write:shutil.copy2(tmp/n,MAP/n)
-            elif not (MAP/n).exists() or (MAP/n).read_bytes()!=(tmp/n).read_bytes():stale.append(n)
+            elif not (MAP/n).exists() or lf(MAP/n)!=lf(tmp/n):stale.append(n)
         require(not stale,'Stale generated outputs; run --write and review: '+', '.join(stale))
         print(json.dumps(dict(status='MAP_CHECK_PASS',properties=report['properties'],actors=report['actors'],routes=report['routes'],summary=report['summary']),ensure_ascii=False,indent=2))
 if __name__=='__main__':
