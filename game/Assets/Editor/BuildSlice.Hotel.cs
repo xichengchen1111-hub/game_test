@@ -282,7 +282,7 @@ public static partial class BuildSlice {
     // Hotel-only rebuild after a layout/shell change. The Town scene holds this prefab as an
     // instance with transform overrides only, so it follows without regenerating the town.
     public static void RebuildHotel() {
-        AssetDatabase.Refresh();HotelPrefab();AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();EnsureFont();HotelPrefab();AssetDatabase.SaveAssets();
     }
     static void HotelPrefab() {
         var layoutAsset=AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/HotelLayout.json");

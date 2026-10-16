@@ -83,7 +83,7 @@
   },
   "visualReview": "All 25 walkthrough screenshots per resolution and 17 daylight views looked at. Exterior, porch, register desk and raking lamp, I01-I03 papers, dining room, kitchen, back yard, carport with the hotel car, stair, corridor and rooms are intact; frames match the Windows frames in output/demo/hotel/review/ in framing and brightness.",
   "findings": [
-    "At night the south half of the registration hall (porter counter at local (14.55, 25.6), key rack, stair foot) and the upper landing are very dark: both hall pendants hang in the north half at (9.4, 28.4) and (13.4, 29.6), range 6 m, so the counter gets roughly 6% of the light near a lamp. Same on Windows, so it is the lamp layout, not the Mac renderer. A counter lamp needs a new fixture from the Blender 5.2 generator; not changed, left for the user to decide.",
+    "At night the south half of the registration hall (porter counter at local (14.55, 25.6), key rack, stair foot) and the upper landing are very dark: both hall pendants hang in the north half at (9.4, 28.4) and (13.4, 29.6), range 6 m, so the counter gets roughly 6% of the light near a lamp. Same on Windows, so it is the lamp layout, not the Mac renderer. A counter lamp needs a new fixture from the Blender 5.2 generator; not changed, left for the user to decide. Fixed afterwards at the user's request: HOTEL-02 adds a pendant between the counter and the stair foot and brightens the landing lamp (output/demo/hotel/night-lobby-light-before-after.jpg).",
     "Porter and landlady are still grey placeholder markers (a teammate makes the people)."
   ]
 }

@@ -252,7 +252,7 @@ public static partial class BuildSlice {
     // Garage-only rebuild after a layout/shell change. The Town scene holds this prefab as an
     // instance with transform overrides only, so it follows without regenerating the town.
     public static void RebuildGarage() {
-        AssetDatabase.Refresh();GaragePrefab();AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();EnsureFont();GaragePrefab();AssetDatabase.SaveAssets();
     }
     static void GaragePrefab() {
         var layoutAsset=AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/GarageLayout.json");
