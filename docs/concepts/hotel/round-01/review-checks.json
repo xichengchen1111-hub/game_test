@@ -1,0 +1,62 @@
+{
+  "count": 5,
+  "tool": "built-in image_gen",
+  "images": [
+    {
+      "id": "a-gabled-timber-inn",
+      "file": "a-gabled-timber-inn.png",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "sha256": "b8a46b82ebd99fc00c382dd3860f65ce8add0069dba581cdd91d7410ca075134",
+      "visual_review": "individually inspected: exterior, lobby, dining room and two floor diagrams"
+    },
+    {
+      "id": "b-ivory-moderne-hotel",
+      "file": "b-ivory-moderne-hotel.png",
+      "dimensions": [
+        1312,
+        1199
+      ],
+      "sha256": "f96bd337b9cbd22155b2f6943adfa37a30eda50ef9164b6b3c68a20635bee252",
+      "visual_review": "individually inspected: exterior, lobby, dining room and two floor diagrams"
+    },
+    {
+      "id": "c-redbrick-railway-inn",
+      "file": "c-redbrick-railway-inn.png",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "sha256": "4d8a7aa412f52c704fbc76bc54818c0906a422814022ebef5d41861703392ee5",
+      "visual_review": "individually inspected: exterior, lobby, dining room and two floor diagrams"
+    },
+    {
+      "id": "d-stone-courtyard-inn",
+      "file": "d-stone-courtyard-inn.png",
+      "dimensions": [
+        1270,
+        1239
+      ],
+      "sha256": "6169cfc382a3b2ba37288c92cdaada1d5ba3e25f4eb62fd144a7a0606ed95be9",
+      "visual_review": "individually inspected: exterior, lobby, dining room and two floor diagrams"
+    },
+    {
+      "id": "e-garden-veranda-inn",
+      "file": "e-garden-veranda-inn.png",
+      "dimensions": [
+        1269,
+        1239
+      ],
+      "sha256": "150ee1d81019af4ae3bdf4d067671419b9a02b8110c22563cc167b7648fbb429",
+      "visual_review": "individually inspected: exterior, lobby, dining room and two floor diagrams"
+    }
+  ],
+  "selected_scheme": null,
+  "implementation_authorized": false,
+  "limitations": [
+    "多视图为概念表达，房间、楼梯和门窗需统一布局深化",
+    "图中纸面不构成新的案件事实"
+  ]
+}

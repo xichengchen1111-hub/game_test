@@ -1,8 +1,8 @@
 {
-    "triangles": 11341919,
-    "renderers": 14316,
+    "triangles": 11419687,
+    "renderers": 14700,
     "visibleExact": 0,
-    "visibleNear": 1040,
+    "visibleNear": 1080,
     "movingExact": 0,
     "groups": [
         {
@@ -147,9 +147,9 @@
             "area": 0.8002427220344544,
             "offsetMm": 1.9135117530822755,
             "at": [
-                -1.8274967670440674,
+                -1.8284088373184205,
                 0.6000001430511475,
-                1.772241234779358
+                1.8316413164138795
             ],
             "normal": [
                 0.0,
@@ -733,6 +733,28 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/StationB/废票桶 · 已验车票/Punched discarded ticket 5",
+            "materialA": "TicketPunched",
+            "b": "Town geometry/StationB/废票桶 · 已验车票/Punched discarded ticket 8",
+            "materialB": "TicketPunched",
+            "kind": "uv",
+            "area": 0.005526859313249588,
+            "offsetMm": 1.0499954223632813,
+            "at": [
+                176.64451599121095,
+                0.7174000144004822,
+                45.18904495239258
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 30,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "Town geometry/StationB/废票桶 · 已验车票/Punched discarded ticket 6",
             "materialA": "TicketPunched",
             "b": "Town geometry/StationB/废票桶 · 已验车票/Punched discarded ticket 8",
@@ -751,28 +773,6 @@
                 0.0
             ],
             "pairs": 1,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/StationB/废票桶 · 已验车票/Punched discarded ticket 5",
-            "materialA": "TicketPunched",
-            "b": "Town geometry/StationB/废票桶 · 已验车票/Punched discarded ticket 8",
-            "materialB": "TicketPunched",
-            "kind": "uv",
-            "area": 0.005526859313249588,
-            "offsetMm": 1.0499954223632813,
-            "at": [
-                176.7381134033203,
-                0.7174000144004822,
-                45.189476013183597
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                0.0
-            ],
-            "pairs": 30,
             "moving": false
         },
         {
@@ -829,9 +829,9 @@
             "area": 0.06600069999694824,
             "offsetMm": 1.9999253749847413,
             "at": [
-                86.36014556884766,
+                86.47151947021485,
                 1.1300022602081299,
-                -45.6636962890625
+                -45.618892669677737
             ],
             "normal": [
                 0.0,
@@ -851,14 +851,14 @@
             "area": 0.03227092698216438,
             "offsetMm": 1.007080078125,
             "at": [
-                179.07875061035157,
-                2.4100000858306886,
-                47.064998626708987
+                179.42999267578126,
+                2.4109997749328615,
+                47.05408477783203
             ],
             "normal": [
                 0.0,
                 1.0,
-                0.0
+                -0.000005298406449583126
             ],
             "pairs": 60,
             "moving": false
@@ -873,9 +873,9 @@
             "area": 0.14125405251979829,
             "offsetMm": 1.9999982118606568,
             "at": [
-                -24.430320739746095,
-                0.160030797123909,
-                -59.411590576171878
+                -24.398754119873048,
+                0.16003069281578065,
+                -59.41703414916992
             ],
             "normal": [
                 0.0,
@@ -939,9 +939,9 @@
             "area": 0.008901143446564675,
             "offsetMm": 1.4998942613601685,
             "at": [
-                -34.15456008911133,
+                -34.03742599487305,
                 0.5715000033378601,
-                33.288997650146487
+                33.28620147705078
             ],
             "normal": [
                 0.0,
@@ -1090,12 +1090,12 @@
             "b": "StationB/StationB/Module_TicketOffice_DeskProps/Module_TicketOffice_DeskProps_RailBrass",
             "materialB": "RailBrass",
             "kind": "material",
-            "area": 0.0024502454325556757,
+            "area": 0.002450245665386319,
             "offsetMm": 1.999974250793457,
             "at": [
-                178.17117309570313,
+                178.17955017089845,
                 1.1980000734329224,
-                47.385833740234378
+                47.379032135009769
             ],
             "normal": [
                 0.0,
@@ -1115,9 +1115,9 @@
             "area": 0.0016239553224295378,
             "offsetMm": 1.9999808073043824,
             "at": [
-                -29.02943992614746,
+                -29.026559829711915,
                 0.7709999680519104,
-                -51.35514450073242
+                -51.413143157958987
             ],
             "normal": [
                 0.0,
@@ -1261,72 +1261,6 @@
         },
         {
             "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/Outer wall paper.162",
-            "materialA": "Wallpaper",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.036",
-            "materialB": "Wallpaper",
-            "kind": "uv",
-            "area": 0.0018632074352353812,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                -16.624774932861329,
-                3.361999750137329,
-                -55.93109130859375
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1630157104036698e-7
-            ],
-            "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.019",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006355226039886475,
-            "offsetMm": 1.9996166229248047,
-            "at": [
-                -24.042097091674806,
-                3.361999750137329,
-                -55.9466667175293
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.011",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365544628351927,
-            "offsetMm": 1.9996166229248047,
-            "at": [
-                -25.37074089050293,
-                3.361999750137329,
-                -56.000343322753909
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "Town geometry/主角住宅/House1931/Outer wall paper.147",
             "materialA": "Wallpaper",
             "b": "Town geometry/主角住宅/House1931/North corridor partition.003",
@@ -1335,9 +1269,9 @@
             "area": 0.0018076342530548573,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -32.37305450439453,
+                -32.37905502319336,
                 3.361999750137329,
-                -55.99528121948242
+                -55.995506286621097
             ],
             "normal": [
                 0.0,
@@ -1357,9 +1291,9 @@
             "area": 0.0063409022986888889,
             "offsetMm": 1.9996166229248047,
             "at": [
-                -30.357900619506837,
+                -30.37074089050293,
                 3.361999750137329,
-                -56.05332946777344
+                -56.00059127807617
             ],
             "normal": [
                 0.0,
@@ -1393,6 +1327,72 @@
         },
         {
             "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.019",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006355226039886475,
+            "offsetMm": 1.9996166229248047,
+            "at": [
+                -24.042097091674806,
+                3.361999750137329,
+                -55.9466667175293
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/Outer wall paper.162",
+            "materialA": "Wallpaper",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.036",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.0018632073188200594,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -16.625009536743165,
+                3.361999750137329,
+                -56.01109313964844
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1630157104036698e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.011",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365544628351927,
+            "offsetMm": 1.9996166229248047,
+            "at": [
+                -25.37074089050293,
+                3.361999750137329,
+                -56.000343322753909
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "Town geometry/主角住宅/House1931/Outer wall paper.141",
             "materialA": "Wallpaper",
             "b": "Town geometry/主角住宅/House1931/South corridor partition.003",
@@ -1401,9 +1401,9 @@
             "area": 0.0018697601044550539,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -32.3690185546875,
+                -32.37501907348633,
                 3.361999750137329,
-                -57.99781799316406
+                -57.99791717529297
             ],
             "normal": [
                 0.0,
@@ -1530,7 +1530,7 @@
             "b": "Town geometry/Town clock/Reference-model ivory clock tower/Exterior_DarkOak",
             "materialB": "Tower_DarkOak",
             "kind": "material",
-            "area": 0.017941411584615709,
+            "area": 0.017941413447260858,
             "offsetMm": 1.3643546104431153,
             "at": [
                 0.06999988853931427,
@@ -1753,9 +1753,9 @@
             "area": 0.0015479058492928744,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -32.176422119140628,
+                -32.178062438964847,
                 4.051499843597412,
-                -62.455928802490237
+                -62.462928771972659
             ],
             "normal": [
                 0.0,
@@ -1775,9 +1775,9 @@
             "area": 0.0014303068164736033,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -27.146907806396486,
+                -27.153907775878908,
                 4.053499698638916,
-                -55.68671798706055
+                -55.685203552246097
             ],
             "normal": [
                 0.0,
@@ -1813,15 +1813,15 @@
             "scene": "Town",
             "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
             "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.014",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.018",
             "materialB": "Wallpaper",
             "kind": "material",
-            "area": 0.00630152877420187,
+            "area": 0.006355377845466137,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -24.070741653442384,
+                -24.042097091674806,
                 3.361999750137329,
-                -56.00098419189453
+                -55.9466667175293
             ],
             "normal": [
                 0.0,
@@ -1841,9 +1841,9 @@
             "area": 0.006301824934780598,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -25.329259872436525,
+                -25.342098236083986,
                 3.361999750137329,
-                -55.99901580810547
+                -55.9466667175293
             ],
             "normal": [
                 0.0,
@@ -1863,9 +1863,9 @@
             "area": 0.006365695968270302,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -25.35790252685547,
+                -25.37074089050293,
                 3.361999750137329,
-                -56.0533332824707
+                -56.00034713745117
             ],
             "normal": [
                 0.0,
@@ -1885,9 +1885,9 @@
             "area": 0.006365997716784477,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -29.029258728027345,
+                -29.042098999023439,
                 3.361999750137329,
-                -55.999656677246097
+                -55.9466667175293
             ],
             "normal": [
                 0.0,
@@ -1907,9 +1907,9 @@
             "area": 0.00630152877420187,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -29.05790138244629,
+                -29.070741653442384,
                 3.361999750137329,
-                -56.05333709716797
+                -56.00098419189453
             ],
             "normal": [
                 0.0,
@@ -1943,6 +1943,28 @@
         },
         {
             "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.014",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.00630152877420187,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                -24.070741653442384,
+                3.361999750137329,
+                -56.00098419189453
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.006",
             "materialA": "Walnut",
             "b": "Town geometry/主角住宅/House1931/North corridor partition.002",
@@ -1965,28 +1987,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.018",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006355377845466137,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                -24.042097091674806,
-                3.361999750137329,
-                -55.9466667175293
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/House1931/DoorFrame_storage/Door casing.012",
             "materialA": "Walnut",
             "b": "Town geometry/主角住宅/House1931/South corridor partition.018",
@@ -1995,9 +1995,9 @@
             "area": 0.006361779756844044,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -19.842098236083986,
+                -19.82925796508789,
                 3.361999750137329,
-                -57.94666290283203
+                -57.99961853027344
             ],
             "normal": [
                 0.0,
@@ -2017,9 +2017,9 @@
             "area": 0.012765401974320412,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -27.669769287109376,
+                -27.641620635986329,
                 3.361999750137329,
-                -57.99893569946289
+                -58.07665252685547
             ],
             "normal": [
                 0.0,
@@ -2039,9 +2039,9 @@
             "area": 0.012765401974320412,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -26.358379364013673,
+                -26.37023162841797,
                 3.361999750137329,
-                -57.92334747314453
+                -58.00334930419922
             ],
             "normal": [
                 0.0,
@@ -2061,9 +2061,9 @@
             "area": 0.006375437136739492,
             "offsetMm": 1.9998550415039063,
             "at": [
-                -21.170740127563478,
+                -21.157901763916017,
                 3.361999750137329,
-                -58.000247955322269
+                -58.0533332824707
             ],
             "normal": [
                 0.0,
@@ -3307,6 +3307,28 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room6-washstand",
+            "materialA": "PInt_Stone",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room6-tray",
+            "materialB": "PInt_Furniture",
+            "kind": "material",
+            "area": 0.08839912712574005,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                164.8866729736328,
+                4.350001811981201,
+                -5.526390552520752
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
             "materialA": "RailIron",
             "b": "RailTrain/TrainSet/Module_Loco_Beauty/Module_Loco_Beauty_RailIron",
@@ -3381,9 +3403,9 @@
             "area": 0.00294026848860085,
             "offsetMm": 1.2981092929840088,
             "at": [
-                -128.046630859375,
+                -128.05335998535157,
                 0.7458994388580322,
-                39.64625549316406
+                39.65375518798828
             ],
             "normal": [
                 0.0,
@@ -3777,9 +3799,9 @@
             "area": 0.0016930620186030865,
             "offsetMm": 1.999946117401123,
             "at": [
-                -31.875646591186525,
+                -31.936113357543947,
                 0.7289336919784546,
-                -53.72599792480469
+                -53.729000091552737
             ],
             "normal": [
                 0.0,
@@ -3799,9 +3821,9 @@
             "area": 0.05721646547317505,
             "offsetMm": 1.9998443126678467,
             "at": [
-                -25.94985008239746,
+                -25.883468627929689,
                 0.7306665182113648,
-                -51.66865539550781
+                -51.628204345703128
             ],
             "normal": [
                 0.0,
@@ -3843,9 +3865,9 @@
             "area": 0.0016239553224295378,
             "offsetMm": 1.999974250793457,
             "at": [
-                -27.508440017700197,
+                -27.498559951782228,
                 0.4070005714893341,
-                -51.414859771728519
+                -51.35514450073242
             ],
             "normal": [
                 0.0,
@@ -3887,9 +3909,9 @@
             "area": 0.0016239553224295378,
             "offsetMm": 1.999974250793457,
             "at": [
-                -22.34556007385254,
+                -22.348440170288087,
                 1.1295000314712525,
-                -55.68714141845703
+                -55.62914276123047
             ],
             "normal": [
                 0.0,
@@ -4041,9 +4063,9 @@
             "area": 0.053832218050956729,
             "offsetMm": 1.9999756813049317,
             "at": [
-                -22.50010871887207,
+                -22.424890518188478,
                 1.191999912261963,
-                -51.60850143432617
+                -51.6515007019043
             ],
             "normal": [
                 0.0,
@@ -4121,6 +4143,28 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/ExtFurn_front-cart",
+            "materialA": "GInt_Steel",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/ExtFurn_front-cart",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.0014999667182564736,
+            "offsetMm": 0.8173230886459351,
+            "at": [
+                160.8267822265625,
+                0.3624213933944702,
+                7.464733123779297
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 8,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "Town geometry/StationB/RailTrain/Boarding step",
             "materialA": "RailIron",
             "b": "Town geometry/StationB/RailTrain/Boarding step",
@@ -4173,9 +4217,9 @@
             "area": 0.0014280104078352452,
             "offsetMm": 1.9999901056289673,
             "at": [
-                -21.943716049194337,
+                -21.945281982421876,
                 0.41899994015693667,
-                -53.10209655761719
+                -53.10909652709961
             ],
             "normal": [
                 0.0,
@@ -4217,7 +4261,7 @@
             "area": 0.0098018953576684,
             "offsetMm": 1.999974250793457,
             "at": [
-                201.9287567138672,
+                204.08876037597657,
                 0.4200000464916229,
                 67.10375213623047
             ],
@@ -4522,12 +4566,12 @@
             "b": "主角住宅/Storage pivot Drawer_sideboard_2/Drawer_sideboard_2/Parcel cotton tie.002",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.0016240088734775782,
+            "area": 0.0016240087570622564,
             "offsetMm": 1.999974250793457,
             "at": [
-                -16.828140258789064,
+                -16.829858779907228,
                 1.0190000534057618,
-                -60.047061920166019
+                -60.05406188964844
             ],
             "normal": [
                 0.0,
@@ -4635,14 +4679,14 @@
             "area": 0.005244230851531029,
             "offsetMm": 2.0,
             "at": [
-                -24.340003967285158,
+                -24.31485939025879,
                 0.16399969160556794,
-                -59.303627014160159
+                -59.30571365356445
             ],
             "normal": [
-                -1.4830728645165437e-8,
+                8.243844007438384e-8,
                 1.0,
-                -1.6827573290356669e-7
+                -1.5693018440288143e-7
             ],
             "pairs": 29,
             "moving": false
@@ -4720,12 +4764,12 @@
             "b": "Town geometry/主角住宅/House1931/North wall",
             "materialB": "Plaster",
             "kind": "material",
-            "area": 0.009600134566426278,
+            "area": 0.009600133635103703,
             "offsetMm": 1.999365210533142,
             "at": [
-                -30.77666664123535,
-                0.16000066697597505,
-                -50.8817138671875
+                -30.761852264404298,
+                0.16000063717365266,
+                -51.07999801635742
             ],
             "normal": [
                 0.0,
@@ -4745,9 +4789,9 @@
             "area": 0.13559852540493012,
             "offsetMm": 1.9999146461486817,
             "at": [
-                -32.503204345703128,
-                0.16200001537799836,
-                -51.052711486816409
+                -32.46992111206055,
+                0.16200000047683717,
+                -51.11027908325195
             ],
             "normal": [
                 0.0,
@@ -4781,17 +4825,17 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
+            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
             "materialA": "Walnut",
             "b": "Town geometry/主角住宅/House1931/North corridor partition.008",
             "materialB": "Wallpaper",
             "kind": "material",
-            "area": 0.006365845911204815,
+            "area": 0.006365544628351927,
             "offsetMm": 1.9999840259552003,
             "at": [
-                -29.029258728027345,
+                -25.37074089050293,
                 0.16200007498264314,
-                -55.99965286254883
+                -56.000343322753909
             ],
             "normal": [
                 0.0,
@@ -4803,17 +4847,17 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
+            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
             "materialA": "Walnut",
             "b": "Town geometry/主角住宅/House1931/North corridor partition.008",
             "materialB": "Wallpaper",
             "kind": "material",
-            "area": 0.006365544628351927,
+            "area": 0.006365845911204815,
             "offsetMm": 1.9999840259552003,
             "at": [
-                -25.35790252685547,
+                -29.029258728027345,
                 0.16200007498264314,
-                -56.0533332824707
+                -55.99965286254883
             ],
             "normal": [
                 0.0,
@@ -4877,14 +4921,36 @@
             "area": 0.009564396925270558,
             "offsetMm": 1.999418020248413,
             "at": [
-                -16.500673294067384,
+                -16.42052459716797,
                 0.16199982166290284,
-                -57.67301940917969
+                -57.66169738769531
             ],
             "normal": [
                 0.0,
                 1.0,
                 -1.8626025166668115e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/主角住宅/House1931/East wall",
+            "materialA": "Plaster",
+            "b": "Town geometry/主角住宅/House1931/South corridor partition.016",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.019200116395950319,
+            "offsetMm": 1.9997426271438599,
+            "at": [
+                -16.579999923706056,
+                0.16000038385391236,
+                -57.92190933227539
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1976636926647189e-7
             ],
             "pairs": 2,
             "moving": false
@@ -4907,28 +4973,6 @@
                 0.0,
                 1.0,
                 -1.1966517377004494e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/主角住宅/House1931/East wall",
-            "materialA": "Plaster",
-            "b": "Town geometry/主角住宅/House1931/South corridor partition.016",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.019200116395950319,
-            "offsetMm": 1.9997426271438599,
-            "at": [
-                -16.560001373291017,
-                0.16000036895275117,
-                -58.00143051147461
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1976636926647189e-7
             ],
             "pairs": 2,
             "moving": false
@@ -5581,9 +5625,9 @@
             "area": 0.0016239553224295378,
             "offsetMm": 1.999974250793457,
             "at": [
-                -27.501440048217775,
+                -27.498559951782228,
                 1.5310006141662598,
-                -51.35686111450195
+                -51.414859771728519
             ],
             "normal": [
                 0.0,
@@ -7033,9 +7077,9 @@
             "area": 0.00102072989102453,
             "offsetMm": 1.0499954223632813,
             "at": [
-                176.7586669921875,
+                176.74803161621095,
                 0.7202399969100952,
-                45.20850372314453
+                45.20906066894531
             ],
             "normal": [
                 0.0,
@@ -7055,9 +7099,9 @@
             "area": 0.0005685964715667069,
             "offsetMm": 1.790165901184082,
             "at": [
-                176.6999969482422,
+                176.71163940429688,
                 0.7202399969100952,
-                45.23121643066406
+                45.234230041503909
             ],
             "normal": [
                 0.0,
@@ -7517,9 +7561,9 @@
             "area": 1.9164520502090455,
             "offsetMm": 1.999974250793457,
             "at": [
-                180.7624969482422,
+                202.20950317382813,
                 1.1219991445541382,
-                40.139320373535159
+                40.1419792175293
             ],
             "normal": [
                 0.0,
@@ -8551,9 +8595,9 @@
             "area": 0.049219001084566119,
             "offsetMm": 1.9993782043457032,
             "at": [
-                -31.88409996032715,
+                -31.925500869750978,
                 4.149000644683838,
-                -61.729862213134769
+                -61.80514144897461
             ],
             "normal": [
                 0.0,
@@ -8573,9 +8617,9 @@
             "area": 0.049219001084566119,
             "offsetMm": 1.9993782043457032,
             "at": [
-                -31.88409996032715,
+                -31.925500869750978,
                 4.149000644683838,
-                -62.354862213134769
+                -62.43014144897461
             ],
             "normal": [
                 0.0,
@@ -9071,6 +9115,28 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_store-luggage",
+            "materialA": "PInt_Leather",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_store-luggage",
+            "materialB": "PInt_Black",
+            "kind": "material",
+            "area": 0.004800219554454088,
+            "offsetMm": 1.999977946281433,
+            "at": [
+                172.62954711914063,
+                0.47000229358673098,
+                -7.401086330413818
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.0384061255308552e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "Town geometry/Hospital/Rail sign board · 青 川 医 院/Brass side border",
             "materialA": "RailBrass",
             "b": "Town geometry/Hospital/Rail sign board · 青 川 医 院/Solid painted sign face",
@@ -9133,6 +9199,556 @@
                 0.0
             ],
             "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Int_Trim",
+            "materialA": "HInt_Panel",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Int_Trim",
+            "materialB": "PInt_Panel",
+            "kind": "material",
+            "area": 0.5865191221237183,
+            "offsetMm": 1.999974250793457,
+            "at": [
+                154.802001953125,
+                0.9475044012069702,
+                5.477495193481445
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 201,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "RailTrain/TrainSet/Module_Luggage_Static/Module_Luggage_Static_RailWalnut",
+            "materialA": "RailWalnut",
+            "b": "RailTrain/TrainSet/Module_Luggage_Beauty/Module_Luggage_Beauty_RailIron",
+            "materialB": "RailIron",
+            "kind": "material",
+            "area": 0.0015627369284629822,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                156.39999389648438,
+                0.965499758720398,
+                71.67645263671875
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "StationB/StationB/Module_Annexes/Module_Annexes_RailSlate",
+            "materialA": "RailSlate",
+            "b": "StationB/StationB/Module_Annexes/Module_Annexes_RailSlate",
+            "materialB": "RailSlate",
+            "kind": "uv",
+            "area": 0.04659555107355118,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                164.8000030517578,
+                5.163455963134766,
+                46.00041961669922
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 14,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room6-bed",
+            "materialA": "HInt_Quilt",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room6-bed",
+            "materialB": "PInt_Furniture",
+            "kind": "material",
+            "area": 0.17400015890598298,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                164.16888427734376,
+                3.870002031326294,
+                -4.0980024337768559
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 5,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Ext_Roof",
+            "materialA": "HExt_Ridge",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Ext_Roof",
+            "materialB": "HExt_Chimney",
+            "kind": "material",
+            "area": 0.07499957829713822,
+            "offsetMm": 1.9997568130493165,
+            "at": [
+                166.61837768554688,
+                10.941944122314454,
+                -0.10000397264957428
+            ],
+            "normal": [
+                0.0,
+                -1.4901246458975948e-7,
+                -1.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room1-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.4599993228912354,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                151.4199981689453,
+                3.8000032901763918,
+                3.6399967670440676
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "RailTrain/TrainSet/Module_Coach2_Detail/Module_Coach2_Detail_RailWalnut",
+            "materialA": "RailWalnut",
+            "b": "RailTrain/TrainSet/Module_Coach2_Detail/Module_Coach2_Detail_RailWalnut",
+            "materialB": "RailWalnut",
+            "kind": "uv",
+            "area": 0.19755853712558747,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                163.02850341796876,
+                2.301010847091675,
+                72.12812805175781
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 116,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "HotelCar/Visual/Body",
+            "materialA": "CarBlack",
+            "b": "HotelCar/Hood_R/Hood_R",
+            "materialB": "CarPaint",
+            "kind": "material",
+            "area": 0.00012813527428079396,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                169.92739868164063,
+                0.7543359398841858,
+                3.679999828338623
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 1,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "HotelCar/Hood_L/Hood_L",
+            "materialA": "CarPaint",
+            "b": "HotelCar/Visual/Body",
+            "materialB": "CarBlack",
+            "kind": "material",
+            "area": 0.0001499937498010695,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                169.072509765625,
+                0.7550001740455627,
+                3.681999683380127
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 1,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/ExtFurn_carport-trunks",
+            "materialA": "PInt_Leather",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/ExtFurn_carport-trunks",
+            "materialB": "PInt_Black",
+            "kind": "material",
+            "area": 0.004800219554454088,
+            "offsetMm": 1.9999945163726807,
+            "at": [
+                171.87332153320313,
+                0.295002818107605,
+                -3.1950016021728517
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.5576141265682964e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room4-bed",
+            "materialA": "HInt_Quilt",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room4-bed",
+            "materialB": "PInt_Furniture",
+            "kind": "material",
+            "area": 0.08700008690357208,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                162.45249938964845,
+                3.890003204345703,
+                4.301995277404785
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room3-bed",
+            "materialA": "PInt_Furniture",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room3-bed",
+            "materialB": "HInt_Quilt",
+            "kind": "material",
+            "area": 0.08700007945299149,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                160.26950073242188,
+                3.8746562004089357,
+                4.299995422363281
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room2-bed",
+            "materialA": "HInt_Quilt",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room2-bed",
+            "materialB": "PInt_Furniture",
+            "kind": "material",
+            "area": 0.08700008690357208,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                153.46888732910157,
+                3.8700029850006105,
+                4.301995277404785
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room1-bed",
+            "materialA": "PInt_Furniture",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room1-bed",
+            "materialB": "HInt_Quilt",
+            "kind": "material",
+            "area": 0.08700007945299149,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                150.0695037841797,
+                3.8746562004089357,
+                4.299995422363281
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_kitchen-dresser",
+            "materialA": "PInt_Furniture",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_kitchen-dresser",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.11987139284610748,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                166.8800506591797,
+                1.2558116912841797,
+                -8.05000114440918
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 34,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "HotelCar/TrunkLid/TrunkLid",
+            "materialA": "CarBlack",
+            "b": "HotelCar/TrunkLid/TrunkLid",
+            "materialB": "CarTrim",
+            "kind": "material",
+            "area": 0.4663988947868347,
+            "offsetMm": 1.000053882598877,
+            "at": [
+                169.84092712402345,
+                1.090000033378601,
+                -0.1266666054725647
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                2.384186643666908e-7
+            ],
+            "pairs": 4,
+            "moving": true
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room5-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.4599989652633668,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                152.9199981689453,
+                3.883335590362549,
+                -3.75666880607605
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room6-washstand",
+            "materialA": "PInt_Stone",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room6-tray",
+            "materialB": "PInt_Paper",
+            "kind": "material",
+            "area": 0.06599710881710053,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                164.96249389648438,
+                4.380002021789551,
+                -5.483127593994141
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Rail sign board · 旅  馆/Brass side border",
+            "materialA": "RailBrass",
+            "b": "Town geometry/Hotel/Rail sign board · 旅  馆/Solid painted sign face",
+            "materialB": "RailGreen",
+            "kind": "material",
+            "area": 0.004543424118310213,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                154.9980010986328,
+                2.9820010662078859,
+                8.406000137329102
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 8,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room5-bed",
+            "materialA": "PInt_Furniture",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room5-bed",
+            "materialB": "HInt_Quilt",
+            "kind": "material",
+            "area": 0.17400015890598298,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                151.5695037841797,
+                3.874655246734619,
+                -3.3000011444091799
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 5,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Furn_store-mangle",
+            "materialA": "PInt_Iron",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_store-mangle",
+            "materialB": "PInt_Furniture",
+            "kind": "material",
+            "area": 0.00470981327816844,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                171.48500061035157,
+                0.6696265935897827,
+                -12.65000057220459
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room2-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.459999442100525,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                151.5800018310547,
+                3.8000030517578127,
+                3.2749969959259035
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room4-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.459999442100525,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                161.77999877929688,
+                3.8000030517578127,
+                3.2749969959259035
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room3-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.4599993228912354,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                161.6199951171875,
+                3.8000032901763918,
+                3.6399967670440676
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Town geometry/Hotel/Hotel shell and furnishings/Furn_room6-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.0599995851516724,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                162.27999877929688,
+                3.883335590362549,
+                -4.776668071746826
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
             "moving": false
         },
         {
@@ -9225,28 +9841,6 @@
         },
         {
             "scene": "Town",
-            "a": "RailTrain/TrainSet/Module_Coach2_Detail/Module_Coach2_Detail_RailWalnut",
-            "materialA": "RailWalnut",
-            "b": "RailTrain/TrainSet/Module_Coach2_Detail/Module_Coach2_Detail_RailWalnut",
-            "materialB": "RailWalnut",
-            "kind": "uv",
-            "area": 0.19755849242210389,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                166.97450256347657,
-                2.2965071201324465,
-                73.91451263427735
-            ],
-            "normal": [
-                -1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 116,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "Town geometry/StationB/Rail sign board · 值 班 室/Brass side border",
             "materialA": "RailBrass",
             "b": "Town geometry/StationB/Rail sign board · 值 班 室/Solid painted sign face",
@@ -9287,28 +9881,6 @@
                 0.0
             ],
             "pairs": 8,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "StationB/StationB/Module_Annexes/Module_Annexes_RailSlate",
-            "materialA": "RailSlate",
-            "b": "StationB/StationB/Module_Annexes/Module_Annexes_RailSlate",
-            "materialB": "RailSlate",
-            "kind": "uv",
-            "area": 0.046595554798841479,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                211.2010040283203,
-                5.163455963134766,
-                45.99958419799805
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 14,
             "moving": false
         },
         {
@@ -9816,28 +10388,6 @@
             ],
             "pairs": 4,
             "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "HotelCar/TrunkLid/TrunkLid",
-            "materialA": "CarBlack",
-            "b": "HotelCar/TrunkLid/TrunkLid",
-            "materialB": "CarTrim",
-            "kind": "material",
-            "area": 0.4663988947868347,
-            "offsetMm": 1.000053882598877,
-            "at": [
-                169.3582000732422,
-                1.089999794960022,
-                -0.03499993681907654
-            ],
-            "normal": [
-                0.0,
-                -1.0,
-                2.384186643666908e-7
-            ],
-            "pairs": 4,
-            "moving": true
         },
         {
             "scene": "Town",
@@ -10919,28 +11469,6 @@
         },
         {
             "scene": "Town",
-            "a": "RailTrain/TrainSet/Module_Luggage_Static/Module_Luggage_Static_RailWalnut",
-            "materialA": "RailWalnut",
-            "b": "RailTrain/TrainSet/Module_Luggage_Beauty/Module_Luggage_Beauty_RailIron",
-            "materialB": "RailIron",
-            "kind": "material",
-            "area": 0.0015627369284629822,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                156.39999389648438,
-                0.965499758720398,
-                71.67645263671875
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "RailTrain/TrainSet/Module_Tender_Beauty/Module_Tender_Beauty_RailIron",
             "materialA": "RailIron",
             "b": "RailTrain/TrainSet/Module_Tender_Beauty/Module_Tender_Beauty_RailIron",
@@ -11136,50 +11664,6 @@
             ],
             "pairs": 3,
             "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "HotelCar/Visual/Body",
-            "materialA": "CarBlack",
-            "b": "HotelCar/Hood_R/Hood_R",
-            "materialB": "CarPaint",
-            "kind": "material",
-            "area": 0.00012813527428079396,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                169.92739868164063,
-                0.7543359398841858,
-                3.679999828338623
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 1,
-            "moving": true
-        },
-        {
-            "scene": "Town",
-            "a": "HotelCar/Hood_L/Hood_L",
-            "materialA": "CarPaint",
-            "b": "HotelCar/Visual/Body",
-            "materialB": "CarBlack",
-            "kind": "material",
-            "area": 0.0001499937498010695,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                169.072509765625,
-                0.7550001740455627,
-                3.681999683380127
-            ],
-            "normal": [
-                0.0,
-                0.0,
-                1.0
-            ],
-            "pairs": 1,
-            "moving": true
         },
         {
             "scene": "Town",
@@ -13300,12 +13784,12 @@
             "b": "Window street geometry/Hospital/Hospital shell and furnishings/Furn_cw-drawing",
             "materialB": "HInt_Paper",
             "kind": "material",
-            "area": 0.06600064784288407,
+            "area": 0.06600064039230347,
             "offsetMm": 1.9999253749847413,
             "at": [
-                121.36014556884766,
+                121.47151947021485,
                 1.1300022602081299,
-                -77.46369934082031
+                -77.41889953613281
             ],
             "normal": [
                 0.0,
@@ -13325,14 +13809,14 @@
             "area": 0.03227181360125542,
             "offsetMm": 1.007080078125,
             "at": [
-                214.07875061035157,
-                2.4100000858306886,
-                15.264999389648438
+                214.42999267578126,
+                2.4109997749328615,
+                15.254084587097168
             ],
             "normal": [
                 0.0,
                 1.0,
-                0.0
+                -0.000005298181804391788
             ],
             "pairs": 60,
             "moving": false
@@ -13344,7 +13828,7 @@
             "b": "Window street geometry/主角住宅/House1931/Dried burgundy blood 0",
             "materialB": "Blood",
             "kind": "material",
-            "area": 0.14125420153141023,
+            "area": 0.14125418663024903,
             "offsetMm": 1.9999982118606568,
             "at": [
                 10.569679260253907,
@@ -13413,9 +13897,9 @@
             "area": 0.008901001885533333,
             "offsetMm": 1.4998942613601685,
             "at": [
-                1.0391764640808106,
+                0.96257084608078,
                 0.5715000033378601,
-                1.4766676425933838
+                1.4862005710601807
             ],
             "normal": [
                 0.0,
@@ -13611,9 +14095,9 @@
             "area": 0.002450245665386319,
             "offsetMm": 1.999974250793457,
             "at": [
-                213.17117309570313,
+                213.18621826171876,
                 1.1980000734329224,
-                15.585832595825196
+                15.57287311553955
             ],
             "normal": [
                 0.0,
@@ -13633,9 +14117,9 @@
             "area": 0.0016239553224295378,
             "offsetMm": 1.9999808073043824,
             "at": [
-                5.977560520172119,
+                5.973439693450928,
                 0.7709999680519104,
-                -83.1568603515625
+                -83.213134765625
             ],
             "normal": [
                 0.0,
@@ -13801,72 +14285,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/主角住宅/House1931/Outer wall paper.162",
-            "materialA": "Wallpaper",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.036",
-            "materialB": "Wallpaper",
-            "kind": "uv",
-            "area": 0.0018632523715496064,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                18.368989944458009,
-                3.361999750137329,
-                -87.81163024902344
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1630157104036698e-7
-            ],
-            "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.019",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006355377845466137,
-            "offsetMm": 1.9996166229248047,
-            "at": [
-                10.970741271972657,
-                3.361999750137329,
-                -87.79955291748047
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.011",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365545094013214,
-            "offsetMm": 1.9996166229248047,
-            "at": [
-                9.642098426818848,
-                3.361999750137329,
-                -87.85334014892578
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "Window street geometry/主角住宅/House1931/Outer wall paper.147",
             "materialA": "Wallpaper",
             "b": "Window street geometry/主角住宅/House1931/North corridor partition.003",
@@ -13875,9 +14293,9 @@
             "area": 0.001807534135878086,
             "offsetMm": 1.9998550415039063,
             "at": [
-                2.6269447803497316,
+                2.6209447383880617,
                 3.361999750137329,
-                -87.7952880859375
+                -87.7955093383789
             ],
             "normal": [
                 0.0,
@@ -13919,9 +14337,75 @@
             "area": 0.006365771405398846,
             "offsetMm": 1.9996166229248047,
             "at": [
-                5.970740795135498,
+                5.9579010009765629,
                 3.361999750137329,
-                -87.7996597290039
+                -87.74667358398438
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/主角住宅/House1931/Outer wall paper.162",
+            "materialA": "Wallpaper",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.036",
+            "materialB": "Wallpaper",
+            "kind": "uv",
+            "area": 0.0018632523715496064,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                18.374990463256837,
+                3.361999750137329,
+                -87.81109619140625
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1630157104036698e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.019",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006355377845466137,
+            "offsetMm": 1.9996166229248047,
+            "at": [
+                10.957901000976563,
+                3.361999750137329,
+                -87.74666595458985
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.011",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365545094013214,
+            "offsetMm": 1.9996166229248047,
+            "at": [
+                9.62925910949707,
+                3.361999750137329,
+                -87.80034637451172
             ],
             "normal": [
                 0.0,
@@ -13941,9 +14425,9 @@
             "area": 0.0018696559127420188,
             "offsetMm": 1.9998550415039063,
             "at": [
-                2.6309814453125,
+                2.62498140335083,
                 3.361999750137329,
-                -89.79782104492188
+                -89.79792022705078
             ],
             "normal": [
                 0.0,
@@ -14359,9 +14843,9 @@
             "area": 0.0015487694181501866,
             "offsetMm": 1.9998550415039063,
             "at": [
-                2.8235771656036379,
+                2.8219375610351564,
                 4.051499843597412,
-                -94.25592041015625
+                -94.26292419433594
             ],
             "normal": [
                 0.0,
@@ -14381,9 +14865,9 @@
             "area": 0.0014304136857390404,
             "offsetMm": 1.9998550415039063,
             "at": [
-                7.853091716766357,
+                7.855907917022705,
                 4.053499698638916,
-                -87.4867172241211
+                -87.53780364990235
             ],
             "normal": [
                 0.0,
@@ -14419,125 +14903,15 @@
             "scene": "ClockShop",
             "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
             "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.010",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365545094013214,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                9.642098426818848,
-                3.361999750137329,
-                -87.85334014892578
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.006",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.006",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006301750894635916,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                4.670740127563477,
-                3.361999750137329,
-                -87.79901885986328
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.007",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.006",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006301455199718475,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                5.942098617553711,
-                3.361999750137329,
-                -87.85334014892578
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.007",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.010",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365771405398846,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                5.970740795135498,
-                3.361999750137329,
-                -87.7996597290039
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
-            "materialA": "Walnut",
             "b": "Window street geometry/主角住宅/House1931/North corridor partition.014",
             "materialB": "Wallpaper",
             "kind": "material",
             "area": 0.006301676854491234,
             "offsetMm": 1.9998550415039063,
             "at": [
-                9.670740127563477,
+                9.6579008102417,
                 3.361999750137329,
-                -87.79901885986328
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.014",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006301380693912506,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                10.942098617553711,
-                3.361999750137329,
-                -87.85334014892578
+                -87.74666595458985
             ],
             "normal": [
                 0.0,
@@ -14557,9 +14931,97 @@
             "area": 0.006355377845466137,
             "offsetMm": 1.9998550415039063,
             "at": [
-                10.970741271972657,
+                10.957901000976563,
                 3.361999750137329,
-                -87.79955291748047
+                -87.74666595458985
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.009",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.014",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006301380693912506,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                10.929259300231934,
+                3.361999750137329,
+                -87.80098724365235
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper--0.2/Door casing.008",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.010",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365545094013214,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                9.62925910949707,
+                3.361999750137329,
+                -87.80034637451172
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.007",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.010",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365771405398846,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                5.9579010009765629,
+                3.361999750137329,
+                -87.74667358398438
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.007",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.006",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006301455199718475,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                5.929259300231934,
+                3.361999750137329,
+                -87.80098724365235
             ],
             "normal": [
                 0.0,
@@ -14579,9 +15041,31 @@
             "area": 0.006340754218399525,
             "offsetMm": 1.9998550415039063,
             "at": [
-                4.642098903656006,
+                4.62925910949707,
                 3.361999750137329,
-                -87.85334014892578
+                -87.80059814453125
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper--5.2/Door casing.006",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.006",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006301750894635916,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                4.657900810241699,
+                3.361999750137329,
+                -87.74666595458985
             ],
             "normal": [
                 0.0,
@@ -14615,6 +15099,50 @@
         },
         {
             "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper-south/Door casing.010",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/South corridor partition.006",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.012765094637870789,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                8.669769287109375,
+                3.361999750137329,
+                -89.80106353759766
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_upper-south/Door casing.011",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/South corridor partition.006",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.012765094637870789,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                7.358378887176514,
+                3.361999750137329,
+                -89.87665557861328
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "主角住宅/House1931/DoorFrame_storage/Door casing.013",
             "materialA": "Walnut",
             "b": "Window street geometry/主角住宅/House1931/South corridor partition.010",
@@ -14633,50 +15161,6 @@
                 0.0
             ],
             "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper-south/Door casing.011",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/South corridor partition.006",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.012765094637870789,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                7.330230712890625,
-                3.361999750137329,
-                -89.79894256591797
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_upper-south/Door casing.010",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/South corridor partition.006",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.012765094637870789,
-            "offsetMm": 1.9998550415039063,
-            "at": [
-                8.641621589660645,
-                3.361999750137329,
-                -89.72335052490235
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 3,
             "moving": false
         },
         {
@@ -15891,6 +16375,28 @@
         },
         {
             "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room6-washstand",
+            "materialA": "PInt_Stone",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room6-tray",
+            "materialB": "PInt_Furniture",
+            "kind": "material",
+            "area": 0.08839847892522812,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                199.88665771484376,
+                4.350001811981201,
+                -37.32638931274414
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
             "materialA": "PInt_FurnLight",
             "b": "Window street geometry/RepairGarage/Garage shell and furnishings/Furn_truck",
@@ -15987,9 +16493,9 @@
             "area": 0.002940530190244317,
             "offsetMm": 1.2981092929840088,
             "at": [
-                -93.046630859375,
+                -93.05337524414063,
                 0.7458994388580322,
-                7.846251964569092
+                7.8537516593933109
             ],
             "normal": [
                 0.0,
@@ -16229,9 +16735,9 @@
             "area": 0.009600324556231499,
             "offsetMm": 1.999365210533142,
             "at": [
-                4.226889133453369,
-                0.16000065207481385,
-                -82.80103302001953
+                4.223333358764648,
+                0.16000066697597505,
+                -82.68170928955078
             ],
             "normal": [
                 0.0,
@@ -16251,9 +16757,9 @@
             "area": 0.028802404180169107,
             "offsetMm": 1.9999146461486817,
             "at": [
-                2.5300769805908205,
-                0.16200000047683717,
-                -82.91028594970703
+                2.496793746948242,
+                0.16200001537799836,
+                -82.85271453857422
             ],
             "normal": [
                 0.0,
@@ -16295,9 +16801,9 @@
             "area": 0.006365771405398846,
             "offsetMm": 1.9999840259552003,
             "at": [
-                5.9579010009765629,
-                0.16200008988380433,
-                -87.74667358398438
+                5.970740795135498,
+                0.16200007498264314,
+                -87.7996597290039
             ],
             "normal": [
                 0.0,
@@ -16317,9 +16823,9 @@
             "area": 0.006355377845466137,
             "offsetMm": 1.9999840259552003,
             "at": [
-                10.957901000976563,
-                0.16200008988380433,
-                -87.74666595458985
+                10.970741271972657,
+                0.16200007498264314,
+                -87.79955291748047
             ],
             "normal": [
                 0.0,
@@ -16339,9 +16845,9 @@
             "area": 0.006365545094013214,
             "offsetMm": 1.9999840259552003,
             "at": [
-                9.642098426818848,
+                9.62925910949707,
                 0.16200007498264314,
-                -87.85334014892578
+                -87.80034637451172
             ],
             "normal": [
                 0.0,
@@ -16405,9 +16911,9 @@
             "area": 0.01920057274401188,
             "offsetMm": 1.9997426271438599,
             "at": [
-                18.439998626708986,
-                0.16000036895275117,
-                -89.80143737792969
+                18.420000076293947,
+                0.16000038385391236,
+                -89.72190856933594
             ],
             "normal": [
                 0.0,
@@ -16468,12 +16974,12 @@
             "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.023",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.0016939813503995538,
+            "area": 0.0016939814668148757,
             "offsetMm": 1.999946117401123,
             "at": [
-                3.1243538856506349,
+                3.063887119293213,
                 0.7289336919784546,
-                -85.5260009765625
+                -85.52900695800781
             ],
             "normal": [
                 0.0,
@@ -16493,9 +16999,9 @@
             "area": 0.05721646547317505,
             "offsetMm": 1.9998443126678467,
             "at": [
-                9.116533279418946,
+                8.950333595275879,
                 0.7306665182113648,
-                -83.42820739746094
+                -83.5260009765625
             ],
             "normal": [
                 0.0,
@@ -16512,12 +17018,12 @@
             "b": "主角住宅/House1931/Cabinet_kitchen-crockery/Parcel cotton tie.022",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.0016939814668148757,
+            "area": 0.0016939813503995538,
             "offsetMm": 1.9998865127563477,
             "at": [
-                3.063887119293213,
+                3.1243538856506349,
                 0.548933744430542,
-                -85.52900695800781
+                -85.5260009765625
             ],
             "normal": [
                 0.0,
@@ -16559,9 +17065,9 @@
             "area": 0.0016239553224295378,
             "offsetMm": 1.999974250793457,
             "at": [
-                7.498560428619385,
+                7.501439571380615,
                 0.4070005714893341,
-                -83.213134765625
+                -83.15513610839844
             ],
             "normal": [
                 0.0,
@@ -16735,9 +17241,9 @@
             "area": 0.05851198360323906,
             "offsetMm": 1.9999756813049317,
             "at": [
-                12.57510757446289,
+                12.499893188476563,
                 1.191999912261963,
-                -83.45149993896485
+                -83.40850067138672
             ],
             "normal": [
                 0.0,
@@ -16815,6 +17321,28 @@
         },
         {
             "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/ExtFurn_front-cart",
+            "materialA": "GInt_Steel",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/ExtFurn_front-cart",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.0014999667182564736,
+            "offsetMm": 0.8173230886459351,
+            "at": [
+                195.8267822265625,
+                0.3624213933944702,
+                -24.33526611328125
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 8,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "Window street geometry/StationB/RailTrain/Boarding step",
             "materialA": "RailIron",
             "b": "Window street geometry/StationB/RailTrain/Boarding step",
@@ -16845,9 +17373,9 @@
             "area": 0.0016248938627541066,
             "offsetMm": 1.9999901056289673,
             "at": [
-                18.171859741210939,
+                18.112136840820314,
                 0.4190000593662262,
-                -91.84706115722656
+                -91.85694885253906
             ],
             "normal": [
                 0.0,
@@ -16864,12 +17392,12 @@
             "b": "主角住宅/Storage pivot Drawer_stationery_0/Drawer_stationery_0/Parcel cotton tie.024",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.001428761868737638,
+            "area": 0.0014287619851529599,
             "offsetMm": 1.9999901056289673,
             "at": [
-                13.054717063903809,
+                13.056283950805664,
                 0.41899994015693667,
-                -84.90909576416016
+                -84.90209197998047
             ],
             "normal": [
                 0.0,
@@ -16889,9 +17417,9 @@
             "area": 0.0016248769825324417,
             "offsetMm": 1.9999901056289673,
             "at": [
-                2.843141794204712,
+                2.844863176345825,
                 0.41899991035461428,
-                -77.27606201171875
+                -77.26905822753906
             ],
             "normal": [
                 0.0,
@@ -16911,9 +17439,9 @@
             "area": 0.009800638072192669,
             "offsetMm": 1.999974250793457,
             "at": [
-                236.9287567138672,
+                239.0712432861328,
                 0.4200000464916229,
-                35.30375289916992
+                35.286251068115237
             ],
             "normal": [
                 0.0,
@@ -17260,12 +17788,12 @@
             "b": "主角住宅/Storage pivot Drawer_sideboard_2/Drawer_sideboard_2/Parcel cotton tie.002",
             "materialB": "Cream",
             "kind": "material",
-            "area": 0.0016248937463387848,
+            "area": 0.0016248938627541066,
             "offsetMm": 1.999974250793457,
             "at": [
-                18.17186164855957,
+                18.17013931274414,
                 1.0190000534057618,
-                -91.84706115722656
+                -91.85406494140625
             ],
             "normal": [
                 0.0,
@@ -17395,14 +17923,14 @@
             "area": 0.005244337022304535,
             "offsetMm": 2.0,
             "at": [
-                10.663836479187012,
+                10.685140609741211,
                 0.16399969160556794,
-                -91.10938262939453
+                -91.10572052001953
             ],
             "normal": [
-                -1.4852536089904334e-8,
+                8.243987537071007e-8,
                 1.0,
-                -1.6828194304707723e-7
+                -1.5693292709784147e-7
             ],
             "pairs": 29,
             "moving": false
@@ -17989,9 +18517,9 @@
             "area": 0.0016239553224295378,
             "offsetMm": 1.999974250793457,
             "at": [
-                7.498560428619385,
+                7.501439571380615,
                 1.5310006141662598,
-                -83.1568603515625
+                -83.21485900878906
             ],
             "normal": [
                 0.0,
@@ -19309,9 +19837,9 @@
             "area": 0.000568641466088593,
             "offsetMm": 1.790165901184082,
             "at": [
-                211.6999969482422,
+                211.72044372558595,
                 0.7202399969100952,
-                13.4312162399292
+                13.418008804321289
             ],
             "normal": [
                 0.0,
@@ -19683,9 +20211,9 @@
             "area": 1.6671396493911744,
             "offsetMm": 1.999974250793457,
             "at": [
-                225.79049682617188,
+                220.21096801757813,
                 1.1199991703033448,
-                8.33932113647461
+                8.343382835388184
             ],
             "normal": [
                 0.0,
@@ -20497,9 +21025,9 @@
             "area": 0.05179973319172859,
             "offsetMm": 1.9993782043457032,
             "at": [
-                3.1158995628356935,
+                3.0744996070861818,
                 4.149000644683838,
-                -93.52986145019531
+                -93.60514831542969
             ],
             "normal": [
                 0.0,
@@ -20951,6 +21479,28 @@
         },
         {
             "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_store-luggage",
+            "materialA": "PInt_Leather",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_store-luggage",
+            "materialB": "PInt_Black",
+            "kind": "material",
+            "area": 0.004800525028258562,
+            "offsetMm": 1.999977946281433,
+            "at": [
+                207.62954711914063,
+                0.47000229358673098,
+                -39.201087951660159
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.0384061255308552e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "Window street geometry/Hospital/Rail sign board · 青 川 医 院/Brass side border",
             "materialA": "RailBrass",
             "b": "Window street geometry/Hospital/Rail sign board · 青 川 医 院/Solid painted sign face",
@@ -21017,6 +21567,28 @@
         },
         {
             "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Int_Trim",
+            "materialA": "HInt_Panel",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Int_Trim",
+            "materialB": "PInt_Panel",
+            "kind": "material",
+            "area": 0.44161945581436159,
+            "offsetMm": 1.9991463422775269,
+            "at": [
+                189.802001953125,
+                0.9475045800209045,
+                -26.3225040435791
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 166,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
             "a": "Window street geometry/StationB/PlatformCoping-0-27",
             "materialA": "RailCoping",
             "b": "Window street geometry/StationB/PlatformWall-0-27",
@@ -21035,6 +21607,380 @@
                 0.0
             ],
             "pairs": 1,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "RailTrain/TrainSet/Module_Luggage_Static/Module_Luggage_Static_RailWalnut",
+            "materialA": "RailWalnut",
+            "b": "RailTrain/TrainSet/Module_Luggage_Beauty/Module_Luggage_Beauty_RailIron",
+            "materialB": "RailIron",
+            "kind": "material",
+            "area": 0.0015627326210960746,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                191.39999389648438,
+                0.965499758720398,
+                39.87644958496094
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "StationB/StationB/Module_Annexes/Module_Annexes_RailSlate",
+            "materialA": "RailSlate",
+            "b": "StationB/StationB/Module_Annexes/Module_Annexes_RailSlate",
+            "materialB": "RailSlate",
+            "kind": "uv",
+            "area": 0.046594977378845218,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                199.8000030517578,
+                5.163455486297607,
+                14.200420379638672
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 14,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room6-bed",
+            "materialA": "HInt_Quilt",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room6-bed",
+            "materialB": "PInt_Furniture",
+            "kind": "material",
+            "area": 0.17400015890598298,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                199.16888427734376,
+                3.870002031326294,
+                -35.89800262451172
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 5,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Ext_Roof",
+            "materialA": "HExt_Ridge",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Ext_Roof",
+            "materialB": "HExt_Chimney",
+            "kind": "material",
+            "area": 0.07499957829713822,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                201.61837768554688,
+                10.941944122314454,
+                -31.90000343322754
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                -1.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room1-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.4599993228912354,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                186.4199981689453,
+                3.8000032901763918,
+                -28.160001754760743
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "RailTrain/TrainSet/Module_Coach2_Detail/Module_Coach2_Detail_RailWalnut",
+            "materialA": "RailWalnut",
+            "b": "RailTrain/TrainSet/Module_Coach2_Detail/Module_Coach2_Detail_RailWalnut",
+            "materialB": "RailWalnut",
+            "kind": "uv",
+            "area": 0.19755767285823823,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                198.02850341796876,
+                2.301010847091675,
+                40.328125
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 116,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/ExtFurn_carport-trunks",
+            "materialA": "PInt_Leather",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/ExtFurn_carport-trunks",
+            "materialB": "PInt_Black",
+            "kind": "material",
+            "area": 0.004799914546310902,
+            "offsetMm": 1.9999945163726807,
+            "at": [
+                206.87332153320313,
+                0.295002818107605,
+                -34.994998931884769
+            ],
+            "normal": [
+                0.0,
+                -1.0,
+                1.557619384584541e-7
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_kitchen-dresser",
+            "materialA": "PInt_Furniture",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_kitchen-dresser",
+            "materialB": "PInt_FurnLight",
+            "kind": "material",
+            "area": 0.11987139284610748,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                201.8800506591797,
+                1.2558116912841797,
+                -39.849998474121097
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 34,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room5-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.4599990844726563,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                187.9199981689453,
+                3.883335590362549,
+                -35.556671142578128
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room6-washstand",
+            "materialA": "PInt_Stone",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room6-tray",
+            "materialB": "PInt_Paper",
+            "kind": "material",
+            "area": 0.06599653512239456,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                199.96250915527345,
+                4.380002021789551,
+                -37.28312683105469
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room2-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.4599993228912354,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                186.5800018310547,
+                3.8000030517578127,
+                -28.525001525878908
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Rail sign board · 旅  馆/Brass side border",
+            "materialA": "RailBrass",
+            "b": "Window street geometry/Hotel/Rail sign board · 旅  馆/Solid painted sign face",
+            "materialB": "RailGreen",
+            "kind": "material",
+            "area": 0.004544856958091259,
+            "offsetMm": 1.9998550415039063,
+            "at": [
+                189.9980010986328,
+                2.9820046424865724,
+                -23.393999099731447
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 8,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room5-bed",
+            "materialA": "PInt_Furniture",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room5-bed",
+            "materialB": "HInt_Quilt",
+            "kind": "material",
+            "area": 0.17400015890598298,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                186.5695037841797,
+                3.874655246734619,
+                -35.10000228881836
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 5,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_store-mangle",
+            "materialA": "PInt_Iron",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_store-mangle",
+            "materialB": "PInt_Furniture",
+            "kind": "material",
+            "area": 0.00470981327816844,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                206.48500061035157,
+                0.6696265935897827,
+                -44.45000076293945
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room4-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.4599993228912354,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                196.77999877929688,
+                3.8000030517578127,
+                -28.525001525878908
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 3,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room3-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.4599993228912354,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                196.6199951171875,
+                3.8000032901763918,
+                -28.160001754760743
+            ],
+            "normal": [
+                -1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Hotel/Hotel shell and furnishings/Int_Walls",
+            "materialA": "HInt_PaperB",
+            "b": "Window street geometry/Hotel/Hotel shell and furnishings/Furn_room6-bed",
+            "materialB": "HInt_Panel",
+            "kind": "material",
+            "area": 1.0599976778030396,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                197.27999877929688,
+                3.883335590362549,
+                -36.57666778564453
+            ],
+            "normal": [
+                1.0,
+                0.0,
+                0.0
+            ],
+            "pairs": 2,
             "moving": false
         },
         {
@@ -21105,28 +22051,6 @@
         },
         {
             "scene": "ClockShop",
-            "a": "RailTrain/TrainSet/Module_Coach2_Detail/Module_Coach2_Detail_RailWalnut",
-            "materialA": "RailWalnut",
-            "b": "RailTrain/TrainSet/Module_Coach2_Detail/Module_Coach2_Detail_RailWalnut",
-            "materialB": "RailWalnut",
-            "kind": "uv",
-            "area": 0.19755764305591584,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                201.97450256347657,
-                2.2965071201324465,
-                42.1145133972168
-            ],
-            "normal": [
-                -1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 116,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
             "a": "Window street geometry/StationB/Rail sign board · 值 班 室/Brass side border",
             "materialA": "RailBrass",
             "b": "Window street geometry/StationB/Rail sign board · 值 班 室/Solid painted sign face",
@@ -21167,28 +22091,6 @@
                 0.0
             ],
             "pairs": 8,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "StationB/StationB/Module_Annexes/Module_Annexes_RailSlate",
-            "materialA": "RailSlate",
-            "b": "StationB/StationB/Module_Annexes/Module_Annexes_RailSlate",
-            "materialB": "RailSlate",
-            "kind": "uv",
-            "area": 0.046594977378845218,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                246.2010040283203,
-                5.163455486297607,
-                14.199584007263184
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 14,
             "moving": false
         },
         {
@@ -22729,28 +23631,6 @@
                 0.0
             ],
             "pairs": 63,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "RailTrain/TrainSet/Module_Luggage_Static/Module_Luggage_Static_RailWalnut",
-            "materialA": "RailWalnut",
-            "b": "RailTrain/TrainSet/Module_Luggage_Beauty/Module_Luggage_Beauty_RailIron",
-            "materialB": "RailIron",
-            "kind": "material",
-            "area": 0.0015627326210960746,
-            "offsetMm": 1.9989013671875,
-            "at": [
-                191.39999389648438,
-                0.965499758720398,
-                39.87644958496094
-            ],
-            "normal": [
-                1.0,
-                0.0,
-                0.0
-            ],
-            "pairs": 2,
             "moving": false
         },
         {

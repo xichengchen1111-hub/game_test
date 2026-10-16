@@ -1,0 +1,28 @@
+{
+ "feature": "B08 A 山墙老客栈（用户 2026-10-16 选定，人物留占位）",
+ "platform": "Windows 11 / Unity 6000.3.18f1 / D3D11 staging build builds/windows-staging (SLICE_BUILD_PASS)",
+ "assemblySha256": "24089b1681b938229228e7cfa5662d47fb393af0186c29ec5206d5ba4d127da5",
+ "authoring": "authoring-checks.json: 45 apertures, 10217 solid wall probes, 15 doors, 27 lights (26 lamps + raking light), I01-I03 physical sheets, 2 placeholder talk targets, car stand and lane clear",
+ "native": {
+  "review1080": "review-1080.json (31 checks PASS)",
+  "review720": "review-720.json (31 checks PASS)",
+  "reload1080": "reload-1080.json PASS (separate process)",
+  "reload720": "reload-720.json PASS (separate process)"
+ },
+ "regressions": {
+  "zfight": "ZFightScan: visible exact 0, moving exact 0 (output/demo/zfight)",
+  "hotelCar": "tools/ReviewCar.ps1 car + verify PASS on the same build (after WeatherShelter fix: a closed car cabin under the open carport stays muffled)",
+  "fullMap": "FULL_MAP_AUTHORING_PASS during build: 70 markers, 9 finished",
+  "mapCheck": "tools/check_town_map.py MAP_CHECK_PASS",
+  "story": "validate_story.py on docs/mvp-evidence.json ran clean"
+ },
+ "daylight": "daylight/: fixed-time overcast/clear views (--review-hotel-day), for visual review only",
+ "limits": [
+  "Programmatic inputs (real CharacterController and E-ray), not physical keyboard/mouse or a blind playtest",
+  "Muted review (AudioListener 0) as required; acoustics checked through WeatherShelter state, not by listening",
+  "E01 injected as a labelled fixture for the D07 report check",
+  "Porter and landlady are grey placeholder markers; character models come from a teammate",
+  "Garage/police/hospital/house native reviews and the six-order full-map walk were not rerun on this build",
+  "Mac build and desktop entry not updated; builds/windows not replaced"
+ ]
+}

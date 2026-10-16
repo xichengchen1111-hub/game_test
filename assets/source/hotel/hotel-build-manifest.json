@@ -1,0 +1,1033 @@
+{
+ "version": 1,
+ "layoutVersion": 1,
+ "objects": {
+  "Ext_Facade": 1462,
+  "Int_Walls": 496,
+  "Int_Trim": 3130,
+  "Ext_Yard": 116,
+  "Ext_Timber": 1918,
+  "Ext_Shutters": 980,
+  "Int_Attic": 6,
+  "Ext_Roof": 626,
+  "Int_Roof": 22,
+  "Ext_Porch": 206,
+  "Ext_Carport": 288,
+  "Int_Floors": 32,
+  "Int_Ceilings": 16,
+  "Int_Beams": 120,
+  "Int_Stairs": 572,
+  "Int_Runner": 38,
+  "Ext_Windows": 2604,
+  "Glass": 64,
+  "Leaf_front-door_0": 158,
+  "Leaf_front-door_1": 158,
+  "Leaf_lodge-door_0": 180,
+  "Leaf_office-door_0": 180,
+  "Leaf_dining-door_0": 158,
+  "Leaf_kitchen-door_0": 180,
+  "Leaf_back-door_0": 268,
+  "Leaf_store-door_0": 258,
+  "Leaf_door-r1_0": 180,
+  "Leaf_door-r2_0": 180,
+  "Leaf_door-r3_0": 180,
+  "Leaf_door-r4_0": 180,
+  "Leaf_door-r5_0": 180,
+  "Leaf_door-r6_0": 180,
+  "Leaf_door-bath_0": 180,
+  "Lamp_lamp-lobby-1": 102,
+  "Bulb_lamp-lobby-1": 24,
+  "Lamp_lamp-lobby-2": 102,
+  "Bulb_lamp-lobby-2": 24,
+  "Lamp_lamp-register": 46,
+  "Bulb_lamp-register": 24,
+  "LampHead_lamp-register": 92,
+  "Lamp_lamp-lodge": 102,
+  "Bulb_lamp-lodge": 24,
+  "Lamp_lamp-office": 102,
+  "Bulb_lamp-office": 24,
+  "Lamp_lamp-office-desk": 82,
+  "Bulb_lamp-office-desk": 24,
+  "Lamp_lamp-dining-1": 102,
+  "Bulb_lamp-dining-1": 24,
+  "Lamp_lamp-dining-2": 102,
+  "Bulb_lamp-dining-2": 24,
+  "Lamp_lamp-cash": 82,
+  "Bulb_lamp-cash": 24,
+  "Lamp_lamp-kitchen": 102,
+  "Bulb_lamp-kitchen": 24,
+  "Lamp_lamp-store": 32,
+  "Bulb_lamp-store": 24,
+  "Lamp_lamp-corridor-1": 102,
+  "Bulb_lamp-corridor-1": 24,
+  "Lamp_lamp-corridor-2": 102,
+  "Bulb_lamp-corridor-2": 24,
+  "Lamp_lamp-landing": 102,
+  "Bulb_lamp-landing": 24,
+  "Lamp_lamp-room1": 102,
+  "Bulb_lamp-room1": 24,
+  "Lamp_lamp-room2": 102,
+  "Bulb_lamp-room2": 24,
+  "Lamp_lamp-room3": 102,
+  "Bulb_lamp-room3": 24,
+  "Lamp_lamp-room4": 102,
+  "Bulb_lamp-room4": 24,
+  "Lamp_lamp-room5": 102,
+  "Bulb_lamp-room5": 24,
+  "Lamp_lamp-room6": 102,
+  "Bulb_lamp-room6": 24,
+  "Lamp_lamp-bath": 102,
+  "Bulb_lamp-bath": 24,
+  "Lamp_lantern-porch": 94,
+  "Bulb_lantern-porch": 12,
+  "Lamp_lantern-gate-w": 72,
+  "Bulb_lantern-gate-w": 12,
+  "Lamp_lantern-gate-e": 72,
+  "Bulb_lantern-gate-e": 12,
+  "Lamp_lantern-carport": 94,
+  "Bulb_lantern-carport": 12,
+  "Lamp_lantern-back": 96,
+  "Bulb_lantern-back": 12,
+  "Furn_counter": 88,
+  "Furn_keyrack": 312,
+  "Furn_counter-bell": 84,
+  "Furn_counter-ledger": 18,
+  "Furn_register-desk": 148,
+  "Furn_register-chair": 108,
+  "Furn_register-book": 52,
+  "Furn_lobby-armchair-1": 108,
+  "Furn_lobby-armchair-2": 108,
+  "Furn_lobby-sidetable": 136,
+  "Furn_lobby-bench": 60,
+  "Furn_lobby-coat": 138,
+  "Furn_lobby-umbrella": 60,
+  "Furn_lobby-luggage": 64,
+  "Furn_lobby-rug": 2,
+  "Furn_lobby-phone": 48,
+  "Furn_lobby-board": 20,
+  "Furn_lobby-plant-1": 166,
+  "Furn_lobby-plant-2": 166,
+  "Furn_lobby-picture-1": 14,
+  "Furn_lobby-picture-2": 14,
+  "Furn_lodge-desk": 148,
+  "Furn_lodge-chair": 108,
+  "Furn_lodge-stove": 104,
+  "Furn_lodge-pigeon": 492,
+  "Furn_lodge-coat": 138,
+  "Furn_lodge-lantern": 102,
+  "Furn_office-desk": 148,
+  "Furn_office-chair": 108,
+  "Furn_office-safe": 102,
+  "Furn_office-files": 100,
+  "Furn_office-shelf": 1518,
+  "Furn_office-letter": 10,
+  "Furn_office-rug": 2,
+  "Furn_dining-fireplace": 254,
+  "Furn_dining-t1": 392,
+  "Furn_dining-t2": 392,
+  "Furn_dining-t3": 392,
+  "Furn_dining-t4": 392,
+  "Furn_dining-t5": 392,
+  "Furn_chair-t1a": 108,
+  "Furn_chair-t1b": 108,
+  "Furn_chair-t2a": 108,
+  "Furn_chair-t2b": 108,
+  "Furn_chair-t3a": 108,
+  "Furn_chair-t3b": 108,
+  "Furn_chair-t4a": 108,
+  "Furn_chair-t4b": 108,
+  "Furn_chair-t5a": 108,
+  "Furn_chair-t5b": 108,
+  "Furn_chair-t5c": 108,
+  "Furn_dining-sideboard": 112,
+  "Furn_cash-desk": 148,
+  "Furn_cash-ledger-book": 18,
+  "Furn_cash-box": 24,
+  "Furn_dining-rug": 2,
+  "Furn_dining-picture": 14,
+  "Furn_dining-plant": 166,
+  "Furn_kitchen-range": 380,
+  "Furn_kitchen-table": 70,
+  "Furn_kitchen-dresser": 962,
+  "Furn_kitchen-sink": 110,
+  "Furn_kitchen-spike": 104,
+  "Furn_kitchen-bin": 168,
+  "Furn_kitchen-crate": 28,
+  "Furn_store-shelf": 362,
+  "Furn_store-luggage": 96,
+  "Furn_store-tub": 190,
+  "Furn_store-linen": 28,
+  "Furn_store-mangle": 180,
+  "Furn_room1-bed": 108,
+  "Furn_room1-wardrobe": 60,
+  "Furn_room1-washstand": 80,
+  "Furn_room1-chair": 108,
+  "Furn_room1-rug": 2,
+  "Furn_room2-bed": 108,
+  "Furn_room2-wardrobe": 60,
+  "Furn_room2-washstand": 80,
+  "Furn_room2-chair": 108,
+  "Furn_room3-bed": 108,
+  "Furn_room3-wardrobe": 60,
+  "Furn_room3-washstand": 80,
+  "Furn_room3-chair": 108,
+  "Furn_room4-bed": 108,
+  "Furn_room4-wardrobe": 60,
+  "Furn_room4-washstand": 80,
+  "Furn_room4-chair": 108,
+  "Furn_room5-bed": 108,
+  "Furn_room5-wardrobe": 60,
+  "Furn_room5-washstand": 80,
+  "Furn_room5-chair": 108,
+  "Furn_room6-bed": 96,
+  "Furn_room6-wardrobe": 60,
+  "Furn_room6-washstand": 80,
+  "Furn_room6-chair": 108,
+  "Furn_room6-stove": 104,
+  "Furn_room6-tray": 14,
+  "Furn_bath-tub": 202,
+  "Furn_bath-wc": 72,
+  "Furn_bath-basin": 100,
+  "Furn_landing-bench": 60,
+  "Furn_landing-linen": 60,
+  "Furn_corridor-runner": 2,
+  "ExtFurn_front-bench": 60,
+  "ExtFurn_front-planter-w": 98,
+  "ExtFurn_front-planter-e": 98,
+  "ExtFurn_front-barrels": 144,
+  "ExtFurn_front-cart": 728,
+  "ExtFurn_carport-trunks": 96,
+  "ExtFurn_yard-barrels": 144,
+  "ExtFurn_yard-crates": 40,
+  "ExtFurn_yard-bench": 60
+ },
+ "triangles": 34322,
+ "leaves": [
+  {
+   "object": "Leaf_front-door_0",
+   "opening": "front-door",
+   "fixture": "hotel-front-door",
+   "index": 0,
+   "count": 2,
+   "hinge": [
+    10.831999999999999,
+    0.16,
+    32.55
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 32.55,
+   "leafCentre": [
+    11.215,
+    1.3850000000000002,
+    32.55
+   ],
+   "width": 0.7700000000000014,
+   "height": 2.45
+  },
+  {
+   "object": "Leaf_front-door_1",
+   "opening": "front-door",
+   "fixture": "hotel-front-door",
+   "index": 1,
+   "count": 2,
+   "hinge": [
+    12.368,
+    0.16,
+    32.55
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 32.55,
+   "leafCentre": [
+    11.985,
+    1.3850000000000002,
+    32.55
+   ],
+   "width": 0.7700000000000014,
+   "height": 2.45
+  },
+  {
+   "object": "Leaf_lodge-door_0",
+   "opening": "lodge-door",
+   "fixture": "hotel-lodge-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    6.48,
+    0.16,
+    31.993
+   ],
+   "lowEnd": false,
+   "axis": "z",
+   "plane": 6.48,
+   "leafCentre": [
+    31.6,
+    1.1900000000000002,
+    6.48
+   ],
+   "width": 0.7899999999999956,
+   "height": 2.06
+  },
+  {
+   "object": "Leaf_office-door_0",
+   "opening": "office-door",
+   "fixture": "hotel-office-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    6.48,
+    0.16,
+    22.182000000000002
+   ],
+   "lowEnd": true,
+   "axis": "z",
+   "plane": 6.48,
+   "leafCentre": [
+    22.6,
+    1.1900000000000002,
+    6.48
+   ],
+   "width": 0.8399999999999963,
+   "height": 2.06
+  },
+  {
+   "object": "Leaf_dining-door_0",
+   "opening": "dining-door",
+   "fixture": "hotel-dining-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    16.5,
+    0.16,
+    29.668
+   ],
+   "lowEnd": false,
+   "axis": "z",
+   "plane": 16.5,
+   "leafCentre": [
+    29.2,
+    1.2400000000000002,
+    16.5
+   ],
+   "width": 0.9399999999999977,
+   "height": 2.16
+  },
+  {
+   "object": "Leaf_kitchen-door_0",
+   "opening": "kitchen-door",
+   "fixture": "hotel-kitchen-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    18.982,
+    0.16,
+    21.25
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 21.25,
+   "leafCentre": [
+    19.4,
+    1.1900000000000002,
+    21.25
+   ],
+   "width": 0.8399999999999963,
+   "height": 2.06
+  },
+  {
+   "object": "Leaf_back-door_0",
+   "opening": "back-door",
+   "fixture": "hotel-back-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    20.978,
+    0.162,
+    13.379999999999999
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 13.379999999999999,
+   "leafCentre": [
+    20.5,
+    1.2209999999999999,
+    13.379999999999999
+   ],
+   "width": 0.9600000000000009,
+   "height": 2.118
+  },
+  {
+   "object": "Leaf_store-door_0",
+   "opening": "store-door",
+   "fixture": "hotel-store-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    23.08,
+    0.162,
+    14.772
+   ],
+   "lowEnd": true,
+   "axis": "z",
+   "plane": 23.08,
+   "leafCentre": [
+    15.2,
+    1.196,
+    23.08
+   ],
+   "width": 0.8599999999999994,
+   "height": 2.068
+  },
+  {
+   "object": "Leaf_door-r1_0",
+   "opening": "door-r1",
+   "fixture": "hotel-room-1-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    4.607,
+    3.5599999999999996,
+    27.28
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 27.28,
+   "leafCentre": [
+    5.0,
+    4.59,
+    27.28
+   ],
+   "width": 0.7899999999999991,
+   "height": 2.0600000000000005
+  },
+  {
+   "object": "Leaf_door-r2_0",
+   "opening": "door-r2",
+   "fixture": "hotel-room-2-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    9.607,
+    3.5599999999999996,
+    27.28
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 27.28,
+   "leafCentre": [
+    10.0,
+    4.59,
+    27.28
+   ],
+   "width": 0.7900000000000027,
+   "height": 2.0600000000000005
+  },
+  {
+   "object": "Leaf_door-r3_0",
+   "opening": "door-r3",
+   "fixture": "hotel-room-3-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    14.806999999999999,
+    3.5599999999999996,
+    27.28
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 27.28,
+   "leafCentre": [
+    15.2,
+    4.59,
+    27.28
+   ],
+   "width": 0.7900000000000027,
+   "height": 2.0600000000000005
+  },
+  {
+   "object": "Leaf_door-r4_0",
+   "opening": "door-r4",
+   "fixture": "hotel-room-4-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    19.807,
+    3.5599999999999996,
+    27.28
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 27.28,
+   "leafCentre": [
+    20.2,
+    4.59,
+    27.28
+   ],
+   "width": 0.7899999999999991,
+   "height": 2.0600000000000005
+  },
+  {
+   "object": "Leaf_door-r5_0",
+   "opening": "door-r5",
+   "fixture": "hotel-room-5-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    5.607,
+    3.5599999999999996,
+    25.52
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 25.52,
+   "leafCentre": [
+    6.0,
+    4.59,
+    25.52
+   ],
+   "width": 0.7899999999999991,
+   "height": 2.0600000000000005
+  },
+  {
+   "object": "Leaf_door-r6_0",
+   "opening": "door-r6",
+   "fixture": "hotel-room-6-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    20.006999999999998,
+    3.5599999999999996,
+    25.52
+   ],
+   "lowEnd": true,
+   "axis": "x",
+   "plane": 25.52,
+   "leafCentre": [
+    20.4,
+    4.59,
+    25.52
+   ],
+   "width": 0.7899999999999991,
+   "height": 2.0600000000000005
+  },
+  {
+   "object": "Leaf_door-bath_0",
+   "opening": "door-bath",
+   "fixture": "hotel-bath-door",
+   "index": 0,
+   "count": 1,
+   "hinge": [
+    16.943,
+    3.5599999999999996,
+    25.52
+   ],
+   "lowEnd": false,
+   "axis": "x",
+   "plane": 25.52,
+   "leafCentre": [
+    16.6,
+    4.59,
+    25.52
+   ],
+   "width": 0.6899999999999977,
+   "height": 2.0600000000000005
+  }
+ ],
+ "lampHeads": [
+  {
+   "object": "LampHead_lamp-register",
+   "bulb": "Bulb_lamp-register",
+   "lamp": "lamp-register",
+   "joint": [
+    6.86,
+    1.35,
+    24.82
+   ],
+   "shade": [
+    7.0600000000000005,
+    1.29,
+    24.98
+   ]
+  }
+ ],
+ "materials": [
+  {
+   "name": "PExt_Paint",
+   "hex": "ddd5c3",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "PExt_DoorOak",
+   "hex": "4f3a29",
+   "metallic": 0,
+   "roughness": 0.45,
+   "tile": 1.0
+  },
+  {
+   "name": "PExt_Iron",
+   "hex": "2c3133",
+   "metallic": 0.6,
+   "roughness": 0.45,
+   "tile": 0
+  },
+  {
+   "name": "P_Glass",
+   "hex": "9fb3be",
+   "metallic": 0,
+   "roughness": 0.05,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Stone",
+   "hex": "7c7d79",
+   "metallic": 0,
+   "roughness": 0.85,
+   "tile": 1.2
+  },
+  {
+   "name": "PInt_Panel",
+   "hex": "5e4632",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 1.0
+  },
+  {
+   "name": "PInt_Furniture",
+   "hex": "6a4f37",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 1.0
+  },
+  {
+   "name": "PInt_FurnLight",
+   "hex": "9a7c58",
+   "metallic": 0,
+   "roughness": 0.45,
+   "tile": 1.0
+  },
+  {
+   "name": "PInt_Green",
+   "hex": "3f5a47",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Brass",
+   "hex": "b38a49",
+   "metallic": 0.8,
+   "roughness": 0.35,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Iron",
+   "hex": "2b2f31",
+   "metallic": 0.5,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Paper",
+   "hex": "e8dfc8",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Enamel",
+   "hex": "e6e2d6",
+   "metallic": 0,
+   "roughness": 0.25,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Cork",
+   "hex": "a37c55",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Black",
+   "hex": "1e1e1e",
+   "metallic": 0.2,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "PInt_BookRed",
+   "hex": "6a3a2c",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "PInt_BookGreen",
+   "hex": "3e4a3a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "PInt_BookBrown",
+   "hex": "6a5a3a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "PInt_BookBlue",
+   "hex": "2e3a4a",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Box",
+   "hex": "8a7656",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "PInt_Leather",
+   "hex": "4a3328",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 0
+  },
+  {
+   "name": "GExt_Walnut",
+   "hex": "4a3526",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 1.0
+  },
+  {
+   "name": "GExt_Iron",
+   "hex": "2a2d2e",
+   "metallic": 0.6,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "GInt_Copper",
+   "hex": "a8653a",
+   "metallic": 0.85,
+   "roughness": 0.38,
+   "tile": 0
+  },
+  {
+   "name": "GInt_Steel",
+   "hex": "6e7376",
+   "metallic": 0.7,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "GInt_Oil",
+   "hex": "17140f",
+   "metallic": 0.1,
+   "roughness": 0.3,
+   "tile": 0
+  },
+  {
+   "name": "GInt_Red",
+   "hex": "7c2e24",
+   "metallic": 0.3,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "GInt_Water",
+   "hex": "3a4a4f",
+   "metallic": 0.1,
+   "roughness": 0.1,
+   "tile": 0
+  },
+  {
+   "name": "G_Glass",
+   "hex": "9fb3be",
+   "metallic": 0,
+   "roughness": 0.05,
+   "tile": 0
+  },
+  {
+   "name": "G_LampGlass",
+   "hex": "ffd9a0",
+   "metallic": 0,
+   "roughness": 0.2,
+   "tile": 0
+  },
+  {
+   "name": "G_Bulb",
+   "hex": "fff0cf",
+   "metallic": 0,
+   "roughness": 0.2,
+   "tile": 0
+  },
+  {
+   "name": "HExt_Rubble",
+   "hex": "9a9282",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 1.6
+  },
+  {
+   "name": "HExt_Ashlar",
+   "hex": "a8a08e",
+   "metallic": 0,
+   "roughness": 0.85,
+   "tile": 1.2
+  },
+  {
+   "name": "HExt_Plaster",
+   "hex": "ddd1b2",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 3.0
+  },
+  {
+   "name": "HExt_Timber",
+   "hex": "3e2e22",
+   "metallic": 0,
+   "roughness": 0.7,
+   "tile": 1.0
+  },
+  {
+   "name": "HExt_Slate",
+   "hex": "46505a",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 1.5
+  },
+  {
+   "name": "HExt_Ridge",
+   "hex": "3a4148",
+   "metallic": 0,
+   "roughness": 0.55,
+   "tile": 1.5
+  },
+  {
+   "name": "HExt_Iron",
+   "hex": "262a2b",
+   "metallic": 0.6,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "HExt_Gutter",
+   "hex": "30363a",
+   "metallic": 0.5,
+   "roughness": 0.5,
+   "tile": 0
+  },
+  {
+   "name": "HExt_Shutter",
+   "hex": "3b3a2c",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 1.0
+  },
+  {
+   "name": "HExt_Chimney",
+   "hex": "7a6656",
+   "metallic": 0,
+   "roughness": 0.85,
+   "tile": 1.6
+  },
+  {
+   "name": "HExt_Pot",
+   "hex": "8a4f35",
+   "metallic": 0,
+   "roughness": 0.7,
+   "tile": 0
+  },
+  {
+   "name": "HInt_PaperA",
+   "hex": "b09460",
+   "metallic": 0,
+   "roughness": 0.85,
+   "tile": 1.2
+  },
+  {
+   "name": "HInt_PaperB",
+   "hex": "d6c8a8",
+   "metallic": 0,
+   "roughness": 0.85,
+   "tile": 1.0
+  },
+  {
+   "name": "HInt_Lime",
+   "hex": "d8d0bb",
+   "metallic": 0,
+   "roughness": 0.92,
+   "tile": 1.6
+  },
+  {
+   "name": "HInt_Ceiling",
+   "hex": "e4dccb",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 3.0
+  },
+  {
+   "name": "HInt_Beam",
+   "hex": "4a3626",
+   "metallic": 0,
+   "roughness": 0.7,
+   "tile": 1.0
+  },
+  {
+   "name": "HInt_Panel",
+   "hex": "4e3a28",
+   "metallic": 0,
+   "roughness": 0.5,
+   "tile": 1.0
+  },
+  {
+   "name": "HInt_Oak",
+   "hex": "7a5e40",
+   "metallic": 0,
+   "roughness": 0.55,
+   "tile": 2.0
+  },
+  {
+   "name": "HInt_Flags",
+   "hex": "8e8a80",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 3.0
+  },
+  {
+   "name": "HInt_Tiles",
+   "hex": "cfc8b8",
+   "metallic": 0,
+   "roughness": 0.4,
+   "tile": 1.0
+  },
+  {
+   "name": "HInt_Rug",
+   "hex": "7e3026",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Runner",
+   "hex": "60342c",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Cloth",
+   "hex": "e8e2d2",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Velvet",
+   "hex": "6e2a2a",
+   "metallic": 0,
+   "roughness": 0.85,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Quilt",
+   "hex": "7d5a46",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Linen",
+   "hex": "ece6d8",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Porcelain",
+   "hex": "efece4",
+   "metallic": 0,
+   "roughness": 0.2,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Copper",
+   "hex": "a8653a",
+   "metallic": 0.85,
+   "roughness": 0.38,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Firebrick",
+   "hex": "4a2a22",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Soot",
+   "hex": "1c1a18",
+   "metallic": 0,
+   "roughness": 0.95,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Leaf",
+   "hex": "4f6b3e",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Pot",
+   "hex": "8a4f35",
+   "metallic": 0,
+   "roughness": 0.8,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Picture",
+   "hex": "5d6b62",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Gilt",
+   "hex": "9a7a3c",
+   "metallic": 0.8,
+   "roughness": 0.4,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Suitcase",
+   "hex": "5a3a26",
+   "metallic": 0,
+   "roughness": 0.6,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Coal",
+   "hex": "2a2826",
+   "metallic": 0,
+   "roughness": 0.9,
+   "tile": 0
+  },
+  {
+   "name": "HInt_Enamel",
+   "hex": "2f3d36",
+   "metallic": 0.2,
+   "roughness": 0.35,
+   "tile": 0
+  }
+ ],
+ "blender": "5.2.0 LTS"
+}

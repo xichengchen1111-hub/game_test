@@ -10,6 +10,7 @@ public partial class DemoApp {
         else if(PoliceStation.Current&&PoliceStation.Current.RoomAt(p,out var policeRoom))name="警署 · "+(policeRoom.id=="interview"?"律师会见室":policeRoom.name);
         else if(HospitalBuilding.Current&&HospitalBuilding.Current.RoomAt(p,out var hospitalRoom))name="医院 · "+hospitalRoom.name;
         else if(RepairGarage.Current&&RepairGarage.Current.RoomAt(p,out var garageRoom))name="修车铺 · "+garageRoom.name;
+        else if(HotelInn.Current&&HotelInn.Current.RoomAt(p,out var hotelRoom))name="旅馆 · "+hotelRoom.name;
         else if(insideMilkShop)name="牛奶屋";
         else if(Mathf.Abs(p.x)<13&&p.z>-13.5f&&p.z<14)name="小镇广场";
         else {
