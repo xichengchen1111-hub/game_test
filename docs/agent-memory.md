@@ -1,5 +1,20 @@
 # Agent 持久记忆：错日证词
 
+### PUBLISH-07：街道生活、街头人物、第一幕第二版与警署印字纸推到 main，并入远端客栈（2026-10-16，Claude Code）
+
+- **用户**：三个子会话（重录街道录像、修车辆重叠、修保管柜闪烁）开始后说「弄完后push」。等三个都结束、各自的检测通过，再统一提交推送；按 PUBLISH-06 惯例直接推到 main。
+- **本地提交 e5fc714**（547 个文件，约 382 MB，最大 11 MB 的 Blender 源，没有 output 下的新 PNG 或视频）：OPENING-04／05、保管柜共面修复、STREET-01／02／03、POLICE-02／03，以及街道录像脚本（录像本身在 `builds/opening/showcase-v7/video/`，不入库）。提交前在本工作区打合并包 563fe2b2…：EditMode 136／136；street-life、street-traffic（720 s、0 叠车）、第一幕 1080 与读档、警署与读档都通过。
+- **远端变了**：开工时 fetch 是 11ac15b（0／0），提交后再 fetch 发现另一台机器在 11:35 推了 B08 客栈（2eaf090、5dc43e0，332 个文件）。**教训**：长时间验证之后，提交和推送前要再 fetch 一次。合并 f1f0ac9：
+  - 文档（agent-memory、mvp-demo）两边段落都保留，AGENTS.md 自动合并。
+  - 字体：两边各自扩过 TownSans（1341／1357 字）。用本机 `builds/house-review/NotoSansSC.ttf`（SHA256 a3041811…，与两边 manifest 记录一致）从本地这版重跑 `expand_ui_font.py`，得 1411 字，两边原有字形都不缺。
+  - Hospital.prefab、PoliceStation.prefab：远端那边只是对象编号重排（增删行数相等），取本地内容；合并后重新打包的输出与之只差编号和浮点。
+  - 街道生活把 B08 加进有室内的建筑，路人不再走进客栈门就消失；`tools/opening/run_review.py` 新增 hotel／hotel-save 两项，Mac 上能跑客栈检测。
+  - 合并包 03bc25e0…：EditMode 136／136；ZFightScan 精确 0／运动 0（含客栈与保管柜）；street-life、street-traffic、第一幕 1080 与读档、警署与读档、客栈与读档、医院与读档全部通过；全部静音，正常存档 c87ab80d… 未变。
+  - 两次打包重新生成的医院／警署人物头像与嘴型资产、街道人物和车、送院车预制件只差对象编号和浮点，已还原为提交版。
+- **推送**：`git push origin HEAD:main`，5dc43e0..f1f0ac9 快进；推送后 fetch 确认 origin/main＝f1f0ac9，本地 main 指到同一提交（工作分支 opening-escort-and-npc-rounds 也在 f1f0ac9）。
+- **桌面入口**：换成合并包 03bc25e0…；之前的 46e2ae63…、563fe2b2… 分别备份为 `builds/opening/integrated/before-push-20261016.app`、`before-merge-20261016.app`（promotion.json）。
+- **没做的**：车辆重叠会话提出的三张卡（停车线画到新位置、过街行人与等候车辆僵持、A01 后巷小路伸进车站西路）未处理；客栈人物仍是占位（用户交给队友）。
+
 ### STREET-03：街车偶发叠车——跟车看不见刚拐走的前车、窄街拐弯车身扫过对面等线的车；停车线后退、按车身判冲突、过线即算进路口、最后一道防撞（2026-10-16，Claude Code 子会话）
 
 - **起因**：POLICE-02 的街道检测（`builds/opening/papersfinal-street-life`）记了 251 帧 `STREET_CAR_OVERLAP: StreetCar0__VisitorMan StreetCar2__Porter`：24 帧里从 −0.02 叠到 −0.072 m（逐帧增量线性变小，是一辆车慢慢刹停），之后两车一直不动到 90 秒观察结束；同一程序集重跑通过。叠车前窗口三次 Metal RecreateSurface，帧时 p95 33 ms。父会话（STREET-02）要求：首次叠车打出两车全部状态；`AmbientCar.Tick` 移动前加通用防撞；考虑给车和人的步长设上限；重建、多跑几次街道检测（每次都过、零叠车）和 EditMode；写进记忆；不换桌面入口、不提交。
