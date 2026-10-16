@@ -1,0 +1,150 @@
+{
+ "first": "greeting",
+ "revisit": "again",
+ "evidence": {
+  "id": "I04",
+  "title": "旅馆门房的证言",
+  "source": "青川旅馆门房，问起一月二十日晚上时的回答",
+  "body": "一月二十日晚上六点半刚过（照门房自己的表），一位没带行李的先生进门，要了六号房。门房写好钟点，上楼去给六号房生炉子，回来时客人已经签好了名。客人没吃晚饭，问了晚上还有哪几班车进站，在楼上待了不到半个钟头就下楼走了，钥匙留在柜台上，再没回来。\n\n门房说，那位客人就是你。他只凭记忆认人。"
+ },
+ "nodes": [
+  {
+   "id": "greeting",
+   "speaker": "门房",
+   "text": "晚上好，先生……您，您来过。",
+   "next": "topics"
+  },
+  {
+   "id": "again",
+   "speaker": "门房",
+   "text": "先生还有什么要问？",
+   "next": "topics"
+  },
+  {
+   "id": "topics",
+   "speaker": "门房",
+   "text": "您问吧，我记得的都说。",
+   "choices": [
+    {
+     "text": "二十日晚上，你见过我？",
+     "target": "ask-seen",
+     "topic": "hotel.porter.seen"
+    },
+    {
+     "text": "你怎么认得是我？",
+     "target": "ask-sure",
+     "topic": "hotel.porter.sure"
+    },
+    {
+     "text": "登记簿上的钟点是谁写的？",
+     "target": "ask-time",
+     "topic": "hotel.porter.time"
+    },
+    {
+     "text": "那晚我问过你什么？",
+     "target": "ask-asked",
+     "topic": "hotel.porter.asked"
+    },
+    {
+     "text": "你那块表准吗？",
+     "target": "ask-watch",
+     "topic": "hotel.porter.watch"
+    },
+    {
+     "text": "先这样。",
+     "target": "ask-bye"
+    }
+   ]
+  },
+  {
+   "id": "ask-seen",
+   "speaker": "你",
+   "text": "二十日晚上，你见过我？",
+   "next": "seen"
+  },
+  {
+   "id": "seen",
+   "speaker": "门房",
+   "text": "见过。六点半刚过一点，照我这块表。您没带行李，进门就要一间房，我给了六号。",
+   "next": "seen-2",
+   "grantEvidence": "I04"
+  },
+  {
+   "id": "seen-2",
+   "speaker": "门房",
+   "text": "我写好钟点就上楼去生炉子了。回来的时候您已经签好名，房钱也去账桌付了。",
+   "next": "seen-3"
+  },
+  {
+   "id": "seen-3",
+   "speaker": "门房",
+   "text": "您没吃晚饭。上去不到半个钟头就下来了，钥匙放在柜台上，人就走了。后来没再回来。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-sure",
+   "speaker": "你",
+   "text": "你怎么认得是我？",
+   "next": "sure"
+  },
+  {
+   "id": "sure",
+   "speaker": "门房",
+   "text": "您的帽子，说话的声音。我干这行二十年了，见过的脸记得住。",
+   "next": "sure-2"
+  },
+  {
+   "id": "sure-2",
+   "speaker": "门房",
+   "text": "簿子上写的名字不是您的名字，是“华德”。客人写什么，我们就认什么，不多问。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-time",
+   "speaker": "你",
+   "text": "登记簿上的钟点是谁写的？",
+   "next": "time"
+  },
+  {
+   "id": "time",
+   "speaker": "门房",
+   "text": "钟点一向是我写，名字和来处客人自己填。我写完就上楼了，后面的我没看着。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-asked",
+   "speaker": "你",
+   "text": "那晚我问过你什么？",
+   "next": "asked"
+  },
+  {
+   "id": "asked",
+   "speaker": "门房",
+   "text": "您问晚上还有哪几班车进站。我照墙上的时刻跟您说了，您点点头，就上楼了。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-watch",
+   "speaker": "你",
+   "text": "你那块表准吗？",
+   "next": "watch"
+  },
+  {
+   "id": "watch",
+   "speaker": "门房",
+   "text": "每天早上我去车站接头班车，顺便跟站上的钟对一回。店里的钟点都照它。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-bye",
+   "speaker": "你",
+   "text": "先这样。",
+   "next": "bye"
+  },
+  {
+   "id": "bye",
+   "speaker": "门房",
+   "text": "您慢走。夜里路滑。"
+  }
+ ]
+}

@@ -105,6 +105,17 @@
 - 修车匠暂用已认可售票员 Tripo 模型改褐色帆布工装（`make_mechanic_texture.py`），脸与售票员、旧值班警员占位相同，是占位；正式人物需用户在 Tripo 制作。
 - 验收：`tools/ReviewGarage.ps1 -Mode garage` 与 `-Mode verify`（独立 `garage-review-save.json`），1080p／720p；白天外观用 `--review --fresh --review-garage-day` 固定机位目视。结果见 `output/demo/garage/` 与记忆 GARAGE-01。
 
+### 旅馆（A 山墙老客栈，用户要求完整呈现，2026-10-16）
+
+- 用户 2026-10-16 选定 `docs/concepts/hotel/round-01/a-gabled-timber-inn.png`，要求“来做 hotel，完整呈现，细节和根据剧情呈现”，并说明**不做任何人物，人物交给队友，留作占位**。B08 改为临街两层主楼 21×12m（首层毛石：门房、账房、登记大堂、餐厅；二层半木构：六间客房、盥洗室、走廊与楼梯平台；两座临街山墙、木门廊）＋后勤厨房翼 14×8m（单层石砌：厨房、储藏洗衣间）＋主楼东侧开敞车棚。旅馆用车原位不动（169.5, 2.0），车位与出街车道由合同和 `HotelChecks` 保证无碰撞物。
+- **唯一来源**：布局合同 `tools/hotel/hotel_layout.py` → `hotel-layout.json`／`Resources/HotelLayout.json`（与 `build_plan.py` 的 B08 覆盖段互相断言轮廓、两门与 30 个外窗、两层）；Blender `tools/hotel/build_hotel.py`（共用警署几何原语、开洞切列、家具与门扇，以及修车铺辅助函数）→ `assets/source/hotel/Hotel.blend/.fbx`；Unity `BuildSlice.Hotel.cs` 装配 `Assets/Generated/Hotel.prefab`，街景与室内同一预制件。文字与纸面 `write_hotel_texts.py`，贴图 `make_hotel_assets.py`，由 `tools/BuildHotel.ps1` 依次重建；不要手改预制件。`HotelChecks` 拒绝堵住、缩小、错位或多出的洞口。
+- 门：15 扇 `ShopMechanism`（`hotel-front-door-left/right` 首次都开、向内；`hotel-back-door` 关；门房、餐厅、厨房、储藏间与六号房门开；账房、一至五号房、盥洗室门关）。整栋一个闷雨外壳：正门两扇或厨房后门任一打开即室外雨声；门廊与车棚有顶不闷声。
+- **斜光**：大堂查阅桌上摊开登记簿，左页 I01（一月二十日），右页是二十一日空白页；按 E 压低台灯灯罩（`RakingLamp`，`hotel-register-lamp` 存在 `openFixtures`），光贴着纸面斜照，右页才换成显出压痕的纸面并可记录 I02；抬起灯罩即恢复空白页。灯头、灯泡与灯光一起绕关节转动，另有一盏只照 Layer 4 的低位斜光。
+- 灯：21 盏室内灯只照 Light Layer 4（医院最近，相距约 50 米），5 盏外灯感光并占 12 处光池，外加斜光一盏；无新增阴影灯。账房台灯与账桌台灯可手动关，存 `hotel-*-lamp-off`。
+- 叙事（修订稿地点 I）：I01 登记页（“H·华德”，六号房，候夜车；到店钟点墨迹晕开，能认出“八时十五分”）、I02 下一页压痕（“六时三十五分”、房号“六”）、I03 餐厅账本（六时五十分六号房预付房费、晚餐不用）、I04 门房证言（问二十日晚上时记录：六点半刚过来、不到半个钟头走、问了晚上进站的车，门房凭记忆认出是你）。每份记录写明按门房的表记时（门房每早到车站对表），不说哪只钟错。阶段报告新增非核心规则 D07（S2×行程，需 E01＋I01＋I02＋I04，I03 辅助），不进核心、不自动结案。合同见 `docs/mvp-evidence.json` 的 `hotel_1931`；假名、其他住客与账本措辞是制作提案，待用户确认。旅馆用车仍不进证据或证词，门房说的“车”只指进站列车，不给任何车次时刻。
+- **人物占位**：门房（柜台后）与老板娘（餐厅账桌旁）是灰色站位标记＋完整对话入口（`HotelActor`，`HotelPorterDialogue.json`／`HotelKeeperDialogue.json`），不是人物模型；队友交付人物后在同一站位替换，`HotelChecks` 目前断言两处都是占位。
+- 验收：`tools/ReviewHotel.ps1 -Mode hotel` 与 `-Mode verify`（独立 `hotel-review-save.json`），1080p／720p；Mac 上用 `tools/opening/run_review.py hotel`／`hotel-save`。白天外观用 `--review --fresh --review-hotel-day` 固定机位目视。结果见 `output/demo/hotel/` 与记忆 HOTEL-01。
+
 ### 仓库体积与证据文件（用户确认，2026-10-12）
 
 - 仓库开工一周已约 1.7GB：验收截图与录屏约占 54%，美术原始文件与导入美术约 39%，构建生成的网格只有约 1.4%。GitHub 建议仓库最好在 1GB 以内、不超过 5GB，所以按下面的规则控制增长；已在历史中的文件不改写、不强推。

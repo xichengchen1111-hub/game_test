@@ -56,6 +56,10 @@ public sealed class WeatherShelter : MonoBehaviour {
     // Roof coverage still clips drops with the door open. Only the acoustic enclosure changes.
     public static bool MufflesRain(Vector3 eye) {
         bool covered=false;
+        // A closed vehicle cabin is the innermost enclosure: it muffles the rain even when parked
+        // under an open roof (the hotel carport), whatever the roofs above it say.
+        if(cells.TryGetValue(Key(eye),out var cabins))foreach(var shelter in cabins)
+            if(shelter.vehicle&&!shelter.vehicle.CabinOpen&&shelter.RoofAt(eye,out var top)&&top>eye.y)return true;
         if(cells.TryGetValue(Key(eye),out var candidates))foreach(var shelter in candidates) {
             if(!shelter.RoofAt(eye,out var height)||height<=eye.y)continue;
             if(shelter.acousticallyOpen)return false;

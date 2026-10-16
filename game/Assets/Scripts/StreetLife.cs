@@ -54,7 +54,7 @@ public sealed class StreetLife : MonoBehaviour {
     Camera eye;Transform player;
     readonly Dictionary<Color,Material> materials=new Dictionary<Color,Material>();
     // Buildings with a real interior: nobody vanishes into those doors.
-    static readonly HashSet<string> Interiors=new HashSet<string>{"B01","B02","B04","B07","B10","B11","B12","B17"};
+    static readonly HashSet<string> Interiors=new HashSet<string>{"B01","B02","B04","B07","B08","B10","B11","B12","B17"};
     public int People=>walkers.Count;public int Cars=>cars.Count;
     // Where the player stands, or far away while seated in a car (the dogs keep clear of it).
     public Vector3 PlayerPosition=>player&&DemoApp.Instance&&!DemoApp.Instance.CarSeated?player.position:new Vector3(1e6f,0,1e6f);

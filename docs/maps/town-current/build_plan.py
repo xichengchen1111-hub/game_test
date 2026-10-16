@@ -164,6 +164,27 @@ for p in Paths:
  if p['owner']=='B08' and p['kind']=='rear':p['points']=[[164.5,-27],[170,-26],[170,-23]]
  if p['owner']=='B15' and p['kind']=='rear':p['points']=[[37.2,-113],[58,-112],[58,-110]]
 Details=[d for d in Details if d['owner']!='B17']
+# 2026-10-16 user-selected A「山墙老客栈」(docs/concepts/hotel/round-01/a-gabled-timber-inn.png):
+# a 21x12m two-storey front range (roughstone ground storey, half-timbered upper storey, two street
+# gables, timber porch) and a 14x8m single-storey stone service wing behind its east half. The hotel
+# car keeps its stand (169.5, 2.0) under an open carport east of the range. Exact rooms/openings live
+# in tools/hotel/hotel_layout.py, which asserts these parts, doors and windows.
+inb['parts']=[dict(role='临街两层客栈主楼',rect=box(146,167,-6,6)),dict(role='后勤厨房翼',rect=box(160,174,-14,-6))]
+inb['storeys']=2;inb['type']='A山墙老客栈 · 两层主楼＋后勤厨房翼＋车棚';inb['yard']='前庭车马院（车棚）＋后院'
+inb['door']=[155.6,6];inb['gate']=[155.6,13];inb['rearDoor']=[164.5,-14];inb['backgate']=[164.5,-27]
+inb['doorFacing']='N';inb['rearFacing']='S';inb['frontSetback']=7
+inb['status']='已建成可进入：A山墙老客栈（2026-10-16）'
+inb['note']='主楼首层门房、账房、登记大堂与餐厅，二层六间客房与盥洗室；正门(155.6,6)朝车站路；厨房后门(164.5,-14)经后院到住宅后巷；旅馆用车停在主楼东侧车棚(169.5,2.0)。'
+inb['windows']=[[x,z,w,('二层' if t=='U' else '首层')+'窗',side] for x,z,w,side,t in [
+ (146.0,-3.6,1.0,'W','U'),(146.0,-2.1,1.0,'W','G'),(146.0,-0.6,0.7,'W','U'),(146.0,3.0,1.0,'W','U'),(146.0,3.5,1.0,'W','G'),
+ (148.45,-6.0,1.0,'S','G'),(148.45,6.0,1.2,'N','G'),(148.85,6.0,1.1,'N','U'),(149.6,-6.0,1.1,'S','U'),(152.1,-6.0,1.0,'S','G'),
+ (152.6,6.0,1.2,'N','G'),(154.05,6.0,1.1,'N','U'),(156.6,-6.0,1.1,'S','U'),(158.6,6.0,1.2,'N','G'),(159.15,6.0,1.1,'N','U'),
+ (160.0,-9.8,1.0,'W','G'),(160.65,-6.0,0.7,'S','U'),(162.2,-14.0,1.2,'S','G'),(162.2,6.0,1.2,'N','G'),(164.25,6.0,1.1,'N','U'),
+ (164.45,-6.0,1.0,'S','U'),(164.9,6.0,1.2,'N','G'),(167.0,-3.6,1.0,'E','U'),(167.0,-3.2,1.1,'E','G'),(167.0,-0.6,0.7,'E','U'),
+ (167.0,3.0,1.0,'E','U'),(167.0,4.0,1.1,'E','G'),(170.6,-14.0,1.0,'S','G'),(170.6,-6.0,1.0,'N','G'),(174.0,-10.0,1.0,'E','G')]]
+for p in Paths:
+ if p['owner']=='B08' and p['kind']=='front':p['points']=[[155.6,6],[155.6,13],[155.6,14.0]]
+ if p['owner']=='B08' and p['kind']=='rear':p['points']=[[164.5,-27],[164.5,-14]]
 # Connect entrances to the closest public pavement edge, not just a plot boundary.
 def nearest_edge(g):
  options=[]

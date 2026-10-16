@@ -1,10 +1,10 @@
 {
-  "source": "0ceaf5bd9d525fb546217db61450a06613da0d503071d890f021ea12de9d69ba",
+  "source": "221a9fcac6df7562d37736504b4b357121bf04a8705e13f403ae5b073d098e58",
   "buildings": 70,
   "trees": 217,
   "roads": 11,
   "surfaceChunks": 146,
-  "surfaceTriangles": 2236,
+  "surfaceTriangles": 2232,
   "lanterns": 123,
   "maximumTriangulationAreaError": 0.0,
   "disjointSurfaceAreaError": 0.0,

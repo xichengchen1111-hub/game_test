@@ -1,0 +1,125 @@
+{
+ "first": "greeting",
+ "revisit": "again",
+ "nodes": [
+  {
+   "id": "greeting",
+   "speaker": "老板娘",
+   "text": "……是您啊。店里出了这种事，您还肯来坐坐。",
+   "next": "topics"
+  },
+  {
+   "id": "again",
+   "speaker": "老板娘",
+   "text": "您还想问什么？",
+   "next": "topics"
+  },
+  {
+   "id": "topics",
+   "speaker": "老板娘",
+   "text": "我在账桌这儿，有话就问吧。",
+   "choices": [
+    {
+     "text": "二十日那一页登记簿在哪里？",
+     "target": "ask-page",
+     "topic": "hotel.keeper.page"
+    },
+    {
+     "text": "六号房那位客人，你见过吗？",
+     "target": "ask-six",
+     "topic": "hotel.keeper.six"
+    },
+    {
+     "text": "账本上的钟点按哪只表？",
+     "target": "ask-clock",
+     "topic": "hotel.keeper.clock"
+    },
+    {
+     "text": "警察来问过什么？",
+     "target": "ask-police",
+     "topic": "hotel.keeper.police"
+    },
+    {
+     "text": "这家旅馆开了多久？",
+     "target": "ask-inn",
+     "topic": "hotel.keeper.inn"
+    },
+    {
+     "text": "打扰了。",
+     "target": "ask-bye"
+    }
+   ]
+  },
+  {
+   "id": "ask-page",
+   "speaker": "你",
+   "text": "二十日那一页登记簿在哪里？",
+   "next": "page"
+  },
+  {
+   "id": "page",
+   "speaker": "老板娘",
+   "text": "就在大堂查阅桌上摊着。警察来问过以后，我在那一页折了个角，一直没合上。您要看就去看，台灯可以拧低一点。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-six",
+   "speaker": "你",
+   "text": "六号房那位客人，你见过吗？",
+   "next": "six"
+  },
+  {
+   "id": "six",
+   "speaker": "老板娘",
+   "text": "那晚我一直在账桌。六号房的房钱是预付的，晚饭说不用。脸我没看清，门房跟他说过话，您问门房吧。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-clock",
+   "speaker": "你",
+   "text": "账本上的钟点按哪只表？",
+   "next": "clock"
+  },
+  {
+   "id": "clock",
+   "speaker": "老板娘",
+   "text": "照门房的表。店里来的多是赶车的客人，钟点都照他那块，傍晚我跟他对一回。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-police",
+   "speaker": "你",
+   "text": "警察来问过什么？",
+   "next": "police"
+  },
+  {
+   "id": "police",
+   "speaker": "老板娘",
+   "text": "二十一号来的，要我们把二十日的登记页留着别动，问了几句六号房，抄了账本那一页就走了。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-inn",
+   "speaker": "你",
+   "text": "这家旅馆开了多久？",
+   "next": "inn"
+  },
+  {
+   "id": "inn",
+   "speaker": "老板娘",
+   "text": "我丈夫的父亲那辈就开着了。铁路通到镇上以后，客人多半是等车、换车的。",
+   "next": "topics"
+  },
+  {
+   "id": "ask-bye",
+   "speaker": "你",
+   "text": "打扰了。",
+   "next": "bye"
+  },
+  {
+   "id": "bye",
+   "speaker": "老板娘",
+   "text": "您保重。"
+  }
+ ]
+}

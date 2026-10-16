@@ -398,7 +398,7 @@ public static partial class BuildSlice {
         if(!shopLayout){shopLayout=ScriptableObject.CreateInstance<BuildingLayout>();AssetDatabase.CreateAsset(shopLayout,layoutPath);}
         ConfigureWalnutLayout();
         BuildingLayoutChecks.ValidateDefinition(shopLayout);
-        HeldMapAuthoring.EnsureMaterial();PropSoundAuthoring.EnsureImports();WalnutShopPrefab();ClockTowerPrefab();StationPrefab();PolicePrefab();HospitalPrefab();GaragePrefab();TrainPrefab();CarPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);OtherTown();Systems();AssetDatabase.SaveAssets();
+        HeldMapAuthoring.EnsureMaterial();PropSoundAuthoring.EnsureImports();WalnutShopPrefab();ClockTowerPrefab();StationPrefab();PolicePrefab();HospitalPrefab();GaragePrefab();HotelPrefab();TrainPrefab();CarPrefab();Town();Shop();BuildingLayoutChecks.ValidateScenes(shopLayout,ShopPrefabPath);OtherTown();Systems();AssetDatabase.SaveAssets();
         string[] scenes={"Assets/Scenes/Systems.unity","Assets/Scenes/Town.unity","Assets/Scenes/ClockShop.unity","Assets/Scenes/OtherTown.unity"};
         EditorBuildSettings.scenes=Array.ConvertAll(scenes,p=>new EditorBuildSettingsScene(p,true));
         string output=Path.GetFullPath(relativeOutput);Directory.CreateDirectory(Path.GetDirectoryName(output));

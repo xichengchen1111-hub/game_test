@@ -45,6 +45,7 @@ public partial class DemoApp {
             if(HospitalBuilding.Current&&Button(new Rect(p.x+30,p.y+423,285,44),"医院门前"))CreatorTeleport(HospitalDropoff,0);
             if(HospitalBuilding.Current&&Button(new Rect(p.x+345,p.y+423,285,44),"医院 · 儿童病房"))CreatorTeleport(HospitalPoint(4,13.4f),0);
             if(RepairGarage.Current&&Button(new Rect(p.x+30,p.y+477,285,44),"修车铺门前"))CreatorTeleport(RepairGarage.Current.transform.TransformPoint(new Vector3(9.0f,.1f,-3.2f)),0);
+            if(HotelInn.Current&&Button(new Rect(p.x+345,p.y+477,285,44),"旅馆门前"))CreatorTeleport(HotelInn.Current.Point(11.6f,.1f,37.5f),180);
         } else Label(new Rect(p.x+30,p.y+220,600,80),"当前场景可使用飞行观察。回到青川后可使用地点传送。",text);
         GUI.enabled=enabled;
         Label(new Rect(p.x+30,p.y+526,600,22),"第一幕需重新体验时，从独立“第一幕试玩”入口启动；现有调查存档保留。",small);

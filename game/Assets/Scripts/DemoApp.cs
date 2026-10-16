@@ -144,6 +144,7 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&(Array.IndexOf(args,"--review-car")>=0||Array.IndexOf(args,"--verify-car-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"car-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-tower-night")>=0||Array.IndexOf(args,"--review-day-look")>=0))savePath=Path.Combine(Application.persistentDataPath,"look-gallery-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-police")>=0||Array.IndexOf(args,"--verify-police-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"police-review-save.json");
+        if(Review&&(Array.IndexOf(args,"--review-hotel")>=0||Array.IndexOf(args,"--verify-hotel-save")>=0||Array.IndexOf(args,"--review-hotel-day")>=0))savePath=Path.Combine(Application.persistentDataPath,"hotel-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-garage")>=0||Array.IndexOf(args,"--verify-garage-save")>=0||Array.IndexOf(args,"--review-garage-day")>=0))savePath=Path.Combine(Application.persistentDataPath,"garage-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-opening")>=0||Array.IndexOf(args,"--verify-opening-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-police-npc")>=0)savePath=Path.Combine(Application.persistentDataPath,"police-npc-review-save.json");
@@ -251,6 +252,9 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--verify-yard-gate-save")>=0)StartCoroutine(VerifyYardGateSave());
             else if(Array.IndexOf(args,"--review-opening")>=0)StartCoroutine(ReviewOpening());
             else if(Array.IndexOf(args,"--verify-opening-save")>=0)StartCoroutine(VerifyOpeningSave());
+            else if(Array.IndexOf(args,"--review-hotel-day")>=0)StartCoroutine(ReviewHotelGallery());
+            else if(Array.IndexOf(args,"--review-hotel")>=0)StartCoroutine(ReviewHotel());
+            else if(Array.IndexOf(args,"--verify-hotel-save")>=0)StartCoroutine(VerifyHotelSave());
             else if(Array.IndexOf(args,"--review-garage-day")>=0)StartCoroutine(ReviewGarageGallery());
             else if(Array.IndexOf(args,"--review-garage")>=0)StartCoroutine(ReviewGarage());
             else if(Array.IndexOf(args,"--verify-garage-save")>=0)StartCoroutine(VerifyGarageSave());
