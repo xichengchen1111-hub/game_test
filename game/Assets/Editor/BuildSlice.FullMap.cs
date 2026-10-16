@@ -116,6 +116,7 @@ public static partial class BuildSlice {
             Box("East west town limit",new Vector3(side<0?bounds[0]:bounds[1],.5f,(bounds[2]+bounds[3])/2),new Vector3(.2f,2,bounds[3]-bounds[2]),Mat("Boundary","#737663"));
             Box("North south town limit",new Vector3((bounds[0]+bounds[1])/2,.5f,side<0?bounds[2]:bounds[3]),new Vector3(bounds[1]-bounds[0],2,.2f),Mat("Boundary","#737663"));
         }
+        StreetItemsTown(plan);
         var geometry=Group("Town geometry",Vector3.zero);
         foreach(var root in SceneManager.GetActiveScene().GetRootGameObjects())
             if(root!=geometry&&!atmosphere.Contains(root)&&!root.GetComponent<DayNightCycle>()&&!root.GetComponent<UnityEngine.Rendering.Volume>())root.transform.SetParent(geometry.transform,true);

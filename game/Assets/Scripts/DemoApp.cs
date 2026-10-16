@@ -127,6 +127,7 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&(Array.IndexOf(args,"--review-station-clerk")>=0||Array.IndexOf(args,"--verify-station-clerk-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"station-clerk-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-house")>=0||Array.IndexOf(args,"--verify-house-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"house-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-period-streets")>=0)savePath=Path.Combine(Application.persistentDataPath,"period-street-review-save.json");
+        if(Review&&Array.IndexOf(args,"--review-street-items")>=0)savePath=Path.Combine(Application.persistentDataPath,"street-items-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-greenery")>=0)savePath=Path.Combine(Application.persistentDataPath,"greenery-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-watchmaker-tripo")>=0||Array.IndexOf(args,"--review-watchmaker")>=0))savePath=Path.Combine(Application.persistentDataPath,"watchmaker-tripo-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-items")>=0||Array.IndexOf(args,"--verify-items-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"items-review-save.json");
@@ -256,6 +257,7 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--review-rail")>=0)StartCoroutine(ReviewRail());
             else if(Array.IndexOf(args,"--verify-rail-save")>=0)StartCoroutine(VerifyRailSave());
             else if(Array.IndexOf(args,"--review-period-streets")>=0)StartCoroutine(ReviewPeriodStreets());
+            else if(Array.IndexOf(args,"--review-street-items")>=0)StartCoroutine(ReviewStreetItems());
             else if(Array.IndexOf(args,"--review-greenery")>=0)StartCoroutine(ReviewGreenery());
             else if(Array.IndexOf(args,"--review-full-map")>=0)StartCoroutine(ReviewFullMap());
             else if(Array.IndexOf(args,"--verify-full-map-save")>=0)StartCoroutine(VerifyFullMapSave());

@@ -114,6 +114,16 @@
 - **人物占位**：门房（柜台后）与老板娘（餐厅账桌旁）是灰色站位标记＋完整对话入口（`HotelActor`，`HotelPorterDialogue.json`／`HotelKeeperDialogue.json`），不是人物模型；队友交付人物后在同一站位替换，`HotelChecks` 目前断言两处都是占位。
 - 验收：`tools/ReviewHotel.ps1 -Mode hotel` 与 `-Mode verify`（独立 `hotel-review-save.json`），1080p／720p；白天外观用 `--review --fresh --review-hotel-day` 固定机位目视。结果见 `output/demo/hotel/` 与记忆 HOTEL-01。
 
+### 街道物件（1931 街道设施十件，用户要求做进游戏，2026-10-16）
+
+- 用户看过 `docs/concepts/street-items/round-01` 概念后说“这 10 件都要，按设计做进游戏，按项目流程走地图检查和验收”。十种：铸铁消防栓、橄榄绿立式邮筒、火警报警柱、花岗岩饮马槽（附饮水泉与狗饮盆）、拴马桩与上马石、海报广告柱、铁丝废纸篓、冬季防滑沙箱、擦鞋摊、铸铁树围与树箅，共 41 处。
+- **唯一来源**：位置、朝向、占地与高度只在地图源 `docs/maps/town-current/build_plan.py` 的 `StreetItems`（→ `plan-data.json` 的 `streetItems`，SVG／Tiled／网页图层「街道物件」）。`check_plan.py` 拒绝压到车行道、2 m 人行道、院内通道、门口、剧情设施（F01 电话亭、F04 煤车卸货位等）、S01–S03 视线通廊、B12／B05 门前 25 m 内，以及与树干、彼此重叠；`check_town_map.py` 要求十种 41 处、不得出现钟、报纸、电话亭或路名牌。`build_full_town.py` 把它们写进 `TownPlan.json` 并要求离路灯 1.2 m 以上，`plan_greenery.py` 把占地（树围按整块 1.3 m 树箅）排除在花草之外。改位置先改 `build_plan.py`，再按地图流程重跑 `check_town_map.py --write`、`build_full_town.py`、`build_period_streets.py`、`plan_greenery.py`（平台差异重写的 PNG 若像素意图不变就还原）。
+- 模型：`tools/BuildStreetItems.ps1` → `tools/street_items/street_item_art.py`（原创海报、珐琅牌、油漆铁／花岗岩／木纹细节图，确定性输出）＋ Blender `tools/street_items/build_street_items.py` → `assets/source/street-items/StreetItems.blend/.fbx`，Unity 副本 `Art/StreetItems/StreetItems.fbx` 与 `Resources/StreetItemsManifest.json`。每种一个 `Item_<kind>`，原点在占地中心地面，正面朝 Blender −Y，`Front_`／`Top_` 标记供 Unity 校验轴向；生成器按地图的占地与高度断言。生成器还按真实多边形重叠审计部件间同向共面（任何材质都算，因为各部件 UV 不同），有一对就失败；不要靠构建期 ZFightRepair 兜底。材质名 `SI_*` 是 Unity 合同。
+- Unity：`BuildSlice.StreetItems.cs` 在全镇场景（`FullMapTown`）按地图摆放，脚底取所在铺面三角形高度，按种类加简单盒／胶囊碰撞（树围只加铁栏胶囊，原树干碰撞不动）；构建期检查 41 处、十种、位置、朝向、占地、贴地、无灯、无交互，碰撞不与其他道具／路灯／牌子／建筑／长椅重叠。物件材质加入 `TownWetness`。
+- 叙事边界：纯街景，没有 E 交互、证据、文字线索、存档或时间来源；海报无日期、无本镇人名地名，小启事正文不可读；邮筒无收信时间牌；火警柱不写箱号；饮马槽、拴马桩不放马；擦鞋摊无人；废纸篓只放落叶不放纸。故意不做：街钟、报亭、新电话亭、路名牌、加油泵、奶罐台、公告栏／班车站牌、投币体重秤（见概念 `design-plan.json`）。
+- 灯：唯一发光是两根火警柱的红玻璃灯罩，只是随同一感光曲线的发光面（`DayNightLamp` 无光源、不占 12 处光池），不新增灯或阴影灯。
+- 验收：`tools/ReviewStreetItems.ps1`（`--review --fresh --review-street-items`，独立 `street-items-review-save.json`，1080p／720p）；结果见 `output/demo/street-items/` 与记忆 STREET-01。
+
 ### 仓库体积与证据文件（用户确认，2026-10-12）
 
 - 仓库开工一周已约 1.7GB：验收截图与录屏约占 54%，美术原始文件与导入美术约 39%，构建生成的网格只有约 1.4%。GitHub 建议仓库最好在 1GB 以内、不超过 5GB，所以按下面的规则控制增长；已在历史中的文件不改写、不强推。

@@ -1,0 +1,124 @@
+{
+ "date": "2026-10-16",
+ "tool": "Blender 5.2.0 LTS Cycles (RTX 5060 Laptop, OptiX), 192 samples + denoise; Pillow board",
+ "count_items": 10,
+ "images": [
+  {
+   "file": "01-hydrant.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 67101,
+   "sha256": "b2b0e8ae1408c204a8da5ef3a97daf2cdfe5d3171c9dfa080da4911a44bcda0f"
+  },
+  {
+   "file": "02-mailbox.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 70714,
+   "sha256": "a15b02baf822555c0e7b5016af319d18ed9a28100f9454f48f848fe7a4cdd177"
+  },
+  {
+   "file": "03-fire-alarm.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 74905,
+   "sha256": "df33d4ffe4c4cdf152d6e185c17c99064d947095a10c52922f1f00cd8f955261"
+  },
+  {
+   "file": "04-horse-trough.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 80945,
+   "sha256": "d6ebd32e886b650ac94c689a187fbf6b4b5917f00fd568b621b23ba7b277ca00"
+  },
+  {
+   "file": "05-hitching-post.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 69916,
+   "sha256": "dfea210544c2f741881e92ebb0ea1fdbc688fd90e1896e067f35eac7827d8534"
+  },
+  {
+   "file": "06-poster-column.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 83300,
+   "sha256": "fcebc2274ad9417ee1554601ca01404710a952f6941102f347210aeb27f09ea4"
+  },
+  {
+   "file": "07-litter-basket.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 98277,
+   "sha256": "ff4564a77e7f7d7bccbc431ebdbfb36165987ce8ca08ed8ee73d0eaaabe1684d"
+  },
+  {
+   "file": "08-sand-bin.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 88570,
+   "sha256": "cbf9ba6f024abc95197f9fbb9eea5d1fde7dda8025b09a5e849a994c54655fb1"
+  },
+  {
+   "file": "09-shoeshine-stand.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 83983,
+   "sha256": "06acfab06414a2cdeb7b7c3aa50351c7ab630e4df7192b6f24ec0c664f31905b"
+  },
+  {
+   "file": "10-tree-guard.jpg",
+   "dimensions": [
+    1080,
+    1350
+   ],
+   "bytes": 95124,
+   "sha256": "50364926e1ff729065b4bafdc8decd56b92016433170fa1610a4988e71b9356b"
+  },
+  {
+   "file": "board.jpg",
+   "dimensions": [
+    2768,
+    2537
+   ],
+   "bytes": 539129,
+   "sha256": "6063db7f2f98530886a7a6b35a539a4c135e435930308f24066d4726e7e49bb3"
+  },
+  {
+   "file": "lineup-same-scale.jpg",
+   "dimensions": [
+    3000,
+    830
+   ],
+   "bytes": 153603,
+   "sha256": "84b2a3217aa46204b7101963a0211dfd7d40b7f587040618d897d101e624b5d8"
+  }
+ ],
+ "visual_review": "All ten hero renders and the lineup individually inspected; fixed in iteration: overexposure, plastic-looking granite, shovel placement, a cloth on the shoeshine step that read as a paper note (removed), haze removed from the ortho lineup.",
+ "selected": "all ten",
+ "implementation_authorized": true,
+ "limitations": [
+  "Concept renders, not game assets: polycount, LOD and colliders not built",
+  "Coordinates are proposals; not run through build_plan.py / check_town_map.py",
+  "Not viewed under Unity lighting, wetness or night",
+  "Shovel on 08 still partly hidden behind the bin"
+ ]
+}

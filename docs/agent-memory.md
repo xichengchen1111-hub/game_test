@@ -1,5 +1,12 @@
 # Agent 持久记忆：错日证词
 
+### STREET-01：1931 街道物件十件（2026-10-16，Claude Code，构建、原生验收与回归通过，未提交）
+
+- **用户要求**：看过 `docs/concepts/street-items/round-01` 后“这 10 件都要，按设计做进游戏，按项目流程走地图检查和验收”。做法见 AGENTS.md「街道物件」。41 处坐标在 `build_plan.py` 的 `StreetItems`；`check_plan.py`／`check_town_map.py` 新增检查（用越界样例确认会拒绝压车道、人行道、门口、通道、视线与主角家门前）；`build_full_town.py`、`build_period_streets.py`、`plan_greenery.py` 已重跑（平台重写的 Facade/Tree/Period* PNG 已还原；Meadow.png 与花草布局因排除区确有变化）。
+- **实测发现并修复**：擦鞋摊与警署沙箱原定门前沿没有铺面，改放设施带；Blender 合并网格后的材质槽整理把所有面重置到第一个材质（广告柱无海报、消防栓无银帽、火警灯罩无发光），改为保留每面材质，并在 Unity 构建期断言每种材质都有非空子网格、灯罩带发光；共面：先按材质不同查漏掉了同材质的情况（各部件盒投影 UV 不同照样闪），用 `ZFIGHT_TRACE=Item_` 找到邮筒门框四角、沙箱侧板与面板端头、树箅边框四角，生成器改为按真实多边形重叠面积（≥1 cm²、0.6 mm 内、任何材质）审计并失败即停，用旧几何回放确认能抓到这三处；修复后城镇 ZFightRepair 不再给任何物件生成修补副本。验收脚本两处判断写错（擦鞋摊踏步本可踩上；阴天正午路灯本就约 7%，改为与路灯同曲线、晴天为 0）。**顺带修复**：`--review-full-map` 仍断言“完成建筑 8 座”，旅馆已使之为 9（构建期 `FullMapChecks` 早已是 9），改为 9 并在标签里加旅馆。
+- **证据**：Windows／Unity 6000.3.18f1／D3D11 staging `SLICE_BUILD_PASS`，`STREET_ITEMS_AUTHORING_PASS`（41 处、232954 三角面）；原生 `--review-street-items` 1080p／720p 均 PASS（54 条人行道扫掠、10 种推挤、4 段奔跑行走、灯罩晴天 0／夜间 1.0），关键帧 `output/demo/street-items/review-1080/`。回归（同一最终构建）：`--review-full-map` PASS（六种访问顺序）、`--review-period-streets` PASS、`ZFightScan` 精确 0／运动 0；`ReviewCar` PASS 在材质修复前一版构建上跑过，最终几何只改了物件网格与验收脚本。
+- **限制**：程序驱动、静音，非物理键鼠或盲测；未重跑警署／医院／修车铺／旅馆／住宅原生验收；未构建 Mac、未替换 `builds/windows`。
+
 ### HOTEL-01：A 山墙老客栈第一版（2026-10-16，Claude Code，功能与原生验收完成，待用户检查）
 
 - **用户要求**：CLI pull 时 main=origin/main=11ac15b（0/0，无新提交）。用户发来 A「山墙老客栈」概念板：“来做hotel，完整呈现，细节和根据剧情呈现”；途中补充“不用做任何人物，人物我交给队友了，人物留作占位”。依据修订稿第五节地点 I、时间线 1月20日 18:35 行与片段 7。

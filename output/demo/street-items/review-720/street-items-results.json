@@ -1,0 +1,28 @@
+{
+    "passed": true,
+    "placements": 41,
+    "kinds": 10,
+    "colliders": 48,
+    "footwaySweeps": 54,
+    "solidPushes": 10,
+    "walks": 4,
+    "globeNight": 1.0,
+    "globeNoon": 0.0,
+    "captures": [
+        "item-hydrant",
+        "item-mailbox",
+        "item-alarm",
+        "item-trough",
+        "item-hitch",
+        "item-column",
+        "item-litter",
+        "item-sandbin",
+        "item-shoeshine",
+        "item-treeguard",
+        "street-shopfronts",
+        "square-column",
+        "rain-trough",
+        "night-alarm"
+    ],
+    "verification": "Native player, staged clock/weather and camera; real CharacterController pushes and sprint walks; muted. Not physical keyboard/mouse or a blind test."
+}

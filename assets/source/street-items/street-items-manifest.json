@@ -1,0 +1,601 @@
+{
+ "version": 1,
+ "blender": "5.2.0 LTS",
+ "kinds": [
+  {
+   "kind": "hydrant",
+   "object": "Item_hydrant",
+   "triangles": 3516,
+   "materials": [
+    "SI_HydrantRed",
+    "SI_HydrantSilver"
+   ],
+   "extents": {
+    "x": [
+     -0.2044,
+     0.2044
+    ],
+    "y": [
+     -0.229,
+     0.17
+    ],
+    "z": [
+     0.0,
+     0.7335
+    ]
+   },
+   "footprint": [
+    0.4,
+    0.4
+   ],
+   "height": 0.75
+  },
+  {
+   "kind": "mailbox",
+   "object": "Item_mailbox",
+   "triangles": 4908,
+   "materials": [
+    "SI_PostOlive",
+    "SI_Brass",
+    "SI_Dark",
+    "SI_IronBlack"
+   ],
+   "extents": {
+    "x": [
+     -0.255,
+     0.255
+    ],
+    "y": [
+     -0.263,
+     0.22
+    ],
+    "z": [
+     0.0,
+     1.2791
+    ]
+   },
+   "footprint": [
+    0.5,
+    0.45
+   ],
+   "height": 1.3
+  },
+  {
+   "kind": "alarm",
+   "object": "Item_alarm",
+   "triangles": 2000,
+   "materials": [
+    "SI_AlarmRed",
+    "SI_GoldLeaf",
+    "SI_Glass",
+    "SI_HookBack",
+    "SI_Brass",
+    "SI_PlateAlarm",
+    "SI_RedGlobe"
+   ],
+   "extents": {
+    "x": [
+     -0.1848,
+     0.1848
+    ],
+    "y": [
+     -0.1848,
+     0.1848
+    ],
+    "z": [
+     0.0,
+     2.2
+    ]
+   },
+   "footprint": [
+    0.4,
+    0.4
+   ],
+   "height": 2.2
+  },
+  {
+   "kind": "trough",
+   "object": "Item_trough",
+   "triangles": 3700,
+   "materials": [
+    "SI_Granite",
+    "SI_GraniteDark",
+    "SI_Water",
+    "SI_Leaf",
+    "SI_Carved",
+    "SI_Bronze"
+   ],
+   "extents": {
+    "x": [
+     -1.095,
+     1.105
+    ],
+    "y": [
+     -0.44,
+     0.43
+    ],
+    "z": [
+     0.0,
+     1.3982
+    ]
+   },
+   "footprint": [
+    2.2,
+    0.85
+   ],
+   "height": 1.4
+  },
+  {
+   "kind": "hitch",
+   "object": "Item_hitch",
+   "triangles": 1600,
+   "materials": [
+    "SI_IronBlack",
+    "SI_Brass",
+    "SI_Granite"
+   ],
+   "extents": {
+    "x": [
+     -0.69,
+     0.675
+    ],
+    "y": [
+     -0.23,
+     0.19
+    ],
+    "z": [
+     0.0,
+     1.14
+    ]
+   },
+   "footprint": [
+    1.6,
+    0.45
+   ],
+   "height": 1.15
+  },
+  {
+   "kind": "column",
+   "object": "Item_column",
+   "triangles": 4704,
+   "materials": [
+    "SI_ColumnGreen",
+    "SI_Posters",
+    "SI_ZincCap"
+   ],
+   "extents": {
+    "x": [
+     -0.64,
+     0.64
+    ],
+    "y": [
+     -0.64,
+     0.64
+    ],
+    "z": [
+     0.0,
+     3.37
+    ]
+   },
+   "footprint": [
+    1.3,
+    1.3
+   ],
+   "height": 3.4
+  },
+  {
+   "kind": "litter",
+   "object": "Item_litter",
+   "triangles": 6444,
+   "materials": [
+    "SI_Galvanised",
+    "SI_LitterGreen",
+    "SI_PlateLitter",
+    "SI_Leaf"
+   ],
+   "extents": {
+    "x": [
+     -0.246,
+     0.246
+    ],
+    "y": [
+     -0.2704,
+     0.246
+    ],
+    "z": [
+     0.0,
+     0.815
+    ]
+   },
+   "footprint": [
+    0.55,
+    0.55
+   ],
+   "height": 0.85
+  },
+  {
+   "kind": "sandbin",
+   "object": "Item_sandbin",
+   "triangles": 2738,
+   "materials": [
+    "SI_BinWood",
+    "SI_BinIron",
+    "SI_Stencil",
+    "SI_Handle",
+    "SI_Blade"
+   ],
+   "extents": {
+    "x": [
+     -0.53,
+     0.5406
+    ],
+    "y": [
+     -0.319,
+     0.322
+    ],
+    "z": [
+     0.0,
+     1.031
+    ]
+   },
+   "footprint": [
+    1.05,
+    0.7
+   ],
+   "height": 1.0
+  },
+  {
+   "kind": "shoeshine",
+   "object": "Item_shoeshine",
+   "triangles": 1720,
+   "materials": [
+    "SI_StandGreen",
+    "SI_Walnut",
+    "SI_Brass",
+    "SI_Leather",
+    "SI_Tin",
+    "SI_Bristle",
+    "SI_PlateShine"
+   ],
+   "extents": {
+    "x": [
+     -0.44,
+     0.405
+    ],
+    "y": [
+     -0.65,
+     0.62
+    ],
+    "z": [
+     0.0,
+     1.3616
+    ]
+   },
+   "footprint": [
+    0.8,
+    1.3
+   ],
+   "height": 1.4
+  },
+  {
+   "kind": "treeguard",
+   "object": "Item_treeguard",
+   "triangles": 9068,
+   "materials": [
+    "SI_Soil",
+    "SI_IronBlack"
+   ],
+   "extents": {
+    "x": [
+     -0.61,
+     0.61
+    ],
+    "y": [
+     -0.61,
+     0.61
+    ],
+    "z": [
+     -0.0002,
+     1.555
+    ]
+   },
+   "footprint": [
+    0.7,
+    0.7
+   ],
+   "height": 1.55
+  }
+ ],
+ "triangles": 40398,
+ "coplanarPairs": [],
+ "materials": [
+  {
+   "name": "SI_AlarmRed",
+   "rgb": [
+    0.33,
+    0.065,
+    0.045
+   ]
+  },
+  {
+   "name": "SI_BinIron",
+   "rgb": [
+    0.07,
+    0.07,
+    0.065
+   ]
+  },
+  {
+   "name": "SI_BinWood",
+   "rgb": [
+    0.23,
+    0.25,
+    0.2
+   ]
+  },
+  {
+   "name": "SI_Blade",
+   "rgb": [
+    0.18,
+    0.18,
+    0.17
+   ]
+  },
+  {
+   "name": "SI_Brass",
+   "rgb": [
+    0.56,
+    0.42,
+    0.2
+   ]
+  },
+  {
+   "name": "SI_Bristle",
+   "rgb": [
+    0.08,
+    0.06,
+    0.05
+   ]
+  },
+  {
+   "name": "SI_Bronze",
+   "rgb": [
+    0.32,
+    0.22,
+    0.12
+   ]
+  },
+  {
+   "name": "SI_Carved",
+   "rgb": [
+    0.09,
+    0.09,
+    0.085
+   ]
+  },
+  {
+   "name": "SI_ColumnGreen",
+   "rgb": [
+    0.045,
+    0.065,
+    0.055
+   ]
+  },
+  {
+   "name": "SI_Dark",
+   "rgb": [
+    0.01,
+    0.01,
+    0.01
+   ]
+  },
+  {
+   "name": "SI_Galvanised",
+   "rgb": [
+    0.42,
+    0.42,
+    0.4
+   ]
+  },
+  {
+   "name": "SI_Glass",
+   "rgb": [
+    0.6,
+    0.65,
+    0.65
+   ]
+  },
+  {
+   "name": "SI_GoldLeaf",
+   "rgb": [
+    0.6,
+    0.46,
+    0.2
+   ]
+  },
+  {
+   "name": "SI_Granite",
+   "rgb": [
+    0.23,
+    0.23,
+    0.225
+   ]
+  },
+  {
+   "name": "SI_GraniteDark",
+   "rgb": [
+    0.17,
+    0.17,
+    0.165
+   ]
+  },
+  {
+   "name": "SI_Handle",
+   "rgb": [
+    0.42,
+    0.3,
+    0.18
+   ]
+  },
+  {
+   "name": "SI_HookBack",
+   "rgb": [
+    0.6,
+    0.58,
+    0.52
+   ]
+  },
+  {
+   "name": "SI_HydrantRed",
+   "rgb": [
+    0.3,
+    0.075,
+    0.055
+   ]
+  },
+  {
+   "name": "SI_HydrantSilver",
+   "rgb": [
+    0.34,
+    0.34,
+    0.32
+   ]
+  },
+  {
+   "name": "SI_IronBlack",
+   "rgb": [
+    0.035,
+    0.036,
+    0.034
+   ]
+  },
+  {
+   "name": "SI_Leaf",
+   "rgb": [
+    0.28,
+    0.19,
+    0.09
+   ]
+  },
+  {
+   "name": "SI_Leather",
+   "rgb": [
+    0.12,
+    0.05,
+    0.035
+   ]
+  },
+  {
+   "name": "SI_LitterGreen",
+   "rgb": [
+    0.06,
+    0.085,
+    0.07
+   ]
+  },
+  {
+   "name": "SI_PlateAlarm",
+   "rgb": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "name": "SI_PlateLitter",
+   "rgb": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "name": "SI_PlateShine",
+   "rgb": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "name": "SI_PostOlive",
+   "rgb": [
+    0.13,
+    0.15,
+    0.085
+   ]
+  },
+  {
+   "name": "SI_Posters",
+   "rgb": [
+    1,
+    1,
+    1
+   ]
+  },
+  {
+   "name": "SI_RedGlobe",
+   "rgb": [
+    0.5,
+    0.08,
+    0.06
+   ]
+  },
+  {
+   "name": "SI_Soil",
+   "rgb": [
+    0.06,
+    0.045,
+    0.035
+   ]
+  },
+  {
+   "name": "SI_StandGreen",
+   "rgb": [
+    0.11,
+    0.17,
+    0.13
+   ]
+  },
+  {
+   "name": "SI_Stencil",
+   "rgb": [
+    0.62,
+    0.58,
+    0.48
+   ]
+  },
+  {
+   "name": "SI_Tin",
+   "rgb": [
+    0.5,
+    0.48,
+    0.44
+   ]
+  },
+  {
+   "name": "SI_Walnut",
+   "rgb": [
+    0.2,
+    0.12,
+    0.07
+   ]
+  },
+  {
+   "name": "SI_Water",
+   "rgb": [
+    0.03,
+    0.04,
+    0.045
+   ]
+  },
+  {
+   "name": "SI_ZincCap",
+   "rgb": [
+    0.3,
+    0.34,
+    0.32
+   ]
+  }
+ ]
+}

@@ -12308,6 +12308,623 @@
       "status": "本版提案；邻居陪同通行，非公共近路"
     }
   ],
+  "streetItems": [
+    {
+      "id": "SI01",
+      "kind": "hydrant",
+      "name": "铸铁消防栓",
+      "point": [
+        -113.5,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.4,
+      "depth": 0.4,
+      "height": 0.75
+    },
+    {
+      "id": "SI02",
+      "kind": "hydrant",
+      "name": "铸铁消防栓",
+      "point": [
+        35.6,
+        16.5
+      ],
+      "facing": "N",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.4,
+      "depth": 0.4,
+      "height": 0.75
+    },
+    {
+      "id": "SI03",
+      "kind": "hydrant",
+      "name": "铸铁消防栓",
+      "point": [
+        128.5,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.4,
+      "depth": 0.4,
+      "height": 0.75
+    },
+    {
+      "id": "SI04",
+      "kind": "hydrant",
+      "name": "铸铁消防栓",
+      "point": [
+        24.5,
+        -71.75
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R02",
+      "width": 0.4,
+      "depth": 0.4,
+      "height": 0.75
+    },
+    {
+      "id": "SI05",
+      "kind": "hydrant",
+      "name": "铸铁消防栓",
+      "point": [
+        92.0,
+        -71.75
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R02",
+      "width": 0.4,
+      "depth": 0.4,
+      "height": 0.75
+    },
+    {
+      "id": "SI06",
+      "kind": "mailbox",
+      "name": "橄榄绿立式邮筒",
+      "point": [
+        -4.5,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.5,
+      "depth": 0.45,
+      "height": 1.3
+    },
+    {
+      "id": "SI07",
+      "kind": "mailbox",
+      "name": "橄榄绿立式邮筒",
+      "point": [
+        50.5,
+        -71.75
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R02",
+      "width": 0.5,
+      "depth": 0.45,
+      "height": 1.3
+    },
+    {
+      "id": "SI08",
+      "kind": "alarm",
+      "name": "火警报警柱",
+      "point": [
+        -13.5,
+        16.5
+      ],
+      "facing": "N",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.4,
+      "depth": 0.4,
+      "height": 2.2
+    },
+    {
+      "id": "SI09",
+      "kind": "alarm",
+      "name": "火警报警柱",
+      "point": [
+        35.5,
+        -71.75
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R02",
+      "width": 0.4,
+      "depth": 0.4,
+      "height": 2.2
+    },
+    {
+      "id": "SI10",
+      "kind": "trough",
+      "name": "花岗岩饮马槽",
+      "point": [
+        -122.5,
+        -15.0
+      ],
+      "facing": "E",
+      "zone": "band",
+      "ref": "R04",
+      "width": 2.2,
+      "depth": 0.85,
+      "height": 1.4
+    },
+    {
+      "id": "SI11",
+      "kind": "hitch",
+      "name": "拴马桩与上马石",
+      "point": [
+        -102.2,
+        -71.75
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R02",
+      "width": 1.6,
+      "depth": 0.45,
+      "height": 1.15
+    },
+    {
+      "id": "SI12",
+      "kind": "hitch",
+      "name": "拴马桩与上马石",
+      "point": [
+        -88.2,
+        -71.75
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R02",
+      "width": 1.6,
+      "depth": 0.45,
+      "height": 1.15
+    },
+    {
+      "id": "SI13",
+      "kind": "hitch",
+      "name": "拴马桩与上马石",
+      "point": [
+        51.2,
+        -78.25
+      ],
+      "facing": "N",
+      "zone": "band",
+      "ref": "R02",
+      "width": 1.6,
+      "depth": 0.45,
+      "height": 1.15
+    },
+    {
+      "id": "SI14",
+      "kind": "column",
+      "name": "海报广告柱",
+      "point": [
+        -12.5,
+        4.0
+      ],
+      "facing": "S",
+      "zone": "square",
+      "ref": "B01",
+      "width": 1.3,
+      "depth": 1.3,
+      "height": 3.4
+    },
+    {
+      "id": "SI15",
+      "kind": "litter",
+      "name": "铁丝废纸篓",
+      "point": [
+        -10,
+        5.9
+      ],
+      "facing": "S",
+      "zone": "square",
+      "ref": "B01",
+      "width": 0.55,
+      "depth": 0.55,
+      "height": 0.85
+    },
+    {
+      "id": "SI16",
+      "kind": "litter",
+      "name": "铁丝废纸篓",
+      "point": [
+        10,
+        5.9
+      ],
+      "facing": "S",
+      "zone": "square",
+      "ref": "B01",
+      "width": 0.55,
+      "depth": 0.55,
+      "height": 0.85
+    },
+    {
+      "id": "SI17",
+      "kind": "litter",
+      "name": "铁丝废纸篓",
+      "point": [
+        -10,
+        -5.9
+      ],
+      "facing": "N",
+      "zone": "square",
+      "ref": "B01",
+      "width": 0.55,
+      "depth": 0.55,
+      "height": 0.85
+    },
+    {
+      "id": "SI18",
+      "kind": "litter",
+      "name": "铁丝废纸篓",
+      "point": [
+        10,
+        -5.9
+      ],
+      "facing": "N",
+      "zone": "square",
+      "ref": "B01",
+      "width": 0.55,
+      "depth": 0.55,
+      "height": 0.85
+    },
+    {
+      "id": "SI19",
+      "kind": "litter",
+      "name": "铁丝废纸篓",
+      "point": [
+        199.5,
+        33.2
+      ],
+      "facing": "S",
+      "zone": "forecourt",
+      "ref": "B17",
+      "width": 0.55,
+      "depth": 0.55,
+      "height": 0.85
+    },
+    {
+      "id": "SI20",
+      "kind": "litter",
+      "name": "铁丝废纸篓",
+      "point": [
+        191.5,
+        38.0
+      ],
+      "facing": "S",
+      "zone": "forecourt",
+      "ref": "B17",
+      "width": 0.55,
+      "depth": 0.55,
+      "height": 0.85
+    },
+    {
+      "id": "SI21",
+      "kind": "litter",
+      "name": "铁丝废纸篓",
+      "point": [
+        44.5,
+        -108.0
+      ],
+      "facing": "N",
+      "zone": "garden",
+      "ref": "A03",
+      "width": 0.55,
+      "depth": 0.55,
+      "height": 0.85
+    },
+    {
+      "id": "SI22",
+      "kind": "litter",
+      "name": "铁丝废纸篓",
+      "point": [
+        71.5,
+        -107.0
+      ],
+      "facing": "N",
+      "zone": "garden",
+      "ref": "A03",
+      "width": 0.55,
+      "depth": 0.55,
+      "height": 0.85
+    },
+    {
+      "id": "SI23",
+      "kind": "litter",
+      "name": "铁丝废纸篓",
+      "point": [
+        103.5,
+        -71.75
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R02",
+      "width": 0.55,
+      "depth": 0.55,
+      "height": 0.85
+    },
+    {
+      "id": "SI24",
+      "kind": "sandbin",
+      "name": "冬季防滑沙箱",
+      "point": [
+        184.0,
+        38.8
+      ],
+      "facing": "S",
+      "zone": "setback",
+      "ref": "B17",
+      "width": 1.05,
+      "depth": 0.7,
+      "height": 1.0
+    },
+    {
+      "id": "SI25",
+      "kind": "sandbin",
+      "name": "冬季防滑沙箱",
+      "point": [
+        97.5,
+        -66.5
+      ],
+      "facing": "S",
+      "zone": "setback",
+      "ref": "B11",
+      "width": 1.05,
+      "depth": 0.7,
+      "height": 1.0
+    },
+    {
+      "id": "SI26",
+      "kind": "sandbin",
+      "name": "冬季防滑沙箱",
+      "point": [
+        62.5,
+        -82.6
+      ],
+      "facing": "N",
+      "zone": "setback",
+      "ref": "B15",
+      "width": 1.05,
+      "depth": 0.7,
+      "height": 1.0
+    },
+    {
+      "id": "SI27",
+      "kind": "sandbin",
+      "name": "冬季防滑沙箱",
+      "point": [
+        8.5,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 1.05,
+      "depth": 0.7,
+      "height": 1.0
+    },
+    {
+      "id": "SI28",
+      "kind": "shoeshine",
+      "name": "擦鞋摊",
+      "point": [
+        58.0,
+        23.5
+      ],
+      "facing": "W",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.8,
+      "depth": 1.3,
+      "height": 1.4
+    },
+    {
+      "id": "SI29",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        -100,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI30",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        -86,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI31",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        -72,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI32",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        -58,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI33",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        -44,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI34",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        -30,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI35",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        40,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI36",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        54,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI37",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        68,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI38",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        82,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI39",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        96,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI40",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        110,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    },
+    {
+      "id": "SI41",
+      "kind": "treeguard",
+      "name": "铸铁树围与树箅",
+      "point": [
+        124,
+        23.5
+      ],
+      "facing": "S",
+      "zone": "band",
+      "ref": "R01",
+      "width": 0.7,
+      "depth": 0.7,
+      "height": 1.55
+    }
+  ],
   "sightlines": [
     {
       "id": "S01",

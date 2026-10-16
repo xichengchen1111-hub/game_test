@@ -1,8 +1,8 @@
 {
-    "triangles": 11419687,
-    "renderers": 14700,
+    "triangles": 11815395,
+    "renderers": 14778,
     "visibleExact": 0,
-    "visibleNear": 1080,
+    "visibleNear": 1082,
     "movingExact": 0,
     "groups": [
         {
@@ -2178,7 +2178,7 @@
             "normal": [
                 0.0,
                 -1.0,
-                0.0000023844040697440506
+                0.0000023844040697440507
             ],
             "pairs": 2,
             "moving": false
@@ -4764,12 +4764,12 @@
             "b": "Town geometry/主角住宅/House1931/North wall",
             "materialB": "Plaster",
             "kind": "material",
-            "area": 0.009600133635103703,
+            "area": 0.009600134566426278,
             "offsetMm": 1.999365210533142,
             "at": [
-                -30.761852264404298,
-                0.16000063717365266,
-                -51.07999801635742
+                -30.77666664123535,
+                0.16000066697597505,
+                -50.8817138671875
             ],
             "normal": [
                 0.0,
@@ -4789,9 +4789,9 @@
             "area": 0.13559852540493012,
             "offsetMm": 1.9999146461486817,
             "at": [
-                -32.46992111206055,
+                -32.38427734375,
                 0.16200000047683717,
-                -51.11027908325195
+                -51.06001281738281
             ],
             "normal": [
                 0.0,
@@ -4825,28 +4825,6 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
-            "materialA": "Walnut",
-            "b": "Town geometry/主角住宅/House1931/North corridor partition.008",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365544628351927,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                -25.37074089050293,
-                0.16200007498264314,
-                -56.000343322753909
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1038034131161112e-7
-            ],
-            "pairs": 2,
-            "moving": false
-        },
-        {
-            "scene": "Town",
             "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
             "materialA": "Walnut",
             "b": "Town geometry/主角住宅/House1931/North corridor partition.008",
@@ -4855,9 +4833,9 @@
             "area": 0.006365845911204815,
             "offsetMm": 1.9999840259552003,
             "at": [
-                -29.029258728027345,
-                0.16200007498264314,
-                -55.99965286254883
+                -29.042098999023439,
+                0.16200008988380433,
+                -55.9466667175293
             ],
             "normal": [
                 0.0,
@@ -4880,6 +4858,28 @@
                 -24.029258728027345,
                 0.16200007498264314,
                 -55.999549865722659
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1038034131161112e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "主角住宅/House1931/DoorFrame_lower--0.2/Door casing.002",
+            "materialA": "Walnut",
+            "b": "Town geometry/主角住宅/House1931/North corridor partition.008",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365544628351927,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                -25.37074089050293,
+                0.16200007498264314,
+                -56.000343322753909
             ],
             "normal": [
                 0.0,
@@ -5009,9 +5009,9 @@
             "area": 0.039514511823654178,
             "offsetMm": 1.9999146461486817,
             "at": [
-                -18.65884017944336,
+                -18.584896087646486,
                 0.7839999794960022,
-                -57.52811813354492
+                -57.594417572021487
             ],
             "normal": [
                 0.0,
@@ -7005,15 +7005,15 @@
             "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_kitchen-bills_0/Drawer_kitchen-bills_0/Drawer rear.012",
             "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_0/Drawer_kitchen-bills_0/Drawer side.025",
+            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_0/Drawer_kitchen-bills_0/Drawer side.024",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.00019200268434360623,
+            "area": 0.00018546734645497054,
             "offsetMm": 1.999974250793457,
             "at": [
-                -28.054000854492189,
+                -29.266172409057618,
                 0.3570000231266022,
-                -51.32099914550781
+                -51.32095718383789
             ],
             "normal": [
                 0.0,
@@ -7027,15 +7027,15 @@
             "scene": "Town",
             "a": "主角住宅/Storage pivot Drawer_kitchen-bills_0/Drawer_kitchen-bills_0/Drawer rear.012",
             "materialA": "Walnut",
-            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_0/Drawer_kitchen-bills_0/Drawer side.024",
+            "b": "主角住宅/Storage pivot Drawer_kitchen-bills_0/Drawer_kitchen-bills_0/Drawer side.025",
             "materialB": "Walnut",
             "kind": "uv",
-            "area": 0.00018546734645497054,
+            "area": 0.00019200268434360623,
             "offsetMm": 1.999974250793457,
             "at": [
-                -29.266172409057618,
+                -28.054000854492189,
                 0.3570000231266022,
-                -51.32095718383789
+                -51.32099914550781
             ],
             "normal": [
                 0.0,
@@ -7099,9 +7099,9 @@
             "area": 0.0005685964715667069,
             "offsetMm": 1.790165901184082,
             "at": [
-                176.71163940429688,
+                176.6999969482422,
                 0.7202399969100952,
-                45.234230041503909
+                45.23121643066406
             ],
             "normal": [
                 0.0,
@@ -7143,9 +7143,9 @@
             "area": 0.0005029854946769774,
             "offsetMm": 0.8401274681091309,
             "at": [
-                176.5951690673828,
+                176.5711212158203,
                 0.7189399600028992,
-                45.13911056518555
+                45.14372253417969
             ],
             "normal": [
                 0.0,
@@ -7561,7 +7561,7 @@
             "area": 1.9164520502090455,
             "offsetMm": 1.999974250793457,
             "at": [
-                202.20950317382813,
+                178.2375030517578,
                 1.1219991445541382,
                 40.1419792175293
             ],
@@ -8939,16 +8939,16 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_child-bedside_0/Drawer_child-bedside_0/Stored tied parcel.045",
+            "a": "主角住宅/Storage pivot Drawer_child-bedside_2/Drawer_child-bedside_2/Stored tied parcel.047",
             "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_child-bedside_0/Drawer_child-bedside_0/Drawer rear.036",
+            "b": "主角住宅/Storage pivot Drawer_child-bedside_2/Drawer_child-bedside_2/Drawer rear.038",
             "materialB": "Walnut",
             "kind": "material",
             "area": 0.00020510348258540034,
             "offsetMm": 1.499176025390625,
             "at": [
                 -30.516498565673829,
-                3.5832414627075197,
+                3.8832414150238039,
                 -51.288875579833987
             ],
             "normal": [
@@ -8983,16 +8983,16 @@
         },
         {
             "scene": "Town",
-            "a": "主角住宅/Storage pivot Drawer_child-bedside_2/Drawer_child-bedside_2/Stored tied parcel.047",
+            "a": "主角住宅/Storage pivot Drawer_child-bedside_0/Drawer_child-bedside_0/Stored tied parcel.045",
             "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_child-bedside_2/Drawer_child-bedside_2/Drawer rear.038",
+            "b": "主角住宅/Storage pivot Drawer_child-bedside_0/Drawer_child-bedside_0/Drawer rear.036",
             "materialB": "Walnut",
             "kind": "material",
             "area": 0.00020510348258540034,
             "offsetMm": 1.499176025390625,
             "at": [
                 -30.516498565673829,
-                3.8832414150238039,
+                3.5832414627075197,
                 -51.288875579833987
             ],
             "normal": [
@@ -11645,6 +11645,28 @@
         },
         {
             "scene": "Town",
+            "a": "Town geometry/1931 street furniture/SI09 alarm/Item_alarm",
+            "materialA": "SI_GoldLeaf",
+            "b": "Town geometry/1931 street furniture/SI09 alarm/Item_alarm",
+            "materialB": "SI_HookBack",
+            "kind": "material",
+            "area": 0.005378404166549444,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                35.51142883300781,
+                1.7325003147125245,
+                -71.8635025024414
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "Town",
             "a": "HotelCar/Visual/Body",
             "materialA": "CarPaint",
             "b": "HotelCar/Visual/Body",
@@ -13850,7 +13872,7 @@
             "b": "Window street geometry/主角住宅/House1931/Dried burgundy blood 3",
             "materialB": "Blood",
             "kind": "material",
-            "area": 0.0006741094985045493,
+            "area": 0.0006741095567122102,
             "offsetMm": 1.9999942779541016,
             "at": [
                 10.301871299743653,
@@ -13963,9 +13985,9 @@
             "area": 0.0011661631288006902,
             "offsetMm": 1.9999146461486817,
             "at": [
-                17.229856491088868,
+                17.227140426635743,
                 0.6284999251365662,
-                -89.57280731201172
+                -89.53115844726563
             ],
             "normal": [
                 0.0,
@@ -16757,9 +16779,9 @@
             "area": 0.028802404180169107,
             "offsetMm": 1.9999146461486817,
             "at": [
-                2.496793746948242,
-                0.16200001537799836,
-                -82.85271453857422
+                2.6157243251800539,
+                0.16200000047683717,
+                -82.86001586914063
             ],
             "normal": [
                 0.0,
@@ -16789,28 +16811,6 @@
                 -1.1037722913442849e-7
             ],
             "pairs": 1,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
-            "materialA": "Walnut",
-            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
-            "materialB": "Wallpaper",
-            "kind": "material",
-            "area": 0.006365771405398846,
-            "offsetMm": 1.9999840259552003,
-            "at": [
-                5.970740795135498,
-                0.16200007498264314,
-                -87.7996597290039
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                -1.1037722913442849e-7
-            ],
-            "pairs": 2,
             "moving": false
         },
         {
@@ -16845,9 +16845,31 @@
             "area": 0.006365545094013214,
             "offsetMm": 1.9999840259552003,
             "at": [
-                9.62925910949707,
+                9.642098426818848,
                 0.16200007498264314,
-                -87.80034637451172
+                -87.85334014892578
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                -1.1037722913442849e-7
+            ],
+            "pairs": 2,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "主角住宅/House1931/DoorFrame_lower--5.2/Door casing.001",
+            "materialA": "Walnut",
+            "b": "Window street geometry/主角住宅/House1931/North corridor partition.008",
+            "materialB": "Wallpaper",
+            "kind": "material",
+            "area": 0.006365771405398846,
+            "offsetMm": 1.9999840259552003,
+            "at": [
+                5.970740795135498,
+                0.16200007498264314,
+                -87.7996597290039
             ],
             "normal": [
                 0.0,
@@ -16911,9 +16933,9 @@
             "area": 0.01920057274401188,
             "offsetMm": 1.9997426271438599,
             "at": [
-                18.420000076293947,
-                0.16000038385391236,
-                -89.72190856933594
+                18.439998626708986,
+                0.16000036895275117,
+                -89.80143737792969
             ],
             "normal": [
                 0.0,
@@ -16933,9 +16955,9 @@
             "area": 0.0018479874124750496,
             "offsetMm": 1.9998699426651,
             "at": [
-                18.37359619140625,
+                18.379596710205079,
                 0.16000036895275117,
-                -89.80301666259766
+                -89.8028793334961
             ],
             "normal": [
                 0.0,
@@ -17021,9 +17043,9 @@
             "area": 0.0016939813503995538,
             "offsetMm": 1.9998865127563477,
             "at": [
-                3.1243538856506349,
+                3.0656447410583498,
                 0.548933744430542,
-                -85.5260009765625
+                -85.52200317382813
             ],
             "normal": [
                 0.0,
@@ -17989,9 +18011,9 @@
             "area": 0.039514511823654178,
             "offsetMm": 1.9999146461486817,
             "at": [
-                16.34116554260254,
+                16.415103912353517,
                 0.7839999794960022,
-                -89.32811737060547
+                -89.39441680908203
             ],
             "normal": [
                 0.0,
@@ -19837,9 +19859,9 @@
             "area": 0.000568641466088593,
             "offsetMm": 1.790165901184082,
             "at": [
-                211.72044372558595,
+                211.6999969482422,
                 0.7202399969100952,
-                13.418008804321289
+                13.4312162399292
             ],
             "normal": [
                 0.0,
@@ -19881,9 +19903,9 @@
             "area": 0.0005029664607718587,
             "offsetMm": 0.8401274681091309,
             "at": [
-                211.5951690673828,
+                211.56483459472657,
                 0.7189399600028992,
-                13.339113235473633
+                13.340909004211426
             ],
             "normal": [
                 0.0,
@@ -20211,9 +20233,9 @@
             "area": 1.6671396493911744,
             "offsetMm": 1.999974250793457,
             "at": [
-                220.21096801757813,
+                225.79049682617188,
                 1.1199991703033448,
-                8.343382835388184
+                8.33932113647461
             ],
             "normal": [
                 0.0,
@@ -21259,16 +21281,16 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_child-bedside_0/Drawer_child-bedside_0/Stored tied parcel.045",
+            "a": "主角住宅/Storage pivot Drawer_child-bedside_2/Drawer_child-bedside_2/Stored tied parcel.047",
             "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_child-bedside_0/Drawer_child-bedside_0/Drawer rear.036",
+            "b": "主角住宅/Storage pivot Drawer_child-bedside_2/Drawer_child-bedside_2/Drawer rear.038",
             "materialB": "Walnut",
             "kind": "material",
             "area": 0.00020510348258540034,
             "offsetMm": 1.499176025390625,
             "at": [
                 4.483500957489014,
-                3.5832414627075197,
+                3.8832414150238039,
                 -83.08888244628906
             ],
             "normal": [
@@ -21303,16 +21325,16 @@
         },
         {
             "scene": "ClockShop",
-            "a": "主角住宅/Storage pivot Drawer_child-bedside_2/Drawer_child-bedside_2/Stored tied parcel.047",
+            "a": "主角住宅/Storage pivot Drawer_child-bedside_0/Drawer_child-bedside_0/Stored tied parcel.045",
             "materialA": "Paper",
-            "b": "主角住宅/Storage pivot Drawer_child-bedside_2/Drawer_child-bedside_2/Drawer rear.038",
+            "b": "主角住宅/Storage pivot Drawer_child-bedside_0/Drawer_child-bedside_0/Drawer rear.036",
             "materialB": "Walnut",
             "kind": "material",
             "area": 0.00020510348258540034,
             "offsetMm": 1.499176025390625,
             "at": [
                 4.483500957489014,
-                3.8832414150238039,
+                3.5832414627075197,
                 -83.08888244628906
             ],
             "normal": [
@@ -22455,9 +22477,9 @@
             "area": 0.00037144689122214913,
             "offsetMm": 0.8401274681091309,
             "at": [
-                211.781494140625,
+                211.7985076904297,
                 0.7185899615287781,
-                13.338113784790039
+                13.331893920898438
             ],
             "normal": [
                 0.0,
@@ -23763,6 +23785,28 @@
                 0.0
             ],
             "pairs": 19,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/1931 street furniture/SI09 alarm/Item_alarm",
+            "materialA": "SI_GoldLeaf",
+            "b": "Window street geometry/1931 street furniture/SI09 alarm/Item_alarm",
+            "materialB": "SI_HookBack",
+            "kind": "material",
+            "area": 0.005378322675824165,
+            "offsetMm": 1.9989013671875,
+            "at": [
+                70.51142883300781,
+                1.7325003147125245,
+                -103.66350555419922
+            ],
+            "normal": [
+                0.0,
+                0.0,
+                1.0
+            ],
+            "pairs": 2,
             "moving": false
         }
     ],

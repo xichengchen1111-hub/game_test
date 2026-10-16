@@ -1,0 +1,11 @@
+{
+    "passed": true,
+    "source": "1fdabaff46d032b9d76e5be6e0915336013ab3e29aa2d278ceadd29b6a91b995",
+    "placements": 41,
+    "kinds": 10,
+    "triangles": 232954,
+    "kitTriangles": 40398,
+    "colliders": 48,
+    "lights": 0,
+    "photocellGlobes": 2
+}

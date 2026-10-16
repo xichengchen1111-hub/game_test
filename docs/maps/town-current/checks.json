@@ -3,12 +3,14 @@
   "properties": 70,
   "namedPlaces": 17,
   "trees": 217,
+  "streetItems": 41,
   "checks": [
     "parcel boundaries and non-overlap",
     "building parts do not overlap",
     "doors lie on actual footprint edges",
     "path centerlines outside building interiors at 0.25m intervals",
-    "road width components"
+    "road width components",
+    "street items inside their zone, clear of carriageways, footways, paths, doors, facilities, sightlines and story-home frontages"
   ],
   "errors": [],
   "limitations": [

@@ -16,6 +16,9 @@ def validate(d,a,c):
         require(set(actor['routes'])<=routes.keys(),f"Missing route for {actor['id']}")
     require(len({b['id'] for b in d['buildings']})==len(d['buildings']),'Duplicate building ID')
     facilities={f['id'] for f in d['facilities']}
+    items=d.get('streetItems',[])
+    require(len(items)==41 and len({i['kind'] for i in items})==10,'Approved street furniture set changed (10 kinds, 41 instances)')
+    require(not {'clock','newsstand','phonebooth','streetsign'}&{i['kind'] for i in items},'Street furniture must not add clocks, newspapers, phones or street names')
     require('F03' not in facilities,'Other-town broken lamp must not return to the local map')
     require(not {'h-ask','h-call','h-chess','keeper-church','patrol'} & routes.keys(),'Unconfirmed/off-map historical route restored')
     for actor in a['actors']:
