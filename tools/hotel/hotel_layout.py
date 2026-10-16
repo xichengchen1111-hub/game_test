@@ -418,6 +418,10 @@ furn('yard-bench', 'bench', 9.0, 20.3, 180, 1.4, .45, .46, y=YARD)
 P = GC - .62
 lamp('lamp-lobby-1', 'pendant', 9.4, P, 28.4, 'lobby', intensity=2.6, rng=6.0, access=.6, anchor=GC)
 lamp('lamp-lobby-2', 'pendant', 13.4, P, 29.6, 'lobby', intensity=2.6, rng=6.0, access=.6, anchor=GC)
+# The porter's counter (z 24.4-26.8), the key rack and the stair foot (x 14.95) lie in the hall's back half,
+# out of reach of the two pendants by the door; this one hangs between them, clear of the ceiling beams
+# (user, 2026-10-16: the counter and the stair foot were too dark to see at night).
+lamp('lamp-lobby-3', 'pendant', 14.4, P, 23.8, 'lobby', intensity=2.2, rng=5.0, access=.6, anchor=GC)
 lamp('lamp-register', 'angle', 6.86, G + 1.18, 24.82, 'lobby', intensity=.7, rng=2.2, access=.55)
 lamp('lamp-lodge', 'pendant', 4.4, P, 30.7, 'lodge', intensity=1.8, rng=4.0, access=.5, anchor=GC)
 lamp('lamp-office', 'pendant', 4.4, P, 24.6, 'office', intensity=1.9, rng=4.5, access=.45, anchor=GC)
@@ -430,7 +434,7 @@ lamp('lamp-store', 'bulb', 26.4, SW_CEIL - .4, 17.0, 'store', intensity=1.4, rng
 UPL = UC - .48
 lamp('lamp-corridor-1', 'pendant', 6.0, UPL, 26.4, 'corridor', intensity=1.4, rng=4.5, access=.3, anchor=UC)
 lamp('lamp-corridor-2', 'pendant', 18.6, UPL, 26.4, 'corridor', intensity=1.4, rng=4.5, access=.3, anchor=UC)
-lamp('lamp-landing', 'pendant', 12.4, UPL, 23.9, 'landing', intensity=1.6, rng=5.0, access=.4, anchor=UC)
+lamp('lamp-landing', 'pendant', 12.4, UPL, 23.9, 'landing', intensity=2.2, rng=5.5, access=.4, anchor=UC)  # also reaches down the stair
 for rid, x, z in (('room1', 4.9, 30.2), ('room2', 10.0, 30.2), ('room3', 15.15, 30.2), ('room4', 20.25, 30.2),
                   ('room5', 5.6, 23.4), ('room6', 20.5, 23.3), ('bath', 16.6, 23.4)):
     lamp('lamp-' + rid, 'pendant', x, UPL, z, rid, intensity=1.5, rng=4.2, access=.4, anchor=UC)

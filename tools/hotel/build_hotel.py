@@ -19,7 +19,7 @@ contract): Ext_*/Int_* shells, Glass, Leaf_<opening>_<n> (origin on the hinge),
 LampHead_<lamp> (origin on the tilt joint), Furn_<id>, ExtFurn_<id>, Lamp_<id>, Bulb_<id>,
 EastMarker/NorthMarker.
 """
-import argparse, json, math, random, sys
+import argparse, json, math, random, sys, zlib
 from pathlib import Path
 
 import bpy, bmesh
@@ -814,7 +814,7 @@ def build_furniture_piece(F, L):
     elif kind == 'plant':
         frustum(p, F['x'], F['z'], .17, .21, F['y'], F['y'] + .32, 'HInt_Pot', seg=12, cap=False)
         cylinder(p, F['x'], F['z'], .19, F['y'] + .27, F['y'] + .29, 'HInt_Coal', seg=12)
-        rng = random.Random(hash(F['id']) & 0xffff)
+        rng = random.Random(zlib.crc32(F['id'].encode()) & 0xffff)  # str hash() changes every run; crc32 does not
         for k in range(9):
             a = k * 2 * math.pi / 9 + rng.uniform(-.2, .2)
             ln = rng.uniform(.35, h - .3)

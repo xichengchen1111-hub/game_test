@@ -39,6 +39,8 @@
   "Bulb_lamp-lobby-1": 24,
   "Lamp_lamp-lobby-2": 102,
   "Bulb_lamp-lobby-2": 24,
+  "Lamp_lamp-lobby-3": 102,
+  "Bulb_lamp-lobby-3": 24,
   "Lamp_lamp-register": 46,
   "Bulb_lamp-register": 24,
   "LampHead_lamp-register": 92,
@@ -201,7 +203,7 @@
   "ExtFurn_yard-crates": 40,
   "ExtFurn_yard-bench": 60
  },
- "triangles": 34322,
+ "triangles": 34448,
  "leaves": [
   {
    "object": "Leaf_front-door_0",
@@ -1029,5 +1031,5 @@
    "tile": 0
   }
  ],
- "blender": "5.2.0 LTS"
+ "blender": "4.5.9 LTS"
 }

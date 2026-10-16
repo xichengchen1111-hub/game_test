@@ -6,5 +6,7 @@
 - `review-1080.json`／`review-720.json`、`reload-1080.json`／`reload-720.json`：两档分辨率的完整走查与独立进程读档结果。
 - `authoring-checks.json`：构建期 HotelChecks。
 - `acceptance.json`：汇总、回归与限制。
+- `mac-check-20261016.json`：Mac 上的两档走查、读档与白天取景复验（CHECK-01）。
+- `night-lobby-light-before-after.jpg`：补灯前（左）后（右）同机位夜景：大堂、门房对话、楼梯口、二楼平台（HOTEL-02）。
 
 门房与老板娘是灰色站位占位（人物由队友制作）。完整日志与原始截图在被忽略的 `builds/hotel/`。

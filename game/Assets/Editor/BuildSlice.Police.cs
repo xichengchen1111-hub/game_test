@@ -262,7 +262,7 @@ public static partial class BuildSlice {
     // Police-only rebuild after a layout/shell change. The Town scene holds this prefab as an
     // instance with transform overrides only, so it follows without regenerating the town.
     public static void RebuildPolice() {
-        AssetDatabase.Refresh();PolicePrefab();AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();EnsureFont();PolicePrefab();AssetDatabase.SaveAssets();
     }
     static void PolicePrefab() {
         var layoutAsset=AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Resources/PoliceLayout.json");

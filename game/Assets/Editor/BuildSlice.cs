@@ -14,6 +14,9 @@ using UnityEngine.SceneManagement;
 public static partial class BuildSlice {
     static Dictionary<string,Material> mats=new Dictionary<string,Material>();
     static Font font;
+    // The building-only rebuilds (RebuildPolice/Garage/Hotel) run without the full build, which is what
+    // normally loads the font their painted signs need.
+    static void EnsureFont(){if(!font)font=AssetDatabase.LoadAssetAtPath<Font>("Assets/Art/Fonts/TownSans.ttf");if(!font)throw new Exception("Font not imported");}
     static BuildingLayout shopLayout;
     const string ShopPrefabPath="Assets/Generated/ClockShop.prefab";
     static string art="Assets/Art/Textures/";
