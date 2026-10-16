@@ -12,6 +12,11 @@ using UnityEngine.SceneManagement;
     public float returnX=3.7f,returnY=0.05f,returnZ=1;
     public List<NotebookEntry> entries = new List<NotebookEntry>();
     public int openingRevision, openingStage;
+    // Revision 2 opening: 0 waking in the cell (cinematic), 1 following the guard to the property room,
+    // 2 belongings on the table, 3 collected and following the guard to the lawyer, 4 delivered.
+    public int openingEscort;
+    // Watch, map, ticket and notebook are returned with the briefcase.
+    public bool belongingsCollected;
     public int openingRideRevision, openingRideStage;
     public int hospitalRevision, hospitalStage;
     public bool remarkSeen;
@@ -57,7 +62,7 @@ public partial class DemoApp : MonoBehaviour {
     public bool Review { get; private set; }
     public float Minutes => (float)gameClock.MinutesOfDay;
     public bool NPCAnimationPaused => opening || transitioning || paused;
-    public bool Blocked => creatorMenu || opening || transitioning || inspected || journal || paused || DialogueOpen || MilkOrdersOpen || PoliceReportOpen || ChildCinematicActive;
+    public bool Blocked => creatorMenu || opening || transitioning || inspected || journal || backpack || paused || DialogueOpen || MilkOrdersOpen || PoliceReportOpen || ChildCinematicActive || cellCinematic;
     public string CurrentScene { get; private set; } = "Town";
     public bool IsInsideShop { get; private set; }
     BuildingInstance seamlessShop;
@@ -69,7 +74,7 @@ public partial class DemoApp : MonoBehaviour {
     bool sceneReady;
     bool towerSaveMigrated;
     Vector3 towerMigratedPosition;
-    float fade=1, locationAge, remarkUntil;
+    float fade=1, locationAge, remarkUntil, remarkStart;
     string location="青川 · 小镇广场", remark="";
     Interactable inspected, focus;
     string savePath, captures;
@@ -108,6 +113,12 @@ public partial class DemoApp : MonoBehaviour {
         reviewLighting=Review&&Array.IndexOf(args,"--review-lighting")>=0;
         lightingRight=reviewLighting&&Array.IndexOf(args,"--lighting-window-right")>=0;
         Silent=Review || Array.IndexOf(args,"--silent")>=0;
+        // The officers' daily rounds run in play; isolated reviews keep their staged positions unless they look at the rounds.
+        PoliceStaffRoutine.Enabled=!Review||Array.IndexOf(args,"--review-opening")>=0||Array.IndexOf(args,"--review-police-npc")>=0||Array.IndexOf(args,"--showcase-opening")>=0;
+        // Passers-by and traffic: in play, and in the reviews and recordings that look at them; the other
+        // reviews measure the empty streets (footway sweeps, light budgets, the story car's route).
+        StreetLife.Enabled=!Review||Array.IndexOf(args,"--review-street-life")>=0||Array.IndexOf(args,"--review-street-traffic")>=0||Array.IndexOf(args,"--showcase-street")>=0;
+        if(Review&&StreetLife.Enabled)StreetLife.Seed=1931;
         bool dialogueReview=Review&&(Array.IndexOf(args,"--review-dialogue")>=0||Array.IndexOf(args,"--verify-dialogue-save")>=0);
         bool migrationReview=Review&&Array.IndexOf(args,"--verify-walnut-migration")>=0;
         bool sprintReview=Review&&(Array.IndexOf(args,"--review-sprint-route")>=0||Array.IndexOf(args,"--verify-sprint-save")>=0);
@@ -137,6 +148,7 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&(Array.IndexOf(args,"--review-hotel")>=0||Array.IndexOf(args,"--verify-hotel-save")>=0||Array.IndexOf(args,"--review-hotel-day")>=0))savePath=Path.Combine(Application.persistentDataPath,"hotel-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-garage")>=0||Array.IndexOf(args,"--verify-garage-save")>=0||Array.IndexOf(args,"--review-garage-day")>=0))savePath=Path.Combine(Application.persistentDataPath,"garage-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-opening")>=0||Array.IndexOf(args,"--verify-opening-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-review-save.json");
+        if(Review&&Array.IndexOf(args,"--review-police-npc")>=0)savePath=Path.Combine(Application.persistentDataPath,"police-npc-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-police-cast")>=0)savePath=Path.Combine(Application.persistentDataPath,"police-cast-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-opening-ride")>=0||Array.IndexOf(args,"--verify-opening-ride-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-ride-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-opening-ride-interrupted")>=0||Array.IndexOf(args,"--verify-opening-ride-interrupted")>=0))savePath=Path.Combine(Application.persistentDataPath,"opening-ride-interrupted-review-save.json");
@@ -145,7 +157,11 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&(Array.IndexOf(args,"--review-yard-gate")>=0||Array.IndexOf(args,"--verify-yard-gate-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"yard-gate-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-hospital")>=0||Array.IndexOf(args,"--verify-hospital-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"hospital-review-save.json");
         if(Review&&Array.IndexOf(args,"--showcase-opening")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-opening-save.json");
+        if(Review&&Array.IndexOf(args,"--review-street-life")>=0)savePath=Path.Combine(Application.persistentDataPath,"street-life-review-save.json");
+        if(Review&&Array.IndexOf(args,"--review-street-traffic")>=0)savePath=Path.Combine(Application.persistentDataPath,"street-traffic-review-save.json");
+        if(Review&&Array.IndexOf(args,"--showcase-street")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-street-save.json");
         if(Review&&Array.IndexOf(args,"--showcase-hospital-cg")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-hospital-cg-save.json");
+        if(Review&&Array.IndexOf(args,"--showcase-hotel")>=0)savePath=Path.Combine(Application.persistentDataPath,"showcase-hotel-save.json");
         if(Array.IndexOf(args,"--audio-probe")>=0||Array.IndexOf(args,"--audio-probe-muted-start")>=0)savePath=Path.Combine(Application.persistentDataPath,"audio-probe-save.json");
         captures=c>=0&&c+1<args.Length?args[c+1]:Path.Combine(Application.persistentDataPath,"Captures");
         Directory.CreateDirectory(captures);
@@ -213,13 +229,18 @@ public partial class DemoApp : MonoBehaviour {
         InitializeTownMap();
         InitializeOpeningScene();
         sceneReady=true;
+        InitializeStreetLife();
         location=CurrentScene=="Town"?"青川 · 小镇广场":"邻镇 · 车站街区";
         locationAge=Time.time;
         yield return FadeTo(0,0.9f);
         if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
             opening=false;
-            if(Array.IndexOf(args,"--review-police-cast")>=0)StartCoroutine(ReviewPoliceCast());
+            if(Array.IndexOf(args,"--review-street-life")>=0)StartCoroutine(ReviewStreetLife());
+            else if(Array.IndexOf(args,"--review-street-traffic")>=0)StartCoroutine(ReviewStreetTraffic());
+            else if(Array.IndexOf(args,"--showcase-street")>=0)StartCoroutine(ShowcaseStreet());
+            else if(Array.IndexOf(args,"--review-police-cast")>=0)StartCoroutine(ReviewPoliceCast());
+            else if(Array.IndexOf(args,"--review-police-npc")>=0)StartCoroutine(ReviewPoliceNpc());
             else if(Array.IndexOf(args,"--review-opening-ride")>=0)StartCoroutine(ReviewOpeningRide());
             else if(Array.IndexOf(args,"--verify-opening-ride-save")>=0)StartCoroutine(VerifyOpeningRideSave());
             else if(Array.IndexOf(args,"--review-opening-ride-interrupted")>=0)StartCoroutine(ReviewOpeningRide(true));
@@ -227,6 +248,7 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--review-map-sightlines")>=0)StartCoroutine(ReviewMapSightlines());
             else if(Array.IndexOf(args,"--showcase-opening")>=0)StartCoroutine(ShowcaseOpening());
             else if(Array.IndexOf(args,"--showcase-hospital-cg")>=0)StartCoroutine(ShowcaseHospitalCinematic());
+            else if(Array.IndexOf(args,"--showcase-hotel")>=0)StartCoroutine(ShowcaseHotel());
             else if(Array.IndexOf(args,"--review-hospital")>=0)StartCoroutine(ReviewHospital());
             else if(Array.IndexOf(args,"--verify-hospital-save")>=0)StartCoroutine(VerifyHospitalSave());
             else if(Array.IndexOf(args,"--review-yard-gate")>=0)StartCoroutine(ReviewYardGate());
@@ -301,10 +323,12 @@ public partial class DemoApp : MonoBehaviour {
         TickTowerAdjustment();
         TickHeldMap();
         TickEvidenceModel();
+        TickBackpack();
         if(TickRailSeat())return;
         if(TickFurnitureSeat())return;
         TickCar();
         TickOpeningRide();
+        TickOpeningEscort();
         if(sceneReady&&seamlessShop) {
             var p=seamlessShop.transform.InverseTransformPoint(player.transform.position);
             bool inside=Mathf.Abs(p.x)<seamlessShop.layout.footprint.x/2&&Mathf.Abs(p.z)<seamlessShop.layout.footprint.y/2;
@@ -317,15 +341,18 @@ public partial class DemoApp : MonoBehaviour {
         if(Review)return;
         if (transitioning) return;
         TickOpening();
+        if(cellCinematic){if(Input.GetKeyDown(KeyCode.Escape))SkipCellCinematic();return;}
         if(openingRideActive){if(Input.GetKeyDown(KeyCode.Escape)){paused=!paused;CursorMode();}return;}
         if(UpdateCreatorInput())return;
         bool mapKey=Input.GetKeyDown(KeyCode.M);
         if(mapKey&&!mapOpen&&HeldItemBlockedByDriving())mapKey=false;
+        if(!state.belongingsCollected&&(mapKey||Input.GetKeyDown(KeyCode.Q)||Input.GetKeyDown(KeyCode.T)||Input.GetKeyDown(KeyCode.B)||Input.GetKeyDown(KeyCode.Tab))&&!Blocked&&!opening){mapKey=false;OpeningReminder("你身上空空的。怀表、地图和随身的东西都被收走了。");}
         if(HandleMapKeys(mapKey,Input.GetKeyDown(KeyCode.Escape)))return;
         if(TickCarriedTicket())return;
         if(MilkOrdersOpen) { UpdateMilkOrderInput(); focus=null; return; }
         if(PoliceReportOpen) { UpdatePoliceReportInput(); focus=null; return; }
         if(DialogueOpen) { UpdateDialogueInput(); focus=null; return; }
+        if(backpack) { UpdateBackpackInput(); focus=null; return; }
         if (Input.GetKeyDown(KeyCode.Escape)) {
             if(inspected) CloseInspect();
             else if(journal) journal=false;
@@ -333,8 +360,10 @@ public partial class DemoApp : MonoBehaviour {
             CursorMode();
         }
         if (!opening && !inspected && !paused) {
-            if(Input.GetKeyDown(KeyCode.Tab)) { journal=!journal; selectedEntry=0; CursorMode(); }
-            if(Input.GetKeyDown(KeyCode.Q) && !journal && (watch||!HeldItemBlockedByDriving())) ToggleWatch();
+            if(Input.GetKeyDown(KeyCode.Tab) && (journal||state.belongingsCollected)) { if(journal){journal=false;CursorMode();} else OpenDossier(); }
+            // B: the briefcase, from walking or from the dossier.
+            if(Input.GetKeyDown(KeyCode.B) && state.belongingsCollected && (journal||!HeldItemBlockedByDriving())) { journal=false; OpenBackpack(); return; }
+            if(Input.GetKeyDown(KeyCode.Q) && !journal && (watch||!HeldItemBlockedByDriving()) && (watch||state.belongingsCollected)) ToggleWatch();
         }
         if(inspected is ClockTowerAdjustment) { UpdateTowerAdjustmentInput(); focus=null; return; }
         focus=null;
@@ -346,6 +375,7 @@ public partial class DemoApp : MonoBehaviour {
     void SetWatchOpen(bool value) {
         if(watch==value)return;
         if(value&&mapOpen)SetMapOpen(false);
+        if(value&&!state.belongingsCollected)return;
         watch=value;GetComponent<TownSound>()?.PlayHeldItem(false,value);
     }
     void ToggleWatch() { SetWatchOpen(!watch); }
@@ -374,7 +404,8 @@ public partial class DemoApp : MonoBehaviour {
             var existing=state.entries.Find(e=>e.id==item.evidenceId);
             if(existing!=null){existing.title=item.title;existing.body=item.body;existing.source=item.source;Save();}
         }
-        if(!string.IsNullOrEmpty(item.evidenceId) && !state.entries.Exists(e=>e.id==item.evidenceId)) {
+        // The player's own things in the briefcase (watch, map, notebook, wallet) are not evidence records.
+        if(!string.IsNullOrEmpty(item.evidenceId) && !item.evidenceId.StartsWith("pack-") && !state.entries.Exists(e=>e.id==item.evidenceId)) {
             state.entries.Add(new NotebookEntry{id=item.evidenceId,title=item.title,body=item.body,source=item.source});
             Debug.Log("Recorded evidence: "+item.evidenceId);
             Save();
@@ -383,10 +414,11 @@ public partial class DemoApp : MonoBehaviour {
     void CloseInspect() {
         if(DialogueOpen) { CloseDialogue(); return; }
         if(inspected && inspected.evidenceId=="E07" && !state.remarkSeen && !Silent) {
-            state.remarkSeen=true; remark="同行者  /  老街的事，店里总会留些纸。"; remarkUntil=Time.time+5;
+            state.remarkSeen=true; remark="同行者  /  老街的事，店里总会留些纸。"; remarkStart=Time.time; remarkUntil=Time.time+5;
         }
         OpeningInspectionClosed();
         EndEvidenceModel();inspected=null; houseLetterOpen=false; houseReturnContainer=null; CursorMode(); Save();
+        ReturnToBackpack();
     }
     public void Travel(ScenePortal portal) { if(!transitioning&&!CarSeated) StartCoroutine(Transition(portal)); }
     IEnumerator Transition(ScenePortal portal) {
@@ -405,6 +437,7 @@ public partial class DemoApp : MonoBehaviour {
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(target));
         player.Place(spawn,yaw);
         RestoreOpeningRideScene();
+        InitializeStreetLife();
         location=target=="Town"?"青川 · 小镇广场":"青川 · 钟表铺";
         locationAge=Time.time; Save();
         yield return FadeTo(0,0.6f);
@@ -452,6 +485,7 @@ public partial class DemoApp : MonoBehaviour {
         return Mathf.Abs(p.x)<layout.footprint.x/2 && Mathf.Abs(p.z)<layout.footprint.y/2;
     }
     void LateUpdate() {
+        ApplyCellCinematicEye();
         // The car recovers itself (and its occupant) if it leaves the valid town area.
         if(!sceneReady||transitioning||!player||player.CreatorFlying||CarSeated||OpeningRideActive||SafePosition(player.transform.position))return;
         Debug.LogWarning("Recovered out-of-bounds player: "+player.transform.position);
@@ -512,14 +546,16 @@ public partial class DemoApp : MonoBehaviour {
         W=Screen.width/scale;H=Screen.height/scale;
         GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
         if(ModelEvidence&&!houseLetterOpen){DrawEvidenceModel();GUI.matrix=Matrix4x4.identity;return;}
+        if(backpack){DrawBackpack();GUI.matrix=Matrix4x4.identity;return;}
         if(opening && (!Review||showcaseTitle)) {
             Box(new Rect(0,0,610,H),new Color(0.035f,0.07f,0.10f,0.72f));
             Label(new Rect(75,100,400,35),"青川  /  一九三一",italic);
             Label(new Rect(70,160,480,90),"错日证词",large);
             Box(new Rect(75,270,70,2),new Color(0.77f,0.57f,0.35f));
-            Label(new Rect(75,315,430,90),state.openingStage<4?"你在警署的牢房里醒来。\n门外有人在等你。":"调查还在继续。\n重新走访，核对你手中的材料。",text);
+            // The premise (user, 2026-10-15): he chose to come back, by Dr Fang Ming's shuttle device, for a murder never solved in his own time.
+            Label(new Rect(75,315,430,120),CjkWrap(state.openingStage<4?"一桩到你那个年代都没破的命案。\n方明博士的装置，把你送回了一九三一年。":"调查还在继续。\n重新走访，核对你手中的材料。",text,430),text);
             if(Button(new Rect(75,H-230,360,60),state.openingStage<4?"在牢房醒来":"继续调查",true)) { opening=false; CursorMode(); Save(); }
-            Label(new Rect(75,H-140,450,70),"自由走动，靠近物件按 E 查看。\nQ 怀表  ·  M 纸地图  ·  Tab 调查簿  ·  Esc 暂停",small);
+            Label(new Rect(75,H-140,450,70),"自由走动，靠近物件按 E 查看。\nQ 怀表  ·  M 纸地图  ·  B 公文包  ·  Tab 档案  ·  Esc 暂停",small);
         } else {
             Label(new Rect(36,26,250,35),"错日证词",text);
             Label(new Rect(36,62,300,30),CurrentScene=="OtherTown"?"邻镇  /  一九三一":"青川  /  一九三一",italic);
@@ -532,7 +568,7 @@ public partial class DemoApp : MonoBehaviour {
                     Rect p=new Rect(W/2-170,H/2+38,340,43);Box(p,new Color(0.04f,0.08f,0.11f,0.87f));
                     Label(p,"E   "+(focus is ScenePortal||focus is ShopMechanism||focus is MilkShopFixture||focus is RailSeat?focus.title:focus.evidenceId=="E04"||focus.title=="钟表匠"||focus.title=="值班警员"?"交谈 · "+focus.title:focus.ActionText),button);
                 }
-                if(!mapOpen)Label(new Rect(36,H-50,W-72,30),CarSeated?CarHelpLine():RailSeated?"鼠标 观察    E 起身下车    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停":"WASD 行走    鼠标 观察    Shift 奔跑    E 互动    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停",small);
+                if(!mapOpen)Label(new Rect(36,H-50,W-72,30),!state.belongingsCollected?"WASD 行走    鼠标 观察    Shift 奔跑    E 互动    Esc 暂停":CarSeated?CarHelpLine():RailSeated?"鼠标 观察    E 起身下车    Q 怀表    T 车票    M 纸地图    B 公文包    Tab 档案    Esc 暂停":"WASD 行走    鼠标 观察    Shift 奔跑    E 互动    Q 怀表    T 车票    M 纸地图    B 公文包    Tab 档案    Esc 暂停",small);
             }
             if(watch&&!mapOpen&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen) DrawWatch();
             DrawOpeningRide();
@@ -556,16 +592,16 @@ public partial class DemoApp : MonoBehaviour {
                 DrawAudioSettings(W/2-180,H/2+84,360);
             }
             DrawCreator();
-            if(!mapOpen&&!Silent&&Time.time<remarkUntil&&!inspected&&!journal&&!DialogueOpen&&!MilkOrdersOpen) {
-                Rect r=new Rect(36,H-135,580,57);Box(r,new Color(0.05f,0.10f,0.13f,0.9f));Label(new Rect(r.x+16,r.y+14,r.width-32,40),remark,small);
-            }
+            if(!mapOpen&&!Silent&&Time.time<remarkUntil&&!inspected&&!journal&&!DialogueOpen&&!MilkOrdersOpen)DrawRemark();
         }
         if(mapOpen&&!Blocked) DrawHeldMapDestination();
         DrawRailStatus();
         DrawFurnitureStatus();
         DrawCarStatus();
+        DrawShowcaseCaption();
         if(fade>0) Box(new Rect(0,0,W,H),new Color(0.018f,0.022f,0.03f,fade));
         DrawChildCinematicCard();
+        DrawCellCinematic();
         GUI.matrix=Matrix4x4.identity;
     }
     void DrawWatch() {
@@ -595,29 +631,32 @@ public partial class DemoApp : MonoBehaviour {
         Box(new Rect(p.x+42,p.y+144,1036,1),new Color(0.29f,0.37f,0.37f));
         if(image) {Box(new Rect(p.x+42,p.y+172,460,340),new Color(.10f,.16f,.15f,.96f));GUI.DrawTexture(new Rect(p.x+54,p.y+184,436,316),image,ScaleMode.ScaleToFit,true);Label(new Rect(p.x+550,p.y+180,500,300),body,text);}
         else Label(new Rect(p.x+48,p.y+182,1010,310),body,text);
-        Label(new Rect(p.x+42,p.y+550,550,32),inspected&&!string.IsNullOrEmpty(inspected.evidenceId)?"已记入调查簿，可随时再次查看。":"可随时再次查看。",small);
+        Label(new Rect(p.x+42,p.y+550,550,32),inspected&&!string.IsNullOrEmpty(inspected.evidenceId)?"已记下，可在公文包里再次查看。":"可随时再次查看。",small);
         if(Button(new Rect(p.x+865,p.y+532,210,52),"收起  ·  Esc")) { CloseInspect(); }
     }
+    // Tab: the dossier — what people said (user, 2026-10-15); physical evidence is in the briefcase (B).
     void DrawJournal() {
         Box(new Rect(0,0,W,H),new Color(0.015f,0.03f,0.04f,0.5f));
         Rect p=new Rect(W/2-570,H/2-310,1140,620);Panel(p);
-        Label(new Rect(p.x+40,p.y+32,600,60),"调查簿",title);
-        Label(new Rect(p.x+40,p.y+105,700,40),"材料与见闻  /  保留原话，慢慢核对。",italic);
+        Label(new Rect(p.x+40,p.y+32,600,60),"档案",title);
+        Label(new Rect(p.x+40,p.y+105,1000,40),"口供与问话  /  保留原话，慢慢核对。物证收在公文包里（B）。",italic);
         Box(new Rect(p.x+40,p.y+153,1060,1),new Color(0.29f,0.37f,0.37f));
-        if(state.entries.Count==0) Label(new Rect(p.x+45,p.y+205,990,180),"还没有记录。\n你可以从任意地方开始，看看街钟，或走进钟表铺。",text);
+        var people=Dossier();
+        if(people.Count==0) Label(new Rect(p.x+45,p.y+205,990,180),"还没有问话记录。\n和镇上的人谈谈，他们说过的话会记在这里。",text);
         else {
-            journalPage=Mathf.Clamp(journalPage,0,Mathf.Max(0,(state.entries.Count-1)/4));
-            for(int i=journalPage*4;i<Mathf.Min(state.entries.Count,journalPage*4+4);i++) if(Button(new Rect(p.x+40,p.y+180+(i%4)*76,310,60),state.entries[i].title,i==selectedEntry)){selectedEntry=i;housePaperScroll=Vector2.zero;}
+            journalPage=Mathf.Clamp(journalPage,0,Mathf.Max(0,(people.Count-1)/4));
+            selectedEntry=Mathf.Clamp(selectedEntry,0,people.Count-1);
+            for(int i=journalPage*4;i<Mathf.Min(people.Count,journalPage*4+4);i++) if(Button(new Rect(p.x+40,p.y+180+(i%4)*76,310,60),people[i].name,i==selectedEntry)){selectedEntry=i;housePaperScroll=Vector2.zero;}
             if(journalPage>0&&Button(new Rect(p.x+40,p.y+505,100,45),"上一页")){journalPage--;selectedEntry=journalPage*4;housePaperScroll=Vector2.zero;}
-            Label(new Rect(p.x+145,p.y+512,100,35),(journalPage+1)+" / "+Mathf.Max(1,(state.entries.Count+3)/4),small);
-            if((journalPage+1)*4<state.entries.Count&&Button(new Rect(p.x+250,p.y+505,100,45),"下一页")){journalPage++;selectedEntry=journalPage*4;housePaperScroll=Vector2.zero;}
-            var e=state.entries[Mathf.Clamp(selectedEntry,0,state.entries.Count-1)];
-            Label(new Rect(p.x+400,p.y+183,640,55),e.title,title);
-            Label(new Rect(p.x+400,p.y+255,640,55),"出处  /  "+e.source,italic);
-            if(TicketImage(e.id))Label(new Rect(p.x+400,p.y+330,640,46),e.id=="E02"?"纸面与票边完整。":"同线路废票，票面留有检票孔。",text);
-            else {float height=Mathf.Max(180,text.CalcHeight(new GUIContent(e.body),615));housePaperScroll=GUI.BeginScrollView(new Rect(p.x+400,p.y+330,650,190),housePaperScroll,new Rect(0,0,615,height));Label(new Rect(0,0,615,height),e.body,text);GUI.EndScrollView();}
-            DrawTicketOnJournal(e,p);
+            Label(new Rect(p.x+145,p.y+512,100,35),(journalPage+1)+" / "+Mathf.Max(1,(people.Count+3)/4),small);
+            if((journalPage+1)*4<people.Count&&Button(new Rect(p.x+250,p.y+505,100,45),"下一页")){journalPage++;selectedEntry=journalPage*4;housePaperScroll=Vector2.zero;}
+            var person=people[selectedEntry];
+            Label(new Rect(p.x+400,p.y+183,640,55),person.name,title);
+            Label(new Rect(p.x+400,p.y+250,640,40),person.place,italic);
+            float height=Mathf.Max(200,text.CalcHeight(new GUIContent(person.body),615)+10);
+            housePaperScroll=GUI.BeginScrollView(new Rect(p.x+400,p.y+300,650,222),housePaperScroll,new Rect(0,0,615,height));Label(new Rect(0,0,615,height),person.body,text);GUI.EndScrollView();
         }
+        if(Button(new Rect(p.x+400,p.y+538,215,52),"打开公文包  ·  B")){journal=false;OpenBackpack();}
         if(Button(new Rect(p.x+630,p.y+538,225,52),"整理阶段报告")){journal=false;OpenPoliceReport();}
         if(Button(new Rect(p.x+870,p.y+538,225,52),"继续调查  ·  Tab")){journal=false;CursorMode();}
     }

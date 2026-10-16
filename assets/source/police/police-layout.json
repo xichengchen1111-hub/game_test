@@ -1184,7 +1184,7 @@
    "hinge": "a0",
    "swing": 1,
    "fixture": "police-evidence-door",
-   "label": "物证室门",
+   "label": "保管室门",
    "exterior": true,
    "startsOpen": false,
    "enclosure": "evidence",
@@ -1777,7 +1777,7 @@
   },
   {
    "id": "evidence",
-   "name": "物证室",
+   "name": "保管室",
    "level": 0,
    "x0": 17.9,
    "z0": 16.08,
@@ -2779,8 +2779,8 @@
    "y": 0.91,
    "z": 2.25,
    "yaw": 0,
-   "w": 0.34,
-   "d": 0.26,
+   "w": 0.29,
+   "d": 0.36,
    "h": 0.03,
    "room": "read",
    "collide": false,
@@ -4672,9 +4672,9 @@
    "x": 1.75,
    "y": 0.9400000000000001,
    "z": 2.25,
-   "w": 0.38,
+   "w": 0.32,
    "h": 0.08,
-   "d": 0.3,
+   "d": 0.38,
    "doc": "e01-copy",
    "evidence": "E01",
    "title": "",
@@ -4685,7 +4685,18 @@
    "standX": 0,
    "standZ": 0,
    "eye": 1.15,
-   "sitY": 0
+   "sitY": 0,
+   "paper": {
+    "support": "read-folder-1",
+    "w": 0.24,
+    "h": 0.30938,
+    "x": 1.75,
+    "y": 0.94518,
+    "z": 2.25,
+    "yaw": 180,
+    "tilt": 0.0,
+    "lift": 0.00518
+   }
   },
   {
    "id": "doc-statement",
@@ -4748,7 +4759,18 @@
    "standX": 0,
    "standZ": 0,
    "eye": 1.15,
-   "sitY": 0
+   "sitY": 0,
+   "paper": {
+    "support": "read-stand-1",
+    "w": 0.24,
+    "h": 0.30938,
+    "x": 6.75,
+    "y": 1.10821,
+    "z": 2.2036,
+    "yaw": 180,
+    "tilt": 43.9949,
+    "lift": 0.00518
+   }
   },
   {
    "id": "doc-compare-e08",

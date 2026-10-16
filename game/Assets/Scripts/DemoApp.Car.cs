@@ -86,7 +86,7 @@ public partial class DemoApp {
     string CarHelpLine() {
         if (CarSeatIsDriver)
             return "W／S 油门·刹车（停住后 S 倒车）  A／D 转向  空格 手刹  I 点火  按住R 起动  C 阻风门  L 车灯  按住H 喇叭  J 雨刷  E 互动";
-        return "鼠标 观察    E 互动    Q 怀表    T 车票    M 纸地图    Tab 调查簿    Esc 暂停";
+        return "鼠标 观察    E 互动    Q 怀表    T 车票    M 纸地图    B 公文包    Tab 档案    Esc 暂停";
     }
     void DrawCarStatus() {
         var car = HotelCar.Current;

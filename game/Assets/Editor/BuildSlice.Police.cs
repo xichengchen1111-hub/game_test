@@ -187,7 +187,14 @@ public static partial class BuildSlice {
             if(doc.image.StartsWith("Rail/"))item.illustration=AssetDatabase.LoadAssetAtPath<Texture2D>(RailFolder+doc.image.Substring(5));
             else {
                 var importer=AssetImporter.GetAtPath(path) as TextureImporter;if(!importer)throw new Exception("Missing document image "+path);
-                if(importer.wrapMode!=TextureWrapMode.Clamp||importer.mipmapEnabled){importer.wrapMode=TextureWrapMode.Clamp;importer.mipmapEnabled=false;importer.SaveAndReimport();}
+                // Typeset papers (tools/police/write_police_texts.py) keep their exact size, uncompressed like the hospital
+                // and house sheets: the close-up takes the sheet's proportions from the texture.
+                bool paper=doc.image.StartsWith("Police/Papers/");
+                if(importer.wrapMode!=TextureWrapMode.Clamp||importer.mipmapEnabled||paper&&(importer.npotScale!=TextureImporterNPOTScale.None||importer.textureCompression!=TextureImporterCompression.Uncompressed||importer.maxTextureSize!=2048)) {
+                    importer.wrapMode=TextureWrapMode.Clamp;importer.mipmapEnabled=false;
+                    if(paper){importer.npotScale=TextureImporterNPOTScale.None;importer.textureCompression=TextureImporterCompression.Uncompressed;importer.maxTextureSize=2048;}
+                    importer.SaveAndReimport();
+                }
                 item.illustration=AssetDatabase.LoadAssetAtPath<Texture2D>(path);
             }
         }
@@ -221,13 +228,34 @@ public static partial class BuildSlice {
             }
             var g=Group("Item · "+item.id,new Vector3(item.x,item.y,item.z),group);g.transform.localRotation=Quaternion.Euler(0,item.yaw,0);
             var trigger=g.AddComponent<BoxCollider>();trigger.isTrigger=true;trigger.size=new Vector3(item.w,item.h,item.d);
-            if(item.kind=="evidence"||item.kind=="document")PoliceDocumentComponent(g,docs.Get(item.doc),item.evidence);
+            if(item.kind=="evidence"||item.kind=="document") {
+                var doc=PoliceDocumentComponent(g,docs.Get(item.doc),item.evidence);
+                if(item.Printed)PoliceDeskPaper(root,doc,item);
+            }
             else if(item.kind=="report"){var desk=g.AddComponent<PoliceReportDesk>();desk.title=item.title;desk.paperAudio=PoliceAudio(g,"PolicePaper",.4f,6);}
             else if(item.kind=="lampswitch") {
                 var lamp=layout.Lamp(item.target);var s=g.AddComponent<LampSwitch>();s.label=item.title;s.offId=lamp.switchId;s.lamps=new[]{controllers[item.target]};
                 if(string.IsNullOrEmpty(s.offId))throw new Exception("Lamp switch without saved off ID: "+item.id);
             }
             else throw new Exception("Unknown police item kind "+item.kind);
+        }
+    }
+
+    // A desk copy of E01 is the typeset sheet itself, as the garage records lie on their desk:
+    // EvidenceModel.Paper with EvidencePhysical (the close-up and the briefcase examine this sheet),
+    // resting on its support at the layout contract's pose; the shell leaves that support's blank
+    // sheet out. Meshes and materials are saved as assets so the prefab keeps them.
+    static void PoliceDeskPaper(Transform root,PoliceDocumentItem item,PoliceItem layoutItem) {
+        var p=layoutItem.paper;
+        var visual=EvidenceModel.Paper("Physical "+item.evidenceId,item.illustration,p.w,p.h);visual.AddComponent<EvidencePhysical>();
+        visual.transform.SetParent(item.transform,false);visual.transform.SetPositionAndRotation(root.TransformPoint(p.Position),root.rotation*p.Rotation);
+        const string folder="Assets/Generated/Police/";Directory.CreateDirectory(folder);int n=0;
+        foreach(var f in visual.GetComponentsInChildren<MeshFilter>()) {
+            string path=folder+"Paper_"+layoutItem.id+"_"+n+".asset";var mesh=AssetDatabase.LoadAssetAtPath<Mesh>(path);
+            if(mesh){EditorUtility.CopySerialized(f.sharedMesh,mesh);UnityEngine.Object.DestroyImmediate(f.sharedMesh);}else{mesh=f.sharedMesh;AssetDatabase.CreateAsset(mesh,path);}f.sharedMesh=mesh;EditorUtility.SetDirty(mesh);
+            var renderer=f.GetComponent<MeshRenderer>();string mp=folder+"Paper_"+layoutItem.id+"_"+n+".mat";var material=AssetDatabase.LoadAssetAtPath<Material>(mp);
+            if(material){EditorUtility.CopySerialized(renderer.sharedMaterial,material);UnityEngine.Object.DestroyImmediate(renderer.sharedMaterial);}else{material=renderer.sharedMaterial;AssetDatabase.CreateAsset(material,mp);}
+            renderer.sharedMaterial=material;renderer.renderingLayerMask|=PoliceInteriorLayer;EditorUtility.SetDirty(material);n++;
         }
     }
 

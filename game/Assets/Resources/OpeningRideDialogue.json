@@ -1,9 +1,9 @@
 {
   "first": "offer", "revisit": "offer", "nodes": [
-    {"id":"offer","speaker":"律师","text":"你想先去医院看看孩子吗？我的车就停在旁边，我可以送你过去。","choices":[{"text":"是的。我想去看看孩子。","target":"accept"},{"text":"我想先一个人走走。","target":"later"}]},
-    {"id":"accept","speaker":"律师","text":"好。车停在警署东侧的中街，上车吧。我送你到医院门口。"},
-    {"id":"later","speaker":"律师","text":"好，你先缓一缓。我会在这里等一阵。想去的时候，再来找我。"},
-    {"id":"ready","speaker":"律师","text":"车就在中街边。坐前排右边的座位吧，我们这就去医院。"},
-    {"id":"goodbye","speaker":"律师","text":"进去看看孩子吧，慢慢来。案子的事，我们再一起想办法。祝你好运。"}
+    {"id":"offer","speaker":"律师","text":"孩子那边，要不要先去看看？我的车就在旁边，送你过去。","choices":[{"text":"好，我想去看看她。","target":"accept"},{"text":"我想先一个人走走。","target":"later"}]},
+    {"id":"accept","speaker":"律师","text":"好。车停在警署东边的中街，走吧。"},
+    {"id":"later","speaker":"律师","text":"也好，先透口气。我在这儿等你，想去了再叫我。"},
+    {"id":"ready","speaker":"律师","text":"车就在中街边上，你坐前排右边。我们这就走。"},
+    {"id":"goodbye","speaker":"律师","text":"到了。进去好好陪陪孩子。案子的事先放一放，别什么都压在自己一个人身上。"}
   ]
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 public partial class DemoApp {
     bool creatorMenu,creatorReturnToPause;
-    bool CreatorActionsAvailable=>sceneReady&&player&&!opening&&!transitioning&&!inspected&&!journal&&!DialogueOpen&&!MilkOrdersOpen&&!PoliceReportOpen&&!RailSeated&&!FurnitureSeated&&!CarSeated&&!OpeningRideActive;
+    bool CreatorActionsAvailable=>sceneReady&&player&&!opening&&!transitioning&&!inspected&&!journal&&!backpack&&!DialogueOpen&&!MilkOrdersOpen&&!PoliceReportOpen&&!RailSeated&&!FurnitureSeated&&!CarSeated&&!OpeningRideActive;
     void OpenCreatorMenu() {
         if(creatorMenu||!CreatorActionsAvailable)return;
         creatorReturnToPause=paused;paused=true;creatorMenu=true;

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 // Pre-build consistency checks for the shared D police-station prefab. The street view
@@ -11,7 +12,7 @@ public static class PoliceChecks {
     [Serializable] class Result {
         public bool passed;
         public int walls, openings, apertureProbes, solidProbes, doors, drawers, lamps, interiorLamps, exteriorLamps, items, seats, shelters, rooms;
-        public int e01Copies, e08Copies;
+        public int e01Copies, e08Copies, printedDeskCopies;
         public string layoutRule, verification;
     }
     public static void Validate(GameObject root,PoliceLayout layout,PoliceBuildManifest manifest) {
@@ -48,6 +49,29 @@ public static class PoliceChecks {
         var items=root.GetComponentsInChildren<PoliceDocumentItem>();
         int e01=items.Count(i=>i.evidenceId=="E01"),e08=items.Count(i=>i.evidenceId=="E08");
         Need(e01==2&&e08==1&&items.Count(i=>!string.IsNullOrEmpty(i.evidenceId))==3,"only the approved E01/E08 copies carry evidence IDs");
+        // Without its printed face an evidence copy is a blank sheet in the close-up and the briefcase.
+        Need(items.Where(i=>!string.IsNullOrEmpty(i.evidenceId)).All(i=>i.illustration),"an evidence copy has no printed paper");
+        // The E01 desk copies are the printed sheet itself: a physical paper showing the typeset face in
+        // its proportions, saved with the prefab, resting just above its support plane, and the support's
+        // blank FBX sheet left out (tools/police/build_police_station.py printed_paper).
+        var visuals=root.GetComponentsInChildren<MeshRenderer>();int printed=0;
+        foreach(var li in layout.items.Where(i=>i.Printed)) {
+            var item=items.Single(i=>i.name=="Item · "+li.id);var physical=item.GetComponentInChildren<EvidencePhysical>();
+            Need(physical&&item.illustration&&item.evidenceId==li.evidence,"desk copy is not a printed sheet: "+li.id);
+            var face=physical.GetComponentsInChildren<MeshRenderer>().Single(r=>r.name=="Paper printed face");
+            Need(face.sharedMaterial.GetTexture("_BaseMap")==item.illustration,"desk copy does not show its typeset face: "+li.id);
+            Need(Mathf.Abs(li.paper.w/li.paper.h-item.illustration.width/(float)item.illustration.height)<.005f,"desk copy proportions differ from its typeset face: "+li.id);
+            Need(physical.GetComponentsInChildren<MeshFilter>().All(f=>AssetDatabase.Contains(f.sharedMesh)&&AssetDatabase.Contains(f.GetComponent<MeshRenderer>().sharedMaterial)),"desk copy meshes or materials are not saved assets: "+li.id);
+            var normal=root.transform.rotation*li.paper.Normal;var plane=root.transform.TransformPoint(li.paper.Position)-normal*li.paper.lift;
+            float low=float.MaxValue,high=float.MinValue;
+            foreach(var f in physical.GetComponentsInChildren<MeshFilter>())
+                foreach(var v in f.sharedMesh.vertices){float h=Vector3.Dot(f.transform.TransformPoint(v)-plane,normal);low=Mathf.Min(low,h);high=Mathf.Max(high,h);}
+            Need(low>.0005f&&high<.015f,"desk copy does not rest on "+li.paper.support+": "+low.ToString("0.0000")+".."+high.ToString("0.0000")+" m above it");
+            var support=visuals.Where(r=>r.name=="Furn_"+li.paper.support).ToArray();
+            Need(support.Length==1&&support[0].sharedMaterials.All(m=>m.name!="PInt_Paper"),"blank FBX sheet left on "+li.paper.support);
+            printed++;
+        }
+        Need(printed==2&&layout.items.Where(i=>i.Printed).All(i=>i.evidence=="E01"),"both E01 desk copies are printed sheets");
         Need(root.GetComponentsInChildren<PoliceReportDesk>().Length==1,"one stage-report desk");
         var seats=root.GetComponentsInChildren<FurnitureSeat>();
         Need(seats.Length==layout.items.Count(i=>i.kind=="seat")&&seats.Select(s=>s.seatId).Distinct().Count()==seats.Length,"seat IDs");
@@ -63,7 +87,7 @@ public static class PoliceChecks {
         var origin=layout.Origin;var front=layout.Opening("front-door");var court=layout.Opening("court-door");
         Need(Vector2.Distance(new Vector2(front.x+origin.x,0+origin.z),new Vector2(b10.door[0],b10.door[1]))<.01f&&Vector2.Distance(new Vector2(court.x+origin.x,12+origin.z),new Vector2(b10.rearDoor[0],b10.rearDoor[1]))<.01f,"doors differ from the town map");
         var result=new Result{passed=true,walls=walls.Length,openings=layout.openings.Length,apertureProbes=aperture,solidProbes=solid,doors=leaves,drawers=3,
-            lamps=lights.Length,interiorLamps=interior,exteriorLamps=exterior,items=items.Length,seats=seats.Length,shelters=shelters.Length,rooms=layout.rooms.Length,e01Copies=e01,e08Copies=e08,
+            lamps=lights.Length,interiorLamps=interior,exteriorLamps=exterior,items=items.Length,seats=seats.Length,shelters=shelters.Length,rooms=layout.rooms.Length,e01Copies=e01,e08Copies=e08,printedDeskCopies=printed,
             layoutRule="One shared prefab for street exterior and interior; no second scene shell. Openings are cut from the layout contract that also generated the Blender shell.",
             verification="Editor authoring check only; native rendering, controller walking and saves are verified by --review-police."};
         Directory.CreateDirectory("../output/demo/police-station");

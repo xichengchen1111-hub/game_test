@@ -78,7 +78,7 @@ def main():
     parser.add_argument("--archive", type=Path, required=True)
     parser.add_argument("--blender", type=Path, required=True)
     parser.add_argument("--role", required=True)
-    parser.add_argument("--cast", choices=("police", "hospital"), default="police", help="Which cast folder receives the character")
+    parser.add_argument("--cast", choices=("police", "hospital", "street"), default="police", help="Which cast folder receives the character")
     parser.add_argument("--height", type=float)
     parser.add_argument("--model", help="Relative FBX path inside archive, required if several FBXs exist")
     for kind in ("idle", "walk", "talk"):

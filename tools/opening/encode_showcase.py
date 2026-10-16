@@ -20,25 +20,32 @@ import numpy as np
 FFMPEG = imageio_ffmpeg.get_ffmpeg_exe()
 
 # (start, end, what the passage shows) in seconds of the capture, relative to a named mark.
+# First act revision 2 (2026-10-15): cell cinematic, property room, seated lawyer, the lift.
 HIGHLIGHT = [
-    ('title', .4, 'title', 3.8, '标题画面'),
-    ('guard', -1.0, 'guard', 2.4, '牢房里看见狱警，第一句对白'),
-    ('cell-door', .1, 'cell-door', 4.3, '牢门打开，走进内院'),
-    ('watch', -2.0, 'watch', 3.8, '内院铁栅后门，取出怀表'),
-    ('lawyer', -4.4, 'lawyer', -.3, '穿过门厅走进律师会见室'),
-    ('lawyer', 1.1, 'lawyer', 5.0, '律师第一句'),
-    ('lawyer', 8.0, 'lawyer', 12.6, '律师说明案情'),
-    ('newspaper', 1.3, 'newspaper-text', 3.6, '拿起报纸检视并展开正文'),
-    ('questions', 7.2, 'questions', 12.6, '追问为什么被怀疑'),
-    ('follow-out', 4.3, 'follow-out', 11.6, '跟着律师走出警署'),
-    ('map', .3, 'map', 4.4, '在街边展开纸地图'),
+    ('title', .4, 'title', 3.8, '标题画面：一桩到你那个年代都没破的命案'),
+    ('awake', -6.0, 'awake', 2.6, '铁床上睁眼，模糊的天花板，头好痛'),
+    ('look', 0.0, 'look', 8.0, '坐起来环顾：石墙铁栏、老式吊灯'),
+    ('realize', -1.0, 'knock', 1.4, '“我……真的穿越了？”方明博士的装置竟然是真的——被敲门打断'),
+    ('knock', 1.4, 'knock', 4.4, '狱警拳头砸门：“喂！醒了没有？”'),
+    ('unlock', -.6, 'released', 4.0, '钥匙开锁、手推开门：“算你走运……”'),
+    ('door-police-evidence-door', -1.5, 'door-police-evidence-door', 3.0, '狱警握住门把手推开保管室门'),
+    ('cage', -.8, 'cage', 3.6, '开柜锁，拉开柜门'),
+    ('carry', -1.2, 'carry', 2.4, '伸手提起公文包'),
+    ('place', -.6, 'place', 2.0, '放到桌上'),
+    ('briefcase', -.5, 'briefcase', 3.0, '按 E 拿回公文包'),
+    ('watch', 0.0, 'watch', 3.4, '东西回来了：取出怀表'),
+    ('pack', -.1, 'pack', 4.6, '按 B 打开公文包：怀表、地图、车票、调查簿和钱夹都在包里'),
+    ('door-police-court-door', -1.2, 'door-police-court-door', 2.6, '推开横厅后门'),
+    ('lawyer', 0.0, 'lawyer', 7.0, '律师：“你出来了……脸色这么差。”绕到椅子侧面坐下'),
+    ('lawyer', 9.0, 'lawyer', 16.0, '坐到对面，律师先问你这几天怎么样'),
+    ('newspaper', .5, 'newspaper-text', 3.5, '报纸递到手里，展开正文'),
+    ('child', -.3, 'child', 7.0, '问起孩子：“我已经给医院捎了话”'),
+    ('follow-out', .5, 'follow-out', 7.0, '律师起身离开，跟着走出会见室'),
     ('offer', 1.5, 'offer', 6.4, '律师提出送你去医院'),
-    ('boarding', -4.0, 'boarding', 4.2, '走到车旁上车'),
-    ('driving', .7, 'driving', 3.2, '车开动'),
-    ('driving', 5.8, 'driving', 7.8, '看向开车的律师'),
-    ('driving', 9.0, 'driving', 13.0, '夜色里的街道'),
-    ('goodbye', .2, 'goodbye', 5.0, '到医院门口道别'),
-    ('departure', .3, 'departure', 6.3, '目送汽车离开'),
+    ('boarding', -1.0, 'boarding', 7.5, '上车：开门、低头坐进副驾驶，回头看车门'),
+    ('driving', 21.2, 'driving', 27.2, '路口减速转弯'),
+    ('goodbye', -3.0, 'goodbye', 5.5, '到医院下车，律师从驾驶座转头看着你道别'),
+    ('departure', .3, 'departure', 5.0, '目送汽车离开'),
 ]
 
 
@@ -97,7 +104,9 @@ def main():
     full_end = marks['end'] + 1.4
     full = dest / '01-开场实机完整版.mp4'
     cut = dest / '02-开场实机精华版.mp4'
-    passages = [(marks[a] + da, marks[b] + db) for a, da, b, db, _ in HIGHLIGHT]
+    # A moment that did not happen in this run (a door already open) is left out rather than guessed.
+    shown = [h for h in HIGHLIGHT if h[0] in marks and h[2] in marks]
+    passages = [(marks[a] + da, marks[b] + db) for a, da, b, db, _ in shown]
     report = {
         'source': str(folder), 'nativeFrames': len(manifest['times']), 'captureSeconds': manifest['duration'],
         'size': [manifest['width'], manifest['height']], 'recordedListenerVolume': manifest['listenerVolume'],
@@ -108,7 +117,7 @@ def main():
         'videos': [
             {'file': full.name, 'seconds': round(render(folder, manifest, audio, gain, [(0, full_end)], full, work), 2), 'cuts': 0},
             {'file': cut.name, 'seconds': round(render(folder, manifest, audio, gain, passages, cut, work), 2),
-             'passages': [{'from': round(s, 2), 'to': round(e, 2), 'shows': h[4]} for (s, e), h in zip(passages, HIGHLIGHT)]},
+             'passages': [{'from': round(s, 2), 'to': round(e, 2), 'shows': h[4]} for (s, e), h in zip(passages, shown)]},
         ],
     }
     (dest / '素材来源.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')

@@ -18,7 +18,7 @@ public partial class DemoApp {
   }
   if(letterDragging>=0&&Event.current.type==EventType.MouseDrag){letterPos[letterDragging]=Event.current.mousePosition-start-letterDragOffset;letterPos[letterDragging]=new Vector2(Mathf.Clamp(letterPos[letterDragging].x,20,630),Mathf.Clamp(letterPos[letterDragging].y,0,380));Event.current.Use();}
   if(Event.current.type==EventType.MouseUp){letterDragging=-1;CheckHouseLetter();}
-  if(complete)Label(new Rect(p.x+35,p.y+480,1010,45),"裁边与文字接续吻合。完整文字已记入调查簿。",small);
+  if(complete)Label(new Rect(p.x+35,p.y+480,1010,45),"裁边与文字接续吻合。完整文字已记下，可在公文包里再看。",small);
   if(Button(new Rect(p.x+820,p.y+544,240,48),"返回材料"))houseLetterOpen=false;
  }
  void PaperFragment(Rect r,string value,bool moving){Box(r,new Color(.78f,.73f,.60f));var ink=new GUIStyle(small){normal={textColor=new Color(.18f,.19f,.15f)}};GUI.Label(new Rect(r.x+14,r.y+14,r.width-28,r.height-20),value,ink);}

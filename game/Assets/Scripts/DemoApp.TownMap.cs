@@ -42,7 +42,7 @@ public partial class DemoApp {
     }
     void SetMapOpen(bool value){
         if(mapOpen==value)return;
-        if(value&&(!sceneReady||Blocked||CurrentScene!="Town"))return;
+        if(value&&(!sceneReady||Blocked||CurrentScene!="Town"||!state.belongingsCollected))return;
         mapOpen=value;focus=null;mapDragging=false;SetMapEditing(false);
         if(value){SetWatchOpen(false);RefreshMapRoute();}else Save();
         GetComponent<TownSound>()?.PlayHeldItem(true,value);

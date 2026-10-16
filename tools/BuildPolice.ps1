@@ -1,7 +1,8 @@
 $ErrorActionPreference = 'Stop'
 # Regenerate the D police station sources in order (Windows host):
 #   1. layout contract (asserts the B10 entry of docs/maps/town-current/plan-data.json)
-#   2. text resources (documents, report rules, duty-officer dialogue)
+#   2. text resources (documents, report rules, duty-officer dialogue) and the papers' typeset faces
+#      (game/Assets/Art/Police/Papers, needs Pillow)
 #   3. duty-officer placeholder texture (navy recolour of the approved clerk)
 #   4. Blender shell/furniture -> assets/source/police/PoliceStation.blend/.fbx + Unity copy
 # Textures/sounds come from tools/police/make_police_assets.py (stdlib only; run on any host,

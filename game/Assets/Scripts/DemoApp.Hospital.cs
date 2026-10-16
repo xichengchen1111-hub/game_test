@@ -41,7 +41,7 @@ public partial class DemoApp {
         if(hospitalScript==null||milkboyScript!=hospitalScript||!hospitalSpeaker)return;
         if(hospitalSpeaker.role=="child"&&state.hospitalStage>=HospitalPromised&&!state.dialogueTopics.Contains("hospital.promise.noted")) {
             state.dialogueTopics.Add("hospital.promise.noted");
-            remark="你答应了孩子：查清是谁害了她的母亲。";remarkUntil=Time.time+9;
+            remark="你答应了孩子：查清是谁害了她的母亲。";remarkStart=Time.time;remarkUntil=Time.time+9;
         }
         hospitalSpeaker=null;
     }

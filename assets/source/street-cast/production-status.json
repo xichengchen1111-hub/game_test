@@ -1,0 +1,164 @@
+{
+ "note": "Street cast, made in the user's Tripo account on 2026-10-15 at the user's request (boy, girl, dog walker and dog, several adults dressed differently). Reference images from Tripo's own image generator (GPT Image 2.5, free tier) with the approved police duty-officer reference as the style image; exact prompts in references/<Role>.txt (tools/street/cast_prompts.py). Then as for the hospital cast: image-to-model HD with 8K PBR texture (65 credits), Smart Mesh quad retopology to about ten thousand faces (40), Unity Humanoid Compatible auto rig (20), preset idle and walk plus the saved Calm Conversation Gestures. Exported on 2026-10-16 with the user's consent in the conversation (ten FBX packages, about 72 MB); approved the same night. DogWalker's first retopology hung for over half an hour and was cancelled (refunded) and run again.",
+ "creditsBefore": 21445,
+ "characters": [
+  {
+   "role": "StreetBoy",
+   "title": "男孩",
+   "tripoAsset": "e4b3b232-f381-49a7-9efc-e114df70904b",
+   "referenceGenerated": "2026-10-15 23:28",
+   "heightMetres": 1.3,
+   "credits": 125,
+   "retopologyFaces": 9197,
+   "skeleton": "Unity Humanoid Compatible",
+   "animationsApplied": [
+    "idle",
+    "walk",
+    "Calm Conversation Gestures"
+   ],
+   "exported": true
+  },
+  {
+   "role": "StreetGirl",
+   "title": "女孩",
+   "tripoAsset": "c69806c6-54d8-4783-a47f-1daefe53008b",
+   "referenceGenerated": "2026-10-15 23:29",
+   "heightMetres": 1.24,
+   "credits": 125,
+   "retopologyFaces": 9540,
+   "skeleton": "Unity Humanoid Compatible",
+   "animationsApplied": [
+    "idle",
+    "walk",
+    "Calm Conversation Gestures"
+   ],
+   "exported": true
+  },
+  {
+   "role": "DogWalker",
+   "title": "遛狗的妇人",
+   "tripoAsset": "55af0043-007f-430b-a6ab-12237f2a70e5",
+   "referenceGenerated": "2026-10-15 23:29",
+   "heightMetres": 1.63,
+   "credits": 125,
+   "retopologyFaces": 9647,
+   "skeleton": "Unity Humanoid Compatible",
+   "animationsApplied": [
+    "idle",
+    "walk",
+    "Calm Conversation Gestures"
+   ],
+   "exported": true
+  },
+  {
+   "role": "Labourer",
+   "title": "送货工人",
+   "tripoAsset": "510e7ee7-b86b-4154-a51c-b99f78463d29",
+   "referenceGenerated": "2026-10-15 23:34",
+   "heightMetres": 1.75,
+   "credits": 125,
+   "retopologyFaces": 9356,
+   "skeleton": "Unity Humanoid Compatible",
+   "animationsApplied": [
+    "idle",
+    "walk",
+    "Calm Conversation Gestures"
+   ],
+   "exported": true
+  },
+  {
+   "role": "YoungWoman",
+   "title": "年轻女职员",
+   "tripoAsset": "7e1daa8a-501e-46ae-ae2a-beb379f7d480",
+   "referenceGenerated": "2026-10-15 23:34",
+   "heightMetres": 1.65,
+   "credits": 125,
+   "retopologyFaces": 9985,
+   "skeleton": "Unity Humanoid Compatible",
+   "animationsApplied": [
+    "idle",
+    "walk",
+    "Calm Conversation Gestures"
+   ],
+   "exported": true
+  },
+  {
+   "role": "Businessman",
+   "title": "商人",
+   "tripoAsset": "2e47a02c-6de0-4301-b34b-a7cd83e34ad1",
+   "referenceGenerated": "2026-10-15 23:34",
+   "heightMetres": 1.78,
+   "credits": 125,
+   "retopologyFaces": 9981,
+   "skeleton": "Unity Humanoid Compatible",
+   "animationsApplied": [
+    "idle",
+    "walk",
+    "Calm Conversation Gestures"
+   ],
+   "exported": true
+  },
+  {
+   "role": "Transient",
+   "title": "流浪汉（乞讨的人）",
+   "tripoAsset": "8a893e3e-2cb0-4d57-84e9-220121d88913",
+   "referenceGenerated": "2026-10-15 23:36",
+   "heightMetres": 1.73,
+   "credits": 125,
+   "retopologyFaces": 9681,
+   "skeleton": "Unity Humanoid Compatible",
+   "animationsApplied": [
+    "idle",
+    "walk",
+    "Calm Conversation Gestures"
+   ],
+   "exported": true
+  },
+  {
+   "role": "OldGentleman",
+   "title": "老先生",
+   "tripoAsset": "288e6423-cc4b-4259-8767-84a929187e1c",
+   "referenceGenerated": "2026-10-15 23:38",
+   "heightMetres": 1.7,
+   "credits": 125,
+   "retopologyFaces": 9211,
+   "skeleton": "Unity Humanoid Compatible",
+   "animationsApplied": [
+    "idle",
+    "walk",
+    "Calm Conversation Gestures"
+   ],
+   "exported": true
+  },
+  {
+   "role": "Housewife",
+   "title": "买东西的主妇",
+   "tripoAsset": "0ef9125d-d064-4fce-944d-8102d8e228ef",
+   "referenceGenerated": "2026-10-15 23:37",
+   "heightMetres": 1.6,
+   "credits": 125,
+   "retopologyFaces": 9266,
+   "skeleton": "Unity Humanoid Compatible",
+   "animationsApplied": [
+    "idle",
+    "walk",
+    "Calm Conversation Gestures"
+   ],
+   "exported": true
+  },
+  {
+   "role": "Terrier",
+   "title": "㹴犬（遛狗妇人的狗）",
+   "tripoAsset": "c0c71b26-165b-4e69-a046-356f13f96c94",
+   "referenceGenerated": "2026-10-15 23:36",
+   "shoulderHeightMetres": 0.39,
+   "credits": 145,
+   "retopologyFaces": 9395,
+   "skeleton": "Tripo auto rig, rigging type 'Other' (four-legged)",
+   "animationsApplied": [],
+   "note": "Tripo has no four-legged preset motions, and its text-to-motion produced a human motion on the dog (it stood up and floated; 'Custom Motion', 20 credits, not exported). The dog's walk and idle are made from its own bones in this project instead.",
+   "exported": true
+  }
+ ],
+ "creditsAfter": 20175
+}

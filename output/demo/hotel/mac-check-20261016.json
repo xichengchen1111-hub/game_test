@@ -1,0 +1,89 @@
+{
+  "date": "2026-10-16",
+  "platform": "macOS 26.6.2, Apple M5 Pro, Metal, Unity 6000.3.18f1 (OSXPlayer)",
+  "build": "builds/opening/integrated (OpeningAuthoring.BuildMacIntegrated), Assembly-CSharp SHA256 564590737ee5692136f2ae874586f755c6357fc79290fe7a5fd8d94436d14a08 = 810b96f plus the inn presentation script",
+  "runner": "tools/opening/run_review.py (OPENING_REVIEW_HEIGHT=720 for 720p); every run muted, with its own review save",
+  "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728 before and after all runs",
+  "method": "Programmatic real CharacterController and E-ray inputs, not physical keyboard/mouse or a blind playtest. Raw screenshots stay in the ignored builds/opening/check8*/.",
+  "scope": "Inn (B08) on the Mac build after the merge with the street work.",
+  "runs": {
+    "1080p hotel": {
+      "passed": true,
+      "marker": "HOTEL_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "checks": 30,
+      "checksTrue": 30,
+      "reviewSeconds": 128.2,
+      "gameMinutes": [
+        1075.0,
+        1100.7
+      ],
+      "labels": [
+        "青川 · 旅馆 · 登记大堂",
+        "青川 · 旅馆 · 门房",
+        "青川 · 旅馆 · 账房",
+        "青川 · 旅馆 · 餐厅",
+        "青川 · 旅馆 · 厨房",
+        "青川 · 旅馆 · 后院",
+        "青川 · 旅馆 · 车棚",
+        "青川 · 旅馆 · 楼梯平台",
+        "青川 · 旅馆 · 六号房",
+        "青川 · 旅馆 · 一号房"
+      ],
+      "frameMsP95": 17.0,
+      "screenshots": 25
+    },
+    "1080p hotel-save": {
+      "passed": true,
+      "marker": "HOTEL_SAVE_PASS",
+      "normalSaveUnchanged": true,
+      "frameMsP95": 17.4,
+      "screenshots": 1
+    },
+    "1080p hotel-day": {
+      "passed": true,
+      "marker": "HOTEL_GALLERY_PASS",
+      "normalSaveUnchanged": true,
+      "frameMsP95": 17.0,
+      "screenshots": 17
+    },
+    "720p hotel": {
+      "passed": true,
+      "marker": "HOTEL_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "checks": 30,
+      "checksTrue": 30,
+      "reviewSeconds": 127.6,
+      "gameMinutes": [
+        1075.0,
+        1100.5
+      ],
+      "labels": [
+        "青川 · 旅馆 · 登记大堂",
+        "青川 · 旅馆 · 门房",
+        "青川 · 旅馆 · 账房",
+        "青川 · 旅馆 · 餐厅",
+        "青川 · 旅馆 · 厨房",
+        "青川 · 旅馆 · 后院",
+        "青川 · 旅馆 · 车棚",
+        "青川 · 旅馆 · 楼梯平台",
+        "青川 · 旅馆 · 六号房",
+        "青川 · 旅馆 · 一号房"
+      ],
+      "frameMsP95": 17.0,
+      "screenshots": 25
+    },
+    "720p hotel-save": {
+      "passed": true,
+      "marker": "HOTEL_SAVE_PASS",
+      "normalSaveUnchanged": true,
+      "frameMsP95": 16.8,
+      "screenshots": 1
+    }
+  },
+  "visualReview": "All 25 walkthrough screenshots per resolution and 17 daylight views looked at. Exterior, porch, register desk and raking lamp, I01-I03 papers, dining room, kitchen, back yard, carport with the hotel car, stair, corridor and rooms are intact; frames match the Windows frames in output/demo/hotel/review/ in framing and brightness.",
+  "findings": [
+    "At night the south half of the registration hall (porter counter at local (14.55, 25.6), key rack, stair foot) and the upper landing are very dark: both hall pendants hang in the north half at (9.4, 28.4) and (13.4, 29.6), range 6 m, so the counter gets roughly 6% of the light near a lamp. Same on Windows, so it is the lamp layout, not the Mac renderer. A counter lamp needs a new fixture from the Blender 5.2 generator; not changed, left for the user to decide.",
+    "Porter and landlady are still grey placeholder markers (a teammate makes the people)."
+  ]
+}

@@ -93,11 +93,18 @@ public class PeriodCharacterAnimationTests {
         // Invoke Awake explicitly for EditMode, where scene lifecycle is not driven.
         Call(actor,"Awake");var leg=new GameObject("Left_UpperLeg");leg.transform.SetParent(actor.transform,false);leg.transform.localRotation=Quaternion.Euler(12,3,7);var rotation=leg.transform.localRotation;
         actor.transform.position=new Vector3(16.95f,.15f,20.6f);
+        // Facing away from the point he first turns where he stands, the feet stepping round, instead of
+        // gliding backwards (user, 2026-10-15); then he walks the way he faces, easing into the walk.
         Call(actor,"StepTowards",new Vector3(16.95f,.15f,21.8f),1f,.4f);Advance(performance,animator,.4f);State(animator,"Walk");
-        Assert.That(actor.transform.position.z,Is.EqualTo(21).Within(.001f));Call(actor,"LateUpdate");Assert.AreEqual(rotation,leg.transform.localRotation,"New cast must not receive legacy procedural leg rotation");
+        Assert.That(actor.transform.position.z,Is.EqualTo(20.6f).Within(.001f),"No gliding while turning round");
+        for(int i=0;i<12;i++)Call(actor,"StepTowards",new Vector3(16.95f,.15f,21.8f),1f,.1f);
+        Assert.That(actor.transform.position.x,Is.EqualTo(16.95f).Within(.1f),"Walks the way he faces, never sideways");
+        Assert.That(actor.transform.position.z,Is.GreaterThan(20.75f).And.LessThan(21.8f),"Then walks to the point");
+        Call(actor,"LateUpdate");Assert.AreEqual(rotation,leg.transform.localRotation,"New cast must not receive legacy procedural leg rotation");
         var state=T("DemoApp").GetField("state").GetValue(app);Field(state,"openingStage",1);Field(app,"paused",true);
-        var position=actor.transform.position;Call(actor,"Update");Call(actor,"StepTowards",new Vector3(16.95f,.15f,21.8f),1f,1f);
-        Assert.AreEqual(position,actor.transform.position,"Guard Update and shared path movement both obey pause");
+        // The released guard's own round (PoliceStaffRoutine) stops on NPCAnimationPaused; shared path movement obeys pause too.
+        var position=actor.transform.position;Assert.IsTrue(Flag(app,"NPCAnimationPaused"));Call(actor,"StepTowards",new Vector3(16.95f,.15f,21.8f),1f,1f);
+        Assert.AreEqual(position,actor.transform.position,"Shared path movement obeys pause");
         Field(app,"paused",false);Call(actor,"StopWalking");Advance(performance,animator,.4f);State(animator,"Idle");
     }
     [Test] public void TalkingToAnotherActorStopsLawyerAnimationWithoutDiscardingHisRoute() {

@@ -1,0 +1,293 @@
+{
+  "feature": "POLICE-02 printed police papers (E01 close-up and briefcase no longer blank)",
+  "date": "2026-10-15",
+  "platform": "macOS / Apple Silicon, Unity 6000.3.18f1, Metal; muted reviews, isolated review saves",
+  "build": {
+    "method": "python3 -X utf8 tools/police/write_police_texts.py -> Unity -executeMethod BuildSlice.RebuildPolice -> OpeningAuthoring.BuildMacIntegrated",
+    "app": "builds/police-papers/错日证词-新版.app (clone of builds/opening/integrated/错日证词-新版.app; not promoted to builds/macos-current)",
+    "assemblySha256": "cbac05c59d5ef8943b1e7252daa7389cd19f86826704e4dacd94e08ac56b7fe1"
+  },
+  "documentsWithoutImageBefore": [
+    "e01-copy",
+    "e01-compare",
+    "husband-statement",
+    "hall-notice",
+    "patrol-notice",
+    "telephone",
+    "office-phone",
+    "catalog",
+    "interview-pad",
+    "duty-book",
+    "rain-capes",
+    "photo-board",
+    "sealed-cage",
+    "holding-bed",
+    "holding-basin",
+    "gazette",
+    "archive-boxes",
+    "permit-stub",
+    "archive-index",
+    "stove",
+    "index-witness",
+    "index-date",
+    "index-evidence"
+  ],
+  "documentsPrintedNow": [
+    "e01-copy",
+    "e01-compare",
+    "husband-statement",
+    "hall-notice",
+    "patrol-notice",
+    "catalog",
+    "interview-pad",
+    "permit-stub",
+    "index-witness",
+    "index-date",
+    "index-evidence"
+  ],
+  "documentsLeftWithoutPaper": [
+    "telephone",
+    "office-phone",
+    "duty-book",
+    "rain-capes",
+    "photo-board",
+    "sealed-cage",
+    "holding-bed",
+    "holding-basin",
+    "gazette",
+    "archive-boxes",
+    "archive-index",
+    "stove"
+  ],
+  "leftWithoutPaperReason": "Prose descriptions of objects (telephones, rain capes, photo board, sealed cage, bed, basin, bound gazette, archive boxes, index cabinet, stove, duty book): printing them as paper would invent text or misrepresent the object.",
+  "blankBefore": "Only evidence-ID documents use the 3D close-up and the briefcase: E01 (e01-copy, e01-compare) drew a blank sheet; E08 already had Rail/E08.png. The other documents used the plain inspection panel, which showed text only.",
+  "papers": [
+    {
+      "file": "game/Assets/Art/Police/Papers/Catalog.png",
+      "size": [
+        1024,
+        883
+      ],
+      "sha256": "29036925029d2b34bf0e2543d9f8658633bb528b0b4ab21b2cff7814ac908e22",
+      "documents": [
+        "catalog"
+      ]
+    },
+    {
+      "file": "game/Assets/Art/Police/Papers/E01.png",
+      "size": [
+        1024,
+        1320
+      ],
+      "sha256": "f477a04e31fa4e623c18622b2b45431cc0c5b49c781a6a29c616cf58a84def3b",
+      "documents": [
+        "e01-copy",
+        "e01-compare"
+      ]
+    },
+    {
+      "file": "game/Assets/Art/Police/Papers/HallNotice.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "01dd02ddf32fa0865545e079b6a0f914218d3a5258e5c751bc23385bd485f743",
+      "documents": [
+        "hall-notice"
+      ]
+    },
+    {
+      "file": "game/Assets/Art/Police/Papers/HusbandStatement.png",
+      "size": [
+        1024,
+        768
+      ],
+      "sha256": "7b3e8b8300501c0d0c47f29c5091f7aa650caa97c8c1cbbbff51bf4654a3f8f6",
+      "documents": [
+        "husband-statement"
+      ]
+    },
+    {
+      "file": "game/Assets/Art/Police/Papers/IndexDate.png",
+      "size": [
+        1000,
+        600
+      ],
+      "sha256": "443c30382ea5df471c08613c5cdc4852cbda6fff284941ce9a73144626cff950",
+      "documents": [
+        "index-date"
+      ]
+    },
+    {
+      "file": "game/Assets/Art/Police/Papers/IndexEvidence.png",
+      "size": [
+        1000,
+        600
+      ],
+      "sha256": "ed15dec0017511525561cddede1cab8cc362f3fdea2b97d10bd07bfbc7642472",
+      "documents": [
+        "index-evidence"
+      ]
+    },
+    {
+      "file": "game/Assets/Art/Police/Papers/IndexWitness.png",
+      "size": [
+        1000,
+        600
+      ],
+      "sha256": "d555bc12c82dd8195a4222282ad24476b607ffa88772d1ec8317b76d05687295",
+      "documents": [
+        "index-witness"
+      ]
+    },
+    {
+      "file": "game/Assets/Art/Police/Papers/InterviewPad.png",
+      "size": [
+        1024,
+        900
+      ],
+      "sha256": "447f9de0da1d38acdfb4decb2ba05c3cc6f399269e97cfcd5c99eba9939c1c96",
+      "documents": [
+        "interview-pad"
+      ]
+    },
+    {
+      "file": "game/Assets/Art/Police/Papers/PatrolNotice.png",
+      "size": [
+        1024,
+        512
+      ],
+      "sha256": "912052fa92d6180676a76fc8a3e67b78cf0a7bc953885eb6f6814568842184a2",
+      "documents": [
+        "patrol-notice"
+      ]
+    },
+    {
+      "file": "game/Assets/Art/Police/Papers/PermitStub.png",
+      "size": [
+        1024,
+        600
+      ],
+      "sha256": "05f8f1d052de254328214d7df60427957a75ed33db9dffa341d9c826751c2534",
+      "documents": [
+        "permit-stub"
+      ]
+    }
+  ],
+  "runs": {
+    "police 1080p": {
+      "passed": true,
+      "marker": "POLICE_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papersfinal-police"
+    },
+    "police-reload 1080p": {
+      "passed": true,
+      "marker": "POLICE_SAVE_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papersfinal-police-reload"
+    },
+    "police-cast 1080p": {
+      "passed": true,
+      "marker": "POLICE_CAST_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papersfinal-police-cast"
+    },
+    "street-life 1080p, first run": {
+      "passed": false,
+      "marker": "STREET_LIFE_REVIEW_PASS",
+      "exit": 1,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papersfinal-street-life",
+      "failure": "contacts: car-car 251 - StreetCar0__VisitorMan and StreetCar2__Porter overlapped by up to 7 cm after the signal-corner captures and both stood still; frame p95 33 ms (League of Legends client and Chrome busy on the machine) against 17 ms on the passing build-2 run with the same assembly. No street-life code or asset differs between the builds; the papers change touches none."
+    },
+    "street-life 1080p, re-run": {
+      "passed": true,
+      "marker": "STREET_LIFE_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papersfinal-rerun-street-life"
+    },
+    "police 720p": {
+      "passed": true,
+      "marker": "POLICE_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papersfinal720-police"
+    }
+  },
+  "build2Runs": {
+    "police 1080p": {
+      "passed": true,
+      "marker": "POLICE_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papers-police"
+    },
+    "police-reload 1080p": {
+      "passed": true,
+      "marker": "POLICE_SAVE_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papers-police-reload"
+    },
+    "police-cast 1080p": {
+      "passed": true,
+      "marker": "POLICE_CAST_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papers-police-cast"
+    },
+    "street-life 1080p": {
+      "passed": true,
+      "marker": "STREET_LIFE_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papers-street-life"
+    },
+    "police 720p": {
+      "passed": true,
+      "marker": "POLICE_REVIEW_PASS",
+      "exit": 0,
+      "normalSaveUnchanged": true,
+      "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+      "folder": "builds/opening/papers720-police"
+    }
+  },
+  "editMode": {
+    "result": "Passed",
+    "total": "129",
+    "passed": "129",
+    "failed": "0",
+    "skipped": "0"
+  },
+  "earlierCandidate": "Build 2 had the same assembly but the first 1024x1320 interview sheet, whose small 日期 label blurred at inspection-panel size; police, police-reload, police-cast, street-life and police 720p all passed on it too (builds/opening/papers-*). Build 3 only swapped that texture (1024x900, larger print) and every review was repeated on it.",
+  "buildNoise": "Each BuildMacIntegrated rewrote 28 HospitalCast Humanoid/mouth assets and the Hospital, PoliceStation, OpeningRideCar and 11 StreetLife prefabs (float and object-ID noise); all 41 were restored to their exact pre-build bytes (hash-checked).",
+  "prefabSemanticChange": "Ignoring object IDs, PoliceStation.prefab differs from before only by 11 illustration references and five strings that now follow the pending 物证室→保管室 rename already in PoliceDocuments.json.",
+  "captures": {
+    "e01-closeup-1080.jpg": "police review: E01 close-up from the public desk, 1920x1080",
+    "e01-closeup-720.jpg": "police review: same at 1280x720",
+    "briefcase-1080.jpg": "street-life re-run on the final build: briefcase grid; first evidence thumbnail is E01",
+    "briefcase-e01-thumbnail-crop.jpg": "crop of the same frame around the E01 thumbnail, enlarged 3x (nearest neighbour)",
+    "briefcase-e01-details-1080.jpg": "street-life re-run: E01 examined from the briefcase with details open (the comparison-desk copy)",
+    "statement-panel-1080.jpg": "police review: husband statement in the plain inspection panel",
+    "index-card-panel-1080.jpg": "police review: date index card from the drawer",
+    "permit-stub-panel-1080.jpg": "police review: permit stub in the chief office",
+    "interview-pad-panel-1080.jpg": "police-cast review: blank interview form"
+  },
+  "notCapturedInGame": "HallNotice, PatrolNotice, Catalog, IndexWitness and IndexEvidence were checked as generated files and prefab references only; they use the same plain-panel path as the captured statement, index card, permit stub and interview form.",
+  "limits": "Programmatic controller, E rays and UI handlers; not physical keyboard/mouse or a blind playtest. Reviews are muted. The world-space desk sheets in the FBX are unchanged (no printed text on the 3D desk copies)."
+}

@@ -1,0 +1,51 @@
+{
+  "round": "OPENING-05 (2026-10-15 evening): first-act feedback revision",
+  "deliveredAssemblySha256": "a1d776ecb9fec4566b2f957f94f039030085ffd3475b430fa99dd60b44517906",
+  "comparedCandidate": {
+    "assemblySha256": "eeb1c1251dba6af3d53b8eebe8f3439cba95a28a78fd45f2660f26c64c029a0b",
+    "differsBy": "police-cast review code only"
+  },
+  "checks": {
+    "editMode": "129/129",
+    "opening1080": true,
+    "opening720": true,
+    "openingReload": true,
+    "openingRide": true,
+    "openingRideSave": true,
+    "openingRideInterrupted": true,
+    "openingRideInterruptedSave": true,
+    "police": true,
+    "policeReload": true,
+    "policeCast": true,
+    "policeNpc": true,
+    "yardGate": true,
+    "yardGateSave": true,
+    "hospital": true,
+    "hospitalSave": true
+  },
+  "measured": {
+    "knockPalmError_m": 0.0,
+    "propertyDoorPalmToHandle_m": 0.022,
+    "courtDoorPalmToHandle_m": 0.023,
+    "goodbyeHeadYaw_deg": 78,
+    "goodbyeGazeOff_deg": 4,
+    "rideMaxTurnAccel_deg_s2": 47.6,
+    "rideMaxRoll_deg": 1.44
+  },
+  "guardBody_m": {
+    "shoulderHeight": 1.405,
+    "upperArm": 0.196,
+    "forearm": 0.197,
+    "palm": 0.11
+  },
+  "muted": true,
+  "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728",
+  "normalSaveUnchanged": true,
+  "method": "Native macOS player, scripted real controller, E rays and shared dialogue/inspection handlers; not physical keyboard play or blind testing. New sounds analysed by spectrum and envelope only, not listened to in tests.",
+  "sheets": [
+    "cinematic.jpg",
+    "property-room.jpg",
+    "lawyer.jpg",
+    "ride-goodbye.jpg"
+  ]
+}

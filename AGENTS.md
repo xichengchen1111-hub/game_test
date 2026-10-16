@@ -89,6 +89,8 @@
 - 雨与声学：前楼一个外壳，按正门两扇＋横厅后门判断闷雨；两翼每间房单独一个外门；回廊 `WeatherShelter.acousticallyOpen`＝有顶不闷声；内院露天。内院地面由预制件拥有，`build_full_town.py` 与 `plan_greenery.py` 已把 (6.5,39.7)-(18.5,51.7) 从街面／院落／草花中排除；`FullMapChecks` 对 `Ext_Court` 做共面检查。
 - 灯：33 盏室内点光只照 Light Layer 4（`PoliceInteriorLayer`），室内渲染器同时保留 Default；6 盏外墙／回廊灯为 Exterior 感光并占 12 处光池。无新增阴影灯。5 盏阅读灯 `LampSwitch` 手动关闭以 `police-*-lamp-off` 存档并优先于昼夜。
 - 叙事边界：E01 案卷摘要两份副本与 E08 巡警原簿副本沿用稳定 ID 去重；E08 正文与车站资料桌逐字一致，来源写明另一镇调取副本。案卷摘要只排版修订稿第一节与证据合同的事实，措辞待用户确认。分类索引、目录只记存放位置。值班警员只说程序与已有事实，不说钟差、正确日期或凶手。阶段报告由玩家选陈述、判断与调查簿材料，规则在 `Resources/PoliceReport.json`（D01–D04），只核对材料，不自动结案；两项核心（D02、D03）都成立才进入「需要重新调查」，仍可继续探索。
+- 纸面（2026-10-15）：十张可读纸张——E01 两份副本共用一张、丈夫陈述誊录页、查阅须知、巡逻告示、案卷目录、问询记录纸（空白表格，只印描述里引的抬头和空着的日期栏）、查阅许可存根、三张分类索引卡——由 `tools/police/write_police_texts.py` 按各自标题与正文逐字排印到 `Art/Police/Papers/*.png`（TownSans、修车铺／医院同一纸色，打字机式墨色微变，不加新文字），`PoliceDocuments.json` 的 `image` 引用。导入保持原尺寸、不压缩、无 mipmap（同医院纸张；特写按贴图比例出纸，被缩成方图就变形）。只有带证据 ID 的 E01、E08 进三维特写和公文包，没有图就是空白纸，`PoliceChecks` 会拒绝；其余在普通查看面板左侧显示纸面。电话、炉子、物证柜、床、雨披、合订本、卷宗、照片板等实物描述不配纸。改文字后在 Mac 上依次跑该脚本、Unity `-executeMethod BuildSlice.RebuildPolice`、`OpeningAuthoring.BuildMacIntegrated`（Windows 用 `tools/BuildPolice.ps1`）。经过见记忆 POLICE-02。
+- 桌面副本（2026-10-16）：E01 两份副本在场景里就是那张印刷纸——公开材料桌放在竖版文件夹 `read-folder-1` 上，对照桌放在阅读架 `read-stand-1` 的斜板上。位姿来自布局合同证据条目的 `paper`（`police_layout.py` 的 `desk_paper`：支撑家具、纸张尺寸按 E01.png 1024×1320、中心、朝向、斜度、离支撑面高度）；Blender 不在这两件家具上出空白纸，并核对纸面落在它生成的支撑面上；Unity 的 `PoliceDeskPaper` 照修车铺 `GaragePaper` 用 `EvidenceModel.Paper`＋`EvidencePhysical` 放纸，网格与材质存到 `Assets/Generated/Police/`，特写和公文包看的就是这张纸。纸边最低处离支撑面 0.9 mm、印刷面高出 2 mm 以上，不在源头造成共面。`PoliceChecks` 拒绝没有印刷面、比例不符、没存成资源、支撑家具上还留着空白纸或没搁在支撑面上（0.5 mm–1.5 cm）的桌面副本。改纸张尺寸或换支撑家具改 `desk_paper`，不要手改预制件。E08 阅读架、丈夫陈述、问询记录纸、查阅许可存根等其余桌面纸仍是 FBX 空白纸。经过见记忆 POLICE-03。
 - 值班警员暂用已认可售票员 Tripo 模型改藏青制服（`make_officer_texture.py`），脸与售票员相同，是占位；档案职员按设计缺席。
 - 字体：新增中文后用 `tools/clocktower/expand_ui_font.py builds/review/milk-interior-a/NotoSansSC.ttf` 扩充 TownSans（保留旧字形，源 SHA256 与 `font-manifest.json` 一致）。
 - 验收：`tools/ReviewPolice.ps1 -Mode police` 与 `-Mode verify`（独立 `police-review-save.json`），1080p／720p。结果与回归见 `output/demo/police-station/` 与记忆 POLICE-01。
@@ -101,7 +103,7 @@
 - 灯：13 盏室内灯只照 Light Layer 4（与警署／住宅共用，相距一百米以上），3 盏外墙灯感光并占 12 处光池；无新增阴影灯。接待桌与账房台灯可手动关，存 `garage-*-lamp-off`。
 - 叙事：修车匠就是情夫，站在车间货车旁（当前探索站位，不是 1 月 20 日位置）。对话 `Resources/MechanicDialogue.json` 沿用修订稿第七节三问原句，另加“抄件来历”（需已读 W01）与“工具牌平时挂在哪里”；不说钟差、日期或凶手，不授予证物。账房书桌上是凯恩车间寄来的 W01 工单抄件与 W02 两位顾客证词抄件（调查簿新记录，实体纸张，按物证检查规范查看）；阶段报告新增非核心规则 D06（S6×行程，需 E01＋W01＋W02），不进入两项核心判断、不自动结案。客户登记本、价目、工具牌挂板空钩、油污手套等只是生活痕迹；登记本与便条措辞待用户确认。合同见 `docs/mvp-evidence.json` 的 `repair_shop_1931`。
 - 修车匠暂用已认可售票员 Tripo 模型改褐色帆布工装（`make_mechanic_texture.py`），脸与售票员、旧值班警员占位相同，是占位；正式人物需用户在 Tripo 制作。
-- 验收：`tools/ReviewGarage.ps1 -Mode garage` 与 `-Mode verify`（独立 `garage-review-save.json`），1080p／720p；白天外观用 `--review --fresh --review-garage-day` 固定机位目视。结果见 `output/demo/garage/` 与记忆 GARAGE-01。
+- 验收：`tools/ReviewGarage.ps1 -Mode garage` 与 `-Mode verify`（独立 `garage-review-save.json`），1080p／720p；Mac 上用 `tools/opening/run_review.py garage`／`garage-save`（720p 加环境变量 `OPENING_REVIEW_HEIGHT=720`）。白天外观用 `--review --fresh --review-garage-day`（Mac：`run_review.py garage-day`）固定机位目视。结果见 `output/demo/garage/` 与记忆 GARAGE-01、CHECK-01。
 
 ### 旅馆（A 山墙老客栈，用户要求完整呈现，2026-10-16）
 
@@ -112,7 +114,7 @@
 - 灯：21 盏室内灯只照 Light Layer 4（医院最近，相距约 50 米），5 盏外灯感光并占 12 处光池，外加斜光一盏；无新增阴影灯。账房台灯与账桌台灯可手动关，存 `hotel-*-lamp-off`。
 - 叙事（修订稿地点 I）：I01 登记页（“H·华德”，六号房，候夜车；到店钟点墨迹晕开，能认出“八时十五分”）、I02 下一页压痕（“六时三十五分”、房号“六”）、I03 餐厅账本（六时五十分六号房预付房费、晚餐不用）、I04 门房证言（问二十日晚上时记录：六点半刚过来、不到半个钟头走、问了晚上进站的车，门房凭记忆认出是你）。每份记录写明按门房的表记时（门房每早到车站对表），不说哪只钟错。阶段报告新增非核心规则 D07（S2×行程，需 E01＋I01＋I02＋I04，I03 辅助），不进核心、不自动结案。合同见 `docs/mvp-evidence.json` 的 `hotel_1931`；假名、其他住客与账本措辞是制作提案，待用户确认。旅馆用车仍不进证据或证词，门房说的“车”只指进站列车，不给任何车次时刻。
 - **人物占位**：门房（柜台后）与老板娘（餐厅账桌旁）是灰色站位标记＋完整对话入口（`HotelActor`，`HotelPorterDialogue.json`／`HotelKeeperDialogue.json`），不是人物模型；队友交付人物后在同一站位替换，`HotelChecks` 目前断言两处都是占位。
-- 验收：`tools/ReviewHotel.ps1 -Mode hotel` 与 `-Mode verify`（独立 `hotel-review-save.json`），1080p／720p；白天外观用 `--review --fresh --review-hotel-day` 固定机位目视。结果见 `output/demo/hotel/` 与记忆 HOTEL-01。
+- 验收：`tools/ReviewHotel.ps1 -Mode hotel` 与 `-Mode verify`（独立 `hotel-review-save.json`），1080p／720p；Mac 上用 `tools/opening/run_review.py hotel`／`hotel-save`。白天外观用 `--review --fresh --review-hotel-day`（Mac：`run_review.py hotel-day`）固定机位目视。介绍录像入口 `--review --fresh --showcase-hotel`（独立存档，录制时 5% 音量，不是检测）。结果见 `output/demo/hotel/` 与记忆 HOTEL-01、CHECK-01。
 
 ### 街道物件（1931 街道设施十件，用户要求做进游戏，2026-10-16）
 
@@ -122,7 +124,7 @@
 - Unity：`BuildSlice.StreetItems.cs` 在全镇场景（`FullMapTown`）按地图摆放，脚底取所在铺面三角形高度，按种类加简单盒／胶囊碰撞（树围只加铁栏胶囊，原树干碰撞不动）；构建期检查 41 处、十种、位置、朝向、占地、贴地、无灯、无交互，碰撞不与其他道具／路灯／牌子／建筑／长椅重叠。物件材质加入 `TownWetness`。
 - 叙事边界：纯街景，没有 E 交互、证据、文字线索、存档或时间来源；海报无日期、无本镇人名地名，小启事正文不可读；邮筒无收信时间牌；火警柱不写箱号；饮马槽、拴马桩不放马；擦鞋摊无人；废纸篓只放落叶不放纸。故意不做：街钟、报亭、新电话亭、路名牌、加油泵、奶罐台、公告栏／班车站牌、投币体重秤（见概念 `design-plan.json`）。
 - 灯：唯一发光是两根火警柱的红玻璃灯罩，只是随同一感光曲线的发光面（`DayNightLamp` 无光源、不占 12 处光池），不新增灯或阴影灯。
-- 验收：`tools/ReviewStreetItems.ps1`（`--review --fresh --review-street-items`，独立 `street-items-review-save.json`，1080p／720p）；结果见 `output/demo/street-items/` 与记忆 STREET-01。
+- 验收：`tools/ReviewStreetItems.ps1`（`--review --fresh --review-street-items`，独立 `street-items-review-save.json`，1080p／720p）；结果见 `output/demo/street-items/` 与记忆 FURNITURE-01。
 
 ### 仓库体积与证据文件（用户确认，2026-10-12）
 
@@ -237,9 +239,18 @@ B12已完成两层八室、13窗、10门、20组搜索柜格与26条住宅相关
 
 ## 可玩优先与第一幕（用户要求，2026-10-13）
 
-优先完成可玩功能，暂不扩大美化和装饰。新开局为羁押室醒来、狱警通知律师来访、玩家步行至律师会见室、律师带来报纸、阅读后确认保释与开放调查；狱警不递报纸。旧调查存档保留进度并跳过第一幕。创造者工具仅供观察与快速传送，不授予证物或改变剧情阶段；飞行不保存半空位置。具体入口、隔离存档与临时人物模型见 docs/opening-act.md。后续扩展保持自由调查与证据规则。
+优先完成可玩功能，暂不扩大美化和装饰。设定（用户 2026-10-15）：主角是现代人，借同时代方明博士的穿梭装置回到一九三一年查一桩到他那个年代都没破的命案，醒来成了获准保释的丈夫；他不问“这是哪儿”。新开局（2026-10-15 第二版）为第一人称牢房过场：醒来头痛、看到旧物确认装置竟是真的时被敲门打断，狱警（语气不耐烦）用拳头砸门、钥匙开锁、手推开门，以证据不够放人；狱警带玩家去东翼保管室，开柜取出公文包放到桌上（领取前没有怀表、地图、车票和调查簿；领回后公文包一直随身，按 B 打开），再带到会见室；律师出于同情（不是旧识）先问他状况、劝他想开，坐下后坐着说话不比划，玩家可对椅子按 E 坐下谈话，律师带来报纸、阅读后确认保释与开放调查；狱警不递报纸。人物伸手的动作用 `NpcHands`，走路转身用 `OpeningActor` 的限速转身与沿朝向前进，门声由 `tools/opening/make_door_sounds.py` 生成。警署警员按 `PoliceStaffRoutine` 日程走动办公，只在正常游戏和第一幕／警员日常检测中启用。旧调查存档保留进度并跳过第一幕。创造者工具仅供观察与快速传送，不授予证物或改变剧情阶段；飞行不保存半空位置。具体入口、隔离存档与临时人物模型见 docs/opening-act.md。后续扩展保持自由调查与证据规则。
 
 2026-10-13 已更新原桌面 `builds/macos-current/错日证词-新版.app`，普通入口继续原调查，同目录 `第一幕试玩.command` 通过同一应用的 `--opening-playtest` 使用独立存档。`OpeningAuthoring.BuildMacIntegrated` 为此生成候选包，必须静音检查后才更新原入口。`重新开始第一幕.command` 先备份独立第一幕存档，再从牢房开始，不能删除正常 `slice-save.json`。五个 Tripo 新人物仍未取得完整本地资源，玩法整合不代表人物已接入；见 NPC-12 与 `output/demo/game-integration/acceptance.json`。
+
+### 公文包、档案与街道生活（用户要求，2026-10-15）
+
+- **B 公文包**（`DemoApp.Backpack.cs`）：领回后公文包一直随身，按 B 打开常见的背包格子界面。上排是随身物品（怀表、纸地图、车票 E02、调查簿、钱夹），下面是查看过的物证；每格是实物的三维小图，右侧大图慢慢转、可拖动；E 或双击：怀表／地图直接取出，调查簿翻到档案，车票与物证按原有《生化危机3》式检查打开，Esc 放回后回到公文包。原件仍留在原处（只有 E02 随身），公文包列的是看过的记录；口供不放这里。开合有原创扣锁声（`tools/opening/make_door_sounds.py` 的 BriefcaseOpen／Close）。
+- **Tab 档案**：只记人说的话。每人一页：有正式证言的（送奶少年 E04、病房护士 Y04）先列证言，再按提问顺序列「问／答」原话（从对话数据按已问话题生成，告别和递交报告不列）；孩子的家常话不进档案。档案页保留「整理阶段报告」，阶段报告的材料仍从全部记录中选。证据、去重与推理规则不变，不新增调查门槛。
+- **街道生活**（`StreetLife`、`StreetNet`、`AmbientCar`、`StreetWalker`、`StreetDensity`，调研见 `docs/research/street-life-1931.md`）：路网在载入时由 TownPlan 与 PeriodStreets 生成（右侧通行、东西向为主路、南北向停车让行、车站路×中街信号灯）。车用跟车模型：限速、完全停稳后等主路空当、两车同到让右边、黄灯能停就停、左转让对向、窄街会车减速、让行人、被玩家挡住时停下并轻按一次喇叭；司机左转、右转、减速时伸手打手势；车灯只发光不占 12 处光池。路口按车身算（STREET-03）：南北向 4 m 窄街两车并排只有 0.22 m，主路右转拐进来的车头会扫过中线，所以窄街的停车线在载入时按车身扫掠自动后退（本图 18 条约 2 m），等线的车与别的车道拐弯的车身至少隔 0.19 m；冲突按中线 2.3 m 或车身 0.19 m 判；车头已过线的车算已进路口，别人让它、它也不再为主路车和右侧来车停下；刚出路口、车身还在别人拐弯范围里的车也算占着。最后一道防撞：任何车都不移进别的车身 0.1 m 以内（`AmbientCar.Guard`，每次触发记 `STREET_CAR_GUARD`）；一帧卡顿只按 0.1 s 走。行人走人行道靠右、互相让路、绕开玩家，在路口看车等空当，信号路口跟同向绿灯过街；老人慢、弯腰、会停下歇，老先生拄杖着地；下雨多数撑伞；有人站着聊天、在门口停留后进屋。车站旁坐着乞讨的人（走近伸手，E 给几枚硬币），广场上有摇风琴的艺人（手跟着摇柄转，原创曲 `tools/opening/make_street_sounds.py`）。数量按钟点和雨量变化（白天多、夜里几乎没人），都在玩家看不见的地方出现和离开，不存档、不给证言或证物。第一幕不出现：行人从律师送到医院起，汽车等律师的车开走后才有。
+- **街头人物**（Tripo，用户 2026-10-16 看过验收图后放行）：男孩、女孩、遛狗的妇人和她的㹴犬、商人、年轻女职员、买东西的主妇、送货工人（也是摇风琴的艺人）、拄杖的老先生、车站旁乞讨的流浪汉；司机由商人、老先生、工人担任。来源与放行在 `assets/source/street-cast/`（`production-status.json`、按文件哈希的 `acceptance.json`），参考图提示词 `tools/street/cast_prompts.py`，验收图 `output/demo/street-life/cast/`（`tools/street/review_sheet.py`），由 `StreetCastAuthoring` 接入 `StreetLifeAuthoring`。文件一变就失去放行：有医院替身的退回替身（名字带「临时模型」），儿童和遛狗的人则不出现。老妇人仍借医院的探视老太太。小孩不参与路边聊天。
+- **狗**：Tripo 把四足动物绑在人形模板上（前腿是 Upperarm/Forearm/Hand，后腿是 Thigh/Calf/Foot，没有尾巴骨），动作库和文生动作只有人形（试生成的走路让狗直立飘起，未导出），所以只导出带骨骼的模型（`tools/street/import_street_dog.py` → `prepare_street_dog.py`，肩高 0.39 m，`DogRig.json` 记骨骼角色）。走路和待机由 `StreetDog` 在运行时按骨骼做：对角小跑、步幅随地速、背部起伏、抬头四顾，停下时呼吸、偶尔抬头看主人；始终在主人左侧、绳长 1.5 m 以内，侧面不通或玩家站在那里就跟到主人身后；牵绳从主人左手（`NpcHands`）到项圈，松时下垂。行人避让、`StreetLife.Free` 都算上狗，玩家走不进狗身上。
+- **检测**：`tools/opening/run_review.py street-life`（静音、独立存档）核对红灯／停车让行零违规、车与车／车与人／人与人／人与玩家零接触、行人不沿车道走、玩家挡车时停下鸣笛并在让开后继续、各钟点与雨天的目标人数、老人步速与手杖、遛狗的人和狗（跟拍 20 秒：狗离主人不超过 1.7 m、不进墙、不悬空、绳在左手、不碰人和玩家）、男孩女孩的步速、雨伞比例、风琴摇柄手位、乞讨者坐姿、公文包与档案流程。`run_review.py street-traffic`（静音、独立存档）只看车流：九个路口轮流站 80 秒、车数开满、时间两倍速、每 7 秒卡一帧 0.3 s，要求零车车接触、没有车因等车或规则停满 120 秒、零闯红灯和不停 STOP，并记防撞触发次数（应为 0）；等行人的久停另记（人行横道上被车身挡住的人与等这个人的车会一直对峙，属行人问题）。其他隔离检测关闭街道生活（人行道扫掠、光源预算、送院车路线都按空街测量）。录像入口 `--review --fresh --showcase-street`。
 
 ### 第一幕送院与检测静音（2026-10-13）
 

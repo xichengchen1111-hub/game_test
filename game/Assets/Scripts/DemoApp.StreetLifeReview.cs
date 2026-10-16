@@ -1,0 +1,415 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEngine;
+
+// Street life in play (StreetLife), and its isolated review: --review --fresh --review-street-life
+// (tools/opening/run_review.py street-life). Muted, own save; the normal save is untouched.
+public partial class DemoApp {
+    public Transform RideCarTransform=>rideCar?rideCar.transform:null;
+    // Not during the first act: people from the hospital on, cars once the lawyer has driven off.
+    public bool StreetLifeAllowed=>sceneReady&&CurrentScene=="Town"&&!opening&&!cellCinematic&&state.openingRideStage>=4;
+    public bool StreetCarsAllowed=>StreetLifeAllowed&&!OpeningRideActive&&!rideCar&&state.openingRideStage>=5;
+    void InitializeStreetLife() {
+        if(!StreetLife.Enabled||CurrentScene!="Town"||StreetLife.Current||!player)return;
+        StreetLife.Create(player.eye,player.transform);
+    }
+
+    [Serializable] class StreetLifeReviewResult {
+        public bool passed;public int width,height;
+        public int peopleMorning,carsMorning,peopleNightTarget,carsNightTarget,peopleNoonTarget,peopleRainTarget,carsEveningTarget;
+        public int signalEntries,redRuns,stopSignEntries,stopViolations,crossingsStarted,kerbWaits,yieldsToPeople,honks;
+        public int carOverlaps,carPersonContacts,personOverlaps,personPlayerOverlaps,roadWalking;
+        public float minCarGap=float.MaxValue,minPersonGap=float.MaxValue,meanFps;
+        public bool playerBlockStopped,playerBlockHonked,playerBlockResumed;
+        public float elderlySpeed,elderlyStoop,caneTipHeight;public bool caneHeld;
+        public float umbrellaShare;public bool organPlaying;public float crankHandError;public bool beggarSeated;
+        public bool backpackCarried,backpackThumbnails,backpackTicketReturns,backpackPaperReturns,dossierTestimony;
+        // The street cast (2026-10-16): the dog on its lead and the children.
+        public List<string> figures=new List<string>();
+        public float dogFurthest,dogFloat,leadLongest,boySpeed,girlSpeed;public int dogInWall,dogWalkingFrames,dogContacts,dogPlayerContacts;public bool leadInHand;
+        // STREET-03: the stop lines set back for turning cars, the tightest clearances left by the
+        // layout, and how often the last-resort guard had to hold a car (it should not have to).
+        public string stopLines,waitingClearance,openTurnClearance;public int carGuardHolds;
+        public List<string> captures=new List<string>();
+        public string verification;
+    }
+    StreetLifeReviewResult slResult;
+    void SLNeed(bool ok,string why) {
+        if(ok)return;
+        Debug.LogError("STREET_LIFE_REVIEW_FAIL: "+why);
+        if(slResult!=null)File.WriteAllText(Path.Combine(captures,"street-life-acceptance.json"),JsonUtility.ToJson(slResult,true));
+        Application.Quit(1);throw new InvalidOperationException(why);
+    }
+    IEnumerator SLCapture(string name){slResult.captures.Add(name+".png");yield return Capture(name);}
+    // The clock set without freezing it: traffic needs time to run.
+    void StreetTime(double minutes) {
+        dayNightReviewFrozen=false;paused=false;
+        gameClock=new GameClock(GameClock.WrapMinutes(minutes-GameClock.InitialMinutes));
+        DayNightCycle.Instance.Apply(Minutes);
+    }
+    IEnumerator ReviewStreetLife() {
+        slResult=new StreetLifeReviewResult{width=Screen.width,height=Screen.height};
+        // Well after the first act: belongings back, the lawyer gone.
+        state.openingRevision=Math.Max(1,state.openingRevision);state.openingStage=4;state.openingEscort=4;state.belongingsCollected=true;
+        state.openingRideRevision=1;state.openingRideStage=5;
+        state.entries.Clear();
+        foreach(var id in new[]{"E01","E03","E06","H17","H18","W02","Y03","H09","E04","Y04"})state.entries.Add(new NotebookEntry{id=id,title="Review "+id,body="Review body "+id,source="Review"});
+        state.dialogueTopics.AddRange(new[]{"milkboy.delivery","milkboy.route","station-clerk.date","station-clerk.inspection","mechanic.where"});
+        StreetTime(8*60+30);
+        yield return new WaitForSeconds(1.5f);
+        var life=StreetLife.Current;SLNeed(life,"street life was not created in Town");
+        SLNeed(life.Net.lanes.Count>=20&&life.Net.junctions.Count>=9&&life.Net.turns.Count>40,"street network too small: lanes="+life.Net.lanes.Count+" junctions="+life.Net.junctions.Count);
+        SLNeed(life.Net.turns.Any(t=>t.conflicts.Count>0),"no junction conflicts computed");
+        // 1. The morning rush at Station Road × Middle Street, watched from the north-east corner.
+        player.Place(new Vector3(36.4f,.12f,27.4f),225);player.Aim(new Vector3(28,1.2f,18));
+        yield return new WaitForSeconds(12);
+        slResult.peopleMorning=life.People;slResult.carsMorning=life.Cars;
+        SLNeed(life.PeopleTarget>=24&&life.People>=life.PeopleTarget*.6f,"morning people "+life.People+"/"+life.PeopleTarget);
+        SLNeed(life.CarTarget>=7&&life.Cars>=3,"morning cars "+life.Cars+"/"+life.CarTarget);
+        yield return SLCapture("01-morning-signal-corner");
+        // 2. A minute and a half of traffic: rules, gaps and contacts, every frame.
+        life.Stats.Reset();
+        float watch=Time.time+90,frames=0,seconds=0;
+        var signalShots=new HashSet<string>();
+        while(Time.time<watch) {
+            frames++;seconds+=Time.unscaledDeltaTime;
+            Audit(life);
+            if(!signalShots.Contains("02")&&life.AllCars.Any(c=>c.Waiting=="rule"&&Vector3.Distance(c.transform.position,new Vector3(30,0,20))<14)){signalShots.Add("02");yield return SLCapture("02-cars-held-at-signal");}
+            if(!signalShots.Contains("03")&&life.Walkers.Any(w=>w.Crossing&&Vector3.Distance(w.transform.position,new Vector3(30,0,20))<12)){signalShots.Add("03");yield return SLCapture("03-people-crossing-on-green");}
+            yield return null;
+        }
+        slResult.meanFps=frames/Mathf.Max(.01f,seconds);
+        var st=life.Stats;
+        slResult.signalEntries=st.signalEntries;slResult.redRuns=st.redRuns;slResult.stopSignEntries=st.stopEntries;slResult.stopViolations=st.stopViolations;
+        slResult.crossingsStarted=st.crossings;slResult.kerbWaits=st.kerbWaits;slResult.yieldsToPeople=st.yields;slResult.honks=st.honks;
+        SLNeed(st.signalEntries>=3,"too few cars through the signal: "+st.signalEntries);
+        SLNeed(st.redRuns==0,"cars ran the red: "+st.redRuns);
+        SLNeed(st.stopViolations==0,"cars went past a STOP sign without stopping: "+st.stopViolations);
+        SLNeed(slResult.carOverlaps==0&&slResult.carPersonContacts==0&&slResult.personOverlaps==0&&slResult.personPlayerOverlaps==0,"contacts: car-car "+slResult.carOverlaps+" car-person "+slResult.carPersonContacts+" person-person "+slResult.personOverlaps+" person-player "+slResult.personPlayerOverlaps);
+        SLNeed(slResult.roadWalking==0,"people walking along the carriageway: "+slResult.roadWalking);
+        SLNeed(st.crossings>=2,"too few people crossed: "+st.crossings);
+        // 3. The player standing in the road: the car stops short, toots once, goes on when the way is clear.
+        yield return PlayerBlocksCar(life);
+        // 4. A STOP corner (South Street × Middle Street): a car coming down Middle Street stops fully with
+        // its bumper at the line, waits at least a second, then goes on.
+        var stopLane=life.Net.lanes.FirstOrDefault(l=>l.stopSign&&l.toJunction!=null&&Mathf.Abs(l.toJunction.centre.x-30)<.5f&&Mathf.Abs(l.toJunction.centre.z+122)<.5f&&l.dir.z<-.9f);
+        SLNeed(stopLane!=null,"no STOP approach on Middle Street at South Street");
+        // Beside its line, wherever the line stands (it was set back for turning cars, STREET-03).
+        player.Place(stopLane.end+new Vector3(5.4f,.12f,4.05f),220);player.Aim(stopLane.end+new Vector3(1,1,-3.35f));
+        life.Stats.Reset();var stopper=life.SpawnCarOn(stopLane,2,4.5f);SLNeed(stopper,"could not place the STOP-corner car");
+        // Timed by the clock from the first stopped frame to the last (a screenshot pauses this loop).
+        float stopStart=-1,stopEnd=-1,lineGap=99;bool entered=false,shot=false;
+        for(float until=Time.time+40;Time.time<until&&!entered;) {
+            Audit(life);
+            if(stopper.path==stopLane){float toLine=stopLane.length-stopper.s-AmbientCar.Front;if(stopper.speed<.05f&&toLine<2.5f){if(stopStart<0)stopStart=Time.time;stopEnd=Time.time;lineGap=Mathf.Min(lineGap,toLine);}}
+            else entered=true;
+            if(stopStart>=0&&Time.time-stopStart>.4f&&!shot){shot=true;yield return SLCapture("04-stop-corner");}
+            yield return null;
+        }
+        float stoppedAtLine=stopStart<0?0:stopEnd-stopStart;
+        slResult.stopSignEntries=life.Stats.stopEntries;slResult.stopViolations=life.Stats.stopViolations;
+        SLNeed(entered&&stoppedAtLine>=1&&lineGap>-.05f&&life.Stats.stopViolations==0,"STOP corner: entered="+entered+" stopped "+stoppedAtLine+" s, bumper "+lineGap+" m before the line, violations "+life.Stats.stopViolations);
+        // 5. The old gentleman: slower, bent, the stick planted on the ground.
+        yield return Elderly(life);
+        // 5b. The street cast: a woman walking her terrier on its lead, a boy and a girl.
+        yield return StreetCast(life);
+        // 6. Density by the hour and the rain (targets follow StreetDensity).
+        StreetTime(3*60);yield return new WaitForSeconds(1.2f);slResult.peopleNightTarget=(int)life.PeopleTarget;slResult.carsNightTarget=(int)life.CarTarget;
+        SLNeed(life.PeopleTarget<=1&&life.CarTarget<=1,"three in the morning should be empty: "+life.PeopleTarget+"/"+life.CarTarget);
+        StreetTime(21*60+30);for(float until=Time.time+14;Time.time<until;){Audit(life);yield return null;}yield return SLCapture("05-night-street");
+        StreetTime(12*60+20);DayNightCycle.Instance.SetReviewWeather(TownWeather.Kind.Overcast);yield return new WaitForSeconds(1.2f);slResult.peopleNoonTarget=(int)life.PeopleTarget;
+        DayNightCycle.Instance.SetReviewWeather(TownWeather.Kind.Rain);yield return new WaitForSeconds(1.2f);slResult.peopleRainTarget=(int)life.PeopleTarget;
+        SLNeed(slResult.peopleNoonTarget>=28&&slResult.peopleRainTarget<slResult.peopleNoonTarget*.75f,"noon/rain targets "+slResult.peopleNoonTarget+"/"+slResult.peopleRainTarget);
+        // Umbrellas up in the rain.
+        player.Place(new Vector3(-20,.12f,15.2f),90);player.Aim(new Vector3(0,1.4f,15.2f));
+        for(float until=Time.time+12;Time.time<until;){Audit(life);yield return null;}
+        var near=life.Walkers.Where(w=>Vector3.Distance(w.transform.position,player.transform.position)<60).ToList();
+        slResult.umbrellaShare=near.Count==0?0:near.Count(w=>w.transform.Find("Umbrella")&&w.transform.Find("Umbrella").gameObject.activeSelf)/(float)near.Count;
+        SLNeed(near.Count>=3&&slResult.umbrellaShare>=.5f,"umbrellas in the rain: "+slResult.umbrellaShare+" of "+near.Count);
+        yield return SLCapture("06-rain-umbrellas");
+        DayNightCycle.Instance.SetReviewWeather(null);
+        StreetTime(17*60+35);yield return new WaitForSeconds(1.2f);slResult.carsEveningTarget=(int)life.CarTarget;
+        SLNeed(life.CarTarget>=8,"evening rush cars target "+life.CarTarget);
+        // 7. The pitches in the late morning: the organ grinder turning his crank, the beggar seated.
+        // He sets up where nobody is watching: stand well away, looking the other way, first.
+        StreetTime(10*60+15);DayNightCycle.Instance.SetReviewWeather(TownWeather.Kind.Overcast);
+        player.Place(new Vector3(-75,.12f,15.2f),-90);yield return new WaitForSeconds(2);
+        for(float until=Time.time+8;Time.time<until&&!life.Organ;)yield return null;
+        SLNeed(life.Organ,"organ grinder not on his pitch at 10:15");
+        var organ=life.Organ;player.Place(organ.transform.position-organ.transform.forward*3.2f+Vector3.up*.02f,0);player.Aim(organ.transform.position+Vector3.up*1.2f);
+        yield return new WaitForSeconds(2.5f);
+        var organHands=organ.GetComponent<NpcHands>();slResult.crankHandError=organHands?organHands.Error(true):99;
+        var music=organ.GetComponentInChildren<AudioSource>();slResult.organPlaying=music&&music.isPlaying;
+        SLNeed(slResult.organPlaying&&slResult.crankHandError<.09f,"organ: playing="+slResult.organPlaying+" crank hand error="+slResult.crankHandError);
+        yield return SLCapture("07-organ-grinder");
+        for(float until=Time.time+6;Time.time<until&&!life.Beggar;)yield return null;
+        if(life.Beggar) {
+            var beggar=life.Beggar;player.Place(beggar.transform.position+(-beggar.transform.forward)*2.4f+Vector3.up*.02f,0);player.Aim(beggar.transform.position+Vector3.up*.7f);
+            yield return new WaitForSeconds(2);var pose=beggar.GetComponent<HospitalBedPose>();var hips=pose?pose.hips:null;
+            slResult.beggarSeated=hips&&hips.position.y-beggar.transform.position.y<.62f;
+            SLNeed(slResult.beggarSeated,"beggar not seated");yield return SLCapture("08-beggar");
+        } else Debug.LogWarning("STREET_LIFE_REVIEW_NOTE: no beggar pitch was free");
+        DayNightCycle.Instance.SetReviewWeather(null);
+        SLNeed(slResult.carOverlaps==0&&slResult.carPersonContacts==0&&slResult.personOverlaps==0&&slResult.personPlayerOverlaps==0&&slResult.roadWalking==0,"later contacts: car-car "+slResult.carOverlaps+" car-person "+slResult.carPersonContacts+" person-person "+slResult.personOverlaps+" person-player "+slResult.personPlayerOverlaps+" road "+slResult.roadWalking);
+        // 8. The briefcase and the dossier.
+        yield return Briefcase();
+        RecordStreetLayout(life,out slResult.stopLines,out slResult.waitingClearance,out slResult.openTurnClearance);
+        slResult.carGuardHolds=life.GuardHolds;
+        slResult.passed=true;
+        slResult.verification="Isolated muted review player; program-driven player position, no physical keyboard/mouse. Townsfolk from the approved street cast (2026-10-16); the old woman is still the hospital's visitor. The terrier's gait is procedural (StreetDog).";
+        File.WriteAllText(Path.Combine(captures,"street-life-acceptance.json"),JsonUtility.ToJson(slResult,true));
+        Debug.Log("STREET_LIFE_REVIEW_PASS: rules, contacts, density, gait, street cast and dog, umbrellas, pitches, briefcase and dossier");
+        Application.Quit();
+    }
+    // A longer look at the traffic alone (STREET-03; --review --fresh --review-street-traffic,
+    // tools/opening/run_review.py street-traffic): every corner in turn at the morning rush, with every
+    // car the town allows, time at double speed and a stalled frame every few seconds. No two cars may
+    // touch and no car may stand two minutes on end waiting for cars or rules (a jam); the guard's holds
+    // are counted (it should not have to hold anyone). A car waiting for someone on foot is noted
+    // apart: a walker held on a crossing by the car's body and the car waiting for that walker can stand
+    // until one of them is recycled out of sight (a walker matter, older than STREET-03). Muted, own
+    // save; the normal save is untouched.
+    [Serializable] class StreetTrafficReviewResult {
+        public bool passed;public int width,height,corners,frames,stalls,carsSeen;public float timeScale,simulatedSeconds,realSeconds;
+        public int carOverlaps,carGuardHolds,signalEntries,redRuns,stopSignEntries,stopViolations;
+        public float minCarGap,longestStop,longestWaitForPerson;public string longestStopCar,longestWaitForPersonCar,stopLines,waitingClearance,openTurnClearance;
+        // Not what this review is for (the street-life review checks them), but noted.
+        public int carPersonContacts,personOverlaps,personPlayerOverlaps,roadWalking;
+        public string verification;
+    }
+    StreetTrafficReviewResult stResult;
+    void TrafficNeed(bool ok,string why) {
+        if(ok)return;
+        Time.timeScale=1;Debug.LogError("STREET_TRAFFIC_REVIEW_FAIL: "+why);
+        if(stResult!=null)File.WriteAllText(Path.Combine(captures,"street-traffic-acceptance.json"),JsonUtility.ToJson(stResult,true));
+        Application.Quit(1);throw new InvalidOperationException(why);
+    }
+    IEnumerator ReviewStreetTraffic() {
+        slResult=new StreetLifeReviewResult{width=Screen.width,height=Screen.height};
+        stResult=new StreetTrafficReviewResult{width=Screen.width,height=Screen.height,timeScale=2};
+        state.openingRevision=Math.Max(1,state.openingRevision);state.openingStage=4;state.openingEscort=4;state.belongingsCollected=true;
+        state.openingRideRevision=1;state.openingRideStage=5;
+        StreetTime(8*60+20);DayNightCycle.Instance.SetReviewWeather(TownWeather.Kind.Overcast);
+        yield return new WaitForSeconds(1.5f);
+        var life=StreetLife.Current;TrafficNeed(life,"street life was not created in Town");
+        RecordStreetLayout(life,out stResult.stopLines,out stResult.waitingClearance,out stResult.openTurnClearance);
+        life.ForcedCars=StreetLife.CarCap;life.Stats.Reset();
+        var seen=new HashSet<int>();float realStart=Time.realtimeSinceStartup,simulated=0;
+        Time.timeScale=stResult.timeScale;
+        foreach(var j in life.Net.junctions.OrderBy(n=>n.centre.x).ThenBy(n=>n.centre.z)) {
+            if(!StandAtCorner(life,j)){Debug.LogWarning("STREET_TRAFFIC_REVIEW_NOTE: no clear corner to stand at "+j.centre);continue;}
+            stResult.corners++;
+            for(float until=Time.time+80,stall=Time.time+7;Time.time<until;) {
+                Audit(life);stResult.frames++;simulated+=Time.deltaTime;
+                foreach(var c in life.AllCars) {
+                    seen.Add(c.GetInstanceID());
+                    if(c.Waiting=="person"||c.Waiting=="player"){if(c.StoppedFor>stResult.longestWaitForPerson){stResult.longestWaitForPerson=c.StoppedFor;stResult.longestWaitForPersonCar=c.Describe();}}
+                    else if(c.StoppedFor>stResult.longestStop){stResult.longestStop=c.StoppedFor;stResult.longestStopCar=c.Describe();}
+                }
+                // A long frame, as when the window is resized: the street takes it as one short step.
+                if(Time.time>=stall){stall=Time.time+7;stResult.stalls++;System.Threading.Thread.Sleep(300);}
+                yield return null;
+            }
+            Debug.Log("STREET_TRAFFIC_CORNER: "+j.centre+" overlaps "+slResult.carOverlaps+" guard "+life.GuardHolds+" signal "+life.Stats.signalEntries+" stop "+life.Stats.stopEntries+" longest stop "+stResult.longestStop.ToString("0.0")+" s");
+        }
+        Time.timeScale=1;life.ForcedCars=null;DayNightCycle.Instance.SetReviewWeather(null);
+        var st=life.Stats;
+        stResult.simulatedSeconds=simulated;stResult.realSeconds=Time.realtimeSinceStartup-realStart;stResult.carsSeen=seen.Count;
+        stResult.carOverlaps=slResult.carOverlaps;stResult.minCarGap=slResult.minCarGap;stResult.carGuardHolds=life.GuardHolds;
+        stResult.signalEntries=st.signalEntries;stResult.redRuns=st.redRuns;stResult.stopSignEntries=st.stopEntries;stResult.stopViolations=st.stopViolations;
+        stResult.carPersonContacts=slResult.carPersonContacts;stResult.personOverlaps=slResult.personOverlaps;stResult.personPlayerOverlaps=slResult.personPlayerOverlaps;stResult.roadWalking=slResult.roadWalking;
+        TrafficNeed(stResult.corners==life.Net.junctions.Count,"stood at "+stResult.corners+" of "+life.Net.junctions.Count+" corners");
+        TrafficNeed(stResult.carOverlaps==0,"cars touched on "+stResult.carOverlaps+" frames (min gap "+stResult.minCarGap+")");
+        TrafficNeed(stResult.longestStop<120,"a car stood still "+stResult.longestStop+" s waiting for cars or rules: "+stResult.longestStopCar);
+        TrafficNeed(st.redRuns==0&&st.stopViolations==0,"rules broken: red "+st.redRuns+" STOP "+st.stopViolations);
+        TrafficNeed(st.signalEntries>=10&&st.stopEntries>=10,"too little traffic through the corners: signal "+st.signalEntries+" STOP "+st.stopEntries);
+        stResult.passed=true;
+        stResult.verification="Isolated muted review player; program-driven player position, time at double speed, a 0.3 s stall every 7 s of game time. Overlaps, standstills and rules are measured every frame; guard holds are counted from STREET_CAR_GUARD. carsSeen counts pooled car objects, not trips. Waits for people on foot and walkers on the carriageway are noted, not judged.";
+        File.WriteAllText(Path.Combine(captures,"street-traffic-acceptance.json"),JsonUtility.ToJson(stResult,true));
+        Debug.Log("STREET_TRAFFIC_REVIEW_PASS: "+stResult.corners+" corners, "+stResult.simulatedSeconds.ToString("0")+" s of traffic, 0 overlaps, guard holds "+stResult.carGuardHolds+", longest stop for cars or rules "+stResult.longestStop.ToString("0.0")+" s, longest wait for someone on foot "+stResult.longestWaitForPerson.ToString("0.0")+" s ("+stResult.longestWaitForPersonCar+")");
+        Application.Quit();
+    }
+    // Off the footway at one of the junction's four corners, looking at the middle of it.
+    bool StandAtCorner(StreetLife life,StreetNet.Junction j) {
+        foreach(float extra in new[]{1.2f,2.4f,.4f})foreach(var (sx,sz) in new[]{(1,1),(-1,1),(1,-1),(-1,-1)}) {
+            var ns=j.ns.road;var ew=j.ew.road;
+            var at=j.centre+new Vector3(sx*(j.ns.half+ns.strip+ns.walk+extra),.12f,sz*(j.ew.half+ew.strip+ew.walk+extra));
+            if(!life.Free(at,null))continue;
+            player.Place(at,0);player.Aim(j.centre+Vector3.up*1.2f);return true;
+        }
+        return false;
+    }
+    // Contacts and road-walking, sampled each frame.
+    readonly Dictionary<long,float> carOverlapLogged=new Dictionary<long,float>();
+    void Audit(StreetLife life) {
+        var cars=life.AllCars;var people=life.Walkers;var p=player.transform.position;
+        for(int i=0;i<cars.Count;i++)for(int k=i+1;k<cars.Count;k++) {
+            float gap=CarGap(cars[i],cars[k]);slResult.minCarGap=Mathf.Min(slResult.minCarGap,gap);
+            if(gap<-.02f) {
+                slResult.carOverlaps++;
+                // The first frame in full (where each was, on which way, how fast, waiting for what),
+                // then only as the overlap changes.
+                long a=cars[i].GetInstanceID(),b=cars[k].GetInstanceID();long key=a<b?(a<<32)^(b&0xffffffffL):(b<<32)^(a&0xffffffffL);
+                if(!carOverlapLogged.TryGetValue(key,out float last))Debug.LogWarning("STREET_CAR_OVERLAP_START: gap="+gap+" | "+cars[i].Describe()+" | "+cars[k].Describe());
+                else if(Mathf.Abs(gap-last)>=.005f)Debug.LogWarning("STREET_CAR_OVERLAP: "+cars[i].name+" "+cars[k].name+" gap="+gap);
+                else continue;
+                carOverlapLogged[key]=gap;
+            }
+        }
+        foreach(var c in cars){foreach(var w in people){float d=PointToCar(c,w.transform.position)-.25f;slResult.minPersonGap=Mathf.Min(slResult.minPersonGap,d);if(d<-.02f){slResult.carPersonContacts++;if(roadLogged.Add(c.GetInstanceID()^w.GetInstanceID()))Debug.LogWarning("STREET_CAR_PERSON_CONTACT: "+c.name+" "+c.transform.position+" speed="+c.speed+" waiting="+c.Waiting+" path="+c.path.GetType().Name+" | "+w.name+" "+w.transform.position+" "+w.Activity+" d="+d);}}
+            float dp=PointToCar(c,p)-.25f;if(dp<-.02f){slResult.carPersonContacts++;Debug.LogWarning("STREET_CAR_PLAYER_CONTACT: "+c.name+" d="+dp);}}
+        for(int i=0;i<people.Count;i++) {
+            var a=people[i].transform.position;
+            for(int k=i+1;k<people.Count;k++){var d=a-people[k].transform.position;d.y=0;if(d.magnitude<.4f&&people[i].partner!=people[k]){slResult.personOverlaps++;Debug.LogWarning("STREET_PERSON_OVERLAP: "+people[i].name+" "+people[k].name);}}
+            var dp=a-p;dp.y=0;if(dp.magnitude<.47f){slResult.personPlayerOverlaps++;Debug.LogWarning("STREET_PERSON_PLAYER_OVERLAP: "+people[i].name);}
+            if(people[i].dog&&!people[i].Gone) {
+                var g=people[i].dog.Position;var gp=g-p;gp.y=0;if(gp.magnitude<.3f){slResult.dogPlayerContacts++;Debug.LogWarning("STREET_DOG_PLAYER_CONTACT: "+gp.magnitude);}
+                for(int k=0;k<people.Count;k++){if(k==i||people[k].Gone)continue;var gd=g-people[k].transform.position;gd.y=0;if(gd.magnitude<.28f){slResult.dogContacts++;Debug.LogWarning("STREET_DOG_PERSON_CONTACT: "+people[k].name+" "+gd.magnitude);}}
+            }
+            // Walking along a carriageway that carries cars, not crossing it (the garden lane has no traffic).
+            if(!people[i].Crossing&&people[i].Velocity.sqrMagnitude>.04f&&OnTrafficRoad(life,a)){slResult.roadWalking++;if(roadLogged.Add(people[i].GetInstanceID()))Debug.LogWarning("STREET_PERSON_ON_ROAD: "+people[i].name+" "+a+" "+people[i].Activity);}
+        }
+    }
+    readonly HashSet<int> roadLogged=new HashSet<int>();
+    static bool OnTrafficRoad(StreetLife life,Vector3 p) {
+        foreach(var c in life.Net.carriages) {
+            bool over=c.eastWest?Mathf.Abs(p.z-c.centre)<c.half-.15f&&p.x>=c.from&&p.x<=c.to:Mathf.Abs(p.x-c.centre)<c.half-.15f&&p.z>=c.from&&p.z<=c.to;
+            if(over)return true;
+        }
+        return false;
+    }
+    // Separating axes of the two body boxes (1.78 × 4.3, centre 0.17 m behind the origin), in plan: the
+    // same measure the cars' own guard uses.
+    static float CarGap(AmbientCar a,AmbientCar b)=>AmbientCar.BoxGap(a.transform.position,a.transform.forward,b.transform.position,b.transform.forward);
+    // For the acceptance files: which stop lines were set back, and the tightest clearances the layout leaves.
+    static void RecordStreetLayout(StreetLife life,out string lines,out string waiting,out string open) {
+        var moved=life.Net.lanes.Where(l=>l.setback>0).ToList();var f=System.Globalization.CultureInfo.InvariantCulture;
+        lines=moved.Count==0?"none":moved.Count+" lines set back "+moved.Min(l=>l.setback).ToString("0.00",f)+"–"+moved.Max(l=>l.setback).ToString("0.00",f)+" m: "+string.Join(", ",moved.Select(l=>l.ToString()));
+        waiting=life.Net.WaitingClearance(out var w).ToString("0.000",f)+" m ("+w+")";
+        open=life.Net.OpenTurnClearance(out var o).ToString("0.000",f)+" m ("+o+")";
+        Debug.Log("STREET_LAYOUT: "+lines+" | waiting clearance "+waiting+" | open turns "+open);
+    }
+    static float PointToCar(AmbientCar c,Vector3 p) {
+        var local=c.transform.InverseTransformPoint(p);local.z+=.17f;
+        float dx=Mathf.Max(0,Mathf.Abs(local.x)-.89f),dz=Mathf.Max(0,Mathf.Abs(local.z)-2.15f);
+        if(dx==0&&dz==0)return -Mathf.Min(.89f-Mathf.Abs(local.x),2.15f-Mathf.Abs(local.z));
+        return Mathf.Sqrt(dx*dx+dz*dz);
+    }
+    IEnumerator PlayerBlocksCar(StreetLife life) {
+        // Station Road westbound, mid-block between the square and Middle Street.
+        AmbientCar car=null;
+        for(float until=Time.time+40;Time.time<until&&!car;) {
+            car=life.AllCars.FirstOrDefault(c=>c.path is StreetNet.Lane l&&l.carriage.eastWest&&l.carriage.road.id=="R01"&&l.length-c.s>30&&c.speed>3&&Vector3.Distance(c.transform.position,player.transform.position)<80);
+            yield return null;
+        }
+        SLNeed(car,"no car on Station Road to stand in front of");
+        var lane=(StreetNet.Lane)car.path;var spot=lane.Point(Mathf.Min(lane.length-2,car.s+22));spot.y=.06f;
+        player.Place(spot,0);player.Aim(car.transform.position+Vector3.up*1.2f);
+        float hold=Time.time+9;bool honked=false;int honks=life.Stats.honks;
+        while(Time.time<hold){Audit(life);if(life.Stats.honks>honks)honked=true;yield return null;}
+        float gap=PointToCar(car,player.transform.position)-.25f;
+        slResult.playerBlockStopped=car.speed<.05f&&gap>.3f;slResult.playerBlockHonked=honked;
+        SLNeed(slResult.playerBlockStopped,"car did not stop short of the player: speed="+car.speed+" gap="+gap);
+        SLNeed(honked,"car did not sound its horn after waiting");
+        yield return SLCapture("09-car-waits-for-player");
+        player.Place(spot+Vector3.Cross(Vector3.up,lane.dir)*3.3f,0);
+        float resume=Time.time+6;while(Time.time<resume&&car.speed<1){Audit(life);yield return null;}
+        slResult.playerBlockResumed=car.speed>=1;SLNeed(slResult.playerBlockResumed,"car did not move on after the player stepped aside");
+    }
+    IEnumerator Elderly(StreetLife life) {
+        StreetTime(10*60);life.ForcedPeople=30;
+        StreetWalker old=null;
+        for(float until=Time.time+40;Time.time<until&&!old;) {
+            old=life.Walkers.FirstOrDefault(w=>w.kind==StreetDensity.Folk.OldMan&&w.Velocity.magnitude>.3f&&w.transform.Find("Walking stick"));
+            yield return null;
+        }
+        life.ForcedPeople=null;
+        if(!old){Debug.LogWarning("STREET_LIFE_REVIEW_NOTE: no old gentleman walking within 40 s");yield break;}
+        float speedSum=0;int n=0;
+        for(float until=Time.time+4;Time.time<until;){speedSum+=old.Velocity.magnitude;n++;yield return null;}
+        slResult.elderlySpeed=speedSum/Mathf.Max(1,n);slResult.elderlyStoop=old.stoop;
+        var stick=old.transform.Find("Walking stick");var hands=old.GetComponent<NpcHands>();
+        var tip=stick.position+stick.up*-.86f;slResult.caneTipHeight=tip.y-life.GroundAt(tip,old.transform.position.y);
+        slResult.caneHeld=hands&&hands.Weight(true)>.5f&&hands.Error(true)<.1f;
+        SLNeed(slResult.elderlySpeed<1.2f&&old.stoop>=8,"old gentleman too quick or upright: "+slResult.elderlySpeed+" m/s, stoop "+old.stoop);
+        SLNeed(slResult.caneHeld&&Mathf.Abs(slResult.caneTipHeight)<.12f,"walking stick not held or not on the ground: held="+slResult.caneHeld+" tip="+slResult.caneTipHeight);
+        player.Place(old.transform.position+old.Facing*3.4f+Vector3.Cross(Vector3.up,old.Facing)*1.2f,0);player.Aim(old.transform.position+Vector3.up*1.1f);
+        yield return new WaitForSeconds(.2f);yield return SLCapture("10-old-gentleman");
+    }
+    // The street cast: which figures are on the streets, then a dog walker and her terrier followed
+    // for twenty seconds (the dog stays within the lead's reach, out of walls, on the ground, the lead
+    // in her left hand) and a boy and a girl at a child's pace.
+    IEnumerator StreetCast(StreetLife life) {
+        StreetTime(8*60+10);DayNightCycle.Instance.SetReviewWeather(TownWeather.Kind.Overcast);life.ForcedPeople=30;
+        player.Place(new Vector3(-20,.12f,15.2f),90);player.Aim(new Vector3(0,1.4f,15.2f));
+        for(float until=Time.time+3;Time.time<until;){Audit(life);yield return null;}
+        var walker=life.SpawnKind(StreetDensity.Folk.DogWalker,player.transform.position,5,18);
+        SLNeed(walker&&walker.dog,"could not place a dog walker with her dog");
+        var dog=walker.dog;var hands=walker.GetComponent<NpcHands>();
+        bool shotWide=false,shotClose=false;int handFrames=0,frames=0;
+        for(float until=Time.time+20;Time.time<until&&!walker.Gone;) {
+            Audit(life);frames++;
+            var o=walker.transform.position;var d=dog.Position-o;d.y=0;slResult.dogFurthest=Mathf.Max(slResult.dogFurthest,d.magnitude);
+            slResult.dogFloat=Mathf.Max(slResult.dogFloat,Mathf.Abs(dog.Position.y-life.GroundAt(dog.Position,dog.Position.y+.3f)));
+            if(Physics.CheckCapsule(dog.Position+Vector3.up*.2f,dog.Position+Vector3.up*.42f,.1f,~((1<<StreetLife.Layer)|(1<<2)),QueryTriggerInteraction.Ignore)){slResult.dogInWall++;Debug.LogWarning("STREET_DOG_IN_WALL: "+dog.Position);}
+            if(dog.Lead){var a=dog.Lead.GetPosition(0);var b=dog.Lead.GetPosition(dog.Lead.positionCount-1);slResult.leadLongest=Mathf.Max(slResult.leadLongest,Vector3.Distance(a,b));}
+            if(dog.Speed>.3f)slResult.dogWalkingFrames++;
+            if(hands&&hands.Weight(false)>.5f&&hands.Error(false)<.12f)handFrames++;
+            // Keep them in view from the side, a few metres off.
+            var side=Vector3.Cross(Vector3.up,walker.Facing);
+            if(Time.frameCount%20==0){var at=o+side*-3.2f+walker.Facing*1.2f;at.y=o.y+.02f;if(life.Free(at,null))player.Place(at,0);player.Aim(Vector3.Lerp(o,dog.Position,.4f)+Vector3.up*.7f);}
+            if(!shotWide&&dog.Speed>.4f&&Time.time>until-15){shotWide=true;yield return SLCapture("14-dog-walker");}
+            if(!shotClose&&dog.Speed>.4f&&Time.time>until-8) {
+                shotClose=true;var at=dog.Position+side*-1.9f+walker.Facing*.6f;at.y=o.y+.02f;
+                if(life.Free(at,null))player.Place(at,0);player.Aim(dog.Position+Vector3.up*.25f);yield return null;yield return SLCapture("15-terrier");
+            }
+            yield return null;
+        }
+        slResult.leadInHand=handFrames>frames*.7f;
+        SLNeed(slResult.dogFurthest<1.7f,"the dog strayed "+slResult.dogFurthest+" m from its owner");
+        SLNeed(slResult.dogInWall==0,"the dog stood in a wall on "+slResult.dogInWall+" frames");
+        SLNeed(slResult.dogFloat<.08f,"the dog floated or sank "+slResult.dogFloat+" m");
+        SLNeed(slResult.leadLongest<1.56f,"the lead stretched to "+slResult.leadLongest+" m");
+        SLNeed(slResult.dogWalkingFrames>frames*.3f,"the dog hardly walked: "+slResult.dogWalkingFrames+"/"+frames);
+        SLNeed(slResult.leadInHand,"the lead was not held in her left hand: "+handFrames+"/"+frames);
+        SLNeed(slResult.dogContacts==0&&slResult.dogPlayerContacts==0,"the dog touched people "+slResult.dogContacts+" / the player "+slResult.dogPlayerContacts);
+        // Children: at a child's pace, never stopped for a chat.
+        foreach(var kind in new[]{StreetDensity.Folk.Boy,StreetDensity.Folk.Girl}) {
+            var child=life.SpawnKind(kind,player.transform.position,5,18);SLNeed(child,"could not place a "+kind);
+            float sum=0;int n=0;
+            for(float until=Time.time+6;Time.time<until&&!child.Gone;){Audit(life);if(child.Velocity.magnitude>.2f){sum+=child.Velocity.magnitude;n++;}
+                if(Time.frameCount%20==0){var o=child.transform.position;var at=o+child.Facing*3f+Vector3.Cross(Vector3.up,child.Facing)*1.3f;at.y=o.y+.02f;if(life.Free(at,null))player.Place(at,0);player.Aim(o+Vector3.up*.9f);}
+                yield return null;}
+            float speed=sum/Mathf.Max(1,n);if(kind==StreetDensity.Folk.Boy)slResult.boySpeed=speed;else slResult.girlSpeed=speed;
+            SLNeed(speed>.8f&&speed<1.45f&&child.Activity!="chat","a "+kind+" walked at "+speed+" m/s ("+child.Activity+")");
+            yield return SLCapture(kind==StreetDensity.Folk.Boy?"16-boy":"17-girl");
+        }
+        // Which figures were out (prefab names: kind and figure).
+        slResult.figures=life.Walkers.Select(w=>w.name).Distinct().OrderBy(n=>n).ToList();
+        life.ForcedPeople=null;DayNightCycle.Instance.SetReviewWeather(null);
+    }
+    IEnumerator Briefcase() {
+        player.Place(new Vector3(-20,.12f,15.2f),90);yield return new WaitForSeconds(.5f);
+        OpenBackpack();SLNeed(backpack,"B did not open the briefcase");
+        slResult.backpackCarried=packItems.Take(packCarried).Select(p=>p.id).SequenceEqual(new[]{"pack-watch","pack-map","E02","pack-notebook","pack-wallet"});
+        SLNeed(slResult.backpackCarried,"carried items: "+string.Join(",",packItems.Take(packCarried).Select(p=>p.id)));
+        SLNeed(!packItems.Any(p=>p.id=="E04"||p.id=="Y04"),"testimony in the briefcase");
+        for(float until=Time.time+6;Time.time<until&&packThumbs.Count<packItems.Count(p=>p.item);)yield return null;
+        slResult.backpackThumbnails=packThumbs.Count>=packItems.Count(p=>p.item);SLNeed(slResult.backpackThumbnails,"thumbnails "+packThumbs.Count+"/"+packItems.Count);
+        yield return new WaitForSeconds(.4f);yield return SLCapture("11-briefcase");
+        ActivatePackItem(packItems.FindIndex(p=>p.id=="E02"));yield return new WaitForSeconds(.5f);
+        SLNeed(inspected==carriedTicket&&ModelEvidence,"ticket not examined from the briefcase");yield return SLCapture("12-briefcase-ticket");
+        CloseInspect();yield return null;slResult.backpackTicketReturns=backpack&&!inspected;SLNeed(slResult.backpackTicketReturns,"closing the ticket did not return to the briefcase");
+        int paper=packItems.FindIndex(p=>p.id=="W02"||p.id=="E01");
+        if(paper>=0){ActivatePackItem(paper);yield return new WaitForSeconds(.5f);SLNeed(ModelEvidence,"paper evidence not examined");ToggleEvidenceDetails();yield return new WaitForSeconds(.3f);yield return SLCapture("13-briefcase-paper");CloseInspect();yield return null;slResult.backpackPaperReturns=backpack;SLNeed(backpack,"closing the paper did not return");}
+        ActivatePackItem(packItems.FindIndex(p=>p.id=="pack-notebook"));yield return null;
+        SLNeed(journal&&!backpack,"the notebook did not open the dossier");
+        var people=Dossier();slResult.dossierTestimony=people.Any(p=>p.name=="送奶少年"&&p.body.Contains("问  "))&&people.Any(p=>p.name=="售票员");
+        SLNeed(slResult.dossierTestimony,"dossier missing testimony: "+string.Join(",",people.Select(p=>p.name)));
+        yield return new WaitForSeconds(.3f);yield return SLCapture("14-dossier");
+        journal=false;CursorMode();
+    }
+}

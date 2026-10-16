@@ -1,0 +1,29 @@
+{
+  "role": "OldGentleman",
+  "tripoAsset": "288e6423-cc4b-4259-8767-84a929187e1c",
+  "archive": "assets/source/street-cast/OldGentleman/tripo/original/OldGentleman-Tripo-idle-walk-talk-24c254db6412.zip",
+  "archiveSHA256": "24c254db6412b53cdee12752e9825688b6e87c9368e12d8a1aef12b66ea91212",
+  "originalPreserved": true,
+  "heightMetres": 1.7,
+  "textures": {
+    "BaseColor": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/street-cast/OldGentleman/tripo/original/export-24c254db6412/tripo_convert_405781a9-7f91-4864-847a-ed8e58649cb7.fbm/tripo_image_405781a9-7f91-4864-847a-ed8e58649cb7_0_0.jpg",
+    "Normal": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/street-cast/OldGentleman/tripo/original/export-24c254db6412/tripo_convert_405781a9-7f91-4864-847a-ed8e58649cb7.fbm/tripo_image_405781a9-7f91-4864-847a-ed8e58649cb7_0_3.jpg",
+    "Metallic": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/street-cast/OldGentleman/tripo/original/export-24c254db6412/tripo_convert_405781a9-7f91-4864-847a-ed8e58649cb7.fbm/OldGentleman-Tripo-idle-walk-talk_metallic.JPEG",
+    "Roughness": "/Users/wulizhi/.codex/.chatgpt-projects/g-p-6ac33302cd888191873099003d5164f4/output/game_test/assets/source/street-cast/OldGentleman/tripo/original/export-24c254db6412/tripo_convert_405781a9-7f91-4864-847a-ed8e58649cb7.fbm/OldGentleman-Tripo-idle-walk-talk_roughness.JPEG",
+    "size": [
+      2048,
+      2048
+    ],
+    "normalConvention": "Tripo export, same convention as existing station-clerk importer"
+  },
+  "source": "assets/source/street-cast/OldGentleman/tripo/Character.blend",
+  "unity": "game/Assets/Art/StreetCast/OldGentleman/Character.fbx",
+  "motion": "game/Assets/Art/StreetCast/OldGentleman/Motion.json",
+  "fixtureLabel": "",
+  "sourceSHA256": "1fee8286c885bfd88f678506a12baccdc30be69200ba5dde6d9bc0a241018a24",
+  "fbxSHA256": "c6e2c7925da79168584124d97afd21ea0d86db7faa357b2c2fd0054af06b61b6",
+  "license": "No third-party license inherited from existing characters; retain any license in original export.",
+  "runtimeVerified": false,
+  "meshSelfIntersectionVerified": false,
+  "appearanceAccepted": false
+}

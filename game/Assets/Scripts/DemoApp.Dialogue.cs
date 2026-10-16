@@ -18,6 +18,7 @@ public partial class DemoApp {
     GUIStyle dialogueSpeech,dialogueName,dialogueOption,dialogueMeta,dialogueLog,dialogueShadow;
     bool DialogueOpen => dialogueNode!=null;
     public bool IsSpeakingWith(OpeningActor actor)=>DialogueOpen&&dialogueOpeningActor==actor;
+    public bool IsInDialogueWith(Component actor)=>DialogueOpen&&actor&&periodCharacterPerformance&&periodCharacterPerformance.transform.IsChildOf(actor.transform);
 
     void BindDialoguePerformance(Component actor) {
         if(stationClerkPerformance)stationClerkPerformance.Listen();
@@ -183,19 +184,82 @@ public partial class DemoApp {
     }
     struct DialogueLayout {
         public float speechWidth,speechHeight,rightX,columnGap,columnWidth,row,top;
+        public string speech;
         public Rect Choice(int index) => new Rect(rightX+(index%2)*(columnWidth+columnGap),top+(index/2)*row,columnWidth,row-4);
     }
     DialogueLayout MeasureDialogue() {
         float margin=DialogueMargin;bool choosing=dialogueChoices.Count>0;
-        float speechWidth=choosing?(W-2*margin)*.32f:W-2*margin-65;
-        float rightX=margin+speechWidth+38,columnGap=24;
+        // A comfortable reading measure rather than the whole width of a wide screen.
+        float speechWidth=choosing?(W-2*margin)*.32f:Mathf.Min(W-2*margin-65,1180);
+        float rightX=margin+(choosing?speechWidth:(W-2*margin)*.32f)+38,columnGap=24;
         float columnWidth=(W-margin-rightX-columnGap)/2;
         float row=48;
-        foreach(var choice in dialogueChoices)row=Mathf.Max(row,dialogueOption.CalcHeight(new GUIContent(choice.text),columnWidth-38)+8);
-        float speechHeight=dialogueSpeech.CalcHeight(new GUIContent(dialogueNode.text),speechWidth);
+        foreach(var choice in dialogueChoices)row=Mathf.Max(row,dialogueOption.CalcHeight(new GUIContent(CjkWrap(choice.text,dialogueOption,columnWidth-38)),columnWidth-38)+8);
+        string speech=CjkWrap(dialogueNode.text,dialogueSpeech,speechWidth);
+        float speechHeight=dialogueSpeech.CalcHeight(new GUIContent(speech),speechWidth);
         float contentHeight=Mathf.Max(100,speechHeight+55,Mathf.Ceil(dialogueChoices.Count/2f)*row);
         float top=H-44-contentHeight;
-        return new DialogueLayout{speechWidth=speechWidth,speechHeight=speechHeight,rightX=rightX,columnGap=columnGap,columnWidth=columnWidth,row=row,top=top};
+        return new DialogueLayout{speechWidth=speechWidth,speechHeight=speechHeight,rightX=rightX,columnGap=columnGap,columnWidth=columnWidth,row=row,top=top,speech=speech};
+    }
+    // ---- Chinese line breaking (user, 2026-10-15: a full stop was left alone at the start of a line) ----
+    // IMGUI breaks anywhere. Here no line may begin with closing punctuation or end with an opening
+    // bracket or quote: the character before is carried down with it, as Chinese typesetting does.
+    const string NoLineStart="，。、；：？！…—）」』”’》〉·,.;:?!)";
+    const string NoLineEnd="（「『“‘《〈(";
+    readonly Dictionary<(Font,int,FontStyle,char),float> glyphAdvance=new Dictionary<(Font,int,FontStyle,char),float>();
+    float GlyphAdvance(GUIStyle style,char c) {
+        var key=(style.font,style.fontSize,style.fontStyle,c);
+        if(!glyphAdvance.TryGetValue(key,out var width)){var plain=new GUIStyle(style){padding=new RectOffset(),wordWrap=false};width=plain.CalcSize(new GUIContent(c.ToString())).x;glyphAdvance[key]=width;}
+        return width;
+    }
+    public string CjkWrap(string value,GUIStyle style,float width) {
+        if(string.IsNullOrEmpty(value)||style==null)return value;
+        width-=style.padding.horizontal+6;
+        var result=new System.Text.StringBuilder();var paragraphs=value.Split('\n');
+        for(int p=0;p<paragraphs.Length;p++) {
+            if(p>0)result.Append('\n');
+            var line=new System.Text.StringBuilder();float used=0;
+            foreach(char c in paragraphs[p]) {
+                float advance=GlyphAdvance(style,c);
+                if(used+advance>width&&line.Length>0) {
+                    int carry=0;
+                    if(NoLineStart.IndexOf(c)>=0){carry=1;if(line.Length>2&&NoLineStart.IndexOf(line[line.Length-1])>=0)carry=2;}
+                    else if(NoLineEnd.IndexOf(line[line.Length-1])>=0)carry=1;
+                    if(carry>=line.Length)carry=0;
+                    string down=line.ToString(line.Length-carry,carry);line.Length-=carry;
+                    result.Append(line).Append('\n');line.Clear().Append(down);used=0;foreach(char d in down)used+=GlyphAdvance(style,d);
+                }
+                line.Append(c);used+=advance;
+            }
+            result.Append(line);
+        }
+        return result.ToString();
+    }
+    // A line someone says in passing (the lawyer greeting the player at the door, the guard telling
+    // him to keep up) looks like a line of the conversation, without stopping anything (user,
+    // 2026-10-15: the lawyer's words came up in a small notice box). Other notices keep a box.
+    static bool SpeechRemark(string line,out string speaker,out string words) {
+        speaker=words=null;if(string.IsNullOrEmpty(line))return false;
+        int colon=line.IndexOf('：');if(colon<1||colon>4)return false;
+        var who=line.Substring(0,colon);if(who.IndexOf(' ')>=0||who.IndexOf('·')>=0||who.IndexOf('/')>=0)return false;
+        speaker=who;words=line.Substring(colon+1);return true;
+    }
+    void DrawRemark() {
+        DialogueStyles();
+        float left=remarkUntil-Time.time,alpha=Mathf.Clamp01(left/.45f)*Mathf.Clamp01((Time.time-remarkStart)/.2f);
+        if(SpeechRemark(remark,out var who,out var words)) {
+            float margin=DialogueMargin,width=Mathf.Min(W-2*margin-65,1180);
+            string wrapped=CjkWrap(words,dialogueSpeech,width);float height=dialogueSpeech.CalcHeight(new GUIContent(wrapped),width);
+            float top=H-44-Mathf.Max(78,height+45);
+            GUI.color=new Color(1,1,1,alpha);GUI.DrawTexture(new Rect(0,top-28,W,H-top+28),dialogueGradient);
+            Box(new Rect(margin,top+5,2,16),new Color(.86f,.7f,.44f,.8f*alpha));GUI.color=new Color(1,1,1,alpha);
+            DialogueLabel(new Rect(margin+12,top+3,width-12,25),who,dialogueName);
+            DialogueLabel(new Rect(margin,top+33,width,height+4),wrapped,dialogueSpeech);
+            GUI.color=Color.white;return;
+        }
+        string body=CjkWrap(remark,small,548);float h=Mathf.Max(57,small.CalcHeight(new GUIContent(body),548)+28);
+        Rect r=new Rect(36,H-78-h,580,h);Box(r,new Color(.025f,.035f,.045f,.84f*alpha));Box(new Rect(r.x,r.y,2,r.height),new Color(.86f,.7f,.44f,.75f*alpha));
+        GUI.color=new Color(1,1,1,alpha);Label(new Rect(r.x+16,r.y+14,r.width-32,h-20),body,small);GUI.color=Color.white;
     }
     void DrawDialogue() {
         DialogueStyles();
@@ -208,8 +272,8 @@ public partial class DemoApp {
         GUI.DrawTexture(new Rect(0,top-28,W,H-top+28),dialogueGradient);
         Box(new Rect(margin,top+5,2,16),new Color(.86f,.7f,.44f,.8f));
         DialogueLabel(new Rect(margin+12,top+3,speechWidth-12,25),dialogueNode.speaker,dialogueName);
-        DialogueLabel(new Rect(margin,top+33,speechWidth,speechHeight+4),dialogueNode.text,dialogueSpeech);
-        if(!string.IsNullOrEmpty(dialogueNode.grantEvidence))DialogueLabel(new Rect(margin,top+39+speechHeight,speechWidth,23),"证言已记入调查簿",dialogueMeta);
+        DialogueLabel(new Rect(margin,top+33,speechWidth,speechHeight+4),layout.speech,dialogueSpeech);
+        if(!string.IsNullOrEmpty(dialogueNode.grantEvidence))DialogueLabel(new Rect(margin,top+39+speechHeight,speechWidth,23),"证言已记入档案",dialogueMeta);
         if(choosing) {
             // Render against a snapshot: a click changes the active node immediately.
             var choices=dialogueChoices;
@@ -219,7 +283,7 @@ public partial class DemoApp {
                 if(r.Contains(Event.current.mousePosition))Box(r,new Color(.55f,.43f,.27f,.20f));
                 if(GUI.Button(r,GUIContent.none,GUIStyle.none)) { SelectDialogue(i); break; }
                 DialogueLabel(new Rect(r.x+6,r.y+(r.height-25)/2,30,25),(i+1).ToString(),dialogueName);
-                DialogueLabel(new Rect(r.x+36,r.y,r.width-38,r.height),choice.text,dialogueOption);
+                DialogueLabel(new Rect(r.x+36,r.y,r.width-38,r.height),CjkWrap(choice.text,dialogueOption,r.width-38),dialogueOption);
             }
         } else DialogueArrow(new Rect(W-margin-38,H-82,38,32));
         if(!DialogueOpen)return;

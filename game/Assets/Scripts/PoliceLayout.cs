@@ -19,9 +19,22 @@ using UnityEngine;
 [Serializable] public class PoliceColumn { public string id; public float x, z, w, y0, y1; }
 [Serializable] public class PoliceFurniture { public string id, kind, room, extra; public float x, y, z, yaw, w, d, h; public bool collide; }
 [Serializable] public class PoliceLamp { public string id, kind, room, role, switchId, shade; public float x, y, z, intensity, range, access; }
+// A printed desk copy resting on furniture `support` (tools/police/police_layout.py desk_paper):
+// page size, root position, page-top yaw and tilt from horizontal (degrees), and the root's
+// height above the support plane along the page normal.
+[Serializable] public class PolicePaper {
+    public string support;
+    public float w, h, x, y, z, yaw, tilt, lift;
+    public Vector3 Position => new Vector3(x, y, z);
+    // EvidenceModel.Paper lies in its XY plane, page top +Y, printed face toward -Z.
+    public Quaternion Rotation => Quaternion.Euler(90 - tilt, yaw, 0);
+    public Vector3 Normal => Rotation * Vector3.back;
+}
 [Serializable] public class PoliceItem {
     public string id, kind, doc, evidence, title, target;
     public float x, y, z, w, h, d, yaw, sitX, sitZ, sitY, standX, standZ, eye;
+    public PolicePaper paper;
+    public bool Printed => paper != null && paper.w > 0;
 }
 [Serializable] public class PoliceShelter { public string id; public float x0, z0, x1, z1, eaves, rise; public bool ridgeAlongX, open; public string[] doors; }
 

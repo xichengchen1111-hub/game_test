@@ -38,7 +38,7 @@ public sealed class RainSplashes : MonoBehaviour {
             if(known[i]&&cells[i]==cell)continue;
             known[i]=true;cells[i]=cell;valid[i]=false;ContactQueries++;
             var origin=new Vector3((x+offsets[i].x)*1.3f,40,(z+offsets[i].y)*1.3f);
-            int count=Physics.RaycastNonAlloc(origin,Vector3.down,hits,55,~(1<<30),QueryTriggerInteraction.Ignore);
+            int count=Physics.RaycastNonAlloc(origin,Vector3.down,hits,55,~((1<<30)|(1<<StreetLife.Layer)),QueryTriggerInteraction.Ignore);
             float nearest=float.PositiveInfinity;RaycastHit surface=default;
             for(int h=0;h<count;h++)if(!hits[h].collider.GetComponentInParent<PlayerMotor>()&&hits[h].distance<nearest){surface=hits[h];nearest=surface.distance;}
             if(float.IsInfinity(nearest)||surface.normal.y<.92f||surface.point.y>eye.y-.3f)continue;

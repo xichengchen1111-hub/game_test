@@ -1,6 +1,6 @@
 # 《错日证词》街道物件第一轮
 
-用户 2026-10-16 要求：“设计符合时代的 items on the streets 来让这个游戏的街道更完美，给 10 个不同的，要精致。”**2026-10-16 用户选定全部 10 件**（“这 10 件都要，按设计做进游戏，按项目流程走地图检查和验收”），已按项目流程实现：坐标在地图源 `docs/maps/town-current/build_plan.py`（StreetItems，41 处），模型由 `tools/street_items/` 生成，Unity 由 `BuildSlice.StreetItems.cs` 装配；见 AGENTS.md「街道物件」与记忆 STREET-01。实施时的位置调整记在 `design-plan.json` 的 `implementationChanges`（擦鞋摊与警署沙箱改放设施带）。下表“建议位置”是概念阶段的提案。
+用户 2026-10-16 要求：“设计符合时代的 items on the streets 来让这个游戏的街道更完美，给 10 个不同的，要精致。”**2026-10-16 用户选定全部 10 件**（“这 10 件都要，按设计做进游戏，按项目流程走地图检查和验收”），已按项目流程实现：坐标在地图源 `docs/maps/town-current/build_plan.py`（StreetItems，41 处），模型由 `tools/street_items/` 生成，Unity 由 `BuildSlice.StreetItems.cs` 装配；见 AGENTS.md「街道物件」与记忆 FURNITURE-01。实施时的位置调整记在 `design-plan.json` 的 `implementationChanges`（擦鞋摊与警署沙箱改放设施带）。下表“建议位置”是概念阶段的提案。
 
 总览：[board.jpg](board.jpg) · 同比例并排：[lineup-same-scale.jpg](lineup-same-scale.jpg) · 网页：[index.html](index.html) · 完整设计与摆放：[design-plan.json](design-plan.json)
 

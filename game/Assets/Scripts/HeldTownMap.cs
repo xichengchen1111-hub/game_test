@@ -37,6 +37,8 @@ public sealed class HeldTownMap : MonoBehaviour {
     bool hasWaypoint;
     sealed class PrintedText {public string text;public float height;public Transform root;public Mesh mesh;}
 
+    // The printed plan, also shown when the map lies in the briefcase.
+    public Texture2D PlanTexture{get;private set;}
     public static HeldTownMap Create(PlayerMotor motor,Font font,HeldMapLandmark[] points){
         var go=new GameObject("Held paper map");go.transform.SetParent(motor.transform,false);
         var view=go.AddComponent<HeldTownMap>();view.Initialize(motor,font,points);return view;
@@ -54,7 +56,7 @@ public sealed class HeldTownMap : MonoBehaviour {
         var paper=NewMaterial(new Color(1,1,1),paperTexture,false);
         var sheetMesh=BuildSheet();Renderer("Paper body",Sheet,sheetMesh,paper);
         var back=NewMaterial(new Color(.61f,.48f,.31f),null,false);var backMesh=BuildSheet();var backRoot=Renderer("Paper thickness",Sheet,backMesh,back);backRoot.localPosition=Vector3.forward*.0018f;backRoot.localScale=new Vector3(1.006f,1.006f,1);
-        var planTexture=TownMapInk.Plan(TownPlan.Current);ownedTextures.Add(planTexture);
+        var planTexture=TownMapInk.Plan(TownPlan.Current);ownedTextures.Add(planTexture);PlanTexture=planTexture;
         mapFaceMesh=QuadMesh(MapArea.width,MapArea.height);mapFace=Renderer("Printed town plan",Sheet,mapFaceMesh,NewMaterial(Color.white,planTexture,false));mapFace.localPosition=new Vector3(MapArea.center.x,MapArea.center.y,-.001f);
         routeInk=NewMaterial(new Color(.49f,.16f,.105f),null,true);routeInk.renderQueue=3001;
         routeMesh=new Mesh{name="Pencil walking route"};ownedMeshes.Add(routeMesh);Renderer("Walking route",Sheet,routeMesh,routeInk);

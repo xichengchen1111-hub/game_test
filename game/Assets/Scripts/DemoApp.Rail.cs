@@ -10,7 +10,7 @@ public partial class DemoApp {
     string railStatus;
     bool RailSeated=>seatedTrain;
     public bool MovementLocked=>OpeningRideActive||RailSeated||FurnitureSeated||CarSeated||Blocked;
-    public bool LookAllowed=>!OpeningRideCameraMoving&&!creatorMenu&&!opening&&(!transitioning||railTravelling)&&!inspected&&!journal&&!paused&&!DialogueOpen&&!MilkOrdersOpen&&!PoliceReportOpen;
+    public bool LookAllowed=>!OpeningRideCameraMoving&&!cellCinematic&&!creatorMenu&&!opening&&(!transitioning||railTravelling)&&!inspected&&!journal&&!backpack&&!paused&&!DialogueOpen&&!MilkOrdersOpen&&!PoliceReportOpen;
     void RestoreRailSeat() {
         if(!state.railSeated)return;
         seatedTrain=FindFirstObjectByType<RailTrain>();
@@ -31,7 +31,7 @@ public partial class DemoApp {
     }
     bool TickRailSeat() {
         if(!RailSeated||railTravelling)return false;
-        if(!opening&&!paused&&!journal&&!inspected&&!DialogueOpen&&Input.GetKeyDown(KeyCode.E)) {
+        if(!opening&&!paused&&!journal&&!backpack&&!inspected&&!DialogueOpen&&Input.GetKeyDown(KeyCode.E)) {
             RiseFromRailSeat();return true;
         }
         return false;

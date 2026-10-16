@@ -115,20 +115,21 @@ public partial class DemoApp {
         PCastNeed(!speech.IsSpeaking&&animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"),"environmental Talk returns to Idle without further input: "+actor.title);
         PCastNeed(evidence.SequenceEqual(PCastEvidence()),"environment conversation grants no evidence: "+actor.title);
     }
+    // First-act revision 2: the guard no longer steps aside after a notification; once the cell
+    // cinematic releases the player he leads him to the property room. The same body, Walk clip,
+    // pause freeze and collision checks now run on that escort walk.
     IEnumerator PCastGuardRetreat(OpeningActor guard,PoliceCastReviewResult result) {
-        PCastNeed(state.openingStage==0,"cast review begins with the real guard notification available");
-        CreatorTeleport(OpeningPoint(19.2f,20.6f),-90);player.Aim(PCastBone(guard,"Head").position);yield return null;
-        PCastNeed(TryInteract()&&DialogueOpen&&dialogueNode.speaker=="狱警","cell interaction reaches the existing guard notification");
-        AdvanceDialogue();AdvanceDialogue();PCastNeed(state.openingStage==1&&!DialogueOpen,"guard notification opens the real cell door");
+        PCastNeed(state.openingStage==0&&state.openingEscort==0,"cast review begins with the real wake-up available");
+        StartCoroutine(CellCinematic());yield return null;SkipCellCinematic();
+        float skip=Time.unscaledTime+4;while(cellCinematic&&Time.unscaledTime<skip){PCastMute();yield return null;}
+        PCastNeed(!cellCinematic&&state.openingEscort==1&&PoliceStation.Current.Door("police-holding-door").IsOpen,"the released player is led off through the real open cell door");
         var box=guard.GetComponent<BoxCollider>();PCastNeed(box,"guard has an actual body collider");
         var performance=guard.GetComponentInChildren<PeriodCharacterPerformance>();PCastNeed(performance&&performance.animator,"guard has the new three-clip performance");
         var animator=performance.animator;float started=Time.unscaledTime;
-        float until=Time.unscaledTime+4,next=0;
-        while(Time.unscaledTime<until) {
-            // The review advances both lines in one frame, so the scripted Talk restart (0.25 s)
-            // is still blending when the guard steps off; sample once Talk->Walk has had time to finish.
-            if(!result.guardWalk&&Time.unscaledTime-started>.7f) {
-                PCastNeed(performance.IsWalking&&animator.GetCurrentAnimatorStateInfo(0).IsName("Walk"),"guard retreat plays the authored Walk clip (walking="+performance.IsWalking+" speaking="+performance.IsSpeaking+" inTransition="+animator.IsInTransition(0)+" idle="+animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")+" talk="+animator.GetCurrentAnimatorStateInfo(0).IsName("Talk")+" nextWalk="+animator.GetNextAnimatorStateInfo(0).IsName("Walk")+" local="+guard.transform.localPosition+")");result.guardWalk=true;
+        float until=Time.unscaledTime+30,next=0;
+        while(Time.unscaledTime<until&&guardTask==GuardTask.Route) {
+            if(!result.guardWalk&&Time.unscaledTime-started>.7f&&performance.IsWalking) {
+                PCastNeed(animator.GetCurrentAnimatorStateInfo(0).IsName("Walk")||animator.GetNextAnimatorStateInfo(0).IsName("Walk"),"guard escort plays the authored Walk clip (walking="+performance.IsWalking+" idle="+animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")+" local="+guard.transform.localPosition+")");result.guardWalk=true;
                 paused=true;CursorMode();yield return null;yield return new WaitForEndOfFrame();
                 var position=guard.transform.position;var facing=guard.transform.rotation;float phase=animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
                 yield return PCastWait(.35f);
@@ -140,19 +141,24 @@ public partial class DemoApp {
                 var half=Vector3.Scale(box.size*.5f,box.transform.lossyScale);half.y-=.035f;
                 foreach(var hit in Physics.OverlapBox(box.transform.TransformPoint(box.center),half,box.transform.rotation,~0,QueryTriggerInteraction.Ignore)) {
                     if(hit.transform.IsChildOf(guard.transform)||hit.transform.IsChildOf(player.transform)||hit.bounds.max.y<=guard.transform.position.y+.025f)continue;
-                    PCastNeed(false,"retreating guard intersects "+PCastPath(hit.transform)+" at local="+guard.transform.localPosition+" bounds="+hit.bounds);
+                    if(hit.GetComponentInParent<ShopMechanism>())continue;
+                    PCastNeed(false,"escorting guard intersects "+PCastPath(hit.transform)+" at local="+guard.transform.localPosition+" bounds="+hit.bounds);
                 }
-                PCastNeedQuiet(Mathf.Abs(guard.transform.localPosition.x-16.95f)<.01f,"guard keeps the clear east-loggia x=16.95 line");
             }
-            if(Mathf.Abs(guard.transform.localPosition.z-21.8f)<.01f)break;
             PCastMute();yield return null;
         }
-        PCastNeed(Mathf.Abs(guard.transform.localPosition.z-21.8f)<.01f&&result.guardRetreatSamples>5,"guard visibly steps aside past the loggia pillar without intersection");
+        PCastNeed(guardTask!=GuardTask.Route&&result.guardRetreatSamples>5,"guard walks to the property room through its real door without intersection");
+        // At the cage he turns, steps up to the padlock and stands still while his hand works the key.
+        var hands=guard.GetComponent<NpcHands>();
+        for(float until2=Time.unscaledTime+10;Time.unscaledTime<until2&&!(hands&&hands.Weight(true)>.6f);)yield return null;
         yield return PCastWait(.4f);
-        PCastNeed(result.guardWalk&&result.guardWalkPauseFrozen&&!performance.IsWalking&&animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"),"guard completes retreat and returns to Idle");
-        PCastNeed(PoliceStation.Current.Door("police-holding-door").IsOpen,"holding gate remains open after guard retreat");
-        yield return WalkTo(OpeningPoint(18.25f,20.6f));yield return WalkTo(OpeningPoint(16.1f,20.6f));
-        PCastNeed(!PoliceStation.Current.RoomAt(player.transform.position,out var room)||room.id!="holding","real player walks out of cell past new guard body");result.cellWalk=true;
+        PCastNeed(result.guardWalk&&result.guardWalkPauseFrozen&&hands&&hands.Weight(true)>.6f&&!performance.IsWalking&&(animator.GetCurrentAnimatorStateInfo(0).IsName("Idle")||animator.GetNextAnimatorStateInfo(0).IsName("Idle")),"guard completes the walk and stands still at the cage, his hand on the lock");
+        PCastNeed(PoliceStation.Current.Door("police-holding-door").IsOpen&&PoliceStation.Current.Door("police-evidence-door").IsOpen,"cell and property-room doors stand open after the escort");
+        yield return WalkTo(OpeningPoint(16.6f,19.2f));yield return WalkTo(OpeningPoint(16.6f,17.6f));
+        PCastNeed(!PoliceStation.Current.RoomAt(player.transform.position,out var room)||room.id!="holding","real player walks along the cloister past the cell");result.cellWalk=true;
+        // The hand-over itself belongs to the first-act review; here the face and dialogue checks that
+        // follow must not be pre-empted by it opening on its own when the camera comes close.
+        guardHandoverDone=true;
     }
     IEnumerator ReviewPoliceCast() {
         yield return PCastWait(1);opening=false;paused=false;dayNightReviewFrozen=false;
@@ -198,7 +204,8 @@ public partial class DemoApp {
         CreatorTeleport(OpeningPoint(16,4.4f),180);var pad=PoliceStation.Current.GetComponentsInChildren<PoliceDocumentItem>().Single(i=>i.documentId=="interview-pad");
         player.Aim(pad.transform.position);yield return null;
         PCastNeed(Physics.Raycast(player.eye.transform.position,player.eye.transform.forward,out var paperHit,3f)&&paperHit.collider.GetComponentInParent<Interactable>()==pad&&TryInteract()&&inspected==pad,"existing meeting-room pad remains inspectable");
-        double readingClock=ElapsedGameMinutes;yield return PCastWait(.4f);PCastNeed(ElapsedGameMinutes>readingClock&&MovementLocked,"background reading retains shared clock and inspection controls");CloseInspect();result.backgroundRead=true;
+        double readingClock=ElapsedGameMinutes;yield return PCastWait(.4f);PCastNeed(ElapsedGameMinutes>readingClock&&MovementLocked,"background reading retains shared clock and inspection controls");
+        PCastNeed(pad.illustration,"meeting-room pad shows its printed form");yield return Capture("police-cast-interview-pad");CloseInspect();result.backgroundRead=true;
         PCastNeed(evidence.SequenceEqual(PCastEvidence()),"cast interactions and background reading do not add or remove investigation evidence");
         // The principal corridor remains traversable with the new bodies in place.
         yield return WalkTo(OpeningPoint(17.5f,4.6f));yield return WalkTo(OpeningPoint(14,4.6f));yield return WalkTo(OpeningPoint(11.5f,4.6f));

@@ -1,0 +1,118 @@
+{
+  "feature": "POLICE-03 E01 desk copies are printed sheets in the world (public materials desk folder and comparison desk stand)",
+  "date": "2026-10-16",
+  "platform": "macOS / Apple Silicon, Unity 6000.3.18f1, Metal; Blender 4.5.9; muted reviews, isolated review saves",
+  "build": {
+    "method": "python3 -X utf8 tools/police/police_layout.py -> Blender build_police_station.py (BuildPolice.ps1 arguments, previews to builds/police-desk-paper/blender) -> Unity -executeMethod BuildSlice.RebuildPolice -> ZFightScan.Run -> OpeningAuthoring.BuildMacIntegrated",
+    "where": "Unity steps ran in a private APFS clone of the working tree (another session was building in this checkout); only the files below were copied back, each checked against its pre-clone hash",
+    "app": "builds/police-desk-paper/错日证词-新版.app (not promoted to builds/macos-current)",
+    "assemblySha256": "589d512c0f655ecae86baacac59c0ea4071fffccf159dea5263e731f0adebbae"
+  },
+  "contract": {
+    "itemField": "items[].paper {support, w, h, x, y, z, yaw, tilt, lift} from desk_paper() in tools/police/police_layout.py",
+    "doc-e01": {
+      "support": "read-folder-1 (folder, now portrait .29 x .36 m)",
+      "w": 0.24,
+      "h": 0.30938,
+      "yaw": 180,
+      "tilt": 0.0,
+      "lift": 0.00518,
+      "trigger": "0.38x0.08x0.30 -> 0.32x0.08x0.38"
+    },
+    "doc-compare-e01": {
+      "support": "read-stand-1 (docstand slope)",
+      "w": 0.24,
+      "h": 0.30938,
+      "yaw": 180,
+      "tilt": 43.9949,
+      "lift": 0.00518
+    },
+    "proportions": "1024x1320 typeset face (Art/Police/Papers/E01.png); PoliceChecks compares them",
+    "restingGap": "lowest edge 0.9 mm above the support plane; printed face > 2 mm above it"
+  },
+  "blender": {
+    "triangles": "41226 -> 41222",
+    "objectsChanged": {
+      "Furn_read-folder-1": "14 -> 12",
+      "Furn_read-stand-1": "40 -> 38"
+    },
+    "unchanged": "door leaves, drawers, materials, all other objects",
+    "crossCheck": "printed_paper(): page corners, edge midpoints and centre lie on the generated support face within 0.1 mm and inside it with a 1 cm margin"
+  },
+  "unity": {
+    "rebuild": "POLICE_AUTHORING_PASS (53 apertures, 14151 solid wall probes, 16 doors, 39 lamps; printedDeskCopies 2) and POLICE_PREFAB_PASS",
+    "newAssets": "game/Assets/Generated/Police/Paper_doc-e01_{0,1,2}.asset/.mat and Paper_doc-compare-e01_{0,1,2}.asset/.mat (printed face, reverse, cut edges)",
+    "prefabSemanticChange": "IDs normalised: +2 'Physical E01' sheets (EvidencePhysical, 3 renderers each) under Item · doc-e01 / Item · doc-compare-e01; doc-e01 trigger size; PInt_Paper removed from Furn_read-folder-1 and Furn_read-stand-1. Nothing else. Town root references (2 IDs) still resolve.",
+    "policeChecks": "desk copy must have EvidencePhysical with its typeset face as _BaseMap, page proportions within 0.5% of the texture, meshes/materials saved as assets, every vertex 0.5 mm - 1.5 cm above the support plane, and no PInt_Paper left on the support renderer"
+  },
+  "zfight": {
+    "withChange": {
+      "visibleExact": 9,
+      "movingExact": 0,
+      "visibleNear": 1045,
+      "renderers": 14377
+    },
+    "untouchedTree": {
+      "visibleExact": 9,
+      "movingExact": 0,
+      "visibleNear": 1045,
+      "renderers": 14371
+    },
+    "groupListsIdentical": true,
+    "note": "The 9 EXACT groups are all in the opening act's property cage (保管柜: corner posts, top/base plates, wire, cage-door stiles and rails, OpeningAuthoring); none involve the police papers, folder or stand. Pre-existing, not fixed here."
+  },
+  "runs": [
+    {
+      "mode": "police 1080p",
+      "result": "POLICE_REVIEW_PASS",
+      "seconds": 88,
+      "e01DeskSheetsPrinted": true,
+      "e01CloseUpIsDeskSheet": true
+    },
+    {
+      "mode": "police-reload",
+      "result": "POLICE_SAVE_PASS",
+      "seconds": 6
+    },
+    {
+      "mode": "police-cast",
+      "result": "POLICE_CAST_REVIEW_PASS",
+      "seconds": 39
+    },
+    {
+      "mode": "street-life",
+      "result": "STREET_LIFE_REVIEW_PASS",
+      "seconds": 250,
+      "backpackThumbnails": true,
+      "backpackPaperReturns": true,
+      "dossierTestimony": true
+    },
+    {
+      "mode": "police 720p",
+      "result": "POLICE_REVIEW_PASS",
+      "seconds": 84,
+      "e01DeskSheetsPrinted": true,
+      "e01CloseUpIsDeskSheet": true
+    }
+  ],
+  "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728 (unchanged before and after every run)",
+  "captures": {
+    "e01-desk-public-1080.jpg": "standing beside the public materials desk (1.25, 3.25): E01 lies printed on the portrait folder; the husband statement next to it is still a blank FBX sheet",
+    "e01-desk-compare-1080.jpg": "standing at the comparison desk (6.5, 3.25): E01 printed on read-stand-1; the E08 stand beside it keeps its blank sheet",
+    "e01-desk-lamp-off-1080.jpg": "public desk with its reading lamp switched off (dusk rain, pendants on)",
+    "e01-closeup-1080.jpg": "RE3-style close-up of the desk sheet (clone of the world paper)",
+    "e01-desk-public-720.jpg": "720p",
+    "e01-desk-compare-720.jpg": "720p",
+    "briefcase-1080.jpg": "B briefcase: E01 thumbnail is the printed portrait sheet (street-life review fixture titles read 'Review ...')",
+    "briefcase-e01-details-1080.jpg": "E01 opened from the briefcase with details (source: public materials desk)"
+  },
+  "limits": [
+    "Programmatic real CharacterController and E-ray input, muted; not physical keyboard/mouse or a blind playtest.",
+    "Reviews ran at 17:55-18:11 game time (dusk rain, lamps on); no daylight capture of the desks.",
+    "The sheet uses the Unlit material of EvidenceModel.Paper like the garage and house papers: it does not darken with the room light.",
+    "E01.png keeps the POLICE-02 import (no mipmaps, for the close-up): at standing distance the typed lines look grainy; motion shimmer was not recorded.",
+    "Still blank FBX sheets: E08 on read-stand-2, husband statement, interview pad, permit stub and other desk papers (out of this task).",
+    "Candidate app not promoted to the desktop entry; nothing committed or pushed."
+  ],
+  "editMode": "129/129 passed (same assembly sources, in the build clone)"
+}

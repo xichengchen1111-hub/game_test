@@ -1,0 +1,83 @@
+{
+  "date": "2026-10-16",
+  "platform": "macOS 26.6.2, Apple M5 Pro, Metal, Unity 6000.3.18f1 (OSXPlayer)",
+  "build": "builds/opening/integrated (OpeningAuthoring.BuildMacIntegrated), Assembly-CSharp SHA256 564590737ee5692136f2ae874586f755c6357fc79290fe7a5fd8d94436d14a08 = 810b96f plus the inn presentation script",
+  "runner": "tools/opening/run_review.py (OPENING_REVIEW_HEIGHT=720 for 720p); every run muted, with its own review save",
+  "normalSaveSHA256": "c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728 before and after all runs",
+  "method": "Programmatic real CharacterController and E-ray inputs, not physical keyboard/mouse or a blind playtest. Raw screenshots stay in the ignored builds/opening/check8*/.",
+  "scope": "First native Mac run of the repair garage (B07); it had only been verified on Windows (GARAGE-01).",
+  "runs": {
+    "1080p garage": {
+      "passed": true,
+      "marker": "GARAGE_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "checks": 29,
+      "checksTrue": 29,
+      "reviewSeconds": 88.0,
+      "gameMinutes": [
+        1075.0,
+        1092.6
+      ],
+      "labels": [
+        "青川 · 修车铺 · 接待室",
+        "青川 · 修车铺 · 账房",
+        "青川 · 修车铺 · 修理车间",
+        "青川 · 修车铺 · 工具库",
+        "青川 · 修车铺 · 车间后场",
+        "青川 · 修车铺 · 后院",
+        "青川 · 修车铺 · 储物阁楼"
+      ],
+      "frameMsP95": 17.2,
+      "screenshots": 25
+    },
+    "1080p garage-save": {
+      "passed": true,
+      "marker": "GARAGE_SAVE_PASS",
+      "normalSaveUnchanged": true,
+      "frameMsP95": 17.3,
+      "screenshots": 1
+    },
+    "1080p garage-day": {
+      "passed": true,
+      "marker": "GARAGE_GALLERY_PASS",
+      "normalSaveUnchanged": true,
+      "frameMsP95": 17.5,
+      "screenshots": 16
+    },
+    "720p garage": {
+      "passed": true,
+      "marker": "GARAGE_REVIEW_PASS",
+      "normalSaveUnchanged": true,
+      "checks": 29,
+      "checksTrue": 29,
+      "reviewSeconds": 87.9,
+      "gameMinutes": [
+        1075.0,
+        1092.6
+      ],
+      "labels": [
+        "青川 · 修车铺 · 接待室",
+        "青川 · 修车铺 · 账房",
+        "青川 · 修车铺 · 修理车间",
+        "青川 · 修车铺 · 工具库",
+        "青川 · 修车铺 · 车间后场",
+        "青川 · 修车铺 · 后院",
+        "青川 · 修车铺 · 储物阁楼"
+      ],
+      "frameMsP95": 17.3,
+      "screenshots": 25
+    },
+    "720p garage-save": {
+      "passed": true,
+      "marker": "GARAGE_SAVE_PASS",
+      "normalSaveUnchanged": true,
+      "frameMsP95": 17.1,
+      "screenshots": 1
+    }
+  },
+  "visualReview": "All 25 walkthrough screenshots per resolution and 16 daylight views looked at: street front, arch leaves open and closed, office, register, viewing window, records room, W01/W02 papers, hall trusses, mechanic dialogue, vice, tag board, tool store, drawer, yard and shed, gate from the lane, stair, loft, east lane at night, report. Nothing broken; lighting matches the Windows frames in output/demo/garage/.",
+  "findings": [
+    "No defects found in the garage.",
+    "The mechanic is still the re-coloured ticket-clerk placeholder (same face)."
+  ]
+}
