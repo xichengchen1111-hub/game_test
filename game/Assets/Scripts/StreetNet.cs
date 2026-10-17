@@ -214,7 +214,7 @@ public sealed class StreetNet {
         }
     }
     // The stop line: a metre behind the far side of the footway line people cross on (the painted bars at
-    // Station Road × Middle Street lie there too: z 14/26, x 25/35).
+    // Station Road × Middle Street lie there too: x 25/35, and z 12.05/27.95 where SetBackLines moves it).
     static float StopOffset(Junction j,Carriage c){var other=c.eastWest?j.ns:j.ew;return other.half+other.road.strip+other.road.walk/2+1.1f;}
     // A car turning into one of the 4 m streets swings its front corner over the middle of it as it
     // straightens up (two cars side by side there have 0.22 m between them) and would catch a car
@@ -351,14 +351,19 @@ public sealed class StreetNet {
             if(Intersect(lines[i].a,lines[i].b,lines[k].a,lines[k].b,out float t,out float u)){cuts[i].Add(t);cuts[k].Add(u);}
         var nodes=new Dictionary<Vector2Int,WalkNode>();
         WalkNode Node(Vector3 p){var key=new Vector2Int(Mathf.RoundToInt(p.x*10),Mathf.RoundToInt(p.z*10));if(!nodes.TryGetValue(key,out var n)){n=new WalkNode{point=new Vector3(p.x,Ground,p.z),id=walkNodes.Count};nodes[key]=n;walkNodes.Add(n);}return n;}
+        Carriage Over(Vector3 p){foreach(var c in carriages)if(c.eastWest?Mathf.Abs(p.z-c.centre)<c.half&&p.x>=c.from&&p.x<=c.to:Mathf.Abs(p.x-c.centre)<c.half&&p.z>=c.from&&p.z<=c.to)return c;return null;}
         for(int i=0;i<lines.Count;i++) {
             var list=cuts[i];list.Sort();
             for(int k=0;k+1<list.Count;k++) {
                 if(list[k+1]-list[k]<1e-4f)continue;
                 var a=Vector3.Lerp(lines[i].a,lines[i].b,list[k]);var b=Vector3.Lerp(lines[i].a,lines[i].b,list[k+1]);
+                // A line drawn on into a street ends at the footway it meets there. The back alleys A01 and A02
+                // run into Station West Road (to x 134, and to its centre line); the stretch past its west
+                // footway would end in the road, a dead end StreetLife would send people to as a way out of
+                // town, along the carriageway (WALK-01).
+                if(Over(a)!=null||Over(b)!=null)continue;
                 var e=new WalkEdge{a=Node(a),b=Node(b),length=Vector3.Distance(a,b),width=lines[i].width};
-                var mid=(a+b)/2;
-                foreach(var c in carriages){bool over=c.eastWest?Mathf.Abs(mid.z-c.centre)<c.half&&mid.x>=c.from&&mid.x<=c.to:Mathf.Abs(mid.x-c.centre)<c.half&&mid.z>=c.from&&mid.z<=c.to;if(over){e.crosses=c;break;}}
+                var mid=(a+b)/2;e.crosses=Over(mid);
                 if(e.crosses!=null)foreach(var j in junctions)if(j.Inside(mid,6)){e.junction=j;e.marked=j.crossings;break;}
                 // Footways cross only at corners; an alley's mouth crosses where it meets the street (legal in
                 // 1931 if the walker gives way to the cars: no marking, gap acceptance).

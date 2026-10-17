@@ -33,6 +33,16 @@ public partial class DemoApp {
         // STREET-03: the stop lines set back for turning cars, the tightest clearances left by the
         // layout, and how often the last-resort guard had to hold a car (it should not have to).
         public string stopLines,waitingClearance,openTurnClearance;public int carGuardHolds;
+        // STREET-05: in the minute and a half of traffic, walkers who went back to the kerb from a crossing
+        // and cars that edged past somebody alongside; over the whole review, the longest a car stood
+        // waiting for somebody on foot (not the player, who blocks a car on purpose here).
+        public int turnBacks,edgedPast,madeWay;public float longestWaitForPerson,longestHeldByPerson;public string longestWaitForPersonCar,longestHeldByPersonCar;
+        // The staged case (CarOnCrossing): a car let go soon after the walker is held up beside it, and one
+        // held longer. Seconds from letting the car go until its body is off the walker's line and until the
+        // walker is over; the car's top speed while within EdgeNear of the walker; how long the walker was
+        // held before turning back.
+        public float edgedCarOff=-1,edgedWalkerOver=-1,edgedTopSpeedNear=-1,heldTurnBackAfter=-1,heldCarOff=-1,heldWalkerOver=-1;
+        public bool edgedCounted,edgedWalkerTurnedBack;
         public List<string> captures=new List<string>();
         public string verification;
     }
@@ -85,6 +95,7 @@ public partial class DemoApp {
         var st=life.Stats;
         slResult.signalEntries=st.signalEntries;slResult.redRuns=st.redRuns;slResult.stopSignEntries=st.stopEntries;slResult.stopViolations=st.stopViolations;
         slResult.crossingsStarted=st.crossings;slResult.kerbWaits=st.kerbWaits;slResult.yieldsToPeople=st.yields;slResult.honks=st.honks;
+        slResult.turnBacks=st.turnBacks;slResult.edgedPast=st.edgedPast;slResult.madeWay=st.madeWay;
         SLNeed(st.signalEntries>=3,"too few cars through the signal: "+st.signalEntries);
         SLNeed(st.redRuns==0,"cars ran the red: "+st.redRuns);
         SLNeed(st.stopViolations==0,"cars went past a STOP sign without stopping: "+st.stopViolations);
@@ -112,6 +123,8 @@ public partial class DemoApp {
         float stoppedAtLine=stopStart<0?0:stopEnd-stopStart;
         slResult.stopSignEntries=life.Stats.stopEntries;slResult.stopViolations=life.Stats.stopViolations;
         SLNeed(entered&&stoppedAtLine>=1&&lineGap>-.05f&&life.Stats.stopViolations==0,"STOP corner: entered="+entered+" stopped "+stoppedAtLine+" s, bumper "+lineGap+" m before the line, violations "+life.Stats.stopViolations);
+        // 4b. A car on a crossing and a walker held up beside it: both on their way within seconds (STREET-05).
+        yield return CarOnCrossing(life);
         // 5. The old gentleman: slower, bent, the stick planted on the ground.
         yield return Elderly(life);
         // 5b. The street cast: a woman walking her terrier on its lead, a boy and a girl.
@@ -168,14 +181,22 @@ public partial class DemoApp {
     // tools/opening/run_review.py street-traffic): every corner in turn at the morning rush, with every
     // car the town allows, time at double speed and a stalled frame every few seconds. No two cars may
     // touch and no car may stand two minutes on end waiting for cars or rules (a jam); the guard's holds
-    // are counted (it should not have to hold anyone). A car waiting for someone on foot is noted
-    // apart: a walker held on a crossing by the car's body and the car waiting for that walker can stand
-    // until one of them is recycled out of sight (a walker matter, older than STREET-03). Muted, own
-    // save; the normal save is untouched.
+    // are counted (it should not have to hold anyone). A car held up by somebody on foot is measured
+    // apart (AmbientCar.PersonHeldFor: only the time people are what it waits for, not the red or the
+    // STOP sign before) and may not be held PersonWaitLimit: a walker held on a crossing by a car's body,
+    // and the car waiting for that walker, used to stand until one of them was recycled out of sight,
+    // and so did a queue of people backed up from a kerb into the road (STREET-05). Each hold over 10 s
+    // is logged with where the walker stood and what held them. longestWaitForPerson keeps the earlier
+    // measure (the whole standstill of a car last waiting for somebody on foot). Muted, own save; the
+    // normal save is untouched.
+    const float PersonWaitLimit=40;
     [Serializable] class StreetTrafficReviewResult {
         public bool passed;public int width,height,corners,frames,stalls,carsSeen;public float timeScale,simulatedSeconds,realSeconds;
         public int carOverlaps,carGuardHolds,signalEntries,redRuns,stopSignEntries,stopViolations;
-        public float minCarGap,longestStop,longestWaitForPerson;public string longestStopCar,longestWaitForPersonCar,stopLines,waitingClearance,openTurnClearance;
+        public float minCarGap,longestStop,longestWaitForPerson,longestHeldByPerson;public string longestStopCar,longestWaitForPersonCar,longestHeldByPersonCar,stopLines,waitingClearance,openTurnClearance;
+        // STREET-05: walkers who went back to the kerb from a crossing, cars that edged past somebody
+        // alongside, and holds by somebody on foot longer than 10 s.
+        public int turnBacks,edgedPast,madeWay,personHoldsOver10s;
         // Not what this review is for (the street-life review checks them), but noted.
         public int carPersonContacts,personOverlaps,personPlayerOverlaps,roadWalking;
         public string verification;
@@ -198,6 +219,7 @@ public partial class DemoApp {
         RecordStreetLayout(life,out stResult.stopLines,out stResult.waitingClearance,out stResult.openTurnClearance);
         life.ForcedCars=StreetLife.CarCap;life.Stats.Reset();
         var seen=new HashSet<int>();float realStart=Time.realtimeSinceStartup,simulated=0;
+        var longWaits=new Dictionary<AmbientCar,float>();
         Time.timeScale=stResult.timeScale;
         foreach(var j in life.Net.junctions.OrderBy(n=>n.centre.x).ThenBy(n=>n.centre.z)) {
             if(!StandAtCorner(life,j)){Debug.LogWarning("STREET_TRAFFIC_REVIEW_NOTE: no clear corner to stand at "+j.centre);continue;}
@@ -206,8 +228,18 @@ public partial class DemoApp {
                 Audit(life);stResult.frames++;simulated+=Time.deltaTime;
                 foreach(var c in life.AllCars) {
                     seen.Add(c.GetInstanceID());
-                    if(c.Waiting=="person"||c.Waiting=="player"){if(c.StoppedFor>stResult.longestWaitForPerson){stResult.longestWaitForPerson=c.StoppedFor;stResult.longestWaitForPersonCar=c.Describe();}}
+                    if(c.Waiting=="person"||c.Waiting=="player") {
+                        if(c.StoppedFor>stResult.longestWaitForPerson){stResult.longestWaitForPerson=c.StoppedFor;stResult.longestWaitForPersonCar=c.Describe();}
+                    }
                     else if(c.StoppedFor>stResult.longestStop){stResult.longestStop=c.StoppedFor;stResult.longestStopCar=c.Describe();}
+                    if(c.PersonHeldFor>stResult.longestHeldByPerson){stResult.longestHeldByPerson=c.PersonHeldFor;stResult.longestHeldByPersonCar=c.Describe();}
+                    // Each hold over 10 s once (a new one starts when the car has moved since), and again at 30 s.
+                    if(c.PersonHeldFor>10) {
+                        bool fresh=!longWaits.TryGetValue(c,out float since)||since>c.PersonHeldFor;
+                        if(fresh){stResult.personHoldsOver10s++;Debug.LogWarning("STREET_CAR_LONG_WAIT_FOR_PERSON: "+c.Describe());}
+                        else if(since<=30&&c.PersonHeldFor>30)Debug.LogWarning("STREET_CAR_LONG_WAIT_FOR_PERSON (still): "+c.Describe());
+                        longWaits[c]=c.PersonHeldFor;
+                    }
                 }
                 // A long frame, as when the window is resized: the street takes it as one short step.
                 if(Time.time>=stall){stall=Time.time+7;stResult.stalls++;System.Threading.Thread.Sleep(300);}
@@ -221,20 +253,23 @@ public partial class DemoApp {
         stResult.carOverlaps=slResult.carOverlaps;stResult.minCarGap=slResult.minCarGap;stResult.carGuardHolds=life.GuardHolds;
         stResult.signalEntries=st.signalEntries;stResult.redRuns=st.redRuns;stResult.stopSignEntries=st.stopEntries;stResult.stopViolations=st.stopViolations;
         stResult.carPersonContacts=slResult.carPersonContacts;stResult.personOverlaps=slResult.personOverlaps;stResult.personPlayerOverlaps=slResult.personPlayerOverlaps;stResult.roadWalking=slResult.roadWalking;
+        stResult.turnBacks=st.turnBacks;stResult.edgedPast=st.edgedPast;stResult.madeWay=st.madeWay;
         TrafficNeed(stResult.corners==life.Net.junctions.Count,"stood at "+stResult.corners+" of "+life.Net.junctions.Count+" corners");
         TrafficNeed(stResult.carOverlaps==0,"cars touched on "+stResult.carOverlaps+" frames (min gap "+stResult.minCarGap+")");
         TrafficNeed(stResult.longestStop<120,"a car stood still "+stResult.longestStop+" s waiting for cars or rules: "+stResult.longestStopCar);
+        TrafficNeed(stResult.longestHeldByPerson<PersonWaitLimit,"a car was held "+stResult.longestHeldByPerson+" s by somebody on foot: "+stResult.longestHeldByPersonCar);
         TrafficNeed(st.redRuns==0&&st.stopViolations==0,"rules broken: red "+st.redRuns+" STOP "+st.stopViolations);
         TrafficNeed(st.signalEntries>=10&&st.stopEntries>=10,"too little traffic through the corners: signal "+st.signalEntries+" STOP "+st.stopEntries);
         stResult.passed=true;
-        stResult.verification="Isolated muted review player; program-driven player position, time at double speed, a 0.3 s stall every 7 s of game time. Overlaps, standstills and rules are measured every frame; guard holds are counted from STREET_CAR_GUARD. carsSeen counts pooled car objects, not trips. Waits for people on foot and walkers on the carriageway are noted, not judged.";
+        stResult.verification="Isolated muted review player; program-driven player position, time at double speed, a 0.3 s stall every 7 s of game time. Overlaps, standstills and rules are measured every frame; guard holds are counted from STREET_CAR_GUARD. carsSeen counts pooled car objects, not trips. Holds by people on foot (AmbientCar.PersonHeldFor) are judged against "+PersonWaitLimit+" s (STREET-05); walkers on the carriageway and car-person contacts are noted here, judged by the street-life review.";
         File.WriteAllText(Path.Combine(captures,"street-traffic-acceptance.json"),JsonUtility.ToJson(stResult,true));
-        Debug.Log("STREET_TRAFFIC_REVIEW_PASS: "+stResult.corners+" corners, "+stResult.simulatedSeconds.ToString("0")+" s of traffic, 0 overlaps, guard holds "+stResult.carGuardHolds+", longest stop for cars or rules "+stResult.longestStop.ToString("0.0")+" s, longest wait for someone on foot "+stResult.longestWaitForPerson.ToString("0.0")+" s ("+stResult.longestWaitForPersonCar+")");
+        Debug.Log("STREET_TRAFFIC_REVIEW_PASS: "+stResult.corners+" corners, "+stResult.simulatedSeconds.ToString("0")+" s of traffic, 0 overlaps, guard holds "+stResult.carGuardHolds+", longest stop for cars or rules "+stResult.longestStop.ToString("0.0")+" s, longest held by someone on foot "+stResult.longestHeldByPerson.ToString("0.0")+" s ("+stResult.longestHeldByPersonCar+"), longest standstill last waiting for someone on foot "+stResult.longestWaitForPerson.ToString("0.0")+" s, holds over 10 s "+stResult.personHoldsOver10s+", turned back "+stResult.turnBacks+", edged past "+stResult.edgedPast+", made way "+stResult.madeWay);
         Application.Quit();
     }
-    // Off the footway at one of the junction's four corners, looking at the middle of it.
-    bool StandAtCorner(StreetLife life,StreetNet.Junction j) {
-        foreach(float extra in new[]{1.2f,2.4f,.4f})foreach(var (sx,sz) in new[]{(1,1),(-1,1),(1,-1),(-1,-1)}) {
+    // Off the footway at one of the junction's four corners (the west ones first, if asked), looking at the middle of it.
+    bool StandAtCorner(StreetLife life,StreetNet.Junction j,bool westFirst=false) {
+        var corners=westFirst?new[]{(-1,1),(-1,-1),(1,1),(1,-1)}:new[]{(1,1),(-1,1),(1,-1),(-1,-1)};
+        foreach(float extra in new[]{1.2f,2.4f,.4f})foreach(var (sx,sz) in corners) {
             var ns=j.ns.road;var ew=j.ew.road;
             var at=j.centre+new Vector3(sx*(j.ns.half+ns.strip+ns.walk+extra),.12f,sz*(j.ew.half+ew.strip+ew.walk+extra));
             if(!life.Free(at,null))continue;
@@ -258,6 +293,10 @@ public partial class DemoApp {
                 else continue;
                 carOverlapLogged[key]=gap;
             }
+        }
+        foreach(var c in cars) {
+            if(c.Waiting=="person"&&c.StoppedFor>slResult.longestWaitForPerson){slResult.longestWaitForPerson=c.StoppedFor;slResult.longestWaitForPersonCar=c.Describe();}
+            if(c.PersonHeldFor>slResult.longestHeldByPerson){slResult.longestHeldByPerson=c.PersonHeldFor;slResult.longestHeldByPersonCar=c.Describe();}
         }
         foreach(var c in cars){foreach(var w in people){float d=PointToCar(c,w.transform.position)-.25f;slResult.minPersonGap=Mathf.Min(slResult.minPersonGap,d);if(d<-.02f){slResult.carPersonContacts++;if(roadLogged.Add(c.GetInstanceID()^w.GetInstanceID()))Debug.LogWarning("STREET_CAR_PERSON_CONTACT: "+c.name+" "+c.transform.position+" speed="+c.speed+" waiting="+c.Waiting+" path="+c.path.GetType().Name+" | "+w.name+" "+w.transform.position+" "+w.Activity+" d="+d);}}
             float dp=PointToCar(c,p)-.25f;if(dp<-.02f){slResult.carPersonContacts++;Debug.LogWarning("STREET_CAR_PLAYER_CONTACT: "+c.name+" d="+dp);}}
@@ -318,6 +357,96 @@ public partial class DemoApp {
         player.Place(spot+Vector3.Cross(Vector3.up,lane.dir)*3.3f,0);
         float resume=Time.time+6;while(Time.time<resume&&car.speed<1){Audit(life);yield return null;}
         slResult.playerBlockResumed=car.speed>=1;SLNeed(slResult.playerBlockResumed,"car did not move on after the player stepped aside");
+    }
+    // 4b. STREET-05, staged at Middle Street × Residential Street: a car that has pulled onto the north
+    // crossing in front of somebody already on it, kept there by the player standing ahead of it in the
+    // junction. The walker comes up to its side and is held up there. Let go half a second later, the
+    // car edges past at a walking pace and the walker goes on behind it; kept four seconds, the walker
+    // goes back to the kerb, the car drives off and the walker crosses after it. Contacts are audited
+    // every frame, as everywhere in the review. Fewer cars meanwhile, for a quiet moment to set it up.
+    IEnumerator CarOnCrossing(StreetLife life) {
+        var j=life.Net.junctions.FirstOrDefault(n=>Mathf.Abs(n.centre.x-30)<.5f&&Mathf.Abs(n.centre.z+75)<.5f);
+        var turn=j==null?null:life.Net.turns.FirstOrDefault(t=>t.junction==j&&t.kind==0&&t.from.dir.z<-.9f);
+        var crossing=j==null?null:life.Net.walkEdges.FirstOrDefault(e=>e.junction==j&&e.crosses==j.ns&&(e.a.point.z+e.b.point.z)/2>j.centre.z);
+        SLNeed(turn!=null&&crossing!=null,"no way straight on southward, or no north crossing, at Middle Street × Residential Street");
+        var west=crossing.a.point.x<crossing.b.point.x?crossing.a:crossing.b;var east=crossing.Other(west);
+        life.ForcedCars=3;StandAtCorner(life,j);
+        foreach(bool kept in new[]{false,true}) {
+            StreetWalker walker=null;AmbientCar car=null;float line=0,sCar=0;
+            for(int attempt=0;attempt<4&&!car;attempt++) {
+                // Somebody setting out from the west kerb at a quiet moment...
+                walker=null;
+                for(float until=Time.time+60;Time.time<until&&!walker;){Audit(life);if(QuietCrossing(life,turn,west))walker=life.SpawnCrossing(StreetDensity.Folk.Man,crossing,west);yield return null;}
+                SLNeed(walker,"no quiet moment to send somebody over the north crossing at (30,-75)");
+                for(float until=Time.time+30;Time.time<until&&!(walker.Crossing&&walker.transform.position.x>west.point.x+.9f);){Audit(life);yield return null;}
+                // Under way, a metre out (held up at the kerb or gone on too far: another one).
+                if(!walker.Crossing||walker.transform.position.x<west.point.x+.9f||walker.transform.position.x>west.point.x+1.6f)continue;
+                // ...and then a car standing over their way across, its front half across their line.
+                line=walker.transform.position.z;sCar=AtZ(turn,line+.93f);
+                var at=turn.Point(sCar);var facing=turn.Tangent(sCar);var hold=turn.Point(Mathf.Min(turn.length,sCar+AmbientCar.Front+4.5f));
+                bool clear=life.AllCars.All(c=>AmbientCar.BoxGap(at,facing,c.transform.position,c.transform.forward)>1&&AmbientCar.PointGap(c.transform.position,c.transform.forward,hold)>1.2f)&&
+                    life.Walkers.All(w=>AmbientCar.PointGap(at,facing,w.transform.position)>(w==walker?.5f:.8f)&&Vector3.Distance(w.transform.position,hold)>1.5f);
+                if(!clear)continue;
+                // The player in the junction ahead of it, where it waits for them, looking back at the crossing.
+                player.Place(new Vector3(hold.x,.12f,hold.z),0);player.Aim(new Vector3(west.point.x+2,1.1f,line));
+                car=life.SpawnCarOn(turn,sCar,0);
+            }
+            SLNeed(car,"could not stand a car on the north crossing at (30,-75)");
+            int turnBacks=life.Stats.turnBacks,edged=life.Stats.edgedPast;
+            // Held up beside it.
+            float held=-1;
+            for(float until=Time.time+8;Time.time<until&&held<0;){Audit(life);if(walker.Velocity.sqrMagnitude<.01f&&AmbientCar.PointGap(car.transform.position,car.transform.forward,walker.transform.position)<.45f)held=Time.time;yield return null;}
+            SLNeed(held>=0,"the walker was not held up beside the car on the crossing: "+walker.Describe(car.transform));
+            float turned=-1;bool backShot=false;
+            for(float until=held+(kept?4:.5f);Time.time<until;) {
+                Audit(life);if(turned<0&&walker.Activity=="turn-back")turned=Time.time;
+                // Looking from where the player holds the car: the walker going back past its front.
+                if(!backShot&&turned>=0&&Time.time>turned+.7f){backShot=true;player.Aim(Vector3.Lerp(walker.transform.position,car.transform.position+car.transform.forward*AmbientCar.Front,.35f)+Vector3.up*1.1f);yield return SLCapture("19-walker-turns-back");}
+                yield return null;
+            }
+            // Let go: the player steps off the road (on the walker's side when it edges past, to see them).
+            StandAtCorner(life,j,!kept);float go=Time.time,carOff=-1,over=-1,top=0;bool shot=false;
+            for(float until=go+30;Time.time<until&&(carOff<0||over<0);) {
+                Audit(life);
+                var cp=car.transform.position;
+                // Its speed while the walker stands within EdgeNear beside its front half.
+                var beside=car.transform.InverseTransformPoint(walker.transform.position);
+                if(beside.z+AmbientCar.CentreBack>0&&AmbientCar.PointGap(cp,car.transform.forward,walker.transform.position)<StreetLife.EdgeNear)top=Mathf.Max(top,car.speed);
+                if(turned<0&&walker.Activity=="turn-back")turned=Time.time;
+                if(carOff<0&&cp.z+AmbientCar.CentreBack+AmbientCar.HalfLength<line-.3f)carOff=Time.time-go;
+                // Over: past the far side of the carriageway (the crossing ends on the footway there, STREET-05).
+                if(over<0&&walker.transform.position.x>east.point.x-1.6f)over=Time.time-go;
+                if(!shot&&!kept&&Time.time>go+1.4f){shot=true;player.Aim(walker.transform.position+Vector3.up*1.1f);yield return SLCapture("18-car-edges-past-walker");}
+                yield return null;
+            }
+            // Whether the walker got over afterwards is noted, not judged: people bunched at the far corner can
+            // hold them up there (STREET-05 limits), with no car waiting.
+            if(over<0)Debug.LogWarning("STREET_CROSSING_STAGED_NOTE: the walker was not over 30 s after the car went: "+walker.Describe());
+            Debug.Log("STREET_CROSSING_STAGED: "+(kept?"kept":"let go")+" held "+(turned<0?"no turn-back":"turned back after "+(turned-held).ToString("0.0")+" s")+", car off the line "+carOff.ToString("0.0")+" s and walker over "+over.ToString("0.0")+" s after letting go, top speed beside "+top.ToString("0.00")+" m/s, edged "+(life.Stats.edgedPast-edged)+", turned back "+(life.Stats.turnBacks-turnBacks));
+            if(kept) {
+                slResult.heldTurnBackAfter=turned<0?-1:turned-held;slResult.heldCarOff=carOff;slResult.heldWalkerOver=over;
+                SLNeed(turned>=0&&turned-held<3.5f,"kept on the crossing, the walker did not go back to the kerb: "+walker.Describe(car.transform));
+                SLNeed(carOff>=0&&carOff<8,"after the walker went back, the car did not drive off the crossing: "+car.Describe());
+            } else {
+                slResult.edgedCarOff=carOff;slResult.edgedWalkerOver=over;slResult.edgedTopSpeedNear=top;slResult.edgedCounted=life.Stats.edgedPast>edged;slResult.edgedWalkerTurnedBack=turned>=0;
+                SLNeed(carOff>=0&&carOff<8&&slResult.edgedCounted&&top<1.3f,"let go, the car did not edge past the walker: off "+carOff+" s, top speed beside "+top+", edged "+slResult.edgedCounted+" | "+car.Describe());
+            }
+        }
+        life.ForcedCars=null;
+    }
+    // No car on or close to the way through, nobody on the crossing, nobody standing right at the kerb (a
+    // busy corner may have people about it: anyone the car would be set down beside is checked again after).
+    bool QuietCrossing(StreetLife life,StreetNet.Turn turn,StreetNet.WalkNode kerb) {
+        var mid=turn.Point(turn.length*.25f);
+        if(life.AllCars.Any(c=>c.path==turn||Vector3.Distance(c.transform.position,mid)<10))return false;
+        if(life.Walkers.Any(w=>w.Crossing&&Vector3.Distance(w.transform.position,mid)<6||Vector3.Distance(w.transform.position,kerb.point)<1.6f))return false;
+        return life.Free(kerb.point,null);
+    }
+    // Where along a way going south it reaches z.
+    static float AtZ(StreetNet.Path path,float z) {
+        float best=0,bestD=float.MaxValue;
+        for(float s=0;s<=path.length;s+=.01f){float d=Mathf.Abs(path.Point(s).z-z);if(d<bestD){bestD=d;best=s;}}
+        return best;
     }
     IEnumerator Elderly(StreetLife life) {
         StreetTime(10*60);life.ForcedPeople=30;

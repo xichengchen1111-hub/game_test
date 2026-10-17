@@ -36,6 +36,35 @@ public sealed class AmbientCar : MonoBehaviour {
         float acrossB=Mathf.Abs(dx*bz-dz*bx)-HalfWidth-HalfLength*cross-HalfWidth*same;
         return Mathf.Max(Mathf.Max(alongA,acrossA),Mathf.Max(alongB,acrossB));
     }
+    // How far p is from the body standing at origin and facing forward, in plan (0 inside it).
+    public static float PointGap(Vector3 origin,Vector3 forward,Vector3 p) {
+        float fx=forward.x,fz=forward.z,l=1/Mathf.Sqrt(fx*fx+fz*fz);fx*=l;fz*=l;
+        float dx=p.x-origin.x+fx*CentreBack,dz=p.z-origin.z+fz*CentreBack;
+        float along=Mathf.Max(0,Mathf.Abs(dx*fx+dz*fz)-HalfLength),across=Mathf.Max(0,Mathf.Abs(dx*fz-dz*fx)-HalfWidth);
+        return Mathf.Sqrt(along*along+across*across);
+    }
+    // How far the line a–b (a way across the street) passes from the body, in plan (0 through it). The
+    // nearest points of a segment and a box are an end of the one or a corner of the other.
+    public static float SegmentGap(Vector3 a,Vector3 b,Vector3 origin,Vector3 forward) {
+        float fx=forward.x,fz=forward.z,l=1/Mathf.Sqrt(fx*fx+fz*fz);fx*=l;fz*=l;
+        float cx=origin.x-fx*CentreBack,cz=origin.z-fz*CentreBack;
+        // In the body's own frame: x across, y along, from the middle of the box.
+        var A=new Vector2((a.x-cx)*fz-(a.z-cz)*fx,(a.x-cx)*fx+(a.z-cz)*fz);
+        var B=new Vector2((b.x-cx)*fz-(b.z-cz)*fx,(b.x-cx)*fx+(b.z-cz)*fz);
+        if(Through(A,B))return 0;
+        float ends=Mathf.Min(Outside(A),Outside(B));
+        float front=Mathf.Min(ToSegment(A,B,new Vector2(HalfWidth,HalfLength)),ToSegment(A,B,new Vector2(-HalfWidth,HalfLength)));
+        float back=Mathf.Min(ToSegment(A,B,new Vector2(HalfWidth,-HalfLength)),ToSegment(A,B,new Vector2(-HalfWidth,-HalfLength)));
+        return Mathf.Min(ends,Mathf.Min(front,back));
+    }
+    static float Outside(Vector2 p){float x=Mathf.Max(0,Mathf.Abs(p.x)-HalfWidth),y=Mathf.Max(0,Mathf.Abs(p.y)-HalfLength);return Mathf.Sqrt(x*x+y*y);}
+    static float ToSegment(Vector2 a,Vector2 b,Vector2 p){var ab=b-a;float t=Mathf.Clamp01(Vector2.Dot(p-a,ab)/Mathf.Max(1e-8f,ab.sqrMagnitude));return Vector2.Distance(a+ab*t,p);}
+    // Whether the segment enters the box (clipped against each pair of sides in turn).
+    static bool Through(Vector2 a,Vector2 b) {
+        float t0=0,t1=1;var d=b-a;
+        bool Clip(float p,float q){if(Mathf.Abs(p)<1e-9f)return q>=0;float r=q/p;if(p<0){if(r>t1)return false;if(r>t0)t0=r;}else{if(r<t0)return false;if(r<t1)t1=r;}return true;}
+        return Clip(-d.x,a.x+HalfWidth)&&Clip(d.x,HalfWidth-a.x)&&Clip(-d.y,a.y+HalfLength)&&Clip(d.y,HalfLength-a.y)&&t0<=t1;
+    }
     // Period values (1931 cars accelerate slowly; design brief, section 1): desired speed from the
     // street's limit and the driver, gentle acceleration, comfortable braking, time gap, standstill gap.
     public float limitScale=1,accel=.9f,comfortable=1.5f,headway=1.8f,standstill=2.5f;
@@ -46,16 +75,21 @@ public sealed class AmbientCar : MonoBehaviour {
     public AudioSource engine,road,horn;
     public bool Gone{get;private set;}
     public float StoppedFor{get;private set;}
+    // How long it has stood with somebody on foot as what it waits for (StoppedFor also counts the red,
+    // the STOP sign and the gap before them).
+    public float PersonHeldFor{get;private set;}
     public string Waiting{get;private set;}
+    // Who it waits for, when that is somebody on foot (for the logs).
+    public StreetWalker WaitingFor{get;private set;}
     public bool StopDone=>stopDone;public float StopDoneAt{get;private set;}
     public StreetNet.Turn NextTurn=>plan.Count>0?plan[0] as StreetNet.Turn:path as StreetNet.Turn;
     // Its front bumper over the stop line, still on the approach: as good as in the junction.
     public bool PastLine=>path is StreetNet.Lane l&&l.toJunction!=null&&l.length-s-Front<0;
     public int Signal{get;private set;}
-    float stopTimer;bool stopDone,amberGo,held;string waitedFor;float blockedByPlayer,honkLeft,wheelAngle,steer,armBlend;int armShown,armFrom;
+    float stopTimer;bool stopDone,amberGo,held,edgingPast;string waitedFor;float blockedByPlayer,honkLeft,wheelAngle,steer,armBlend;int armShown,armFrom;
     System.Random rng;MaterialPropertyBlock lampBlock;StreetLife life;
     public void Place(StreetLife owner,StreetNet.Path start,float at,System.Random random,float initialSpeed) {
-        life=owner;path=start;s=at;speed=initialSpeed;plan.Clear();rng=random;Gone=false;stopDone=false;stopTimer=0;StoppedFor=0;Waiting=null;held=false;
+        life=owner;path=start;s=at;speed=initialSpeed;plan.Clear();rng=random;Gone=false;stopDone=false;stopTimer=0;StoppedFor=PersonHeldFor=0;Waiting=null;WaitingFor=null;held=edgingPast=false;
         limitScale=.92f+.18f*(float)rng.NextDouble();headway=1.6f+.4f*(float)rng.NextDouble();blockedByPlayer=0;honkLeft=0;Signal=0;armShown=0;armBlend=1;
         Pose();
     }
@@ -86,7 +120,7 @@ public sealed class AmbientCar : MonoBehaviour {
         if(Gone||dt<=0)return;
         EnsurePlan(70);
         // gap drives the IDM; hard is the real free distance, never driven into.
-        float gap=float.MaxValue,hard=float.MaxValue,leaderSpeed=0;Waiting=null;
+        float gap=float.MaxValue,hard=float.MaxValue,leaderSpeed=0;Waiting=null;WaitingFor=null;
         var paths=new List<StreetNet.Path>(plan.Count+1){path};paths.AddRange(plan);
         // 1. The car ahead on this path and the next ones, 70 m on from here (STREET-03: counted from the
         // start of this path, a lane over 70 m long hid the car that had just turned off it ahead).
@@ -124,8 +158,8 @@ public sealed class AmbientCar : MonoBehaviour {
         }
         // 3. People, the player and other solid things in the road ahead.
         float look=Mathf.Max(9,speed*speed/(2*comfortable)+12);
-        float obstacle=life.ObstacleAhead(this,paths,s,look,out bool isPlayer);
-        if(obstacle<gap){gap=obstacle;leaderSpeed=0;Waiting=isPlayer?"player":"person";}
+        float obstacle=life.ObstacleAhead(this,paths,s,look,out bool isPlayer,out var who,out var alongside,out float edging);
+        if(obstacle<gap){gap=obstacle;leaderSpeed=0;Waiting=isPlayer?"player":"person";WaitingFor=isPlayer?null:who;}
         hard=Mathf.Min(hard,obstacle);
         if(Waiting=="person"&&waitedFor!="person")life.Stats.yields++;
         waitedFor=Waiting;
@@ -137,6 +171,10 @@ public sealed class AmbientCar : MonoBehaviour {
         float v0=StreetDensity.SpeedLimit(Carriage)*limitScale*(1-.1f*rain);
         // Slow on the narrow streets while meeting another car (two barely pass on 4 m).
         if(Carriage!=null&&!Carriage.eastWest&&life.Meeting(this,24))v0=Mathf.Min(v0,3.2f);
+        // Edging past somebody standing close alongside (StreetLife.ObstacleAhead): at a walking pace.
+        bool edgingNow=edging<StreetLife.EdgeNear;
+        if(edgingNow){v0=Mathf.Min(v0,1.2f);if(!edgingPast)life.EdgedPast(this,alongside,edging);}
+        edgingPast=edgingNow;
         if(path is StreetNet.Turn turn)v0=Mathf.Min(v0,Mathf.Sqrt(2.2f*turn.Radius));
         else if(plan.Count>0&&plan[0] is StreetNet.Turn coming){float toTurn=path.length-s;float vt=Mathf.Sqrt(2.2f*coming.Radius);v0=Mathf.Min(v0,Mathf.Sqrt(vt*vt+2*comfortable*.7f*Mathf.Max(0,toTurn)));}
         float T=headway*(1+.25f*rain);
@@ -158,11 +196,12 @@ public sealed class AmbientCar : MonoBehaviour {
         // there; StreetLife counts and logs each time this holds a car): the body never moves to
         // within Guard of another's, unless the move opens the gap.
         if(move>0) {
-            if(Blocked(move,out var by,out float now,out float then)){move=0;speed=0;Waiting="car";if(!held){held=true;life.Guarded(this,by,now,then);}}
+            if(Blocked(move,out var by,out float now,out float then)){move=0;speed=0;Waiting="car";WaitingFor=null;if(!held){held=true;life.Guarded(this,by,now,then);}}
             else held=false;
         }
         s+=move;
         StoppedFor=speed<.05f?StoppedFor+dt:0;
+        PersonHeldFor=speed<.05f&&Waiting=="person"?PersonHeldFor+dt:0;
         while(s>path.length) {
             s-=path.length;
             if(path is StreetNet.Lane l&&l.Exit){Gone=true;return;}
@@ -192,7 +231,17 @@ public sealed class AmbientCar : MonoBehaviour {
     public string Describe() {
         var p=transform.position;var c=CultureInfo.InvariantCulture;
         return name+" ("+p.x.ToString("0.00",c)+", "+p.z.ToString("0.00",c)+") heading "+transform.eulerAngles.y.ToString("0",c)+" on "+path+" s="+s.ToString("0.00",c)+"/"+path.length.ToString("0.00",c)+
-            " speed="+speed.ToString("0.00",c)+" waiting="+(Waiting??"-")+" stopped="+StoppedFor.ToString("0.0",c)+"s"+(PastLine?" past its line":"")+(plan.Count>0?" then "+plan[0]:"");
+            " speed="+speed.ToString("0.00",c)+" waiting="+(Waiting??"-")+(WaitingFor?" for "+WaitingFor.Describe(transform):"")+" stopped="+StoppedFor.ToString("0.0",c)+"s"+(PersonHeldFor>0?" (held by people "+PersonHeldFor.ToString("0.0",c)+"s)":"")+(PastLine?" past its line":"")+(plan.Count>0?" then "+plan[0]:"");
+    }
+    // The nearest point to p of the way it is about to drive (the next `ahead` metres, every half metre).
+    public Vector3 NearestOnWay(Vector3 p,float ahead) {
+        Vector3 best=transform.position;float bestD=float.MaxValue,along=0,sOn=s;int index=0;StreetNet.Path on=path;
+        while(along<=ahead&&on!=null) {
+            if(sOn>on.length){sOn-=on.length;on=index<plan.Count?plan[index]:null;index++;continue;}
+            var q=on.Point(sOn);float d=(q.x-p.x)*(q.x-p.x)+(q.z-p.z)*(q.z-p.z);if(d<bestD){bestD=d;best=q;}
+            sOn+=.5f;along+=.5f;
+        }
+        return best;
     }
     // How far along its way this car first comes within 1.6 m of the segment a–b (a crossing), or -1.
     public float RouteDistanceTo(Vector3 a,Vector3 b,float maxAhead) {

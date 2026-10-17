@@ -2,6 +2,8 @@
 
 后续：本文记录的两项旧回归失败已在[手刹与昼夜修复](../review-fixes/README.md)中解决并重跑通过；以下保留街道版原始验收记录。
 
+后续（2026-10-16）：南北向停止线和16块STOP牌已移到街车后退后的停车线上，见[停止线对齐](../stop-bars/acceptance.json)与记忆STREET-04；下文的停止线位置与`stop-approach`截图是改前的。
+
 制作日期：2026-10-12。开工CLI fetch/pull：`main=origin/main=7618050`，没有新提交。没有commit或push。
 
 ## 已实现

@@ -8,5 +8,6 @@
   "kerbRisers": 170,
   "surfaceMeshes": 87,
   "triangles": 412,
+  "stopBars": "20 bars on the StreetNet stop lines; 18 north-south lines set back 1.95-2.00 m for turning car bodies",
   "design": "1930 urban yellow/red THROUGH STOP TRAFFIC; paired white crosswalk boundaries; no YIELD, zebra stripes, modern yellow centre lines or invented street names."
 }

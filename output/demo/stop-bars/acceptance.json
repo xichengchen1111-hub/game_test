@@ -1,0 +1,55 @@
+{
+ "feature": "STREET-04: painted stop bars and STOP signs on the set-back stop lines",
+ "date": "2026-10-16",
+ "platform": "Mac, Unity 6000.3.18f1, Metal; muted isolated review saves; normal save c87ab80dae764103c9db41408c2c66274baab5b293162254fa6c27ab242ff728 unchanged after every run",
+ "change": "tools/build_period_streets.py stop_lines(): the StreetNet.SetBackLines rule (lanes, 1.1 m base line, quadratic turns, 5 cm body sweeps, AmbientCar.BoxGap, Behind search, up to four passes) with the car size and margins read from AmbientCar.cs and StreetNet.cs. Every stop bar is drawn with its centre 0.1 m on the junction side of its line (the signal corner's original relation); each STOP sign stands on its bar's centre line.",
+ "lines": "18 north-south lines set back 1.95 m (Station Road and Residential Street corners, 8.05 m from the junction centre) and 2.00 m (South Street, 7.35 m); east-west lines not set back",
+ "bars": {
+  "stop": "centre 6.7 -> 7.95 m from the junction centre (South Street 5.7 -> 7.25 m), 16 bars",
+  "signalNorthSouth": "z 14 / 26 -> 12.05 / 27.95",
+  "signalEastWest": "x 25 / 35, mesh data byte-identical to before"
+ },
+ "posts": "16 STOP signs moved with their bars: 1.25 m (South Street 1.55 m; the two that had stood 1.05 m back for a lamp now move 0.5 m); all at least 1.25 m from trees and lamps, none needs the tree/lamp shift",
+ "checks": {
+  "csharpLines": "STOP_BAR_CHECK_PASS: built with the game's StreetNet.Build, all 20 painted bars 0.100 m inside a stop line (worst error 0.0000 m), all 16 posts on their bars (worst 0.0000 m), 18 lines set back",
+  "townScene": "Town scene rebuilt alone against the committed building prefabs (scratch editor script in an APFS clone). Against a baseline rebuild from the committed PeriodStreets.json, Town.unity differs only in the 16 STOP post transforms (hierarchy-path comparison), the 18 bar meshes change and TownNavigation.asset changes. PERIOD_STREET_AUTHORING_PASS, FULL_MAP_AUTHORING_PASS, ZFIGHT_REPAIR Town 0 editable pairs left, TOWN_NAVIGATION_BAKE_PASS.",
+  "build": "OpeningAuthoring.BuildMacIntegrated OPENING_BUILD_PASS; Assembly-CSharp 0a76f5528d1bb905b7156a6027ad3f89513bd590c1ccea77949c40f2e71eeb28 (committed game code; another session's uncommitted StreetNet/AmbientCar work left out of the clone)",
+  "streetLife": {
+   "passed": true,
+   "run": "OPENING_REVIEW_PREFIX=stopbars python3 tools/opening/run_review.py street-life",
+   "signalEntries": 9,
+   "redRuns": 0,
+   "stopSignEntries": 2,
+   "stopViolations": 0,
+   "carOverlaps": 0,
+   "carPersonContacts": 0,
+   "personOverlaps": 0,
+   "personPlayerOverlaps": 0,
+   "roadWalking": 0,
+   "minCarGap": 0.202,
+   "carGuardHolds": 0,
+   "playerBlock": "stopped, honked once, resumed",
+   "waitingClearance": "0.191 m",
+   "openTurnClearance": "0.201 m",
+   "frameTiming": "mean 19.0 ms, p95 25.8 ms while another session's street review ran on the same Mac (about 17 ms when run alone in STREET-03)"
+  },
+  "periodStreets": {
+   "passed": true,
+   "run": "--review --fresh --review-period-streets (wrapper with run_review.py's normal-save check)",
+   "result": "16 STOP signs, 18 colliders, every footway capsule sweep clear, controller crossing, signal clock and pause, exclusive phases; nearest night STOP lamp at (-117.50, 2.11, 11.75), intensity 1.55, in the active pool",
+   "note": "ran alongside another session's street-traffic soak"
+  }
+ },
+ "captures": {
+  "04-stop-corner.jpg": "street-life capture 04 (South Street x Middle Street STOP, southbound car): the car has stopped with its bumper just short of the bar, the STOP sign beside it",
+  "04-stop-corner-before-after.jpg": "the same camera before (output/demo/street-traffic/04-stop-corner-set-back-line.jpg, STREET-03: paint and sign about 2 m ahead of the car) and after"
+ },
+ "notShown": "The signal corner capture 02 is framed from the north-east corner; the car that triggered it is out of frame (as in STREET-03), so no frame shows a car held at a north-south signal bar. Those bars follow the same rule as the STOP bars and are covered by the C# check.",
+ "regenerationDrift": "Restored as unrelated to this change: PeriodStop.png (this Mac's Pillow/FreeType draws the lettering 8973 pixels differently from the committed Windows render, with every committed TownSans version), and the order of 170 kerb risers and 5 gutter meshes in PeriodStreets.json (this Mac's GEOS lists the identical geometry in another order). Carried along with the rebuilt Town.unity (any town rebuild does this): float tails on tree LOD bounds, greenery instance matrices and a few house transforms, the new ShopMechanism.swingSpeed field, one station-clerk bone override gone, FullMapChecks lights 332 -> 333 (inn lamp from HOTEL-02).",
+ "logs": "builds/opening/stopbars-street-life, builds/opening/stopbars-period-streets, builds/stop-bars/logs (not in Git); candidate app builds/stop-bars/错日证词-新版.app",
+ "limits": [
+  "Program-driven and muted; not physical keyboard and mouse or a blind test.",
+  "The generator's line computation is a second implementation of StreetNet's rule: constants are read from the C# sources, but a change to the algorithm itself needs the script updated (an EditMode test comparing painted bars with StreetNet's lines was not added).",
+  "Desktop app not replaced; nothing committed."
+ ]
+}

@@ -15,7 +15,10 @@ public sealed class StreetLife : MonoBehaviour {
     // What the review counts: cars through the signal and the STOP corners, and whether they kept the rules.
     public sealed class TrafficStats {
         public int signalEntries,redRuns,stopEntries,stopViolations,crossings,kerbWaits,yields,honks;
-        public void Reset(){signalEntries=redRuns=stopEntries=stopViolations=crossings=kerbWaits=yields=honks=0;}
+        // STREET-05: walkers who went back to the kerb from a crossing, cars that edged past somebody alongside,
+        // walkers who stepped out of the way of a car standing for them.
+        public int turnBacks,edgedPast,madeWay;
+        public void Reset(){signalEntries=redRuns=stopEntries=stopViolations=crossings=kerbWaits=yields=honks=turnBacks=edgedPast=madeWay=0;}
     }
     public readonly TrafficStats Stats=new TrafficStats();
     public void Entered(AmbientCar car,StreetNet.Lane lane,bool stopped,bool amberGo) {
@@ -34,6 +37,14 @@ public sealed class StreetLife : MonoBehaviour {
     public const int Layer=9;
     public const int PeopleCap=36,CarCap=10;
     const float PeopleRadius=92,CarRadius=145,MaxStep=.1f;
+    // Room people keep from a car's body (a body's width, 0.25 m, and a hand's breadth); a car drives on
+    // past somebody alongside it only if its body keeps that from them (and 0.2 m from their dog), at a
+    // walking pace while within EdgeNear; nobody sets out over a crossing that a car's body stands
+    // within CrossingRoom of (STREET-05).
+    public const float BodyRoom=.33f,EdgeNear=.8f,CrossingRoom=.45f;
+    // What the car's body keeps when it drives past: BodyRoom less a rounding margin, so that somebody
+    // the walkers' own rule has stopped right at BodyRoom always counts as clear.
+    const float PassRoom=BodyRoom-.005f,DogRoomFromCar=.2f;
     // Times AmbientCar's last-resort guard has had to hold a car (each logged as STREET_CAR_GUARD).
     public int GuardHolds{get;private set;}
     public float RoadHeight=>.025f;
@@ -280,9 +291,10 @@ public sealed class StreetLife : MonoBehaviour {
         }
         return best;
     }
-    public bool OnCarriage(Vector3 p) {
+    // Over a carriageway (or within `margin` of one).
+    public bool OnCarriage(Vector3 p,float margin=0) {
         foreach(var c in Net.carriages) {
-            bool over=c.eastWest?Mathf.Abs(p.z-c.centre)<c.half&&p.x>=c.from&&p.x<=c.to:Mathf.Abs(p.x-c.centre)<c.half&&p.z>=c.from&&p.z<=c.to;
+            bool over=c.eastWest?Mathf.Abs(p.z-c.centre)<c.half+margin&&p.x>=c.from&&p.x<=c.to:Mathf.Abs(p.x-c.centre)<c.half+margin&&p.z>=c.from&&p.z<=c.to;
             if(over)return true;
         }
         return false;
@@ -332,12 +344,12 @@ public sealed class StreetLife : MonoBehaviour {
         return null;
     }
     // ---- Shared queries for the walkers ----
-    public struct Neighbour { public Vector3 position,velocity;public bool player; }
+    public struct Neighbour { public Vector3 position,velocity,facing;public bool player;public StreetWalker walker; }
     readonly List<Neighbour> neighbours=new List<Neighbour>();
     public List<Neighbour> Neighbours(Vector3 p,float radius,StreetWalker me) {
         neighbours.Clear();
         foreach(var w in walkers) {
-            if(w==me||w.Gone)continue;var d=w.transform.position-p;d.y=0;if(d.sqrMagnitude<radius*radius)neighbours.Add(new Neighbour{position=w.transform.position,velocity=w.Velocity});
+            if(w==me||w.Gone)continue;var d=w.transform.position-p;d.y=0;if(d.sqrMagnitude<radius*radius)neighbours.Add(new Neighbour{position=w.transform.position,velocity=w.Velocity,facing=w.Facing,walker=w});
             // Somebody's dog is in the way too.
             if(w.dog){d=w.dog.Position-p;d.y=0;if(d.sqrMagnitude<radius*radius)neighbours.Add(new Neighbour{position=w.dog.Position,velocity=w.Velocity});}
         }
@@ -347,23 +359,29 @@ public sealed class StreetLife : MonoBehaviour {
     }
     readonly Collider[] overlap=new Collider[16];
     // Whether a walker may stand at p: clear of the player, the other walkers and anything solid.
-    public bool Free(Vector3 p,StreetWalker me) {
-        var app=DemoApp.Instance;
-        if(player&&app&&!app.CarSeated){var d=player.position-p;d.y=0;if(d.sqrMagnitude<.58f*.58f)return false;}
+    public bool Free(Vector3 p,StreetWalker me)=>Free(p,me,out _);
+    // What stopped the last step Free refused (for the logs): its kind, and the walker, car or collider.
+    public string FreeBlockerKind{get;private set;}public Object FreeBlocker{get;private set;}
+    bool Refuse(string kind,Object what){FreeBlockerKind=kind;FreeBlocker=what;return false;}
+    // The same, and which car's body is in the way when that is what stops it.
+    public bool Free(Vector3 p,StreetWalker me,out AmbientCar car) {
+        car=null;var app=DemoApp.Instance;
+        if(player&&app&&!app.CarSeated){var d=player.position-p;d.y=0;if(d.sqrMagnitude<.58f*.58f)return Refuse("the player",null);}
         foreach(var w in walkers) {
             if(w==me||w.Gone)continue;
-            if(w.dog){var g=w.dog.Position-p;g.y=0;if(g.sqrMagnitude<.42f*.42f)return false;}
-            if(me&&w==me.partner)continue;var d=w.transform.position-p;d.y=0;if(d.sqrMagnitude<.5f*.5f)return false;
+            if(w.dog){var g=w.dog.Position-p;g.y=0;if(g.sqrMagnitude<.42f*.42f)return Refuse("a dog",w);}
+            if(me&&w==me.partner)continue;var d=w.transform.position-p;d.y=0;if(d.sqrMagnitude<.5f*.5f)return Refuse("somebody",w);
         }
-        // A body's width (0.25 m) and a hand's breadth from any car.
+        // A body's width (0.25 m) and a hand's breadth from any car; a step away from one is always allowed,
+        // so nobody is ever pinned where a car's body has come to stand.
         foreach(var c in cars) {
             var rel=p-c.transform.position;rel.y=0;if(rel.sqrMagnitude>16)continue;
-            var local=c.transform.InverseTransformPoint(p);local.z+=.17f;
-            float dx=Mathf.Max(0,Mathf.Abs(local.x)-.89f),dz=Mathf.Max(0,Mathf.Abs(local.z)-2.15f);
-            if(dx*dx+dz*dz<.33f*.33f)return false;
+            var t=c.transform;float gap=AmbientCar.PointGap(t.position,t.forward,p);
+            if(gap>=BodyRoom||me&&gap>AmbientCar.PointGap(t.position,t.forward,me.transform.position)+1e-4f)continue;
+            car=c;return Refuse("a car",c);
         }
         int n=Physics.OverlapCapsuleNonAlloc(p+Vector3.up*.45f,p+Vector3.up*1.55f,.2f,overlap,~(1<<2),QueryTriggerInteraction.Ignore);
-        for(int i=0;i<n;i++){var c=overlap[i];if(me&&c.transform.IsChildOf(me.transform))continue;if(c.GetComponentInParent<StreetWalker>())continue;return false;}
+        for(int i=0;i<n;i++){var c=overlap[i];if(me&&c.transform.IsChildOf(me.transform))continue;if(c.GetComponentInParent<StreetWalker>())continue;return Refuse("something solid",c);}
         return true;
     }
     // Whether a dog may stand at p: clear of everybody but its owner, of other dogs and of the player.
@@ -385,15 +403,22 @@ public sealed class StreetLife : MonoBehaviour {
     }
     // At the kerb: at the signal, with the parallel green and time to get over; elsewhere a gap in the
     // cars long enough to cross at walking pace, with a margin.
+    // Why the last CanCross said no (for the logs): the signal, a car standing on the crossing or one coming.
+    public string CrossRefusal{get;private set;}public AmbientCar CrossRefusalCar{get;private set;}
+    bool NotYet(string why,AmbientCar car){CrossRefusal=why;CrossRefusalCar=car;return false;}
     public bool CanCross(StreetNet.WalkEdge edge,Vector3 from,Vector3 to,StreetWalker walker) {
         float width=Vector3.Distance(from,to),needed=width/Mathf.Max(.5f,walker.speed*1.12f);
         if(edge.junction!=null&&edge.junction.signal) {
             // Crossing the east–west street goes with the north–south green, and the other way round.
             int axis=edge.crosses.eastWest?0:1;double t=(SignalSeconds%58+58)%58;
             double left=axis==0?24-t:53-t;
-            if(PeriodTrafficSignal.State(SignalSeconds,axis)!=2||left<needed+1.5)return false;
+            if(PeriodTrafficSignal.State(SignalSeconds,axis)!=2||left<needed+1.5)return NotYet("the signal",null);
         }
         foreach(var c in cars) {
+            // Not while a car's body stands over the way across (one that has pulled onto the crossing and
+            // stopped there): walking up to its side holds up the walker, and the car that waits for them
+            // (STREET-05). Unless it is waiting for this walker, who then goes first.
+            if(c.WaitingFor!=walker&&AmbientCar.SegmentGap(from,to,c.transform.position,c.transform.forward)<CrossingRoom)return NotYet("a car standing on the crossing",c);
             // A car standing at its line (the red, a STOP sign, giving way) is no danger: it waits, and it
             // gives way to whoever is on the crossing when it moves off.
             if(c.speed<.5f)continue;
@@ -401,8 +426,8 @@ public sealed class StreetLife : MonoBehaviour {
             // matters; one going straight along the other street never comes near.
             float along=c.RouteDistanceTo(from,to,48);
             if(along<0)continue;
-            if(along<4.5f)return false;
-            if(along/Mathf.Max(.6f,c.speed)<needed+2.5f)return false;
+            if(along<4.5f)return NotYet("a car on the crossing",c);
+            if(along/Mathf.Max(.6f,c.speed)<needed+2.5f)return NotYet("a car coming",c);
         }
         return true;
     }
@@ -468,10 +493,19 @@ public sealed class StreetLife : MonoBehaviour {
         }
         return false;
     }
-    // For the review: a car at a given place on a lane.
-    public AmbientCar SpawnCarOn(StreetNet.Lane lane,float s,float speed) {
+    // For the review: a car at a given place on a lane, or on a way through a junction.
+    public AmbientCar SpawnCarOn(StreetNet.Path path,float s,float speed) {
         var car=TakeCar();if(!car)return null;Paint(car);
-        car.Place(this,lane,s,rng,speed);cars.Add(car);Add(car,lane);return car;
+        car.Place(this,path,s,rng,speed);cars.Add(car);Add(car,path);return car;
+    }
+    // For the review: a walker of a kind at the kerb where `crossing` starts from `from`, setting out over it.
+    public StreetWalker SpawnCrossing(StreetDensity.Folk kind,StreetNet.WalkEdge crossing,StreetNet.WalkNode from) {
+        var to=crossing.Other(from);var walker=TakeWalker(kind);if(!walker)return null;
+        StreetDensity.Gait(kind,rng,out walker.speed,out walker.stoop);
+        var at=from.point;at.y=GroundAt(at,at.y+.2f);
+        walker.Begin(this,rng,at,to.point-from.point);walkers.Add(walker);
+        walker.Follow(new List<StreetNet.WalkNode>{from,to},to);
+        return walker;
     }
     void RemoveCar(AmbientCar c) {
         cars.Remove(c);if(c.path!=null&&onPath.TryGetValue(c.path,out var list))list.Remove(c);
@@ -560,33 +594,108 @@ public sealed class StreetLife : MonoBehaviour {
         }
         return false;
     }
-    // Free distance from the car's front to whoever stands in its way along the planned paths.
-    readonly List<(Vector3 p,float r,bool player)> obstacles=new List<(Vector3,float,bool)>();
-    public float ObstacleAhead(AmbientCar car,List<StreetNet.Path> paths,float s,float look,out bool isPlayer) {
-        isPlayer=false;obstacles.Clear();var me=car.transform.position;float reach=look+6;
-        foreach(var w in walkers){var d=w.transform.position-me;d.y=0;if(d.sqrMagnitude<reach*reach)obstacles.Add((w.transform.position,.32f,false));}
-        var app=DemoApp.Instance;
-        if(app&&player&&!app.CarSeated){var d=player.position-me;d.y=0;if(d.sqrMagnitude<reach*reach)obstacles.Add((player.position,.35f,true));}
-        foreach(var other in OtherVehicles()){var d=other.position-me;d.y=0;if(d.sqrMagnitude<(reach+3)*(reach+3)){var f=other.forward;foreach(float k in new[]{-1.6f,0,1.6f})obstacles.Add((other.position+f*k,1.05f,other==PlayerCar));}}
-        if(obstacles.Count==0)return float.MaxValue;
+    // Free distance from the car's front to whoever stands in its way along the planned paths (`who`,
+    // when that is a walker). Somebody standing alongside the body is judged by the body itself as it
+    // drives on: if it keeps PassRoom from them until it is past, they are not in its way and it edges
+    // past them (`alongside`, the nearest beside its front half, `edging` from it); if not, it goes no
+    // further than where it would come that close. Before, the corridor counted everybody beside the
+    // front half and nobody beside the back half (which swings out in a turn), so a walker held up
+    // beside a car that had stopped on a crossing, and the car waiting for that walker, stood until one
+    // of them was recycled out of sight (STREET-05). Anyone ahead of the front bumper is in the corridor.
+    readonly List<(Vector3 p,float r,bool player,StreetWalker who)> obstacles=new List<(Vector3,float,bool,StreetWalker)>();
+    public float ObstacleAhead(AmbientCar car,List<StreetNet.Path> paths,float s,float look,out bool isPlayer,out StreetWalker who,out StreetWalker alongside,out float edging) {
+        isPlayer=false;who=alongside=null;edging=float.MaxValue;obstacles.Clear();var me=car.transform.position;float reach=look+6;
         float best=float.MaxValue;
+        foreach(var w in walkers) {
+            var d=w.transform.position-me;d.y=0;if(d.sqrMagnitude>=reach*reach)continue;
+            if(d.sqrMagnitude<3.2f*3.2f&&Alongside(paths,s,car.transform,w,out float free,out float closest)) {
+                if(free<float.MaxValue){if(free-.25f<best){best=free-.25f;who=w;}}
+                else if(closest<edging){edging=closest;alongside=w;}
+                continue;
+            }
+            obstacles.Add((w.transform.position,.32f,false,w));
+        }
+        var app=DemoApp.Instance;
+        if(app&&player&&!app.CarSeated){var d=player.position-me;d.y=0;if(d.sqrMagnitude<reach*reach)obstacles.Add((player.position,.35f,true,null));}
+        foreach(var other in OtherVehicles()){var d=other.position-me;d.y=0;if(d.sqrMagnitude<(reach+3)*(reach+3)){var f=other.forward;foreach(float k in new[]{-1.6f,0,1.6f})obstacles.Add((other.position+f*k,1.05f,other==PlayerCar,null));}}
+        if(obstacles.Count==0)return best;
         // Walk the corridor in steps from the car's middle forward.
-        int index=0;float sOn=s,along=0;
+        float corridor=float.MaxValue;bool corridorPlayer=false;StreetWalker corridorWho=null;
+        int index=0;float sOn=s,along=0;kerbside.Clear();
         while(along<=look+2&&index<paths.Count) {
             var p=paths[index];
             if(sOn>p.length){sOn-=p.length;index++;continue;}
             var point=p.Point(sOn);
-            foreach(var (q,r,isP) in obstacles) {
+            foreach(var (q,r,isP,w) in obstacles) {
                 var d=q-point;d.y=0;
                 if(d.magnitude<car.width/2+r+.35f) {
+                    // Where a turn cuts the corner the corridor reaches over the kerb: somebody standing there on
+                    // the footway, off the carriageway and not crossing, is in the way only if the body itself
+                    // would come close (STREET-05: a right-turning car waited 45 s for a boy standing at the corner).
+                    if(w&&Kerbside(w,paths,s,look,ref edging,ref alongside))continue;
                     float gap=along-1.98f-r-.9f;
-                    if(along>=.6f&&gap<best){best=gap;isPlayer=isP;}
+                    if(along>=.6f&&gap<corridor){corridor=gap;corridorPlayer=isP;corridorWho=w;}
                 }
             }
-            if(best<float.MaxValue)break;
+            if(corridor<float.MaxValue)break;
             sOn+=.75f;along+=.75f;
         }
+        if(corridor<best){best=corridor;isPlayer=corridorPlayer;who=corridorWho;}
         return best;
+    }
+    // Whether somebody on the footway (off the carriageway, not crossing) is clear of the car's body as it
+    // drives its paths ahead, keeping PassRoom; within EdgeNear it goes by at a walking pace. Worked out
+    // once per walker and car each frame.
+    readonly Dictionary<StreetWalker,bool> kerbside=new Dictionary<StreetWalker,bool>();
+    bool Kerbside(StreetWalker w,List<StreetNet.Path> paths,float s,float look,ref float edging,ref StreetWalker alongside) {
+        if(kerbside.TryGetValue(w,out bool clear))return clear;
+        var p=w.transform.position;clear=false;
+        if(!w.Crossing&&!OnCarriage(p,.2f)) {
+            float near=Swept(paths,s,p,look+2,PassRoom,out float free);
+            clear=free==float.MaxValue;
+            if(clear&&near<edging){edging=near;alongside=w;}
+        }
+        kerbside[w]=clear;return clear;
+    }
+    // For somebody beside the car's body now (not ahead of its front bumper; false otherwise): how far it
+    // can drive on along its paths before its body comes within PassRoom of them, or of their dog within
+    // DogRoomFromCar (MaxValue: it keeps clear until it is past them), and, for anyone beside its front
+    // half, how close it comes.
+    bool Alongside(List<StreetNet.Path> paths,float s,Transform car,StreetWalker w,out float free,out float closest) {
+        free=closest=float.MaxValue;var p=w.transform.position;
+        var local=car.InverseTransformPoint(p);local.z+=AmbientCar.CentreBack;
+        if(local.z>AmbientCar.HalfLength+.1f||Mathf.Abs(local.x)<AmbientCar.HalfWidth)return false;
+        float past=local.z+AmbientCar.HalfLength+.5f;
+        float near=Swept(paths,s,p,past,PassRoom,out free);
+        if(w.dog){Swept(paths,s,w.dog.Position,past+1,DogRoomFromCar,out float dog);free=Mathf.Min(free,dog);}
+        if(local.z>0)closest=near;
+        return true;
+    }
+    // The least distance from p to the car's body as it drives `metres` on along its paths from s, every
+    // quarter metre from where it stands, and how far it goes before it first comes within `room`.
+    static float Swept(List<StreetNet.Path> paths,float s,Vector3 p,float metres,float room,out float within) {
+        float best=float.MaxValue;within=float.MaxValue;int index=0;float sOn=s;
+        for(float along=0;along<=metres;along+=.25f,sOn+=.25f) {
+            while(sOn>paths[index].length&&index+1<paths.Count){sOn-=paths[index].length;index++;}
+            var path=paths[index];float gap=AmbientCar.PointGap(path.Point(sOn),path.Tangent(sOn),p);
+            if(gap<room&&within==float.MaxValue)within=along;
+            best=Mathf.Min(best,gap);
+        }
+        return best;
+    }
+    // A car standing still for this walker, if any.
+    public AmbientCar CarWaitingFor(StreetWalker w){foreach(var c in cars)if(c.WaitingFor==w&&c.speed<.05f)return c;return null;}
+    public void TurnedBack(StreetWalker w,AmbientCar car,string why) {
+        Stats.turnBacks++;
+        Debug.Log("STREET_WALKER_TURN_BACK: "+w.Describe(car?car.transform:null)+" | "+why+(car?" "+car.Describe():""));
+    }
+    public void MadeWay(StreetWalker w,AmbientCar car) {
+        Stats.madeWay++;
+        Debug.Log("STREET_WALKER_MAKES_WAY: "+w.Describe(car.transform)+" | for "+car.Describe());
+    }
+    public void EdgedPast(AmbientCar car,StreetWalker w,float clear) {
+        Stats.edgedPast++;
+        Debug.Log("STREET_CAR_EDGING: "+car.Describe()+" | past "+(w?w.Describe(car.transform):"somebody")+" | closest "+clear.ToString("0.000",System.Globalization.CultureInfo.InvariantCulture));
     }
     Transform PlayerCar=>HotelCar.Current?HotelCar.Current.transform:null;
     IEnumerable<Transform> OtherVehicles() {

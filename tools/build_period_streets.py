@@ -1,8 +1,9 @@
 """Original 1930 US street dressing, derived from the unchanged metre map.
+Stop bars and STOP signs stand on the stop lines the town's traffic uses (StreetNet's rule, worked out here).
 Run with numpy/Pillow/shapely>=2.1. No downloaded artwork; no map or evidence edits.
 """
 from pathlib import Path
-import sys,json,hashlib,math
+import sys,json,hashlib,math,re
 import numpy as np
 from PIL import Image,ImageDraw,ImageFont,ImageFilter
 sys.path.append(str(Path(__file__).resolve().parents[1]/'builds/street-tools'))
@@ -68,6 +69,109 @@ for poly in getattr(kerb,'geoms',[kerb]):
   for a,b in zip(coords,coords[1:]):
    if LineString([a,b]).distance(road.boundary)>.002:continue
    risers.append([a[0],a[1],b[0],b[1]])
+# Stop lines where the town's cars stop (StreetNet.SetBackLines, STREET-03): a metre behind the footway
+# line people cross on, then set back until a car waiting at or behind its line is ClearPlan clear of every
+# other approach's car body sweeping through the corner (on the 4 m north-south streets cars turning in
+# swing over the middle). Same rule, with the car size and margins read from StreetNet/AmbientCar, so the
+# paint stays where the cars stop; StreetNet still works its lines out from the map itself.
+def cs(file,name):return float(re.search(r'\b'+name+r'=([\d.]+)f',(R/'game/Assets/Scripts'/file).read_text()).group(1))
+FRONT,HL,HW,BACK,APART=[cs('AmbientCar.cs',n) for n in ['Front','HalfLength','HalfWidth','CentreBack','Apart']]
+CLEAR,STEP,OUT=[cs('StreetNet.cs',n) for n in ['ClearPlan','SweepStep','SweepOut']]
+def body_gap(a,fa,b,fb):
+ # AmbientCar.BoxGap: clearance of two car bodies (box centre CentreBack behind the origin; unit headings).
+ dx=b[0]-fb[0]*BACK-a[0]+fa[0]*BACK;dz=b[1]-fb[1]*BACK-a[1]+fa[1]*BACK
+ same=abs(fa[0]*fb[0]+fa[1]*fb[1]);cross=abs(fa[0]*fb[1]-fa[1]*fb[0])
+ return max(abs(dx*fa[0]+dz*fa[1])-HL-HL*same-HW*cross,abs(dx*fa[1]-dz*fa[0])-HW-HL*cross-HW*same,
+  abs(dx*fb[0]+dz*fb[1])-HL-HL*same-HW*cross,abs(dx*fb[1]-dz*fb[0])-HW-HL*cross-HW*same)
+class Lane:
+ def point(l,s):s=min(max(s,0),l.length);return (l.start[0]+l.dir[0]*s,l.start[1]+l.dir[1]*s)
+class Turn:
+ def __init__(t,a,b,j,p1):
+  t.a,t.b,t.j,t.p=a,b,j,(a.end,p1,b.start);t.table=[0];q=a.end
+  for i in range(1,17):r=t.bezier(i/16);t.table.append(t.table[-1]+math.dist(q,r));q=r
+  t.length=t.table[-1]
+ def bezier(t,u):p0,p1,p2=t.p;return tuple((1-u)**2*p0[k]+2*(1-u)*u*p1[k]+u*u*p2[k] for k in (0,1))
+ def param(t,s):
+  s=min(max(s,0),t.length)
+  for i in range(1,17):
+   if t.table[i]>=s:return (i-1+(s-t.table[i-1])/max(1e-5,t.table[i]-t.table[i-1]))/16
+  return 1
+ def pose(t,s):
+  u=t.param(s);p0,p1,p2=t.p;d=[2*(1-u)*(p1[k]-p0[k])+2*u*(p2[k]-p1[k]) for k in (0,1)]
+  if d[0]**2+d[1]**2<=1e-6:d=[p2[k]-p0[k] for k in (0,1)]
+  n=math.hypot(*d);return t.bezier(u),(d[0]/n,d[1]/n)
+ def sweep(t):
+  # The body from its line, round the corner and 2.5 m out along the street beyond (StreetNet.BuildSweeps).
+  a,b=t.a,t.b;t.poses=[];s=max(0,a.length-FRONT)
+  while s<a.length:t.poses.append((a.point(s),a.dir));s+=STEP
+  n=math.ceil(t.length/STEP);t.poses+=[t.pose(t.length*i/n) for i in range(n+1)];s=STEP
+  while s<=OUT:t.poses.append((b.point(s),b.dir));s+=STEP
+ # Bodies whose origins are more than Apart apart are well clear (the same shortcut as StreetNet).
+ def clearance(t,o,f):return min([body_gap(q,fq,o,f) for q,fq in t.poses if (q[0]-o[0])**2+(q[1]-o[1])**2<=APART*APART],default=math.inf)
+def stop_lines():
+ carriages=[]
+ for r in p['roads']:
+  a=r['points'];ew,ns=abs(a[1]-a[3])<.01,abs(a[0]-a[2])<.01
+  if r['lane']<3.5 or not(ew or ns):continue
+  k=(0,2) if ew else (1,3);carriages.append(dict(road=r,ew=ew,centre=a[1] if ew else a[0],lo=min(a[k[0]],a[k[1]]),hi=max(a[k[0]],a[k[1]]),half=r['lane']/2))
+ junctions=[(n['centre'],e['centre'],e,n) for e in carriages if e['ew'] for n in carriages if not n['ew'] and e['lo']<=n['centre']<=e['hi'] and n['lo']<=e['centre']<=n['hi']]
+ def offset(j,c):o=j[3] if c['ew'] else j[2];return o['half']+o['road']['strip']+o['road']['walk']/2+1.1
+ lanes=[]
+ for c in carriages:
+  st=sorted([(c['lo'],None),(c['hi'],None)]+[(j[0] if c['ew'] else j[1],j) for j in junctions if c is j[2] or c is j[3]],key=lambda q:q[0])
+  for (s0,j0),(s1,j1) in zip(st,st[1:]):
+   m0=offset(j0,c) if j0 else 0;m1=offset(j1,c) if j1 else 0
+   if s1-m1-(s0+m0)<4:continue
+   for sign in [1,-1]:
+    l=Lane();l.dir=(sign,0) if c['ew'] else (0,sign);right=(l.dir[1],-l.dir[0]);w=c['half']/2
+    def P(s):return (s+right[0]*w,c['centre']+right[1]*w) if c['ew'] else (c['centre']+right[0]*w,s+right[1]*w)
+    l.start,l.end=(P(s0+m0),P(s1-m1)) if sign>0 else (P(s1-m1),P(s0+m0));l.into=j1 if sign>0 else j0;l.out=j0 if sign>0 else j1
+    l.length=math.dist(l.start,l.end);l.setback=0;lanes.append(l)
+ def corners():
+  turns=[]
+  for j in junctions:
+   for a in lanes:
+    if a.into is not j:continue
+    for b in lanes:
+     if b.out is not j or a.dir[0]*b.dir[0]+a.dir[1]*b.dir[1]<-.9:continue
+     mid=((a.end[0]+b.start[0])/2,(a.end[1]+b.start[1])/2);p1=mid
+     if abs(a.dir[1]*b.dir[0]-a.dir[0]*b.dir[1])>=.1:
+      k=(b.start[0]-a.end[0])*a.dir[0]+(b.start[1]-a.end[1])*a.dir[1];p1=(a.end[0]+a.dir[0]*k,a.end[1]+a.dir[1]*k)
+      if (b.start[0]-p1[0])*b.dir[0]+(b.start[1]-p1[1])*b.dir[1]<0:p1=mid
+     turns.append(Turn(a,b,j,p1))
+  for t in turns:t.sweep()
+  return turns
+ def behind(l,t):
+  # How far back from the line a car on this lane can still come within ClearPlan of the turn's sweep:
+  # every quarter metre until a metre in a row is clear, every 5 cm round any within 0.15 m more (StreetNet.Behind).
+  need=back=run=0
+  while back<6 and run<1:
+   s=l.length-FRONT-back
+   if s<0:break
+   caught=False
+   if t.clearance(l.point(s),l.dir)<CLEAR+.15:
+    fine=max(0,back-.2)
+    while fine<=back+.2:
+     f=l.length-FRONT-fine
+     if f>=0 and t.clearance(l.point(f),l.dir)<CLEAR:need=max(need,fine+STEP);caught=True
+     fine+=STEP
+   run=0 if caught else run+.25;back+=.25
+  return need
+ turns=corners();changed=set(lanes)
+ for _ in range(4):
+  moved=set()
+  for l in lanes:
+   if l.into is None:continue
+   need=min(max([behind(l,t) for t in turns if t.j is l.into and t.a is not l and t.a in changed],default=0),max(0,l.length-8))
+   if need>0:l.end=l.point(l.length-need);l.length-=need;l.setback+=need;moved.add(l)
+  if not moved:break
+  changed=moved;turns=corners()
+ return {(l.into[0],l.into[1])+l.dir:l for l in lanes if l.into}
+lines=stop_lines()
+def bar(jx,jz,d):
+ # The bar's centre 0.1 m on the junction side of the line (as the signal's bars always were), so a car
+ # stopped with its bumper just short of the line stands right behind the paint.
+ l=lines[(jx,jz)+d];return round(l.end[0 if d[0] else 1]+(d[0] or d[1])*.1,3)
 # A single signalled junction; restrained parallel-boundary crossings elsewhere.
 crossings=[];stops=[]
 for jx in [-120,30,135]:
@@ -83,18 +187,18 @@ for jx in [-120,30,135]:
    crossings.append([jx,jz])
   if (jx,jz)!=(30,20):
    for sign in [-1,1]:
-    # Right-hand traffic: northbound east verge; southbound west verge.
-    z=jz-sign*(6.7 if jz in [20,-75] else 5.7);x=jx+sign*2.5
+    # Right-hand traffic: northbound east verge; southbound west verge. The STOP sign stands at its bar.
+    z=bar(jx,jz,(0,sign));x=jx+sign*2.5
     stops.append(dict(x=x,z=z,yaw=0 if sign==1 else 180))
     add(f'stopline-{jx}-{jz}-{sign}','paint',box(jx if sign==1 else jx-2,z-.12,jx+2 if sign==1 else jx,z+.12),.030)
 # Main street short white approach centre lines, interrupted well before crossings.
 for jx in [-120,30,135]:
  for sign in [-1,1]:
   a,b=sorted([jx+sign*7,jx+sign*23]);add(f'approach-{jx}-{sign}','paint',box(a,19.94,b,20.06),.030)
-# Four stop bars at the signal (no STOP signs at this junction).
+# Four stop bars at the signal (no STOP signs at this junction), on the lines its cars stop at.
 for sign in [-1,1]:
- z=20+sign*6.0;add(f'signalbar-ns-{sign}','paint',box(28 if sign==1 else 30,z-.12,30 if sign==1 else 32,z+.12),.030)
- x=30+sign*5.0;add(f'signalbar-ew-{sign}','paint',box(x-.12,20 if sign==1 else 17,x+.12,23 if sign==1 else 20),.030)
+ z=bar(30,20,(0,-sign));add(f'signalbar-ns-{sign}','paint',box(28 if sign==1 else 30,z-.12,30 if sign==1 else 32,z+.12),.030)
+ x=bar(30,20,(-sign,0));add(f'signalbar-ew-{sign}','paint',box(x-.12,20 if sign==1 else 17,x+.12,23 if sign==1 else 20),.030)
 # Flat iron covers set into the gutter zone, outside travel wheel paths.
 drains=[]
 for r in p['roads']:
@@ -113,6 +217,7 @@ for s in stops:
  else:raise RuntimeError('No clear stop sign location')
 data=dict(sourceSha256=p['sourceSha256'],surfaces=meshes,risers=[dict(a=q) for q in risers],stops=stops,drains=drains,crossings=crossings)
 (R/'game/Assets/Resources/PeriodStreets.json').write_text(json.dumps(data,separators=(',',':')))
-report=dict(mapSource=p['sourceSha256'],mapUnchanged=p['sourceSha256'] in [hashlib.sha256(source.read_bytes()).hexdigest(),hashlib.sha256(source.read_bytes().replace(b'\r\n',b'\n').replace(b'\n',b'\r\n')).hexdigest()],stopSigns=len(stops),signalJunctions=1,crossingJunctions=len(crossings),drains=len(drains),kerbRisers=len(risers),surfaceMeshes=len(meshes),triangles=sum(len(s['vertices'])//9 for s in meshes),design='1930 urban yellow/red THROUGH STOP TRAFFIC; paired white crosswalk boundaries; no YIELD, zebra stripes, modern yellow centre lines or invented street names.')
+setback=sorted(l.setback for l in lines.values() if l.setback>0)
+report=dict(mapSource=p['sourceSha256'],mapUnchanged=p['sourceSha256'] in [hashlib.sha256(source.read_bytes()).hexdigest(),hashlib.sha256(source.read_bytes().replace(b'\r\n',b'\n').replace(b'\n',b'\r\n')).hexdigest()],stopSigns=len(stops),signalJunctions=1,crossingJunctions=len(crossings),drains=len(drains),kerbRisers=len(risers),surfaceMeshes=len(meshes),triangles=sum(len(s['vertices'])//9 for s in meshes),stopBars=f"{sum(m['name'].startswith(('stopline-','signalbar-')) for m in meshes)} bars on the StreetNet stop lines; {len(setback)} north-south lines set back {setback[0]:.2f}-{setback[-1]:.2f} m for turning car bodies",design='1930 urban yellow/red THROUGH STOP TRAFFIC; paired white crosswalk boundaries; no YIELD, zebra stripes, modern yellow centre lines or invented street names.')
 assert report['mapUnchanged']
 (R/'output/demo/streets-1930/authoring.json').write_text(json.dumps(report,indent=2));print(json.dumps(report))

@@ -1,5 +1,5 @@
 {
-    "triangles": 11422197,
+    "triangles": 11422198,
     "renderers": 14763,
     "visibleExact": 0,
     "visibleNear": 1083,
@@ -2234,41 +2234,19 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline--120-20--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06230587139725685,
+            "area": 0.0624004527926445,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -121.85014343261719,
+                -121.8436508178711,
                 0.02800000086426735,
-                26.81100845336914
+                28.060619354248048
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/Street surfaces/1930 municipal street details/Period-gutter-2-0",
-            "materialA": "PeriodGutter",
-            "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline-135-20--1",
-            "materialB": "PeriodRoadPaint",
-            "kind": "material",
-            "area": 0.062304046005010608,
-            "offsetMm": 1.9999984502792359,
-            "at": [
-                133.14984130859376,
-                0.02800000086426735,
-                26.811010360717775
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -2278,34 +2256,56 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-signalbar-ns-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062337398529052737,
+            "area": 0.06239999830722809,
             "offsetMm": 1.9999984502792359,
             "at": [
-                28.01559066772461,
+                28.026348114013673,
                 0.02800000086426735,
-                25.999027252197267
+                28.06842041015625
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
             "scene": "Town",
-            "a": "Town geometry/Street surfaces/1930 municipal street details/Period-gutter-0-0",
+            "a": "Town geometry/Street surfaces/1930 municipal street details/Period-gutter-2-0",
             "materialA": "PeriodGutter",
-            "b": "Town geometry/Street surfaces/1930 municipal street details/Period-crossing-30-20-ew-1-1",
+            "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline-135-20--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06238448619842529,
+            "area": 0.06239861994981766,
             "offsetMm": 1.9999984502792359,
             "at": [
-                31.859130859375,
+                133.02635192871095,
                 0.02800000086426735,
-                25.092113494873048
+                28.06842041015625
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Street surfaces/1930 municipal street details/Period-gutter-2-0",
+            "materialA": "PeriodGutter",
+            "b": "Town geometry/Street surfaces/1930 municipal street details/Period-crossing-135-20-ew-1-1",
+            "materialB": "PeriodRoadPaint",
+            "kind": "material",
+            "area": 0.06238311529159546,
+            "offsetMm": 1.9999984502792359,
+            "at": [
+                136.9888153076172,
+                0.02800000086426735,
+                25.150161743164064
             ],
             "normal": [
                 0.0,
@@ -2339,17 +2339,17 @@
         },
         {
             "scene": "Town",
-            "a": "Town geometry/Street surfaces/1930 municipal street details/Period-gutter-2-0",
+            "a": "Town geometry/Street surfaces/1930 municipal street details/Period-gutter-0-0",
             "materialA": "PeriodGutter",
-            "b": "Town geometry/Street surfaces/1930 municipal street details/Period-crossing-135-20-ew-1-1",
+            "b": "Town geometry/Street surfaces/1930 municipal street details/Period-crossing-30-20-ew-1-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06238311529159546,
+            "area": 0.06238448619842529,
             "offsetMm": 1.9999984502792359,
             "at": [
-                133.0111846923828,
+                31.85881805419922,
                 0.02800000086426735,
-                25.14982795715332
+                25.15211296081543
             ],
             "normal": [
                 0.0,
@@ -2413,31 +2413,9 @@
             "area": 0.062399283051490787,
             "offsetMm": 1.9999984502792359,
             "at": [
-                31.86870002746582,
+                31.86901092529297,
                 0.02800000086426735,
-                23.251964569091798
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 6,
-            "moving": false
-        },
-        {
-            "scene": "Town",
-            "a": "Town geometry/Street surfaces/1930 municipal street details/Period-crossing-30-20-ns--1-1",
-            "materialA": "PeriodRoadPaint",
-            "b": "Town geometry/Street surfaces/1930 municipal street details/Period-gutter-0-0",
-            "materialB": "PeriodGutter",
-            "kind": "material",
-            "area": 0.06239938735961914,
-            "offsetMm": 1.9999984502792359,
-            "at": [
-                27.691314697265626,
-                0.029999999329447748,
-                22.868560791015626
+                23.191965103149415
             ],
             "normal": [
                 0.0,
@@ -2460,6 +2438,28 @@
                 25.851402282714845,
                 0.029999999329447748,
                 22.860017776489259
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 6,
+            "moving": false
+        },
+        {
+            "scene": "Town",
+            "a": "Town geometry/Street surfaces/1930 municipal street details/Period-crossing-30-20-ns--1-1",
+            "materialA": "PeriodRoadPaint",
+            "b": "Town geometry/Street surfaces/1930 municipal street details/Period-gutter-0-0",
+            "materialB": "PeriodGutter",
+            "kind": "material",
+            "area": 0.06239938735961914,
+            "offsetMm": 1.9999984502792359,
+            "at": [
+                27.691314697265626,
+                0.029999999329447748,
+                22.868560791015626
             ],
             "normal": [
                 0.0,
@@ -2875,9 +2875,9 @@
             "area": 0.06239999458193779,
             "offsetMm": 1.9999984502792359,
             "at": [
-                31.846162796020509,
+                31.83126449584961,
                 0.02800000086426735,
-                13.889228820800782
+                11.940122604370118
             ],
             "normal": [
                 0.0,
@@ -2897,9 +2897,9 @@
             "area": 0.0624004527926445,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -118.15827178955078,
+                -118.16781616210938,
                 0.02800000086426735,
-                13.309549331665039
+                12.060121536254883
             ],
             "normal": [
                 0.0,
@@ -2919,9 +2919,9 @@
             "area": 0.062398623675107959,
             "offsetMm": 1.9999984502792359,
             "at": [
-                136.84173583984376,
+                136.83218383789063,
                 0.02800000086426735,
-                13.309549331665039
+                12.060121536254883
             ],
             "normal": [
                 0.0,
@@ -2938,12 +2938,12 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline-30--75--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06239950284361839,
+            "area": 0.062399499118328097,
             "offsetMm": 1.9999984502792359,
             "at": [
-                28.152271270751954,
+                28.158899307250978,
                 0.02800000086426735,
-                -68.30917358398438
+                -67.0595703125
             ],
             "normal": [
                 0.0,
@@ -2960,12 +2960,12 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline--120--75--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062399957329034808,
+            "area": 0.06239995360374451,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -121.97772979736328,
+                -121.97109985351563,
                 0.02800000086426735,
-                -68.30137634277344
+                -67.05177307128906
             ],
             "normal": [
                 0.0,
@@ -2982,12 +2982,12 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline-135--75--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06239812821149826,
+            "area": 0.06239812448620796,
             "offsetMm": 1.9999984502792359,
             "at": [
-                133.1529083251953,
+                133.15953063964845,
                 0.02800000086426735,
-                -68.18917083740235
+                -66.93956756591797
             ],
             "normal": [
                 0.0,
@@ -3004,12 +3004,12 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline-135--75-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062398120760917667,
+            "area": 0.06239812448620796,
             "offsetMm": 1.9999984502792359,
             "at": [
-                136.84051513671876,
+                136.8317413330078,
                 0.02800000086426735,
-                -81.69038391113281
+                -82.93985748291016
             ],
             "normal": [
                 0.0,
@@ -3029,9 +3029,9 @@
             "area": 0.062399499118328097,
             "offsetMm": 1.9999984502792359,
             "at": [
-                31.83966827392578,
+                31.83089256286621,
                 0.02800000086426735,
-                -81.81037902832031
+                -83.05985260009766
             ],
             "normal": [
                 0.0,
@@ -3048,12 +3048,12 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline--120--75-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062399957329034808,
+            "area": 0.062399961054325107,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -118.15949249267578,
+                -118.16826629638672,
                 0.02800000086426735,
-                -81.69038391113281
+                -82.93985748291016
             ],
             "normal": [
                 0.0,
@@ -3070,19 +3070,19 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline-30--122--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062318652868270877,
+            "area": 0.062401480972766879,
             "offsetMm": 1.9999984502792359,
             "at": [
-                28.148353576660158,
+                28.02692222595215,
                 0.02800000086426735,
-                -116.18890380859375
+                -114.6316146850586
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -3092,19 +3092,19 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline--120--122--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062319107353687289,
+            "area": 0.06240193918347359,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -121.98230743408203,
+                -121.97373962402344,
                 0.02800000086426735,
-                -116.30110168457031
+                -114.75161743164063
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -3114,19 +3114,19 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline-135--122--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06231728196144104,
+            "area": 0.06240011006593704,
             "offsetMm": 1.9999984502792359,
             "at": [
-                133.01768493652345,
+                133.02626037597657,
                 0.02800000086426735,
-                -116.30110168457031
+                -114.75161743164063
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -3136,12 +3136,12 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline-135--122-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06239812821149826,
+            "area": 0.06239614263176918,
             "offsetMm": 1.9999984502792359,
             "at": [
-                136.84170532226563,
+                136.82850646972657,
                 0.02800000086426735,
-                -127.81050109863281
+                -129.35971069335938
             ],
             "normal": [
                 0.0,
@@ -3158,12 +3158,12 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline-30--122-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062399499118328097,
+            "area": 0.06239751726388931,
             "offsetMm": 1.9999984502792359,
             "at": [
-                31.842731475830079,
+                31.82952308654785,
                 0.02800000086426735,
-                -127.69050598144531
+                -129.23971557617188
             ],
             "normal": [
                 0.0,
@@ -3180,12 +3180,12 @@
             "b": "Town geometry/Street surfaces/1930 municipal street details/Period-stopline--120--122-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062399957329034808,
+            "area": 0.062397971749305728,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -118.1602783203125,
+                -118.1744155883789,
                 0.02800000086426735,
-                -127.81038665771485
+                -129.35952758789063
             ],
             "normal": [
                 0.0,
@@ -15390,41 +15390,19 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline--120-20--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06230587139725685,
+            "area": 0.0624004527926445,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -86.85014343261719,
+                -86.8436508178711,
                 0.02800000086426735,
-                -4.98898983001709
+                -3.739379405975342
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/Street surfaces/1930 municipal street details/Period-gutter-2-0",
-            "materialA": "PeriodGutter",
-            "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline-135-20--1",
-            "materialB": "PeriodRoadPaint",
-            "kind": "material",
-            "area": 0.062304046005010608,
-            "offsetMm": 1.9999984502792359,
-            "at": [
-                168.14984130859376,
-                0.02800000086426735,
-                -4.98898983001709
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -15434,34 +15412,56 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-signalbar-ns-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06233785301446915,
+            "area": 0.0624004527926445,
             "offsetMm": 1.9999984502792359,
             "at": [
-                63.01559066772461,
+                63.02634811401367,
                 0.02800000086426735,
-                -5.800971508026123
+                -3.731579303741455
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/Street surfaces/1930 municipal street details/Period-gutter-0-0",
+            "a": "Window street geometry/Street surfaces/1930 municipal street details/Period-gutter-2-0",
             "materialA": "PeriodGutter",
-            "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-crossing-30-20-ew-1-1",
+            "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline-135-20--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062384944409132007,
+            "area": 0.06239861994981766,
             "offsetMm": 1.9999984502792359,
             "at": [
-                66.859130859375,
+                168.02635192871095,
                 0.02800000086426735,
-                -6.7078857421875
+                -3.731579303741455
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 4,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Street surfaces/1930 municipal street details/Period-gutter-2-0",
+            "materialA": "PeriodGutter",
+            "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-crossing-135-20-ew-1-1",
+            "materialB": "PeriodRoadPaint",
+            "kind": "material",
+            "area": 0.06238311529159546,
+            "offsetMm": 1.9999984502792359,
+            "at": [
+                171.9888153076172,
+                0.02800000086426735,
+                -6.649836540222168
             ],
             "normal": [
                 0.0,
@@ -15495,17 +15495,17 @@
         },
         {
             "scene": "ClockShop",
-            "a": "Window street geometry/Street surfaces/1930 municipal street details/Period-gutter-2-0",
+            "a": "Window street geometry/Street surfaces/1930 municipal street details/Period-gutter-0-0",
             "materialA": "PeriodGutter",
-            "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-crossing-135-20-ew-1-1",
+            "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-crossing-30-20-ew-1-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06238311529159546,
+            "area": 0.0623849481344223,
             "offsetMm": 1.9999984502792359,
             "at": [
-                168.0111846923828,
+                66.85881805419922,
                 0.02800000086426735,
-                -6.650172233581543
+                -6.647886276245117
             ],
             "normal": [
                 0.0,
@@ -15569,31 +15569,9 @@
             "area": 0.06239974498748779,
             "offsetMm": 1.9999984502792359,
             "at": [
-                66.86869812011719,
+                66.86901092529297,
                 0.02800000086426735,
-                -8.54803466796875
-            ],
-            "normal": [
-                0.0,
-                1.0,
-                0.0
-            ],
-            "pairs": 6,
-            "moving": false
-        },
-        {
-            "scene": "ClockShop",
-            "a": "Window street geometry/Street surfaces/1930 municipal street details/Period-crossing-30-20-ns--1-1",
-            "materialA": "PeriodRoadPaint",
-            "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-gutter-0-0",
-            "materialB": "PeriodGutter",
-            "kind": "material",
-            "area": 0.06239740177989006,
-            "offsetMm": 1.9999984502792359,
-            "at": [
-                62.69131851196289,
-                0.029999999329447748,
-                -8.931438446044922
+                -8.608034133911133
             ],
             "normal": [
                 0.0,
@@ -15616,6 +15594,28 @@
                 60.851402282714847,
                 0.029999999329447748,
                 -8.939980506896973
+            ],
+            "normal": [
+                0.0,
+                1.0,
+                0.0
+            ],
+            "pairs": 6,
+            "moving": false
+        },
+        {
+            "scene": "ClockShop",
+            "a": "Window street geometry/Street surfaces/1930 municipal street details/Period-crossing-30-20-ns--1-1",
+            "materialA": "PeriodRoadPaint",
+            "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-gutter-0-0",
+            "materialB": "PeriodGutter",
+            "kind": "material",
+            "area": 0.06239740177989006,
+            "offsetMm": 1.9999984502792359,
+            "at": [
+                62.69131851196289,
+                0.029999999329447748,
+                -8.931438446044922
             ],
             "normal": [
                 0.0,
@@ -16028,12 +16028,12 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-signalbar-ns--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062399957329034808,
+            "area": 0.0624004527926445,
             "offsetMm": 1.9999984502792359,
             "at": [
-                66.84616088867188,
+                66.83126068115235,
                 0.02800000086426735,
-                -17.910768508911134
+                -19.85987663269043
             ],
             "normal": [
                 0.0,
@@ -16053,9 +16053,9 @@
             "area": 0.0624004527926445,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -83.15827178955078,
+                -83.16781616210938,
                 0.02800000086426735,
-                -18.490449905395509
+                -19.739877700805665
             ],
             "normal": [
                 0.0,
@@ -16075,9 +16075,9 @@
             "area": 0.062398623675107959,
             "offsetMm": 1.9999984502792359,
             "at": [
-                171.84173583984376,
+                171.83218383789063,
                 0.02800000086426735,
-                -18.490449905395509
+                -19.739877700805665
             ],
             "normal": [
                 0.0,
@@ -16094,12 +16094,12 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline-30--75--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062401942908763888,
+            "area": 0.06240193918347359,
             "offsetMm": 1.9999984502792359,
             "at": [
-                63.15227127075195,
+                63.15890121459961,
                 0.02800000086426735,
-                -100.10916900634766
+                -98.85957336425781
             ],
             "normal": [
                 0.0,
@@ -16116,12 +16116,12 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline--120--75--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062401942908763888,
+            "area": 0.06240193918347359,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -86.97772979736328,
+                -86.97109985351563,
                 0.02800000086426735,
-                -100.10137176513672
+                -98.85176849365235
             ],
             "normal": [
                 0.0,
@@ -16141,9 +16141,9 @@
             "area": 0.06240011006593704,
             "offsetMm": 1.9999984502792359,
             "at": [
-                168.1529083251953,
+                168.15953063964845,
                 0.02800000086426735,
-                -99.98916625976563
+                -98.73956298828125
             ],
             "normal": [
                 0.0,
@@ -16163,9 +16163,9 @@
             "area": 0.06239614263176918,
             "offsetMm": 1.9999984502792359,
             "at": [
-                171.84051513671876,
+                171.8317413330078,
                 0.02800000086426735,
-                -113.4903793334961
+                -114.73985290527344
             ],
             "normal": [
                 0.0,
@@ -16182,12 +16182,12 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline-30--75-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062397971749305728,
+            "area": 0.062397975474596027,
             "offsetMm": 1.9999984502792359,
             "at": [
-                66.83966827392578,
+                66.83089447021485,
                 0.02800000086426735,
-                -113.6103744506836
+                -114.85984802246094
             ],
             "normal": [
                 0.0,
@@ -16207,9 +16207,9 @@
             "area": 0.062397971749305728,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -83.15949249267578,
+                -83.16826629638672,
                 0.02800000086426735,
-                -113.4903793334961
+                -114.73985290527344
             ],
             "normal": [
                 0.0,
@@ -16226,19 +16226,19 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline-30--122--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06232109293341637,
+            "area": 0.062401942908763888,
             "offsetMm": 1.9999984502792359,
             "at": [
-                63.148353576660159,
+                63.02692413330078,
                 0.02800000086426735,
-                -147.9888916015625
+                -146.43161010742188
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -16248,19 +16248,19 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline--120--122--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06232109293341637,
+            "area": 0.062401942908763888,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -86.98230743408203,
+                -86.97373962402344,
                 0.02800000086426735,
-                -148.10110473632813
+                -146.55160522460938
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -16270,19 +16270,19 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline-135--122--1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.06231926381587982,
+            "area": 0.06240011006593704,
             "offsetMm": 1.9999984502792359,
             "at": [
-                168.01768493652345,
+                168.02626037597657,
                 0.02800000086426735,
-                -148.10110473632813
+                -146.55160522460938
             ],
             "normal": [
                 0.0,
                 1.0,
                 0.0
             ],
-            "pairs": 3,
+            "pairs": 4,
             "moving": false
         },
         {
@@ -16295,9 +16295,9 @@
             "area": 0.06239614263176918,
             "offsetMm": 1.9999984502792359,
             "at": [
-                171.84170532226563,
+                171.82850646972657,
                 0.02800000086426735,
-                -159.61050415039063
+                -161.1597137451172
             ],
             "normal": [
                 0.0,
@@ -16314,12 +16314,12 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline-30--122-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062397975474596027,
+            "area": 0.062397971749305728,
             "offsetMm": 1.9999984502792359,
             "at": [
-                66.84272766113281,
+                66.82952117919922,
                 0.02800000086426735,
-                -159.49050903320313
+                -161.0397186279297
             ],
             "normal": [
                 0.0,
@@ -16336,12 +16336,12 @@
             "b": "Window street geometry/Street surfaces/1930 municipal street details/Period-stopline--120--122-1",
             "materialB": "PeriodRoadPaint",
             "kind": "material",
-            "area": 0.062397975474596027,
+            "area": 0.062397971749305728,
             "offsetMm": 1.9999984502792359,
             "at": [
-                -83.1602783203125,
+                -83.1744155883789,
                 0.02800000086426735,
-                -159.61038208007813
+                -161.15953063964845
             ],
             "normal": [
                 0.0,
