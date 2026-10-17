@@ -13,6 +13,7 @@ using UnityEngine;
     public TownPlanLamp[] lamps;
     public TownPlanLand[] land,details;
     public TownPlanFacility[] facilities;
+    public TownPlanStreetItem[] streetItems;
     public TownPlanBuilding Building(string id)=>Array.Find(buildings,b=>b.id==id) ?? throw new Exception("Map building missing: "+id);
     static TownPlan cached;
     public static TownPlan Current => cached ?? (cached=JsonUtility.FromJson<TownPlan>(Resources.Load<TextAsset>("TownPlan").text));
@@ -29,3 +30,4 @@ using UnityEngine;
 [Serializable] public class TownPlanLamp {public float x,z;public string road;}
 [Serializable] public class TownPlanLand {public string name,kind,owner;public float[] rect;}
 [Serializable] public class TownPlanFacility {public string id,name,status;public float[] point;public float width,depth;}
+[Serializable] public class TownPlanStreetItem {public string id,kind,name,facing,zone,@ref;public float[] point;public float width,depth,height;}

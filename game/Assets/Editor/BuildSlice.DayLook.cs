@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using UnityEditor;
 using UnityEngine;
@@ -77,6 +78,9 @@ public static partial class BuildSlice {
             Add(Load(PoliceMaterials+name+".mat"),smoothness,darken);
         foreach(var (name,smoothness,darken) in new[]{("IvoryBrick",.48f,.82f),("CreamStone",.50f,.82f),("Slate",.62f,.86f),("Lead",.52f,.92f),("DarkOak",.40f,.86f),("Recess",.30f,.90f),("Bronze",.46f,.92f)})
             Add(Load("Assets/Art/ClockTower1931/Tower_"+name+".mat"),smoothness,darken);
+        // 1931 street furniture: painted iron, granite and weathered wood darken and gloss with the street.
+        foreach(var m in streetMats.Values.Where(m=>m.name.StartsWith("SI_")&&m.name!="SI_Water"&&m.name!="SI_Glass"&&m.name!="SI_RedGlobe"&&m.name!="SI_Soil"))
+            Add(m,m.name.StartsWith("SI_Granite")?.55f:m.GetFloat("_Metallic")>.9f?.7f:.58f,.86f);
         var driver=new GameObject("Town rain wetness").AddComponent<TownWetness>();driver.entries=entries.ToArray();
         Debug.Log("TOWN_WETNESS_READY: "+entries.Count+" shared materials darken and gloss in rain, drying over ~36 game minutes");
     }

@@ -32,6 +32,7 @@ for name,items in [('道路',d['roads']),('院内通道',d['paths'])]:
  for p in items:
   x,z=p['points'][0];o=obj(p.get('name',p.get('owner','通道')),x,z,polyline=[dict(x=(a-x)*10,y=(z-b)*10) for a,b in p['points']],properties=[dict(name='width_m',type='float',value=p['width'])]);objects.append(o)
  layer(name,objects)
+layer('街道物件',[obj(i['id']+' '+i['name'],*i['point'],*((i['width'],i['depth']) if i['facing'] in 'NS' else (i['depth'],i['width'])),properties=[dict(name='facing',type='string',value=i['facing']),dict(name='kind',type='string',value=i['kind'])]) for i in d['streetItems']])
 layer('剧情设施',[obj(f['id']+' '+f['name'],*f['point'],f['width'],f['depth']) for f in d['facilities']])
 (R/'town-plan.tmj').write_text(json.dumps(dict(type='map',version='1.10',tiledversion='1.11.2',orientation='orthogonal',renderorder='right-down',width=410,height=277,tilewidth=10,tileheight=10,infinite=False,layers=layers,nextlayerid=len(layers)+1,nextobjectid=uid+1,properties=[dict(name='scale',type='string',value='10 pixels = 1 metre; X=(px/10)-170; Z=122-(py/10)')]),ensure_ascii=False,indent=2))
 print('exported CSV schedules and',uid,'editable objects')

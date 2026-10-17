@@ -201,8 +201,35 @@ def segdist(p,a,b):
  dx=b[0]-a[0];dz=b[1]-a[1];t=max(0,min(1,((p[0]-a[0])*dx+(p[1]-a[1])*dz)/(dx*dx+dz*dz))) if dx*dx+dz*dz else 0
  return math.hypot(p[0]-a[0]-t*dx,p[1]-a[1]-t*dz)
 Trees=[t for t in Trees if all(segdist([t['x'],t['z']],a,b)>p['width']/2+.6 for p in Paths for a,b in zip(p['points'],p['points'][1:]))]
+# 1931 street furniture (user-approved concept round docs/concepts/street-items/round-01, 2026-10-16).
+# Ten kinds, 41 instances. Point = footprint centre; facing = the side the item's front looks to
+# (towards the street); w runs along the front, d across it; h is the model height. Band items sit
+# wholly inside a road's facilities band, setback items between footway and facade. None carries a
+# clock, date, time, name or route, and none enters evidence (check_plan.py rejects carriageway,
+# footway, path, door, facility, sightline and protected-frontage intrusions).
+StreetKinds=dict(
+ hydrant=dict(name='铸铁消防栓',w=.4,d=.4,h=.75),mailbox=dict(name='橄榄绿立式邮筒',w=.5,d=.45,h=1.3),
+ alarm=dict(name='火警报警柱',w=.4,d=.4,h=2.2),trough=dict(name='花岗岩饮马槽',w=2.2,d=.85,h=1.4),
+ hitch=dict(name='拴马桩与上马石',w=1.6,d=.45,h=1.15),column=dict(name='海报广告柱',w=1.3,d=1.3,h=3.4),
+ litter=dict(name='铁丝废纸篓',w=.55,d=.55,h=.85),sandbin=dict(name='冬季防滑沙箱',w=1.05,d=.7,h=1.0),
+ shoeshine=dict(name='擦鞋摊',w=.8,d=1.3,h=1.4),treeguard=dict(name='铸铁树围与树箅',w=.7,d=.7,h=1.55))
+_items=[
+ ('hydrant',-113.5,23.5,'S','band','R01'),('hydrant',35.6,16.5,'N','band','R01'),('hydrant',128.5,23.5,'S','band','R01'),
+ ('hydrant',24.5,-71.75,'S','band','R02'),('hydrant',92.0,-71.75,'S','band','R02'),
+ ('mailbox',-4.5,23.5,'S','band','R01'),('mailbox',50.5,-71.75,'S','band','R02'),
+ ('alarm',-13.5,16.5,'N','band','R01'),('alarm',35.5,-71.75,'S','band','R02'),
+ ('trough',-122.5,-15.0,'E','band','R04'),
+ ('hitch',-102.2,-71.75,'S','band','R02'),('hitch',-88.2,-71.75,'S','band','R02'),('hitch',51.2,-78.25,'N','band','R02'),
+ ('column',-12.5,4.0,'S','square','B01'),
+ ('litter',-10,5.9,'S','square','B01'),('litter',10,5.9,'S','square','B01'),('litter',-10,-5.9,'N','square','B01'),('litter',10,-5.9,'N','square','B01'),
+ ('litter',199.5,33.2,'S','forecourt','B17'),('litter',191.5,38.0,'S','forecourt','B17'),('litter',44.5,-108.0,'N','garden','A03'),
+ ('litter',71.5,-107.0,'N','garden','A03'),('litter',103.5,-71.75,'S','band','R02'),
+ ('sandbin',184.0,38.8,'S','setback','B17'),('sandbin',97.5,-66.5,'S','setback','B11'),('sandbin',62.5,-82.6,'N','setback','B15'),('sandbin',8.5,23.5,'S','band','R01'),
+ ('shoeshine',58.0,23.5,'W','band','R01')]+[('treeguard',x,23.5,'S','band','R01') for x in [-100,-86,-72,-58,-44,-30,40,54,68,82,96,110,124]]
+StreetItems=[dict(id=f'SI{i+1:02}',kind=k,name=StreetKinds[k]['name'],point=[x,z],facing=f,zone=zone,ref=ref,
+ width=StreetKinds[k]['w'],depth=StreetKinds[k]['d'],height=StreetKinds[k]['h']) for i,(k,x,z,f,zone,ref) in enumerate(_items)]
 exec((R/'story_layout.py').read_text())
-D=dict(version=4,sourceCommit='4ee07d1',storyRevision='2026-10-08 user-confirmed inter-town trip',offMapJourneys=[dict(id='J19',date='1931-01-19',origin='B17',destination='另一镇（不制图）',mode='train',actual=True,purpose='17:20在另一镇南区问不存在的东街',travelMinutes=None,departureTime=None,returnTime=None),dict(id='J20-claim',date='1931-01-20',origin='B17',destination='另一镇（声称）',mode='train',actual=False,basis='把19日行程挪进20日陈述，不是当天实际路线')],unit='m',bounds=[-170,240,-155,122],origin='钟楼中心 (0,0)',buildings=B,roads=roads,trees=Trees,paths=Paths,details=Details,land=land,facilities=Facilities,sightlines=Sightlines,notes=['1931年背景下的虚构小镇平面设计，不是测绘复原。','参考英式老镇连续街面、细长后院与后巷关系；尺寸均为本设计。','建筑形态变更未同步Unity。上一版路线距离、时间和视线结论不适用于此版。','普通商住、住宅与生产附属设施为环境补充，不新增剧情证据。'])
+D=dict(version=4,sourceCommit='4ee07d1',storyRevision='2026-10-08 user-confirmed inter-town trip',offMapJourneys=[dict(id='J19',date='1931-01-19',origin='B17',destination='另一镇（不制图）',mode='train',actual=True,purpose='17:20在另一镇南区问不存在的东街',travelMinutes=None,departureTime=None,returnTime=None),dict(id='J20-claim',date='1931-01-20',origin='B17',destination='另一镇（声称）',mode='train',actual=False,basis='把19日行程挪进20日陈述，不是当天实际路线')],unit='m',bounds=[-170,240,-155,122],origin='钟楼中心 (0,0)',buildings=B,roads=roads,trees=Trees,paths=Paths,details=Details,land=land,facilities=Facilities,streetItems=StreetItems,sightlines=Sightlines,notes=['1931年背景下的虚构小镇平面设计，不是测绘复原。','参考英式老镇连续街面、细长后院与后巷关系；尺寸均为本设计。','建筑形态变更未同步Unity。上一版路线距离、时间和视线结论不适用于此版。','普通商住、住宅与生产附属设施为环境补充，不新增剧情证据。'])
 (R/'plan-data.json').write_text(json.dumps(D,ensure_ascii=False,indent=2));(R/'plan-data.js').write_text('window.PLAN='+json.dumps(D,ensure_ascii=False)+';')
 # SVG with reusable map layers.
 W,H=2250,1630;S=5;OX=105;OY=145
@@ -286,6 +313,10 @@ svg.append('</g><g id="trees">')
 for t in Trees:
  x,y=P(t['x'],t['z']);r=t['r']*S
  svg.append(f'<circle cx="{x+2}" cy="{y+2}" r="{r}" fill="#77865f" opacity=".10"/><circle cx="{x}" cy="{y}" r="{r}" fill="#a7b585" fill-opacity=".68" stroke="#7f976c" stroke-width=".8"/><circle cx="{x-.2*r}" cy="{y-.15*r}" r="{r*.67}" fill="none" stroke="#c8d0aa" stroke-width=".6"/><circle cx="{x}" cy="{y}" r="1.6" fill="#657252"/>')
+svg.append('</g><g id="street-items">')
+for it in StreetItems:
+ w,dd=(it['width'],it['depth']) if it['facing'] in 'NS' else (it['depth'],it['width'])
+ svg.append(rr(rect(*it['point'],w,dd),'#3f4a44','#1f2622',.08,'opacity=".85"'))
 svg.append('</g><g id="grid" opacity=".35">')
 for x in range(-150,241,25):svg.append(line([[x,-150],[x,120]],'#839184',.08,'stroke-dasharray="3 5"'));svg.append(txt(x,124,x,10))
 for z in range(-150,121,25):svg.append(line([[-165,z],[237,z]],'#839184',.08,'stroke-dasharray="3 5"'));svg.append(txt(-174,z,z,10))

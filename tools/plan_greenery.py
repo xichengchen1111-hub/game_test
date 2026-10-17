@@ -29,6 +29,11 @@ protected.append(box(-143.9,39.7,-126.25,57.7).buffer(.3))
 protected += [rect(d['rect']).buffer(.3) for d in p['details'] if d['kind'] in ['service','shed']]
 protected += [rect(d['rect']).buffer(.3) for d in p['land'] if d['kind'] in ['rail','court','workyard']]
 protected += [Point(*f['point']).buffer(max(f['width'],f['depth'])/2+.8) for f in p['facilities']]
+# Street furniture footprints (tree guards keep the whole 1.22 m grate free of planting).
+for it in p['streetItems']:
+ x,z=it['point'];w,dd=(it['width'],it['depth']) if it['facing'] in 'NS' else (it['depth'],it['width'])
+ if it['kind']=='treeguard':w=dd=1.3
+ protected.append(box(x-w/2,z-dd/2,x+w/2,z+dd/2).buffer(.3))
 protected += [Point(x,z).buffer(1.7) for x,z in [(-10,8),(10,8),(-10,-8),(10,-8),(194,33),(205,33),(42,-108),(74,-107)]]
 protected += [LineString([s['a'],s['b']]).buffer(1.1) for s in json.loads((R/'docs/maps/town-current/actor-audit.json').read_text())['sights']]
 reserved=unary_union(protected+[buildings.buffer(.55),paths,entrances])

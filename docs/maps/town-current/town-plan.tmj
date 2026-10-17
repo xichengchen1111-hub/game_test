@@ -14480,10 +14480,923 @@
     {
       "type": "objectgroup",
       "id": 9,
-      "name": "剧情设施",
+      "name": "街道物件",
       "objects": [
         {
           "id": 1021,
+          "name": "SI01 铸铁消防栓",
+          "x": 563.0,
+          "y": 983.0,
+          "width": 4.0,
+          "height": 4.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hydrant"
+            }
+          ]
+        },
+        {
+          "id": 1022,
+          "name": "SI02 铸铁消防栓",
+          "x": 2054.0,
+          "y": 1053.0,
+          "width": 4.0,
+          "height": 4.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "N"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hydrant"
+            }
+          ]
+        },
+        {
+          "id": 1023,
+          "name": "SI03 铸铁消防栓",
+          "x": 2983.0,
+          "y": 983.0,
+          "width": 4.0,
+          "height": 4.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hydrant"
+            }
+          ]
+        },
+        {
+          "id": 1024,
+          "name": "SI04 铸铁消防栓",
+          "x": 1943.0,
+          "y": 1935.5,
+          "width": 4.0,
+          "height": 4.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hydrant"
+            }
+          ]
+        },
+        {
+          "id": 1025,
+          "name": "SI05 铸铁消防栓",
+          "x": 2618.0,
+          "y": 1935.5,
+          "width": 4.0,
+          "height": 4.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hydrant"
+            }
+          ]
+        },
+        {
+          "id": 1026,
+          "name": "SI06 橄榄绿立式邮筒",
+          "x": 1652.5,
+          "y": 982.75,
+          "width": 5.0,
+          "height": 4.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mailbox"
+            }
+          ]
+        },
+        {
+          "id": 1027,
+          "name": "SI07 橄榄绿立式邮筒",
+          "x": 2202.5,
+          "y": 1935.25,
+          "width": 5.0,
+          "height": 4.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "mailbox"
+            }
+          ]
+        },
+        {
+          "id": 1028,
+          "name": "SI08 火警报警柱",
+          "x": 1563.0,
+          "y": 1053.0,
+          "width": 4.0,
+          "height": 4.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "N"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "alarm"
+            }
+          ]
+        },
+        {
+          "id": 1029,
+          "name": "SI09 火警报警柱",
+          "x": 2053.0,
+          "y": 1935.5,
+          "width": 4.0,
+          "height": 4.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "alarm"
+            }
+          ]
+        },
+        {
+          "id": 1030,
+          "name": "SI10 花岗岩饮马槽",
+          "x": 470.75,
+          "y": 1359.0,
+          "width": 8.5,
+          "height": 22.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "E"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "trough"
+            }
+          ]
+        },
+        {
+          "id": 1031,
+          "name": "SI11 拴马桩与上马石",
+          "x": 670.0,
+          "y": 1935.25,
+          "width": 16.0,
+          "height": 4.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hitch"
+            }
+          ]
+        },
+        {
+          "id": 1032,
+          "name": "SI12 拴马桩与上马石",
+          "x": 810.0,
+          "y": 1935.25,
+          "width": 16.0,
+          "height": 4.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hitch"
+            }
+          ]
+        },
+        {
+          "id": 1033,
+          "name": "SI13 拴马桩与上马石",
+          "x": 2204.0,
+          "y": 2000.25,
+          "width": 16.0,
+          "height": 4.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "N"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "hitch"
+            }
+          ]
+        },
+        {
+          "id": 1034,
+          "name": "SI14 海报广告柱",
+          "x": 1568.5,
+          "y": 1173.5,
+          "width": 13.0,
+          "height": 13.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "column"
+            }
+          ]
+        },
+        {
+          "id": 1035,
+          "name": "SI15 铁丝废纸篓",
+          "x": 1597.25,
+          "y": 1158.25,
+          "width": 5.5,
+          "height": 5.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "litter"
+            }
+          ]
+        },
+        {
+          "id": 1036,
+          "name": "SI16 铁丝废纸篓",
+          "x": 1797.25,
+          "y": 1158.25,
+          "width": 5.5,
+          "height": 5.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "litter"
+            }
+          ]
+        },
+        {
+          "id": 1037,
+          "name": "SI17 铁丝废纸篓",
+          "x": 1597.25,
+          "y": 1276.25,
+          "width": 5.5,
+          "height": 5.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "N"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "litter"
+            }
+          ]
+        },
+        {
+          "id": 1038,
+          "name": "SI18 铁丝废纸篓",
+          "x": 1797.25,
+          "y": 1276.25,
+          "width": 5.5,
+          "height": 5.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "N"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "litter"
+            }
+          ]
+        },
+        {
+          "id": 1039,
+          "name": "SI19 铁丝废纸篓",
+          "x": 3692.25,
+          "y": 885.2499999999999,
+          "width": 5.5,
+          "height": 5.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "litter"
+            }
+          ]
+        },
+        {
+          "id": 1040,
+          "name": "SI20 铁丝废纸篓",
+          "x": 3612.25,
+          "y": 837.25,
+          "width": 5.5,
+          "height": 5.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "litter"
+            }
+          ]
+        },
+        {
+          "id": 1041,
+          "name": "SI21 铁丝废纸篓",
+          "x": 2142.25,
+          "y": 2297.25,
+          "width": 5.5,
+          "height": 5.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "N"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "litter"
+            }
+          ]
+        },
+        {
+          "id": 1042,
+          "name": "SI22 铁丝废纸篓",
+          "x": 2412.25,
+          "y": 2287.25,
+          "width": 5.5,
+          "height": 5.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "N"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "litter"
+            }
+          ]
+        },
+        {
+          "id": 1043,
+          "name": "SI23 铁丝废纸篓",
+          "x": 2732.25,
+          "y": 1934.75,
+          "width": 5.5,
+          "height": 5.5,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "litter"
+            }
+          ]
+        },
+        {
+          "id": 1044,
+          "name": "SI24 冬季防滑沙箱",
+          "x": 3534.75,
+          "y": 828.5000000000001,
+          "width": 10.5,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sandbin"
+            }
+          ]
+        },
+        {
+          "id": 1045,
+          "name": "SI25 冬季防滑沙箱",
+          "x": 2669.75,
+          "y": 1881.5,
+          "width": 10.5,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sandbin"
+            }
+          ]
+        },
+        {
+          "id": 1046,
+          "name": "SI26 冬季防滑沙箱",
+          "x": 2319.75,
+          "y": 2042.5,
+          "width": 10.5,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "N"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sandbin"
+            }
+          ]
+        },
+        {
+          "id": 1047,
+          "name": "SI27 冬季防滑沙箱",
+          "x": 1779.75,
+          "y": 981.5,
+          "width": 10.5,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "sandbin"
+            }
+          ]
+        },
+        {
+          "id": 1048,
+          "name": "SI28 擦鞋摊",
+          "x": 2273.5,
+          "y": 981.0,
+          "width": 13.0,
+          "height": 8.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "W"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "shoeshine"
+            }
+          ]
+        },
+        {
+          "id": 1049,
+          "name": "SI29 铸铁树围与树箅",
+          "x": 696.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1050,
+          "name": "SI30 铸铁树围与树箅",
+          "x": 836.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1051,
+          "name": "SI31 铸铁树围与树箅",
+          "x": 976.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1052,
+          "name": "SI32 铸铁树围与树箅",
+          "x": 1116.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1053,
+          "name": "SI33 铸铁树围与树箅",
+          "x": 1256.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1054,
+          "name": "SI34 铸铁树围与树箅",
+          "x": 1396.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1055,
+          "name": "SI35 铸铁树围与树箅",
+          "x": 2096.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1056,
+          "name": "SI36 铸铁树围与树箅",
+          "x": 2236.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1057,
+          "name": "SI37 铸铁树围与树箅",
+          "x": 2376.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1058,
+          "name": "SI38 铸铁树围与树箅",
+          "x": 2516.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1059,
+          "name": "SI39 铸铁树围与树箅",
+          "x": 2656.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1060,
+          "name": "SI40 铸铁树围与树箅",
+          "x": 2796.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        },
+        {
+          "id": 1061,
+          "name": "SI41 铸铁树围与树箅",
+          "x": 2936.5,
+          "y": 981.5,
+          "width": 7.0,
+          "height": 7.0,
+          "rotation": 0,
+          "visible": true,
+          "properties": [
+            {
+              "name": "facing",
+              "type": "string",
+              "value": "S"
+            },
+            {
+              "name": "kind",
+              "type": "string",
+              "value": "treeguard"
+            }
+          ]
+        }
+      ],
+      "visible": true,
+      "opacity": 1,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "type": "objectgroup",
+      "id": 10,
+      "name": "剧情设施",
+      "objects": [
+        {
+          "id": 1062,
           "name": "F01 公共电话亭",
           "x": 1790.0,
           "y": 1090.0,
@@ -14493,7 +15406,7 @@
           "visible": true
         },
         {
-          "id": 1022,
+          "id": 1063,
           "name": "F02 镇外候车点",
           "x": 3975.0,
           "y": 950.0,
@@ -14503,7 +15416,7 @@
           "visible": true
         },
         {
-          "id": 1023,
+          "id": 1064,
           "name": "F04 煤车唯一卸货位置",
           "x": 1395.0,
           "y": 1935.0,
@@ -14513,7 +15426,7 @@
           "visible": true
         },
         {
-          "id": 1024,
+          "id": 1065,
           "name": "F05 两宅陪同院门",
           "x": 1328.0,
           "y": 1864.0,
@@ -14529,8 +15442,8 @@
       "y": 0
     }
   ],
-  "nextlayerid": 10,
-  "nextobjectid": 1025,
+  "nextlayerid": 11,
+  "nextobjectid": 1066,
   "properties": [
     {
       "name": "scale",

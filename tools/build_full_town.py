@@ -93,9 +93,15 @@ for r in p['roads']:
    if any(math.hypot(t['x']-x,t['z']-z)<.8 for t in p['trees']):continue
    lamps.append(dict(x=round(x,3),z=round(z,3),road=r['id']))
 
+# Street furniture comes from the map (check_plan.py clears roads, paths, doors and sightlines);
+# lanterns are derived here, so keep every item at least 1.2 m from a lantern post.
+items=p['streetItems']
+for it in items:
+ near=min(math.hypot(l['x']-it['point'][0],l['z']-it['point'][1]) for l in lamps)
+ if near<1.2+max(it['width'],it['depth'])/2:raise SystemExit(f"Street item {it['id']} {it['kind']} is {near:.2f} m from a lantern")
 data=dict(version=p['version'],sourceSha256=hashlib.sha256(SOURCE.read_bytes()).hexdigest(),bounds=p['bounds'],buildings=buildings,
  roads=[dict(id=r['id'],name=r['name'],points=sum(r['points'],[]),lane=r['lane'],walk=r['walk'],strip=r['strip'],width=r['width']) for r in p['roads']],
- trees=p['trees'],land=p['land'],details=p['details'],facilities=p['facilities'],surfaces=surfaces,lamps=lamps,milkRect=milk)
+ trees=p['trees'],land=p['land'],details=p['details'],facilities=p['facilities'],streetItems=items,surfaces=surfaces,lamps=lamps,milkRect=milk)
 (RES/'TownPlan.json').write_text(json.dumps(data,ensure_ascii=False,separators=(',',':')),encoding='utf-8')
 
 # Original placeholder graphics, explicitly opaque. They do not pretend to show an interior.
@@ -117,7 +123,7 @@ for k in range(110):
 im.save(ASSETS/'Tree.png')
 out=ROOT/'output/demo/full-map';out.mkdir(parents=True,exist_ok=True)
 report=dict(source=data['sourceSha256'],buildings=len(buildings),trees=len(p['trees']),roads=len(p['roads']),
- surfaceChunks=len(surfaces),surfaceTriangles=sum(len(s['vertices'])//9 for s in surfaces),lanterns=len(lamps),
+ streetItems=len(items),surfaceChunks=len(surfaces),surfaceTriangles=sum(len(s['vertices'])//9 for s in surfaces),lanterns=len(lamps),
  maximumTriangulationAreaError=max(coverage),
  disjointSurfaceAreaError=road.intersection(walk).area+kerb.intersection(walk).area,
  milkPlacement='Existing house retained at scale .9 inside B04 production parcel; remaining production floor is placeholder yard',

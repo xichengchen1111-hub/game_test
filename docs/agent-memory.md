@@ -1,10 +1,14 @@
 # Agent 持久记忆：错日证词
 
-### PUBLISH-08：STREET-04／05 与 WALK-01 合并验证后推到 main（2026-10-17，Claude Code）
+### PUBLISH-08：STREET-04／05 与 WALK-01 合并验证、并入远端街道物件后推到 main（2026-10-17，Claude Code）
 
-- **用户**：看到三个街道子会话完成后说「推吧」。三个会话各自只验了自己那部分，修车流的父会话说明它的最后结果对应候选 7、不是现在的文件，后巷会话还有一次 street-life 因男孩步速 0.79 m/s（下限 0.8）失败。所以推送前在合并后的工作区整体重验。
-- **验证**（程序集 45110a31…，静音、独立存档，正常存档 c87ab80d… 不变）：EditMode 144／144；ZFightScan 精确 0／运动 0；street-life 通过；street-traffic 九个路口 720 s：0 叠车、0 防撞、等车或规则最长 54.1 s、被行人挡住最长 8.0 s、超过 10 s 的 0 次（掉头 17、擦身而过 16）；第一幕 1080 与读档通过。构建噪声（人物 Avatar／口型、医院、警署、剧情车、街道生活预制件，共 55 个）已还原。
-- **交付**：推送前发现 `builds/` 几乎清空——用户的「电脑内存清理」会话（另一项目，2026-10-16 23:08 前）把约 97GB 旧构建移进了废纸篓，包括桌面入口 `builds/macos-current`、各 before-*.app 备份、v8 录像与 check8／inn-light 截图，桌面链接因此悬空。没有旧版可备份；把通过上述验证的 45110a31 复制到 `builds/macos-current/错日证词-新版.app`，桌面链接恢复，签名校验通过（promotion.json）。推送前再 fetch，origin/main 仍为 23ed885；提交后在 issue #1 勾掉街道三项。
+- **用户**：看到三个街道子会话完成后说「推吧」。三个会话各自只验了自己那部分（修车流的父会话说明它的最后结果对应候选 7；后巷会话有一次 street-life 因男孩步速 0.79 m/s 失败），所以先在合并后的工作区整体重验：程序集 45110a31…，EditMode 144／144、ZFightScan 0／0、street-life、street-traffic（720 s、0 叠车、被行人挡最长 8.0 s）、第一幕 1080 与读档全部通过。
+- **远端变了**：提交前 fetch，origin/main 从 23ed885 变成 0e68058——队友 Jason Zhang 推了 FURNITURE-01（十种 1931 街道物件 41 处，地图源 `StreetItems`，合并了街道生活与 HOTEL-02）。本地先提交 51eefb0，再合并：
+  - 记忆两边新条目都保留；AGENTS.md 自动合并。
+  - 生成文件冲突（`PeriodStreets.json`、`TownNavigation.asset`、`Town.unity`）先取远端，再从合并后的源重新生成：`build_period_streets.py` 需要 shapely（原本的 venv 在 builds/ 里被清理掉了，草稿区新建 venv：shapely 2.2.0、numpy 2.5.4、Pillow 13.0.0）。生成结果与 51eefb0 只差地图散列（远端新地图）以及本机 GEOS 造成的 5 块边沟、75 条路缘立面三角形顺序（几何集合相同），按 STREET-04 惯例保留提交版顺序；新 venv 画出的 7 张路面贴图像素不同，已还原。
+  - 城镇场景用临时编辑器入口只重建 `Town()`（照 `BuildFor` 的准备步骤，引用已提交的建筑预制件，不进库）：FULL_MAP、GREENERY、PERIOD_STREET、STREET_ITEMS（41 处）、导航烘焙都 PASS，ZFIGHT_REPAIR Town 0 剩余；另把钟表铺场景设为活动场景单独跑 `BuildingLayoutChecks.ValidateScenes` 通过。只留 `Town.unity`、`TownNavigation.asset` 和一份 Town 共面修补网格；重建顺带改写的住宅预制件（场景里是解包的，不引用它）、两种住宅材质、售票员 Avatar、两种街道物件材质按噪声还原。
+- **合并后验证**（程序集 020b8e22…，静音、独立存档，正常存档 c87ab80d… 不变）：EditMode 144／144；ZFightScan 精确 0／运动 0（11,820,298 三角，含街道物件）；street-life；street-traffic 九路口 720 s：0 叠车、0 防撞、等车或规则最长 45.5 s、被行人挡最长 5.3 s、超过 10 s 0 次；street-items（`run_review.py` 新增该项）；旅馆；第一幕 1080 与读档；全图行走与读档，全部通过。构建噪声已还原。
+- **交付**：推送前发现 `builds/` 几乎清空——用户的「电脑内存清理」会话（另一项目，2026-10-16 23:08 前）把约 97GB 旧构建移进了废纸篓，包括桌面入口 `builds/macos-current`、各 before-*.app 备份、v8 录像与 check8／inn-light 截图。没有旧版可备份；桌面入口换成通过上述验证的 020b8e22，签名校验通过。推送后在 issue #1 勾掉街道三项。
 
 ### STREET-05：人行横道上车被行人挡一两分钟——车停上横道、行人被车身挡在车旁；拐角排队排回马路；横道上面对面顶住；路边站着的人挡右转车。车按车身判断车旁和路边的人，行人被车挡就退回路沿、给等着的车让路、过了马路就算过完（2026-10-17，Claude Code 子会话）
 
@@ -58,6 +62,14 @@
 - **限制**：程序驱动、静音，不是物理键鼠或盲测；没有车停在南北向信号漆线前的实机画面。生成器里的停车线计算是 StreetNet 算法的另一份实现：车身尺寸和余量从源码读，但若改了算法本身（扫掠长度、`Behind` 步长、停车线基准 1.1 m 等）要同步改脚本——可加一个 EditMode 测试核对漆线与 StreetNet 的线，本次只改生成器和文档，没加（已加，见下条「停止线测试」）。`StreetNet.cs` 第 216–217 行注释仍写信号路口漆线在 z 14/26（现为 12.05/27.95，x 25/35 不变），该文件正由另一会话修改，没动（已改，同见下条）。候选包 `builds/stop-bars/错日证词-新版.app`，截图与日志在 `builds/opening/stopbars-street-life/`、`builds/stop-bars/logs/`（都不进 Git）；桌面入口未更新；未提交。
 - **停止线测试**（2026-10-16 夜，Claude Code 子会话）：新增 EditMode `game/Assets/Editor/CarTests/StreetStopBarTests.cs`（与 `StreetTrafficLayoutTests` 同样用反射，由临时脚本 `StopBarTownOnly.cs` 的 `Lines()` 移植）。用 `TownPlan.Current` 和 `Resources/PeriodStreets` 建 `StreetNet`，对每条停在 STOP 牌或信号前的车道（`stopSign` 或 `signalAxis >= 0`）取横跨该车道、离它停车线最近的 `stopline-*`／`signalbar-*` 漆面：`EveryStopLineHasItsBarPaintedJustInside` 要求漆线中心在 `lane.end` 靠路口一侧 0.10 m（±0.005），共 20 条车道、20 块漆，一块漆只对一条车道；`EveryStopPostStandsOnItsBar` 要求离车道终点最近的 STOP 牌（`stops`）在这块漆的中心线上（沿车道方向 ±0.005），共 16 块、互不重复。StreetNet 的规则、车身尺寸或余量改了而没重跑生成器，或只改了生成器里那份规则，都会失败；它只读 `PeriodStreets.json`，不读 `Town.unity` 和 `Generated/Street` 网格，重跑了生成器却没重建城镇时发现不了。同时把 `StreetNet.cs` 第 216–217 行注释改为信号路口漆线在 x 25/35、南北向随 `SetBackLines` 后退在 z 12.05/27.95（只动这两行；WALK-01 已改完该文件，写入前核对共享检出与克隆时逐字节相同，用定点替换，没有整文件覆盖）。
 - **停止线测试的验证**（Mac／Unity 6000.3.18f1；APFS 克隆＝HEAD 23ed885＋STREET-04＋WALK-01＋本次两处，另一个子会话正在改的 `AmbientCar`、`StreetLife`、`StreetWalker`、`DemoApp.StreetLifeReview` 及其新测试在克隆里还原成 HEAD）：EditMode 142／142（WALK-01 后的 140＋本次 2），日志 `STOP_BARS_ON_LINES: 20 bars, worst 0.0000 m`、`STOP_POSTS_ON_BARS: 16 posts, worst 0.0000 m`。反例只在克隆里做：把中街北行、住宅街路口的 `stopline-30--75-1` 沿 z 挪 +5 cm，两项都失败并点名这块漆（漆线中心 +0.150 m，应为 +0.100；牌 (32.5, −82.95) 离漆线中心线 −0.050 m）；数据还原（与共享检出同为 cd8537d0…）后全部重跑 142／142。另把那个子会话 22:57 时的未完成文件也放进克隆跑一次：144／144（多出它的 2 项）。拷回共享检出的只有测试与 .meta（与克隆逐字节相同）和这两行注释；正常存档 c87ab80d… 前后不变。结果 XML 与日志在忽略的 `builds/stop-bars/editmode-test/`。只是数据检查，不涉及画面；未提交。
+
+### FURNITURE-01：1931 街道物件十件（2026-10-16，Claude Code，构建、原生验收与回归通过，用户同意后推送 main）
+
+- **用户要求**：看过 `docs/concepts/street-items/round-01` 后“这 10 件都要，按设计做进游戏，按项目流程走地图检查和验收”。做法见 AGENTS.md「街道物件」。41 处坐标在 `build_plan.py` 的 `StreetItems`；`check_plan.py`／`check_town_map.py` 新增检查（用越界样例确认会拒绝压车道、人行道、门口、通道、视线与主角家门前）；`build_full_town.py`、`build_period_streets.py`、`plan_greenery.py` 已重跑（平台重写的 Facade/Tree/Period* PNG 已还原；Meadow.png 与花草布局因排除区确有变化）。
+- **实测发现并修复**：擦鞋摊与警署沙箱原定门前沿没有铺面，改放设施带；Blender 合并网格后的材质槽整理把所有面重置到第一个材质（广告柱无海报、消防栓无银帽、火警灯罩无发光），改为保留每面材质，并在 Unity 构建期断言每种材质都有非空子网格、灯罩带发光；共面：先按材质不同查漏掉了同材质的情况（各部件盒投影 UV 不同照样闪），用 `ZFIGHT_TRACE=Item_` 找到邮筒门框四角、沙箱侧板与面板端头、树箅边框四角，生成器改为按真实多边形重叠面积（≥1 cm²、0.6 mm 内、任何材质）审计并失败即停，用旧几何回放确认能抓到这三处；修复后城镇 ZFightRepair 不再给任何物件生成修补副本。验收脚本两处判断写错（擦鞋摊踏步本可踩上；阴天正午路灯本就约 7%，改为与路灯同曲线、晴天为 0）。**顺带修复**：`--review-full-map` 仍断言“完成建筑 8 座”，旅馆已使之为 9（构建期 `FullMapChecks` 早已是 9），改为 9 并在标签里加旅馆。
+- **证据**：Windows／Unity 6000.3.18f1／D3D11 staging `SLICE_BUILD_PASS`，`STREET_ITEMS_AUTHORING_PASS`（41 处、232954 三角面）；原生 `--review-street-items` 1080p／720p 均 PASS（54 条人行道扫掠、10 种推挤、4 段奔跑行走、灯罩晴天 0／夜间 1.0），关键帧 `output/demo/street-items/review-1080/`。回归（同一最终构建）：`--review-full-map` PASS（六种访问顺序）、`--review-period-streets` PASS、`ZFightScan` 精确 0／运动 0；`ReviewCar` PASS 在材质修复前一版构建上跑过，最终几何只改了物件网格与验收脚本。
+- **合并街道生活后复验**：推送前 fetch 发现 origin/main 新增 4 个提交（街道生活：Tripo 路人、车流、公文包与档案、第一幕改版；LF 地图散列）。先本地提交，再合并：Hospital／PoliceStation 预制件与 zfight 报告取远端后由重建覆盖，`verification.json` 用合并后的检查器重写，记忆两边新条目都保留（本条原名 STREET-01 与旧条目重号，改为 FURNITURE-01）。合并后 staging 重建 `SLICE_BUILD_PASS`，`--review-street-items` 1080p／720p、`--review-full-map`、`--review-period-streets`、`--review-street-life`、`--review-street-traffic` 全部 PASS，ZFightScan 精确 0／运动 0，城镇修补不再改动物件。
+- **限制**：程序驱动、静音，非物理键鼠或盲测；推送前又合并了 HOTEL-02（旅馆大堂补灯，只改旅馆源与预制件，生成文件取远端），合并后未在本机再重建；未重跑警署／医院／修车铺／旅馆／住宅原生验收；未构建 Mac、未替换 `builds/windows`。
 
 ### HOTEL-02：旅馆大堂门房柜台与楼梯口补灯（2026-10-16，Claude Code）
 
