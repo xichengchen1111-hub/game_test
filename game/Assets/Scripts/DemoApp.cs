@@ -137,6 +137,8 @@ public partial class DemoApp : MonoBehaviour {
         if(Review&&Array.IndexOf(args,"--review-milkboy-tripo")>=0)savePath=Path.Combine(Application.persistentDataPath,"milkboy-tripo-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-station-clerk")>=0||Array.IndexOf(args,"--verify-station-clerk-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"station-clerk-review-save.json");
         if(Review&&(Array.IndexOf(args,"--review-house")>=0||Array.IndexOf(args,"--verify-house-save")>=0))savePath=Path.Combine(Application.persistentDataPath,"house-review-save.json");
+        bool evidenceGalleryMode=Array.IndexOf(args,"--evidence-gallery")>=0||Array.IndexOf(args,"--review-evidence-gallery")>=0;
+        if(evidenceGalleryMode)savePath=Path.Combine(Application.persistentDataPath,"evidence-gallery-save.json");
         if(Review&&Array.IndexOf(args,"--review-period-streets")>=0)savePath=Path.Combine(Application.persistentDataPath,"period-street-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-street-items")>=0)savePath=Path.Combine(Application.persistentDataPath,"street-items-review-save.json");
         if(Review&&Array.IndexOf(args,"--review-greenery")>=0)savePath=Path.Combine(Application.persistentDataPath,"greenery-review-save.json");
@@ -232,6 +234,7 @@ public partial class DemoApp : MonoBehaviour {
         InitializeStreetLife();
         location=CurrentScene=="Town"?"青川 · 小镇广场":"邻镇 · 车站街区";
         locationAge=Time.time;
+        if(!Review&&Array.IndexOf(args,"--evidence-gallery")>=0)StartCoroutine(EvidenceGalleryRun(false));
         yield return FadeTo(0,0.9f);
         if(previewWindow||previewStreet||previewMilkboy||previewWatchmaker)CursorMode();
         if (Review) {
@@ -263,6 +266,7 @@ public partial class DemoApp : MonoBehaviour {
             else if(Array.IndexOf(args,"--verify-garage-save")>=0)StartCoroutine(VerifyGarageSave());
             else if(Array.IndexOf(args,"--review-police")>=0)StartCoroutine(ReviewPolice());
             else if(Array.IndexOf(args,"--verify-police-save")>=0)StartCoroutine(VerifyPoliceSave());
+            else if(Array.IndexOf(args,"--review-evidence-gallery")>=0)StartCoroutine(EvidenceGalleryRun(true));
             else if(Array.IndexOf(args,"--review-house")>=0)StartCoroutine(ReviewHouse());
             else if(Array.IndexOf(args,"--verify-house-save")>=0)StartCoroutine(VerifyHouseSave());
             else if(Array.IndexOf(args,"--review-car")>=0)StartCoroutine(ReviewCar());
@@ -399,7 +403,13 @@ public partial class DemoApp : MonoBehaviour {
         if(item.title=="售票员") { OpenStationClerkDialogue(item); return; }
         if(item.title=="值班警员") { OpenPoliceOfficerDialogue(item); return; }
         if(item.title=="修车匠") { OpenMechanicDialogue(item); return; }
+        // A page of a bound document opens the whole book at that page (EvidenceBook).
+        var pageOf=item.GetComponent<EvidencePageOf>();
+        if(pageOf&&pageOf.book&&pageOf.book.Count>1){evidenceBook=pageOf.book;evidencePage=pageOf.index;item=evidenceBook.Page(evidencePage);}else evidenceBook=null;
         EndEvidenceModel();inspected=item;if(ModelEvidence)BeginEvidenceModel(item); houseLetterOpen=false; towerAdjustmentFeedback=""; CursorMode();
+        RecordInspected(item);
+    }
+    void RecordInspected(Interactable item) {
         if(item.evidenceId=="E02"||item.evidenceId=="E03") {
             var existing=state.entries.Find(e=>e.id==item.evidenceId);
             if(existing!=null){existing.title=item.title;existing.body=item.body;existing.source=item.source;Save();}
@@ -417,7 +427,7 @@ public partial class DemoApp : MonoBehaviour {
             state.remarkSeen=true; remark="同行者  /  老街的事，店里总会留些纸。"; remarkStart=Time.time; remarkUntil=Time.time+5;
         }
         OpeningInspectionClosed();
-        EndEvidenceModel();inspected=null; houseLetterOpen=false; houseReturnContainer=null; CursorMode(); Save();
+        EndEvidenceModel();inspected=null;evidenceBook=null; houseLetterOpen=false; houseReturnContainer=null; CursorMode(); Save();
         ReturnToBackpack();
     }
     public void Travel(ScenePortal portal) { if(!transitioning&&!CarSeated) StartCoroutine(Transition(portal)); }

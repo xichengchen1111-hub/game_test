@@ -27,4 +27,14 @@ public sealed class HotelInn : MonoBehaviour {
         return null;
     }
     public RakingLamp RegisterLamp => GetComponentInChildren<RakingLamp>(true);
+    // The register is one book: the 20 January page (I01), then the next page, which is the plain sheet
+    // or, with the desk lamp lowered, the pressed writing (I02). Its pages are turned in the close-up
+    // instead of being separate pieces of evidence (user, 2026-10-19).
+    void Start() {
+        var lamp = RegisterLamp; if (!lamp || !lamp.plainPage || !lamp.rakedPage) return;
+        Interactable first = null;
+        foreach (var d in GetComponentsInChildren<PoliceDocumentItem>(true)) if (d.evidenceId == "I01") { first = d; break; }
+        var plain = lamp.plainPage.GetComponentInChildren<Interactable>(true); var raked = lamp.rakedPage.GetComponentInChildren<Interactable>(true);
+        if (first && plain && raked) EvidenceBook.Bind(first, EvidenceBook.Style.Bound, "", "文件 · 簿册", new[] { first }, new[] { raked, plain });
+    }
 }
